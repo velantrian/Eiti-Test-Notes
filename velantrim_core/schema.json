@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velantrim.ai/schema/fact/3.2",
+  "title": "Velantrim Fact v3.2",
+  "type": "object",
+  "required": [
+    "id", "schema_version", "domain", "subtopic",
+    "tier", "type", "statement", "confidence", "tags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]+(\\.[a-z][a-z0-9_]*)*(\\.[a-z0-9_]+)?$",
+      "description": "Минимум 3 сегмента, строчные, точка-разделитель"
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "3.2"
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+    },
+    "subtopic": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["invariant", "variant", "practical", "logic", "frontier", "abstract"]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "axiom", "definition", "lemma", "theorem", "corollary",
+        "conjecture", "formula", "inference_rule", "law_of_thought",
+        "fallacy", "bias", "paradox",
+        "law", "principle", "postulate", "constant", "effect", "model",
+        "concept", "fact", "relation", "mechanism", "pattern",
+        "process", "technology", "method", "material",
+        "estimate", "hypothesis", "open_problem"
+      ]
+    },
+    "statement": {
+      "type": "string",
+      "maxLength": 250
+    },
+    "formal_notation": {
+      "type": ["string", "null"]
+    },
+    "conditions": {
+      "type": ["string", "null"]
+    },
+    "limits": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "prereq": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]+(\\.[a-z][a-z0-9_]*)*$"
+      }
+    },
+    "derives_from": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]+(\\.[a-z][a-z0-9_]*)*$"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 3,
+      "maxItems": 5
+    },
+    "tier_extensions": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
