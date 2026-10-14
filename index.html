@@ -34618,13 +34618,21 @@ window.eitiLLMClearAll = async function() {
             if (s !== 'small' && s !== 'medium' && s !== 'large') s = 'medium';
             return s;
         }
+        function eitiNotesAIGetKeyboardInset(panel, viewport, visualViewport) {
+            var layoutHeight = Math.max(1, Number(viewport) || Number(window.innerHeight) || 640);
+            var vv = visualViewport || window.visualViewport;
+            if (!vv) return 0;
+            var visibleHeight = Math.max(1, Number(vv.height) || layoutHeight);
+            var offsetTop = Number(vv.offsetTop) || 0;
+            var parentHeight = panel && panel.parentElement ? Number(panel.parentElement.clientHeight) || 0 : 0;
+            return Math.max(0, Math.floor((parentHeight || layoutHeight) - visibleHeight - offsetTop));
+        }
         function eitiNotesAIAvailablePanelHeight(panel) {
             var viewport = Math.max(1, Number(window.innerHeight) || 640);
-            var vv = window.visualViewport;
-            var keyboard = vv ? Math.max(0, viewport - (Number(vv.height) || viewport) - (Number(vv.offsetTop) || 0)) : 0;
-            var visibleHeight = Math.max(1, viewport - keyboard);
             var parentHeight = panel && panel.parentElement ? Number(panel.parentElement.clientHeight) || 0 : 0;
-            return Math.max(1, Math.floor(Math.min(parentHeight || visibleHeight, visibleHeight)));
+            var availableHeight = parentHeight || viewport;
+            var keyboard = eitiNotesAIGetKeyboardInset(panel, viewport, window.visualViewport);
+            return Math.max(1, Math.floor(Math.min(availableHeight, availableHeight - keyboard)));
         }
         function eitiNotesAIClampPanelHeight(height, available) {
             var max = Math.max(1, Math.floor(Number(available) || Number(window.innerHeight) || 640));
@@ -35277,9 +35285,9 @@ window.eitiLLMClearAll = async function() {
                 window._eitiNotesAIVvBound = true;
                 var syncKb = function() {
                     var vv = window.visualViewport;
-                    var kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
-                    var bar = document.getElementById('notesAiFabBar');
                     var panel = document.getElementById('notesAiPanel');
+                    var kb = eitiNotesAIGetKeyboardInset(panel, window.innerHeight, vv);
+                    var bar = document.getElementById('notesAiFabBar');
                     var find = document.getElementById('notesAiFindRow');
                     var inset = 'calc(' + (10 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
                     if (bar) bar.style.bottom = inset;

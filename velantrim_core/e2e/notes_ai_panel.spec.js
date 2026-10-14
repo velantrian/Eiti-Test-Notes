@@ -88,3 +88,45 @@ test('mobile Notes AI panel opens at half height, keeps drag size for the sessio
   const reopenedContainerHeight = await panel.evaluate((el) => el.parentElement.clientHeight);
   expect(Math.abs(reopenedHeight - reopenedContainerHeight / 2)).toBeLessThan(4);
 });
+
+test('mobile Notes AI panel stays flush with the keyboard when the editor card is shorter than the window', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => {
+    localStorage.setItem('eiti_onboarded', 'true');
+    localStorage.setItem('eiti_notes_ai_enabled', '1');
+  });
+  await page.goto('/index.html');
+  await page.waitForFunction(() => typeof window.eitiNotesAISetPanelHeight === 'function');
+
+  const layout = await page.evaluate(() => {
+    const originalViewport = window.visualViewport;
+    if (!originalViewport) throw new Error('visualViewport is unavailable');
+
+    const overlay = document.getElementById('noteEditorOverlay');
+    document.body.appendChild(overlay);
+    overlay.classList.add('active');
+    Object.assign(overlay.style, {
+      display: 'flex', position: 'fixed', top: '0', left: '0', width: '100vw', height: '600px', zIndex: '99999',
+    });
+    window.eitiNotesAIOnEditorOpen();
+    window.eitiNotesAITogglePanel(true);
+
+    Object.defineProperty(window, 'visualViewport', {
+      configurable: true,
+      value: { height: 400, offsetTop: 0 },
+    });
+    originalViewport.dispatchEvent(new Event('resize'));
+
+    const panel = document.getElementById('notesAiPanel');
+    return {
+      parentHeight: panel.parentElement.clientHeight,
+      panelBottom: panel.getBoundingClientRect().bottom,
+      panelBottomStyle: panel.style.bottom,
+      visibleBottom: window.visualViewport.height + window.visualViewport.offsetTop,
+    };
+  });
+
+  expect(layout.parentHeight).toBe(600);
+  expect(layout.panelBottomStyle).toBe('200px');
+  expect(Math.abs(layout.panelBottom - layout.visibleBottom)).toBeLessThan(1);
+});

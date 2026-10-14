@@ -26,6 +26,7 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIIsEnabled',
     'eitiNotesAIGetModel',
     'eitiNotesAIGetSize',
+    'eitiNotesAIGetKeyboardInset',
     'eitiNotesAIAvailablePanelHeight',
     'eitiNotesAIClampPanelHeight',
     'eitiNotesAISetPanelHeight',
@@ -168,6 +169,19 @@ test('Notes AI drawer height is clamped and fullscreen is reversible', () => {
   assert.equal(s.eitiNotesAIToggleFullscreen(false), false);
   assert.equal(panel.classList.contains('notes-ai-fullscreen'), false);
   assert.equal(overlay.classList.contains('notes-ai-fullscreen'), false);
+});
+
+test('Notes AI keyboard inset uses the editor card height instead of the window height', () => {
+  const panel = { parentElement: { clientHeight: 600 } };
+  const window = { innerHeight: 844, visualViewport: { height: 400, offsetTop: 0 } };
+  const s = loadNotesAI(makeLS({}), { window });
+
+  assert.equal(s.eitiNotesAIGetKeyboardInset(panel, window.innerHeight, window.visualViewport), 200);
+  assert.equal(s.eitiNotesAIAvailablePanelHeight(panel), 400);
+
+  window.visualViewport = { height: 844, offsetTop: 0 };
+  assert.equal(s.eitiNotesAIGetKeyboardInset(panel, window.innerHeight, window.visualViewport), 0);
+  assert.equal(s.eitiNotesAIAvailablePanelHeight(panel), 600);
 });
 
 test('Notes AI opens at its default size and keeps dragged height only during that open session', () => {
