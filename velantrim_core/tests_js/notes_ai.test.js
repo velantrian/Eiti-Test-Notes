@@ -33,6 +33,11 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIResolveTarget',
     'eitiNotesAIBuildSystemPrompt',
     'eitiNotesAICall',
+    'eitiNotesAIParseResponse',
+    'eitiNotesAIUserRequestedEdit',
+    'eitiNotesAIUserRequestedDelete',
+    'eitiNotesAIApplyMutation',
+    'eitiNotesAIPersistCurrentNote',
     'eitiNotesAIModelButtonMap',
     'eitiNotesAIPresetModels',
     'eitiNotesAIRenderSettings',
@@ -187,4 +192,70 @@ test('system prompt attaches the current note as context', () => {
   assert.match(sys, /Велантрим/);
   assert.match(sys, /GapGate как орган/);
   assert.match(sys, /Текст заметки/);
+});
+
+test('Notes AI receives the entire note, tags, and selected text without truncation', () => {
+  const s = loadNotesAI(makeLS({}));
+  const body = 'x'.repeat(15000);
+  const sys = s.eitiNotesAIBuildSystemPrompt('Title', body, 'selected fragment', 'work, idea');
+  assert.ok(sys.includes(body));
+  assert.match(sys, /selected fragment/);
+  assert.match(sys, /work, idea/);
+});
+
+test('Notes AI parses structured edits and gates deletion on an explicit command', () => {
+  const s = loadNotesAI(makeLS({}));
+  const parsed = s.eitiNotesAIParseResponse('```json\n{"reply":"Готово","mutation":{"action":"append","text":"Новый пункт"}}\n```');
+  assert.equal(parsed.reply, 'Готово');
+  assert.equal(parsed.mutation.action, 'append');
+  assert.equal(s.eitiNotesAIUserRequestedEdit('Добавь новый пункт в заметку'), true);
+  assert.equal(s.eitiNotesAIUserRequestedEdit('Перефразируй этот абзац'), true);
+  assert.equal(s.eitiNotesAIUserRequestedDelete('Стоит ли удалить эту заметку?'), false);
+  assert.equal(s.eitiNotesAIUserRequestedDelete('Удали эту заметку'), true);
+});
+
+test('AI replacement updates only the open note and saves a history version', () => {
+  const elements = {
+    noteEditorTitle: { value: 'Doc' },
+    noteEditorBody: {
+      value: 'Alpha old Omega', selectionStart: 0, selectionEnd: 0,
+      setSelectionRange() {}, dispatchEvent() {},
+    },
+    noteEditorTags: { value: 'work' },
+    noteEditorDateBadge: { textContent: '', title: '' },
+  };
+  let notes = [{ id: 'n1', title: 'Doc', body: 'Alpha old Omega', tags: ['work'] }];
+  let historySaved = 0;
+  const s = loadFunctions([
+    'eitiNotesAIUserRequestedEdit',
+    'eitiNotesAIUserRequestedDelete',
+    'eitiNotesAIApplyMutation',
+    'eitiNotesAIPersistCurrentNote',
+  ], {
+    notesCurrentId: 'n1',
+    document: { getElementById(id) { return elements[id] || null; } },
+    notesLoad() { return notes.slice(); },
+    notesSave(next) { notes = next.slice(); },
+    noteHistorySave() { historySaved += 1; },
+    notesTagsFromInput(value) { return value.split(',').map((x) => x.trim()).filter(Boolean); },
+    noteAutoEmbed() {},
+    showToast() {},
+  });
+  const result = s.eitiNotesAIApplyMutation(
+    { action: 'replace_text', find: 'old', text: 'new' },
+    { noteId: 'n1', title: 'Doc', body: 'Alpha old Omega', tags: 'work', selectionStart: 0, selectionEnd: 0, selectionText: '' },
+    'Замени old на new',
+  );
+  assert.equal(result.ok, true);
+  assert.equal(result.saved, true);
+  assert.equal(elements.noteEditorBody.value, 'Alpha new Omega');
+  assert.equal(notes[0].body, 'Alpha new Omega');
+  assert.equal(historySaved, 1);
+  const staleDelete = s.eitiNotesAIApplyMutation(
+    { action: 'delete_note' },
+    { noteId: 'different-note', title: 'Doc', body: 'Alpha new Omega', tags: 'work' },
+    'Удали эту заметку',
+  );
+  assert.equal(staleDelete.ok, false);
+  assert.match(staleDelete.message, /переключена/);
 });
