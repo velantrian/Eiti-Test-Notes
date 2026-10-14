@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "feature": "sprint3_memory_response_contract",
+  "storage_keys": {
+    "memory_mode": "eiti_memory_mode",
+    "memory_lookup_enabled": "eiti_memory_lookup_enabled",
+    "response_pattern": "eiti_response_pattern"
+  },
+  "memory_modes": [
+    {
+      "id": "normal",
+      "label_ru": "Normal",
+      "description_ru": "Быстрый режим. Память используется мягко: система может учитывать релевантные факты, но не обязана проверять каждый ответ через строгую L3-опору.",
+      "lookup_policy": "opportunistic",
+      "allowed_statuses": [
+        "observed",
+        "hypothesis",
+        "supported",
+        "validated",
+        "immutable_core"
+      ],
+      "show_trace_by_default": false
+    },
+    {
+      "id": "grounded",
+      "label_ru": "Grounded",
+      "description_ru": "Баланс скорости и точности. Система опирается на source facts, показывает осторожность при гипотезах и может раскрывать trace по запросу.",
+      "lookup_policy": "required_when_memory_relevant",
+      "allowed_statuses": [
+        "observed",
+        "supported",
+        "validated",
+        "immutable_core"
+      ],
+      "show_trace_by_default": false
+    },
+    {
+      "id": "strict",
+      "label_ru": "Strict",
+      "description_ru": "Строгий режим. Система отвечает уверенно только при validated/immutable_core фактах; при нехватке фактов говорит, что подтверждения нет.",
+      "lookup_policy": "required",
+      "allowed_statuses": [
+        "validated",
+        "immutable_core"
+      ],
+      "show_trace_by_default": true
+    }
+  ],
+  "memory_lookup_toggle": {
+    "id": "memory_lookup_enabled",
+    "label_ru": "Поиск по архиву чатов",
+    "description_ru": "Управляет только автоматическим поиском по истории сообщений L1. По умолчанию выключен. Явный запрос к истории и ручной поиск продолжают работать при выключенном переключателе. L2-дайджесты, профиль и другие источники памяти этим переключателем не управляются.",
+    "default": false
+  },
+  "esm_statuses": [
+    "observed",
+    "hypothesis",
+    "supported",
+    "validated",
+    "contradicted",
+    "deprecated",
+    "immutable_core"
+  ],
+  "response_patterns": [
+    {
+      "id": "default",
+      "label_ru": "Обычный ответ",
+      "description_ru": "Ответить стандартно: понятно, структурированно, без дополнительного разворота.",
+      "prompt_suffix_ru": "Ответь обычным способом: ясно, структурированно и без лишнего усложнения."
+    },
+    {
+      "id": "rewrite_variant",
+      "label_ru": "Напиши другую версию",
+      "description_ru": "Переформулировать предыдущий ответ другим стилем или подачей, не меняя смысл без причины.",
+      "prompt_suffix_ru": "Напиши другую версию ответа: сохрани смысл, но измени структуру, формулировки и подачу."
+    },
+    {
+      "id": "think_with_me",
+      "label_ru": "Помоги мне это обдумать",
+      "description_ru": "Не просто дать ответ, а разложить идею на варианты, последствия, риски и следующий шаг.",
+      "prompt_suffix_ru": "Помоги мне это обдумать: разложи на варианты, плюсы, минусы, риски, скрытые допущения и практический следующий шаг."
+    },
+    {
+      "id": "short_answer",
+      "label_ru": "Коротко",
+      "description_ru": "Дать краткий ответ без длинного объяснения.",
+      "prompt_suffix_ru": "Ответь коротко: только главное, без длинного объяснения."
+    },
+    {
+      "id": "deep_dive",
+      "label_ru": "Глубокий разбор",
+      "description_ru": "Дать развёрнутый анализ с архитектурными последствиями и рекомендациями.",
+      "prompt_suffix_ru": "Дай глубокий разбор: объясни механику, последствия, риски, альтернативы и рекомендуемый путь."
+    },
+    {
+      "id": "critic",
+      "label_ru": "Критик",
+      "description_ru": "Проверить идею на слабые места, противоречия, риски и неочевидные проблемы.",
+      "prompt_suffix_ru": "Выступи критиком: найди слабые места, противоречия, риски и что нужно проверить до реализации."
+    },
+    {
+      "id": "action_plan",
+      "label_ru": "План действий",
+      "description_ru": "Преобразовать ответ в пошаговый план реализации.",
+      "prompt_suffix_ru": "Преобразуй ответ в практический план действий: шаги, приоритеты, результат каждого шага."
+    }
+  ],
+  "default_state": {
+    "memory_mode": "normal",
+    "memory_lookup_enabled": false,
+    "response_pattern": "default"
+  }
+}

@@ -1,1 +1,235 @@
-# Eiti-Test-Notes
+<div align="center">
+
+# 𓆩 VELANTRIM EITI 𓆪
+
+**Персональный AI-ассистент с многослойной памятью**  
+_Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
+
+[![Version](https://img.shields.io/badge/version-13.7.16-gold?style=flat-square)](https://github.com/velantrian/velantrim-eiti/commits/main)
+[![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
+[![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
+[![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
+
+</div>
+
+---
+
+## 🚀 Установить приложение
+
+<div align="center">
+
+### [▶️ Открыть VELANTRIM EITI](https://velantrian.github.io/velantrim-eiti/)
+
+**📱 На телефоне:** открой ссылку в Chrome → меню (⋮) → «Добавить на главный экран»
+
+**💻 На компьютере:** открой ссылку в Chrome → значок установки в адресной строке (⊕)
+
+</div>
+
+---
+
+## ⬇️ Локальный запуск
+
+Скачайте [полный репозиторий](https://github.com/velantrian/velantrim-eiti/archive/refs/heads/main.zip) и запустите его через статический HTTP-сервер:
+
+```bash
+python3 -m http.server 8080
+```
+
+Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
+
+---
+
+## 🆕 Что нового в v13.7.16
+
+**Ask AI в заметках (как Notion)**
+- ✨ Плавающая кнопка «Ask AI» в открытой заметке (Android 360–430px, тёмная и светлая темы).
+- 💬 Панель чата с контекстом текущей заметки: вопросы, резюме, переписывание; ответы через `_eitiUniversalAICall`.
+- ⚙️ Настройки «Notes AI»: выключатель LLM (по умолчанию ВЫКЛ — кнопка скрыта, запросов нет), модель (включая OpenRouter с логотипами) и размер панели.
+- 🔒 Настройки в `localStorage`; HTML ответов проходит через `eitiRenderMarkdown` / DOMPurify.
+
+### Выпуски v13.7.6–v13.7.15
+- **v13.7.15:** исправления аудита PR #93 и старых дефектов `main`.
+- 🧠 Архивный контекст теперь сохраняется в payload провайдера; поиск работает и в сборках SQLite без FTS5 через IndexedDB fallback.
+- 🎯 Единый детектор явных запросов к истории для русского, английского и немецкого; обычные темы и приветствия не запускают сканирование при выключенном автопоиске.
+- 🎙️ Grok Voice использует текст текущего хода; Qwen и Vision проходят через общий контекстный gate.
+- 💾 Backup включает IndexedDB `l3` и `kb`; миграция оставляет `Observed`/`Hypothesized` в L1 и не объявляет их подтверждёнными L3.
+- 🔎 LIKE fallback ищет без SQL `ESCAPE`-ошибок, с поддержкой Unicode-регистра и апострофов; статус отдельно считает профиль и допущенные ESM L3-факты.
+- 📡 Service Worker проверяет обновление сразу, обходит HTTP-кеш для `sw.js` и повторяет проверку каждые 5 минут.
+- 🌐 Подписи, контракт, wireframe и инструкции согласованы с реальным выключенным по умолчанию поиском по L1-архиву; L2 и другие источники этим переключателем не управляются.
+- Для существующих установок без сохранённого opt-in поиск также остаётся выключенным; сохранённое значение `eiti_memory_lookup_enabled='1'` продолжает включать автопоиск.
+
+### Выпуски v13.7.6–v13.7.14
+- **v13.7.14:** автопоиск архива выключен по умолчанию; уточнено разделение хранилищ L3.
+- **v13.7.13:** бейдж Thinking только при наличии реального reasoning; одна повторная попытка при HTTP 429.
+- **v13.7.12:** иконки free-моделей OpenRouter, более подробные ошибки 429 и бейдж скорости.
+- **v13.7.11:** логотипы моделей OpenRouter и корректный Thinking OFF.
+- **v13.7.10:** переключатель режима OpenRouter Thinking.
+- **v13.7.9:** каталог бесплатных моделей OpenRouter.
+- **v13.7.8:** эксклюзивный выбор AI-провайдера и переключатель Gemini Thinking.
+- **v13.7.7:** модели Gemini 3.8 и подтверждение/статус ключа Qwen.
+- **v13.7.6:** reasoning effort Low/High/Max для DeepSeek V4.1 Flash и Pro.
+
+**Исправления безопасности и стабильности более ранних выпусков**
+- 🛡️ Экранированы user/model-controlled поля в Trace, KB и PKG перед HTML-рендером.
+- 🔁 Устранено повторное исполнение AI-команд и двойное/четверное усиление PKG; отрицательная обратная связь теперь ослабляет узлы.
+- 🔒 Strict Memory закрывается при отказе Trace/Truth Gate и требует явной confidence.
+- 📡 Service Worker ожидает cache writes и не принимает неполный CORE cache за успешную установку.
+- 🧹 Удалены запросы к отсутствующим legacy-файлам и необязательному DE patch.
+
+📜 **Полный список изменений:** [коммиты main](https://github.com/velantrian/velantrim-eiti/commits/main)  
+🔍 **Открыть последнюю версию:** [velantrian.github.io/velantrim-eiti/](https://velantrian.github.io/velantrim-eiti/)
+
+---
+
+## 🌟 Что это
+
+VELANTRIM EITI — клиентский AI-ассистент, основной UI и runtime которого находятся в **одном HTML-файле**. Для запуска приложения не нужны Node.js, Python, build step или собственный backend; SQLite/PWA и импорт документов используют companion-файлы и внешние библиотеки.
+
+Внутри — многоуровневая память, reasoning-движок, база знаний, музыкальный плеер, заметки и файловый менеджер.
+
+---
+
+## ⚡ Ключевые особенности
+
+| | Особенность | Описание |
+|---|---|---|
+| 🧠 | **DAAD FractalMemory** | Четырёхуровневая архитектура памяти L0 / L1 / L2 / KB |
+| 🔌 | **Без сборки** | Нет build step и runtime backend; приложение раздаётся как статические файлы |
+| 📡 | **PWA + Offline Core** | Основной интерфейс и кешированные локальные данные доступны офлайн; AI-провайдеры требуют сеть |
+| 🤖 | **Мульти-провайдер AI** | DeepSeek · Gemini · Grok Voice · OpenRouter · DDG · ChatGPT |
+| 🔍 | **Поиск по памяти** | FTS5/BM25 при наличии; безопасный LIKE/IndexedDB fallback, если FTS5 не включён в SQLite WASM |
+| 🎨 | **Темы** | 10+ тем — скевоморф, стекло, минимализм |
+| 🗣️ | **Grok Voice** | Голосовой режим с поиском и контекстом чата |
+
+---
+
+## 🧠 Архитектура памяти — DAAD FractalMemory
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   DAAD FractalMemory                    │
+│                                                         │
+│  L0 RAM ──── топ-25 сообщений по DAAD-score             │
+│              JS-память · Ebbinghaus decay · per-domain  │
+│                                                         │
+│  L1 IDB ──── полная история чатов                       │
+│              IndexedDB · FTS5 или LIKE/IDB fallback     │
+│                                                         │
+│  L2 digest── дайджесты прошлых сессий (до 50)           │
+│              авто-генерация через AI · decay + BM25     │
+│                                                         │
+│  L3 profile ─ автоизвлечённые поля профиля              │
+│                IndexedDB store 'l3'                     │
+│  L3 compat ─ active profile + facts                     │
+│              localStorage → system context              │
+│  ESM L3 ── admitted facts · IDB 'kb'                    │
+│                                                         │
+│  KB ──────── база знаний · без лимита                   │
+│              IDB + BM25/Embeddings · эпистемика         │
+│                                                         │
+│  MOSC ─────── граф рассуждений (слово → концепт: вес)   │
+│              IDB 'reasoning' · обучается из переписки   │
+│                                                         │
+│  PKG ──────── Хеббианский граф знаний                   │
+│              вес концептов растёт при повторении        │
+│                                                         │
+│  RNE ──────── дневник: цели · факты · вопросы · пробелы │
+│              IDB 'reasoning' · авто-извлечение через AI │
+│                                                         │
+│  Daily Log ── ежедневные записи активности              │
+│              IDB 'reasoning' · prefix daily_log:        │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Текущие runtime-статусы KB:** `Observed`, `Hypothesized`, `Supported`, `Validated`, `ImmutableCore`, `Contradicted`, `Deprecated`, `Retracted`.
+
+> Sprint 3 определяет целевой lowercase-контракт статусов и режимов памяти, но его UI/pipeline wiring пока остаётся отдельным следующим шагом.
+
+---
+
+## 🤖 AI Провайдеры
+
+| Провайдер | Описание |
+|---|---|
+| 🤖 **DeepSeek** | Основной ассистент, глубокая интеграция с памятью |
+| ⚡ **Google Gemini** | Быстрые ответы, мультимодальность |
+| 🟢 **ChatGPT / OpenAI** | Streaming chat, reasoning-модели, vision/file flows |
+| 🗣️ **xAI Grok Voice** | Голосовой режим реального времени с историей чатов |
+| 🔀 **OpenRouter** | 300+ моделей + 🆓 Free version live-каталог + переключатель 🧠 Thinking ON/OFF |
+| 🦆 **DuckDuckGo AI** | Бесплатно, без API-ключа |
+| ⛔ **None** | Полностью офлайн, только локальный поиск |
+
+---
+
+## 🧩 MOSC — Reasoning Graph Engine
+
+- 🔗 Строит семантические связи между понятиями
+- 💡 Автоматически обучается из переписки
+- 🔎 Находит паттерны в знаниях пользователя
+- 📊 Экспортирует граф концептов для анализа
+
+---
+
+## 📱 Вкладки приложения
+
+| Таб | Функционал |
+|---|---|
+| 💬 **Чат** | Мульти-провайдер диалог, голос Grok, reasoning |
+| 📚 **История** | Архив чатов, поиск по всем сессиям |
+| 🎵 **Плеер** | Музыкальный плеер с плейлистами |
+| 📁 **Файлы** | Файловый менеджер, хранение в IndexedDB |
+| 📝 **Заметки** | Markdown-заметки, папки, FTS5-поиск |
+| 📅 **Лента** | Временная лента событий и заметок |
+| ⚙️ **Настройки** | Темы, профиль, API-ключи |
+
+---
+
+## 🗄️ Хранилище
+
+| Слой | Технология | Для чего |
+|---|---|---|
+| **IndexedDB** | ~500 МБ | Чаты, заметки, файлы, KB с ESM-статусами (в L3 допускаются Validated/Supported/ImmutableCore), L2, автоизвлечённый профиль (`l3`), RNE, Daily Log, VB паттерны |
+| **localStorage** | ~5 МБ | Тема, UI-флаги, API-ключи, настройки, активный L3-совместимый профиль `eiti_user_profile_v1` и факты `eiti_learned_v1` (используются в системном контексте) |
+| **SQLite WASM** | sql.js | производный индекс: FTS5 при наличии, иначе fallback; Attention Graph, эпистемика |
+| **JS RAM** | Сессия | L0-память, MOSC-граф, VB-контекст |
+
+> IndexedDB — основное хранилище чатов и KB; L3 распределён между IDB store `l3`, ESM-статусами в `kb` (только допущенные факты получают `memory_layer=L3`) и активными совместимыми ключами профиля/фактов в localStorage. SQLite WASM — производный поисковый индекс, не источник истины; FTS5 может отсутствовать в поставляемой сборке. MOSC — отдельный граф рассуждений.
+
+---
+
+## 🔑 API-ключи
+
+| Провайдер | Где получить |
+|---|---|
+| DeepSeek | [platform.deepseek.com](https://platform.deepseek.com) |
+| Google Gemini | [aistudio.google.com](https://aistudio.google.com) |
+| ChatGPT / OpenAI | [platform.openai.com](https://platform.openai.com) |
+| xAI Grok | [console.x.ai](https://console.x.ai) |
+| OpenRouter | [openrouter.ai/settings/keys](https://openrouter.ai/settings/keys) |
+
+> Ключи хранятся **локально** в браузере и не отправляются на backend EITI. При AI-запросе выбранный ключ передаётся непосредственно соответствующему API-провайдеру для авторизации.
+
+---
+
+## 🛠️ Публичное API (консоль браузера)
+
+```javascript
+eitiSearchNotes("запрос")        // поиск по заметкам
+eitiSearchKB("запрос")           // поиск по базе знаний
+eitiAttentionTouch(id)           // обновить вес записи
+eitiSQLStats()                   // статистика SQLite
+eitiKBSetTruth(id, 'hypothesis') // эпистемический статус
+```
+
+---
+
+<div align="center">
+
+**𓆩 VELANTRIM EITI 𓆪**
+
+_Сделано с 🖤 для тех, кто строит своё AI_
+
+[🚀 Открыть](https://velantrian.github.io/velantrim-eiti/) · [⬇️ Скачать](https://raw.githubusercontent.com/velantrian/velantrim-eiti/main/index.html) · [🐛 Issues](https://github.com/velantrian/velantrim-eiti/issues)
+
+</div>

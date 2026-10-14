@@ -1,0 +1,12 @@
+{
+  "name": "velantrim-eiti-e2e",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright smoke tests for the EITI single-file PWA",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}

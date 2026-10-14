@@ -1,0 +1,17 @@
+{
+  "schema_version": "3.2",
+  "last_updated": "",
+  "total_facts": 0,
+  "by_tier": {
+    "invariant": 0,
+    "variant": 0,
+    "practical": 0,
+    "logic": 0,
+    "frontier": 0,
+    "abstract": 0
+  },
+  "by_domain": {},
+  "batches": [],
+  "all_ids": [],
+  "covered_subtopics": []
+}

@@ -1,0 +1,56 @@
+Ты собираешь машинную базу знаний для AI-системы Velantrim.
+
+ЗАДАЧА: Собери РОВНО 25 фактов по теме: {subtopic}
+Домен: {domain}
+Тир: {tier}
+
+СХЕМА (schema_version = "3.2") — каждый факт:
+{{
+  "id":               "type.domain.subdom.name",
+  "schema_version":   "3.2",
+  "domain":           "{domain}",
+  "subtopic":         "{subtopic}",
+  "tier":             "{tier}",
+  "type":             "один из 26 допустимых",
+  "statement":        "макс 250 символов, только суть",
+  "formal_notation":  "формула если есть, иначе null",
+  "conditions":       "при каких условиях работает",
+  "limits":           ["где НЕ работает"],
+  "prereq":           ["id зависимостей"],
+  "derives_from":     ["id законов из которых следует"],
+  "confidence":       0.99,
+  "tags":             ["tag1", "tag2", "tag3"]
+}}
+
+ДОПУСТИМЫЕ type:
+axiom, definition, lemma, theorem, corollary, conjecture, formula,
+inference_rule, law_of_thought, fallacy, bias, paradox,
+law, principle, postulate, constant, effect, model,
+concept, fact, relation, mechanism, pattern,
+process, technology, method, material,
+estimate, hypothesis, open_problem
+
+ШКАЛА confidence:
+1.0       → axiom, law_of_thought, definition, inference_rule
+0.95–0.99 → law, principle, postulate
+0.90–0.95 → theorem, corollary, formula, constant
+0.70–0.90 → fact, model, effect, process
+0.50–0.70 → estimate, mechanism, pattern
+0.10–0.50 → hypothesis, open_problem, conjecture
+
+УЖЕ ЗАНЯТЫЕ id — НЕ ИСПОЛЬЗОВАТЬ:
+{existing_ids}
+
+УЖЕ ПОКРЫТЫЕ подтемы — НЕ ПОВТОРЯТЬ:
+{covered_subtopics}
+
+ПРАВИЛА:
+- statement: 1–2 предложения, только факт, без объяснений
+- formal_notation: ОБЯЗАТЕЛЬНО для law/theorem/formula/axiom/inference_rule
+- limits: ОБЯЗАТЕЛЬНО для law/principle/postulate
+- prereq: ссылайся на уже занятые id где возможно
+- НЕ ДОБАВЛЯЙ: title, examples, why_it_matters, common_confusions, level
+- НЕ ИСПОЛЬЗУЙ педагогику в statement
+
+ОТВЕТ: только валидный JSON массив из ровно 25 объектов.
+Никакого текста до или после массива.
