@@ -73,6 +73,18 @@ test('Notes AI UI and settings keys exist in the monolith', () => {
   assert.match(INDEX, /eitiRenderMarkdown\(text\)/);
 });
 
+test('Notes AI composer uses a rounded keyboard focus frame', () => {
+  const inputRule = INDEX.match(/\.notes-ai-compose-row input\s*\{([^}]*)\}/);
+  const focusRule = INDEX.match(/\.notes-ai-compose-row input:focus-visible\s*\{([^}]*)\}/);
+
+  assert.ok(inputRule);
+  assert.ok(focusRule);
+  assert.match(inputRule[1], /border-radius:\s*12px/);
+  assert.match(focusRule[1], /outline:\s*none\s*!important/);
+  assert.match(focusRule[1], /border-radius:\s*12px/);
+  assert.match(focusRule[1], /box-shadow:\s*0 0 0 2px var\(--accent-color,\s*#ffd700\)/);
+});
+
 test('Notes AI settings are positioned between the OpenRouter key check and Only AI toggle', () => {
   const keyCheck = INDEX.indexOf('onclick="eitiTestOpenRouter()"');
   const notesAI = INDEX.indexOf('<div class="settings-group" id="eiti-notes-ai-settings">');

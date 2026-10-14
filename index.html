@@ -7248,6 +7248,7 @@
             background: transparent; border: none; outline: none;
             color: var(--text-color); font-size: inherit;
             padding: 6px 0;
+            border-radius: 12px;
         }
         .notes-ai-send {
             width: 34px; height: 34px; border-radius: 50%;
@@ -7373,6 +7374,14 @@
             outline: 2px solid var(--accent-color, #ffd700) !important;
             outline-offset: 2px !important;
             box-shadow: 0 0 0 4px rgba(255,215,0,0.15) !important;
+        }
+
+        /* Keep the Notes AI input focus frame rounded like its composer shell. */
+        .notes-ai-compose-row input:focus-visible {
+            outline: none !important;
+            outline-offset: 0 !important;
+            border-radius: 12px;
+            box-shadow: 0 0 0 2px var(--accent-color, #ffd700), 0 0 0 5px rgba(255,215,0,0.15) !important;
         }
         /* Мобильный :focus без видимого ринга (touch) */
         select:focus:not(:focus-visible), input:focus:not(:focus-visible),
