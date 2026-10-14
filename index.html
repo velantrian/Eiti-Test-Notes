@@ -7148,35 +7148,51 @@
             box-shadow: 0 -8px 28px rgba(0,0,0,0.35);
             padding-bottom: env(safe-area-inset-bottom, 0px);
             max-height: min(72vh, calc(100% - 8px));
+            transition: height .18s ease;
         }
         .notes-ai-panel.open { display: flex; }
         .notes-ai-panel.expanded {
-            height: min(86vh, calc(100% - 8px)) !important;
+            height: min(86vh, calc(100% - 8px));
             max-height: min(86vh, calc(100% - 8px));
         }
+        .notes-ai-panel.notes-ai-custom-height { max-height: none; }
+        .notes-ai-panel.is-resizing { transition: none !important; user-select: none; }
         .notes-ai-panel.notes-ai-size-small { height: 36%; font-size: 12px; }
         .notes-ai-panel.notes-ai-size-medium { height: 48%; font-size: 14px; }
         .notes-ai-panel.notes-ai-size-large { height: 62%; font-size: 16px; }
+        .notes-ai-panel.notes-ai-fullscreen {
+            top: 0 !important; height: auto !important; max-height: none !important;
+            border: 0; border-radius: 0; padding-top: env(safe-area-inset-top, 0px); z-index: 30;
+        }
+        .note-editor-overlay.notes-ai-fullscreen .note-editor-topbar,
+        .note-editor-overlay.notes-ai-fullscreen .note-editor-toolbar { display: none !important; }
         .notes-ai-panel-head {
-            display: flex; align-items: center; gap: 8px;
-            padding: 10px 12px 6px; flex-shrink: 0;
+            position: relative;
+            display: grid; grid-template-columns: minmax(0, 1fr) 36px; grid-template-rows: 28px 36px;
+            align-items: center; column-gap: 8px;
+            padding: 5px 12px 8px; flex-shrink: 0;
         }
         .notes-ai-panel-handle {
-            width: 28px; height: 32px; padding: 0; flex-shrink: 0;
+            grid-column: 1 / -1; grid-row: 1; justify-self: center;
+            width: 72px; height: 28px; padding: 0; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            border: 0; background: transparent; cursor: ns-resize;
+            border: 0; border-radius: 99px; background: transparent; cursor: ns-resize;
             touch-action: none;
         }
         .notes-ai-panel-handle span {
-            display: block; width: 20px; height: 5px;
+            display: block; width: 48px; height: 4px;
             border-radius: 99px; background: var(--text-color); opacity: 0.45;
+            transition: width .12s ease, opacity .12s ease;
         }
-        .notes-ai-panel-head button {
+        .notes-ai-panel-handle:active span { width: 58px; opacity: 0.75; }
+        .notes-ai-panel-head > button:not(.notes-ai-panel-handle) {
+            grid-column: 2; grid-row: 2;
             width: 32px; height: 32px; border-radius: 50%;
             border: none; background: rgba(255,255,255,0.08);
             color: var(--text-color); cursor: pointer; flex-shrink: 0;
         }
         .notes-ai-chip {
+            grid-column: 1; grid-row: 2;
             flex: 1; min-width: 0;
             display: flex; align-items: center; gap: 6px;
             padding: 6px 10px; border-radius: 12px;
@@ -10488,7 +10504,7 @@
                         </div>
                         <div class="notes-ai-panel notes-ai-size-medium" id="notesAiPanel">
                             <div class="notes-ai-panel-head">
-                                <button type="button" class="notes-ai-panel-handle" id="notesAiPanelHandle" title="Потяните вверх, чтобы развернуть" aria-label="Развернуть или свернуть панель"><span></span></button>
+                                <button type="button" class="notes-ai-panel-handle" id="notesAiPanelHandle" title="Потяните, чтобы изменить высоту; двойное касание — полный экран" aria-label="Потяните, чтобы изменить высоту; двойное касание — полный экран"><span aria-hidden="true"></span></button>
                                 <button type="button" id="notesAiPanelClose" title="Закрыть">✕</button>
                                 <div class="notes-ai-chip" id="notesAiChip">📄 Заметка</div>
                             </div>
@@ -34601,6 +34617,54 @@ window.eitiLLMClearAll = async function() {
             if (s !== 'small' && s !== 'medium' && s !== 'large') s = 'medium';
             return s;
         }
+        function eitiNotesAIGetStoredPanelHeight() {
+            try {
+                var h = Number(localStorage.getItem('eiti_notes_ai_height_px'));
+                return Number.isFinite(h) && h > 0 ? h : 0;
+            } catch (e) { return 0; }
+        }
+        function eitiNotesAIAvailablePanelHeight(panel) {
+            var viewport = Math.max(1, Number(window.innerHeight) || 640);
+            var vv = window.visualViewport;
+            var keyboard = vv ? Math.max(0, viewport - (Number(vv.height) || viewport) - (Number(vv.offsetTop) || 0)) : 0;
+            var visibleHeight = Math.max(1, viewport - keyboard);
+            var parentHeight = panel && panel.parentElement ? Number(panel.parentElement.clientHeight) || 0 : 0;
+            return Math.max(1, Math.floor(Math.min(parentHeight || visibleHeight, visibleHeight)));
+        }
+        function eitiNotesAIClampPanelHeight(height, available) {
+            var max = Math.max(1, Math.floor(Number(available) || Number(window.innerHeight) || 640));
+            var min = Math.min(148, max);
+            var value = Number(height);
+            if (!Number.isFinite(value)) value = min;
+            return Math.round(Math.max(min, Math.min(max, value)));
+        }
+        function eitiNotesAISetPanelHeight(height, persist) {
+            var panel = document.getElementById('notesAiPanel');
+            if (!panel) return 0;
+            var px = eitiNotesAIClampPanelHeight(height, eitiNotesAIAvailablePanelHeight(panel));
+            panel.classList.remove('expanded');
+            panel.classList.add('notes-ai-custom-height');
+            panel.style.height = px + 'px';
+            if (persist) {
+                try { localStorage.setItem('eiti_notes_ai_height_px', String(px)); } catch (e) {}
+            }
+            return px;
+        }
+        function eitiNotesAIToggleFullscreen(force) {
+            var overlay = document.getElementById('noteEditorOverlay');
+            var panel = document.getElementById('notesAiPanel');
+            if (!overlay || !panel) return false;
+            var full = (force === undefined) ? !panel.classList.contains('notes-ai-fullscreen') : !!force;
+            overlay.classList.toggle('notes-ai-fullscreen', full);
+            panel.classList.toggle('notes-ai-fullscreen', full);
+            var handle = document.getElementById('notesAiPanelHandle');
+            if (handle) {
+                var label = full ? 'Дважды коснитесь, чтобы выйти из полного экрана' : 'Потяните, чтобы изменить высоту; двойное касание — полный экран';
+                handle.title = label;
+                handle.setAttribute('aria-label', label);
+            }
+            return full;
+        }
         function eitiNotesAIControlVisible(overlayActive) {
             return !!(overlayActive && eitiNotesAIIsEnabled());
         }
@@ -34619,7 +34683,15 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiNotesAISetSize(size) {
             var s = (size === 'small' || size === 'large') ? size : 'medium';
-            try { localStorage.setItem('eiti_notes_ai_size', s); } catch (e) {}
+            try {
+                localStorage.setItem('eiti_notes_ai_size', s);
+                localStorage.removeItem('eiti_notes_ai_height_px');
+            } catch (e) {}
+            var panel = document.getElementById('notesAiPanel');
+            if (panel) {
+                panel.classList.remove('notes-ai-custom-height', 'expanded');
+                panel.style.removeProperty('height');
+            }
             eitiNotesAIRenderSettings();
             eitiNotesAIApplySize();
         }
@@ -34874,6 +34946,12 @@ window.eitiLLMClearAll = async function() {
             var size = eitiNotesAIGetSize();
             panel.classList.remove('notes-ai-size-small', 'notes-ai-size-medium', 'notes-ai-size-large');
             panel.classList.add('notes-ai-size-' + size);
+            var customHeight = eitiNotesAIGetStoredPanelHeight();
+            if (customHeight) eitiNotesAISetPanelHeight(customHeight, false);
+            else {
+                panel.classList.remove('notes-ai-custom-height');
+                panel.style.removeProperty('height');
+            }
         }
         function eitiNotesAISyncControl() {
             var overlay = document.getElementById('noteEditorOverlay');
@@ -34885,6 +34963,7 @@ window.eitiLLMClearAll = async function() {
             if (bar) bar.classList.toggle('visible', !!show);
             if (!show) {
                 if (panel) panel.classList.remove('open');
+                eitiNotesAIToggleFullscreen(false);
                 if (find) find.classList.remove('visible');
             } else {
                 eitiNotesAIApplySize();
@@ -34917,6 +34996,7 @@ window.eitiLLMClearAll = async function() {
             }
         }
         function eitiNotesAIOnEditorOpen() {
+            eitiNotesAIToggleFullscreen(false);
             eitiNotesAISyncControl();
             var panel = document.getElementById('notesAiPanel');
             if (panel) panel.classList.remove('open');
@@ -34927,7 +35007,8 @@ window.eitiLLMClearAll = async function() {
             var find = document.getElementById('notesAiFindRow');
             var bar = document.getElementById('notesAiFabBar');
             var overlay = document.getElementById('noteEditorOverlay');
-            if (panel) panel.classList.remove('open');
+            eitiNotesAIToggleFullscreen(false);
+            if (panel) panel.classList.remove('open', 'is-resizing');
             if (find) find.classList.remove('visible');
             if (bar) bar.classList.remove('visible');
             if (overlay) overlay.classList.remove('notes-ai-on');
@@ -34937,6 +35018,7 @@ window.eitiLLMClearAll = async function() {
             var panel = document.getElementById('notesAiPanel');
             if (!panel) return;
             var open = (force === true) ? true : (force === false) ? false : !panel.classList.contains('open');
+            if (!open) eitiNotesAIToggleFullscreen(false);
             panel.classList.toggle('open', open);
             if (open) {
                 eitiNotesAIApplySize();
@@ -35049,7 +35131,11 @@ window.eitiLLMClearAll = async function() {
                     live.appendChild(ins);
                 }
                 var panel = document.getElementById('notesAiPanel');
-                if (panel) panel.classList.add('expanded');
+                if (panel) {
+                    var savedHeight = eitiNotesAIGetStoredPanelHeight();
+                    if (savedHeight) eitiNotesAISetPanelHeight(savedHeight, false);
+                    else panel.classList.add('expanded');
+                }
                 var input = document.getElementById('notesAiInput');
                 if (input && document.activeElement === input) input.blur();
             }).catch(function(err) {
@@ -35152,23 +35238,51 @@ window.eitiLLMClearAll = async function() {
             var panelForHandle = document.getElementById('notesAiPanel');
             if (handle && panelForHandle && !window._eitiNotesAIPanelHandleBound) {
                 window._eitiNotesAIPanelHandleBound = true;
-                var dragStartY = null;
-                var draggedHandle = false;
-                handle.addEventListener('pointerdown', function(e) { dragStartY = e.clientY; draggedHandle = false; });
-                handle.addEventListener('pointerup', function(e) {
-                    if (dragStartY === null) return;
-                    var delta = e.clientY - dragStartY;
-                    dragStartY = null;
-                    if (Math.abs(delta) > 18) {
-                        panelForHandle.classList.toggle('expanded', delta < 0);
-                        draggedHandle = true;
-                        setTimeout(function() { draggedHandle = false; }, 250);
+                var gesture = null;
+                var lastTapAt = 0;
+                function finishHandleGesture(e, countAsTap) {
+                    if (!gesture || (e.pointerId !== undefined && gesture.pointerId !== e.pointerId)) return;
+                    var current = gesture;
+                    gesture = null;
+                    panelForHandle.classList.remove('is-resizing');
+                    if (current.moved) {
+                        eitiNotesAISetPanelHeight(panelForHandle.getBoundingClientRect().height, true);
+                        lastTapAt = 0;
+                        return;
                     }
+                    if (!countAsTap) return;
+                    var now = Date.now();
+                    if (lastTapAt && now - lastTapAt <= 380) {
+                        lastTapAt = 0;
+                        eitiNotesAIToggleFullscreen();
+                    } else lastTapAt = now;
+                }
+                handle.addEventListener('pointerdown', function(e) {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    e.preventDefault();
+                    gesture = {
+                        pointerId: e.pointerId,
+                        startY: e.clientY,
+                        startHeight: panelForHandle.getBoundingClientRect().height,
+                        moved: false
+                    };
+                    try { if (handle.setPointerCapture && e.pointerId !== undefined) handle.setPointerCapture(e.pointerId); } catch (err) {}
                 });
-                handle.onclick = function() {
-                    if (draggedHandle) return;
-                    panelForHandle.classList.toggle('expanded');
-                };
+                handle.addEventListener('pointermove', function(e) {
+                    if (!gesture || (gesture.pointerId !== undefined && e.pointerId !== undefined && gesture.pointerId !== e.pointerId)) return;
+                    var delta = gesture.startY - e.clientY;
+                    if (Math.abs(delta) > 4) gesture.moved = true;
+                    if (!gesture.moved) return;
+                    if (panelForHandle.classList.contains('notes-ai-fullscreen')) eitiNotesAIToggleFullscreen(false);
+                    panelForHandle.classList.add('is-resizing');
+                    eitiNotesAISetPanelHeight(gesture.startHeight + delta, false);
+                    e.preventDefault();
+                });
+                handle.addEventListener('pointerup', function(e) { finishHandleGesture(e, true); });
+                handle.addEventListener('pointercancel', function(e) { finishHandleGesture(e, false); });
+                handle.addEventListener('click', function(e) {
+                    if (e.detail === 0) eitiNotesAIToggleFullscreen();
+                });
             }
             var chip = document.getElementById('notesAiModelChip');
             if (chip) chip.onclick = function() {
@@ -35186,7 +35300,11 @@ window.eitiLLMClearAll = async function() {
                     var inset = 'calc(' + (10 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
                     if (bar) bar.style.bottom = inset;
                     if (find) find.style.bottom = 'calc(' + (62 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
-                    if (panel) panel.style.bottom = kb + 'px';
+                    if (panel) {
+                        panel.style.bottom = kb + 'px';
+                        var savedHeight = eitiNotesAIGetStoredPanelHeight();
+                        if (savedHeight && !panel.classList.contains('notes-ai-fullscreen')) eitiNotesAISetPanelHeight(savedHeight, false);
+                    }
                 };
                 window.visualViewport.addEventListener('resize', syncKb);
                 window.visualViewport.addEventListener('scroll', syncKb);
@@ -35197,6 +35315,10 @@ window.eitiLLMClearAll = async function() {
         window.eitiNotesAISetModel = eitiNotesAISetModel;
         window.eitiNotesAISetSize = eitiNotesAISetSize;
         window.eitiNotesAICall = eitiNotesAICall;
+        window.eitiNotesAISetPanelHeight = eitiNotesAISetPanelHeight;
+        window.eitiNotesAIToggleFullscreen = eitiNotesAIToggleFullscreen;
+        window.eitiNotesAITogglePanel = eitiNotesAITogglePanel;
+        window.eitiNotesAIOnEditorOpen = eitiNotesAIOnEditorOpen;
 
         function notesSaveNote() {
             var title = (document.getElementById('noteEditorTitle').value || '').trim();
