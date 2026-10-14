@@ -73,6 +73,18 @@ test('Notes AI UI and settings keys exist in the monolith', () => {
   assert.match(INDEX, /eitiRenderMarkdown\(text\)/);
 });
 
+test('Notes AI settings are positioned between the OpenRouter key check and Only AI toggle', () => {
+  const keyCheck = INDEX.indexOf('onclick="eitiTestOpenRouter()"');
+  const notesAI = INDEX.indexOf('<div class="settings-group" id="eiti-notes-ai-settings">');
+  const onlyAI = INDEX.indexOf('id="eiti-only-ai-btn"');
+
+  assert.notEqual(keyCheck, -1);
+  assert.notEqual(notesAI, -1);
+  assert.notEqual(onlyAI, -1);
+  assert.equal((INDEX.match(/id="eiti-notes-ai-settings"/g) || []).length, 1);
+  assert.ok(keyCheck < notesAI && notesAI < onlyAI);
+});
+
 test('Notes AI default is OFF: control hidden, no helper call', async () => {
   const ls = makeLS({});
   let helperCalls = 0;
