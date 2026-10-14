@@ -7158,7 +7158,7 @@
         .notes-ai-panel.notes-ai-custom-height { max-height: none; }
         .notes-ai-panel.is-resizing { transition: none !important; user-select: none; }
         .notes-ai-panel.notes-ai-size-small { height: 36%; font-size: 12px; }
-        .notes-ai-panel.notes-ai-size-medium { height: 48%; font-size: 14px; }
+        .notes-ai-panel.notes-ai-size-medium { height: 50%; font-size: 14px; }
         .notes-ai-panel.notes-ai-size-large { height: 62%; font-size: 16px; }
         .notes-ai-panel.notes-ai-fullscreen {
             top: 0 !important; height: auto !important; max-height: none !important;
@@ -34618,12 +34618,6 @@ window.eitiLLMClearAll = async function() {
             if (s !== 'small' && s !== 'medium' && s !== 'large') s = 'medium';
             return s;
         }
-        function eitiNotesAIGetStoredPanelHeight() {
-            try {
-                var h = Number(localStorage.getItem('eiti_notes_ai_height_px'));
-                return Number.isFinite(h) && h > 0 ? h : 0;
-            } catch (e) { return 0; }
-        }
         function eitiNotesAIAvailablePanelHeight(panel) {
             var viewport = Math.max(1, Number(window.innerHeight) || 640);
             var vv = window.visualViewport;
@@ -34639,16 +34633,13 @@ window.eitiLLMClearAll = async function() {
             if (!Number.isFinite(value)) value = min;
             return Math.round(Math.max(min, Math.min(max, value)));
         }
-        function eitiNotesAISetPanelHeight(height, persist) {
+        function eitiNotesAISetPanelHeight(height) {
             var panel = document.getElementById('notesAiPanel');
             if (!panel) return 0;
             var px = eitiNotesAIClampPanelHeight(height, eitiNotesAIAvailablePanelHeight(panel));
             panel.classList.remove('expanded');
             panel.classList.add('notes-ai-custom-height');
             panel.style.height = px + 'px';
-            if (persist) {
-                try { localStorage.setItem('eiti_notes_ai_height_px', String(px)); } catch (e) {}
-            }
             return px;
         }
         function eitiNotesAIToggleFullscreen(force) {
@@ -34945,14 +34936,10 @@ window.eitiLLMClearAll = async function() {
             var panel = document.getElementById('notesAiPanel');
             if (!panel) return;
             var size = eitiNotesAIGetSize();
-            panel.classList.remove('notes-ai-size-small', 'notes-ai-size-medium', 'notes-ai-size-large');
+            panel.classList.remove('notes-ai-size-small', 'notes-ai-size-medium', 'notes-ai-size-large', 'notes-ai-custom-height', 'expanded');
             panel.classList.add('notes-ai-size-' + size);
-            var customHeight = eitiNotesAIGetStoredPanelHeight();
-            if (customHeight) eitiNotesAISetPanelHeight(customHeight, false);
-            else {
-                panel.classList.remove('notes-ai-custom-height');
-                panel.style.removeProperty('height');
-            }
+            panel.style.removeProperty('height');
+            try { localStorage.removeItem('eiti_notes_ai_height_px'); } catch (e) {}
         }
         function eitiNotesAISyncControl() {
             var overlay = document.getElementById('noteEditorOverlay');
@@ -35018,11 +35005,12 @@ window.eitiLLMClearAll = async function() {
             if (!eitiNotesAIIsEnabled()) return;
             var panel = document.getElementById('notesAiPanel');
             if (!panel) return;
-            var open = (force === true) ? true : (force === false) ? false : !panel.classList.contains('open');
+            var wasOpen = panel.classList.contains('open');
+            var open = (force === true) ? true : (force === false) ? false : !wasOpen;
             if (!open) eitiNotesAIToggleFullscreen(false);
             panel.classList.toggle('open', open);
             if (open) {
-                eitiNotesAIApplySize();
+                if (!wasOpen) eitiNotesAIApplySize();
                 eitiNotesAIUpdateChip();
                 eitiNotesAIUpdateModelChip();
                 eitiNotesAIRenderThread();
@@ -35131,12 +35119,6 @@ window.eitiLLMClearAll = async function() {
                     ins.style.cssText = 'display:block;margin-top:6px;padding:4px 8px;border-radius:8px;border:1px solid var(--border-color);background:transparent;color:inherit;font-size:11px;cursor:pointer;';
                     ins.onclick = function() { eitiNotesAIInsertIntoNote(out); };
                     live.appendChild(ins);
-                }
-                var panel = document.getElementById('notesAiPanel');
-                if (panel) {
-                    var savedHeight = eitiNotesAIGetStoredPanelHeight();
-                    if (savedHeight) eitiNotesAISetPanelHeight(savedHeight, false);
-                    else panel.classList.add('expanded');
                 }
                 var input = document.getElementById('notesAiInput');
                 if (input && document.activeElement === input) input.blur();
@@ -35248,7 +35230,7 @@ window.eitiLLMClearAll = async function() {
                     gesture = null;
                     panelForHandle.classList.remove('is-resizing');
                     if (current.moved) {
-                        eitiNotesAISetPanelHeight(panelForHandle.getBoundingClientRect().height, true);
+                        eitiNotesAISetPanelHeight(panelForHandle.getBoundingClientRect().height);
                         lastTapAt = 0;
                         return;
                     }
@@ -35277,7 +35259,7 @@ window.eitiLLMClearAll = async function() {
                     if (!gesture.moved) return;
                     if (panelForHandle.classList.contains('notes-ai-fullscreen')) eitiNotesAIToggleFullscreen(false);
                     panelForHandle.classList.add('is-resizing');
-                    eitiNotesAISetPanelHeight(gesture.startHeight + delta, false);
+                    eitiNotesAISetPanelHeight(gesture.startHeight + delta);
                     e.preventDefault();
                 });
                 handle.addEventListener('pointerup', function(e) { finishHandleGesture(e, true); });
@@ -35304,8 +35286,6 @@ window.eitiLLMClearAll = async function() {
                     if (find) find.style.bottom = 'calc(' + (62 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
                     if (panel) {
                         panel.style.bottom = kb + 'px';
-                        var savedHeight = eitiNotesAIGetStoredPanelHeight();
-                        if (savedHeight && !panel.classList.contains('notes-ai-fullscreen')) eitiNotesAISetPanelHeight(savedHeight, false);
                     }
                 };
                 window.visualViewport.addEventListener('resize', syncKb);

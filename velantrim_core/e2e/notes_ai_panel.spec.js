@@ -1,7 +1,7 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('mobile Notes AI panel follows drag, remembers height, and toggles fullscreen on double tap', async ({ page }) => {
+test('mobile Notes AI panel opens at half height, keeps drag size for the session, and resets on reopen', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
@@ -31,6 +31,8 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
   const grip = await handle.boundingBox();
   expect(before).not.toBeNull();
   expect(grip).not.toBeNull();
+  const initialContainerHeight = await panel.evaluate((el) => el.parentElement.clientHeight);
+  expect(Math.abs(before.height - initialContainerHeight / 2)).toBeLessThan(4);
   expect(Math.abs((grip.x + grip.width / 2) - (before.x + before.width / 2))).toBeLessThan(2);
 
   await page.mouse.move(grip.x + grip.width / 2, grip.y + grip.height / 2);
@@ -41,9 +43,11 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
   const after = await panel.boundingBox();
   expect(after).not.toBeNull();
   expect(after.height).toBeGreaterThan(before.height + 100);
-  const savedHeight = await page.evaluate(() => Number(localStorage.getItem('eiti_notes_ai_height_px')));
-  expect(savedHeight).toBeGreaterThan(before.height + 100);
-  expect(Math.abs(after.height - savedHeight)).toBeLessThan(2);
+  await page.evaluate(() => window.eitiNotesAITogglePanel(true));
+  const afterRepeatedOpen = await panel.boundingBox();
+  expect(Math.abs(afterRepeatedOpen.height - after.height)).toBeLessThan(2);
+  const persistedHeight = await page.evaluate(() => localStorage.getItem('eiti_notes_ai_height_px'));
+  expect(persistedHeight).toBeNull();
 
   await page.dblclick('#notesAiPanelHandle', { delay: 70 });
   await expect(panel).toHaveClass(/notes-ai-fullscreen/);
@@ -61,7 +65,7 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
   await expect(page.locator('.note-editor-topbar')).toBeVisible();
   await expect(helper).toBeVisible();
   const restoredHeight = await panel.evaluate((el) => el.getBoundingClientRect().height);
-  expect(Math.abs(restoredHeight - savedHeight)).toBeLessThan(2);
+  expect(Math.abs(restoredHeight - after.height)).toBeLessThan(2);
 
   const downStart = await handle.boundingBox();
   await page.mouse.move(downStart.x + downStart.width / 2, downStart.y + downStart.height / 2);
@@ -70,13 +74,17 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
   await page.mouse.up();
   const lowered = await panel.boundingBox();
   expect(lowered.height).toBeLessThan(restoredHeight - 60);
-  const loweredSavedHeight = await page.evaluate(() => Number(localStorage.getItem('eiti_notes_ai_height_px')));
-  expect(Math.abs(lowered.height - loweredSavedHeight)).toBeLessThan(2);
+  expect(await page.evaluate(() => localStorage.getItem('eiti_notes_ai_height_px'))).toBeNull();
 
   await page.evaluate(() => {
     window.eitiNotesAITogglePanel(false);
     window.eitiNotesAITogglePanel(true);
   });
+  await page.waitForFunction(() => {
+    const el = document.getElementById('notesAiPanel');
+    return el && Math.abs(el.getBoundingClientRect().height - el.parentElement.clientHeight / 2) < 4;
+  });
   const reopenedHeight = await panel.evaluate((el) => el.getBoundingClientRect().height);
-  expect(Math.abs(reopenedHeight - loweredSavedHeight)).toBeLessThan(2);
+  const reopenedContainerHeight = await panel.evaluate((el) => el.parentElement.clientHeight);
+  expect(Math.abs(reopenedHeight - reopenedContainerHeight / 2)).toBeLessThan(4);
 });
