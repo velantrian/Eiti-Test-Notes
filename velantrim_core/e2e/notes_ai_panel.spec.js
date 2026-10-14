@@ -23,8 +23,10 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
 
   const panel = page.locator('#notesAiPanel');
   const handle = page.locator('#notesAiPanelHandle');
+  const helper = page.locator('#notesAiMsgs .notes-ai-empty-hint');
   await expect(panel).toBeVisible();
   await expect(handle).toBeVisible();
+  await expect(helper).toBeVisible();
   const before = await panel.boundingBox();
   const grip = await handle.boundingBox();
   expect(before).not.toBeNull();
@@ -50,12 +52,14 @@ test('mobile Notes AI panel follows drag, remembers height, and toggles fullscre
     toolbar: getComputedStyle(document.querySelector('.note-editor-toolbar')).display,
   }));
   expect(toolbarDisplays).toEqual({ topbar: 'none', toolbar: 'none' });
+  await expect(helper).toBeHidden();
   const fullscreenHeight = await panel.evaluate((el) => el.getBoundingClientRect().height);
   expect(fullscreenHeight).toBeGreaterThan(after.height + 100);
 
   await page.dblclick('#notesAiPanelHandle', { delay: 70 });
   await expect(panel).not.toHaveClass(/notes-ai-fullscreen/);
   await expect(page.locator('.note-editor-topbar')).toBeVisible();
+  await expect(helper).toBeVisible();
   const restoredHeight = await panel.evaluate((el) => el.getBoundingClientRect().height);
   expect(Math.abs(restoredHeight - savedHeight)).toBeLessThan(2);
 

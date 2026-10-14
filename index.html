@@ -7166,6 +7166,7 @@
         }
         .note-editor-overlay.notes-ai-fullscreen .note-editor-topbar,
         .note-editor-overlay.notes-ai-fullscreen .note-editor-toolbar { display: none !important; }
+        .note-editor-overlay.notes-ai-fullscreen .notes-ai-empty-hint { display: none !important; }
         .notes-ai-panel-head {
             position: relative;
             display: grid; grid-template-columns: minmax(0, 1fr) 36px; grid-template-rows: 28px 36px;
@@ -35039,6 +35040,7 @@ window.eitiLLMClearAll = async function() {
             var thread = _eitiNotesAIChats[eitiNotesAIChatKey()] || [];
             if (!thread.length) {
                 var hint = document.createElement('div');
+                hint.className = 'notes-ai-empty-hint';
                 hint.style.cssText = 'opacity:0.5;font-size:12px;text-align:center;padding:12px 8px;';
                 hint.textContent = (typeof T === 'function') ? T('Спросите по этой заметке: резюме, переписать, найти смысл.') : 'Спросите по этой заметке: резюме, переписать, найти смысл.';
                 box.appendChild(hint);
