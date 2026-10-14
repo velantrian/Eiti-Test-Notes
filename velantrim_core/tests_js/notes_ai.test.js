@@ -26,6 +26,11 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIIsEnabled',
     'eitiNotesAIGetModel',
     'eitiNotesAIGetSize',
+    'eitiNotesAIGetStoredPanelHeight',
+    'eitiNotesAIAvailablePanelHeight',
+    'eitiNotesAIClampPanelHeight',
+    'eitiNotesAISetPanelHeight',
+    'eitiNotesAIToggleFullscreen',
     'eitiNotesAIControlVisible',
     'eitiNotesAISetEnabled',
     'eitiNotesAISetModel',
@@ -99,11 +104,13 @@ test('Notes AI settings persist in localStorage and survive a reload sandbox', (
   const s1 = loadNotesAI(ls);
   s1.eitiNotesAISetEnabled(true);
   s1.eitiNotesAISetModel('openai/gpt-5.5');
+  ls.setItem('eiti_notes_ai_height_px', '420');
   s1.eitiNotesAISetSize('large');
 
   assert.equal(ls.store.eiti_notes_ai_enabled, '1');
   assert.equal(ls.store.eiti_notes_ai_model, 'openai/gpt-5.5');
   assert.equal(ls.store.eiti_notes_ai_size, 'large');
+  assert.equal(ls.getItem('eiti_notes_ai_height_px'), null);
 
   const s2 = loadNotesAI(ls);
   assert.equal(s2.eitiNotesAIIsEnabled(), true);
@@ -114,6 +121,54 @@ test('Notes AI settings persist in localStorage and survive a reload sandbox', (
 
   ls.setItem('eiti_notes_ai_size', 'huge');
   assert.equal(s2.eitiNotesAIGetSize(), 'medium');
+});
+
+test('Notes AI drawer height is clamped, persisted, and fullscreen is reversible', () => {
+  function classList(initial) {
+    const names = new Set(initial || []);
+    return {
+      add(...values) { values.forEach((value) => names.add(value)); },
+      remove(...values) { values.forEach((value) => names.delete(value)); },
+      contains(value) { return names.has(value); },
+      toggle(value, force) {
+        const enabled = force === undefined ? !names.has(value) : !!force;
+        if (enabled) names.add(value); else names.delete(value);
+        return enabled;
+      },
+    };
+  }
+  const ls = makeLS({});
+  const panel = {
+    parentElement: { clientHeight: 640 },
+    classList: classList(['expanded']),
+    style: { height: '', removeProperty(name) { this[name] = ''; } },
+    getBoundingClientRect() { return { height: Number.parseFloat(this.style.height) || 400 }; },
+  };
+  const overlay = { classList: classList([]) };
+  const handle = { title: '', attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
+  const elements = { notesAiPanel: panel, noteEditorOverlay: overlay, notesAiPanelHandle: handle };
+  const s = loadNotesAI(ls, {
+    window: { innerHeight: 640, visualViewport: null },
+    document: { getElementById(id) { return elements[id] || null; } },
+  });
+
+  assert.equal(s.eitiNotesAIClampPanelHeight(80, 640), 148);
+  assert.equal(s.eitiNotesAIClampPanelHeight(900, 640), 640);
+  assert.equal(s.eitiNotesAIClampPanelHeight(90, 100), 100);
+  assert.equal(s.eitiNotesAISetPanelHeight(470, true), 470);
+  assert.equal(panel.style.height, '470px');
+  assert.equal(ls.getItem('eiti_notes_ai_height_px'), '470');
+  assert.equal(s.eitiNotesAIGetStoredPanelHeight(), 470);
+  assert.equal(panel.classList.contains('notes-ai-custom-height'), true);
+  assert.equal(panel.classList.contains('expanded'), false);
+
+  assert.equal(s.eitiNotesAIToggleFullscreen(), true);
+  assert.equal(panel.classList.contains('notes-ai-fullscreen'), true);
+  assert.equal(overlay.classList.contains('notes-ai-fullscreen'), true);
+  assert.match(handle.attributes['aria-label'], /выйти из полного экрана/);
+  assert.equal(s.eitiNotesAIToggleFullscreen(false), false);
+  assert.equal(panel.classList.contains('notes-ai-fullscreen'), false);
+  assert.equal(overlay.classList.contains('notes-ai-fullscreen'), false);
 });
 
 test('Notes AI uses the chosen model in the helper request', async () => {
