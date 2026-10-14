@@ -27,6 +27,19 @@ test('mobile Notes AI panel opens at half height, keeps drag size for the sessio
   await expect(panel).toBeVisible();
   await expect(handle).toBeVisible();
   await expect(helper).toBeVisible();
+  const composerInput = page.locator('#notesAiInput');
+  await expect(composerInput).toBeVisible();
+  await composerInput.focus();
+  const composerFocus = await composerInput.evaluate((el) => ({
+    borderRadius: getComputedStyle(el).borderRadius,
+    focusVisible: el.matches(':focus-visible'),
+    outline: getComputedStyle(el).outlineStyle,
+    boxShadow: getComputedStyle(el).boxShadow,
+  }));
+  expect(composerFocus.borderRadius).toBe('12px');
+  expect(composerFocus.focusVisible).toBe(true);
+  expect(composerFocus.outline).toBe('none');
+  expect(composerFocus.boxShadow).not.toBe('none');
   const before = await panel.boundingBox();
   const grip = await handle.boundingBox();
   expect(before).not.toBeNull();
