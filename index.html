@@ -7981,6 +7981,44 @@
                                 </button>
                                 <div id="eiti-or-status" style="padding:8px;border-radius:10px;text-align:center;background:var(--secondary-color);min-height:32px;font-size:13px;margin-top:6px;"></div>
                             </div>
+                            <div class="settings-group" id="eiti-notes-ai-settings">
+                                <div class="settings-title" data-i18n="✨ Notes AI">✨ Notes AI</div>
+                                <div style="padding:14px;display:flex;flex-direction:column;gap:12px;">
+                                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                                        <div>
+                                            <div style="font-size:14px;font-weight:600;" data-i18n="LLM для заметок">LLM для заметок</div>
+                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.</div>
+                                        </div>
+                                        <div id="notes-ai-toggle" onclick="eitiNotesAISetEnabled(!eitiNotesAIIsEnabled())"
+                                            style="width:44px;height:26px;border-radius:13px;background:#444;cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
+                                            <div id="notes-ai-toggle-knob" style="position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
+                                        </div>
+                                    </div>
+                                    <div id="notes-ai-opts" style="display:none;flex-direction:column;gap:10px;">
+                                        <div style="font-size:13px;font-weight:600;" data-i18n="Модель для заметок">Модель для заметок</div>
+                                        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                                            <button type="button" id="notes-ai-model-same" onclick="eitiNotesAISetModel('same')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🔁 <span data-i18n="Как в чате">Как в чате</span></button>
+                                            <button type="button" id="notes-ai-model-deepseek" onclick="eitiNotesAISetModel('deepseek')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🔵 DeepSeek</button>
+                                            <button type="button" id="notes-ai-model-gemini" onclick="eitiNotesAISetModel('gemini')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🟢 Gemini</button>
+                                            <button type="button" id="notes-ai-model-or-auto" onclick="eitiNotesAISetModel('openrouter/auto')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">OR Auto</button>
+                                            <button type="button" id="notes-ai-model-or-free" onclick="eitiNotesAISetModel('openrouter/free')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Free</button>
+                                            <button type="button" id="notes-ai-model-or-claude" onclick="eitiNotesAISetModel('anthropic/claude-sonnet-4-6')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Claude</button>
+                                            <button type="button" id="notes-ai-model-or-gpt" onclick="eitiNotesAISetModel('openai/gpt-5.5')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">GPT</button>
+                                            <button type="button" id="notes-ai-model-or-llama" onclick="eitiNotesAISetModel('meta-llama/llama-3.3-70b-instruct')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Llama</button>
+                                        </div>
+                                        <input type="text" id="notes-ai-model-custom" placeholder="provider/model (OpenRouter)"
+                                               style="width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:13px;"
+                                               onchange="if(this.value.trim())eitiNotesAISetModel(this.value.trim())">
+                                        <div id="notes-ai-model-label" style="font-size:11px;opacity:0.6;display:flex;align-items:center;min-width:0;"></div>
+                                        <div style="font-size:13px;font-weight:600;" data-i18n="Размер панели">Размер панели</div>
+                                        <div style="display:flex;gap:6px;">
+                                            <button type="button" id="notes-ai-size-small" onclick="eitiNotesAISetSize('small')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Малый">Малый</button>
+                                            <button type="button" id="notes-ai-size-medium" onclick="eitiNotesAISetSize('medium')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Средний">Средний</button>
+                                            <button type="button" id="notes-ai-size-large" onclick="eitiNotesAISetSize('large')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Большой">Большой</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button id="eiti-only-ai-btn" onclick="eitiToggleOnlyAI()"
                                     style="padding:14px;border-radius:14px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:15px;font-weight:700;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;">
                                 <span id="eiti-only-ai-icon">🤖</span>
@@ -8663,44 +8701,6 @@
                                 <div id="notesTitleOnlyToggle" onclick="eitiToggleNotesTitleOnly()"
                                     style="width:44px;height:26px;border-radius:13px;background:var(--border-color);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
                                     <div id="notesTitleOnlyThumb" style="position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="settings-group" id="eiti-notes-ai-settings">
-                        <div class="settings-title" data-i18n="✨ Notes AI">✨ Notes AI</div>
-                        <div style="padding:14px;display:flex;flex-direction:column;gap:12px;">
-                            <div style="display:flex;align-items:center;justify-content:space-between;">
-                                <div>
-                                    <div style="font-size:14px;font-weight:600;" data-i18n="LLM для заметок">LLM для заметок</div>
-                                    <div style="font-size:11px;opacity:0.55;margin-top:2px;">Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.</div>
-                                </div>
-                                <div id="notes-ai-toggle" onclick="eitiNotesAISetEnabled(!eitiNotesAIIsEnabled())"
-                                    style="width:44px;height:26px;border-radius:13px;background:#444;cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
-                                    <div id="notes-ai-toggle-knob" style="position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
-                                </div>
-                            </div>
-                            <div id="notes-ai-opts" style="display:none;flex-direction:column;gap:10px;">
-                                <div style="font-size:13px;font-weight:600;" data-i18n="Модель для заметок">Модель для заметок</div>
-                                <div style="display:flex;flex-wrap:wrap;gap:6px;">
-                                    <button type="button" id="notes-ai-model-same" onclick="eitiNotesAISetModel('same')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🔁 <span data-i18n="Как в чате">Как в чате</span></button>
-                                    <button type="button" id="notes-ai-model-deepseek" onclick="eitiNotesAISetModel('deepseek')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🔵 DeepSeek</button>
-                                    <button type="button" id="notes-ai-model-gemini" onclick="eitiNotesAISetModel('gemini')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🟢 Gemini</button>
-                                    <button type="button" id="notes-ai-model-or-auto" onclick="eitiNotesAISetModel('openrouter/auto')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">OR Auto</button>
-                                    <button type="button" id="notes-ai-model-or-free" onclick="eitiNotesAISetModel('openrouter/free')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Free</button>
-                                    <button type="button" id="notes-ai-model-or-claude" onclick="eitiNotesAISetModel('anthropic/claude-sonnet-4-6')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Claude</button>
-                                    <button type="button" id="notes-ai-model-or-gpt" onclick="eitiNotesAISetModel('openai/gpt-5.5')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">GPT</button>
-                                    <button type="button" id="notes-ai-model-or-llama" onclick="eitiNotesAISetModel('meta-llama/llama-3.3-70b-instruct')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Llama</button>
-                                </div>
-                                <input type="text" id="notes-ai-model-custom" placeholder="provider/model (OpenRouter)"
-                                       style="width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:13px;"
-                                       onchange="if(this.value.trim())eitiNotesAISetModel(this.value.trim())">
-                                <div id="notes-ai-model-label" style="font-size:11px;opacity:0.6;display:flex;align-items:center;min-width:0;"></div>
-                                <div style="font-size:13px;font-weight:600;" data-i18n="Размер панели">Размер панели</div>
-                                <div style="display:flex;gap:6px;">
-                                    <button type="button" id="notes-ai-size-small" onclick="eitiNotesAISetSize('small')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Малый">Малый</button>
-                                    <button type="button" id="notes-ai-size-medium" onclick="eitiNotesAISetSize('medium')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Средний">Средний</button>
-                                    <button type="button" id="notes-ai-size-large" onclick="eitiNotesAISetSize('large')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Большой">Большой</button>
                                 </div>
                             </div>
                         </div>
