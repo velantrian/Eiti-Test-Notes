@@ -1,3 +1,5 @@
+> **Это тестовая копия** [velantrim-eiti](https://github.com/velantrian/velantrim-eiti) с функцией Notes Ask AI. Не основной репозиторий и не продакшен.
+
 <div align="center">
 
 # 𓆩 VELANTRIM EITI 𓆪
@@ -5,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.16-gold?style=flat-square)](https://github.com/velantrian/velantrim-eiti/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.16-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -18,7 +20,7 @@ _Клиентское PWA без backend и build step. Основной инт�
 
 <div align="center">
 
-### [▶️ Открыть VELANTRIM EITI](https://velantrian.github.io/velantrim-eiti/)
+### [▶️ Открыть VELANTRIM EITI](https://velantrian.github.io/Eiti-Test-Notes/)
 
 **📱 На телефоне:** открой ссылку в Chrome → меню (⋮) → «Добавить на главный экран»
 
@@ -30,7 +32,7 @@ _Клиентское PWA без backend и build step. Основной инт�
 
 ## ⬇️ Локальный запуск
 
-Скачайте [полный репозиторий](https://github.com/velantrian/velantrim-eiti/archive/refs/heads/main.zip) и запустите его через статический HTTP-сервер:
+Скачайте [полный репозиторий](https://github.com/velantrian/Eiti-Test-Notes/archive/refs/heads/main.zip) и запустите его через статический HTTP-сервер:
 
 ```bash
 python3 -m http.server 8080
@@ -77,8 +79,8 @@ python3 -m http.server 8080
 - 📡 Service Worker ожидает cache writes и не принимает неполный CORE cache за успешную установку.
 - 🧹 Удалены запросы к отсутствующим legacy-файлам и необязательному DE patch.
 
-📜 **Полный список изменений:** [коммиты main](https://github.com/velantrian/velantrim-eiti/commits/main)  
-🔍 **Открыть последнюю версию:** [velantrian.github.io/velantrim-eiti/](https://velantrian.github.io/velantrim-eiti/)
+📜 **Полный список изменений:** [коммиты main](https://github.com/velantrian/Eiti-Test-Notes/commits/main)  
+🔍 **Открыть последнюю версию:** [velantrian.github.io/Eiti-Test-Notes/](https://velantrian.github.io/Eiti-Test-Notes/)
 
 ---
 
@@ -230,6 +232,6 @@ eitiKBSetTruth(id, 'hypothesis') // эпистемический статус
 
 _Сделано с 🖤 для тех, кто строит своё AI_
 
-[🚀 Открыть](https://velantrian.github.io/velantrim-eiti/) · [⬇️ Скачать](https://raw.githubusercontent.com/velantrian/velantrim-eiti/main/index.html) · [🐛 Issues](https://github.com/velantrian/velantrim-eiti/issues)
+[🚀 Открыть](https://velantrian.github.io/Eiti-Test-Notes/) · [⬇️ Скачать](https://raw.githubusercontent.com/velantrian/Eiti-Test-Notes/main/index.html) · [🐛 Issues](https://github.com/velantrian/Eiti-Test-Notes/issues)
 
 </div>
