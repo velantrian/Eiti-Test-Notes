@@ -202,6 +202,17 @@
                 'Авто': 'Auto',
                 'Авто — AI отвечает на языке вашего сообщения. Можно зафиксировать RU или EN.': 'Auto — die KI antwortet in der Sprache Ihrer Nachricht. Kann auf RU oder EN festgelegt werden.',
                 'Внешний вид': 'Erscheinungsbild',
+                '👤 Обычные': '👤 Alltag',
+                '🛠 Расширенные': '🛠 Erweitert',
+                'для разработчиков': 'für Entwickler',
+                'Режим отображения настроек': 'Ansicht der Einstellungen',
+                'Технические настройки не удалены — они доступны во вкладке «Расширенные».': 'Technische Einstellungen wurden nicht entfernt — sie sind im Tab „Erweitert“ verfügbar.',
+                '🤖 AI-провайдеры и модели': '🤖 KI-Anbieter und Modelle',
+                '💜 Личная память': '💜 Persönlicher Speicher',
+                '💬 Правила для AI': '💬 Regeln für die KI',
+                '📋 Постоянные правила для AI': '📋 Dauerhafte KI-Regeln',
+                'Включите, чтобы AI мог автоматически искать нужную информацию в истории чатов. Выключено по умолчанию.': 'Aktivieren Sie die automatische Suche nach hilfreichen Informationen im Chatverlauf. Standardmäßig ist sie deaktiviert.',
+                'Здесь можно добавлять и просматривать записи, которые AI может использовать в ответах.': 'Fügen Sie Einträge hinzu und sehen Sie sie an, die die KI in Antworten verwenden kann.',
                 '🤖 DeepSeek AI ⚡ Google Gemini': '🤖 DeepSeek AI ⚡ Google Gemini',
                 '🟣 Qwen AI — DashScope': '🟣 Qwen KI — DashScope',
                 '✈️ Офлайн-режим': '✈️ Offline-Modus',
@@ -233,6 +244,8 @@
                 '📖 Лемматизатор — Морфология': '📖 Lemmatisierer — Morphologie',
                 'FL ⚖️ Умные веса — Retrieval': 'FL ⚖️ Smarte Gewichte — Retrieval',
                 'Материалы (iOS6 / Book / Paper)': 'Materialien (iOS6 / Book / Paper)',
+                'Создайте или восстановите резервную копию всех данных приложения.': 'Erstellen Sie eine Sicherung aller App-Daten oder stellen Sie sie wieder her.',
+                'Резервная копия данных приложения — создать или восстановить': 'App-Datensicherung — erstellen oder wiederherstellen',
                 'Профили UI': 'UI-Profile',
                 '🎭 Emoji стиль (v6)': '🎭 Emoji-Stil (v6)',
                 '✦ Символьный стиль (v6.1)': '✦ Symbolstil (v6.1)',
@@ -1859,6 +1872,17 @@
                 'Авто — AI отвечает на языке вашего сообщения. Можно зафиксировать RU или EN.': 'Auto — AI replies in the language of your message. Can be locked to RU or EN.',
                 // === Settings groups ===
                 'Внешний вид': 'Appearance',
+                '👤 Обычные': '👤 Everyday',
+                '🛠 Расширенные': '🛠 Advanced',
+                'для разработчиков': 'for developers',
+                'Режим отображения настроек': 'Settings display mode',
+                'Технические настройки не удалены — они доступны во вкладке «Расширенные».': 'Technical settings are still available in the “Advanced” view.',
+                '🤖 AI-провайдеры и модели': '🤖 AI providers and models',
+                '💜 Личная память': '💜 Personal memory',
+                '💬 Правила для AI': '💬 AI behavior rules',
+                '📋 Постоянные правила для AI': '📋 Always-on AI rules',
+                'Включите, чтобы AI мог автоматически искать нужную информацию в истории чатов. Выключено по умолчанию.': 'Allow the AI to automatically look up useful details in your chat history. Off by default.',
+                'Здесь можно добавлять и просматривать записи, которые AI может использовать в ответах.': 'Add and review notes the AI can use in replies.',
                 '🤖 DeepSeek AI ⚡ Google Gemini': '🤖 DeepSeek AI ⚡ Google Gemini',
                 '🟣 Qwen AI — DashScope': '🟣 Qwen AI — DashScope',
                 '✈️ Офлайн-режим': '✈️ Offline mode',
@@ -1890,6 +1914,8 @@
                 '📖 Лемматизатор — Морфология': '📖 Lemmatizer — Morphology',
                 'FL ⚖️ Умные веса — Retrieval': 'FL ⚖️ Smart weights — Retrieval',
                 'Материалы (iOS6 / Book / Paper)': 'Materials (iOS6 / Book / Paper)',
+                'Создайте или восстановите резервную копию всех данных приложения.': 'Create or restore a backup of all app data.',
+                'Резервная копия данных приложения — создать или восстановить': 'App data backup — create or restore',
                 'Профили UI': 'UI Profiles',
                 '🎭 Emoji стиль (v6)': '🎭 Emoji style (v6)',
                 '✦ Символьный стиль (v6.1)': '✦ Symbol style (v6.1)',
@@ -6176,6 +6202,62 @@
             font-weight: 600;
             background: var(--primary-color);
         }
+        .settings-mode-switch {
+            display: grid;
+            grid-template-columns: 1fr 1.25fr;
+            gap: 8px;
+            margin: 0 0 8px;
+            padding: 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: var(--secondary-color);
+        }
+        .settings-mode-switch button {
+            min-width: 0;
+            min-height: 46px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-color);
+            font: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.25;
+            cursor: pointer;
+        }
+        .settings-mode-switch button[aria-pressed="true"] {
+            border-color: var(--accent-color);
+            background: var(--primary-color);
+            color: var(--accent-color);
+            box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-color) 25%, transparent);
+        }
+        .settings-mode-switch button:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        .settings-mode-subtitle {
+            display: block;
+            margin-top: 2px;
+            font-size: 10px;
+            font-weight: 500;
+            opacity: 0.72;
+        }
+        .settings-mode-note {
+            margin: 0 2px 16px;
+            font-size: 12px;
+            line-height: 1.45;
+            opacity: 0.68;
+        }
+        #view-settings[data-settings-mode="ordinary"] [data-settings-audience="advanced"] {
+            display: none !important;
+        }
+        #view-settings[data-settings-mode="developer"] [data-settings-audience="ordinary"] {
+            display: none !important;
+        }
+        @media (max-width: 360px) {
+            .settings-mode-switch button { padding: 8px 6px; font-size: 12px; }
+        }
         
         .settings-item {
             padding: 16px 20px;
@@ -7557,8 +7639,18 @@
             </div>
             
             <!-- SETTINGS -->
-            <div id="view-settings" class="content-view" style="overflow-y:auto;-webkit-overflow-scrolling:touch;">
+            <div id="view-settings" class="content-view" data-settings-mode="ordinary" style="overflow-y:auto;-webkit-overflow-scrolling:touch;">
                 <div class="settings-container">
+                    <div id="settings-mode-switch" class="settings-mode-switch" role="group" data-i18n-aria="Режим отображения настроек">
+                        <button id="settings-mode-ordinary" type="button" data-settings-mode-choice="ordinary" aria-pressed="true" onclick="eitiSetSettingsMode('ordinary')">
+                            <span data-i18n="👤 Обычные">👤 Обычные</span>
+                        </button>
+                        <button id="settings-mode-developer" type="button" data-settings-mode-choice="developer" aria-pressed="false" onclick="eitiSetSettingsMode('developer')">
+                            <span data-i18n="🛠 Расширенные">🛠 Расширенные</span>
+                            <span class="settings-mode-subtitle" data-i18n="для разработчиков">для разработчиков</span>
+                        </button>
+                    </div>
+                    <div id="settings-mode-note" class="settings-mode-note" data-i18n="Технические настройки не удалены — они доступны во вкладке «Расширенные».">Технические настройки не удалены — они доступны во вкладке «Расширенные».</div>
                     <!-- ═══ 🌐 LANGUAGE / ЯЗЫК (v13.4.5) ═══ -->
                     <div class="settings-group" id="lang-settings-group">
                         <div class="settings-title" data-i18n="🌐 Язык / Language">🌐 Язык / Language</div>
@@ -7673,7 +7765,7 @@
                     </div>
 
                     <div class="settings-group">
-                        <div class="settings-title" data-i18n="🤖 DeepSeek AI ⚡ Google Gemini">🤖 DeepSeek AI ⚡ Google Gemini</div>
+                        <div class="settings-title" data-i18n="🤖 AI-провайдеры и модели">🤖 AI-провайдеры и модели</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
                             <!-- ═══ COGNITIVE MODES (Hyperia-style) ═══ -->
                             <div style="border-bottom:1px solid var(--border-color);padding-bottom:12px;margin-bottom:2px;">
@@ -8064,7 +8156,8 @@
                                 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
                                     <div>
                                         <div style="font-size:13px;font-weight:700;" data-i18n="🔎 Поиск по архиву чатов">🔎 Поиск по архиву чатов</div>
-                                        <div style="font-size:11px;opacity:0.5;margin-top:2px;line-height:1.4;" data-i18n="Автопоиск по истории сообщений (L1) выключен по умолчанию. Явный запрос к истории продолжает поиск. L2-дайджесты, профиль и другие источники памяти не меняются.">Автопоиск по истории сообщений (L1) выключен по умолчанию. Явный запрос к истории продолжает поиск. L2-дайджесты, профиль и другие источники памяти не меняются.</div>
+                                        <div data-settings-audience="ordinary" style="font-size:11px;opacity:0.5;margin-top:2px;line-height:1.4;" data-i18n="Включите, чтобы AI мог автоматически искать нужную информацию в истории чатов. Выключено по умолчанию.">Включите, чтобы AI мог автоматически искать нужную информацию в истории чатов. Выключено по умолчанию.</div>
+                                        <div style="font-size:11px;opacity:0.5;margin-top:2px;line-height:1.4;" data-i18n="Автопоиск по истории сообщений (L1) выключен по умолчанию. Явный запрос к истории продолжает поиск. L2-дайджесты, профиль и другие источники памяти не меняются." data-settings-audience="advanced">Автопоиск по истории сообщений (L1) выключен по умолчанию. Явный запрос к истории продолжает поиск. L2-дайджесты, профиль и другие источники памяти не меняются.</div>
                                     </div>
                                     <div id="eiti-memory-lookup-slider" role="switch" tabindex="0" aria-checked="false" data-i18n-aria="🔎 Поиск по архиву чатов"
                                         onclick="eitiMemoryLookupToggle()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();eitiMemoryLookupToggle();}"
@@ -8302,9 +8395,10 @@
                     </div>
                     <!-- v12.0: EITI Memory — Личная память -->
                     <div class="settings-group">
-                        <div class="settings-title" data-i18n="💜 EITI Memory — Личная память">💜 EITI Memory — Личная память</div>
+                        <div class="settings-title" data-i18n="💜 Личная память">💜 Личная память</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
-                            <div style="font-size:13px;opacity:0.7;line-height:1.5;">Персональная память EITI. Хранится в IndexedDB (store <code>memory</code>). AI может сохранять сюда через команду <code>[MEM_ADD:tag|текст]</code>.</div>
+                            <div data-settings-audience="advanced" style="font-size:13px;opacity:0.7;line-height:1.5;">Персональная память EITI. Хранится в IndexedDB (store <code>memory</code>). AI может сохранять сюда через команду <code>[MEM_ADD:tag|текст]</code>.</div>
+                            <div data-settings-audience="ordinary" style="font-size:13px;opacity:0.7;line-height:1.5;" data-i18n="Здесь можно добавлять и просматривать записи, которые AI может использовать в ответах.">Здесь можно добавлять и просматривать записи, которые AI может использовать в ответах.</div>
                             <!-- Статистика + дельта -->
                             <div style="display:flex;align-items:center;gap:8px;">
                                 <div id="eiti-mem-stats" style="flex:1;padding:10px;border-radius:10px;background:var(--secondary-color);font-size:13px;text-align:center;opacity:0.8;">⏳ Загрузка...</div>
@@ -8537,7 +8631,7 @@
 
                     <!-- ═══ 🧠 SMART MEMORY HUB v12.9.77 ═══ -->
                     <div class="settings-group" id="smh-settings-group">
-                        <div class="settings-title" data-i18n="🧠 Smart Memory Hub">🧠 Smart Memory Hub</div>
+                        <div class="settings-title" data-i18n="💬 Правила для AI">💬 Правила для AI</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
 
                             <!-- Статистика -->
@@ -8561,8 +8655,7 @@
 
                             <!-- Standing Orders -->
                             <details style="font-size:13px;" id="smh-orders-details">
-                                <summary style="cursor:pointer;padding:6px 0;font-weight:600;" onclick="smhRefreshStats()">
-                                    📋 Standing Orders — постоянные правила AI
+                                <summary style="cursor:pointer;padding:6px 0;font-weight:600;" onclick="smhRefreshStats()" data-i18n="📋 Постоянные правила для A📋 Постоянные правила для AI Standing Orders — постоянные правила AI
                                 </summary>
                                 <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
                                     <div style="font-size:12px;opacity:0.65;line-height:1.5;">Эти правила автоматически добавляются в каждый запрос к AI. Включай/выключай без удаления.</div>
@@ -9225,7 +9318,7 @@
 
                             <!-- Export / Import All -->
                             <div style="padding-bottom:16px;">
-                                <div style="font-size:13px;opacity:0.6;margin-bottom:10px;line-height:1.4;">Единый пакет: KB · MOSC · VB · FL · настройки</div>
+                                <div style="font-size:13px;opacity:0.6;margin-bottom:10px;line-height:1.4;" data-i18n="Создайте или восстановите резервную копию всех данных приложения.">Создайте или восстановите резервную копию всех данных приложения.</div>
                                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                                     <button onclick="eitiExportAll()" class="settings-btn">📦 Экспорт всего</button>
                                     <button onclick="eitiImportAllClick()" class="settings-btn">📥 Импорт всего</button>
@@ -9249,7 +9342,7 @@
 
                             <!-- Backup -->
                             <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;">
-                                <div style="font-size:13px;opacity:0.6;margin-bottom:10px;line-height:1.4;">Backup (IndexedDB) — сохранить / восстановить состояние</div>
+                                <div style="font-size:13px;opacity:0.6;margin-bottom:10px;line-height:1.4;" data-i18n="Резервная копия данных приложения — создать или восстановить">Резервная копия данных приложения — создать или восстановить</div>
                                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                                     <button onclick="eitiSaveBackup()" class="settings-btn">💾 Создать</button>
                                     <button onclick="eitiRestoreBackup()" class="settings-btn">♻️ Восстановить</button>
@@ -34907,6 +35000,113 @@ window.eitiLLMClearAll = async function() {
                 'meta-llama/llama-3.3-70b-instruct': 'notes-ai-model-or-llama'
             };
         }
+        function eitiSettingsFindGroupByKey(key) {
+            var view = document.getElementById('view-settings');
+            if (!view) return null;
+            return Array.from(view.querySelectorAll('.settings-group')).find(function (group) {
+                var title = group.querySelector(':scope > .settings-title');
+                return title && title.getAttribute('data-i18n') === key;
+            }) || null;
+        }
+
+        function eitiSettingsMarkAdvancedSection(target, contentRoot) {
+            if (!target || !contentRoot) return null;
+            var section = target;
+            while (section && section.parentElement !== contentRoot) section = section.parentElement;
+            if (!section || section.parentElement !== contentRoot) return null;
+            section.setAttribute('data-settings-audience', 'advanced');
+            return section;
+        }
+
+        (function eitiSettingsInitializeAudienceMode() {
+            var view = document.getElementById('view-settings');
+            if (!view) return;
+
+            var advancedGroupKeys = new Set([
+                '🧠 База знаний KB',
+                '🧬 PKG — Хеббианский Граф Знаний',
+                '🧠 MOSC — Reasoning Engine',
+                '🔐 Целостность памяти',
+                '🕒 Pending Layer',
+                '🧠 Память L3',
+                '🧬 О системе',
+                '📊 Статистика',
+                '🤖 Мои интенты (без LLM)',
+                '💾 Как устроена Система 🛠',
+                '🤖 AI Offline — Семантический поиск',
+                '🧬 Embeddings & Chunks',
+                '📄 RAG — Умное чтение файлов',
+                '🤖 LLM Чат — Лёгкие модели',
+                '💳 API — Баланс и токены',
+                'VB🦋 Velantrim Brain',
+                '📖 Лемматизатор — Морфология',
+                'FL ⚖️ Умные веса — Retrieval'
+            ]);
+            Array.from(view.querySelectorAll('.settings-group')).forEach(function (group) {
+                var title = group.querySelector(':scope > .settings-title');
+                if (title && advancedGroupKeys.has(title.getAttribute('data-i18n'))) {
+                    group.setAttribute('data-settings-audience', 'advanced');
+                }
+            });
+
+            var providers = eitiSettingsFindGroupByKey('🤖 AI-провайдеры и модели');
+            var providerContent = providers && providers.children[1];
+            function markProviderTarget(id, before, after) {
+                var target = document.getElementById(id);
+                if (!target || !providerContent || !providerContent.contains(target)) return;
+                if (before) eitiSettingsMarkAdvancedSection(target.previousElementSibling, providerContent);
+                eitiSettingsMarkAdvancedSection(target, providerContent);
+                if (after) eitiSettingsMarkAdvancedSection(target.nextElementSibling, providerContent);
+            }
+            // Hide implementation/tuning controls in the everyday view, but leave
+            // provider keys, model choices, chat presets, memory lookup and AI rules visible.
+            markProviderTarget('eiti-only-ai-btn', false, true);
+            markProviderTarget('token-budget', true, true);
+            markProviderTarget('fullctx-toggle-slider', false, false);
+            markProviderTarget('chunk-size', true, true);
+            markProviderTarget('eiti-token-stats', false, false);
+            markProviderTarget('eiti-suggestions-settings', false, false);
+
+            var dataGroup = eitiSettingsFindGroupByKey('🗂️ Импорт / Экспорт + AI Check');
+            var dataContent = dataGroup && dataGroup.children[1];
+            if (dataContent) {
+                eitiSettingsMarkAdvancedSection(dataContent.querySelector('#eiti-ai-check-result'), dataContent);
+                eitiSettingsMarkAdvancedSection(dataContent.querySelector('#eiti-observer-report'), dataContent);
+                var backupDelete = dataContent.querySelector('[onclick="eitiDeleteBackup()"]');
+                if (backupDelete && backupDelete.parentElement) {
+                    backupDelete.parentElement.setAttribute('data-settings-audience', 'advanced');
+                }
+            }
+
+            var archiveGroup = eitiSettingsFindGroupByKey('📦 Архив — Экспорт / Импорт');
+            if (archiveGroup) {
+                archiveGroup.querySelectorAll('button').forEach(function (button) {
+                    var label = (button.textContent || '').replace(/\s+/g, ' ').trim();
+                    if (/^(?:🤖\s*)?(?:AI|KI)\s+(?:Export|Экспорт)/i.test(label)) {
+                        button.setAttribute('data-settings-audience', 'advanced');
+                    }
+                });
+            }
+
+            var modeKey = 'eiti_settings_audience_mode_v1';
+            window.eitiSetSettingsMode = function (mode) {
+                var nextMode = mode === 'developer' ? 'developer' : 'ordinary';
+                view.setAttribute('data-settings-mode', nextMode);
+                view.querySelectorAll('[data-settings-mode-choice]').forEach(function (button) {
+                    button.setAttribute('aria-pressed', button.getAttribute('data-settings-mode-choice') === nextMode ? 'true' : 'false');
+                });
+                try { localStorage.setItem(modeKey, nextMode); } catch (e) {}
+                return nextMode;
+            };
+
+            var initialMode = 'ordinary';
+            try { if (localStorage.getItem(modeKey) === 'developer') initialMode = 'developer'; } catch (e) {}
+            view.setAttribute('data-settings-mode', initialMode);
+            view.querySelectorAll('[data-settings-mode-choice]').forEach(function (button) {
+                button.setAttribute('aria-pressed', button.getAttribute('data-settings-mode-choice') === initialMode ? 'true' : 'false');
+            });
+        })();
+
         function eitiNotesAIRenderSettings() {
             var on = eitiNotesAIIsEnabled();
             var tog = document.getElementById('notes-ai-toggle');
