@@ -26,7 +26,6 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIIsEnabled',
     'eitiNotesAIGetModel',
     'eitiNotesAIGetSize',
-    'eitiNotesAIGetStoredPanelHeight',
     'eitiNotesAIAvailablePanelHeight',
     'eitiNotesAIClampPanelHeight',
     'eitiNotesAISetPanelHeight',
@@ -47,6 +46,7 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIPresetModels',
     'eitiNotesAIRenderSettings',
     'eitiNotesAIApplySize',
+    'eitiNotesAITogglePanel',
     'eitiNotesAISyncControl',
     'eitiNotesAIUpdateChip',
     'eitiNotesAIUpdateModelChip',
@@ -123,7 +123,7 @@ test('Notes AI settings persist in localStorage and survive a reload sandbox', (
   assert.equal(s2.eitiNotesAIGetSize(), 'medium');
 });
 
-test('Notes AI drawer height is clamped, persisted, and fullscreen is reversible', () => {
+test('Notes AI drawer height is clamped and fullscreen is reversible', () => {
   function classList(initial) {
     const names = new Set(initial || []);
     return {
@@ -155,10 +155,9 @@ test('Notes AI drawer height is clamped, persisted, and fullscreen is reversible
   assert.equal(s.eitiNotesAIClampPanelHeight(80, 640), 148);
   assert.equal(s.eitiNotesAIClampPanelHeight(900, 640), 640);
   assert.equal(s.eitiNotesAIClampPanelHeight(90, 100), 100);
-  assert.equal(s.eitiNotesAISetPanelHeight(470, true), 470);
+  assert.equal(s.eitiNotesAISetPanelHeight(470), 470);
   assert.equal(panel.style.height, '470px');
-  assert.equal(ls.getItem('eiti_notes_ai_height_px'), '470');
-  assert.equal(s.eitiNotesAIGetStoredPanelHeight(), 470);
+  assert.equal(ls.getItem('eiti_notes_ai_height_px'), null);
   assert.equal(panel.classList.contains('notes-ai-custom-height'), true);
   assert.equal(panel.classList.contains('expanded'), false);
 
@@ -169,6 +168,59 @@ test('Notes AI drawer height is clamped, persisted, and fullscreen is reversible
   assert.equal(s.eitiNotesAIToggleFullscreen(false), false);
   assert.equal(panel.classList.contains('notes-ai-fullscreen'), false);
   assert.equal(overlay.classList.contains('notes-ai-fullscreen'), false);
+});
+
+test('Notes AI opens at its default size and keeps dragged height only during that open session', () => {
+  function classList(initial) {
+    const names = new Set(initial || []);
+    return {
+      add(...values) { values.forEach((value) => names.add(value)); },
+      remove(...values) { values.forEach((value) => names.delete(value)); },
+      contains(value) { return names.has(value); },
+      toggle(value, force) {
+        const enabled = force === undefined ? !names.has(value) : !!force;
+        if (enabled) names.add(value); else names.delete(value);
+        return enabled;
+      },
+    };
+  }
+  const ls = makeLS({ eiti_notes_ai_enabled: '1', eiti_notes_ai_height_px: '520' });
+  const panel = {
+    parentElement: { clientHeight: 640 },
+    classList: classList(['notes-ai-size-large', 'notes-ai-custom-height', 'expanded']),
+    style: { height: '520px', removeProperty(name) { this[name] = ''; } },
+    getBoundingClientRect() { return { height: Number.parseFloat(this.style.height) || 320 }; },
+  };
+  const overlay = { classList: classList([]) };
+  const handle = { title: '', attributes: {}, setAttribute(name, value) { this.attributes[name] = value; } };
+  const elements = { notesAiPanel: panel, noteEditorOverlay: overlay, notesAiPanelHandle: handle };
+  const s = loadNotesAI(ls, {
+    window: { innerHeight: 640, visualViewport: null },
+    document: { getElementById(id) { return elements[id] || null; } },
+    eitiNotesAIUpdateChip() {},
+    eitiNotesAIUpdateModelChip() {},
+    eitiNotesAIRenderThread() {},
+    setTimeout() {},
+  });
+
+  s.eitiNotesAITogglePanel(true);
+  assert.equal(panel.classList.contains('open'), true);
+  assert.equal(panel.classList.contains('notes-ai-size-medium'), true);
+  assert.equal(panel.classList.contains('notes-ai-custom-height'), false);
+  assert.equal(panel.classList.contains('expanded'), false);
+  assert.equal(panel.style.height, '');
+  assert.equal(ls.getItem('eiti_notes_ai_height_px'), null);
+
+  s.eitiNotesAISetPanelHeight(470);
+  s.eitiNotesAITogglePanel(true);
+  assert.equal(panel.style.height, '470px');
+  assert.equal(ls.getItem('eiti_notes_ai_height_px'), null);
+
+  s.eitiNotesAITogglePanel(false);
+  s.eitiNotesAITogglePanel(true);
+  assert.equal(panel.classList.contains('notes-ai-size-medium'), true);
+  assert.equal(panel.classList.contains('notes-ai-custom-height'), false);
+  assert.equal(panel.style.height, '');
 });
 
 test('Notes AI uses the chosen model in the helper request', async () => {
