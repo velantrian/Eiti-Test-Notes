@@ -1,7 +1,14 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-test('AI provider selection uses gentle motion and respects reduced-motion preferences', async ({ page }) => {
+const providerMotions = [
+  { provider: 'deepseek', suffix: 'ds', effectClass: 'eiti-provider-robot-pop', animationName: 'eiti-provider-robot', duration: '0.46s' },
+  { provider: 'gemini', suffix: 'gm', effectClass: 'eiti-provider-lightning-pop', animationName: 'eiti-provider-lightning', duration: '0.56s' },
+  { provider: 'openrouter', suffix: 'or', effectClass: 'eiti-provider-route-pop', animationName: 'eiti-provider-route', duration: '0.52s' },
+  { provider: 'qwen', suffix: 'qwen', effectClass: 'eiti-provider-orb-pop', animationName: 'eiti-provider-orb', duration: '0.5s' },
+];
+
+test('each AI provider symbol has a distinct one-shot motion and respects reduced-motion', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
@@ -13,34 +20,33 @@ test('AI provider selection uses gentle motion and respects reduced-motion prefe
   await page.evaluate(() => document.querySelectorAll('#eiti-onboarding, .toast').forEach((element) => element.remove()));
   await page.locator('.tab-item[data-view="settings"]').evaluate((element) => element.click());
 
-  await page.locator('#eiti-provider-card-gm').evaluate((element) => element.click());
-  const normalMotion = await page.evaluate(() => {
-    const icon = document.getElementById('eiti-picon-gm');
-    const card = document.getElementById('eiti-provider-card-gm');
-    const check = document.getElementById('eiti-pcheck-gm');
-    const iconStyle = getComputedStyle(icon);
-    const cardStyle = getComputedStyle(card);
-    const checkStyle = getComputedStyle(check);
-    return {
-      provider: localStorage.getItem('eiti_ai_provider'),
-      iconClass: icon.className,
-      animationName: iconStyle.animationName,
-      animationDuration: iconStyle.animationDuration,
-      cardTransition: cardStyle.transitionProperty,
-      checkText: check.textContent,
-      checkTransition: checkStyle.transitionProperty,
-    };
-  });
+  for (const motion of providerMotions) {
+    await page.locator(`#eiti-provider-card-${motion.suffix}`).evaluate((element) => element.click());
+    const observed = await page.evaluate((suffix) => {
+      const icon = document.getElementById(`eiti-picon-${suffix}`);
+      const card = document.getElementById(`eiti-provider-card-${suffix}`);
+      const check = document.getElementById(`eiti-pcheck-${suffix}`);
+      return {
+        provider: localStorage.getItem('eiti_ai_provider'),
+        iconClass: icon.className,
+        animationName: getComputedStyle(icon).animationName,
+        animationDuration: getComputedStyle(icon).animationDuration,
+        cardTransition: getComputedStyle(card).transitionProperty,
+        checkText: check.textContent,
+        checkTransition: getComputedStyle(check).transitionProperty,
+      };
+    }, motion.suffix);
 
-  expect(normalMotion.provider).toBe('gemini');
-  expect(normalMotion.iconClass).toContain('eiti-provider-select-pop');
-  expect(normalMotion.animationName).toBe('eiti-provider-select');
-  expect(normalMotion.animationDuration).toBe('0.34s');
-  expect(normalMotion.cardTransition).toContain('border-color');
-  expect(normalMotion.cardTransition).not.toBe('all');
-  expect(normalMotion.checkText).toBe('✅');
-  expect(normalMotion.checkTransition).toContain('opacity');
-  expect(normalMotion.checkTransition).toContain('transform');
+    expect(observed.provider).toBe(motion.provider);
+    expect(observed.iconClass).toContain(motion.effectClass);
+    expect(observed.animationName).toBe(motion.animationName);
+    expect(observed.animationDuration).toBe(motion.duration);
+    expect(observed.cardTransition).toContain('border-color');
+    expect(observed.cardTransition).not.toBe('all');
+    expect(observed.checkText).toBe('✅');
+    expect(observed.checkTransition).toContain('opacity');
+    expect(observed.checkTransition).toContain('transform');
+  }
 
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.locator('#eiti-provider-card-ds').evaluate((element) => element.click());

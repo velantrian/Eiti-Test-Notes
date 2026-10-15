@@ -5496,7 +5496,35 @@
             50%     { box-shadow:0 0 8px 2px rgba(30,180,255,0.35); border-color:rgba(30,180,255,0.7); }
         }
 
-        /* A single, short and gentle motion for AI provider selection. */
+        /* One-shot motions tuned to each AI provider's symbol. */
+        @keyframes eiti-provider-lightning {
+            0%   { transform: perspective(120px) rotateY(0deg) rotateZ(0deg) scale(1); filter: brightness(1) drop-shadow(0 0 0 rgba(255,220,64,0)); }
+            28%  { transform: perspective(120px) rotateY(100deg) rotateZ(-5deg) scale(1.12); filter: brightness(1.25) drop-shadow(0 0 5px rgba(255,220,64,.75)); }
+            58%  { transform: perspective(120px) rotateY(220deg) rotateZ(4deg) scale(1.08); filter: brightness(1.18) drop-shadow(0 0 4px rgba(255,220,64,.55)); }
+            82%  { transform: perspective(120px) rotateY(310deg) rotateZ(-2deg) scale(1.03); filter: brightness(1.08) drop-shadow(0 0 2px rgba(255,220,64,.3)); }
+            100% { transform: perspective(120px) rotateY(360deg) rotateZ(0deg) scale(1); filter: brightness(1) drop-shadow(0 0 0 rgba(255,220,64,0)); }
+        }
+        @keyframes eiti-provider-route {
+            0%   { transform: translateX(0) rotate(0deg) scale(1); }
+            30%  { transform: translateX(1px) rotate(105deg) scale(1.08); }
+            55%  { transform: translateX(-1px) rotate(205deg) scale(1.03); }
+            80%  { transform: translateX(1px) rotate(300deg) scale(1.06); }
+            100% { transform: translateX(0) rotate(360deg) scale(1); }
+        }
+        @keyframes eiti-provider-robot {
+            0%   { transform: translateY(0) rotate(0deg) scale(1); }
+            28%  { transform: translateY(-3px) rotate(-6deg) scale(1.04); }
+            55%  { transform: translateY(0) rotate(5deg) scale(1.03); }
+            78%  { transform: translateY(-1px) rotate(-2deg) scale(1.01); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+        @keyframes eiti-provider-orb {
+            0%   { transform: scale(.94); filter: brightness(.95) drop-shadow(0 0 0 rgba(168,85,247,0)); }
+            36%  { transform: scale(1.2); filter: brightness(1.22) drop-shadow(0 0 6px rgba(168,85,247,.72)); }
+            68%  { transform: scale(.97); filter: brightness(1.05) drop-shadow(0 0 2px rgba(168,85,247,.4)); }
+            100% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 0 rgba(168,85,247,0)); }
+        }
+        /* Gentle fallback used by the disabled-AI symbol. */
         @keyframes eiti-provider-select {
             0%   { transform: translateY(0) scale(1); }
             48%  { transform: translateY(-2px) scale(1.07); }
@@ -5627,9 +5655,17 @@
         .eiti-icon-pop-orb       { display:inline-block; animation: eiti-pop-orb       1.1s ease-in-out 1 both; }
         .eiti-icon-pop-duck      { display:inline-block; animation: eiti-pop-duck      1.3s ease-in-out 1 both; }
         .eiti-icon-pop-stop      { display:inline-block; animation: eiti-pop-stop      1.0s ease-out    1 both; }
+        .eiti-provider-lightning-pop { display:inline-block; transform-origin:center; animation:eiti-provider-lightning 560ms cubic-bezier(.2,.7,.25,1) 1 both; }
+        .eiti-provider-route-pop { display:inline-block; transform-origin:center; animation:eiti-provider-route 520ms ease-out 1 both; }
+        .eiti-provider-robot-pop { display:inline-block; transform-origin:center; animation:eiti-provider-robot 460ms ease-out 1 both; }
+        .eiti-provider-orb-pop { display:inline-block; transform-origin:center; animation:eiti-provider-orb 500ms ease-out 1 both; }
         .eiti-provider-select-pop { display:inline-block; transform-origin:center; animation:eiti-provider-select 340ms ease-out 1 both; }
         [id^="eiti-pcheck-"] { display:inline-block; transform:scale(.88); transition:opacity 180ms ease, transform 240ms cubic-bezier(.2,.8,.2,1); }
         @media (prefers-reduced-motion: reduce) {
+            .eiti-provider-lightning-pop,
+            .eiti-provider-route-pop,
+            .eiti-provider-robot-pop,
+            .eiti-provider-orb-pop,
             .eiti-provider-select-pop,
             [id^="eiti-provider-card-"],
             [id^="eiti-pcheck-"] { animation:none !important; transition:none !important; }
@@ -19989,14 +20025,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         }
 
         var _eitiIconAnimMap = {
-            'eiti-picon-ds':      'eiti-provider-select-pop',
-            'eiti-picon-gm':      'eiti-provider-select-pop',
-            'eiti-picon-or':      'eiti-provider-select-pop',
-            'eiti-picon-qwen':    'eiti-provider-select-pop',
+            'eiti-picon-ds':      'eiti-provider-robot-pop',
+            'eiti-picon-gm':      'eiti-provider-lightning-pop',
+            'eiti-picon-or':      'eiti-provider-route-pop',
+            'eiti-picon-qwen':    'eiti-provider-orb-pop',
             'eiti-ddg-duck-icon': 'eiti-icon-pop-duck',
             'eiti-picon-none':    'eiti-provider-select-pop'
         };
-        var _eitiAllPopClasses = ['eiti-icon-pop','eiti-provider-select-pop','eiti-icon-pop-robot','eiti-icon-pop-lightning','eiti-icon-pop-shuffle','eiti-icon-pop-orb','eiti-icon-pop-duck','eiti-icon-pop-stop'];
+        var _eitiAllPopClasses = ['eiti-icon-pop','eiti-provider-select-pop','eiti-provider-lightning-pop','eiti-provider-route-pop','eiti-provider-robot-pop','eiti-provider-orb-pop','eiti-icon-pop-robot','eiti-icon-pop-lightning','eiti-icon-pop-shuffle','eiti-icon-pop-orb','eiti-icon-pop-duck','eiti-icon-pop-stop'];
         function _eitiPopIcon(id) {
             var el = document.getElementById(id);
             if (!el) return;
