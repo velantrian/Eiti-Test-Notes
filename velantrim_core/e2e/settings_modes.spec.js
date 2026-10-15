@@ -30,6 +30,8 @@ test('settings open in the everyday mode and reveal preserved developer settings
   await expect(page.locator('#settings-mode-note')).toBeVisible();
   await expect(page.locator('#lang-settings-group')).toBeVisible();
   await expect(page.locator('#eiti-notes-ai-settings')).toBeVisible();
+  await expect(page.locator('#eiti-files-ai-settings')).toBeVisible();
+  await expect(page.locator('#files-ai-toggle')).toHaveAttribute('aria-checked', 'false');
   await expect(view.locator('.settings-title[data-i18n="💬 Правила для AI"]')).toBeVisible();
 
   const advancedGroups = view.locator('.settings-group[data-settings-audience="advanced"]');
