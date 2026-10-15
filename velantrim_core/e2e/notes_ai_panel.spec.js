@@ -143,3 +143,52 @@ test('mobile Notes AI panel stays flush with the keyboard when the editor card i
   expect(layout.panelBottomStyle).toBe('200px');
   expect(Math.abs(layout.panelBottom - layout.visibleBottom)).toBeLessThan(1);
 });
+
+test('Notes AI emoji toggle follows Questions, changes state color, and persists across reload', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => {
+    localStorage.setItem('eiti_onboarded', 'true');
+    localStorage.setItem('eiti_notes_ai_enabled', '1');
+  });
+  await page.goto('/index.html');
+  await page.waitForFunction(() => typeof window.eitiNotesAIUpdateEmojiButton === 'function');
+
+  const openPanel = async () => {
+    await page.evaluate(() => {
+      const overlay = document.getElementById('noteEditorOverlay');
+      document.body.appendChild(overlay);
+      overlay.classList.add('active');
+      Object.assign(overlay.style, {
+        display: 'flex', position: 'fixed', inset: '0', width: '100vw', height: '100vh', zIndex: '99999',
+      });
+      window.eitiNotesAIOnEditorOpen();
+      window.eitiNotesAITogglePanel(true);
+    });
+    await expect(page.locator('#notesAiEmojiToggle')).toBeVisible();
+  };
+
+  await openPanel();
+  const toggle = page.locator('#notesAiEmojiToggle');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  const positions = await page.locator('.notes-ai-quick').evaluate((row) => {
+    const buttons = Array.from(row.querySelectorAll('button'));
+    return [buttons.findIndex((button) => button.dataset.notesAiQ === 'questions'), buttons.findIndex((button) => button.id === 'notesAiEmojiToggle')];
+  });
+  expect(positions[0]).toBeGreaterThanOrEqual(0);
+  expect(positions[1]).toBe(positions[0] + 1);
+
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await expect(toggle).toHaveClass(/is-enabled/);
+  expect(await page.evaluate(() => localStorage.getItem('eiti_notes_ai_emoji_enabled'))).toBe('1');
+
+  await page.reload();
+  await page.waitForFunction(() => typeof window.eitiNotesAIUpdateEmojiButton === 'function');
+  await openPanel();
+  await expect(page.locator('#notesAiEmojiToggle')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#notesAiEmojiToggle')).toHaveClass(/is-enabled/);
+  await page.locator('#notesAiEmojiToggle').click();
+  await expect(page.locator('#notesAiEmojiToggle')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#notesAiEmojiToggle')).not.toHaveClass(/is-enabled/);
+  expect(await page.evaluate(() => localStorage.getItem('eiti_notes_ai_emoji_enabled'))).toBe('0');
+});

@@ -23,6 +23,10 @@ function fakeDoc() {
 
 function loadNotesAI(ls, extra) {
   return loadFunctions([
+    'eitiNotesAIEmojiIsEnabled',
+    'eitiNotesAISetEmojiEnabled',
+    'eitiNotesAIToggleEmoji',
+    'eitiNotesAIUpdateEmojiButton',
     'eitiNotesAIIsEnabled',
     'eitiNotesAIGetModel',
     'eitiNotesAIGetSize',
@@ -403,4 +407,47 @@ test('AI replacement updates only the open note and saves a history version', ()
   );
   assert.equal(staleDelete.ok, false);
   assert.match(staleDelete.message, /переключена/);
+});
+
+test('Notes AI emoji mode persists, updates the toggle, and only affects replies', () => {
+  const ls = makeLS({});
+  function makeButton() {
+    const classes = new Set();
+    return {
+      attributes: {},
+      classList: {
+        toggle(name, enabled) { if (enabled) classes.add(name); else classes.delete(name); },
+        contains(name) { return classes.has(name); },
+      },
+      setAttribute(name, value) { this.attributes[name] = value; },
+    };
+  }
+  const button1 = makeButton();
+  const s1 = loadNotesAI(ls, {
+    document: { getElementById(id) { return id === 'notesAiEmojiToggle' ? button1 : null; } },
+  });
+
+  assert.equal(s1.eitiNotesAIEmojiIsEnabled(), false);
+  s1.eitiNotesAIUpdateEmojiButton();
+  assert.equal(button1.attributes['aria-pressed'], 'false');
+  assert.equal(button1.classList.contains('is-enabled'), false);
+  assert.equal(s1.eitiNotesAIToggleEmoji(), true);
+  assert.equal(ls.getItem('eiti_notes_ai_emoji_enabled'), '1');
+  assert.equal(button1.attributes['aria-pressed'], 'true');
+  assert.equal(button1.classList.contains('is-enabled'), true);
+  const enabledPrompt = s1.eitiNotesAIBuildSystemPrompt('Title', 'Body');
+  assert.match(enabledPrompt, /Режим эмодзи включён/);
+  assert.match(enabledPrompt, /не вставляй их в текст заметки/);
+
+  const button2 = makeButton();
+  const s2 = loadNotesAI(ls, {
+    document: { getElementById(id) { return id === 'notesAiEmojiToggle' ? button2 : null; } },
+  });
+  assert.equal(s2.eitiNotesAIEmojiIsEnabled(), true);
+  s2.eitiNotesAIUpdateEmojiButton();
+  assert.equal(button2.attributes['aria-pressed'], 'true');
+  assert.equal(button2.classList.contains('is-enabled'), true);
+  assert.equal(s2.eitiNotesAIToggleEmoji(), false);
+  assert.equal(ls.getItem('eiti_notes_ai_emoji_enabled'), '0');
+  assert.doesNotMatch(s2.eitiNotesAIBuildSystemPrompt('Title', 'Body'), /Режим эмодзи включён/);
 });
