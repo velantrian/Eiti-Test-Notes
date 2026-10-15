@@ -5496,7 +5496,13 @@
             50%     { box-shadow:0 0 8px 2px rgba(30,180,255,0.35); border-color:rgba(30,180,255,0.7); }
         }
 
-        /* per-icon one-shot animations — slower and smoother */
+        /* A single, short and gentle motion for AI provider selection. */
+        @keyframes eiti-provider-select {
+            0%   { transform: translateY(0) scale(1); }
+            48%  { transform: translateY(-2px) scale(1.07); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        /* Other one-shot icon animations remain available for non-provider UI. */
         @keyframes eiti-pop-robot {
             0%   { transform: scale(1) translateY(0) rotate(0deg); }
             10%  { transform: scale(1.08) translateY(-6px) rotate(0deg); }
@@ -5621,6 +5627,13 @@
         .eiti-icon-pop-orb       { display:inline-block; animation: eiti-pop-orb       1.1s ease-in-out 1 both; }
         .eiti-icon-pop-duck      { display:inline-block; animation: eiti-pop-duck      1.3s ease-in-out 1 both; }
         .eiti-icon-pop-stop      { display:inline-block; animation: eiti-pop-stop      1.0s ease-out    1 both; }
+        .eiti-provider-select-pop { display:inline-block; transform-origin:center; animation:eiti-provider-select 340ms ease-out 1 both; }
+        [id^="eiti-pcheck-"] { display:inline-block; transform:scale(.88); transition:opacity 180ms ease, transform 240ms cubic-bezier(.2,.8,.2,1); }
+        @media (prefers-reduced-motion: reduce) {
+            .eiti-provider-select-pop,
+            [id^="eiti-provider-card-"],
+            [id^="eiti-pcheck-"] { animation:none !important; transition:none !important; }
+        }
         #cm-websearch.ddg-btn-active { animation:ddg-btn-websearch 1.8s ease-in-out infinite; }
 
         /* === v12.9.51: FILE VIEWER MODAL === */
@@ -19976,14 +19989,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         }
 
         var _eitiIconAnimMap = {
-            'eiti-picon-ds':      'eiti-icon-pop-robot',
-            'eiti-picon-gm':      'eiti-icon-pop-lightning',
-            'eiti-picon-or':      'eiti-icon-pop-shuffle',
-            'eiti-picon-qwen':    'eiti-icon-pop-orb',
+            'eiti-picon-ds':      'eiti-provider-select-pop',
+            'eiti-picon-gm':      'eiti-provider-select-pop',
+            'eiti-picon-or':      'eiti-provider-select-pop',
+            'eiti-picon-qwen':    'eiti-provider-select-pop',
             'eiti-ddg-duck-icon': 'eiti-icon-pop-duck',
-            'eiti-picon-none':    'eiti-icon-pop-stop'
+            'eiti-picon-none':    'eiti-provider-select-pop'
         };
-        var _eitiAllPopClasses = ['eiti-icon-pop','eiti-icon-pop-robot','eiti-icon-pop-lightning','eiti-icon-pop-shuffle','eiti-icon-pop-orb','eiti-icon-pop-duck','eiti-icon-pop-stop'];
+        var _eitiAllPopClasses = ['eiti-icon-pop','eiti-provider-select-pop','eiti-icon-pop-robot','eiti-icon-pop-lightning','eiti-icon-pop-shuffle','eiti-icon-pop-orb','eiti-icon-pop-duck','eiti-icon-pop-stop'];
         function _eitiPopIcon(id) {
             var el = document.getElementById(id);
             if (!el) return;
@@ -20029,8 +20042,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var card = document.getElementById(cards[key]);
                 var check = document.getElementById(checks[key]);
                 var isActive = key === p;
-                if (card) { card.style.border = isActive ? accent : normal; card.style.background = isActive ? (key==='none' ? 'rgba(255,80,80,0.12)' : 'rgba(255,200,0,0.12)') : normalBg; card.style.opacity = (key==='none'&&!isActive) ? '0.7' : '1'; }
-                if (check) { check.textContent = isActive ? '✅' : '⬜'; check.style.opacity = isActive ? '1' : '0.2'; }
+                if (card) { card.style.transition = 'border-color 180ms ease, background-color 180ms ease, opacity 180ms ease'; card.style.border = isActive ? accent : normal; card.style.background = isActive ? (key==='none' ? 'rgba(255,80,80,0.12)' : 'rgba(255,200,0,0.12)') : normalBg; card.style.opacity = (key==='none'&&!isActive) ? '0.7' : '1'; }
+                if (check) { check.textContent = isActive ? '✅' : '⬜'; check.style.opacity = isActive ? '1' : '0.2'; check.style.transform = isActive ? 'scale(1)' : 'scale(.88)'; }
             });
             // Обновляем подпись активной модели OR в карточке
             var orModelCard = document.getElementById('eiti-pcard-or-model');
