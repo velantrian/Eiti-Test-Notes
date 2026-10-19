@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.16-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.17-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,15 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.16
+## 🆕 Что нового в v13.7.17
+
+**Каталог AI-моделей (октябрь 2026)**
+- Актуальные ID DeepSeek, Gemini, OpenAI, Claude, Grok, Qwen, OpenRouter и эмбеддингов.
+- Сохранённые retired ID мигрируют на рабочие замены, не ломая выбор пользователя.
+- Таймаут загрузки каталога OpenRouter, проверка ключей и watchdog TTS на Android.
+- Self-awareness больше не сериализует весь DOM (`outerHTML`) — это вешало Android Chrome.
+
+### Выпуск v13.7.16
 
 **Управление мобильной панелью Notes AI**
 - ↕️ Центральную ручку можно перетаскивать вверх и вниз; высота сохраняется между открытиями.

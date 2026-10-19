@@ -128,7 +128,7 @@ test('OpenRouter thinking toggle persists and disables reasoning on all OR reque
     /eitiApplyORThinking\(\{ model: model, messages: \[\{ role: 'user', content: 'hi' \}\], max_tokens: 5 \}\)/,
     /eitiApplyORThinking\(\{ model: _orModel, messages: history, max_tokens: _maxTok, stream: true \}\)/,
     /if \(_l2Provider === 'openrouter'\) eitiApplyORThinking\(_l2Body\)/,
-    /eitiApplyORThinking\(\{\s*model: 'deepseek\/deepseek-chat'/,
+    /eitiApplyORThinking\(\{\s*model: 'deepseek\/deepseek-v4\.1-flash'/,
     /eitiApplyORThinking\(orBody\);\s*var orr = await fetch\('https:\/\/openrouter\.ai\/api\/v1\/chat\/completions'/,
     /eitiApplyORThinking\(\{ model: model, messages: apiMsgs, max_tokens: 2000 \}\)/
   ];
@@ -139,6 +139,7 @@ test('OpenRouter thinking toggle persists and disables reasoning on all OR reque
 function orSandbox(store, meta) {
   const ls = { getItem: (k) => (k in store ? store[k] : null) };
   const sb = loadFunctions([
+    'eitiModelCatalog', 'eitiMigrateSavedModel', 'eitiGetORModel',
     'eitiIsORThinking', 'eitiORThinkingKind', 'eitiORThinkingActive', 'eitiApplyORThinking',
     'eitiGetOpenRouterModelBrand', 'eitiORModelIconHtml', 'eitiOREscape', 'eitiORModelDisplayName',
     'eitiORModelLabelHtml', 'eitiORSenderHtml', 'eitiDetectThinkMode', 'eitiThinkModeLabel'

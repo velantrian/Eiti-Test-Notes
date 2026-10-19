@@ -23,6 +23,8 @@ function fakeDoc() {
 
 function loadNotesAI(ls, extra) {
   return loadFunctions([
+    'eitiModelCatalog',
+    'eitiMigrateSavedModel',
     'eitiNotesAIEmojiIsEnabled',
     'eitiNotesAISetEmojiEnabled',
     'eitiNotesAIToggleEmoji',
@@ -150,6 +152,19 @@ test('Notes AI settings persist in localStorage and survive a reload sandbox', (
 
   ls.setItem('eiti_notes_ai_size', 'huge');
   assert.equal(s2.eitiNotesAIGetSize(), 'medium');
+});
+
+test('Notes AI мигрирует retired OpenRouter ID и оставляет актуальный gpt-5.5', () => {
+  const ls = makeLS({ eiti_notes_ai_model: 'openai/gpt-4o' });
+  const s = loadNotesAI(ls);
+  assert.equal(s.eitiNotesAIGetModel(), 'openai/gpt-6.1-sol');
+  assert.equal(ls.store.eiti_notes_ai_model, 'openai/gpt-6.1-sol');
+
+  s.eitiNotesAISetModel('openai/gpt-4o-mini');
+  assert.equal(s.eitiNotesAIGetModel(), 'openai/gpt-6-luna');
+
+  s.eitiNotesAISetModel('openai/gpt-5.5');
+  assert.equal(s.eitiNotesAIGetModel(), 'openai/gpt-5.5');
 });
 
 test('Notes AI drawer height is clamped and fullscreen is reversible', () => {

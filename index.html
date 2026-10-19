@@ -39,7 +39,145 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.16"; // Notes AI: Ask AI в редакторе заметок, opt-in LLM
+        var EITI_VERSION = "13.7.17"; // Каталог моделей Oct 2026 + миграции retired ID + таймауты fetch
+        function eitiModelCatalog() {
+            return {
+                deepseek: {
+                    defaultSel: 'deepseek-v4-pro-high',
+                    apiIds: ['deepseek-flash', 'deepseek-v4-pro'],
+                    selections: ['deepseek-flash', 'deepseek-v4-pro-low', 'deepseek-v4-pro-high', 'deepseek-v4-pro-max']
+                },
+                gemini: {
+                    defaultId: 'gemini-3.8-flash',
+                    ids: ['gemini-3.8-flash', 'gemini-4-argon', 'gemini-3.6-flash', 'gemini-3.5-flash-lite']
+                },
+                openrouter: {
+                    defaultId: 'openrouter/auto',
+                    presets: ['openrouter/auto', 'openrouter/free', 'anthropic/claude-sonnet-5.5', 'openai/gpt-6.1-sol', 'meta-llama/llama-4-maverick']
+                },
+                notesAI: {
+                    defaultId: 'same',
+                    ids: ['same', 'deepseek', 'gemini', 'openrouter/auto', 'openrouter/free', 'anthropic/claude-sonnet-5.5', 'openai/gpt-6.1-sol', 'meta-llama/llama-4-maverick']
+                },
+                openai: {
+                    defaultId: 'gpt-6.1-sol',
+                    ids: ['gpt-6-astra', 'gpt-6.1-sol', 'gpt-6-luna', 'gpt-5.5']
+                },
+                anthropic: {
+                    defaultId: 'claude-sonnet-5-5',
+                    ids: ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5']
+                },
+                grokVision: {
+                    defaultId: 'grok-4.7',
+                    ids: ['grok-4.7']
+                },
+                qwen: {
+                    defaultId: 'qwen-plus-latest',
+                    ids: ['qwen3.8-max', 'qwen3.8-flash', 'qwen-plus-latest', 'qwen-max', 'qwen-turbo-latest', 'qwen-long']
+                },
+                embeddings: {
+                    defaultId: 'offline-minilm',
+                    ids: ['offline-minilm', 'offline-mxbai', 'offline-gte', 'jina-v3', 'jina-v4', 'jina-v5', 'qwen3-emb', 'deepseek-emb', 'gemini-emb', 'voyage', 'openai-emb']
+                }
+            };
+        }
+        function eitiMigrateSavedModel(kind, raw) {
+            var cat = eitiModelCatalog();
+            var id = (raw == null) ? '' : String(raw);
+            var maps = {
+                deepseek: {
+                    'deepseek-chat': 'deepseek-flash',
+                    'deepseek-reasoner': 'deepseek-v4-pro-high',
+                    'deepseek-v4-flash': 'deepseek-flash',
+                    'deepseek-v4-flash-vision-exp': 'deepseek-flash'
+                },
+                gemini: {
+                    'gemini-3.5-flash': 'gemini-3.6-flash',
+                    'gemini-3.7-flash': 'gemini-3.8-flash',
+                    'gemini-2.5-flash': 'gemini-3.6-flash',
+                    'gemini-2.0-flash': 'gemini-3.6-flash',
+                    'gemini-1.5-flash': 'gemini-3.6-flash',
+                    'gemini-2.5-pro': 'gemini-4-argon',
+                    'gemini-1.5-pro': 'gemini-4-argon',
+                    'gemini-2.5-flash-lite': 'gemini-3.5-flash-lite',
+                    'gemini-2.0-flash-lite': 'gemini-3.5-flash-lite'
+                },
+                openrouter: {
+                    'anthropic/claude-sonnet-4-6': 'anthropic/claude-sonnet-5.5',
+                    'anthropic/claude-sonnet-4.6': 'anthropic/claude-sonnet-5.5',
+                    'openai/gpt-4o': 'openai/gpt-6.1-sol',
+                    'openai/gpt-4o-mini': 'openai/gpt-6-luna'
+                },
+                notesAI: {
+                    'anthropic/claude-sonnet-4-6': 'anthropic/claude-sonnet-5.5',
+                    'anthropic/claude-sonnet-4.6': 'anthropic/claude-sonnet-5.5',
+                    'openai/gpt-4o': 'openai/gpt-6.1-sol',
+                    'openai/gpt-4o-mini': 'openai/gpt-6-luna'
+                },
+                openai: {
+                    'gpt-4o': 'gpt-6-luna',
+                    'gpt-4o-mini': 'gpt-6-luna',
+                    'o4-mini': 'gpt-6.1-sol',
+                    'o3': 'gpt-6-astra'
+                },
+                anthropic: {
+                    'claude-opus-4-7': 'claude-opus-5-5',
+                    'claude-sonnet-4-6': 'claude-sonnet-5-5',
+                    'claude-haiku-4-5-20251001': 'claude-haiku-5-5'
+                },
+                grokVision: {
+                    'grok-2-vision-1212': 'grok-4.7'
+                },
+                qwen: {
+                    'qwq-32b': 'qwen3.8-flash',
+                    'qwen3-235b-a22b': 'qwen3.8-max'
+                }
+            };
+            var map = maps[kind] || {};
+            if (!id) {
+                if (kind === 'deepseek') return cat.deepseek.defaultSel;
+                if (kind === 'gemini') return cat.gemini.defaultId;
+                if (kind === 'openrouter') return cat.openrouter.defaultId;
+                if (kind === 'notesAI') return cat.notesAI.defaultId;
+                if (kind === 'openai') return cat.openai.defaultId;
+                if (kind === 'anthropic') return cat.anthropic.defaultId;
+                if (kind === 'grokVision') return cat.grokVision.defaultId;
+                if (kind === 'qwen') return cat.qwen.defaultId;
+            }
+            return map[id] || id;
+        }
+        function eitiGetORModel() {
+            var next = eitiMigrateSavedModel('openrouter', localStorage.getItem('eiti_or_model'));
+            try {
+                if (localStorage.getItem('eiti_or_model') !== next) localStorage.setItem('eiti_or_model', next);
+            } catch (e) {}
+            return next;
+        }
+        function eitiGetOpenAIModel() {
+            var next = eitiMigrateSavedModel('openai', localStorage.getItem('eiti_openai_model'));
+            try {
+                if (localStorage.getItem('eiti_openai_model') !== next) localStorage.setItem('eiti_openai_model', next);
+            } catch (e) {}
+            return next;
+        }
+        function eitiFetchWithTimeout(url, opts, ms) {
+            opts = opts || {};
+            ms = ms || 12000;
+            var ctrl = opts.signal ? null : new AbortController();
+            var timer = setTimeout(function() {
+                try { if (ctrl) ctrl.abort(); } catch (e) {}
+            }, ms);
+            var merged = {};
+            for (var k in opts) { if (Object.prototype.hasOwnProperty.call(opts, k)) merged[k] = opts[k]; }
+            if (ctrl) merged.signal = ctrl.signal;
+            return fetch(url, merged).then(function(r) {
+                clearTimeout(timer);
+                return r;
+            }, function(err) {
+                clearTimeout(timer);
+                throw err;
+            });
+        }
         // Security boundary: DOMPurify is the HTML sanitizer. If it is unavailable
         // or throws, fail closed by escaping the entire value as text. Regex is not a
         // trusted HTML sanitizer and must never be used as a security downgrade path.
@@ -986,8 +1124,8 @@
                 'В режиме ✈️': 'Im ✈️-Modus',
                 'Transformers.js · Нужна загруженная модель': 'Transformers.js · ein geladenes Modell ist erforderlich',
                 'deepseek-embedding-v2 · Требует API-ключ': 'deepseek-embedding-v2 · erfordert API-Schlüssel',
-                'text-embedding-004 · Требует API-ключ': 'text-embedding-004 · erfordert API-Schlüssel',
-                'jina-embeddings-v3/v4 · 8K–32K токенов · Late chunking · 10M free': 'jina-embeddings-v3/v4 · 8K–32K Tokens · Late chunking · 10M kostenlos',
+                'gemini-embedding-001 · Требует API-ключ': 'gemini-embedding-001 · erfordert API-Schlüssel',
+                'jina-embeddings-v3/v4/v5 · 8K–32K токенов · Late chunking · 10M free': 'jina-embeddings-v3/v4/v5 · 8K–32K Tokens · Late chunking · 10M kostenlos',
                 '8 192 токенов · $0.02/M · MTEB 62 · Через OpenRouter': '8.192 Tokens · $0,02/M · MTEB 62 · über OpenRouter',
                 '8 192 токенов · $0.02/M · MTEB 65.5 · Late chunking · 10M free': '8.192 Tokens · $0,02/M · MTEB 65,5 · Late chunking · 10M kostenlos',
                 '2 048 токенов · $0.15/M · #1 MTEB Multilingual · 100+ языков': '2.048 Tokens · $0,15/M · #1 MTEB Multilingual · 100+ Sprachen',
@@ -2703,8 +2841,8 @@
                 'В режиме ✈️': 'In ✈️ mode',
                 'Transformers.js · Нужна загруженная модель': 'Transformers.js · A loaded model is required',
                 'deepseek-embedding-v2 · Требует API-ключ': 'deepseek-embedding-v2 · Requires API key',
-                'text-embedding-004 · Требует API-ключ': 'text-embedding-004 · Requires API key',
-                'jina-embeddings-v3/v4 · 8K–32K токенов · Late chunking · 10M free': 'jina-embeddings-v3/v4 · 8K–32K tokens · Late chunking · 10M free',
+                'gemini-embedding-001 · Требует API-ключ': 'gemini-embedding-001 · Requires API key',
+                'jina-embeddings-v3/v4/v5 · 8K–32K токенов · Late chunking · 10M free': 'jina-embeddings-v3/v4/v5 · 8K–32K tokens · Late chunking · 10M free',
                 '8 192 токенов · $0.02/M · MTEB 62 · Через OpenRouter': '8,192 tokens · $0.02/M · MTEB 62 · Via OpenRouter',
                 '8 192 токенов · $0.02/M · MTEB 65.5 · Late chunking · 10M free': '8,192 tokens · $0.02/M · MTEB 65.5 · Late chunking · 10M free',
                 '2 048 токенов · $0.15/M · #1 MTEB Multilingual · 100+ языков': '2,048 tokens · $0.15/M · #1 MTEB Multilingual · 100+ languages',
@@ -7962,15 +8100,15 @@
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
                                     <button id="gm-model-38flash" onclick="eitiSetGeminiModel('gemini-3.8-flash')"
                                         style="padding:8px 4px;border-radius:10px;border:2px solid var(--accent-color);background:rgba(255,215,0,0.12);color:var(--text-color);font-size:11px;font-weight:700;cursor:pointer;">
-                                        3.8 Flash ⭐<br><span style="font-size:9px;opacity:0.6;font-weight:400;">флагман · актуальный</span>
+                                        3.8 Flash ⭐<br><span style="font-size:9px;opacity:0.6;font-weight:400;">актуальный Flash</span>
                                     </button>
-                                    <button id="gm-model-35flash" onclick="eitiSetGeminiModel('gemini-3.5-flash')"
+                                    <button id="gm-model-4argon" onclick="eitiSetGeminiModel('gemini-4-argon')"
                                         style="padding:8px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:11px;font-weight:700;cursor:pointer;">
-                                        3.5 Flash<br><span style="font-size:9px;opacity:0.6;font-weight:400;">стабильный · бесплатно</span>
+                                        4 Argon<br><span style="font-size:9px;opacity:0.6;font-weight:400;">флагман · reasoning</span>
                                     </button>
-                                    <button id="gm-model-pro" onclick="eitiSetGeminiModel('gemini-3.1-pro-preview')"
+                                    <button id="gm-model-36flash" onclick="eitiSetGeminiModel('gemini-3.6-flash')"
                                         style="padding:8px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:11px;font-weight:700;cursor:pointer;">
-                                        3.1 Pro<br><span style="font-size:9px;opacity:0.6;font-weight:400;">мощный · reasoning</span>
+                                        3.6 Flash<br><span style="font-size:9px;opacity:0.6;font-weight:400;">баланс · замена 3.5</span>
                                     </button>
                                     <button id="gm-model-lite" onclick="eitiSetGeminiModel('gemini-3.5-flash-lite')"
                                         style="padding:8px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:11px;font-weight:700;cursor:pointer;">
@@ -8158,19 +8296,17 @@
                                 </div>
                                 <button onclick="eitiConfirmORKey()" style="margin-top:6px;padding:9px;border-radius:10px;border:1px solid rgba(255,215,0,0.3);background:rgba(255,215,0,0.08);color:var(--accent-color);font-weight:600;font-size:13px;cursor:pointer;width:100%;">✓ Подтвердить ключ</button>
                                 <div id="or-key-status" style="font-size:12px;min-height:18px;text-align:center;"></div>
-                                <!-- Default obf key constant -->
-                                <script>/* v13: _OR_DEFAULT_KEY removed — enter key manually in settings */</script>
                                 <!-- Модель OpenRouter -->
                                 <div style="margin-top:10px;">
                                     <div style="font-size:12px;opacity:0.6;margin-bottom:6px;">🧩 Модель</div>
                                     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">
                                         <button id="or-model-auto" onclick="eitiSetORModel('openrouter/auto')"
                                             style="flex:1;min-width:80px;padding:8px 6px;border-radius:9px;border:2px solid var(--accent-color);background:rgba(255,200,0,0.15);color:var(--text-color);font-size:12px;font-weight:700;cursor:pointer;">🤖 Auto</button>
-                                        <button id="or-model-claude" onclick="eitiSetORModel('anthropic/claude-sonnet-4-6')"
+                                        <button id="or-model-claude" onclick="eitiSetORModel('anthropic/claude-sonnet-5.5')"
                                             style="flex:1;min-width:80px;padding:8px 6px;border-radius:9px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:700;cursor:pointer;">Claude</button>
-                                        <button id="or-model-gpt" onclick="eitiSetORModel('openai/gpt-5.5')"
-                                            style="flex:1;min-width:80px;padding:8px 6px;border-radius:9px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:700;cursor:pointer;">GPT-4o</button>
-                                        <button id="or-model-llama" onclick="eitiSetORModel('meta-llama/llama-3.3-70b-instruct')"
+                                        <button id="or-model-gpt" onclick="eitiSetORModel('openai/gpt-6.1-sol')"
+                                            style="flex:1;min-width:80px;padding:8px 6px;border-radius:9px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:700;cursor:pointer;">GPT</button>
+                                        <button id="or-model-llama" onclick="eitiSetORModel('meta-llama/llama-4-maverick')"
                                             style="flex:1;min-width:80px;padding:8px 6px;border-radius:9px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:700;cursor:pointer;">Llama</button>
                                     </div>
                                     <div style="display:flex;gap:6px;align-items:center;">
@@ -8237,9 +8373,9 @@
                                             <button type="button" id="notes-ai-model-gemini" onclick="eitiNotesAISetModel('gemini')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">🟢 Gemini</button>
                                             <button type="button" id="notes-ai-model-or-auto" onclick="eitiNotesAISetModel('openrouter/auto')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">OR Auto</button>
                                             <button type="button" id="notes-ai-model-or-free" onclick="eitiNotesAISetModel('openrouter/free')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Free</button>
-                                            <button type="button" id="notes-ai-model-or-claude" onclick="eitiNotesAISetModel('anthropic/claude-sonnet-4-6')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Claude</button>
-                                            <button type="button" id="notes-ai-model-or-gpt" onclick="eitiNotesAISetModel('openai/gpt-5.5')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">GPT</button>
-                                            <button type="button" id="notes-ai-model-or-llama" onclick="eitiNotesAISetModel('meta-llama/llama-3.3-70b-instruct')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Llama</button>
+                                            <button type="button" id="notes-ai-model-or-claude" onclick="eitiNotesAISetModel('anthropic/claude-sonnet-5.5')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Claude</button>
+                                            <button type="button" id="notes-ai-model-or-gpt" onclick="eitiNotesAISetModel('openai/gpt-6.1-sol')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">GPT</button>
+                                            <button type="button" id="notes-ai-model-or-llama" onclick="eitiNotesAISetModel('meta-llama/llama-4-maverick')" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Llama</button>
                                         </div>
                                         <input type="text" id="notes-ai-model-custom" placeholder="provider/model (OpenRouter)"
                                                style="width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:13px;"
@@ -8392,14 +8528,14 @@
                                 <button id="qwen-model-qwen-max" onclick="eitiQwenSetModel('qwen-max')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
                                     <div>Qwen Max</div><div style="font-size:9px;opacity:0.5;">Умнейший</div>
                                 </button>
-                                <button id="qwen-model-qwen3-235b-a22b" onclick="eitiQwenSetModel('qwen3-235b-a22b')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
-                                    <div>Qwen3 235B</div><div style="font-size:9px;opacity:0.5;">Флагман</div>
+                                <button id="qwen-model-qwen3-8-max" onclick="eitiQwenSetModel('qwen3.8-max')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
+                                    <div>Qwen3.8 Max</div><div style="font-size:9px;opacity:0.5;">Флагман</div>
                                 </button>
                                 <button id="qwen-model-qwen-plus-latest" onclick="eitiQwenSetModel('qwen-plus-latest')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--accent-color);background:rgba(255,215,0,0.1);color:var(--text-color);font-weight:700;">
                                     <div>Qwen Plus</div><div style="font-size:9px;opacity:0.5;">Баланс ✓</div>
                                 </button>
-                                <button id="qwen-model-qwq-32b" onclick="eitiQwenSetModel('qwq-32b')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
-                                    <div>QwQ-32B</div><div style="font-size:9px;opacity:0.5;">Reasoning</div>
+                                <button id="qwen-model-qwen3-8-flash" onclick="eitiQwenSetModel('qwen3.8-flash')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
+                                    <div>Qwen3.8 Flash</div><div style="font-size:9px;opacity:0.5;">Быстрый</div>
                                 </button>
                                 <button id="qwen-model-qwen-turbo-latest" onclick="eitiQwenSetModel('qwen-turbo-latest')" style="flex:1;min-width:80px;padding:8px 4px;border-radius:9px;font-size:11px;cursor:pointer;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);">
                                     <div>Qwen Turbo</div><div style="font-size:9px;opacity:0.5;">Быстрый</div>
@@ -9087,21 +9223,21 @@
                                 <!-- Модель -->
                                 <div style="font-size:12px;font-weight:600;opacity:0.7;">Модель Gemini TTS</div>
                                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-                                    <button onclick="eitiSetGeminiTTSModel('gemini-2.5-flash-preview-tts')" id="gtm-lite"
+                                    <button onclick="eitiSetGeminiTTSModel('gemini-3.8-flash-lite-tts')" id="gtm-lite"
                                         style="padding:7px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:10px;font-weight:700;cursor:pointer;">
-                                        Flash 2.5 ⚡<br><span style="opacity:0.55;font-weight:400;">быстро · бесплатно</span>
+                                        3.8 Lite TTS<br><span style="opacity:0.55;font-weight:400;">быстро</span>
                                     </button>
-                                    <button onclick="eitiSetGeminiTTSModel('gemini-2.5-flash-preview-tts')" id="gtm-flash"
+                                    <button onclick="eitiSetGeminiTTSModel('gemini-3.8-flash-tts')" id="gtm-flash"
                                         style="padding:7px 4px;border-radius:10px;border:2px solid var(--accent-color);background:rgba(255,215,0,0.12);color:var(--text-color);font-size:10px;font-weight:700;cursor:pointer;">
-                                        Flash 2.5<br><span style="opacity:0.55;font-weight:400;">~250/день</span>
+                                        3.8 Flash TTS<br><span style="opacity:0.55;font-weight:400;">флагман ✓</span>
                                     </button>
-                                    <button onclick="eitiSetGeminiTTSModel('gemini-2.5-pro-preview-tts')" id="gtm-pro"
+                                    <button onclick="eitiSetGeminiTTSModel('gemini-2.5-flash-preview-tts')" id="gtm-pro"
                                         style="padding:7px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:10px;font-weight:700;cursor:pointer;">
-                                        Pro 2.5<br><span style="opacity:0.55;font-weight:400;">~50/день</span>
+                                        2.5 Flash TTS<br><span style="opacity:0.55;font-weight:400;">legacy</span>
                                     </button>
-                                    <button onclick="eitiSetGeminiTTSModel('gemini-3.1-flash-tts-preview')" id="gtm-31"
+                                    <button onclick="eitiSetGeminiTTSModel('gemini-2.5-pro-preview-tts')" id="gtm-31"
                                         style="padding:7px 4px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:10px;font-weight:700;cursor:pointer;">
-                                        Flash 3.1<br><span style="opacity:0.55;font-weight:400;">Preview · new</span>
+                                        2.5 Pro TTS<br><span style="opacity:0.55;font-weight:400;">legacy</span>
                                     </button>
                                 </div>
                                 <!-- Голос -->
@@ -9684,6 +9820,16 @@
                                 </div>
                             </label>
 
+                            <label style="display:block;cursor:pointer;">
+                                <div style="padding:10px 14px;background:var(--secondary-color);border:2px solid transparent;border-radius:12px;" id="emb-box-jina-v5">
+                                    <div style="display:flex;align-items:center;gap:10px;">
+                                        <input type="radio" name="emb-model" value="jina-v5" onchange="eitiEmbModelChange(this.value)" style="margin:0;accent-color:var(--accent-color);">
+                                        <div style="flex:1;"><div style="font-weight:700;font-size:13px;">Jina v5 <span style="font-size:10px;opacity:0.6;">jina-embeddings-v5-text-small</span></div><div style="font-size:11px;opacity:0.6;">32 768 токенов · 1024-dim · актуальный text-small</div></div>
+                                        <span style="font-size:11px;padding:2px 7px;border-radius:6px;background:rgba(250,204,21,0.15);color:#facc15;">CORS ✓</span>
+                                    </div>
+                                </div>
+                            </label>
+
                             <!-- 3. Облако BYOK (через прокси/предупреждение) -->
                             <div style="font-size:11px;font-weight:700;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">🔑 BYOK — ваш ключ · прямой вызов API</div>
 
@@ -9721,7 +9867,7 @@
                                 <div style="padding:10px 14px;background:var(--secondary-color);border:2px solid transparent;border-radius:12px;" id="emb-box-voyage">
                                     <div style="display:flex;align-items:center;gap:10px;">
                                         <input type="radio" name="emb-model" value="voyage" onchange="eitiEmbModelChange(this.value)" style="margin:0;accent-color:var(--accent-color);">
-                                        <div style="flex:1;"><div style="font-weight:700;font-size:13px;">Voyage 3.5-lite <span style="font-size:10px;opacity:0.6;">voyage-3.5-lite</span></div><div style="font-size:11px;opacity:0.6;">32 000 токенов · $0.02/M · 200M free · Лучшее качество/$</div></div>
+                                        <div style="flex:1;"><div style="font-weight:700;font-size:13px;">Voyage 4-lite <span style="font-size:10px;opacity:0.6;">voyage-4-lite</span></div><div style="font-size:11px;opacity:0.6;">32 000 токенов · $0.02/M · серия 4 · качество/$</div></div>
                                         <span style="font-size:11px;padding:2px 7px;border-radius:6px;background:rgba(251,146,60,0.15);color:#fb923c;">BYOK</span>
                                     </div>
                                 </div>
@@ -9853,7 +9999,7 @@
                                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
                                         <input type="radio" name="rag-mode" value="gemini" onchange="eitiRagModeChange(this.value)" style="margin:0;accent-color:var(--accent-color);">
                                         <span style="font-size:15px;">🟢</span>
-                                        <div><div style="font-weight:700;font-size:14px;">Gemini RAG</div><div style="font-size:11px;opacity:0.6;">text-embedding-004 · Требует API-ключ</div></div>
+                                        <div><div style="font-weight:700;font-size:14px;">Gemini RAG</div><div style="font-size:11px;opacity:0.6;">gemini-embedding-001 · Требует API-ключ</div></div>
                                     </div>
                                     <div style="font-size:12px;opacity:0.7;line-height:1.5;margin-left:28px;">Google Embeddings. Хорош для многоязычных документов. Есть бесплатный tier.</div>
                                 </div>
@@ -9876,7 +10022,7 @@
                                     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
                                         <input type="radio" name="rag-mode" value="jina" onchange="eitiRagModeChange(this.value)" style="margin:0;accent-color:var(--accent-color);">
                                         <span style="font-size:15px;">🔵</span>
-                                        <div><div style="font-weight:700;font-size:14px;">Jina RAG <span style="font-size:10px;padding:1px 5px;border-radius:4px;background:rgba(250,204,21,0.2);color:#facc15;">CORS ✓</span></div><div style="font-size:11px;opacity:0.6;">jina-embeddings-v3/v4 · 8K–32K токенов · Late chunking · 10M free</div></div>
+                                        <div><div style="font-weight:700;font-size:14px;">Jina RAG <span style="font-size:10px;padding:1px 5px;border-radius:4px;background:rgba(250,204,21,0.2);color:#facc15;">CORS ✓</span></div><div style="font-size:11px;opacity:0.6;">jina-embeddings-v3/v4/v5 · 8K–32K токенов · Late chunking · 10M free</div></div>
                                     </div>
                                     <div style="font-size:12px;opacity:0.7;line-height:1.5;margin-left:28px;">Единственный облачный провайдер с CORS — запрос идёт напрямую из браузера без бэкенда. Late chunking сохраняет контекст между чанками.</div>
                                     <div id="rag-jina-status" style="margin-top:8px;margin-left:28px;font-size:12px;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,0.2);display:none;"><span id="rag-jina-status-txt">⚫ Введите ключ в разделе Embeddings & Chunks</span></div>
@@ -11116,11 +11262,6 @@
             var saved = localStorage.getItem('eiti_or_key');
             if (saved) {
                 inp.value = _deobfKey(saved);
-            } else if (window._OR_DEFAULT_KEY) {
-                // Pre-fill with default obfuscated key
-                var defaultKey = _deobfKey(window._OR_DEFAULT_KEY);
-                inp.value = defaultKey;
-                try { localStorage.setItem('eiti_or_key', _obfKey(defaultKey)); } catch(e) {}
             }
             if (inp.value && typeof eitiLoadORFreeModels === 'function') {
                 setTimeout(function() { eitiLoadORFreeModels(false); }, 120);
@@ -11136,9 +11277,9 @@
             var st = document.getElementById('or-key-status');
             if (st) { st.textContent = '⏳ Проверка...'; st.style.color = 'rgba(255,215,0,0.7)'; }
             try { localStorage.setItem('eiti_or_key', _obfKey(key)); } catch(e) {}
-            fetch('https://openrouter.ai/api/v1/models', {
+            eitiFetchWithTimeout('https://openrouter.ai/api/v1/models', {
                 headers: { 'Authorization': 'Bearer ' + key, 'HTTP-Referer': location.href }
-            }).then(function(r) {
+            }, 12000).then(function(r) {
                 if (r.ok) {
                     if (st) { st.textContent = '✅ Подключено'; st.style.color = '#4caf50'; }
                     showToast('✅ OpenRouter подключён');
@@ -11162,7 +11303,7 @@
             var st = document.getElementById('gemini-key-status');
             if (st) { st.textContent = '⏳ Проверка...'; st.style.color = 'rgba(255,215,0,0.7)'; }
             try { localStorage.setItem('eiti_gemini_key', _obfKey(key)); } catch(e) {}
-            fetch('https://generativelanguage.googleapis.com/v1beta/models?key=' + key)
+            eitiFetchWithTimeout('https://generativelanguage.googleapis.com/v1beta/models?key=' + key, {}, 12000)
             .then(function(r) {
                 if (r.ok) {
                     if (st) { st.textContent = '✅ Подключено'; st.style.color = '#4caf50'; }
@@ -11259,7 +11400,7 @@
                     else _eitiQwenSetStatus('❌ Не удалось проверить статус', '#f44336');
                     return;
                 }
-                fetch(endpoints[i], { headers: { 'Authorization': 'Bearer ' + key } })
+                eitiFetchWithTimeout(endpoints[i], { headers: { 'Authorization': 'Bearer ' + key } }, 12000)
                 .then(function(r) {
                     if (r.ok) {
                         return r.json().then(function(d) {
@@ -11319,7 +11460,7 @@
             } else if (provider === 'gemini-tts') {
                 var key = _deobfKey(localStorage.getItem('eiti_tts_gemini_key') || '') || document.getElementById('tts-gemini-key').value.trim();
                 if (!key) { setStatus(false, 'Нет ключа. Введи или нажми «Вставить из настроек Gemini»'); return; }
-                var _testModel = localStorage.getItem('eiti_tts_gemini_model') || 'gemini-2.5-flash-preview-tts';
+                var _testModel = localStorage.getItem('eiti_tts_gemini_model') || 'gemini-3.8-flash-tts';
                 var _testVoice = localStorage.getItem('eiti_tts_gemini_voice') || 'Kore';
                 fetch('https://generativelanguage.googleapis.com/v1beta/models/' + _testModel + ':generateContent?key=' + key, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -11384,14 +11525,14 @@
         }
         // ── Gemini: выбор модели чата v12.9.78 ────────────────────────────────
         function eitiNormalizeGeminiModel(raw) {
-            if (!raw) return 'gemini-3.8-flash';
-            if (raw === 'gemini-2.5-flash' || raw === 'gemini-2.0-flash' || raw === 'gemini-1.5-flash') return 'gemini-3.5-flash';
-            if (raw === 'gemini-2.5-pro' || raw === 'gemini-1.5-pro') return 'gemini-3.1-pro-preview';
-            if (raw === 'gemini-2.5-flash-lite' || raw === 'gemini-2.0-flash-lite') return 'gemini-3.5-flash-lite';
-            return raw;
+            return eitiMigrateSavedModel('gemini', raw);
         }
         function eitiGetGeminiModel() {
-            return eitiNormalizeGeminiModel(localStorage.getItem('eiti_gemini_model'));
+            var next = eitiNormalizeGeminiModel(localStorage.getItem('eiti_gemini_model'));
+            try {
+                if (localStorage.getItem('eiti_gemini_model') !== next) localStorage.setItem('eiti_gemini_model', next);
+            } catch (e) {}
+            return next;
         }
         function eitiSetGeminiModel(model) {
             localStorage.setItem('eiti_gemini_model', eitiNormalizeGeminiModel(model));
@@ -11402,8 +11543,8 @@
             var cur = eitiGetGeminiModel();
             var map = {
                 'gemini-3.8-flash': 'gm-model-38flash',
-                'gemini-3.5-flash': 'gm-model-35flash',
-                'gemini-3.1-pro-preview': 'gm-model-pro',
+                'gemini-4-argon': 'gm-model-4argon',
+                'gemini-3.6-flash': 'gm-model-36flash',
                 'gemini-3.5-flash-lite': 'gm-model-lite'
             };
             Object.keys(map).forEach(function(m) {
@@ -11415,9 +11556,9 @@
             });
             var desc = document.getElementById('gm-model-desc');
             var descs = {
-                'gemini-3.8-flash': '3.8 Flash: актуальный флагман · быстро и сильно',
-                'gemini-3.5-flash': '3.5 Flash: стабильный баланс · бесплатный tier',
-                'gemini-3.1-pro-preview': '3.1 Pro: глубокий reasoning · сложные задачи',
+                'gemini-3.8-flash': '3.8 Flash: актуальный Flash · быстро и сильно',
+                'gemini-4-argon': '4 Argon: флагман reasoning · сложные задачи',
+                'gemini-3.6-flash': '3.6 Flash: замена 3.5 Flash · баланс',
                 'gemini-3.5-flash-lite': '3.5 Lite: максимум скорости · минимум цены'
             };
             if (desc) desc.textContent = descs[cur] || cur;
@@ -11466,8 +11607,9 @@
 
         // ── Gemini TTS: модель / голос / API v12.9.78 ─────────────────────────
         function eitiSetGeminiTTSModel(model) {
+            if (model === 'gemini-3.1-flash-tts-preview') model = 'gemini-3.8-flash-tts';
             localStorage.setItem('eiti_tts_gemini_model', model);
-            var ids = { 'gemini-2.5-flash-preview-tts':'gtm-flash', 'gemini-2.5-pro-preview-tts':'gtm-pro', 'gemini-3.1-flash-tts-preview':'gtm-31' };
+            var ids = { 'gemini-3.8-flash-lite-tts':'gtm-lite', 'gemini-3.8-flash-tts':'gtm-flash', 'gemini-2.5-flash-preview-tts':'gtm-pro', 'gemini-2.5-pro-preview-tts':'gtm-31' };
             Object.keys(ids).forEach(function(m) {
                 var btn = document.getElementById(ids[m]);
                 if (!btn) return;
@@ -11605,7 +11747,7 @@
                     .then(function(r) { return r.json(); })
                     .then(function(d) { return d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content; });
             } else {
-                var _gmModel = localStorage.getItem('eiti_gemini_model') || 'gemini-2.5-flash';
+                var _gmModel = (typeof eitiGetGeminiModel === 'function') ? eitiGetGeminiModel() : 'gemini-3.8-flash';
                 _sumPromise = fetch('https://generativelanguage.googleapis.com/v1beta/models/' + _gmModel + ':generateContent?key=' + _gmKey, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -11815,7 +11957,7 @@
                 }
                 // Gemini TTS
                 if (typeof eitiSetGeminiTTSModel === 'function') {
-                    eitiSetGeminiTTSModel(localStorage.getItem('eiti_tts_gemini_model') || 'gemini-2.5-flash-preview-tts');
+                    eitiSetGeminiTTSModel(localStorage.getItem('eiti_tts_gemini_model') || 'gemini-3.8-flash-tts');
                     eitiSetGeminiTTSVoice(localStorage.getItem('eiti_tts_gemini_voice') || 'Kore');
                 }
                 // Gemini TTS key: автозаполнение из основного Gemini ключа если TTS ключ не задан
@@ -12867,11 +13009,11 @@
             var dk  = (typeof _deobfKey === 'function') ? _deobfKey(localStorage.getItem('deepseek_api_key') || '') : '';
             var gk  = (typeof _deobfKey === 'function') ? _deobfKey(localStorage.getItem('eiti_gemini_key') || '') : '';
             var ork = (typeof _deobfKey === 'function') ? _deobfKey(localStorage.getItem('eiti_or_key') || '') : '';
-            if (prov === 'gemini'     && gk)  return { type: 'gemini',     key: gk,  model: localStorage.getItem('eiti_gemini_model') || 'gemini-2.5-flash' };
-            if (prov === 'deepseek'   && dk)  return { type: 'deepseek',   key: dk,  model: 'deepseek-chat' };
-            if (prov === 'openrouter' && ork) return { type: 'openrouter', key: ork, model: localStorage.getItem('eiti_or_model') || 'openrouter/auto' };
-            if (gk)  return { type: 'gemini',     key: gk,  model: 'gemini-2.5-flash' };
-            if (dk)  return { type: 'deepseek',   key: dk,  model: 'deepseek-chat' };
+            if (prov === 'gemini'     && gk)  return { type: 'gemini',     key: gk,  model: (typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-3.8-flash') };
+            if (prov === 'deepseek'   && dk)  return { type: 'deepseek',   key: dk,  model: (typeof eitiGetDsModel === 'function' ? eitiGetDsModel() : 'deepseek-flash') };
+            if (prov === 'openrouter' && ork) return { type: 'openrouter', key: ork, model: eitiGetORModel() };
+            if (gk)  return { type: 'gemini',     key: gk,  model: (typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-3.8-flash') };
+            if (dk)  return { type: 'deepseek',   key: dk,  model: (typeof eitiGetDsModel === 'function' ? eitiGetDsModel() : 'deepseek-flash') };
             if (ork) return { type: 'openrouter', key: ork, model: 'openrouter/auto' };
             return null;
         }
@@ -13161,7 +13303,15 @@
 
             // FIX v9.21: Android/Samsung watchdog — onend часто не срабатывает
             // Проверяем каждые 500ms: если synth уже не говорит, но кнопка не сброшена — сбрасываем
+            var _wdTicks = 0;
             var _wdInterval = setInterval(function() {
+                _wdTicks++;
+                if (_wdTicks > 500) { // ~5 мин: не оставляем вечный таймер на Android
+                    clearInterval(_wdInterval);
+                    speakingMsgId = null; _ttsCharOffset = 0; _ttsPaused = false;
+                    _eitiUpdateSpeakBtn(msgId, 'idle'); _eitiHideStickyTTS();
+                    return;
+                }
                 if (_ttsPaused) { clearInterval(_wdInterval); return; }
                 if (speakingMsgId !== msgId) { clearInterval(_wdInterval); return; }
                 if (!synth.speaking && !synth.pending) {
@@ -13352,7 +13502,8 @@
             if (provider === 'gemini-tts') {
                 var key = _deobfKey(localStorage.getItem('eiti_tts_gemini_key') || '');
                 if (!key) return Promise.reject(new Error('Нет Gemini API ключа. Введи в TTS настройках или нажми «Вставить ключ из настроек Gemini»'));
-                var gTTSModel = localStorage.getItem('eiti_tts_gemini_model') || 'gemini-2.5-flash-preview-tts';
+                var gTTSModel = localStorage.getItem('eiti_tts_gemini_model') || 'gemini-3.8-flash-tts';
+                if (gTTSModel === 'gemini-3.1-flash-tts-preview') gTTSModel = 'gemini-3.8-flash-tts';
                 var gTTSVoice = localStorage.getItem('eiti_tts_gemini_voice') || 'Kore';
                 var gTTSStyle = localStorage.getItem('eiti_tts_gemini_style') || '';
                 var gTTSText = gTTSStyle ? gTTSStyle + ': ' + text.slice(0, 4000) : text.slice(0, 4000);
@@ -17033,7 +17184,7 @@
             // 2️⃣ OpenRouter — мультимодельный шлюз (Grok, Claude, GPT-4o, Llama…)
             var ork = _deobfKey(localStorage.getItem('eiti_or_key') || '');
             if (ork && (!forceProvider || forceProvider === 'openrouter')) {
-                var orModel = forceModel || localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                var orModel = forceModel || eitiGetORModel();
                 var orMsgs = msgs.slice(); // копия чтобы не мутировать оригинал
 
                 // v12.9.57: Qwen fileid injection — вставляем fileid:// в system message
@@ -17069,7 +17220,7 @@
                 var parts = [];
                 if (systemPrompt) parts.push({ text: systemPrompt + '\n\n' + userPrompt });
                 else parts.push({ text: userPrompt });
-                var _gmModel = forceModel || (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash');
+                var _gmModel = forceModel || (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash');
                 return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + _gmModel + ':generateContent?key=' + gk, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: parts }], generationConfig: { maxOutputTokens: maxTok } })
@@ -17096,7 +17247,7 @@
                 var parts = [];
                 if (systemPrompt) parts.push({ text: systemPrompt + '\n\n' + userPrompt });
                 else parts.push({ text: userPrompt });
-                return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash') + ':generateContent?key=' + gk, {
+                return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash') + ':generateContent?key=' + gk, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: parts }], generationConfig: { maxOutputTokens: maxTok || 2000 } })
                 }).then(function(r){ return r.json(); }).then(function(d){
@@ -19281,7 +19432,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                             if (_wsProvider === 'gemini-grounding') {
                                 var _gmK = typeof _deobfKey === 'function' ? _deobfKey(localStorage.getItem('eiti_gemini_key') || '') : '';
                                 if (_gmK) {
-                                    var _gmMod = typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-2.5-flash';
+                                    var _gmMod = typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-3.8-flash';
                                     fetch('https://generativelanguage.googleapis.com/v1beta/models/' + _gmMod + ':generateContent?key=' + _gmK, {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
@@ -19780,9 +19931,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
 
         // ── v12.9.7: OpenRouter model selector ─────────────────────────────
         function eitiSetORModel(model) {
-            if (!model) model = 'openrouter/auto';
+            model = eitiMigrateSavedModel('openrouter', model);
             localStorage.setItem('eiti_or_model', model);
-            var presetModels = ['openrouter/auto','openrouter/free','anthropic/claude-sonnet-4-6','openai/gpt-5.5','meta-llama/llama-3.3-70b-instruct'];
+            var presetModels = eitiModelCatalog().openrouter.presets;
             var customEl = document.getElementById('openrouter-model-custom');
             if (customEl && !presetModels.includes(model)) {
                 customEl.value = model;
@@ -19799,9 +19950,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var presetMap = {
                 'or-model-auto':'openrouter/auto',
                 'or-model-free-auto':'openrouter/free',
-                'or-model-claude':'anthropic/claude-sonnet-4-6',
-                'or-model-gpt':'openai/gpt-5.5',
-                'or-model-llama':'meta-llama/llama-3.3-70b-instruct'
+                'or-model-claude':'anthropic/claude-sonnet-5.5',
+                'or-model-gpt':'openai/gpt-6.1-sol',
+                'or-model-llama':'meta-llama/llama-4-maverick'
             };
             Object.keys(presetMap).forEach(function(id) {
                 var btn = document.getElementById(id);
@@ -19846,7 +19997,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var list = document.getElementById('or-free-list');
             var btnText = document.getElementById('or-free-btn-text');
             if (!sel || !list) return;
-            var cur = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+            var cur = eitiGetORModel();
             list.textContent = '';
             Array.prototype.forEach.call(sel.options, function(opt) {
                 if (!opt.value) return;
@@ -19872,7 +20023,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var st = document.getElementById('or-free-status');
             if (!sel) return Promise.resolve([]);
             if (!force && sel.getAttribute('data-loaded') === '1') {
-                eitiSetORModel(localStorage.getItem('eiti_or_model') || 'openrouter/auto');
+                eitiSetORModel(eitiGetORModel());
                 return Promise.resolve([]);
             }
 
@@ -19882,7 +20033,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var headers = { 'HTTP-Referer': location.href, 'X-Title': 'VELANTRIM EITI' };
             if (key) headers['Authorization'] = 'Bearer ' + key;
 
-            return fetch('https://openrouter.ai/api/v1/models', { headers: headers })
+            return eitiFetchWithTimeout('https://openrouter.ai/api/v1/models', { headers: headers }, 12000)
                 .then(function(r) {
                     if (!r.ok) throw new Error('HTTP ' + r.status);
                     return r.json();
@@ -19922,7 +20073,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     });
 
                     sel.setAttribute('data-loaded', '1');
-                    var current = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                    var current = eitiGetORModel();
                     var hasCurrent = freeModels.some(function(m) { return m.id === current; });
                     if (hasCurrent) sel.value = current;
                     try { eitiSetORModel(current); eitiRenderORThinking(); eitiRenderORFreeList(); } catch (e) {}
@@ -19966,7 +20117,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         function eitiLoadORModelMeta() {
             if (_eitiORMetaLoading || Object.keys(_eitiORModelMeta).length) return;
             _eitiORMetaLoading = true;
-            fetch('https://openrouter.ai/api/v1/models')
+            eitiFetchWithTimeout('https://openrouter.ai/api/v1/models', {}, 12000)
                 .then(function(r) { return r.ok ? r.json() : null; })
                 .then(function(p) {
                     if (p && Array.isArray(p.data)) eitiORCacheModelMeta(p.data);
@@ -19977,7 +20128,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         }
         // 'router' | 'mandatory' | 'unsupported' | 'normal' (unknown metadata counts as normal)
         function eitiORThinkingKind(model) {
-            model = model || localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+            model = model || eitiGetORModel();
             if (model === 'openrouter/auto' || model === 'openrouter/free') return 'router';
             var meta = _eitiORModelMeta[model];
             if (meta) {
@@ -20118,7 +20269,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var st = document.getElementById('eiti-or-status');
             if (!k) { if (st) st.innerHTML = '<span style="color:#f66">⚠️ Введите OpenRouter ключ</span>'; return; }
             if (st) st.innerHTML = '⏳ Проверяю...';
-            var model = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+            var model = eitiGetORModel();
             fetch('https://openrouter.ai/api/v1/chat/completions', {
                 method: 'POST',
                 headers: { 'Authorization': 'Bearer ' + k, 'Content-Type': 'application/json', 'HTTP-Referer': 'https://velantrim.eiti', 'X-Title': 'VELANTRIM EITI' },
@@ -20190,7 +20341,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             // Обновляем подпись активной модели OR в карточке
             var orModelCard = document.getElementById('eiti-pcard-or-model');
             if (orModelCard && p === 'openrouter') {
-                var orModel = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                var orModel = eitiGetORModel();
                 orModelCard.textContent = orModel;
             }
             var labels = { deepseek: 'Активен: 🤖 DeepSeek', gemini: 'Активен: ⚡ Gemini', openrouter: 'Активен: 🔀 OpenRouter', qwen: 'Активен: 🟣 Qwen AI', none: '🚫 AI отключён' };
@@ -20212,7 +20363,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (provider === 'gemini') {
                 var gk = gmKey || _deobfKey(localStorage.getItem('eiti_gemini_key') || '');
                 if (!gk) { status.innerHTML = '<span style="color:#f66">⚠️ Введите Gemini ключ</span>'; return; }
-                fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash') + ':generateContent?key=' + gk, {
+                fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash') + ':generateContent?key=' + gk, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: [{ text: 'hi' }] }] })
                 }).then(function(r) {
@@ -20592,7 +20743,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _senderLabel = eitiThinkModeLabel(_thinkMode, _baseLabel);
                 var _orThinkOff = _provider === 'openrouter' && !eitiORThinkingActive();
                 if (_provider === 'openrouter') {
-                    var _orLiveModel = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                    var _orLiveModel = eitiGetORModel();
                     _senderLabel = eitiORSenderHtml(_orLiveModel, false); // Think badge is added only when reasoning tokens really stream
                 }
                 liveDiv.innerHTML =
@@ -21342,7 +21493,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 if (_selfQuery) {
                     var _selfInfo = '=== АРХИТЕКТУРА EITI v' + (window.EITI_VERSION||'?') + ' (self-awareness) ===\n';
                     _selfInfo += 'Тип: Single-file PWA монолит (HTML+CSS+JS+SW)\n';
-                    _selfInfo += 'Строк кода: ~' + Math.round(document.documentElement.outerHTML.length / 50) + ' (оценка)\n';
+                    _selfInfo += 'Строк кода: монолит index.html (сериализация DOM не выполняется — зависание UI)\n';
                     _selfInfo += 'Хранилище: IndexedDB (чаты/заметки/KB/L2/L3), localStorage (настройки и активный L3-совместимый профиль/факты), SQLite WASM (FTS5 при наличии; иначе LIKE/IDB fallback)\n';
                     _selfInfo += 'AI: DeepSeek API (chat/reasoner), Transformers.js офлайн, офлайн-режим\n';
                     _selfInfo += 'Поиск: BM25 (KB), TextRank (сниппеты), FTS5 SQLite, Semantic (cosine)\n';
@@ -21357,9 +21508,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         _selfInfo += 'AI Offline: ' + (_aiCfgSnap.active ? 'активен, модель=' + _aiCfgSnap.model : 'не активен') + '\n';
                     } catch(e){}
                     // Первые 8000 символов HTML-кода для анализа
-                    var _srcSnippet = document.documentElement.outerHTML.slice(0, 8000);
-                    _selfInfo += '\n--- ФРАГМЕНТ КОДА (первые 8000 символов) ---\n' + _srcSnippet + '\n--- КОНЕЦ ФРАГМЕНТА ---\n';
-                    _selfInfo += '[Скажи "покажи ещё код" для следующей части | "улучши X" для патча через JS_EXEC]\n';
+                    _selfInfo += '\n--- Исходник монолита не дампится в контекст (outerHTML ~4MB вешает Android Chrome) ---\n';
                     _selfInfo += '=== КОНЕЦ SELF-AWARENESS ===';
                     sysContent += '\n\n' + _selfInfo;
                 }
@@ -21421,7 +21570,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         ? eitiApplyGeminiThinkingConfig({ maxOutputTokens: _maxTok })
                         : { maxOutputTokens: _maxTok } };
                     if (_sysMsg) _gmBody.systemInstruction = { parts: [{ text: _sysMsg }] };
-                    var _gmModel = (typeof eitiGetGeminiModel==='function') ? eitiGetGeminiModel() : 'gemini-2.5-flash';
+                    var _gmModel = (typeof eitiGetGeminiModel==='function') ? eitiGetGeminiModel() : 'gemini-3.8-flash';
                     var _gmUrl = 'https://generativelanguage.googleapis.com/v1beta/models/' + _gmModel + ':streamGenerateContent?alt=sse&key=' + _geminiKey;
                     fetch(_gmUrl, {
                         method: 'POST',
@@ -21523,7 +21672,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
 
                 // ── OpenRouter SSE path ─────────────────────────────
                 if (_provider === 'openrouter') {
-                    var _orModel = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                    var _orModel = eitiGetORModel();
                     var _orBodyStr = JSON.stringify(eitiApplyORThinking({ model: _orModel, messages: history, max_tokens: _maxTok, stream: true }));
                     function _orSend() {
                         return fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -21613,7 +21762,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
 
                 // ── OpenAI ChatGPT SSE path ─────────────────────────
                 if (_provider === 'openai') {
-                    var _oaiModel = localStorage.getItem('eiti_openai_model') || 'gpt-4o';
+                    var _oaiModel = (typeof eitiGetOpenAIModel === 'function') ? eitiGetOpenAIModel() : 'gpt-6.1-sol';
                     fetch('https://api.openai.com/v1/chat/completions', {
                         method: 'POST',
                         signal: _abortCtrl.signal,
@@ -22009,7 +22158,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         function _tryGeminiGrounding(onFail) {
                             var _gmK = typeof _deobfKey === 'function' ? _deobfKey(localStorage.getItem('eiti_gemini_key') || '') : '';
                             if (!_gmK) { onFail(); return; }
-                            var _gmMod = typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-2.5-flash';
+                            var _gmMod = typeof eitiGetGeminiModel === 'function' ? eitiGetGeminiModel() : 'gemini-3.8-flash';
                             var _gmTo = setTimeout(function() { onFail(); }, 12000);
                             fetch('https://generativelanguage.googleapis.com/v1beta/models/' + _gmMod + ':generateContent?key=' + _gmK, {
                                 method: 'POST',
@@ -22256,7 +22405,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _l2AbortTimer = setTimeout(function(){ _l2Ac.abort(); }, 45000);
                 var _l2FetchPromise;
                 if (_l2Provider === 'gemini') {
-                    var _gmL2Url = 'https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash') + ':generateContent?key=' + _l2Key;
+                    var _gmL2Url = 'https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash') + ':generateContent?key=' + _l2Key;
                     _l2FetchPromise = fetch(_gmL2Url, {
                         method: 'POST', signal: _l2Ac.signal,
                         headers: {'Content-Type': 'application/json'},
@@ -22269,7 +22418,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     .then(function(d){ return d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts[0].text || ''; });
                 } else {
                     var _l2Url = _l2Provider === 'deepseek' ? 'https://api.deepseek.com/v1/chat/completions' : 'https://openrouter.ai/api/v1/chat/completions';
-                    var _l2Model = _l2Provider === 'deepseek' ? 'deepseek-flash' : (localStorage.getItem('eiti_or_model') || 'openrouter/auto');
+                    var _l2Model = _l2Provider === 'deepseek' ? 'deepseek-flash' : (eitiGetORModel());
                     var _l2Headers = {'Authorization': 'Bearer ' + _l2Key, 'Content-Type': 'application/json'};
                     if (_l2Provider === 'openrouter') { _l2Headers['HTTP-Referer'] = 'https://velantrim.eiti'; _l2Headers['X-Title'] = 'VELANTRIM EITI'; }
                     var _l2Body = {
@@ -28326,7 +28475,7 @@ window.eitiLLMClearAll = async function() {
                 // v13.3.5 SECURITY: removed leaked default key — enter your own key in Settings
                 var _orEl2 = document.getElementById('openrouter-key');
                 if (_orK2 && _orEl2) _orEl2.value = _orK2;
-                if (typeof eitiSetORModel === 'function') eitiSetORModel(localStorage.getItem('eiti_or_model') || 'openrouter/auto');
+                if (typeof eitiSetORModel === 'function') eitiSetORModel(eitiGetORModel());
                 // Default provider: openrouter if not explicitly set
                 var _savedProvider = localStorage.getItem('eiti_ai_provider');
                 if (!_savedProvider) { localStorage.setItem('eiti_ai_provider', 'openrouter'); _savedProvider = 'openrouter'; }
@@ -32403,7 +32552,7 @@ window.eitiLLMClearAll = async function() {
             var sysTxt  = 'Ты аналитик личной памяти EITI. Отвечай кратко на русском.';
             if (_provider === 'gemini') {
                 if (!_gmKey) { cb('❌ Gemini API ключ не задан. Добавьте в Настройки → ⚡ Google Gemini'); return; }
-                fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash') + ':generateContent?key=' + _gmKey, {
+                fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash') + ':generateContent?key=' + _gmKey, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ contents: [{ parts: [{ text: sysTxt + '\n\n' + prompt }] }], generationConfig: { maxOutputTokens: 800 } })
@@ -32753,17 +32902,21 @@ window.eitiLLMClearAll = async function() {
         // API models: deepseek-flash | deepseek-v4-pro  (legacy deepseek-v4-flash → deepseek-flash)
         // XHigh is NOT an official DeepSeek UI mode; compatibility xhigh maps to high.
         function eitiNormalizeDsSelection(raw) {
-            if (!raw) return 'deepseek-v4-pro-high';
-            if (raw === 'deepseek-flash') return 'deepseek-flash';
-            if (raw === 'deepseek-v4-pro' || raw === 'deepseek-v4-pro-xhigh' || raw === 'deepseek-v4-pro:xhigh') return 'deepseek-v4-pro-high';
-            if (raw === 'deepseek-v4-pro:low') return 'deepseek-v4-pro-low';
-            if (raw === 'deepseek-v4-pro:high') return 'deepseek-v4-pro-high';
-            if (raw === 'deepseek-v4-pro:max') return 'deepseek-v4-pro-max';
-            if (raw === 'deepseek-flash' || raw === 'deepseek-v4-pro-low' || raw === 'deepseek-v4-pro-high' || raw === 'deepseek-v4-pro-max') return raw;
-            return 'deepseek-v4-pro-high';
+            var migrated = eitiMigrateSavedModel('deepseek', raw);
+            if (migrated === 'deepseek-flash') return 'deepseek-flash';
+            if (migrated === 'deepseek-v4-pro' || migrated === 'deepseek-v4-pro-xhigh' || migrated === 'deepseek-v4-pro:xhigh') return 'deepseek-v4-pro-high';
+            if (migrated === 'deepseek-v4-pro:low') return 'deepseek-v4-pro-low';
+            if (migrated === 'deepseek-v4-pro:high') return 'deepseek-v4-pro-high';
+            if (migrated === 'deepseek-v4-pro:max') return 'deepseek-v4-pro-max';
+            if (migrated === 'deepseek-v4-pro-low' || migrated === 'deepseek-v4-pro-high' || migrated === 'deepseek-v4-pro-max') return migrated;
+            return eitiModelCatalog().deepseek.defaultSel;
         }
         function eitiGetDsSelection() {
-            return eitiNormalizeDsSelection(localStorage.getItem('eiti_ds_model'));
+            var next = eitiNormalizeDsSelection(localStorage.getItem('eiti_ds_model'));
+            try {
+                if (localStorage.getItem('eiti_ds_model') !== next) localStorage.setItem('eiti_ds_model', next);
+            } catch (e) {}
+            return next;
         }
         /** Canonical DeepSeek API model id for chat/completions */
         function eitiGetDsModel() {
@@ -34023,7 +34176,7 @@ window.eitiLLMClearAll = async function() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + orKey },
                 body: JSON.stringify(eitiApplyORThinking({
-                    model: 'deepseek/deepseek-chat',
+                    model: 'deepseek/deepseek-v4.1-flash',
                     messages: [{ role: 'user', content: prompt }],
                     max_tokens: 1500
                 }))
@@ -34908,7 +35061,11 @@ window.eitiLLMClearAll = async function() {
             try { return localStorage.getItem('eiti_notes_ai_enabled') === '1'; } catch (e) { return false; }
         }
         function eitiNotesAIGetModel() {
-            try { return localStorage.getItem('eiti_notes_ai_model') || 'same'; } catch (e) { return 'same'; }
+            var id = 'same';
+            try { id = localStorage.getItem('eiti_notes_ai_model') || 'same'; } catch (e) {}
+            var next = eitiMigrateSavedModel('notesAI', id);
+            if (next !== id) { try { localStorage.setItem('eiti_notes_ai_model', next); } catch (e) {} }
+            return next;
         }
         function eitiNotesAIGetSize() {
             var s = 'medium';
@@ -34974,6 +35131,7 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiNotesAISetModel(model) {
             var id = String(model || 'same').trim() || 'same';
+            id = eitiMigrateSavedModel('notesAI', id);
             try { localStorage.setItem('eiti_notes_ai_model', id); } catch (e) {}
             eitiNotesAIRenderSettings();
             eitiNotesAIUpdateModelChip();
@@ -35004,7 +35162,7 @@ window.eitiLLMClearAll = async function() {
                 }
                 if (p === 'openrouter') {
                     var orm = 'openrouter/auto';
-                    try { orm = localStorage.getItem('eiti_or_model') || 'openrouter/auto'; } catch (e) {}
+                    try { orm = eitiGetORModel(); } catch (e) {}
                     return { provider: 'openrouter', model: orm };
                 }
                 if (p === 'deepseek') {
@@ -35412,9 +35570,9 @@ window.eitiLLMClearAll = async function() {
                 { id: 'gemini', label: 'Gemini' },
                 { id: 'openrouter/auto', label: 'OpenRouter Auto' },
                 { id: 'openrouter/free', label: 'OpenRouter Free' },
-                { id: 'anthropic/claude-sonnet-4-6', label: 'Claude' },
-                { id: 'openai/gpt-5.5', label: 'GPT' },
-                { id: 'meta-llama/llama-3.3-70b-instruct', label: 'Llama' }
+                { id: 'anthropic/claude-sonnet-5.5', label: 'Claude' },
+                { id: 'openai/gpt-6.1-sol', label: 'GPT' },
+                { id: 'meta-llama/llama-4-maverick', label: 'Llama' }
             ];
         }
         function eitiNotesAIModelButtonMap() {
@@ -35424,9 +35582,9 @@ window.eitiLLMClearAll = async function() {
                 'gemini': 'notes-ai-model-gemini',
                 'openrouter/auto': 'notes-ai-model-or-auto',
                 'openrouter/free': 'notes-ai-model-or-free',
-                'anthropic/claude-sonnet-4-6': 'notes-ai-model-or-claude',
-                'openai/gpt-5.5': 'notes-ai-model-or-gpt',
-                'meta-llama/llama-3.3-70b-instruct': 'notes-ai-model-or-llama'
+                'anthropic/claude-sonnet-5.5': 'notes-ai-model-or-claude',
+                'openai/gpt-6.1-sol': 'notes-ai-model-or-gpt',
+                'meta-llama/llama-4-maverick': 'notes-ai-model-or-llama'
             };
         }
         function eitiSettingsFindGroupByKey(key) {
@@ -37668,10 +37826,11 @@ window.eitiLLMClearAll = async function() {
             'offline-gte':    { label:'gte-small',    ctx:512,  price:0,     provider:'offline', icon:'🧠', cors:true,  info:'33 МБ · MTEB 62 · Multilingual · Работает офлайн' },
             'jina-v3':        { label:'jina-embeddings-v3', ctx:8192, price:0.02, provider:'jina',    icon:'🔵', cors:true,  info:'8 192 токенов · $0.02/M · MTEB 65.5 · Late chunking · 10M бесплатно · CORS ✓' },
             'jina-v4':        { label:'jina-embeddings-v4', ctx:32768,price:0.02, provider:'jina',    icon:'🔵', cors:true,  info:'32 768 токенов · $0.02/M · Multimodal · Late chunking · CORS ✓' },
+            'jina-v5':        { label:'jina-embeddings-v5-text-small', ctx:32768, price:0.02, provider:'jina', icon:'🔵', cors:true, info:'32 768 токенов · v5 text-small · 1024-dim · CORS ✓' },
             'qwen3-emb':      { label:'qwen3-embedding-8b', ctx:32000,price:0.01, provider:'qwen',    icon:'🟠', cors:false, info:'32 000 токенов · $0.01/M · 100+ языков · MTEB SOTA code · DashScope API' },
             'deepseek-emb':   { label:'deepseek-embedding-v2', ctx:4096, price:0.02, provider:'deepseek', icon:'🔵', cors:false, info:'4 096 токенов · $0.02/M · OpenAI-compatible · api.deepseek.com' },
             'gemini-emb':     { label:'gemini-embedding-001', ctx:2048, price:0.15, provider:'gemini',   icon:'🟢', cors:false, info:'2 048 токенов · $0.15/M · #1 MTEB Multilingual · 100+ языков · Free tier' },
-            'voyage':         { label:'voyage-3.5-lite', ctx:32000, price:0.02, provider:'voyage',   icon:'🚀', cors:false, info:'32 000 токенов · $0.02/M · 200M бесплатно · Лучшее качество/$' },
+            'voyage':         { label:'voyage-4-lite', ctx:32000, price:0.02, provider:'voyage',   icon:'🚀', cors:false, info:'32 000 токенов · $0.02/M · voyage-4-lite · актуальная серия 4' },
             'openai-emb':     { label:'text-embedding-3-small', ctx:8192, price:0.02, provider:'openai',   icon:'⚪', cors:false, info:'8 192 токенов · $0.02/M · MTEB 62 · Через OpenRouter' }
         };
 
@@ -37815,7 +37974,7 @@ window.eitiLLMClearAll = async function() {
                         '⚠️ CORS заблокирован браузером (ожидаемо для ' + m.provider + ')',
                         '📏 Контекст: ' + m.ctx + ' токенов',
                         '💰 Цена: $' + m.price + '/M токенов',
-                        '📌 Данные из документации (актуальны май 2026)',
+                        '📌 Данные из документации (актуальны октябрь 2026)',
                         '🔑 Для работы: введите API-ключ выше'
                     ].join('<br>');
                 } else {
@@ -38068,7 +38227,7 @@ window.eitiLLMClearAll = async function() {
                 var genCfg = isChat
                     ? { temperature: 0.5 }
                     : { responseMimeType: 'application/json', temperature: 0.1 };
-                var gr = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-2.5-flash') + ':generateContent?key=' + gk, {
+                var gr = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + (typeof eitiGetGeminiModel==='function'?eitiGetGeminiModel():'gemini-3.8-flash') + ':generateContent?key=' + gk, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -38100,7 +38259,7 @@ window.eitiLLMClearAll = async function() {
 
             if (provider === 'openrouter') {
                 var ork = _deobfKey(localStorage.getItem('eiti_or_key') || '');
-                var orModel = localStorage.getItem('eiti_or_model') || 'openrouter/auto';
+                var orModel = eitiGetORModel();
                 var orBody = {
                     model: orModel,
                     messages: [{ role: 'user', content: prompt }],
@@ -39334,9 +39493,9 @@ window.eitiLLMClearAll = async function() {
             var key = (typeof _deobfKey === 'function') ? _deobfKey(localStorage.getItem('eiti_gemini_key') || '') : '';
             if (!key) throw new Error('Нет Gemini API-ключа');
             var requests = texts.map(function(t) {
-                return { model: 'models/text-embedding-004', content: { parts: [{ text: t }] } };
+                return { model: 'models/gemini-embedding-001', content: { parts: [{ text: t }] } };
             });
-            var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:batchEmbedContents?key=' + key, {
+            var r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:batchEmbedContents?key=' + key, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ requests: requests })
             });
@@ -39346,7 +39505,10 @@ window.eitiLLMClearAll = async function() {
         }
 
         async function _embedJina(texts, model) {
-            model = model || 'jina-embeddings-v3';
+            if (!model) {
+                var embSel = localStorage.getItem('eiti_emb_model') || 'jina-v3';
+                model = { 'jina-v3': 'jina-embeddings-v3', 'jina-v4': 'jina-embeddings-v4', 'jina-v5': 'jina-embeddings-v5-text-small' }[embSel] || 'jina-embeddings-v3';
+            }
             var key = localStorage.getItem('eiti_emb_key_jina') || '';
             if (key && typeof _deobfKey === 'function') key = _deobfKey(key);
             if (!key) throw new Error('Нет Jina API-ключа — введите в Embeddings & Chunks');
@@ -42694,19 +42856,19 @@ window._eitiInitSQL = _initSQL;
             title: '🟢 Модель ChatGPT',
             key: 'eiti_openai_model',
             defs: [
-                { id: 'gpt-4o',        label: 'GPT-4o',      desc: 'Флагман ✓' },
-                { id: 'gpt-4o-mini',   label: '4o Mini',      desc: 'Быстро' },
-                { id: 'o4-mini',       label: 'o4-mini',      desc: 'Reasoning' },
-                { id: 'o3',            label: 'o3',           desc: 'Deep Think' },
+                { id: 'gpt-6.1-sol',   label: 'GPT-6.1 Sol', desc: 'Баланс ✓' },
+                { id: 'gpt-6-astra',   label: 'GPT-6 Astra', desc: 'Флагман' },
+                { id: 'gpt-6-luna',    label: 'GPT-6 Luna',  desc: 'Быстро' },
+                { id: 'gpt-5.5',       label: 'GPT-5.5',     desc: 'Legacy' },
             ]
         },
         anthropic: {
             title: '🟠 Модель Claude',
             key: 'eiti_anthropic_model',
             defs: [
-                { id: 'claude-opus-4-7',           label: 'Opus 4.7',   desc: 'Флагман' },
-                { id: 'claude-sonnet-4-6',         label: 'Sonnet 4.6', desc: 'Баланс ✓' },
-                { id: 'claude-haiku-4-5-20251001', label: 'Haiku 4.5',  desc: 'Быстро' },
+                { id: 'claude-opus-5-5',   label: 'Opus 5.5',   desc: 'Флагман' },
+                { id: 'claude-sonnet-5-5', label: 'Sonnet 5.5', desc: 'Баланс ✓' },
+                { id: 'claude-haiku-5-5',  label: 'Haiku 5.5',  desc: 'Быстро' },
             ]
         },
         mistral: {
@@ -42722,7 +42884,7 @@ window._eitiInitSQL = _initSQL;
             title: '📷 Vision Grok',
             key: 'eiti_grok_vision_model',
             defs: [
-                { id: 'grok-2-vision-1212', label: 'Grok Vision', desc: 'Vision API' },
+                { id: 'grok-4.7', label: 'Grok 4.7', desc: 'Vision ✓' },
             ]
         },
     };
@@ -42737,7 +42899,13 @@ window._eitiInitSQL = _initSQL;
         if (!cfg) { section.style.display = 'none'; return; }
         section.style.display = '';
         if (title) title.textContent = cfg.title;
+        var kind = (p === 'openai') ? 'openai' : (p === 'anthropic') ? 'anthropic' : (p === 'grok') ? 'grokVision' : '';
         var cur = localStorage.getItem(cfg.key) || cfg.defs[0].id;
+        if (kind) {
+            var migrated = eitiMigrateSavedModel(kind, cur);
+            if (migrated !== cur) { try { localStorage.setItem(cfg.key, migrated); } catch (e) {} }
+            cur = migrated;
+        }
         btns.innerHTML = '';
         cfg.defs.forEach(function(m) {
             var active = m.id === cur;
@@ -44916,11 +45084,11 @@ var QWEN = {
     // Поиск через специальную модель
     SEARCH_MODEL: 'qwen-plus-latest',
     MODELS: [
-        { id: 'qwen-max',           label: 'Qwen Max',        desc: 'Умнейший' },
-        { id: 'qwen3-235b-a22b',    label: 'Qwen3 235B',      desc: 'Флагман 2025' },
+        { id: 'qwen3.8-max',        label: 'Qwen3.8 Max',     desc: 'Флагман' },
+        { id: 'qwen3.8-flash',      label: 'Qwen3.8 Flash',   desc: 'Быстрый' },
         { id: 'qwen-plus-latest',   label: 'Qwen Plus',       desc: 'Баланс' },
+        { id: 'qwen-max',           label: 'Qwen Max',        desc: 'Умнейший' },
         { id: 'qwen-turbo-latest',  label: 'Qwen Turbo',      desc: 'Быстрый' },
-        { id: 'qwq-32b',            label: 'QwQ-32B',         desc: 'Reasoning' },
         { id: 'qwen-long',          label: 'Qwen Long',       desc: '1M токенов' },
     ],
 
@@ -44930,7 +45098,10 @@ var QWEN = {
         return localStorage.getItem('eiti_qwen_key') || '';
     },
     getModel: function() {
-        return localStorage.getItem('eiti_qwen_model') || 'qwen-plus-latest';
+        var raw = localStorage.getItem('eiti_qwen_model') || 'qwen-plus-latest';
+        var next = (typeof eitiMigrateSavedModel === 'function') ? eitiMigrateSavedModel('qwen', raw) : raw;
+        if (next !== raw) { try { localStorage.setItem('eiti_qwen_model', next); } catch (e) {} }
+        return next;
     },
     isSearch: function() {
         return localStorage.getItem('eiti_qwen_search') === '1';
@@ -44967,12 +45138,10 @@ var QWEN = {
             body.enable_search = true;
         }
 
-        fetch(QWEN.ENDPOINT, {
-            method:  'POST',
-            headers: headers,
-            body:    JSON.stringify(body),
-            signal:  signal,
-        }).then(function(r) {
+        var _qFetch = (typeof eitiFetchWithTimeout === 'function' && !signal)
+            ? eitiFetchWithTimeout(QWEN.ENDPOINT, { method: 'POST', headers: headers, body: JSON.stringify(body) }, 90000)
+            : fetch(QWEN.ENDPOINT, { method: 'POST', headers: headers, body: JSON.stringify(body), signal: signal });
+        _qFetch.then(function(r) {
             if (!r.ok) {
                 return r.text().then(function(t) {
                     var msg = 'Qwen HTTP ' + r.status;
@@ -45148,11 +45317,18 @@ window.eitiQwenTestAPI = function() {
     status.innerHTML = '⏳ Проверяю Qwen…';
     var key = QWEN.getKey();
     if (!key) { status.innerHTML = '<span style="color:#f66">⚠️ Введите Qwen API ключ</span>'; return; }
-    fetch(QWEN.ENDPOINT, {
-        method: 'POST',
-        headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: QWEN.getModel(), messages: [{ role: 'user', content: 'hi' }], max_tokens: 5 })
-    }).then(function(r) {
+    var _qTestFetch = (typeof eitiFetchWithTimeout === 'function')
+        ? eitiFetchWithTimeout(QWEN.ENDPOINT, {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: QWEN.getModel(), messages: [{ role: 'user', content: 'hi' }], max_tokens: 5 })
+        }, 12000)
+        : fetch(QWEN.ENDPOINT, {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: QWEN.getModel(), messages: [{ role: 'user', content: 'hi' }], max_tokens: 5 })
+        });
+    _qTestFetch.then(function(r) {
         if (r.ok) {
             status.innerHTML = '<span style="color:#0f0">✅ Qwen подключён · ' + QWEN.getModel() + '</span>';
             if (typeof showToast === 'function') showToast('🟣 Qwen активен!');
@@ -45163,6 +45339,7 @@ window.eitiQwenTestAPI = function() {
 };
 
 window.eitiQwenSetModel = function(m) {
+    m = (typeof eitiMigrateSavedModel === 'function') ? eitiMigrateSavedModel('qwen', m) : m;
     localStorage.setItem('eiti_qwen_model', m);
     document.querySelectorAll('[id^="qwen-model-"]').forEach(function(b) {
         var active = b.id === 'qwen-model-' + m.replace(/[^a-z0-9]/g,'-');
@@ -45784,7 +45961,7 @@ function _eitiGeminiVision(userText, images, sysContent, history, liveId) {
 
     var model = (typeof eitiGetGeminiModel === 'function')
         ? eitiGetGeminiModel()
-        : 'gemini-2.5-flash';
+        : 'gemini-3.8-flash';
 
     // Строим parts последнего сообщения пользователя: текст + все изображения
     var userParts = [];
@@ -45996,7 +46173,7 @@ function _eitiOpenRouterVision(userText, images, history) {
     var _dk = function(k) { return (typeof _deobfKey === 'function') ? _deobfKey(localStorage.getItem(k) || '') : (localStorage.getItem(k) || ''); };
     var key = _dk('eiti_or_key') || _dk('openrouter_api_key');
     if (!key) return Promise.reject(new Error('Нет OpenRouter ключа'));
-    var model = localStorage.getItem('eiti_or_model') || 'openai/gpt-4o';
+    var model = (typeof eitiGetORModel === 'function') ? eitiGetORModel() : 'openrouter/auto';
     var sysMsg = history.find(function(m) { return m.role === 'system'; });
     var apiMsgs = [];
     if (sysMsg) apiMsgs.push({ role: 'system', content: sysMsg.content });
@@ -46040,7 +46217,7 @@ function _eitiGrokVision(userText, images, history) {
     return fetch('https://api.x.ai/v1/chat/completions', {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model: localStorage.getItem('eiti_grok_vision_model') || 'grok-2-vision-1212', messages: apiMsgs, max_tokens: 2000 })
+        body: JSON.stringify({ model: (typeof eitiMigrateSavedModel === 'function' ? eitiMigrateSavedModel('grokVision', localStorage.getItem('eiti_grok_vision_model')) : (localStorage.getItem('eiti_grok_vision_model') || 'grok-4.7')), messages: apiMsgs, max_tokens: 2000 })
     }).then(function(r) {
         if (!r.ok) return r.json().then(function(e) { throw new Error('Grok Vision ' + r.status + ': ' + JSON.stringify(e.error || e)); });
         return r.json();
