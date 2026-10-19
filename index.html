@@ -18443,8 +18443,8 @@
             return div;
         }
         function eitiLoadChatIntoView(chatId) {
-            eitiUpdateL0(chatId).then(function() {
-                eitiGetMessages(chatId).then(function(msgs) {
+            return eitiUpdateL0(chatId).then(function() {
+                return eitiGetMessages(chatId).then(function(msgs) {
                     // v9.7p1: sync in-memory chatLog with IDB on load
                     chatLog = msgs.map(function(m) {
                         return { id: m.id, role: m.role, text: m.content, ts: new Date(m.created).getTime() };
@@ -18476,9 +18476,15 @@
                     ensureLoadMore();
                     msgs.slice(_eitiChatPageFrom).forEach(function(m) { container.appendChild(_eitiRenderMsgEl(m)); });
                     container.scrollTop = container.scrollHeight;
-                    // FIX #2: toast "Чат загружен" удалён — шум без пользы
+                    return { total: msgs.length, shown: msgs.length - _eitiChatPageFrom };
                 });
             });
+        }
+        function eitiLoadOlderMessages() {
+            var btn = document.querySelector('#messages .eiti-load-more');
+            if (!btn || typeof btn.onclick !== 'function') return 0;
+            btn.onclick();
+            return document.querySelectorAll('#messages .message').length;
         }
 
         function eitiSetHistoryCol(n) {

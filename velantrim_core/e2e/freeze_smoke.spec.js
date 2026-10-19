@@ -93,21 +93,24 @@ test('search, 500-message chat load-more, notes Ask AI', async ({ page, context 
   expect(search.over200, 'long tasks > 200ms during search: ' + JSON.stringify(search.over200)).toEqual([]);
 
   const chat = await page.evaluate(async () => {
+    const idbCount = await new Promise((resolve) => {
+      const req = eitiDb.transaction(['messages'], 'readonly').objectStore('messages').index('chat_id').getAll(IDBKeyRange.only('chat_freeze_500'));
+      req.onsuccess = () => resolve((req.result || []).length);
+      req.onerror = () => resolve(-1);
+    });
+    const tab = document.querySelector('.tab-item[data-view="chat"]');
+    if (tab) tab.click();
     eitiCurrentChatId = 'chat_freeze_500';
-    eitiLoadChatIntoView('chat_freeze_500');
-    const start = performance.now();
-    while (performance.now() - start < 8000) {
-      if (document.querySelectorAll('#messages .message').length >= 50) break;
-      await new Promise((r) => setTimeout(r, 30));
-    }
+    const loaded = await eitiLoadChatIntoView('chat_freeze_500');
     const before = [...document.querySelectorAll('#messages .message')].map((el) => el.getAttribute('data-msgid'));
-    const btn = document.querySelector('.eiti-load-more');
-    if (btn) btn.click();
-    await new Promise((r) => setTimeout(r, 200));
+    const afterCount = (typeof eitiLoadOlderMessages === 'function')
+      ? eitiLoadOlderMessages()
+      : document.querySelectorAll('#messages .message').length;
     const after = [...document.querySelectorAll('#messages .message')].map((el) => el.getAttribute('data-msgid'));
     const stillThere = before.every((id) => after.includes(id));
-    return { before: before.length, after: after.length, stillThere, hasMore: !!btn };
+    return { idbCount, loaded, before: before.length, after: after.length, afterCount, stillThere };
   });
+  expect(chat.idbCount).toBeGreaterThanOrEqual(500);
   expect(chat.before).toBeGreaterThanOrEqual(50);
   expect(chat.after).toBeGreaterThan(chat.before);
   expect(chat.stillThere).toBe(true);
