@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.17"; // Каталог моделей Oct 2026 + миграции retired ID + таймауты fetch
+        var EITI_VERSION = "13.7.18"; // Freeze A–E + DeepSeek Flash Vision
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -177,6 +177,139 @@
                 clearTimeout(timer);
                 throw err;
             });
+        }
+        // v13.7.18: yield вместо sql-wasm Worker — wasm уже на main, CSP/SW ломают второй экземпляр.
+        function eitiYieldSlice() {
+            if (typeof scheduler !== 'undefined' && typeof scheduler.yield === 'function') {
+                return scheduler.yield();
+            }
+            return new Promise(function(r) { setTimeout(r, 0); });
+        }
+        function eitiSearchMatchChat(chat, msgs, q) {
+            var ql = String(q || '').toLowerCase();
+            if (!ql || !chat) return null;
+            var m = (msgs || []).filter(function(msg) {
+                return msg && msg.content && String(msg.content).toLowerCase().indexOf(ql) !== -1;
+            });
+            var titleHit = String(chat.title || '').toLowerCase().indexOf(ql) !== -1;
+            if (!m.length && !titleHit) return null;
+            return { chat: chat, m: m };
+        }
+        var _eitiSearchGen = 0;
+        function eitiSearchBeginGeneration() {
+            _eitiSearchGen += 1;
+            return _eitiSearchGen;
+        }
+        function eitiWrapIdleReader(reader, idleMs, outerSignal) {
+            idleMs = idleMs || 90000;
+            var idleTimer = null;
+            var failed = null;
+            var pendingReject = null;
+            function clearIdle() { if (idleTimer) { clearTimeout(idleTimer); idleTimer = null; } }
+            function failIdle() {
+                if (failed) return;
+                failed = Object.assign(new Error('Стрим прерван: нет данных ' + Math.round(idleMs / 1000) + ' с'), { name: 'TimeoutError' });
+                clearIdle();
+                try { if (reader && reader.cancel) reader.cancel(); } catch (e) {}
+                if (pendingReject) { pendingReject(failed); pendingReject = null; }
+            }
+            function arm() {
+                clearIdle();
+                idleTimer = setTimeout(failIdle, idleMs);
+            }
+            if (outerSignal) {
+                if (outerSignal.aborted) failIdle();
+                else outerSignal.addEventListener('abort', failIdle);
+            }
+            return {
+                read: function() {
+                    if (failed) return Promise.reject(failed);
+                    arm();
+                    return new Promise(function(resolve, reject) {
+                        pendingReject = reject;
+                        reader.read().then(function(chunk) {
+                            pendingReject = null;
+                            clearIdle();
+                            if (failed) { reject(failed); return; }
+                            if (!chunk.done) arm();
+                            resolve(chunk);
+                        }, function(err) {
+                            pendingReject = null;
+                            clearIdle();
+                            reject(failed || err);
+                        });
+                    });
+                },
+                cancelIdle: clearIdle
+            };
+        }
+        function eitiCreateRafTextUpdater(el) {
+            var pending = null;
+            var raf = 0;
+            var target = el;
+            return function(text, nextEl) {
+                if (nextEl) target = nextEl;
+                pending = text;
+                if (raf) return;
+                var rafFn = (typeof requestAnimationFrame === 'function') ? requestAnimationFrame : function(cb) { return setTimeout(cb, 16); };
+                raf = rafFn(function() {
+                    raf = 0;
+                    if (target && pending != null) {
+                        try { target.textContent = pending; } catch (e) {}
+                    }
+                });
+            };
+        }
+        function eitiNotesFilterList(notes, filter) {
+            notes = notes || [];
+            if (!filter) return notes.slice();
+            if (filter[0] === '#') {
+                var tagF = filter.slice(1).toLowerCase();
+                return notes.filter(function(n) {
+                    return (n.tags || []).some(function(t) { return String(t).toLowerCase().indexOf(tagF) !== -1; });
+                });
+            }
+            var q = filter.toLowerCase();
+            return notes.filter(function(n) {
+                return String(n.title || '').toLowerCase().indexOf(q) !== -1 || String(n.body || '').toLowerCase().indexOf(q) !== -1;
+            });
+        }
+        function eitiBuildDeepSeekVisionRequest(userText, images, history, opts) {
+            opts = opts || {};
+            if (!opts.hasKey) return { error: 'Нет DeepSeek ключа', body: null };
+            if (!images || !images.length) return { error: 'Нет изображений', body: null };
+            var selected = String(opts.selection || 'deepseek-flash');
+            var fromPro = selected.indexOf('deepseek-v4-pro') === 0;
+            var apiMsgs = [];
+            var hist = history || [];
+            var sysMsg = hist.find(function(m) { return m.role === 'system'; });
+            if (sysMsg) apiMsgs.push({ role: 'system', content: sysMsg.content });
+            hist.filter(function(m) { return m.role !== 'system'; }).slice(0, -1).forEach(function(m) {
+                apiMsgs.push({ role: m.role, content: m.content });
+            });
+            var lastContent = [{ type: 'text', text: userText || '' }];
+            images.forEach(function(img) {
+                lastContent.push({
+                    type: 'image_url',
+                    image_url: { url: 'data:' + img.mime + ';base64,' + img.base64 }
+                });
+            });
+            apiMsgs.push({ role: 'user', content: lastContent });
+            var thinkOn = (opts.thinking === true) || (opts.thinking == null && fromPro);
+            if (opts.thinking === false) thinkOn = false;
+            var body = {
+                model: 'deepseek-flash',
+                messages: apiMsgs,
+                max_tokens: 2000,
+                stream: false,
+                thinking: { type: thinkOn ? 'enabled' : 'disabled' }
+            };
+            if (thinkOn && opts.effort) body.reasoning_effort = opts.effort;
+            return {
+                body: body,
+                forcedFromPro: fromPro,
+                endpoint: 'https://api.deepseek.com/chat/completions'
+            };
         }
         // Security boundary: DOMPurify is the HTML sanitizer. If it is unavailable
         // or throws, fail closed by escaping the entire value as text. Regex is not a
@@ -17871,13 +18004,27 @@
             }
             if (typeof eitiGetChats !== 'function' || typeof eitiGetMessages !== 'function') { resolve([]); return; }
             eitiGetChats().then(function(chats) {
-                return Promise.all((chats || []).slice(0, 100).map(function(chat) {
-                    return eitiGetMessages(chat.id).then(function(messages) {
-                        return (messages || []).map(function(message) { return { chatId: chat.id, content: message.content || '', role: message.role }; });
+                var all = [];
+                var list = (chats || []).slice(0, 100);
+                var i = 0;
+                function next() {
+                    if (i >= list.length) {
+                        resolve(eitiArchiveResultsFromRows(all, tokens));
+                        return;
+                    }
+                    var end = Math.min(list.length, i + 4);
+                    var slice = list.slice(i, end);
+                    i = end;
+                    return Promise.all(slice.map(function(chat) {
+                        return eitiGetMessages(chat.id).then(function(messages) {
+                            return (messages || []).map(function(message) { return { chatId: chat.id, content: message.content || '', role: message.role }; });
+                        });
+                    })).then(function(groups) {
+                        groups.forEach(function(g) { all = all.concat(g || []); });
+                        return (typeof eitiYieldSlice === 'function' ? eitiYieldSlice() : Promise.resolve()).then(next);
                     });
-                }));
-            }).then(function(groups) {
-                resolve(eitiArchiveResultsFromRows([].concat.apply([], groups || []), tokens));
+                }
+                return next();
             }).catch(function() { resolve([]); });
         }
         function eitiAddMessage(chatId, role, content, opts) {
@@ -18238,6 +18385,8 @@
         }
 
         var EITI_CHAT_PAGE = 50; // пагинация: показываем последние N сообщений
+        var _eitiChatPageAll = [];
+        var _eitiChatPageFrom = 0;
         function _eitiRenderMsgEl(m) {
             var div = document.createElement('div');
             div.className = 'message ' + (m.role === 'user' ? 'outgoing' : 'incoming');
@@ -18303,22 +18452,29 @@
                     var container = document.getElementById('messages');
                     if (!container) return;
                     container.innerHTML = '';
-                    // FIX: пагинация — рендерим только последние EITI_CHAT_PAGE сообщений
-                    var pageStart = Math.max(0, msgs.length - EITI_CHAT_PAGE);
-                    if (pageStart > 0) {
-                        var loadMoreBtn = document.createElement('div');
+                    _eitiChatPageAll = msgs;
+                    _eitiChatPageFrom = Math.max(0, msgs.length - EITI_CHAT_PAGE);
+                    function ensureLoadMore() {
+                        var existing = container.querySelector('.eiti-load-more');
+                        if (_eitiChatPageFrom <= 0) { if (existing) existing.remove(); return; }
+                        var loadMoreBtn = existing || document.createElement('div');
                         loadMoreBtn.className = 'eiti-load-more';
                         loadMoreBtn.style.cssText = 'text-align:center;padding:10px;opacity:0.6;cursor:pointer;font-size:13px;';
-                        loadMoreBtn.textContent = '⬆ Показать ранее (' + pageStart + ' сообщений)';
+                        loadMoreBtn.textContent = '⬆ Показать ранее (' + _eitiChatPageFrom + ' сообщений)';
                         loadMoreBtn.onclick = function() {
-                            var older = msgs.slice(0, pageStart);
-                            older.forEach(function(m) { container.insertBefore(_eitiRenderMsgEl(m), container.firstChild); });
-                            loadMoreBtn.remove();
+                            var nextFrom = Math.max(0, _eitiChatPageFrom - EITI_CHAT_PAGE);
+                            var older = _eitiChatPageAll.slice(nextFrom, _eitiChatPageFrom);
+                            var beforeEl = loadMoreBtn.nextSibling;
+                            older.forEach(function(m) {
+                                container.insertBefore(_eitiRenderMsgEl(m), beforeEl);
+                            });
+                            _eitiChatPageFrom = nextFrom;
+                            ensureLoadMore();
                         };
-                        container.appendChild(loadMoreBtn);
+                        if (!existing) container.insertBefore(loadMoreBtn, container.firstChild);
                     }
-                    msgs = msgs.slice(pageStart);
-                    msgs.forEach(function(m) { container.appendChild(_eitiRenderMsgEl(m)); }); // FIX #4: пагинация + хелпер
+                    ensureLoadMore();
+                    msgs.slice(_eitiChatPageFrom).forEach(function(m) { container.appendChild(_eitiRenderMsgEl(m)); });
                     container.scrollTop = container.scrollHeight;
                     // FIX #2: toast "Чат загружен" удалён — шум без пользы
                 });
@@ -21588,9 +21744,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                             }); return;
                         }
                         if (!r.body) { reject(new Error('No body')); return; }
-                        var gReader = r.body.getReader();
+                        var gReader = (typeof eitiWrapIdleReader === 'function')
+                            ? eitiWrapIdleReader(r.body.getReader(), 90000, _abortCtrl.signal)
+                            : r.body.getReader();
                         var gDecoder = new TextDecoder();
                         var gResult = '';
+                        var _gmRafText = (typeof eitiCreateRafTextUpdater === 'function') ? eitiCreateRafTextUpdater(null) : null;
                         function readGemini() {
                             gReader.read().then(function(chunk) {
                                 if (chunk.done) {
@@ -21652,7 +21811,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                                             // token re-parsed + DOMPurify-sanitised the WHOLE accumulated reply each
                                             // time (O(N²)) — long Gemini answers progressively froze the tab / went
                                             // white. The full markdown render runs once on chunk.done above.
-                                            if (le2) { var t3 = le2.querySelector('[id$="-text"]'); if (t3) t3.textContent = gResult; }
+                                            if (le2) { var t3 = le2.querySelector('[id$="-text"]'); if (t3) { if (_gmRafText) _gmRafText(gResult, t3); else t3.textContent = gResult; } }
                                             var ms = document.getElementById('messages'); if (ms && !window._eitiScrollPaused) ms.scrollTop = ms.scrollHeight;
                                         }
                                     } catch(e) {}
@@ -21699,10 +21858,13 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                             }); return;
                         }
                         if (!r.body) { document.getElementById(liveId).remove(); reject(new Error('No response body')); return; }
-                        var reader = r.body.getReader(); var decoder = new TextDecoder(); var result = '';
+                        var reader = (typeof eitiWrapIdleReader === 'function')
+                            ? eitiWrapIdleReader(r.body.getReader(), 90000, _abortCtrl.signal)
+                            : r.body.getReader(); var decoder = new TextDecoder(); var result = '';
                         var _orSseBuffer = ''; // BUG-7 FIX: SSE line buffer
                         var _orT0 = Date.now(), _orTFirst = 0, _orThinkBadged = false; // generation speed + real-reasoning badge
                         var textEl = document.getElementById(liveId + '-text');
+                        var _orRafText = (typeof eitiCreateRafTextUpdater === 'function') ? eitiCreateRafTextUpdater(textEl) : null;
                         window._eitiIsStreaming = true;
                         function readOR() {
                             return reader.read().then(function(chunk) {
@@ -21744,7 +21906,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                                 _orSseBuffer = _orLines.pop();
                                 _orLines.forEach(function(line) {
                                     if (line.startsWith('data: ') && line !== 'data: [DONE]') {
-                                        try { var _orj = JSON.parse(line.slice(6)); var _ord = (_orj.choices && _orj.choices[0] && _orj.choices[0].delta) || {}; var _orrc = _ord.reasoning_content || _ord.reasoning; if (_orrc && eitiORThinkingActive(_orModel)) { _eitiThinkReasoning(liveId, _orrc); if (!_orThinkBadged) { _orThinkBadged = true; var _orSndEl = liveDiv.querySelector('.message-sender'); if (_orSndEl) _orSndEl.innerHTML = eitiORSenderHtml(_orModel, true); } } var delta = _ord.content; if (delta) { if (!_orTFirst) _orTFirst = Date.now(); result += delta; if (textEl) textEl.textContent = result; var ms = document.getElementById('messages'); if (ms && !window._eitiScrollPaused) ms.scrollTop = ms.scrollHeight; } } catch(e) {}
+                                        try { var _orj = JSON.parse(line.slice(6)); var _ord = (_orj.choices && _orj.choices[0] && _orj.choices[0].delta) || {}; var _orrc = _ord.reasoning_content || _ord.reasoning; if (_orrc && eitiORThinkingActive(_orModel)) { _eitiThinkReasoning(liveId, _orrc); if (!_orThinkBadged) { _orThinkBadged = true; var _orSndEl = liveDiv.querySelector('.message-sender'); if (_orSndEl) _orSndEl.innerHTML = eitiORSenderHtml(_orModel, true); } } var delta = _ord.content; if (delta) { if (!_orTFirst) _orTFirst = Date.now(); result += delta; if (_orRafText) _orRafText(result); else if (textEl) textEl.textContent = result; var ms = document.getElementById('messages'); if (ms && !window._eitiScrollPaused) ms.scrollTop = ms.scrollHeight; } } catch(e) {}
                                     }
                                 });
                                 return readOR();
@@ -21780,9 +21942,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                             }); return;
                         }
                         if (!r.body) { document.getElementById(liveId).remove(); reject(new Error('No response body')); return; }
-                        var reader = r.body.getReader(); var decoder = new TextDecoder(); var result = '';
+                        var reader = (typeof eitiWrapIdleReader === 'function')
+                            ? eitiWrapIdleReader(r.body.getReader(), 90000, _abortCtrl.signal)
+                            : r.body.getReader(); var decoder = new TextDecoder(); var result = '';
                         var _oaiSseBuffer = '';
                         var textEl = document.getElementById(liveId + '-text');
+                        var _oaiRafText = (typeof eitiCreateRafTextUpdater === 'function') ? eitiCreateRafTextUpdater(textEl) : null;
                         window._eitiIsStreaming = true;
                         function readOAI() {
                             return reader.read().then(function(chunk) {
@@ -21825,7 +21990,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                                             var delta = _oaid.content;
                                             if (delta) {
                                                 result += delta;
-                                                if (textEl) textEl.textContent = result;
+                                                if (_oaiRafText) _oaiRafText(result); else if (textEl) textEl.textContent = result;
                                                 var ms = document.getElementById('messages');
                                                 if (ms && !window._eitiScrollPaused) ms.scrollTop = ms.scrollHeight;
                                             }
@@ -21882,11 +22047,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         reject(new Error('No response body'));
                         return;
                     }
-                    var reader = r.body.getReader();
+                    var reader = (typeof eitiWrapIdleReader === 'function')
+                        ? eitiWrapIdleReader(r.body.getReader(), 90000, _abortCtrl.signal)
+                        : r.body.getReader();
                     var decoder = new TextDecoder();
                     var result = '';
                     var _dsSseBuffer = ''; // BUG-7 FIX: SSE line buffer
                     var textEl = document.getElementById(liveId + '-text');
+                    var _dsRafText = (typeof eitiCreateRafTextUpdater === 'function') ? eitiCreateRafTextUpdater(textEl) : null;
                     var _scrollPending = false;
                     // ── Stop-scroll: пауза при касании во время стриминга ──
                     if (!window._eitiScrollPauseInit) {
@@ -22034,7 +22202,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                                             // render re-parsed + DOMPurify-sanitised the entire reply on every token
                                             // (O(N²)) and froze the tab on long answers. Markdown is rendered once
                                             // when the stream finishes (chunk.done above).
-                                            if (textEl) textEl.textContent = result;
+                                            if (_dsRafText) _dsRafText(result); else if (textEl) textEl.textContent = result;
                                             scheduleScroll();
                                         }
                                     } catch(e) {}
@@ -28615,6 +28783,7 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiSearch(q){
             q=(q||'').trim();
+            var gen = eitiSearchBeginGeneration();
             if(!q){if(eitiDb)eitiLoadHistory();return;}
             if(!eitiDb)return;
             var e = eitiEsc;
@@ -28629,51 +28798,63 @@ window.eitiLLMClearAll = async function() {
                 var s=Math.max(0,idx-35),en=Math.min(text.length,idx+q.length+55);
                 return (s>0?'…':'')+hl(text.slice(s,en),q)+(en<text.length?'…':'');
             }
-            eitiGetChats().then(function(chats){
-                Promise.all(chats.map(function(c){
-                    return eitiGetMessages(c.id).then(function(msgs){
-                        var ql=q.toLowerCase();
-                        return{chat:c,m:msgs.filter(function(m){return m.content&&m.content.toLowerCase().indexOf(ql)!==-1;})};
-                    });
-                })).then(function(res){
-                    var list=document.getElementById('eiti-chat-list');
-                    if(!list)return;
-                    list.innerHTML='';
-                    var found=res.filter(function(r){return r.m.length>0||r.chat.title.toLowerCase().indexOf(q.toLowerCase())!==-1;});
-                    if(!found.length){
-                        list.innerHTML='<div style="text-align:center;opacity:.5;padding:30px;font-size:14px;">🔍 Ничего не найдено по «'+e(q)+'»</div>';
-                        return;
-                    }
-                    found.forEach(function(r){
-                        var d=document.createElement('div');
-                        d.style.cssText='background:linear-gradient(145deg,var(--secondary-color),var(--primary-color));border-radius:14px;border:1px solid var(--border-color);overflow:hidden;cursor:pointer;margin-bottom:2px;';
-                        var titleHl = hl(r.chat.title||'Без названия', q);
-                        var snippets = r.m.slice(0,3).map(function(m){
-                            return '<div style="padding:6px 13px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;line-height:1.5;">'
-                                +'<span style="opacity:.5;font-size:10px;">'+(m.role==='user'?'Вы':'AI')+'</span> '
-                                +snip(m.content,q)
-                                +'</div>';
-                        }).join('');
-                        d.innerHTML='<div style="padding:10px 13px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">'
-                            +'<span>'+titleHl+'</span>'
-                            +'<span style="opacity:.5;font-size:11px;background:rgba(255,215,0,.15);padding:2px 7px;border-radius:10px;">'+r.m.length+' совп.</span>'
-                            +'</div>'+snippets;
-                        var cid=r.chat.id;
-                        d.onclick=function(){
-                            eitiCurrentChatId=cid;
-                            // Switch to chat tab first, then load — avoids eitiLoadHistory overwriting result
-                            var chatTab = document.querySelector('.tab-item[data-view="chat"]');
-                            if (chatTab) {
-                                // Temporarily suppress history-tab listener reloading the list
-                                window._eitiSearchSuppressHistReload = true;
-                                chatTab.click();
-                                setTimeout(function(){ window._eitiSearchSuppressHistReload = false; }, 300);
-                            }
-                            eitiLoadChatIntoViewHighlight(cid, q);
-                        };
-                        list.appendChild(d);
-                    });
+            function renderFound(found){
+                if (gen !== _eitiSearchGen) return;
+                var list=document.getElementById('eiti-chat-list');
+                if(!list)return;
+                list.innerHTML='';
+                if(!found.length){
+                    list.innerHTML='<div style="text-align:center;opacity:.5;padding:30px;font-size:14px;">🔍 Ничего не найдено по «'+e(q)+'»</div>';
+                    return;
+                }
+                found.forEach(function(r){
+                    var d=document.createElement('div');
+                    d.style.cssText='background:linear-gradient(145deg,var(--secondary-color),var(--primary-color));border-radius:14px;border:1px solid var(--border-color);overflow:hidden;cursor:pointer;margin-bottom:2px;';
+                    var titleHl = hl(r.chat.title||'Без названия', q);
+                    var snippets = r.m.slice(0,3).map(function(m){
+                        return '<div style="padding:6px 13px;border-top:1px solid rgba(255,255,255,.07);font-size:12px;line-height:1.5;">'
+                            +'<span style="opacity:.5;font-size:10px;">'+(m.role==='user'?'Вы':'AI')+'</span> '
+                            +snip(m.content,q)
+                            +'</div>';
+                    }).join('');
+                    d.innerHTML='<div style="padding:10px 13px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center;">'
+                        +'<span>'+titleHl+'</span>'
+                        +'<span style="opacity:.5;font-size:11px;background:rgba(255,215,0,.15);padding:2px 7px;border-radius:10px;">'+r.m.length+' совп.</span>'
+                        +'</div>'+snippets;
+                    var cid=r.chat.id;
+                    d.onclick=function(){
+                        eitiCurrentChatId=cid;
+                        var chatTab = document.querySelector('.tab-item[data-view="chat"]');
+                        if (chatTab) {
+                            window._eitiSearchSuppressHistReload = true;
+                            chatTab.click();
+                            setTimeout(function(){ window._eitiSearchSuppressHistReload = false; }, 300);
+                        }
+                        eitiLoadChatIntoViewHighlight(cid, q);
+                    };
+                    list.appendChild(d);
                 });
+            }
+            eitiGetChats().then(function(chats){
+                var found = [];
+                var i = 0;
+                function nextBatch() {
+                    if (gen !== _eitiSearchGen) return Promise.resolve();
+                    if (i >= chats.length) { renderFound(found); return Promise.resolve(); }
+                    var end = Math.min(chats.length, i + 4);
+                    var slice = chats.slice(i, end);
+                    i = end;
+                    return Promise.all(slice.map(function(c) {
+                        return eitiGetMessages(c.id).then(function(msgs) {
+                            return eitiSearchMatchChat(c, msgs, q);
+                        });
+                    })).then(function(parts) {
+                        if (gen !== _eitiSearchGen) return;
+                        parts.forEach(function(p) { if (p) found.push(p); });
+                        return eitiYieldSlice().then(nextBatch);
+                    });
+                }
+                return nextBatch();
             });
         }
 
@@ -34831,17 +35012,7 @@ window.eitiLLMClearAll = async function() {
         function notesRender(filter) {
             var list = document.getElementById('notesList');
             if (!list) return;
-            var notes = notesLoad();
-            if (filter) {
-                // v9.7p2: тег-фильтрация смержена из monkey-patch
-                if (filter[0] === '#') {
-                    var _tagF = filter.slice(1).toLowerCase();
-                    notes = notes.filter(function(n){ return (n.tags||[]).some(function(t){ return t.toLowerCase().indexOf(_tagF)!==-1; }); });
-                } else {
-                    var q = filter.toLowerCase();
-                    notes = notes.filter(function(n){ return (n.title||'').toLowerCase().indexOf(q)!==-1 || (n.body||'').toLowerCase().indexOf(q)!==-1; });
-                }
-            }
+            var notes = eitiNotesFilterList(notesLoad(), filter);
             list.innerHTML = '';
             if (!notes.length) {
                 list.innerHTML = '<div class="notes-empty"><div class="notes-empty-icon">📝</div>' + (filter ? 'Ничего не найдено' : 'Нет заметок<br><br>Нажмите ＋ чтобы создать') + '</div>';
@@ -34921,12 +35092,13 @@ window.eitiLLMClearAll = async function() {
             if (remaining > 0) {
                 var moreBtn = document.createElement('div');
                 moreBtn.style.cssText = 'grid-column:1/-1;text-align:center;padding:12px;cursor:pointer;opacity:0.6;font-size:13px;';
-                moreBtn.textContent = '⬇ Показать ещё ' + remaining + ' заметок';
+                moreBtn.textContent = '⬇ Показать ещё ' + Math.min(NOTES_PAGE_SIZE, remaining) + ' из ' + remaining;
                 moreBtn.onclick = function() {
-                    // Показать все без ограничений при явном запросе
-                    var allCards = sorted.slice(NOTES_PAGE_SIZE);
+                    var shown = list.querySelectorAll('.note-card').length;
+                    var next = sorted.slice(shown, shown + NOTES_PAGE_SIZE);
+                    var still = sorted.length - shown - next.length;
                     moreBtn.remove();
-                    allCards.forEach(function(note) {
+                    next.forEach(function(note) {
                         var ci = note.colorIdx !== undefined ? note.colorIdx : 0;
                         var card = document.createElement('div');
                         card.className = 'note-card';
@@ -34951,6 +35123,10 @@ window.eitiLLMClearAll = async function() {
                         })(note.id);
                         list.appendChild(card);
                     });
+                    if (still > 0) {
+                        moreBtn.textContent = '⬇ Показать ещё ' + Math.min(NOTES_PAGE_SIZE, still) + ' из ' + still;
+                        list.appendChild(moreBtn);
+                    }
                 };
                 list.appendChild(moreBtn);
             }
@@ -42887,6 +43063,13 @@ window._eitiInitSQL = _initSQL;
                 { id: 'grok-4.7', label: 'Grok 4.7', desc: 'Vision ✓' },
             ]
         },
+        deepseek: {
+            title: '📷 Vision DeepSeek Flash',
+            key: 'eiti_ds_vision_model',
+            defs: [
+                { id: 'deepseek-flash', label: 'V4.1 Flash', desc: 'Vision ✓ · Pro нельзя' },
+            ]
+        },
     };
 
     function _eitiRenderModelPicker(p) {
@@ -42901,6 +43084,10 @@ window._eitiInitSQL = _initSQL;
         if (title) title.textContent = cfg.title;
         var kind = (p === 'openai') ? 'openai' : (p === 'anthropic') ? 'anthropic' : (p === 'grok') ? 'grokVision' : '';
         var cur = localStorage.getItem(cfg.key) || cfg.defs[0].id;
+        if (p === 'deepseek' && cur !== 'deepseek-flash') {
+            cur = 'deepseek-flash';
+            try { localStorage.setItem(cfg.key, cur); } catch (e) {}
+        }
         if (kind) {
             var migrated = eitiMigrateSavedModel(kind, cur);
             if (migrated !== cur) { try { localStorage.setItem(cfg.key, migrated); } catch (e) {} }
@@ -45149,7 +45336,9 @@ var QWEN = {
                     onError(new Error(msg));
                 });
             }
-            var reader  = r.body.getReader();
+            var reader  = (typeof eitiWrapIdleReader === 'function')
+                ? eitiWrapIdleReader(r.body.getReader(), 90000, signal)
+                : r.body.getReader();
             var decoder = new TextDecoder();
             var buf     = '';
             var result  = '';
@@ -46025,45 +46214,42 @@ function _eitiDeepSeekVision(userText, images, history, liveId) {
     var key = (typeof _deobfKey === 'function')
         ? _deobfKey(localStorage.getItem('deepseek_api_key') || '')
         : localStorage.getItem('deepseek_api_key') || '';
-    if (!key) return Promise.reject(new Error('Нет DeepSeek ключа'));
-
-    // DeepSeek Vision format: content = array of text/image_url parts
-    var msgs = history.filter(function(m) { return m.role !== 'system'; }).slice(0, -1);
-    var sysMsg = history.find(function(m) { return m.role === 'system'; });
-
-    var apiMsgs = [];
-    if (sysMsg) apiMsgs.push({ role: 'system', content: sysMsg.content });
-    msgs.forEach(function(m) {
-        apiMsgs.push({ role: m.role, content: m.content });
-    });
-
-    // Последнее сообщение — multimodal
-    var lastContent = [{ type: 'text', text: userText || '' }];
-    images.forEach(function(img) {
-        lastContent.push({
-            type:      'image_url',
-            image_url: { url: 'data:' + img.mime + ';base64,' + img.base64 }
-        });
-    });
-    apiMsgs.push({ role: 'user', content: lastContent });
-
-    return fetch('https://api.deepseek.com/v1/chat/completions', {
+    var selection = (typeof eitiGetDsSelection === 'function') ? eitiGetDsSelection() : (localStorage.getItem('eiti_ds_model') || 'deepseek-flash');
+    var built = (typeof eitiBuildDeepSeekVisionRequest === 'function')
+        ? eitiBuildDeepSeekVisionRequest(userText, images, history, {
+            hasKey: !!key,
+            selection: selection,
+            thinking: (typeof eitiIsDsReasoningMode === 'function') ? eitiIsDsReasoningMode() : false,
+            effort: (typeof eitiGetDsReasoningEffort === 'function') ? eitiGetDsReasoningEffort() : null
+        })
+        : null;
+    if (!built || built.error) return Promise.reject(new Error((built && built.error) || 'Нет DeepSeek ключа'));
+    if (built.forcedFromPro && typeof showToast === 'function') {
+        showToast('Pro не поддерживает изображения — отправлено через Flash', 2800);
+    }
+    var fetchFn = (typeof eitiFetchWithTimeout === 'function') ? eitiFetchWithTimeout : fetch;
+    return fetchFn(built.endpoint, {
         method:  'POST',
         headers: {
             'Authorization': 'Bearer ' + key,
             'Content-Type':  'application/json',
         },
-        body: JSON.stringify((typeof eitiApplyDsChatParams === 'function')
-            ? eitiApplyDsChatParams({ messages: apiMsgs, max_tokens: 2000, stream: false })
-            : { model: ((typeof eitiGetDsModel === 'function') ? eitiGetDsModel() : 'deepseek-flash'), messages: apiMsgs, max_tokens: 2000, stream: false }),
-    }).then(function(r) {
+        body: JSON.stringify(built.body)
+    }, 90000).then(function(r) {
         if (!r.ok) return r.json().then(function(e) {
             throw new Error('DS Vision ' + r.status + ': ' + JSON.stringify(e.error || e));
         });
         return r.json();
     }).then(function(d) {
-        var text = d.choices && d.choices[0] && d.choices[0].message && d.choices[0].message.content;
+        var msg = d.choices && d.choices[0] && d.choices[0].message;
+        var text = msg && msg.content;
+        if (!text && msg && msg.reasoning_content && built.body.thinking && built.body.thinking.type === 'enabled') {
+            text = msg.reasoning_content;
+        }
         if (!text) throw new Error('DeepSeek Vision: пустой ответ');
+        if (liveId && built.body.thinking && built.body.thinking.type === 'disabled') {
+            try { if (typeof _eitiThinkDone === 'function') _eitiThinkDone(liveId); } catch (e) {}
+        }
         return text;
     });
 }
@@ -46348,6 +46534,7 @@ window.eitiAskDeepSeek = function(userText) {
             openai: 'ChatGPT 📷 Vision 🟢', anthropic: 'Claude 📷 Vision 🟠',
             qwen: 'Qwen 📷 Vision 🟣', openrouter: 'OpenRouter 📷 Vision 🔀',
             grok: 'Grok 📷 Vision ⚡', mistral: 'Mistral 📷 Vision 🌟',
+            deepseek: 'DeepSeek Flash 📷 Vision 🤖',
         };
         var pLabel = _visionLabels[provider] || (provider + ' 📷 Vision');
         liveDiv.innerHTML =

@@ -1,0 +1,102 @@
+{
+  "seeded": {
+    "chats": 1,
+    "messages": 5000,
+    "notes": 300,
+    "kb": 1000
+  },
+  "viewport": "390x844",
+  "cpuThrottle": 4,
+  "scenarios": [
+    {
+      "label": "eitiSearch_квантовая",
+      "ms": 6206
+    },
+    {
+      "label": "eitiSearch_await_dom",
+      "ms": 1,
+      "value": 0
+    },
+    {
+      "label": "notesRender_filter",
+      "ms": 31
+    },
+    {
+      "label": "notesOpenEditor_50k",
+      "ms": 6
+    },
+    {
+      "label": "eitiLoadChatIntoView_500",
+      "ms": 1624,
+      "value": 50
+    },
+    {
+      "label": "eitiKBLoad_filter_1k",
+      "ms": 5,
+      "value": 91
+    },
+    {
+      "label": "JSON.parse_profile_learned",
+      "ms": 1
+    }
+  ],
+  "longTasks": [
+    {
+      "name": "self",
+      "ms": 74,
+      "start": 87
+    },
+    {
+      "name": "self",
+      "ms": 155,
+      "start": 199
+    },
+    {
+      "name": "self",
+      "ms": 178,
+      "start": 356
+    },
+    {
+      "name": "unknown",
+      "ms": 53,
+      "start": 673
+    },
+    {
+      "name": "self",
+      "ms": 177,
+      "start": 868
+    },
+    {
+      "name": "self",
+      "ms": 72,
+      "start": 1122
+    },
+    {
+      "name": "self",
+      "ms": 58,
+      "start": 2795
+    },
+    {
+      "name": "self",
+      "ms": 127,
+      "start": 3116
+    },
+    {
+      "name": "self",
+      "ms": 111,
+      "start": 3386
+    },
+    {
+      "name": "self",
+      "ms": 50,
+      "start": 3579
+    },
+    {
+      "name": "self",
+      "ms": 66,
+      "start": 6270
+    }
+  ],
+  "longTaskCount": 11,
+  "recordedAt": "2026-10-19T10:07:27.702Z"
+}

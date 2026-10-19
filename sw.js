@@ -1,8 +1,9 @@
-// VELANTRIM EITI — Service Worker v13.7.17
+// VELANTRIM EITI — Service Worker v13.7.18
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.7.17
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.7.18
 
-var CACHE = 'eiti-v13.7.17'; // v13.7.17: каталог моделей Oct 2026
+var CACHE = 'eiti-v13.7.18'; // v13.7.18: freeze SW allowlist
+var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
 // Критическое ядро — без них app не запустится
@@ -60,15 +61,39 @@ self.addEventListener('activate', function(e) {
                 .then(function() { return self.clients.claim(); })
                 .then(function() {
                     if (!isUpdate) return; // v12.9.79: не отправляем при первой установке
+                    return caches.open(CACHE).then(function(cache) {
+                        return swTrimCache(cache);
+                    }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '13.7.17' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '13.7.18' });
                         });
+                    });
                     });
                 });
         })
     );
 });
+
+function swIsAllowlisted(url) {
+    var path = url.pathname || '';
+    if (path === BASE || path === BASE + 'index.html') return true;
+    if (path === BASE + 'manifest.json') return true;
+    if (path === BASE + 'sql-wasm.js' || path === BASE + 'sql-wasm.wasm') return true;
+    if (/icon-.*\.png$/.test(path)) return true;
+    if (/\/(data|kb)\/[^/]+\.json$/i.test(path)
+        || path.endsWith('_kb_v3.json')
+        || path.endsWith('lemma.json')
+        || path.endsWith('mosc_graph_v3.json')) return true;
+    return false;
+}
+function swTrimCache(cache) {
+    return cache.keys().then(function(keys) {
+        if (!keys || keys.length <= CACHE_MAX_ENTRIES) return;
+        var extra = keys.length - CACHE_MAX_ENTRIES;
+        return Promise.all(keys.slice(0, extra).map(function(k) { return cache.delete(k); }));
+    });
+}
 
 // ── Stale-While-Revalidate helper ─────────────────────────────────────────────
 function swr(req) {
@@ -145,7 +170,11 @@ self.addEventListener('fetch', function(e) {
         return;
     }
 
-    // Остальные same-origin ресурсы — cache-first
+    // Allowlist CORE+HEAVY+data — cache-first. Остальное network-only, без раздувания кеша.
+    if (!swIsAllowlisted(url)) {
+        e.respondWith(fetch(e.request).catch(function() { return caches.match(e.request); }));
+        return;
+    }
     e.respondWith(
         caches.match(e.request).then(function(cached) {
             if (cached) return cached;
@@ -153,7 +182,7 @@ self.addEventListener('fetch', function(e) {
                 if (resp && resp.status === 200) {
                     var clone = resp.clone();
                     return caches.open(CACHE)
-                        .then(function(c) { return c.put(e.request, clone); })
+                        .then(function(c) { return c.put(e.request, clone).then(function() { return swTrimCache(c); }); })
                         .then(function() { return resp; })
                         .catch(function() { return resp; });
                 }
