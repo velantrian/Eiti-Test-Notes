@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.17-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.18-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,14 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.17
+## 🆕 Что нового в v13.7.18
+
+**Фризы Android Chrome и DeepSeek Flash Vision**
+- Поиск по истории чанков с yield и отменой устаревшего запроса; чат дописывает пузыри и подгружает историю страницами по 50.
+- Idle-timeout стрима 90 с, rAF-батчинг текста, SW cache-first только для CORE/HEAVY/data.
+- DeepSeek Flash — vision-провайдер (`deepseek-flash`); Pro для фото не используется.
+
+### Выпуск v13.7.17
 
 **Каталог AI-моделей (октябрь 2026)**
 - Актуальные ID DeepSeek, Gemini, OpenAI, Claude, Grok, Qwen, OpenRouter и эмбеддингов.
