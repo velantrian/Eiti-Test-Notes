@@ -55,7 +55,6 @@ function loadNotesAI(ls, extra) {
     'eitiNotesAIApplySize',
     'eitiNotesAITogglePanel',
     'eitiNotesAISyncControl',
-    'eitiNotesAIUpdateChip',
     'eitiNotesAIUpdateModelChip',
   ], Object.assign({
     localStorage: ls,
@@ -80,6 +79,8 @@ test('Notes AI UI and settings keys exist in the monolith', () => {
   assert.match(INDEX, /function eitiNotesAICall\(/);
   assert.match(INDEX, /eitiRenderMarkdown\(out\)/);
   assert.match(INDEX, /eitiRenderMarkdown\(text\)/);
+  assert.equal(INDEX.includes('id="notesAiChip"'), false);
+  assert.equal(INDEX.includes('function eitiNotesAIUpdateChip('), false);
 });
 
 test('Notes AI composer uses a rounded keyboard focus frame', () => {
@@ -257,7 +258,6 @@ test('Notes AI opens at its default size and keeps dragged height only during th
   const s = loadNotesAI(ls, {
     window: { innerHeight: 640, visualViewport: null },
     document: { getElementById(id) { return elements[id] || null; } },
-    eitiNotesAIUpdateChip() {},
     eitiNotesAIUpdateModelChip() {},
     eitiNotesAIRenderThread() {},
     setTimeout() {},

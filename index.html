@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.19"; // Подсветка правок Ask AI, undo и экспорт заметки
+        var EITI_VERSION = "13.7.20"; // Шапка заметки, иконка подсветки, без чипа Ask AI
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7389,23 +7389,71 @@
         .note-editor-card { display: flex; flex-direction: column; height: 100%; position: relative; }
         .note-editor-topbar {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
+            gap: 6px 8px;
+            padding: 8px 10px;
             background: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
             overflow: visible;
         }
         .note-editor-topbar .note-editor-title {
-            min-width: 0;
-            flex: 1;
+            flex: 1 1 40%;
+            min-width: 120px;
         }
-        .note-editor-topbar > div:last-child {
+        .note-editor-topbar-actions {
             flex-shrink: 0;
             display: flex;
             gap: 6px;
             align-items: center;
+            margin-left: auto;
+        }
+        .note-ai-tools {
+            display: none;
+            flex: 1 1 100%;
+            justify-content: flex-end;
+            gap: 6px;
+            align-items: center;
+        }
+        .note-ai-tools.is-visible { display: flex; }
+        .note-more-menu {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 52px;
+            z-index: 41;
+            min-width: 210px;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .note-more-menu.open { display: block; }
+        .note-more-menu button {
+            display: flex; align-items: center; gap: 8px; width: 100%;
+            padding: 9px 10px; margin: 0;
+            border: none; border-radius: 8px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 13px; text-align: left; cursor: pointer;
+        }
+        .note-more-menu button:active { background: var(--secondary-color); }
+        .note-more-menu button[hidden] { display: none !important; }
+        .note-hl-glyph {
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            padding: 3px 5px 4px;
+            border-radius: 4px;
+            background: color-mix(in srgb, var(--notes-hl-add, #86efac) 72%, transparent);
+            color: var(--text-color);
+            box-shadow: inset 0 -2px 0 rgba(22, 163, 74, 0.55);
+        }
+        .note-editor-tool-icon.is-on .note-hl-glyph {
+            background: color-mix(in srgb, var(--notes-hl-add, #86efac) 88%, #fff 12%);
         }
         .note-editor-back {
             width: 38px; height: 38px;
@@ -7737,12 +7785,11 @@
         .note-editor-overlay.notes-ai-fullscreen .notes-ai-empty-hint { display: none !important; }
         .notes-ai-panel-head {
             position: relative;
-            display: grid; grid-template-columns: minmax(0, 1fr) 36px; grid-template-rows: 28px 36px;
-            align-items: center; column-gap: 8px;
-            padding: 5px 12px 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 32px;
+            padding: 4px 12px 6px; flex-shrink: 0;
         }
         .notes-ai-panel-handle {
-            grid-column: 1 / -1; grid-row: 1; justify-self: center;
             width: 72px; height: 28px; padding: 0; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
             border: 0; border-radius: 99px; background: transparent; cursor: ns-resize;
@@ -7755,20 +7802,10 @@
         }
         .notes-ai-panel-handle:active span { width: 58px; opacity: 0.75; }
         .notes-ai-panel-head > button:not(.notes-ai-panel-handle) {
-            grid-column: 2; grid-row: 2;
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
             width: 32px; height: 32px; border-radius: 50%;
             border: none; background: rgba(255,255,255,0.08);
             color: var(--text-color); cursor: pointer; flex-shrink: 0;
-        }
-        .notes-ai-chip {
-            grid-column: 1; grid-row: 2;
-            flex: 1; min-width: 0;
-            display: flex; align-items: center; gap: 6px;
-            padding: 6px 10px; border-radius: 12px;
-            background: var(--secondary-color);
-            border: 1px solid var(--border-color);
-            font-size: 12px; font-weight: 600;
-            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
         .notes-ai-msgs {
             flex: 1; min-height: 0; overflow-y: auto;
@@ -7857,6 +7894,10 @@
         @media (max-width: 430px) {
             .notes-ai-fab-ask { font-size: 13px; }
             .notes-ai-panel.notes-ai-size-small { height: 42%; }
+            .note-editor-topbar .note-editor-title {
+                flex: 1 1 40%;
+                min-width: 120px;
+            }
         }
 
         /* ══════════ CALENDAR MODAL ══════════ */
@@ -8611,8 +8652,8 @@
                                     </div>
                                     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
                                         <div style="min-width:0;">
-                                            <div style="font-size:14px;font-weight:600;">🖍 Подсветка правок ИИ</div>
-                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой 🖍 или при ручном наборе.</div>
+                                            <div style="font-size:14px;font-weight:600;">Подсветка правок ИИ</div>
+                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.</div>
                                         </div>
                                         <div id="notes-ai-hl-toggle" role="switch" aria-checked="true" aria-label="Подсветка правок ИИ" onclick="eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled())"
                                             style="width:44px;height:26px;border-radius:13px;background:var(--accent-color);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
@@ -11107,16 +11148,20 @@
                         <div class="note-editor-topbar">
                             <button class="note-editor-back" id="noteEditorBack">←</button>
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
-                            <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
-                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ">🖍</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
-                                <button id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🔔</button>
-                                <button id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">☀️</button>
-                                <!-- v12.9.77: История версий заметки -->
-                                <button id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;display:none;">🕐</button>
+                            <div class="note-editor-topbar-actions">
                                 <button class="note-editor-save-icon" id="noteEditorSave" title="Сохранить">💾</button>
                                 <button class="note-editor-delete-top" id="noteEditorDelete" title="Удалить">🗑</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
+                            </div>
+                            <div class="note-ai-tools" id="noteAiTools" hidden>
+                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
+                            </div>
+                            <div id="noteMoreMenu" class="note-more-menu" hidden>
+                                <button type="button" id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание">🔔 Напоминание</button>
+                                <button type="button" id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим">☀️ Светлый режим</button>
+                                <button type="button" id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" hidden>🕐 История версий</button>
                             </div>
                         </div>
                         <div class="note-editor-toolbar">
@@ -11162,7 +11207,6 @@
                             <div class="notes-ai-panel-head">
                                 <button type="button" class="notes-ai-panel-handle" id="notesAiPanelHandle" title="Потяните, чтобы изменить высоту; двойное касание — полный экран" aria-label="Потяните, чтобы изменить высоту; двойное касание — полный экран"><span aria-hidden="true"></span></button>
                                 <button type="button" id="notesAiPanelClose" title="Закрыть">✕</button>
-                                <div class="notes-ai-chip" id="notesAiChip">📄 Заметка</div>
                             </div>
                             <div class="notes-ai-msgs" id="notesAiMsgs"></div>
                             <div class="notes-ai-quick">
@@ -35611,7 +35655,9 @@ window.eitiLLMClearAll = async function() {
             return enabled;
         }
         function eitiNotesHlToggle() {
-            return eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
+            var enabled = eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
+            if (typeof showToast === 'function') showToast('Подсветка правок ИИ: ' + (enabled ? 'вкл' : 'выкл'), 1400);
+            return enabled;
         }
         function eitiNotesOnManualEdit() {
             if (_eitiNotesHlIgnoreInput) return;
@@ -35674,6 +35720,12 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiNotesAiUndoSyncButtons() {
             var note = eitiNotesAiUndoLiveNote();
+            var hasPair = !!(note && note.aiBefore != null && note.aiAfter != null);
+            var tools = document.getElementById('noteAiTools');
+            if (tools) {
+                tools.hidden = !hasPair;
+                tools.classList.toggle('is-visible', hasPair);
+            }
             var undoBtn = document.getElementById('noteAiUndoBtn');
             var redoBtn = document.getElementById('noteAiRedoBtn');
             var canU = eitiNotesAiUndoCanUndo(note);
@@ -35971,6 +36023,25 @@ window.eitiLLMClearAll = async function() {
             }
             eitiNotesAiUndoSyncButtons();
         }
+        function eitiNotesMoreMenuClose() {
+            var menu = document.getElementById('noteMoreMenu');
+            var btn = document.getElementById('noteMoreBtn');
+            if (menu) {
+                menu.classList.remove('open');
+                menu.hidden = true;
+            }
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+        function eitiNotesMoreMenuToggle() {
+            var menu = document.getElementById('noteMoreMenu');
+            var btn = document.getElementById('noteMoreBtn');
+            if (!menu) return false;
+            var open = !menu.classList.contains('open');
+            menu.hidden = !open;
+            menu.classList.toggle('open', open);
+            if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            return open;
+        }
         function eitiNotesHlBindUI() {
             eitiNotesHlApplyCssVars();
             eitiNotesHlSyncSettingsUi();
@@ -36037,9 +36108,29 @@ window.eitiLLMClearAll = async function() {
                 window._eitiNotesExportDocBound = true;
                 document.addEventListener('click', function(e) {
                     var menuEl = document.getElementById('noteExportMenu');
-                    if (!menuEl || !menuEl.classList.contains('open')) return;
-                    if (e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn')) return;
-                    eitiNotesExportMenuClose();
+                    if (menuEl && menuEl.classList.contains('open') && !e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn')) {
+                        eitiNotesExportMenuClose();
+                    }
+                    var more = document.getElementById('noteMoreMenu');
+                    if (more && more.classList.contains('open') && !e.target.closest('#noteMoreMenu, #noteMoreBtn')) {
+                        eitiNotesMoreMenuClose();
+                    }
+                });
+            }
+            var moreBtn = document.getElementById('noteMoreBtn');
+            if (moreBtn && !moreBtn._eitiBound) {
+                moreBtn._eitiBound = true;
+                moreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    eitiNotesMoreMenuToggle();
+                });
+            }
+            var moreMenu = document.getElementById('noteMoreMenu');
+            if (moreMenu && !moreMenu._eitiBound) {
+                moreMenu._eitiBound = true;
+                moreMenu.addEventListener('click', function() {
+                    setTimeout(eitiNotesMoreMenuClose, 0);
                 });
             }
         }
@@ -36791,16 +36882,8 @@ window.eitiLLMClearAll = async function() {
                 if (find) find.classList.remove('visible');
             } else {
                 eitiNotesAIApplySize();
-                eitiNotesAIUpdateChip();
                 eitiNotesAIUpdateModelChip();
             }
-        }
-        function eitiNotesAIUpdateChip() {
-            var chip = document.getElementById('notesAiChip');
-            if (!chip) return;
-            var titleEl = document.getElementById('noteEditorTitle');
-            var title = titleEl ? (titleEl.value || '').trim() : '';
-            chip.textContent = '📄 ' + (title || 'Заметка');
         }
         function eitiNotesAIUpdateModelChip() {
             var el = document.getElementById('notesAiModelChip');
@@ -36847,7 +36930,6 @@ window.eitiLLMClearAll = async function() {
             panel.classList.toggle('open', open);
             if (open) {
                 if (!wasOpen) eitiNotesAIApplySize();
-                eitiNotesAIUpdateChip();
                 eitiNotesAIUpdateModelChip();
                 eitiNotesAIRenderThread();
                 var inp = document.getElementById('notesAiInput');
@@ -37299,7 +37381,7 @@ window.eitiLLMClearAll = async function() {
         // Показывать кнопку 🕐 только для существующих заметок
         function noteHistoryBtnUpdate() {
             var btn = document.getElementById('noteHistoryBtn');
-            if (btn) btn.style.display = notesCurrentId ? 'flex' : 'none';
+            if (btn) btn.hidden = !notesCurrentId;
         }
 
         // ── v12.9.77: Авто-индексация embedding при сохранении ────────────
@@ -40996,7 +41078,6 @@ body.theme-velantrim-neutral .chat-input {
 .note-editor-overlay.note-light-mode .notes-ai-panel,
 .note-editor-overlay.note-light-mode .notes-ai-compose-box,
 .note-editor-overlay.note-light-mode .notes-ai-msg.assistant,
-.note-editor-overlay.note-light-mode .notes-ai-chip,
 .note-editor-overlay.note-light-mode .notes-ai-model-menu {
     background: #f3eee4 !important;
     color: #1a1208 !important;

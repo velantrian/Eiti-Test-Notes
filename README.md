@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.19-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.20-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,14 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.19
+## 🆕 Что нового в v13.7.20
+
+**Шапка заметки и панель Ask AI**
+- Убран чип «📄 Заметка» из нижней панели Ask AI — контекст текущей заметки по-прежнему уходит в модель.
+- Кнопка подсветки — «Аб», а не карандаш; тост «Подсветка правок ИИ: вкл/выкл». 🖍/↶/↷ видны только после правки ИИ.
+- На 360–390px заголовок не сжимается до двух букв: 🔔, ☀️ и история в меню ⋯.
+
+### Выпуск v13.7.19
 
 **Заметки: подсветка правок Ask AI, шаг назад и экспорт**
 - После Ask AI вставки подсвечиваются, удаления показываются зачёркнутыми; в сохранённый текст удаления не попадают.

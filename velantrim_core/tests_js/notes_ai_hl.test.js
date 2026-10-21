@@ -41,6 +41,11 @@ function loadExport() {
 
 test('подсветка Ask AI: ключи UI и хранилища есть в монолите', () => {
   assert.match(INDEX, /id="noteHlToggle"/);
+  assert.match(INDEX, /aria-label="Подсветка правок ИИ"/);
+  assert.match(INDEX, /note-hl-glyph/);
+  assert.match(INDEX, />Аб</);
+  assert.match(INDEX, /id="noteAiTools"/);
+  assert.match(INDEX, /id="noteMoreBtn"/);
   assert.match(INDEX, /id="noteAiUndoBtn"/);
   assert.match(INDEX, /id="noteAiRedoBtn"/);
   assert.match(INDEX, /id="noteSaveAsBtn"/);
@@ -53,6 +58,8 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   assert.match(INDEX, /function eitiNotesDiffWords\(/);
   assert.match(INDEX, /Сохранить заметку/);
   assert.match(INDEX, /title="Отправить"/);
+  assert.equal(INDEX.includes('id="notesAiChip"'), false);
+  assert.equal(INDEX.includes('function eitiNotesAIUpdateChip('), false);
 });
 
 test('diff: вставка, удаление и замена слов', () => {
