@@ -76,7 +76,8 @@ for (const viewport of [
     expect(askBox.width).toBeGreaterThanOrEqual(120);
     await expect(page.locator('#notesAiSearchBtn')).toBeVisible();
     await expect(page.locator('#notesAiEditBtn')).toBeVisible();
-    await expect(page.locator('#noteEditorSave')).toBeVisible();
+    await expect(page.locator('#noteEditorSave')).toHaveCount(0);
+    await expect(page.locator('.note-editor-topbar-actions')).not.toContainText('💾');
     await expect(page.locator('#notesAiFabBar #noteSaveAsBtn')).toHaveCount(0);
     await expect(page.locator('#notesAiFabBar #noteShareBtn')).toHaveCount(0);
     await expect(page.locator('#noteSaveAsBtn')).toBeHidden();

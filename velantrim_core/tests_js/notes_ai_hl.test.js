@@ -68,7 +68,11 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   assert.match(INDEX, /title="Отправить"/);
   assert.match(INDEX, /Удалить заметку/);
   assert.match(INDEX, /note-more-danger/);
-  assert.match(INDEX, /id="noteEditorSave"/);
+  assert.equal(INDEX.includes('id="noteEditorSave"'), false);
+  assert.equal(INDEX.includes("getElementById('noteEditorSave')"), false);
+  assert.match(INDEX, /function notesPersistEditor\(/);
+  assert.match(INDEX, /function notesAutoSaveSchedule\(/);
+  assert.match(INDEX, /function notesAutoSaveFlush\(/);
   assert.equal(INDEX.includes('id="notesAiChip"'), false);
   assert.equal(INDEX.includes('function eitiNotesAIUpdateChip('), false);
   const moreIdx = INDEX.indexOf('id="noteMoreMenu"');
@@ -80,13 +84,12 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   const histIdx = INDEX.indexOf('id="noteHistoryBtn"');
   const delIdx = INDEX.indexOf('id="noteEditorDelete"');
   const copyIdx = INDEX.indexOf('id="noteCopyAllBtn"');
-  const headerSaveIdx = INDEX.indexOf('id="noteEditorSave"');
   const topbarIdx = INDEX.indexOf('class="note-editor-topbar"');
   const topbarEnd = INDEX.indexOf('class="note-editor-toolbar"', topbarIdx);
   const fabIdx = INDEX.indexOf('id="notesAiFabBar"');
   assert.ok(moreIdx > 0 && fmtBtnIdx > moreIdx && saveAsIdx > fmtBtnIdx && shareIdx > saveAsIdx);
   assert.ok(reminderIdx > shareIdx && lightIdx > reminderIdx && histIdx > lightIdx && delIdx > histIdx);
-  assert.ok(copyIdx > topbarIdx && headerSaveIdx > copyIdx && (topbarEnd < 0 || copyIdx < topbarEnd));
+  assert.ok(copyIdx > topbarIdx && (topbarEnd < 0 || copyIdx < topbarEnd));
   assert.ok(saveAsIdx > moreIdx && saveAsIdx < fabIdx);
   assert.ok(shareIdx > moreIdx && shareIdx < fabIdx);
   assert.ok(INDEX.indexOf('data-fmt="bold"') > INDEX.indexOf('id="noteFmtPopover"'));
@@ -201,4 +204,25 @@ test('экспорт md/txt: заголовок, тело, UTF-8 кирилли�
   assert.equal(emptyTitle.filename, 'zametka.md');
   assert.match(emptyTitle.content, /только тело/);
   assert.doesNotMatch(emptyTitle.content, /undefined/);
+});
+
+test('автосохранение: шапка без 💾, flush на закрытие/переключение/pagehide, без пустых заметок', () => {
+  const top = INDEX.indexOf('class="note-editor-topbar-actions"');
+  const topEnd = INDEX.indexOf('id="noteMoreMenu"', top);
+  const actions = INDEX.slice(top, topEnd);
+  assert.equal(actions.includes('💾'), false);
+  assert.match(actions, /id="noteCopyAllBtn"/);
+  assert.match(actions, /id="noteMoreBtn"/);
+  const fn = (name) => {
+    const i = INDEX.indexOf('function ' + name + '(');
+    assert.ok(i > 0, name);
+    return INDEX.slice(i, INDEX.indexOf('\n        }\n', i));
+  };
+  assert.match(fn('notesCloseEditor'), /notesAutoSaveFlush\(\)/);
+  assert.match(fn('notesOpenEditor'), /notesAutoSaveFlush\(\)/);
+  assert.match(fn('notesAutoSaveSchedule'), /800/);
+  assert.match(fn('notesPersistEditor'), /if \(!title && !body\) return 'empty'/);
+  assert.equal(/showToast/.test(fn('notesPersistEditor')), false);
+  assert.match(INDEX, /addEventListener\('pagehide', function\(\) \{ notesAutoSaveFlush\(\); \}\)/);
+  assert.match(INDEX, /visibilityState === 'hidden'\) notesAutoSaveFlush\(\)/);
 });

@@ -85,3 +85,52 @@ test('search entry point runs without throwing', async ({ page }) => {
 
   expect(result.ok, result.reason).toBe(true);
 });
+
+// v13.7.20: 💾 убран из шапки — заметка должна сохраняться сама (автосохранение).
+test('note editor autosaves: no 💾 in header, text survives ← back + reload, empty note not created', async ({ page }) => {
+  await page.goto('/index.html');
+  await page.waitForLoadState('networkidle');
+  await waitForDb(page);
+
+  const marker = 'E2E_autosave_' + Date.now();
+  const before = await page.evaluate(() => notesLoad().length);
+
+  // Empty new note opened and closed → nothing created.
+  await page.evaluate(() => { notesOpenEditor(null); notesCloseEditor(); });
+  expect(await page.evaluate(() => notesLoad().length)).toBe(before);
+
+  await page.evaluate(() => notesOpenEditor(null));
+  await expect(page.locator('#noteEditorSave')).toHaveCount(0);
+  await expect(page.locator('.note-editor-topbar-actions')).not.toContainText('💾');
+
+  // Type through real input events, then leave via ← without any explicit save.
+  await page.evaluate((mk) => {
+    const t = document.getElementById('noteEditorTitle');
+    const b = document.getElementById('noteEditorBody');
+    t.value = mk; t.dispatchEvent(new Event('input', { bubbles: true }));
+    b.value = 'autosave body ' + mk; b.dispatchEvent(new Event('input', { bubbles: true }));
+    document.getElementById('noteEditorBack').click();
+  }, marker);
+
+  // Debounced path: edit the saved note and wait > 800 ms without closing.
+  await page.evaluate((mk) => {
+    const n = notesLoad().find((x) => x.title === mk);
+    notesOpenEditor(n.id);
+    const b = document.getElementById('noteEditorBody');
+    b.value = 'debounced ' + mk; b.dispatchEvent(new Event('input', { bubbles: true }));
+  }, marker);
+  await page.waitForTimeout(1500);
+  expect(await page.evaluate((mk) => notesLoad().filter((x) => x.title === mk).length, marker)).toBe(1);
+
+  await page.reload();
+  await page.waitForLoadState('networkidle');
+  await waitForDb(page);
+  const found = await page.evaluate((mk) =>
+    new Promise((resolve, reject) => {
+      const tx = eitiDb.transaction(['notes'], 'readonly');
+      const req = tx.objectStore('notes').getAll();
+      req.onsuccess = () => resolve(req.result.filter((n) => n.title === mk).map((n) => n.body));
+      req.onerror = () => reject(req.error);
+    }), marker);
+  expect(found).toEqual(['debounced ' + marker]);
+});

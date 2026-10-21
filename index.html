@@ -11191,7 +11191,6 @@
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
                             <div class="note-editor-topbar-actions">
                                 <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
-                                <button class="note-editor-save-icon" id="noteEditorSave" title="Сохранить">💾</button>
                                 <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
                             </div>
                             <div id="noteMoreMenu" class="note-more-menu" hidden>
@@ -12787,8 +12786,13 @@
             };
             var backBtn = document.getElementById('noteEditorBack');
             if (backBtn) backBtn.onclick = notesCloseEditor;
-            var saveBtn = document.getElementById('noteEditorSave');
-            if (saveBtn) saveBtn.onclick = notesSaveNote;
+            // v13.7.20: 💾 в шапке убран — заметка сохраняется сама (автосохранение)
+            ['noteEditorTitle','noteEditorBody','noteEditorTags'].forEach(function(fid) {
+                var fel = document.getElementById(fid);
+                if (fel && !fel._eitiAutoSaveBound) { fel._eitiAutoSaveBound = true; fel.addEventListener('input', notesAutoSaveSchedule); }
+            });
+            window.addEventListener('pagehide', function() { notesAutoSaveFlush(); });
+            document.addEventListener('visibilitychange', function() { if (document.visibilityState === 'hidden') notesAutoSaveFlush(); });
             var delBtn = document.getElementById('noteEditorDelete');
             if (delBtn) delBtn.onclick = notesDeleteNote;
             var search = document.getElementById('notesSearch');
@@ -35356,6 +35360,8 @@ window.eitiLLMClearAll = async function() {
             return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
         }
         function notesOpenEditor(id, searchQuery) {
+            notesAutoSaveFlush();
+            _notesAutoHistDone = false;
             var notes = notesLoad();
             var note = id ? notes.find(function(n){ return n.id === id; }) : null;
             notesCurrentId = note ? note.id : null;
@@ -35388,6 +35394,7 @@ window.eitiLLMClearAll = async function() {
                     dot.onclick = function() {
                         notesCurrentColor = i;
                         colorRow.querySelectorAll('.note-color-dot').forEach(function(d,j){ d.classList.toggle('selected', j===i); });
+                        notesAutoSaveSchedule();
                     };
                     colorRow.appendChild(dot);
                 });
@@ -35428,6 +35435,7 @@ window.eitiLLMClearAll = async function() {
             if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
         }
         function notesCloseEditor() {
+            notesAutoSaveFlush();
             if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
             if (typeof eitiNotesAIOnEditorClose === 'function') eitiNotesAIOnEditorClose();
             var overlay = document.getElementById('noteEditorOverlay');
@@ -35814,6 +35822,7 @@ window.eitiLLMClearAll = async function() {
                 }
             } else {
                 _eitiNotesAiUndoDraft = nextNote;
+                if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush();
             }
             if (keepHighlight && nextNote.aiBefore != null && nextNote.aiAfter != null) {
                 eitiNotesHlOnAiChange(nextNote.aiBefore, nextNote.aiAfter);
@@ -36081,6 +36090,7 @@ window.eitiLLMClearAll = async function() {
                     dot.onclick = function() {
                         notesCurrentColor = i;
                         colorRow.querySelectorAll('.note-color-dot').forEach(function(d, j) { d.classList.toggle('selected', j === i); });
+                        if (typeof notesAutoSaveSchedule === 'function') notesAutoSaveSchedule();
                     };
                     colorRow.appendChild(dot);
                 });
@@ -36809,6 +36819,7 @@ window.eitiLLMClearAll = async function() {
             _eitiNotesHlIgnoreInput = false;
             var saved = eitiNotesAIPersistCurrentNote(undoExtra || {});
             if (!saved && undoExtra) _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, undoExtra);
+            if (!saved && !notesCurrentId && typeof notesAutoSaveFlush === 'function') { notesAutoSaveFlush(); saved = !!notesCurrentId; }
             if (typeof eitiNotesAiUndoSyncButtons === 'function') eitiNotesAiUndoSyncButtons();
             if (typeof showToast === 'function') showToast(saved ? '✨ ИИ изменил и сохранил заметку' : '✨ ИИ изменил черновик — сохраните его вручную', 2200);
             return { ok: true, saved: saved, action: action };
@@ -37132,6 +37143,7 @@ window.eitiLLMClearAll = async function() {
             }
             var msg = String(text || '').trim();
             if (!msg || _eitiNotesAIBusy) return Promise.resolve();
+            if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush();
             var titleEl = document.getElementById('noteEditorTitle');
             var bodyEl = document.getElementById('noteEditorBody');
             var tagsEl = document.getElementById('noteEditorTags');
@@ -37354,34 +37366,54 @@ window.eitiLLMClearAll = async function() {
         window.eitiNotesAiUndoClick = eitiNotesAiUndoClick;
         window.eitiNotesAiRedoClick = eitiNotesAiRedoClick;
 
-        function notesSaveNote() {
-            var title = (document.getElementById('noteEditorTitle').value || '').trim();
-            var body = (document.getElementById('noteEditorBody').value || '').trim();
-            if (!title && !body) { showToast('Заметка пустая'); return; }
+        // v13.7.20: единая функция сохранения редактора. Тихая (без тостов), не создаёт пустых заметок.
+        // Возвращает 'saved' | 'nochange' | 'empty' | 'gone'.
+        var _notesAutoTimer = null;
+        var _notesAutoHistDone = false;
+        function notesPersistEditor() {
+            var titleEl = document.getElementById('noteEditorTitle');
+            var bodyEl = document.getElementById('noteEditorBody');
+            if (!titleEl || !bodyEl) return 'gone';
+            var title = (titleEl.value || '').trim();
+            var body = (bodyEl.value || '').trim();
             // v9.7p2: теги смержены из monkey-patch
             var tagsEl = document.getElementById('noteEditorTags');
             var tags = tagsEl ? notesTagsFromInput(tagsEl.value) : [];
             var notes = notesLoad();
             var now = Date.now();
-            var emojiIdx = Math.floor(Math.random() * NOTE_EMOJIS.length);
+            var savedId;
             if (notesCurrentId) {
-                // v12.9.77: сохраняем текущую версию в историю ПЕРЕД обновлением
-                var _existing = notes.find(function(n){ return n.id === notesCurrentId; });
-                if (_existing && (_existing.body || _existing.title)) {
+                var _idx = notes.findIndex(function(n){ return n && n.id === notesCurrentId; });
+                if (_idx < 0) return 'gone'; // заметка удалена — не воскрешаем
+                var _existing = notes[_idx];
+                if ((_existing.title || '') === title && (_existing.body || '') === body &&
+                    (_existing.tags || []).join('\u0001') === tags.join('\u0001') &&
+                    (_existing.colorIdx || 0) === (notesCurrentColor || 0)) return 'nochange';
+                // v12.9.77: версия в историю ПЕРЕД обновлением — один раз за сеанс редактора
+                if (!_notesAutoHistDone && (_existing.body || _existing.title)) {
                     noteHistorySave(_existing);
+                    _notesAutoHistDone = true;
                 }
-                notes = notes.map(function(n){
-                    if (n.id === notesCurrentId) {
-                        return Object.assign({}, n, { title: title, body: body, updated: now, colorIdx: notesCurrentColor, tags: tags });
-                    }
-                    return n;
-                });
+                notes[_idx] = Object.assign({}, _existing, { title: title, body: body, updated: now, colorIdx: notesCurrentColor, tags: tags });
+                savedId = notesCurrentId;
             } else {
-                notes.push({ id: 'note_' + now, title: title, body: body, created: now, updated: now, colorIdx: notesCurrentColor, emojiIdx: emojiIdx, tags: tags });
+                if (!title && !body) return 'empty';
+                var emojiIdx = Math.floor(Math.random() * NOTE_EMOJIS.length);
+                var fresh = { id: 'note_' + now, title: title, body: body, created: now, updated: now, colorIdx: notesCurrentColor, emojiIdx: emojiIdx, tags: tags };
+                // пара ↶↷ от Ask AI, сделанная до первого сохранения, переезжает в заметку
+                if (typeof _eitiNotesAiUndoDraft !== 'undefined' && _eitiNotesAiUndoDraft && _eitiNotesAiUndoDraft.aiBefore != null && _eitiNotesAiUndoDraft.aiAfter != null) {
+                    ['aiBefore','aiAfter','aiUndoAt','aiDirty'].forEach(function(k){ if (_eitiNotesAiUndoDraft[k] !== undefined) fresh[k] = _eitiNotesAiUndoDraft[k]; });
+                    _eitiNotesAiUndoDraft = null;
+                }
+                notes.push(fresh);
+                savedId = fresh.id;
+                notesCurrentId = fresh.id;
+                _notesAutoHistDone = true;
+                if (typeof noteHistoryBtnUpdate === 'function') noteHistoryBtnUpdate();
             }
             notesSave(notes);
             // v12.9.77: авто-индексация вектора если модель загружена
-            noteAutoEmbed(title, body, notesCurrentId || ('note_' + now));
+            noteAutoEmbed(title, body, savedId);
             // Обновляем badge с датой сохранения
             var _badge = document.getElementById('noteEditorDateBadge');
             if (_badge) {
@@ -37389,6 +37421,31 @@ window.eitiLLMClearAll = async function() {
                 _badge.textContent = '🗓 ' + _nd.toLocaleDateString('ru',{day:'2-digit',month:'2-digit',year:'2-digit'}) + ' ' + _nd.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'});
                 _badge.title = 'Изменено';
             }
+            return 'saved';
+        }
+        function notesEditorIsOpen() {
+            var ov = document.getElementById('noteEditorOverlay');
+            return !!(ov && ov.classList.contains('active'));
+        }
+        function notesAutoSaveSchedule() {
+            if (typeof _eitiNotesHlIgnoreInput !== 'undefined' && _eitiNotesHlIgnoreInput && notesCurrentId) return;
+            clearTimeout(_notesAutoTimer);
+            _notesAutoTimer = setTimeout(function() {
+                _notesAutoTimer = null;
+                if (notesEditorIsOpen()) { try { notesPersistEditor(); } catch (e) {} }
+            }, 800);
+        }
+        function notesAutoSaveFlush() {
+            clearTimeout(_notesAutoTimer);
+            _notesAutoTimer = null;
+            if (!notesEditorIsOpen()) return 'closed';
+            try { return notesPersistEditor(); } catch (e) { return 'error'; }
+        }
+        window.notesAutoSaveFlush = notesAutoSaveFlush;
+        // Явное сохранение (совместимость со старыми вызовами): та же функция + тост и закрытие
+        function notesSaveNote() {
+            var r = notesAutoSaveFlush();
+            if (r === 'empty') { showToast('Заметка пустая'); return; }
             showToast('📝 Заметка сохранена');
             notesCloseEditor();
             vibrate();
@@ -37524,8 +37581,14 @@ window.eitiLLMClearAll = async function() {
         }
 
         function notesDeleteNote() {
-            if (!notesCurrentId) { notesCloseEditor(); return; }
+            if (!notesCurrentId) {
+                // несохранённая новая заметка: очищаем поля, чтобы автосохранение её не создало
+                clearTimeout(_notesAutoTimer); _notesAutoTimer = null;
+                ['noteEditorTitle','noteEditorBody','noteEditorTags'].forEach(function(fid) { var fel = document.getElementById(fid); if (fel) fel.value = ''; });
+                notesCloseEditor(); return;
+            }
             eitiConfirm('Удалить эту заметку?', function() {
+                clearTimeout(_notesAutoTimer); _notesAutoTimer = null;
                 var notes = notesLoad().filter(function(n){ return n.id !== notesCurrentId; });
                 notesSave(notes);
                 showToast('🗑 Удалено');
