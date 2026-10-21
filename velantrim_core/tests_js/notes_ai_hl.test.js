@@ -55,6 +55,7 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   assert.match(INDEX, /id="noteEditorToolbar"/);
   assert.match(INDEX, /id="noteFmtToggle"/);
   assert.match(INDEX, /aria-label="Формат и цвет"/);
+  assert.match(INDEX, /Шрифт и цвет/);
   assert.match(INDEX, /id="noteFmtPopover"/);
   assert.match(INDEX, /id="noteCopyAllBtn"/);
   assert.match(INDEX, /function eitiNotesSyncKeyboardChrome\(/);
@@ -64,14 +65,19 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   assert.match(INDEX, /function eitiNotesDiffWords\(/);
   assert.match(INDEX, /Сохранить заметку/);
   assert.match(INDEX, /title="Отправить"/);
+  assert.match(INDEX, /Удалить заметку/);
+  assert.match(INDEX, /note-more-danger/);
   assert.equal(INDEX.includes('id="notesAiChip"'), false);
   assert.equal(INDEX.includes('function eitiNotesAIUpdateChip('), false);
-  const toolbarIdx = INDEX.indexOf('id="noteEditorToolbar"');
+  const moreIdx = INDEX.indexOf('id="noteMoreMenu"');
+  const fmtBtnIdx = INDEX.indexOf('id="noteFmtToggle"');
+  const delIdx = INDEX.indexOf('id="noteEditorDelete"');
+  const copyIdx = INDEX.indexOf('id="noteCopyAllBtn"');
   const topbarIdx = INDEX.indexOf('class="note-editor-topbar"');
-  const fmtIdx = INDEX.indexOf('id="noteFmtPopover"');
-  assert.ok(toolbarIdx > 0 && fmtIdx > toolbarIdx);
-  assert.ok(INDEX.indexOf('data-fmt="bold"') > fmtIdx);
-  assert.ok(topbarIdx > 0 && toolbarIdx > topbarIdx);
+  const topbarEnd = INDEX.indexOf('class="note-editor-toolbar"', topbarIdx);
+  assert.ok(moreIdx > 0 && fmtBtnIdx > moreIdx && delIdx > fmtBtnIdx);
+  assert.ok(copyIdx > topbarIdx && (topbarEnd < 0 || copyIdx < topbarEnd));
+  assert.ok(INDEX.indexOf('data-fmt="bold"') > INDEX.indexOf('id="noteFmtPopover"'));
 });
 
 test('diff: вставка, удаление и замена слов', () => {

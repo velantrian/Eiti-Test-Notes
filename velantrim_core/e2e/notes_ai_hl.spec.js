@@ -49,7 +49,7 @@ for (const viewport of [
   { width: 390, height: 844 },
   { width: 360, height: 800 },
 ]) {
-  test(`шапка ${viewport.width}x${viewport.height}: заголовок ≥120px, нет чипа, aria-label подсветки`, async ({ page }) => {
+  test(`шапка ${viewport.width}x${viewport.height}: заголовок ≥120px, 📋 в шапке, формат из ⋯`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await openEditor(page, false);
 
@@ -58,30 +58,43 @@ for (const viewport of [
     expect(titleBox.width).toBeGreaterThanOrEqual(120);
 
     const topbar = page.locator('.note-editor-topbar');
-    const toolbar = page.locator('#noteEditorToolbar');
-    const topbarBox = await topbar.boundingBox();
-    const toolbarBox = await toolbar.boundingBox();
-    expect(topbarBox).not.toBeNull();
-    expect(toolbarBox).not.toBeNull();
-    expect(toolbarBox.y).toBeGreaterThan(topbarBox.y + topbarBox.height + 80);
-    expect(toolbarBox.y).toBeGreaterThan(viewport.height * 0.45);
-
-    await expect(page.locator('.note-editor-topbar .note-fmt-btn')).toHaveCount(0);
-    await expect(page.locator('.note-editor-topbar [data-fmt]')).toHaveCount(0);
-    await expect(page.locator('#noteFmtPopover')).toBeHidden();
-
     const copy = page.locator('#noteCopyAllBtn');
     await expect(copy).toBeVisible();
+    const topbarBox = await topbar.boundingBox();
     const copyBox = await copy.boundingBox();
-    expect(copyBox.y).toBeGreaterThan(toolbarBox.y - 4);
-    expect(copyBox.y).toBeLessThan(toolbarBox.y + toolbarBox.height);
+    expect(copyBox.y).toBeGreaterThan(topbarBox.y - 4);
+    expect(copyBox.y).toBeLessThan(topbarBox.y + topbarBox.height);
 
-    const fmtToggle = page.locator('#noteFmtToggle');
-    await expect(fmtToggle).toBeVisible();
-    await expect(fmtToggle).toHaveAttribute('aria-label', 'Формат и цвет');
-    await expect(page.locator('#noteFmtToggle .note-fmt-aa')).toHaveText('Аа');
+    await expect(page.locator('.note-editor-topbar #noteEditorDelete')).toHaveCount(0);
+    await expect(page.locator('.note-editor-topbar .note-fmt-btn')).toHaveCount(0);
+    await expect(page.locator('#noteFmtPopover')).toBeHidden();
+    await expect(page.locator('#notesAiChip')).toHaveCount(0);
 
-    await fmtToggle.click();
+    const askBox = await page.locator('#notesAiAskBtn').boundingBox();
+    expect(askBox).not.toBeNull();
+    expect(askBox.width).toBeGreaterThanOrEqual(120);
+    await expect(page.locator('#noteSaveAsBtn')).toBeVisible();
+    await expect(page.locator('#noteShareBtn')).toBeVisible();
+
+    await page.locator('#noteMoreBtn').click();
+    const more = page.locator('#noteMoreMenu');
+    await expect(more).toBeVisible();
+    await expect(page.locator('#noteMoreMenu #noteFmtToggle')).toBeVisible();
+    await expect(page.locator('#noteFmtToggle')).toHaveAttribute('aria-label', 'Формат и цвет');
+    await expect(page.locator('#noteMoreMenu #noteEditorDelete')).toBeVisible();
+    await expect(page.locator('#noteEditorDelete')).toHaveText(/Удалить заметку/);
+
+    if (viewport.width === 390) {
+      fs.mkdirSync(ARTIFACTS, { recursive: true });
+      const overlay = page.locator('#noteEditorOverlay');
+      await overlay.locator('.note-editor-topbar').screenshot({
+        path: path.join(ARTIFACTS, 'note_header_390.png'),
+      });
+      await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_more_menu_390.png') });
+    }
+
+    await page.locator('#noteFmtToggle').click();
+    await expect(more).toBeHidden();
     await expect(page.locator('#noteFmtPopover')).toBeVisible();
     await expect(page.locator('#noteFmtPopover [data-fmt="bold"]')).toBeVisible();
     await expect(page.locator('#noteFmtPopover [data-fmt="italic"]')).toBeVisible();
@@ -89,17 +102,18 @@ for (const viewport of [
     await expect(page.locator('#noteFmtPopover .note-color-dot').first()).toBeVisible();
 
     if (viewport.width === 390) {
-      fs.mkdirSync(ARTIFACTS, { recursive: true });
       const overlay = page.locator('#noteEditorOverlay');
       await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_fmt_popover_390.png') });
-      await fmtToggle.click();
-      await expect(page.locator('#noteFmtPopover')).toBeHidden();
-      await overlay.locator('.note-editor-topbar').screenshot({
-        path: path.join(ARTIFACTS, 'note_header_390.png'),
+      await page.evaluate(() => {
+        if (typeof window.eitiNotesFmtPopoverToggle === 'function') {
+          const pop = document.getElementById('noteFmtPopover');
+          if (pop && pop.classList.contains('open')) window.eitiNotesFmtPopoverToggle();
+        }
       });
+      await expect(page.locator('#noteFmtPopover')).toBeHidden();
       await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_editor_bottom_390.png') });
     } else {
-      await fmtToggle.click();
+      await page.locator('#noteEditorOverlay').click({ position: { x: 20, y: 200 } });
       await expect(page.locator('#noteFmtPopover')).toBeHidden();
     }
 
@@ -110,7 +124,6 @@ for (const viewport of [
     await expect(page.locator('#notesAiPanel')).toBeVisible();
     await expect(page.locator('#notesAiPanelHandle')).toBeVisible();
     await expect(page.locator('#notesAiPanelClose')).toBeVisible();
-    await expect(page.locator('.notes-ai-chip')).toHaveCount(0);
 
     if (viewport.width === 390) {
       await page.locator('#notesAiPanel').screenshot({
@@ -133,6 +146,8 @@ for (const viewport of [
 
     const titleAfter = await page.locator('#noteEditorTitle').boundingBox();
     expect(titleAfter.width).toBeGreaterThanOrEqual(120);
+    const askAfter = await page.locator('#notesAiAskBtn').boundingBox();
+    expect(askAfter.width).toBeGreaterThanOrEqual(120);
   });
 }
 
