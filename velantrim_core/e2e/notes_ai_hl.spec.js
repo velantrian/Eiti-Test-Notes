@@ -27,6 +27,7 @@ async function openEditor(page, withPanel) {
     if (typeof window.eitiNotesAIOnEditorOpen === 'function') window.eitiNotesAIOnEditorOpen();
     if (typeof window.eitiNotesHlBindUI === 'function') window.eitiNotesHlBindUI();
     if (typeof window.eitiNotesHlOnEditorOpen === 'function') window.eitiNotesHlOnEditorOpen(null);
+    if (typeof window.eitiNotesSyncKeyboardChrome === 'function') window.eitiNotesSyncKeyboardChrome();
     if (openPanel && typeof window.eitiNotesAITogglePanel === 'function') window.eitiNotesAITogglePanel(true);
   }, !!withPanel);
 }
@@ -50,18 +51,76 @@ for (const viewport of [
 ]) {
   test(`шапка ${viewport.width}x${viewport.height}: заголовок ≥120px, нет чипа, aria-label подсветки`, async ({ page }) => {
     await page.setViewportSize(viewport);
-    await openEditor(page, true);
+    await openEditor(page, false);
 
     const titleBox = await page.locator('#noteEditorTitle').boundingBox();
     expect(titleBox).not.toBeNull();
     expect(titleBox.width).toBeGreaterThanOrEqual(120);
 
+    const topbar = page.locator('.note-editor-topbar');
+    const toolbar = page.locator('#noteEditorToolbar');
+    const topbarBox = await topbar.boundingBox();
+    const toolbarBox = await toolbar.boundingBox();
+    expect(topbarBox).not.toBeNull();
+    expect(toolbarBox).not.toBeNull();
+    expect(toolbarBox.y).toBeGreaterThan(topbarBox.y + topbarBox.height + 80);
+    expect(toolbarBox.y).toBeGreaterThan(viewport.height * 0.45);
+
+    await expect(page.locator('.note-editor-topbar .note-fmt-btn')).toHaveCount(0);
+    await expect(page.locator('.note-editor-topbar [data-fmt]')).toHaveCount(0);
+    await expect(page.locator('#noteFmtPopover')).toBeHidden();
+
+    const copy = page.locator('#noteCopyAllBtn');
+    await expect(copy).toBeVisible();
+    const copyBox = await copy.boundingBox();
+    expect(copyBox.y).toBeGreaterThan(toolbarBox.y - 4);
+    expect(copyBox.y).toBeLessThan(toolbarBox.y + toolbarBox.height);
+
+    const fmtToggle = page.locator('#noteFmtToggle');
+    await expect(fmtToggle).toBeVisible();
+    await expect(fmtToggle).toHaveAttribute('aria-label', 'Формат и цвет');
+    await expect(page.locator('#noteFmtToggle .note-fmt-aa')).toHaveText('Аа');
+
+    await fmtToggle.click();
+    await expect(page.locator('#noteFmtPopover')).toBeVisible();
+    await expect(page.locator('#noteFmtPopover [data-fmt="bold"]')).toBeVisible();
+    await expect(page.locator('#noteFmtPopover [data-fmt="italic"]')).toBeVisible();
+    await expect(page.locator('#noteFmtPopover #noteColorRow')).toBeVisible();
+    await expect(page.locator('#noteFmtPopover .note-color-dot').first()).toBeVisible();
+
+    if (viewport.width === 390) {
+      fs.mkdirSync(ARTIFACTS, { recursive: true });
+      const overlay = page.locator('#noteEditorOverlay');
+      await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_fmt_popover_390.png') });
+      await fmtToggle.click();
+      await expect(page.locator('#noteFmtPopover')).toBeHidden();
+      await overlay.locator('.note-editor-topbar').screenshot({
+        path: path.join(ARTIFACTS, 'note_header_390.png'),
+      });
+      await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_editor_bottom_390.png') });
+    } else {
+      await fmtToggle.click();
+      await expect(page.locator('#noteFmtPopover')).toBeHidden();
+    }
+
+    await page.evaluate(() => {
+      if (typeof window.eitiNotesAITogglePanel === 'function') window.eitiNotesAITogglePanel(true);
+    });
     await expect(page.locator('#notesAiChip')).toHaveCount(0);
     await expect(page.locator('#notesAiPanel')).toBeVisible();
     await expect(page.locator('#notesAiPanelHandle')).toBeVisible();
     await expect(page.locator('#notesAiPanelClose')).toBeVisible();
     await expect(page.locator('.notes-ai-chip')).toHaveCount(0);
 
+    if (viewport.width === 390) {
+      await page.locator('#notesAiPanel').screenshot({
+        path: path.join(ARTIFACTS, 'notes_ai_sheet_390.png'),
+      });
+    }
+
+    await page.evaluate(() => {
+      if (typeof window.eitiNotesAITogglePanel === 'function') window.eitiNotesAITogglePanel(false);
+    });
     await expect(page.locator('#noteAiTools')).toBeHidden();
     await injectAiPair(page);
     await expect(page.locator('#noteAiTools')).toBeVisible();
@@ -74,17 +133,6 @@ for (const viewport of [
 
     const titleAfter = await page.locator('#noteEditorTitle').boundingBox();
     expect(titleAfter.width).toBeGreaterThanOrEqual(120);
-
-    if (viewport.width === 390) {
-      fs.mkdirSync(ARTIFACTS, { recursive: true });
-      const overlay = page.locator('#noteEditorOverlay');
-      await overlay.locator('.note-editor-topbar').screenshot({
-        path: path.join(ARTIFACTS, 'note_header_390.png'),
-      });
-      await page.locator('#notesAiPanel').screenshot({
-        path: path.join(ARTIFACTS, 'notes_ai_sheet_390.png'),
-      });
-    }
   });
 }
 

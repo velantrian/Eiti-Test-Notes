@@ -2,7 +2,7 @@
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
 // Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.7.20
 
-var CACHE = 'eiti-v13.7.20'; // v13.7.20: шапка заметки, иконка подсветки, без чипа Ask AI
+var CACHE = 'eiti-v13.7.20'; // v13.7.20: шапка заметки, нижняя панель формата, без чипа Ask AI
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 

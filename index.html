@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.20"; // Шапка заметки, иконка подсветки, без чипа Ask AI
+        var EITI_VERSION = "13.7.20"; // Шапка заметки, нижняя панель формата, без чипа Ask AI
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7389,7 +7389,7 @@
         .note-editor-card { display: flex; flex-direction: column; height: 100%; position: relative; }
         .note-editor-topbar {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             gap: 6px 8px;
             padding: 8px 10px;
@@ -7399,7 +7399,7 @@
             overflow: visible;
         }
         .note-editor-topbar .note-editor-title {
-            flex: 1 1 40%;
+            flex: 1 1 auto;
             min-width: 120px;
         }
         .note-editor-topbar-actions {
@@ -7411,10 +7411,10 @@
         }
         .note-ai-tools {
             display: none;
-            flex: 1 1 100%;
-            justify-content: flex-end;
+            margin-left: auto;
             gap: 6px;
             align-items: center;
+            flex-shrink: 0;
         }
         .note-ai-tools.is-visible { display: flex; }
         .note-more-menu {
@@ -7494,14 +7494,48 @@
         }
         .note-editor-toolbar {
             display: flex;
+            position: absolute;
+            left: 8px; right: 8px;
+            bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+            z-index: 16;
             align-items: center;
-            gap: 4px;
-            padding: 6px 10px;
+            gap: 6px;
+            padding: 6px 8px;
             background: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.28);
             flex-shrink: 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            overflow: visible;
+        }
+        .note-editor-overlay.notes-ai-on .note-editor-toolbar {
+            bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+        }
+        .note-fmt-popover {
+            display: none;
+            position: absolute;
+            left: 0; right: 0;
+            bottom: calc(100% + 8px);
+            z-index: 2;
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .note-fmt-popover.open { display: block; }
+        .note-fmt-popover-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .note-fmt-aa {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            line-height: 1;
         }
         .note-fmt-btn {
             padding: 5px 9px;
@@ -7730,14 +7764,17 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.28);
             display: flex; align-items: center; justify-content: center; gap: 6px;
         }
+        .note-editor-overlay.active .note-editor-body,
+        .note-editor-overlay.active .note-editor-hl { padding-bottom: 64px; }
+        .note-editor-overlay.active .note-tags-row { padding-bottom: 52px; }
         .note-editor-overlay.notes-ai-on .note-editor-body,
-        .note-editor-overlay.notes-ai-on .note-editor-hl { padding-bottom: 78px; }
-        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 58px; }
+        .note-editor-overlay.notes-ai-on .note-editor-hl { padding-bottom: 122px; }
+        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 110px; }
         .notes-ai-find {
             display: none;
             position: absolute;
             left: 10px; right: 10px;
-            bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+            bottom: calc(110px + env(safe-area-inset-bottom, 0px));
             z-index: 17;
             align-items: center; gap: 6px;
             background: var(--secondary-color);
@@ -7895,7 +7932,7 @@
             .notes-ai-fab-ask { font-size: 13px; }
             .notes-ai-panel.notes-ai-size-small { height: 42%; }
             .note-editor-topbar .note-editor-title {
-                flex: 1 1 40%;
+                flex: 1 1 auto;
                 min-width: 120px;
             }
         }
@@ -11153,27 +11190,32 @@
                                 <button class="note-editor-delete-top" id="noteEditorDelete" title="Удалить">🗑</button>
                                 <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
                             </div>
-                            <div class="note-ai-tools" id="noteAiTools" hidden>
-                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
-                            </div>
                             <div id="noteMoreMenu" class="note-more-menu" hidden>
                                 <button type="button" id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание">🔔 Напоминание</button>
                                 <button type="button" id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим">☀️ Светлый режим</button>
                                 <button type="button" id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" hidden>🕐 История версий</button>
                             </div>
                         </div>
-                        <div class="note-editor-toolbar">
-                            <button class="note-fmt-btn" data-fmt="bold" title="Жирный">𝐁</button>
-                            <button class="note-fmt-btn" data-fmt="italic" title="Курсив">𝘐</button>
-                            <button class="note-fmt-btn" data-fmt="ul" title="Список">• —</button>
-                            <button class="note-fmt-btn" data-fmt="h2" title="Заголовок">H</button>
-                            <button class="note-fmt-btn" data-fmt="line" title="Разделитель">—</button>
-                            <button class="note-fmt-btn" id="noteCopyAllBtn" title="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
-                            <button type="button" class="note-fmt-btn" id="noteSaveAsBtn" title="Сохранить заметку" aria-haspopup="true" aria-expanded="false">⬇</button>
-                            <button type="button" class="note-fmt-btn" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false">↗</button>
-                            <div class="note-color-row" id="noteColorRow"></div>
+                        <div class="note-editor-toolbar" id="noteEditorToolbar">
+                            <button type="button" class="note-editor-tool-icon" id="noteFmtToggle" title="Формат и цвет" aria-haspopup="true" aria-expanded="false" aria-label="Формат и цвет"><span class="note-fmt-aa" aria-hidden="true">Аа</span></button>
+                            <div id="noteFmtPopover" class="note-fmt-popover" hidden>
+                                <div class="note-fmt-popover-row">
+                                    <button class="note-fmt-btn" data-fmt="bold" title="Жирный">𝐁</button>
+                                    <button class="note-fmt-btn" data-fmt="italic" title="Курсив">𝘐</button>
+                                    <button class="note-fmt-btn" data-fmt="ul" title="Список">• —</button>
+                                    <button class="note-fmt-btn" data-fmt="h2" title="Заголовок">H</button>
+                                    <button class="note-fmt-btn" data-fmt="line" title="Разделитель">—</button>
+                                </div>
+                                <div class="note-color-row" id="noteColorRow"></div>
+                            </div>
+                            <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
+                            <button type="button" class="note-editor-tool-icon" id="noteSaveAsBtn" title="Сохранить заметку" aria-haspopup="true" aria-expanded="false" aria-label="Сохранить заметку">⬇</button>
+                            <button type="button" class="note-editor-tool-icon" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false" aria-label="Отправить">↗</button>
+                            <div class="note-ai-tools" id="noteAiTools" hidden>
+                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
+                            </div>
                         </div>
                         <div id="noteExportMenu" class="note-export-menu" hidden>
                             <button type="button" data-note-export="md">Markdown (.md)</button>
@@ -11186,7 +11228,7 @@
                         </div>
                         <!-- Кнопка быстрой навигации (вверх/вниз) -->
                         <button id="noteScrollBtn"
-                            style="display:none;position:absolute;right:14px;bottom:90px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:10;align-items:center;justify-content:center;transition:opacity 0.2s;"
+                            style="display:none;position:absolute;right:14px;bottom:140px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:10;align-items:center;justify-content:center;transition:opacity 0.2s;"
                             onclick="eitiNoteScrollToggle()">⬇</button>
                         <div class="note-tags-row">
                             <input id="noteEditorTags" placeholder="🏷 Теги: работа, идеи, личное..." autocomplete="off"
@@ -35378,8 +35420,11 @@ window.eitiLLMClearAll = async function() {
             if (typeof noteHistoryBtnUpdate === 'function') noteHistoryBtnUpdate();
             if (typeof eitiNotesAIOnEditorOpen === 'function') eitiNotesAIOnEditorOpen();
             if (typeof eitiNotesHlOnEditorOpen === 'function') eitiNotesHlOnEditorOpen(note);
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
+            if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
         }
         function notesCloseEditor() {
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
             if (typeof eitiNotesAIOnEditorClose === 'function') eitiNotesAIOnEditorClose();
             var overlay = document.getElementById('noteEditorOverlay');
             if (overlay) overlay.classList.remove('active');
@@ -35990,15 +36035,24 @@ window.eitiLLMClearAll = async function() {
         function eitiNotesExportMenuOpen(mode, anchor) {
             var menu = document.getElementById('noteExportMenu');
             if (!menu) return;
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
+            if (typeof eitiNotesMoreMenuClose === 'function') eitiNotesMoreMenuClose();
             _eitiNotesExportMode = mode === 'share' ? 'share' : 'save';
             menu.hidden = false;
             menu.classList.add('open');
             if (anchor && anchor.getBoundingClientRect) {
                 var rect = anchor.getBoundingClientRect();
                 var card = document.querySelector('.note-editor-card');
-                var cardRect = card ? card.getBoundingClientRect() : { top: 0, right: 0 };
-                menu.style.top = Math.max(8, rect.bottom - cardRect.top + 6) + 'px';
+                var cardRect = card ? card.getBoundingClientRect() : { top: 0, right: 0, bottom: window.innerHeight };
+                var menuH = menu.offsetHeight || 132;
+                var spaceBelow = cardRect.bottom - rect.bottom;
+                if (spaceBelow < menuH + 12) {
+                    menu.style.top = Math.max(8, rect.top - cardRect.top - menuH - 6) + 'px';
+                } else {
+                    menu.style.top = Math.max(8, rect.bottom - cardRect.top + 6) + 'px';
+                }
                 menu.style.right = Math.max(8, cardRect.right - rect.right) + 'px';
+                menu.style.left = 'auto';
             }
             var saveBtn = document.getElementById('noteSaveAsBtn');
             var shareBtn = document.getElementById('noteShareBtn');
@@ -36014,6 +36068,19 @@ window.eitiLLMClearAll = async function() {
         function eitiNotesHlOnEditorOpen(note) {
             eitiNotesHlApplyCssVars();
             eitiNotesHlSyncSettingsUi();
+            var colorRow = document.getElementById('noteColorRow');
+            if (colorRow && !colorRow.childElementCount && typeof NOTE_COLORS !== 'undefined') {
+                NOTE_COLORS.forEach(function(c, i) {
+                    var dot = document.createElement('div');
+                    dot.className = 'note-color-dot' + (i === notesCurrentColor ? ' selected' : '');
+                    dot.style.background = c.bg;
+                    dot.onclick = function() {
+                        notesCurrentColor = i;
+                        colorRow.querySelectorAll('.note-color-dot').forEach(function(d, j) { d.classList.toggle('selected', j === i); });
+                    };
+                    colorRow.appendChild(dot);
+                });
+            }
             _eitiNotesAiUndoDraft = notesCurrentId ? null : _eitiNotesAiUndoDraft;
             var src = note || eitiNotesAiUndoLiveNote();
             if (src && src.aiBefore != null && src.aiAfter != null && src.aiUndoAt !== 'before' && String(src.body || '') === String(src.aiAfter)) {
@@ -36037,9 +36104,40 @@ window.eitiLLMClearAll = async function() {
             var btn = document.getElementById('noteMoreBtn');
             if (!menu) return false;
             var open = !menu.classList.contains('open');
+            if (open) {
+                eitiNotesFmtPopoverClose();
+                eitiNotesExportMenuClose();
+            }
             menu.hidden = !open;
             menu.classList.toggle('open', open);
             if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            return open;
+        }
+        function eitiNotesFmtPopoverClose() {
+            var pop = document.getElementById('noteFmtPopover');
+            var btn = document.getElementById('noteFmtToggle');
+            var toolbar = document.getElementById('noteEditorToolbar');
+            if (pop) {
+                pop.classList.remove('open');
+                pop.hidden = true;
+            }
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+            if (toolbar) toolbar.style.zIndex = '';
+        }
+        function eitiNotesFmtPopoverToggle() {
+            var pop = document.getElementById('noteFmtPopover');
+            var btn = document.getElementById('noteFmtToggle');
+            var toolbar = document.getElementById('noteEditorToolbar');
+            if (!pop) return false;
+            var open = !pop.classList.contains('open');
+            if (open) {
+                eitiNotesMoreMenuClose();
+                eitiNotesExportMenuClose();
+            }
+            pop.hidden = !open;
+            pop.classList.toggle('open', open);
+            if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (toolbar) toolbar.style.zIndex = open ? '20' : '';
             return open;
         }
         function eitiNotesHlBindUI() {
@@ -36115,6 +36213,19 @@ window.eitiLLMClearAll = async function() {
                     if (more && more.classList.contains('open') && !e.target.closest('#noteMoreMenu, #noteMoreBtn')) {
                         eitiNotesMoreMenuClose();
                     }
+                    var fmtPop = document.getElementById('noteFmtPopover');
+                    if (fmtPop && fmtPop.classList.contains('open') && !e.target.closest('#noteFmtPopover, #noteFmtToggle')) {
+                        eitiNotesFmtPopoverClose();
+                    }
+                });
+            }
+            var fmtBtn = document.getElementById('noteFmtToggle');
+            if (fmtBtn && !fmtBtn._eitiBound) {
+                fmtBtn._eitiBound = true;
+                fmtBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    eitiNotesFmtPopoverToggle();
                 });
             }
             var moreBtn = document.getElementById('noteMoreBtn');
@@ -36195,6 +36306,30 @@ window.eitiLLMClearAll = async function() {
             var offsetTop = Number(vv.offsetTop) || 0;
             var parentHeight = panel && panel.parentElement ? Number(panel.parentElement.clientHeight) || 0 : 0;
             return Math.max(0, Math.floor((parentHeight || layoutHeight) - visibleHeight - offsetTop));
+        }
+        function eitiNotesSyncKeyboardChrome() {
+            var overlay = document.getElementById('noteEditorOverlay');
+            var panel = document.getElementById('notesAiPanel');
+            var toolbar = document.getElementById('noteEditorToolbar');
+            var bar = document.getElementById('notesAiFabBar');
+            var find = document.getElementById('notesAiFindRow');
+            var kb = eitiNotesAIGetKeyboardInset(panel, window.innerHeight, window.visualViewport);
+            var aiOn = !!(overlay && overlay.classList.contains('notes-ai-on'));
+            var safe = 'env(safe-area-inset-bottom, 0px)';
+            var gap = 10;
+            var fabH = 44;
+            var toolGap = 8;
+            var toolH = 44;
+            if (bar) bar.style.bottom = 'calc(' + (gap + kb) + 'px + ' + safe + ')';
+            if (toolbar) {
+                var toolBottom = gap + kb + (aiOn ? (fabH + toolGap) : 0);
+                toolbar.style.bottom = 'calc(' + toolBottom + 'px + ' + safe + ')';
+            }
+            if (find) {
+                var findBottom = gap + kb + (aiOn ? (fabH + toolGap) : 0) + toolH + toolGap;
+                find.style.bottom = 'calc(' + findBottom + 'px + ' + safe + ')';
+            }
+            if (panel) panel.style.bottom = kb + 'px';
         }
         function eitiNotesAIAvailablePanelHeight(panel) {
             var viewport = Math.max(1, Number(window.innerHeight) || 640);
@@ -36876,6 +37011,7 @@ window.eitiLLMClearAll = async function() {
             var show = eitiNotesAIControlVisible(!!(overlay && overlay.classList.contains('active')));
             if (overlay) overlay.classList.toggle('notes-ai-on', show);
             if (bar) bar.classList.toggle('visible', !!show);
+            if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
             if (!show) {
                 if (panel) panel.classList.remove('open');
                 eitiNotesAIToggleFullscreen(false);
@@ -37203,22 +37339,10 @@ window.eitiLLMClearAll = async function() {
             };
             if (window.visualViewport && !window._eitiNotesAIVvBound) {
                 window._eitiNotesAIVvBound = true;
-                var syncKb = function() {
-                    var vv = window.visualViewport;
-                    var panel = document.getElementById('notesAiPanel');
-                    var kb = eitiNotesAIGetKeyboardInset(panel, window.innerHeight, vv);
-                    var bar = document.getElementById('notesAiFabBar');
-                    var find = document.getElementById('notesAiFindRow');
-                    var inset = 'calc(' + (10 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
-                    if (bar) bar.style.bottom = inset;
-                    if (find) find.style.bottom = 'calc(' + (62 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
-                    if (panel) {
-                        panel.style.bottom = kb + 'px';
-                    }
-                };
-                window.visualViewport.addEventListener('resize', syncKb);
-                window.visualViewport.addEventListener('scroll', syncKb);
+                window.visualViewport.addEventListener('resize', eitiNotesSyncKeyboardChrome);
+                window.visualViewport.addEventListener('scroll', eitiNotesSyncKeyboardChrome);
             }
+            eitiNotesSyncKeyboardChrome();
         }
         window.eitiNotesAIIsEnabled = eitiNotesAIIsEnabled;
         window.eitiNotesAISetEnabled = eitiNotesAISetEnabled;
@@ -37229,6 +37353,8 @@ window.eitiLLMClearAll = async function() {
         window.eitiNotesAIToggleFullscreen = eitiNotesAIToggleFullscreen;
         window.eitiNotesAITogglePanel = eitiNotesAITogglePanel;
         window.eitiNotesAIOnEditorOpen = eitiNotesAIOnEditorOpen;
+        window.eitiNotesSyncKeyboardChrome = eitiNotesSyncKeyboardChrome;
+        window.eitiNotesFmtPopoverToggle = eitiNotesFmtPopoverToggle;
         window.eitiNotesHlToggle = eitiNotesHlToggle;
         window.eitiNotesHlSetEnabled = eitiNotesHlSetEnabled;
         window.eitiNotesAiUndoClick = eitiNotesAiUndoClick;
@@ -37429,6 +37555,7 @@ window.eitiLLMClearAll = async function() {
             ta.selectionStart = ta.selectionEnd = start + insert.length;
             ta.focus();
             if (typeof eitiNotesOnManualEdit === 'function') eitiNotesOnManualEdit();
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
         }
 
         // Init notes on DOM ready
@@ -41048,7 +41175,8 @@ body.theme-velantrim-neutral .chat-input {
     -webkit-text-fill-color: #1a1208 !important;
 }
 .note-editor-overlay.note-light-mode .note-editor-topbar,
-.note-editor-overlay.note-light-mode .note-editor-toolbar {
+.note-editor-overlay.note-light-mode .note-editor-toolbar,
+.note-editor-overlay.note-light-mode .note-fmt-popover {
     background: #ede8de !important;
     color: #1a1208 !important;
 }
