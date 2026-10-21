@@ -7739,7 +7739,6 @@
             pointer-events: none;
         }
         .notes-ai-fab-bar.visible { display: flex; }
-        .note-editor-overlay:not(.notes-ai-on) .notes-ai-fab-bar { justify-content: flex-end; }
         .note-editor-overlay:not(.notes-ai-on) .notes-ai-fab-ai { display: none !important; }
         .notes-ai-fab-bar .note-editor-tool-icon { pointer-events: auto; }
         .notes-ai-fab-round {
@@ -7756,7 +7755,7 @@
         }
         .notes-ai-fab-ask {
             pointer-events: auto;
-            flex: 1 1 120px; min-width: 120px; height: 44px;
+            flex: 1; min-width: 0; height: 44px;
             border-radius: 22px;
             border: 1px solid var(--border-color);
             background: var(--panel-bg);
@@ -11197,6 +11196,8 @@
                             </div>
                             <div id="noteMoreMenu" class="note-more-menu" hidden>
                                 <button type="button" id="noteFmtToggle" title="Формат и цвет" aria-haspopup="true" aria-expanded="false" aria-label="Формат и цвет"><span class="note-fmt-aa" aria-hidden="true">Аа</span> Шрифт и цвет</button>
+                                <button type="button" id="noteSaveAsBtn" title="Сохранить как файл" aria-haspopup="true" aria-expanded="false" aria-label="Сохранить как файл">💾 Сохранить как файл</button>
+                                <button type="button" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false" aria-label="Отправить">📤 Отправить</button>
                                 <button type="button" id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание">🔔 Напоминание</button>
                                 <button type="button" id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим">☀️ Светлый режим</button>
                                 <button type="button" id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" hidden>🕐 История версий</button>
@@ -11241,8 +11242,6 @@
                             <button type="button" class="notes-ai-fab-ask notes-ai-fab-ai" id="notesAiAskBtn"><span>✨</span><span data-i18n="Ask AI">Ask AI</span></button>
                             <button type="button" class="notes-ai-fab-round notes-ai-fab-ai" id="notesAiEditBtn" title="Редактировать" aria-label="Редактировать">✎</button>
                             <div class="note-editor-toolbar" id="noteEditorToolbar">
-                                <button type="button" class="note-editor-tool-icon" id="noteSaveAsBtn" title="Сохранить заметку" aria-haspopup="true" aria-expanded="false" aria-label="Сохранить заметку">⬇</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false" aria-label="Отправить">↗</button>
                                 <div class="note-ai-tools" id="noteAiTools" hidden>
                                     <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
                                     <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
@@ -36178,8 +36177,9 @@ window.eitiLLMClearAll = async function() {
                     e.preventDefault();
                     e.stopPropagation();
                     var menu = document.getElementById('noteExportMenu');
+                    var anchor = document.getElementById('noteMoreBtn') || saveAs;
                     if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'save') eitiNotesExportMenuClose();
-                    else eitiNotesExportMenuOpen('save', saveAs);
+                    else eitiNotesExportMenuOpen('save', anchor);
                 });
             }
             var shareBtn = document.getElementById('noteShareBtn');
@@ -36189,8 +36189,9 @@ window.eitiLLMClearAll = async function() {
                     e.preventDefault();
                     e.stopPropagation();
                     var menu = document.getElementById('noteExportMenu');
+                    var anchor = document.getElementById('noteMoreBtn') || shareBtn;
                     if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'share') eitiNotesExportMenuClose();
-                    else eitiNotesExportMenuOpen('share', shareBtn);
+                    else eitiNotesExportMenuOpen('share', anchor);
                 });
             }
             var menu = document.getElementById('noteExportMenu');
@@ -36207,7 +36208,7 @@ window.eitiLLMClearAll = async function() {
                 window._eitiNotesExportDocBound = true;
                 document.addEventListener('click', function(e) {
                     var menuEl = document.getElementById('noteExportMenu');
-                    if (menuEl && menuEl.classList.contains('open') && !e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn')) {
+                    if (menuEl && menuEl.classList.contains('open') && !e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn, #noteMoreBtn')) {
                         eitiNotesExportMenuClose();
                     }
                     var more = document.getElementById('noteMoreMenu');
@@ -36242,7 +36243,7 @@ window.eitiLLMClearAll = async function() {
             if (moreMenu && !moreMenu._eitiBound) {
                 moreMenu._eitiBound = true;
                 moreMenu.addEventListener('click', function(e) {
-                    if (e.target.closest('#noteFmtToggle')) return;
+                    if (e.target.closest('#noteFmtToggle, #noteSaveAsBtn, #noteShareBtn')) return;
                     setTimeout(eitiNotesMoreMenuClose, 0);
                 });
             }
@@ -37003,7 +37004,7 @@ window.eitiLLMClearAll = async function() {
             var overlayActive = !!(overlay && overlay.classList.contains('active'));
             var show = eitiNotesAIControlVisible(overlayActive);
             if (overlay) overlay.classList.toggle('notes-ai-on', show);
-            if (bar) bar.classList.toggle('visible', overlayActive);
+            if (bar) bar.classList.toggle('visible', !!show);
             if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
             if (!show) {
                 if (panel) panel.classList.remove('open');

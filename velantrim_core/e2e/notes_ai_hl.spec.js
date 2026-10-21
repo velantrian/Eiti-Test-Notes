@@ -74,16 +74,13 @@ for (const viewport of [
     const askBox = await page.locator('#notesAiAskBtn').boundingBox();
     expect(askBox).not.toBeNull();
     expect(askBox.width).toBeGreaterThanOrEqual(120);
-    await expect(page.locator('#noteSaveAsBtn')).toBeVisible();
-    await expect(page.locator('#noteShareBtn')).toBeVisible();
-
-    await page.locator('#noteMoreBtn').click();
-    const more = page.locator('#noteMoreMenu');
-    await expect(more).toBeVisible();
-    await expect(page.locator('#noteMoreMenu #noteFmtToggle')).toBeVisible();
-    await expect(page.locator('#noteFmtToggle')).toHaveAttribute('aria-label', 'Формат и цвет');
-    await expect(page.locator('#noteMoreMenu #noteEditorDelete')).toBeVisible();
-    await expect(page.locator('#noteEditorDelete')).toHaveText(/Удалить заметку/);
+    await expect(page.locator('#notesAiSearchBtn')).toBeVisible();
+    await expect(page.locator('#notesAiEditBtn')).toBeVisible();
+    await expect(page.locator('#noteEditorSave')).toBeVisible();
+    await expect(page.locator('#notesAiFabBar #noteSaveAsBtn')).toHaveCount(0);
+    await expect(page.locator('#notesAiFabBar #noteShareBtn')).toHaveCount(0);
+    await expect(page.locator('#noteSaveAsBtn')).toBeHidden();
+    await expect(page.locator('#noteShareBtn')).toBeHidden();
 
     if (viewport.width === 390) {
       fs.mkdirSync(ARTIFACTS, { recursive: true });
@@ -91,6 +88,35 @@ for (const viewport of [
       await overlay.locator('.note-editor-topbar').screenshot({
         path: path.join(ARTIFACTS, 'note_header_390.png'),
       });
+      await overlay.locator('#notesAiFabBar').screenshot({
+        path: path.join(ARTIFACTS, 'note_editor_bottom_row_390.png'),
+      });
+    }
+
+    await page.locator('#noteMoreBtn').click();
+    const more = page.locator('#noteMoreMenu');
+    await expect(more).toBeVisible();
+    await expect(page.locator('#noteMoreMenu #noteFmtToggle')).toBeVisible();
+    await expect(page.locator('#noteFmtToggle')).toHaveAttribute('aria-label', 'Формат и цвет');
+    await expect(page.locator('#noteMoreMenu #noteSaveAsBtn')).toBeVisible();
+    await expect(page.locator('#noteSaveAsBtn')).toHaveText(/Сохранить как файл/);
+    await expect(page.locator('#noteMoreMenu #noteShareBtn')).toBeVisible();
+    await expect(page.locator('#noteShareBtn')).toHaveText(/Отправить/);
+    await expect(page.locator('#noteMoreMenu #noteEditorDelete')).toBeVisible();
+    await expect(page.locator('#noteEditorDelete')).toHaveText(/Удалить заметку/);
+    const moreLabels = (await page.locator('#noteMoreMenu button:visible').allTextContents())
+      .map((t) => t.replace(/\s+/g, ' ').trim());
+    expect(moreLabels).toEqual([
+      'Аа Шрифт и цвет',
+      '💾 Сохранить как файл',
+      '📤 Отправить',
+      '🔔 Напоминание',
+      '☀️ Светлый режим',
+      '🗑 Удалить заметку',
+    ]);
+
+    if (viewport.width === 390) {
+      const overlay = page.locator('#noteEditorOverlay');
       await overlay.screenshot({ path: path.join(ARTIFACTS, 'note_more_menu_390.png') });
     }
 
@@ -176,10 +202,22 @@ test('mobile 390x844: подсветка, undo/redo и меню сохранен
   await page.locator('#noteAiRedoBtn').click();
   await expect(page.locator('#noteEditorBody')).toHaveValue('после');
 
+  await page.locator('#noteMoreBtn').click();
+  await expect(page.locator('#noteMoreMenu')).toBeVisible();
   await page.locator('#noteSaveAsBtn').click();
+  await expect(page.locator('#noteMoreMenu')).toBeHidden();
   const menu = page.locator('#noteExportMenu');
   await expect(menu).toBeVisible();
   await expect(page.locator('#noteExportMenu [data-note-export="md"]')).toBeVisible();
   await expect(page.locator('#noteExportMenu [data-note-export="pdf"]')).toBeVisible();
   await expect(page.locator('#noteExportMenu [data-note-export="txt"]')).toBeVisible();
+
+  await page.locator('#noteEditorOverlay').click({ position: { x: 20, y: 200 } });
+  await expect(menu).toBeHidden();
+  await page.locator('#noteMoreBtn').click();
+  await expect(page.locator('#noteMoreMenu')).toBeVisible();
+  await page.locator('#noteShareBtn').click();
+  await expect(page.locator('#noteMoreMenu')).toBeHidden();
+  await expect(menu).toBeVisible();
+  await expect(page.locator('#noteExportMenu [data-note-export="md"]')).toBeVisible();
 });
