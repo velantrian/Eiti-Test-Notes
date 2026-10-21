@@ -36241,7 +36241,8 @@ window.eitiLLMClearAll = async function() {
             var moreMenu = document.getElementById('noteMoreMenu');
             if (moreMenu && !moreMenu._eitiBound) {
                 moreMenu._eitiBound = true;
-                moreMenu.addEventListener('click', function() {
+                moreMenu.addEventListener('click', function(e) {
+                    if (e.target.closest('#noteFmtToggle')) return;
                     setTimeout(eitiNotesMoreMenuClose, 0);
                 });
             }
