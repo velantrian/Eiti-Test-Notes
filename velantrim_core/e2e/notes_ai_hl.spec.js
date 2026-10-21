@@ -65,8 +65,9 @@ for (const viewport of [
     expect(copyBox.y).toBeGreaterThan(topbarBox.y - 4);
     expect(copyBox.y).toBeLessThan(topbarBox.y + topbarBox.height);
 
-    await expect(page.locator('.note-editor-topbar #noteEditorDelete')).toHaveCount(0);
-    await expect(page.locator('.note-editor-topbar .note-fmt-btn')).toHaveCount(0);
+    await expect(page.locator('.note-editor-topbar-actions #noteEditorDelete')).toHaveCount(0);
+    await expect(page.locator('#noteEditorDelete')).toBeHidden();
+    await expect(page.locator('.note-editor-topbar-actions .note-fmt-btn')).toHaveCount(0);
     await expect(page.locator('#noteFmtPopover')).toBeHidden();
     await expect(page.locator('#notesAiChip')).toHaveCount(0);
 
