@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.20"; // Шапка заметки, нижняя панель формата, без чипа Ask AI
+        var EITI_VERSION = "13.7.21"; // Светлый режим заметки через переменные, вставка «как есть», markdown-рендер
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7301,6 +7301,8 @@
             -webkit-box-orient: vertical;
             line-height: 1.4;
             flex: 1;
+            white-space: pre-line; /* v13.7.21: переносы строк вставленного текста видны в превью */
+            overflow-wrap: anywhere;
         }
         /* v8.86 FIX: --text-muted тоже не определена → была rgba(255,255,255,0.45) на светлом = невидимо */
         .note-card-date { font-size: 10px; color: rgba(30, 18, 6, 0.48) !important; -webkit-text-fill-color: rgba(30, 18, 6, 0.48) !important; font-weight: 500; }
@@ -7706,23 +7708,7 @@
             flex-shrink: 0;
             color: var(--text-color);
         }
-        /* Светлый режим — теги и дата видны */
-        .note-editor-overlay.note-light-mode .note-tags-row {
-            background: #ede8de !important;
-        }
-        .note-editor-overlay.note-light-mode .note-tags-row input,
-        .note-editor-overlay.note-light-mode .note-date-badge {
-            color: #1a1208 !important;
-            -webkit-text-fill-color: #1a1208 !important;
-        }
-        .note-editor-overlay.note-light-mode .note-editor-delete-top {
-            border-color: rgba(180,40,40,0.5) !important;
-            background: rgba(200,0,0,0.1) !important;
-        }
-        .note-editor-overlay.note-light-mode .note-editor-save-icon {
-            background: linear-gradient(145deg, #8b6914, #6a4e0f) !important;
-            color: #fff !important;
-        }
+        /* v13.7.21: светлый режим заметки — через переменные (см. «Note light mode (☀️)») */
         .notes-empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; opacity: 0.45; font-size: 15px; line-height: 1.8; }
         .notes-empty-icon { font-size: 52px; margin-bottom: 12px; }
 
@@ -7862,6 +7848,7 @@
         .notes-ai-msg.user {
             align-self: flex-end;
             background: rgba(255,215,0,0.16);
+            white-space: pre-wrap; /* v13.7.21: переносы/отступы вопроса видны как есть */
         }
         .notes-ai-msg.assistant {
             align-self: flex-start;
@@ -7902,6 +7889,20 @@
             color: var(--text-color); font-size: inherit;
             padding: 6px 0;
             border-radius: 12px;
+        }
+        /* v13.7.21: поле Ask AI — авто-растущая textarea (многострочная вставка не склеивается) */
+        .notes-ai-compose-row textarea {
+            flex: 1; min-width: 0;
+            background: transparent; border: none; outline: none;
+            color: var(--text-color); font-size: inherit; font-family: inherit;
+            line-height: 1.4;
+            padding: 6px 4px;
+            border-radius: 12px;
+            resize: none;
+            height: auto; min-height: 32px; max-height: 140px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
         }
         .notes-ai-send {
             width: 34px; height: 34px; border-radius: 50%;
@@ -8035,6 +8036,12 @@
 
         /* Keep the Notes AI input focus frame rounded like its composer shell. */
         .notes-ai-compose-row input:focus-visible {
+            outline: none !important;
+            outline-offset: 0 !important;
+            border-radius: 12px;
+            box-shadow: 0 0 0 2px var(--accent-color, #ffd700), 0 0 0 5px rgba(255,215,0,0.15) !important;
+        }
+        .notes-ai-compose-row textarea:focus-visible {
             outline: none !important;
             outline-offset: 0 !important;
             border-radius: 12px;
@@ -11190,7 +11197,7 @@
                             <button class="note-editor-back" id="noteEditorBack">←</button>
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
                             <div class="note-editor-topbar-actions">
-                                <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
+                                <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'');var full=(t&&b.trim())?t+'\n\n'+b:(t||b);if(!full.trim()){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
                                 <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
                             </div>
                             <div id="noteMoreMenu" class="note-more-menu" hidden>
@@ -11263,7 +11270,7 @@
                             <div class="notes-ai-compose">
                                 <div class="notes-ai-compose-box">
                                     <div class="notes-ai-compose-row">
-                                        <input id="notesAiInput" data-i18n-placeholder="Спросить, переписать, резюмировать…" placeholder="Спросить, переписать, резюмировать…" autocomplete="off">
+                                        <textarea id="notesAiInput" rows="1" data-i18n-placeholder="Спросить, переписать, резюмировать…" placeholder="Спросить, переписать, резюмировать…" autocomplete="off"></textarea>
                                         <button type="button" class="notes-ai-send" id="notesAiSend" title="Отправить">↑</button>
                                     </div>
                                     <button type="button" class="notes-ai-model-chip" id="notesAiModelChip"></button>
@@ -17825,9 +17832,16 @@
             t = t.replace(/⟦EITIFILE:([^⟧]+)⟧/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
             // Escape HTML first
             t = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-            // Fenced code blocks FIRST (before other rules touch content inside)
-            t = t.replace(/```[\w]*\n?([\s\S]*?)```/g,
-                '<pre style="background:rgba(255,255,255,0.08);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12px;margin:6px 0;white-space:pre-wrap;word-break:break-all;"><code>$1</code></pre>');
+            // v13.7.21: код (```блоки``` и `инлайн`) прячем в плейсхолдеры U+E001 — остальные
+            // markdown-правила не трогают его содержимое (`a * b`, `**x**` внутри кода остаются как есть).
+            var _codeStash = [];
+            function _stashCode(html) { _codeStash.push(html); return '\uE001' + (_codeStash.length - 1) + '\uE001'; }
+            t = t.replace(/```[\w+#.-]*[ \t]*\n?([\s\S]*?)```/g, function(_m, code) {
+                return _stashCode('<pre style="background:rgba(127,127,127,0.15);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12px;margin:6px 0;white-space:pre-wrap;word-break:break-all;"><code>' + code.replace(/\n$/, '') + '</code></pre>');
+            });
+            t = t.replace(/`([^`\n]+)`/g, function(_m, code) {
+                return _stashCode('<code style="background:rgba(127,127,127,0.15);padding:1px 5px;border-radius:4px;font-size:13px;">' + code + '</code>');
+            });
             // v12.9.77: таблицы (| col | col |)
             t = t.replace(/((^\|.+\|$\n?)+)/gm, function(block) {
                 var rows = block.trim().split('\n').filter(function(r){ return r.trim(); });
@@ -17841,7 +17855,7 @@
                     var tag = isFirst ? 'th' : 'td';
                     var bg = isFirst ? 'background:rgba(255,215,0,0.15);font-weight:700;' : '';
                     html += '<tr>' + cells.map(function(c){
-                        return '<' + tag + ' style="border:1px solid rgba(255,255,255,0.15);padding:5px 8px;text-align:left;' + bg + '">' + c.trim() + '</' + tag + '>';
+                        return '<' + tag + ' style="border:1px solid rgba(127,127,127,0.35);padding:5px 8px;text-align:left;' + bg + '">' + c.trim() + '</' + tag + '>';
                     }).join('') + '</tr>';
                     if (isFirst) isFirst = false;
                 });
@@ -17849,27 +17863,36 @@
                 return html;
             });
             // Горизонтальные линии --- или ===
-            t = t.replace(/^(-{3,}|={3,})$/gm, '<hr style="border:none;border-top:1px solid rgba(255,255,255,0.2);margin:8px 0;">');
-            // Headers ## → bold div
-            t = t.replace(/^#{1,3}\s+(.+)$/gm, '<div style="font-weight:700;margin:6px 0 2px;font-size:15px;">$1</div>');
+            t = t.replace(/^(-{3,}|={3,})$/gm, '<hr style="border:none;border-top:1px solid rgba(127,127,127,0.35);margin:8px 0;">');
+            // Headers # … ###### → bold div (v13.7.21: + #### – ######)
+            t = t.replace(/^(#{1,6})\s+(.+)$/gm, function(_m, hashes, txt) {
+                var fs = hashes.length <= 3 ? 15 : 14;
+                return '<div style="font-weight:700;margin:6px 0 2px;font-size:' + fs + 'px;">' + txt + '</div>';
+            });
+            // v13.7.21: цитаты > текст
+            t = t.replace(/^&gt;[ \t]?(.*)$/gm, '<div style="border-left:3px solid rgba(127,127,127,0.45);padding:2px 0 2px 10px;margin:4px 0;">$1</div>');
+            // v13.7.21: списки задач - [ ] / - [x]
+            t = t.replace(/^[\-*•·]\s+\[([ xX])\]\s+(.+)$/gm, function(_m, mark, txt) {
+                return '<div style="padding-left:12px;margin:2px 0;">' + (mark === ' ' ? '☐' : '☑') + ' ' + txt + '</div>';
+            });
+            // Bullet list
+            t = t.replace(/^[\-*•·]\s+(.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">· $1</div>');
+            // Numbered list
+            t = t.replace(/^(\d+)\.\s+(.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">$1. $2</div>');
             // Bold **text** or __text__
             t = t.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>');
             t = t.replace(/__([^_\n]+)__/g, '<b>$1</b>');
-            // Italic *text*
-            t = t.replace(/(?<![*\w])\*([^*\n]+)\*(?![*\w])/g, '<i>$1</i>');
+            // Italic *text* (v13.7.21: одиночные * больше не удаляются — «2 * 3» остаётся как есть)
+            t = t.replace(/(?<![*\w])\*([^*\s\n](?:[^*\n]*[^*\s\n])?)\*(?![*\w])/g, '<i>$1</i>');
             t = t.replace(/(?<![_\w])_([^_\n]+)_(?![_\w])/g, '<i>$1</i>');
-            // Remove stray lone asterisks
-            t = t.replace(/(?<![*])\*(?![*])/g, '');
-            // Code `inline`
-            t = t.replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.12);padding:1px 5px;border-radius:4px;font-size:13px;">$1</code>');
-            // Bullet list
-            t = t.replace(/^[\-•·]\s+(.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">· $1</div>');
-            // Numbered list
-            t = t.replace(/^(\d+)\.\s+(.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">$1. $2</div>');
             // Double newline → paragraph break
             t = t.replace(/\n\n/g, '<br><br>');
             // Single newline → <br>
             t = t.replace(/\n/g, '<br>');
+            // Возвращаем код на место (до санитизации — DOMPurify проверит и его)
+            if (_codeStash.length) {
+                t = t.replace(/\uE001(\d+)\uE001/g, function(_m, i){ return _codeStash[+i] || ''; });
+            }
             // v13.4.0 P0 #2: финальная санитизация результата markdown-рендера
             t = (typeof _eitiSafeHTML === 'function') ? _eitiSafeHTML(t) : t;
             // Восстанавливаем чипы-файлы ПОСЛЕ санитизации (инлайн onclick переживает DOMPurify).
@@ -35251,12 +35274,12 @@ window.eitiLLMClearAll = async function() {
                     '<mark style="background:rgba(255,215,0,0.55);color:#111;border-radius:3px;padding:0 1px;">$1</mark>');
             }
             function getSnippet(body, q) {
-                if (!q || !body) return (body||'').slice(0, 120);
+                if (!q || !body) return eitiNotesPreviewSlice(body, 0, 120);
                 var idx = body.toLowerCase().indexOf(q.toLowerCase());
-                if (idx === -1) return body.slice(0, 120);
+                if (idx === -1) return eitiNotesPreviewSlice(body, 0, 120);
                 var start = Math.max(0, idx - 40);
                 var end = Math.min(body.length, idx + q.length + 60);
-                return (start > 0 ? '…' : '') + body.slice(start, end) + (end < body.length ? '…' : '');
+                return (start > 0 ? '…' : '') + eitiNotesPreviewSlice(body, start, end, true) + (end < body.length ? '…' : '');
             }
             var NOTES_PAGE_SIZE = 50;
             var sorted = notes.slice().sort(function(a,b){ return b.updated - a.updated; });
@@ -35332,7 +35355,7 @@ window.eitiLLMClearAll = async function() {
                         var dateStr = new Date(note.updated).toLocaleDateString('ru', {day:'2-digit',month:'short'});
                         card.innerHTML = '<div class="note-card-emoji">' + emoji + '</div>' +
                             '<div class="note-card-title">' + escNote(note.title || 'Без названия') + '</div>' +
-                            '<div class="note-card-preview">' + escNote((note.body||'').slice(0,120)) + '</div>' +
+                            '<div class="note-card-preview">' + escNote(eitiNotesPreviewSlice(note.body, 0, 120)) + '</div>' +
                             '<div class="note-card-date">' + dateStr + '</div>';
                         // Это убирает мигание клавиатуры при двойном тапе на fullscreen
                         (function(nid){
@@ -35355,6 +35378,18 @@ window.eitiLLMClearAll = async function() {
                 };
                 list.appendChild(moreBtn);
             }
+        }
+        // v13.7.21: срез превью без разрыва эмодзи/суррогатных пар.
+        // byUnits=false → границы в символах (Array.from), true → в UTF-16 единицах (индексы поиска).
+        function eitiNotesPreviewSlice(text, start, end, byUnits) {
+            var s = String(text == null ? '' : text);
+            if (!byUnits) return Array.from(s).slice(start, end).join('');
+            var a = Math.max(0, start | 0), b = Math.min(s.length, end | 0);
+            var lo = function(i) { var c = s.charCodeAt(i); return c >= 0xDC00 && c <= 0xDFFF; };
+            var hi = function(i) { var c = s.charCodeAt(i); return c >= 0xD800 && c <= 0xDBFF; };
+            if (a > 0 && a < s.length && lo(a)) a--;
+            if (b > 0 && b < s.length && hi(b - 1)) b++;
+            return s.slice(a, b);
         }
         function escNote(s) {
             return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
@@ -35715,6 +35750,34 @@ window.eitiLLMClearAll = async function() {
             var enabled = eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
             if (typeof showToast === 'function') showToast('Подсветка правок ИИ: ' + (enabled ? 'вкл' : 'выкл'), 1400);
             return enabled;
+        }
+        // v13.7.21: вставка в заметку «как есть». Нативная вставка Chromium меняет NBSP на пробел
+        // (и \r\n на \n); здесь берём text/plain из буфера и вставляем точный текст.
+        // Пустой clipboardData (часть Android) → обычная вставка браузера.
+        function eitiNotesInsertExact(el, text) {
+            if (!el) return false;
+            var before = String(el.value || '');
+            var s0 = el.selectionStart == null ? before.length : el.selectionStart;
+            var s1 = el.selectionEnd == null ? s0 : el.selectionEnd;
+            var expected = before.slice(0, s0) + text + before.slice(s1);
+            var ok = false;
+            // execCommand сохраняет нативный Ctrl+Z и сам шлёт input
+            try { if (typeof document !== 'undefined' && document.execCommand) ok = document.execCommand('insertText', false, text); } catch (e) { ok = false; }
+            if (ok && el.value === expected) return true;
+            el.value = before;
+            if (typeof el.setRangeText === 'function') el.setRangeText(text, s0, s1, 'end');
+            else { el.value = expected; try { el.selectionStart = el.selectionEnd = s0 + text.length; } catch (e) {} }
+            try { el.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) {}
+            return true;
+        }
+        function eitiNotesPasteAsIs(e) {
+            var el = e && e.target;
+            if (!el || el.id !== 'noteEditorBody') return false;
+            var text = '';
+            try { var cd = e.clipboardData || (typeof window !== 'undefined' && window.clipboardData); text = cd ? (cd.getData('text/plain') || cd.getData('text') || '') : ''; } catch (err) { text = ''; }
+            if (!text) return false; // fallback: стандартная вставка
+            e.preventDefault();
+            return eitiNotesInsertExact(el, text);
         }
         function eitiNotesOnManualEdit() {
             if (_eitiNotesHlIgnoreInput) return;
@@ -36172,6 +36235,7 @@ window.eitiLLMClearAll = async function() {
             if (bodyEl && !bodyEl._eitiHlBound) {
                 bodyEl._eitiHlBound = true;
                 bodyEl.addEventListener('input', function() { eitiNotesOnManualEdit(); });
+                bodyEl.addEventListener('paste', eitiNotesPasteAsIs);
             }
             var overlay = document.getElementById('noteEditorHl');
             if (overlay && !overlay._eitiBound) {
@@ -36745,7 +36809,7 @@ window.eitiLLMClearAll = async function() {
             var now = Date.now();
             notes[index] = Object.assign({}, old, {
                 title: titleEl ? String(titleEl.value || '').trim() : old.title,
-                body: bodyEl ? String(bodyEl.value || '').trim() : old.body,
+                body: bodyEl ? String(bodyEl.value || '') : old.body,
                 tags: tags,
                 updated: now
             }, extra || {});
@@ -37231,6 +37295,13 @@ window.eitiLLMClearAll = async function() {
                 menu.appendChild(b);
             });
         }
+        // v13.7.21: авто-высота многострочного поля Ask AI (до max-height из CSS)
+        function eitiNotesAIInputAutoGrow(el) {
+            if (!el || !el.style) return;
+            el.style.height = 'auto';
+            if (el.value) el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+            else el.style.height = '';
+        }
         function eitiNotesAIBindUI() {
             eitiNotesAIRenderSettings();
             eitiNotesAIUpdateEmojiButton();
@@ -37270,18 +37341,24 @@ window.eitiLLMClearAll = async function() {
             if (send) send.onclick = function() {
                 var inp = document.getElementById('notesAiInput');
                 var v = inp ? inp.value : '';
-                if (inp) inp.value = '';
+                if (inp) { inp.value = ''; eitiNotesAIInputAutoGrow(inp); }
                 eitiNotesAISend(v);
             };
             var inp = document.getElementById('notesAiInput');
-            if (inp) inp.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    var v = inp.value;
-                    inp.value = '';
-                    eitiNotesAISend(v);
-                }
-            });
+            if (inp && !inp._eitiAiInputBound) {
+                inp._eitiAiInputBound = true;
+                inp.addEventListener('keydown', function(e) {
+                    // Enter — отправить, Shift+Enter — новая строка (IME-набор не трогаем)
+                    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
+                        e.preventDefault();
+                        var v = inp.value;
+                        inp.value = '';
+                        eitiNotesAIInputAutoGrow(inp);
+                        eitiNotesAISend(v);
+                    }
+                });
+                inp.addEventListener('input', function() { eitiNotesAIInputAutoGrow(inp); });
+            }
             document.querySelectorAll('[data-notes-ai-q]').forEach(function(btn) {
                 btn.onclick = function() {
                     eitiNotesAITogglePanel(true);
@@ -37375,7 +37452,9 @@ window.eitiLLMClearAll = async function() {
             var bodyEl = document.getElementById('noteEditorBody');
             if (!titleEl || !bodyEl) return 'gone';
             var title = (titleEl.value || '').trim();
-            var body = (bodyEl.value || '').trim();
+            // v13.7.21: тело сохраняется «как есть» (без trim) — пробелы/отступы/пустые строки не теряются;
+            // trim() только для проверки «пустая ли заметка».
+            var body = String(bodyEl.value || '');
             // v9.7p2: теги смержены из monkey-patch
             var tagsEl = document.getElementById('noteEditorTags');
             var tags = tagsEl ? notesTagsFromInput(tagsEl.value) : [];
@@ -37397,7 +37476,7 @@ window.eitiLLMClearAll = async function() {
                 notes[_idx] = Object.assign({}, _existing, { title: title, body: body, updated: now, colorIdx: notesCurrentColor, tags: tags });
                 savedId = notesCurrentId;
             } else {
-                if (!title && !body) return 'empty';
+                if (!title && !body.trim()) return 'empty';
                 var emojiIdx = Math.floor(Math.random() * NOTE_EMOJIS.length);
                 var fresh = { id: 'note_' + now, title: title, body: body, created: now, updated: now, colorIdx: notesCurrentColor, emojiIdx: emojiIdx, tags: tags };
                 // пара ↶↷ от Ask AI, сделанная до первого сохранения, переезжает в заметку
@@ -41222,70 +41301,56 @@ body.theme-velantrim-neutral .chat-input {
     display: flex; align-items: center; justify-content: center;
 }
 
-/* ── Note light mode override ───────────────────────────────────── */
+/* ── Note light mode (☀️) — v13.7.21 ─────────────────────────────────
+   Вместо точечных !important-перекрасок редактор получает переменные
+   paper-light: все элементы на var(--…) становятся светлыми сами. */
 .note-editor-overlay.note-light-mode {
+    --primary-color: #f5f0e7;
+    --secondary-color: #e7dfd3;
+    --accent-color: #a87a12;
+    --text-color: #1c1a17;
+    --bg-color: #faf7f0;
+    --panel-bg: #faf7f0;
+    --border-color: #cdbfae;
+    --shadow-color: rgba(0,0,0,0.18);
+    background: #faf7f0 !important;
+    color: #1c1a17;
+}
+.note-editor-overlay.note-light-mode .note-editor-body,
+.note-editor-overlay.note-light-mode .note-editor-hl {
     background: #faf7f0 !important;
 }
-.note-editor-overlay.note-light-mode .note-editor-body {
-    background: #faf7f0 !important;
-    color: #1a1208 !important;
-    -webkit-text-fill-color: #1a1208 !important;
-}
-.note-editor-overlay.note-light-mode .note-editor-topbar,
-.note-editor-overlay.note-light-mode .note-editor-toolbar,
-.note-editor-overlay.note-light-mode .note-fmt-popover {
-    background: #ede8de !important;
-    color: #1a1208 !important;
-}
-.note-editor-overlay.note-light-mode .note-fmt-btn,
+/* Белые полупрозрачные подложки на светлом не видны — тёмный оттенок */
 .note-editor-overlay.note-light-mode .note-editor-back,
-.note-editor-overlay.note-light-mode .note-editor-save,
-.note-editor-overlay.note-light-mode #noteReminderBtn,
-.note-editor-overlay.note-light-mode #noteLightBtn,
-.note-editor-overlay.note-light-mode #noteFmtToggle {
-    color: #2a1e0a !important;
-    -webkit-text-fill-color: #2a1e0a !important;
-    background: rgba(0,0,0,0.08) !important;
-    border-color: rgba(0,0,0,0.2) !important;
+.note-editor-overlay.note-light-mode .note-editor-tool-icon,
+.note-editor-overlay.note-light-mode .notes-ai-panel-head > button:not(.notes-ai-panel-handle) {
+    background: rgba(0,0,0,0.06);
 }
-.note-editor-overlay.note-light-mode .note-more-danger {
-    color: #c62828 !important;
-    -webkit-text-fill-color: #c62828 !important;
-    background: transparent !important;
-}
-.note-editor-overlay.note-light-mode .note-editor-save {
-    background: linear-gradient(145deg, #8b6914, #6a4e0f) !important;
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
-}
-.note-editor-overlay.note-light-mode input,
-.note-editor-overlay.note-light-mode .note-editor-title {
-    color: #1a1208 !important;
-    -webkit-text-fill-color: #1a1208 !important;
-}
-.note-editor-overlay.note-light-mode .notes-ai-fab-round,
-.note-editor-overlay.note-light-mode .notes-ai-fab-ask,
-.note-editor-overlay.note-light-mode .notes-ai-find,
-.note-editor-overlay.note-light-mode .notes-ai-panel,
-.note-editor-overlay.note-light-mode .notes-ai-compose-box,
-.note-editor-overlay.note-light-mode .notes-ai-msg.assistant,
-.note-editor-overlay.note-light-mode .notes-ai-model-menu {
-    background: #f3eee4 !important;
-    color: #1a1208 !important;
-    border-color: rgba(0,0,0,0.16) !important;
-}
-.note-editor-overlay.note-light-mode .notes-ai-panel {
-    background: #faf7f0 !important;
+.note-editor-overlay.note-light-mode .note-editor-tool-icon.is-on {
+    background: rgba(168,122,18,0.16);
 }
 .note-editor-overlay.note-light-mode .notes-ai-msg.user {
-    background: rgba(180,140,20,0.18) !important;
-    color: #1a1208 !important;
+    background: rgba(168,122,18,0.16);
 }
-.note-editor-overlay.note-light-mode .notes-ai-find input,
-.note-editor-overlay.note-light-mode .notes-ai-compose-row input,
-.note-editor-overlay.note-light-mode .notes-ai-model-chip,
-.note-editor-overlay.note-light-mode .notes-ai-quick button {
-    color: #1a1208 !important;
+.note-editor-overlay.note-light-mode .note-more-menu .note-more-danger {
+    color: #c62828;
+}
+.note-editor-overlay.note-light-mode .note-more-menu .note-more-danger:active {
+    background: rgba(198,40,40,0.10);
+}
+.note-editor-overlay.note-light-mode .note-color-dot.selected {
+    border-color: rgba(0,0,0,0.55);
+}
+/* Эмодзи-тумблер: тёмные красный/зелёный на светлом фоне (и в светлых темах) */
+.note-editor-overlay.note-light-mode .notes-ai-quick button.notes-ai-emoji-toggle,
+body.theme-paper-light .notes-ai-quick button.notes-ai-emoji-toggle,
+body.theme-light-clean .notes-ai-quick button.notes-ai-emoji-toggle {
+    border-color: #dc2626; background: rgba(220,38,38,0.10); color: #b91c1c;
+}
+.note-editor-overlay.note-light-mode .notes-ai-quick button.notes-ai-emoji-toggle.is-enabled,
+body.theme-paper-light .notes-ai-quick button.notes-ai-emoji-toggle.is-enabled,
+body.theme-light-clean .notes-ai-quick button.notes-ai-emoji-toggle.is-enabled {
+    border-color: #16a34a; background: rgba(22,163,74,0.12); color: #15803d;
 }
 
 /* ── Reminder picker overlay ────────────────────────────────────── */
@@ -41449,14 +41514,30 @@ body.theme-velantrim-neutral .chat-input {
 // ════════════════════════════════════════════════════════════════
 // 4. Заметки — светлый режим (кнопка ☀️)
 // ════════════════════════════════════════════════════════════════
-window.eitiNoteToggleLight = function() {
-    var overlay = document.querySelector('.note-editor-overlay.active');
-    if (!overlay) return;
-    var isLight = overlay.classList.toggle('note-light-mode');
+// v13.7.21: состояние ☀️ сохраняется в localStorage (eiti_notes_light_mode)
+window.eitiNoteApplyLight = function(isLight) {
+    var overlay = document.getElementById('noteEditorOverlay') || document.querySelector('.note-editor-overlay');
+    if (overlay) overlay.classList.toggle('note-light-mode', !!isLight);
     var btn = document.getElementById('noteLightBtn');
-    if (btn) btn.style.background = isLight ? 'rgba(255,240,180,0.3)' : 'rgba(255,255,255,0.08)';
+    if (btn) {
+        btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+        btn.textContent = isLight ? '🌙 Тёмный режим' : '☀️ Светлый режим';
+        btn.title = isLight ? 'Тёмный режим' : 'Светлый режим';
+    }
+    return !!isLight;
+};
+window.eitiNoteToggleLight = function() {
+    var overlay = document.getElementById('noteEditorOverlay') || document.querySelector('.note-editor-overlay.active');
+    if (!overlay) return;
+    var isLight = window.eitiNoteApplyLight(!overlay.classList.contains('note-light-mode'));
+    try { localStorage.setItem('eiti_notes_light_mode', isLight ? '1' : '0'); } catch (e) {}
     typeof showToast === 'function' && showToast(isLight ? '☀️ Светлый режим' : '🌙 Тёмный режим');
 };
+(function() {
+    var saved = false;
+    try { saved = localStorage.getItem('eiti_notes_light_mode') === '1'; } catch (e) {}
+    if (saved) window.eitiNoteApplyLight(true);
+})();
 
 // ════════════════════════════════════════════════════════════════
 // 5. Заметки — напоминание (кнопка 🔔)

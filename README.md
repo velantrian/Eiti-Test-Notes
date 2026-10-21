@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.20-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.21-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,15 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.20
+## 🆕 Что нового в v13.7.21
+
+**Заметки: светлый режим ☀️ и вставка «как есть»**
+- ☀️ в меню ⋯ теперь переключает весь редактор на светлую палитру (переменные paper-light): ⋯, 📋, «Аб», ↶/↷, ✕, меню ⋯ и экспорта, чипы Ask AI и подсветка правок ИИ читаются. Выбор запоминается. Нижняя панель приложения не меняется.
+- Вставка в заметку сохраняет текст точно: markdown, символы, NBSP, табы, эмодзи. Тело заметки больше не обрезается (trim) при сохранении и копировании 📋.
+- Превью карточек показывает переносы строк и не ломает эмодзи; поле Ask AI многострочное (Enter — отправить, Shift+Enter — новая строка).
+- Markdown-рендер (ответы Ask AI, PDF): код не искажается, «2 * 3» не теряет звёздочку, поддержаны ####, цитаты `>` и списки задач `- [ ]`/`- [x]`; нейтральные цвета для светлого и тёмного фона.
+
+### Выпуск v13.7.20
 
 **Шапка заметки и панель Ask AI**
 - Убран чип «📄 Заметка» из нижней панели Ask AI — контекст текущей заметки по-прежнему уходит в модель.
