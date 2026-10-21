@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.18-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.19-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,15 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.18
+## 🆕 Что нового в v13.7.19
+
+**Заметки: подсветка правок Ask AI, шаг назад и экспорт**
+- После Ask AI вставки подсвечиваются, удаления показываются зачёркнутыми; в сохранённый текст удаления не попадают.
+- Кнопка 🖍 в шапке заметки включает и выключает подсветку (по умолчанию вкл.); цвета настраиваются.
+- ↶ / ↷ — один шаг undo/redo правки ИИ, пара «до/после» хранится вместе с заметкой.
+- «Сохранить заметку» в Markdown / PDF / TXT и «Отправить» через Web Share с запасными вариантами.
+
+### Выпуск v13.7.18
 
 **Фризы Android Chrome и DeepSeek Flash Vision**
 - Поиск по истории чанков с yield и отменой устаревшего запроса; чат дописывает пузыри и подгружает историю страницами по 50.

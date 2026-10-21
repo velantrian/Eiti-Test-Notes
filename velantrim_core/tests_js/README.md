@@ -34,6 +34,7 @@ node --test velantrim_core/tests_js/*.test.js
 | `sprint3_memory_response_contract.test.js` | Sprint 3 memory/response contract | Normal/Grounded/Strict modes, memory lookup toggle, ESM statuses, response patterns |
 | `memory_lookup.test.js` | Archive lookup gate | Off-by-default behavior, explicit requests, and opt-in automatic lookup |
 | `notes_ai.test.js` | Notes AI Ask AI | Settings persistence, OFF hides control / no request, chosen model in request |
+| `notes_ai_hl.test.js` | Notes AI highlight/export | Word diff, undo/redo pair, filename sanitize, md/txt export |
 
 Notes pinned by these tests: the `eitiCalcSalience` 4.0 cap is currently
 unreachable (max multiplier is 2.73), and `_cosineSim` degrades to `0` on a
