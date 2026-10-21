@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.18"; // Freeze A–E + DeepSeek Flash Vision
+        var EITI_VERSION = "13.7.19"; // Подсветка правок Ask AI, undo и экспорт заметки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -6748,6 +6748,7 @@
             top: env(safe-area-inset-top, 0px) !important;
             height: calc(100dvh - env(safe-area-inset-top, 0px)) !important;
         }
+        html.is-ios .note-editor-overlay.editor-fullscreen .note-editor-body-wrap,
         html.is-ios .note-editor-overlay.editor-fullscreen .note-editor-body {
             height: auto !important;
             flex: 1 !important;
@@ -7382,7 +7383,9 @@
         /* FIX: nav arrows controlled by JS only — not forced by CSS */
         .note-editor-overlay.editor-fullscreen #noteScrollBtn { display: none; }
         .note-editor-overlay.editor-fullscreen #noteFsNav { display: none; }
-        .note-editor-overlay.editor-fullscreen .note-editor-body { height: 100vh !important; font-size: 16px !important; padding: 20px !important; }
+        .note-editor-overlay.editor-fullscreen .note-editor-body-wrap { flex: 1 !important; min-height: 0 !important; height: auto !important; }
+        .note-editor-overlay.editor-fullscreen .note-editor-body,
+        .note-editor-overlay.editor-fullscreen .note-editor-hl { height: 100% !important; font-size: 16px !important; padding: 20px !important; }
         .note-editor-card { display: flex; flex-direction: column; height: 100%; position: relative; }
         .note-editor-topbar {
             display: flex;
@@ -7474,6 +7477,13 @@
             flex-shrink: 0;
         }
         .note-color-dot:active, .note-color-dot.selected { transform: scale(1.3); border-color: rgba(255,255,255,0.7); }
+        .note-editor-body-wrap {
+            flex: 1;
+            min-height: 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
         .note-editor-body {
             flex: 1;
             padding: 16px;
@@ -7489,7 +7499,84 @@
             user-select: text;
             -webkit-user-select: text;
             font-family: inherit;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
+        .note-editor-hl {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 16px;
+            background: var(--panel-bg);
+            color: var(--text-color);
+            font-size: 15px;
+            line-height: 1.65;
+            font-family: inherit;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            tab-size: 4;
+        }
+        .note-editor-body-wrap.hl-on .note-editor-hl { display: block; }
+        mark.notes-hl-add {
+            background: color-mix(in srgb, var(--notes-hl-add, #86efac) 55%, transparent);
+            color: inherit;
+            border-radius: 3px;
+            padding: 0 1px;
+        }
+        del.notes-hl-del {
+            background: color-mix(in srgb, var(--notes-hl-del, #fca5a5) 50%, transparent);
+            color: inherit;
+            text-decoration: line-through;
+            border-radius: 3px;
+            padding: 0 1px;
+        }
+        .note-editor-tool-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: rgba(255,255,255,0.08);
+            color: var(--text-color);
+            font-size: 17px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .note-editor-tool-icon.is-on {
+            border-color: var(--accent-color);
+            background: rgba(255,215,0,0.16);
+        }
+        .note-editor-tool-icon:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+        .note-export-menu {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 92px;
+            z-index: 40;
+            min-width: 196px;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .note-export-menu.open { display: block; }
+        .note-export-menu button {
+            display: block; width: 100%;
+            padding: 9px 10px; margin: 0;
+            border: none; border-radius: 8px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 13px; text-align: left; cursor: pointer;
+        }
+        .note-export-menu button:active { background: var(--secondary-color); }
         /* .note-editor-footer и .note-editor-info удалены v12.9.46 — дата перенесена в note-date-badge */
         .note-editor-delete {
             padding: 7px 14px;
@@ -7595,7 +7682,8 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.28);
             display: flex; align-items: center; justify-content: center; gap: 6px;
         }
-        .note-editor-overlay.notes-ai-on .note-editor-body { padding-bottom: 78px; }
+        .note-editor-overlay.notes-ai-on .note-editor-body,
+        .note-editor-overlay.notes-ai-on .note-editor-hl { padding-bottom: 78px; }
         .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 58px; }
         .notes-ai-find {
             display: none;
@@ -8519,6 +8607,30 @@
                                             <button type="button" id="notes-ai-size-small" onclick="eitiNotesAISetSize('small')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Малый">Малый</button>
                                             <button type="button" id="notes-ai-size-medium" onclick="eitiNotesAISetSize('medium')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Средний">Средний</button>
                                             <button type="button" id="notes-ai-size-large" onclick="eitiNotesAISetSize('large')" style="flex:1;padding:8px 4px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;font-weight:600;cursor:pointer;" data-i18n="Большой">Большой</button>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                                        <div style="min-width:0;">
+                                            <div style="font-size:14px;font-weight:600;">🖍 Подсветка правок ИИ</div>
+                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой 🖍 или при ручном наборе.</div>
+                                        </div>
+                                        <div id="notes-ai-hl-toggle" role="switch" aria-checked="true" aria-label="Подсветка правок ИИ" onclick="eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled())"
+                                            style="width:44px;height:26px;border-radius:13px;background:var(--accent-color);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
+                                            <div id="notes-ai-hl-toggle-knob" style="position:absolute;top:3px;left:21px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.3);"></div>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column;gap:8px;">
+                                        <div style="font-size:13px;font-weight:600;">Цвета подсветки</div>
+                                        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+                                            <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;">
+                                                <input type="color" id="notes-ai-hl-add" value="#86efac" aria-label="Цвет добавленного текста" oninput="eitiNotesHlSetAddColor(this.value)">
+                                                Добавлено
+                                            </label>
+                                            <label style="display:flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;">
+                                                <input type="color" id="notes-ai-hl-del" value="#fca5a5" aria-label="Цвет удалённого текста" oninput="eitiNotesHlSetDelColor(this.value)">
+                                                Удалено
+                                            </label>
+                                            <button type="button" id="notes-ai-hl-reset" onclick="eitiNotesHlResetColors()" style="padding:6px 10px;border-radius:8px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:12px;cursor:pointer;">Сбросить</button>
                                         </div>
                                     </div>
                                 </div>
@@ -10996,6 +11108,9 @@
                             <button class="note-editor-back" id="noteEditorBack">←</button>
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
                             <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
+                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ">🖍</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
                                 <button id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🔔</button>
                                 <button id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">☀️</button>
                                 <!-- v12.9.77: История версий заметки -->
@@ -11011,9 +11126,19 @@
                             <button class="note-fmt-btn" data-fmt="h2" title="Заголовок">H</button>
                             <button class="note-fmt-btn" data-fmt="line" title="Разделитель">—</button>
                             <button class="note-fmt-btn" id="noteCopyAllBtn" title="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
+                            <button type="button" class="note-fmt-btn" id="noteSaveAsBtn" title="Сохранить заметку" aria-haspopup="true" aria-expanded="false">⬇</button>
+                            <button type="button" class="note-fmt-btn" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false">↗</button>
                             <div class="note-color-row" id="noteColorRow"></div>
                         </div>
-                        <textarea class="note-editor-body" id="noteEditorBody" placeholder="Начните писать..."></textarea>
+                        <div id="noteExportMenu" class="note-export-menu" hidden>
+                            <button type="button" data-note-export="md">Markdown (.md)</button>
+                            <button type="button" data-note-export="pdf">PDF</button>
+                            <button type="button" data-note-export="txt">TXT</button>
+                        </div>
+                        <div class="note-editor-body-wrap" id="noteEditorBodyWrap">
+                            <textarea class="note-editor-body" id="noteEditorBody" placeholder="Начните писать..."></textarea>
+                            <div class="note-editor-hl" id="noteEditorHl" hidden aria-hidden="true"></div>
+                        </div>
                         <!-- Кнопка быстрой навигации (вверх/вниз) -->
                         <button id="noteScrollBtn"
                             style="display:none;position:absolute;right:14px;bottom:90px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:10;align-items:center;justify-content:center;transition:opacity 0.2s;"
@@ -35208,6 +35333,7 @@ window.eitiLLMClearAll = async function() {
             // v12.9.77: показываем кнопку истории только для существующих заметок
             if (typeof noteHistoryBtnUpdate === 'function') noteHistoryBtnUpdate();
             if (typeof eitiNotesAIOnEditorOpen === 'function') eitiNotesAIOnEditorOpen();
+            if (typeof eitiNotesHlOnEditorOpen === 'function') eitiNotesHlOnEditorOpen(note);
         }
         function notesCloseEditor() {
             if (typeof eitiNotesAIOnEditorClose === 'function') eitiNotesAIOnEditorClose();
@@ -35215,6 +35341,721 @@ window.eitiLLMClearAll = async function() {
             if (overlay) overlay.classList.remove('active');
             notesRender();
         }
+
+        // ── v13.7.19: подсветка правок Ask AI, undo/redo, экспорт/отправка ──
+        var _eitiNotesHlIgnoreInput = false;
+        var _eitiNotesHlBefore = '';
+        var _eitiNotesHlAfter = '';
+        var _eitiNotesHlHasDiff = false;
+        var _eitiNotesExportMode = 'save';
+        var _eitiNotesAiUndoDraft = null;
+        var EITI_NOTES_HL_ADD_DEFAULT = '#86efac';
+        var EITI_NOTES_HL_DEL_DEFAULT = '#fca5a5';
+
+        function eitiNotesDiffNow() {
+            return (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        }
+        function eitiNotesDiffEscape(s) {
+            return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function eitiNotesDiffTokenize(text, mode) {
+            var s = String(text == null ? '' : text);
+            if (!s) return [];
+            if (mode === 'line') {
+                return s.split(/(\n)/).filter(function(p) { return p.length > 0; });
+            }
+            return s.split(/(\s+)/).filter(function(p) { return p.length > 0; });
+        }
+        function eitiNotesDiffCoalesce(ops) {
+            var out = [];
+            (ops || []).forEach(function(op) {
+                if (!op || !op.v) return;
+                var last = out.length ? out[out.length - 1] : null;
+                if (last && last.t === op.t) last.v += op.v;
+                else out.push({ t: op.t, v: op.v });
+            });
+            return out;
+        }
+        function eitiNotesDiffLcsDp(a, b, t0, budget, nowFn) {
+            var n = a.length, m = b.length;
+            if (!n && !m) return [];
+            if (!n) return b.map(function(v) { return { t: 'ins', v: v }; });
+            if (!m) return a.map(function(v) { return { t: 'del', v: v }; });
+            var block = function() {
+                return a.map(function(v) { return { t: 'del', v: v }; }).concat(b.map(function(v) { return { t: 'ins', v: v }; }));
+            };
+            if (n * m > 220000) return block();
+            var dp = new Array(n + 1);
+            var i, j;
+            for (i = 0; i <= n; i++) {
+                dp[i] = new Array(m + 1);
+                dp[i][0] = 0;
+            }
+            for (j = 0; j <= m; j++) dp[0][j] = 0;
+            for (i = 1; i <= n; i++) {
+                if (nowFn() - t0 > budget) return block();
+                for (j = 1; j <= m; j++) {
+                    if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+                    else dp[i][j] = dp[i - 1][j] >= dp[i][j - 1] ? dp[i - 1][j] : dp[i][j - 1];
+                }
+            }
+            var stack = [];
+            i = n; j = m;
+            while (i > 0 && j > 0) {
+                if (a[i - 1] === b[j - 1]) { stack.push({ t: 'eq', v: a[i - 1] }); i--; j--; }
+                else if (dp[i - 1][j] >= dp[i][j - 1]) { stack.push({ t: 'del', v: a[i - 1] }); i--; }
+                else { stack.push({ t: 'ins', v: b[j - 1] }); j--; }
+            }
+            while (i > 0) { stack.push({ t: 'del', v: a[i - 1] }); i--; }
+            while (j > 0) { stack.push({ t: 'ins', v: b[j - 1] }); j--; }
+            stack.reverse();
+            return stack;
+        }
+        function eitiNotesDiffLcs(a, b, t0, budget, nowFn) {
+            var i = 0, j = 0;
+            var prefix = [];
+            while (i < a.length && j < b.length && a[i] === b[j]) {
+                prefix.push({ t: 'eq', v: a[i] });
+                i++; j++;
+            }
+            var ai = a.length - 1, bj = b.length - 1;
+            var suffix = [];
+            while (ai >= i && bj >= j && a[ai] === b[bj]) {
+                suffix.push({ t: 'eq', v: a[ai] });
+                ai--; bj--;
+            }
+            suffix.reverse();
+            var aMid = a.slice(i, ai + 1);
+            var bMid = b.slice(j, bj + 1);
+            var mid;
+            if (!aMid.length && !bMid.length) mid = [];
+            else if (!aMid.length) mid = bMid.map(function(v) { return { t: 'ins', v: v }; });
+            else if (!bMid.length) mid = aMid.map(function(v) { return { t: 'del', v: v }; });
+            else if ((nowFn() - t0) > budget * 0.65) {
+                mid = aMid.map(function(v) { return { t: 'del', v: v }; }).concat(bMid.map(function(v) { return { t: 'ins', v: v }; }));
+            } else {
+                mid = eitiNotesDiffLcsDp(aMid, bMid, t0, budget, nowFn);
+            }
+            return prefix.concat(mid, suffix);
+        }
+        function eitiNotesDiffWords(before, after, opts) {
+            opts = opts || {};
+            var nowFn = eitiNotesDiffNow;
+            var t0 = nowFn();
+            var budget = opts.budgetMs != null ? Number(opts.budgetMs) : 50;
+            if (!isFinite(budget) || budget <= 0) budget = 50;
+            var a0 = String(before == null ? '' : before);
+            var b0 = String(after == null ? '' : after);
+            if (a0 === b0) return { ops: a0 ? [{ t: 'eq', v: a0 }] : [], mode: 'word' };
+            var mode = 'word';
+            var a = eitiNotesDiffTokenize(a0, 'word');
+            var b = eitiNotesDiffTokenize(b0, 'word');
+            if (a.length > 800 || b.length > 800 || a.length * b.length > 250000) {
+                mode = 'line';
+                a = eitiNotesDiffTokenize(a0, 'line');
+                b = eitiNotesDiffTokenize(b0, 'line');
+            }
+            if (a.length * b.length > 400000) {
+                var block = [];
+                if (a0) block.push({ t: 'del', v: a0 });
+                if (b0) block.push({ t: 'ins', v: b0 });
+                return { ops: block, mode: 'block' };
+            }
+            var ops = eitiNotesDiffLcs(a, b, t0, budget, nowFn);
+            if ((nowFn() - t0) > budget && mode === 'word') {
+                mode = 'line';
+                a = eitiNotesDiffTokenize(a0, 'line');
+                b = eitiNotesDiffTokenize(b0, 'line');
+                ops = eitiNotesDiffLcs(a, b, t0, budget, nowFn);
+            }
+            if ((nowFn() - t0) > budget) {
+                var fallback = [];
+                if (a0) fallback.push({ t: 'del', v: a0 });
+                if (b0) fallback.push({ t: 'ins', v: b0 });
+                return { ops: fallback, mode: 'block' };
+            }
+            return { ops: eitiNotesDiffCoalesce(ops), mode: mode };
+        }
+        function eitiNotesDiffToHtml(ops) {
+            var html = '';
+            (ops || []).forEach(function(op) {
+                var t = eitiNotesDiffEscape(op.v);
+                if (op.t === 'ins') html += '<mark class="notes-hl-add">' + t + '</mark>';
+                else if (op.t === 'del') html += '<del class="notes-hl-del">' + t + '</del>';
+                else html += t;
+            });
+            return html;
+        }
+        function eitiNotesHlNormalizeColor(value, fallback) {
+            var s = String(value || '').trim();
+            if (/^#[0-9a-fA-F]{6}$/.test(s)) return s.toLowerCase();
+            if (/^#[0-9a-fA-F]{3}$/.test(s)) {
+                return ('#' + s.charAt(1) + s.charAt(1) + s.charAt(2) + s.charAt(2) + s.charAt(3) + s.charAt(3)).toLowerCase();
+            }
+            return fallback;
+        }
+        function eitiNotesHlGetAddColor() {
+            var stored = '';
+            try { stored = localStorage.getItem('eiti_notes_hl_add_color') || ''; } catch (e) {}
+            return eitiNotesHlNormalizeColor(stored, EITI_NOTES_HL_ADD_DEFAULT);
+        }
+        function eitiNotesHlGetDelColor() {
+            var stored = '';
+            try { stored = localStorage.getItem('eiti_notes_hl_del_color') || ''; } catch (e) {}
+            return eitiNotesHlNormalizeColor(stored, EITI_NOTES_HL_DEL_DEFAULT);
+        }
+        function eitiNotesHlApplyCssVars() {
+            var root = typeof document !== 'undefined' ? document.documentElement : null;
+            if (!root || !root.style) return;
+            root.style.setProperty('--notes-hl-add', eitiNotesHlGetAddColor());
+            root.style.setProperty('--notes-hl-del', eitiNotesHlGetDelColor());
+        }
+        function eitiNotesHlSetAddColor(color) {
+            var next = eitiNotesHlNormalizeColor(color, EITI_NOTES_HL_ADD_DEFAULT);
+            try { localStorage.setItem('eiti_notes_hl_add_color', next); } catch (e) {}
+            eitiNotesHlApplyCssVars();
+            eitiNotesHlSyncSettingsUi();
+            return next;
+        }
+        function eitiNotesHlSetDelColor(color) {
+            var next = eitiNotesHlNormalizeColor(color, EITI_NOTES_HL_DEL_DEFAULT);
+            try { localStorage.setItem('eiti_notes_hl_del_color', next); } catch (e) {}
+            eitiNotesHlApplyCssVars();
+            eitiNotesHlSyncSettingsUi();
+            return next;
+        }
+        function eitiNotesHlResetColors() {
+            try {
+                localStorage.removeItem('eiti_notes_hl_add_color');
+                localStorage.removeItem('eiti_notes_hl_del_color');
+            } catch (e) {}
+            eitiNotesHlApplyCssVars();
+            eitiNotesHlSyncSettingsUi();
+            if (typeof showToast === 'function') showToast('Цвета подсветки сброшены', 1400);
+            return { add: EITI_NOTES_HL_ADD_DEFAULT, del: EITI_NOTES_HL_DEL_DEFAULT };
+        }
+        function eitiNotesHlIsEnabled() {
+            try { return localStorage.getItem('eiti_notes_ai_highlight') !== '0'; } catch (e) { return true; }
+        }
+        function eitiNotesHlSyncSettingsUi() {
+            var on = eitiNotesHlIsEnabled();
+            var tog = document.getElementById('notes-ai-hl-toggle');
+            var knob = document.getElementById('notes-ai-hl-toggle-knob');
+            if (tog) {
+                tog.style.background = on ? 'var(--accent-color)' : '#444';
+                tog.setAttribute('aria-checked', on ? 'true' : 'false');
+            }
+            if (knob) knob.style.left = on ? '21px' : '3px';
+            var add = document.getElementById('notes-ai-hl-add');
+            var del = document.getElementById('notes-ai-hl-del');
+            if (add) add.value = eitiNotesHlGetAddColor();
+            if (del) del.value = eitiNotesHlGetDelColor();
+            var btn = document.getElementById('noteHlToggle');
+            if (btn) {
+                btn.classList.toggle('is-on', on);
+                btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            }
+        }
+        function eitiNotesHlHideOverlay() {
+            var wrap = document.getElementById('noteEditorBodyWrap');
+            var overlay = document.getElementById('noteEditorHl');
+            var bodyEl = document.getElementById('noteEditorBody');
+            if (wrap) wrap.classList.remove('hl-on');
+            if (overlay) {
+                overlay.hidden = true;
+                overlay.setAttribute('aria-hidden', 'true');
+                overlay.innerHTML = '';
+            }
+            if (bodyEl && overlay) {
+                try { bodyEl.scrollTop = overlay.scrollTop; } catch (e) {}
+            }
+        }
+        function eitiNotesHlRenderOverlay() {
+            var wrap = document.getElementById('noteEditorBodyWrap');
+            var overlay = document.getElementById('noteEditorHl');
+            if (!wrap || !overlay) return false;
+            if (!_eitiNotesHlHasDiff || !eitiNotesHlIsEnabled()) {
+                eitiNotesHlHideOverlay();
+                return false;
+            }
+            var diff = eitiNotesDiffWords(_eitiNotesHlBefore, _eitiNotesHlAfter);
+            overlay.innerHTML = eitiNotesDiffToHtml(diff.ops);
+            overlay.hidden = false;
+            overlay.setAttribute('aria-hidden', 'false');
+            wrap.classList.add('hl-on');
+            eitiNotesHlApplyCssVars();
+            return true;
+        }
+        function eitiNotesHlClear(reason) {
+            _eitiNotesHlHasDiff = false;
+            _eitiNotesHlBefore = '';
+            _eitiNotesHlAfter = '';
+            eitiNotesHlHideOverlay();
+            return reason || 'clear';
+        }
+        function eitiNotesHlOnAiChange(before, after) {
+            _eitiNotesHlBefore = String(before == null ? '' : before);
+            _eitiNotesHlAfter = String(after == null ? '' : after);
+            _eitiNotesHlHasDiff = _eitiNotesHlBefore !== _eitiNotesHlAfter;
+            if (_eitiNotesHlHasDiff && eitiNotesHlIsEnabled()) eitiNotesHlRenderOverlay();
+            else eitiNotesHlHideOverlay();
+            eitiNotesHlSyncSettingsUi();
+            return _eitiNotesHlHasDiff;
+        }
+        function eitiNotesHlSetEnabled(on) {
+            var enabled = !!on;
+            try { localStorage.setItem('eiti_notes_ai_highlight', enabled ? '1' : '0'); } catch (e) {}
+            eitiNotesHlSyncSettingsUi();
+            if (enabled && _eitiNotesHlHasDiff) eitiNotesHlRenderOverlay();
+            else eitiNotesHlHideOverlay();
+            return enabled;
+        }
+        function eitiNotesHlToggle() {
+            return eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
+        }
+        function eitiNotesOnManualEdit() {
+            if (_eitiNotesHlIgnoreInput) return;
+            if (_eitiNotesHlHasDiff) eitiNotesHlClear('type');
+            if (typeof eitiNotesAiUndoSyncButtons === 'function') eitiNotesAiUndoSyncButtons();
+        }
+        function eitiNotesAiUndoRecord(note, before, after) {
+            var src = (note && typeof note === 'object') ? note : {};
+            return Object.assign({}, src, {
+                aiBefore: String(before == null ? '' : before),
+                aiAfter: String(after == null ? '' : after),
+                aiUndoAt: 'after',
+                aiDirty: false
+            });
+        }
+        function eitiNotesAiUndoCanUndo(note) {
+            return !!(note && note.aiBefore != null && note.aiAfter != null && note.aiUndoAt !== 'before');
+        }
+        function eitiNotesAiUndoCanRedo(note) {
+            return !!(note && note.aiBefore != null && note.aiAfter != null && note.aiUndoAt === 'before');
+        }
+        function eitiNotesAiUndoNeedsConfirm(note, currentBody) {
+            if (!eitiNotesAiUndoCanUndo(note)) return false;
+            var cur = String(currentBody == null ? (note.body || '') : currentBody);
+            return cur !== String(note.aiAfter) && cur !== String(note.aiBefore);
+        }
+        function eitiNotesAiMarkManualEdit(note, currentBody) {
+            if (!note || note.aiAfter == null) return note;
+            var cur = String(currentBody == null ? '' : currentBody);
+            var dirty = cur !== String(note.aiAfter) && cur !== String(note.aiBefore);
+            return Object.assign({}, note, { aiDirty: dirty });
+        }
+        function eitiNotesAiApplyUndo(note) {
+            if (!eitiNotesAiUndoCanUndo(note)) return { ok: false };
+            return {
+                ok: true,
+                body: String(note.aiBefore),
+                note: Object.assign({}, note, { body: String(note.aiBefore), aiUndoAt: 'before', aiDirty: false })
+            };
+        }
+        function eitiNotesAiApplyRedo(note) {
+            if (!eitiNotesAiUndoCanRedo(note)) return { ok: false };
+            return {
+                ok: true,
+                body: String(note.aiAfter),
+                note: Object.assign({}, note, { body: String(note.aiAfter), aiUndoAt: 'after', aiDirty: false })
+            };
+        }
+        function eitiNotesAiUndoLiveNote() {
+            var bodyEl = document.getElementById('noteEditorBody');
+            var currentBody = bodyEl ? String(bodyEl.value || '') : '';
+            if (!notesCurrentId) {
+                return _eitiNotesAiUndoDraft ? eitiNotesAiMarkManualEdit(_eitiNotesAiUndoDraft, currentBody) : null;
+            }
+            if (typeof notesLoad !== 'function') return null;
+            var notes = notesLoad();
+            var note = notes.find(function(n) { return n && n.id === notesCurrentId; });
+            if (!note) return null;
+            return eitiNotesAiMarkManualEdit(note, currentBody);
+        }
+        function eitiNotesAiUndoSyncButtons() {
+            var note = eitiNotesAiUndoLiveNote();
+            var undoBtn = document.getElementById('noteAiUndoBtn');
+            var redoBtn = document.getElementById('noteAiRedoBtn');
+            var canU = eitiNotesAiUndoCanUndo(note);
+            var canR = eitiNotesAiUndoCanRedo(note);
+            if (undoBtn) {
+                undoBtn.disabled = !canU;
+                undoBtn.setAttribute('aria-disabled', canU ? 'false' : 'true');
+            }
+            if (redoBtn) {
+                redoBtn.disabled = !canR;
+                redoBtn.setAttribute('aria-disabled', canR ? 'false' : 'true');
+            }
+        }
+        function eitiNotesAiRememberUndo(before, after) {
+            var extra = eitiNotesAiUndoRecord({}, before, after);
+            if (!notesCurrentId) {
+                _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, extra);
+            } else {
+                _eitiNotesAiUndoDraft = null;
+            }
+            if (typeof eitiNotesHlOnAiChange === 'function') eitiNotesHlOnAiChange(before, after);
+            eitiNotesAiUndoSyncButtons();
+            return extra;
+        }
+        function eitiNotesAiWriteEditorBody(nextNote, keepHighlight) {
+            var bodyEl = document.getElementById('noteEditorBody');
+            if (!bodyEl || !nextNote) return false;
+            _eitiNotesHlIgnoreInput = true;
+            bodyEl.value = String(nextNote.body == null ? '' : nextNote.body);
+            _eitiNotesHlIgnoreInput = false;
+            if (notesCurrentId && typeof notesLoad === 'function' && typeof notesSave === 'function') {
+                var notes = notesLoad();
+                var index = notes.findIndex(function(n) { return n && n.id === notesCurrentId; });
+                if (index >= 0) {
+                    notes[index] = Object.assign({}, notes[index], nextNote, { updated: Date.now() });
+                    notesSave(notes);
+                }
+            } else {
+                _eitiNotesAiUndoDraft = nextNote;
+            }
+            if (keepHighlight && nextNote.aiBefore != null && nextNote.aiAfter != null) {
+                eitiNotesHlOnAiChange(nextNote.aiBefore, nextNote.aiAfter);
+            }
+            eitiNotesAiUndoSyncButtons();
+            return true;
+        }
+        function eitiNotesAiUndoClick() {
+            var note = eitiNotesAiUndoLiveNote();
+            if (!eitiNotesAiUndoCanUndo(note)) return false;
+            var bodyEl = document.getElementById('noteEditorBody');
+            var current = bodyEl ? bodyEl.value : (note.body || '');
+            function apply() {
+                var result = eitiNotesAiApplyUndo(note);
+                if (!result.ok) return;
+                eitiNotesAiWriteEditorBody(result.note, true);
+                if (typeof showToast === 'function') showToast('↶ Текст до правки ИИ', 1400);
+            }
+            if (eitiNotesAiUndoNeedsConfirm(note, current)) {
+                if (typeof eitiConfirm === 'function') {
+                    eitiConfirm('Вернуть текст до правки ИИ? Ручные изменения будут потеряны.', apply, null, 'Вернуть', true);
+                    return 'confirm';
+                }
+                if (typeof confirm === 'function' && !confirm('Вернуть текст до правки ИИ? Ручные изменения будут потеряны.')) return false;
+            }
+            apply();
+            return true;
+        }
+        function eitiNotesAiRedoClick() {
+            var note = eitiNotesAiUndoLiveNote();
+            if (!eitiNotesAiUndoCanRedo(note)) return false;
+            var result = eitiNotesAiApplyRedo(note);
+            if (!result.ok) return false;
+            eitiNotesAiWriteEditorBody(result.note, true);
+            if (typeof showToast === 'function') showToast('↷ Снова текст после ИИ', 1400);
+            return true;
+        }
+        function eitiNotesSanitizeFilename(title) {
+            var clean = String(title || '').trim()
+                .replace(/[<>:"|?*\u0000-\u001f]/g, '_')
+                .replace(/[\\/]/g, '_')
+                .replace(/\.+$/g, '')
+                .replace(/\s+/g, ' ')
+                .slice(0, 80)
+                .trim();
+            return clean || 'zametka';
+        }
+        function eitiNotesExportContent(title, body, format) {
+            var t = String(title || '').trim();
+            var b = String(body == null ? '' : body);
+            var name = eitiNotesSanitizeFilename(t || 'zametka');
+            var fmt = (format === 'md' || format === 'markdown') ? 'md' : (format === 'pdf' ? 'pdf' : 'txt');
+            if (fmt === 'md') {
+                var md = (t ? '# ' + t + '\n\n' : '') + b;
+                if (md && md.charAt(md.length - 1) !== '\n') md += '\n';
+                return { filename: name + '.md', mime: 'text/markdown;charset=utf-8', content: md, format: 'md' };
+            }
+            if (fmt === 'txt') {
+                var txt = (t ? t + '\n\n' : '') + b;
+                return { filename: name + '.txt', mime: 'text/plain;charset=utf-8', content: txt, format: 'txt' };
+            }
+            return { filename: name + '.pdf', mime: 'application/pdf', content: (t ? t + '\n\n' : '') + b, format: 'pdf' };
+        }
+        function eitiNotesDownloadFile(content, filename, mime) {
+            var payload = content;
+            if (typeof payload === 'string' && String(mime || '').indexOf('text/') === 0) payload = '\uFEFF' + payload;
+            if (typeof _dlBlob === 'function') {
+                _dlBlob(payload, filename, mime);
+                return true;
+            }
+            try {
+                var blob = new Blob([payload], { type: mime || 'application/octet-stream' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.rel = 'noopener';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        function eitiNotesCurrentTitleBody() {
+            var titleEl = document.getElementById('noteEditorTitle');
+            var bodyEl = document.getElementById('noteEditorBody');
+            return {
+                title: titleEl ? String(titleEl.value || '') : '',
+                body: bodyEl ? String(bodyEl.value || '') : ''
+            };
+        }
+        function eitiNotesPrintPdf(title, body) {
+            var t = String(title || '').trim() || 'Заметка';
+            var rendered = (typeof eitiRenderMarkdown === 'function')
+                ? eitiRenderMarkdown(body || '')
+                : eitiNotesDiffEscape(body || '').replace(/\n/g, '<br>');
+            var frame = document.getElementById('notePrintFrame');
+            if (!frame) {
+                frame = document.createElement('iframe');
+                frame.id = 'notePrintFrame';
+                frame.setAttribute('aria-hidden', 'true');
+                frame.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none;';
+                document.body.appendChild(frame);
+            }
+            var doc = frame.contentDocument || (frame.contentWindow && frame.contentWindow.document);
+            if (!doc) {
+                if (typeof showToast === 'function') showToast('Не удалось открыть печать PDF');
+                return false;
+            }
+            doc.open();
+            doc.write('<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><title>' +
+                eitiNotesDiffEscape(t) +
+                '</title><style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#111;background:#fff;padding:24px;line-height:1.55;max-width:720px;margin:0 auto;}h1{font-size:22px;margin:0 0 16px;}@media print{body{padding:0}}</style></head><body><h1>' +
+                eitiNotesDiffEscape(t) + '</h1>' + rendered + '</body></html>');
+            doc.close();
+            setTimeout(function() {
+                try {
+                    frame.contentWindow.focus();
+                    frame.contentWindow.print();
+                } catch (e) {}
+            }, 250);
+            return true;
+        }
+        function eitiNotesCopyText(text) {
+            var value = String(text == null ? '' : text);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                return navigator.clipboard.writeText(value).then(function() { return true; }).catch(function() {
+                    return eitiNotesCopyTextFallback(value);
+                });
+            }
+            return Promise.resolve(eitiNotesCopyTextFallback(value));
+        }
+        function eitiNotesCopyTextFallback(value) {
+            try {
+                var ta = document.createElement('textarea');
+                ta.value = value;
+                ta.setAttribute('readonly', '');
+                ta.style.cssText = 'position:fixed;left:-9999px;top:0;';
+                document.body.appendChild(ta);
+                ta.select();
+                var ok = document.execCommand('copy');
+                ta.remove();
+                return !!ok;
+            } catch (e) {
+                return false;
+            }
+        }
+        function eitiNotesMailtoFallback(title, body) {
+            var subj = encodeURIComponent(String(title || 'Заметка').slice(0, 180));
+            var raw = String(body == null ? '' : body);
+            if (raw.length > 1200) raw = raw.slice(0, 1200) + '\n…';
+            var href = 'mailto:?subject=' + subj + '&body=' + encodeURIComponent(raw);
+            if (href.length > 1800) {
+                raw = String(body || '').slice(0, 600) + '\n…';
+                href = 'mailto:?subject=' + subj + '&body=' + encodeURIComponent(raw);
+            }
+            try { window.location.href = href; return true; } catch (e) { return false; }
+        }
+        function eitiNotesSaveAs(format) {
+            var cur = eitiNotesCurrentTitleBody();
+            if (!(cur.title || '').trim() && !(cur.body || '').trim()) {
+                if (typeof showToast === 'function') showToast('Заметка пустая');
+                return false;
+            }
+            if (format === 'pdf') {
+                var printed = eitiNotesPrintPdf(cur.title, cur.body);
+                if (printed && typeof showToast === 'function') showToast('Печать: выберите «Сохранить как PDF»', 2200);
+                return printed;
+            }
+            var packed = eitiNotesExportContent(cur.title, cur.body, format);
+            var ok = eitiNotesDownloadFile(packed.content, packed.filename, packed.mime);
+            if (ok && typeof showToast === 'function') showToast('Сохранено: ' + packed.filename, 1600);
+            return ok;
+        }
+        function eitiNotesShareAs(format) {
+            var cur = eitiNotesCurrentTitleBody();
+            if (!(cur.title || '').trim() && !(cur.body || '').trim()) {
+                if (typeof showToast === 'function') showToast('Заметка пустая');
+                return Promise.resolve(false);
+            }
+            if (format === 'pdf') {
+                eitiNotesPrintPdf(cur.title, cur.body);
+                if (typeof showToast === 'function') showToast('В печати можно отправить или сохранить PDF', 2200);
+            }
+            var packed = eitiNotesExportContent(cur.title, cur.body, format === 'pdf' ? 'txt' : format);
+            var shareTitle = String(cur.title || packed.filename).trim() || 'Заметка';
+            function fallback() {
+                eitiNotesMailtoFallback(shareTitle, packed.content);
+                return eitiNotesCopyText(packed.content).then(function(copied) {
+                    if (copied && typeof showToast === 'function') showToast('Текст скопирован, можно вставить в письмо', 2000);
+                    return true;
+                });
+            }
+            try {
+                if (typeof navigator !== 'undefined' && navigator.share) {
+                    var blob = new Blob(['\uFEFF' + packed.content], { type: packed.mime });
+                    var file = null;
+                    try { file = new File([blob], packed.filename, { type: packed.mime }); } catch (e1) { file = null; }
+                    var canFiles = false;
+                    try { canFiles = !!(file && navigator.canShare && navigator.canShare({ files: [file] })); } catch (e2) { canFiles = false; }
+                    var payload = canFiles
+                        ? { files: [file], title: shareTitle, text: shareTitle }
+                        : { title: shareTitle, text: packed.content.slice(0, 4000) };
+                    return navigator.share(payload).then(function() { return true; }).catch(function() { return fallback(); });
+                }
+            } catch (e) {}
+            return fallback();
+        }
+        function eitiNotesExportMenuClose() {
+            var menu = document.getElementById('noteExportMenu');
+            if (menu) {
+                menu.classList.remove('open');
+                menu.hidden = true;
+            }
+            var saveBtn = document.getElementById('noteSaveAsBtn');
+            var shareBtn = document.getElementById('noteShareBtn');
+            if (saveBtn) saveBtn.setAttribute('aria-expanded', 'false');
+            if (shareBtn) shareBtn.setAttribute('aria-expanded', 'false');
+        }
+        function eitiNotesExportMenuOpen(mode, anchor) {
+            var menu = document.getElementById('noteExportMenu');
+            if (!menu) return;
+            _eitiNotesExportMode = mode === 'share' ? 'share' : 'save';
+            menu.hidden = false;
+            menu.classList.add('open');
+            if (anchor && anchor.getBoundingClientRect) {
+                var rect = anchor.getBoundingClientRect();
+                var card = document.querySelector('.note-editor-card');
+                var cardRect = card ? card.getBoundingClientRect() : { top: 0, right: 0 };
+                menu.style.top = Math.max(8, rect.bottom - cardRect.top + 6) + 'px';
+                menu.style.right = Math.max(8, cardRect.right - rect.right) + 'px';
+            }
+            var saveBtn = document.getElementById('noteSaveAsBtn');
+            var shareBtn = document.getElementById('noteShareBtn');
+            if (saveBtn) saveBtn.setAttribute('aria-expanded', mode === 'save' ? 'true' : 'false');
+            if (shareBtn) shareBtn.setAttribute('aria-expanded', mode === 'share' ? 'true' : 'false');
+        }
+        function eitiNotesExportChoose(format) {
+            var mode = _eitiNotesExportMode;
+            eitiNotesExportMenuClose();
+            if (mode === 'share') return eitiNotesShareAs(format);
+            return eitiNotesSaveAs(format);
+        }
+        function eitiNotesHlOnEditorOpen(note) {
+            eitiNotesHlApplyCssVars();
+            eitiNotesHlSyncSettingsUi();
+            _eitiNotesAiUndoDraft = notesCurrentId ? null : _eitiNotesAiUndoDraft;
+            var src = note || eitiNotesAiUndoLiveNote();
+            if (src && src.aiBefore != null && src.aiAfter != null && src.aiUndoAt !== 'before' && String(src.body || '') === String(src.aiAfter)) {
+                eitiNotesHlOnAiChange(src.aiBefore, src.aiAfter);
+            } else {
+                eitiNotesHlClear('open');
+            }
+            eitiNotesAiUndoSyncButtons();
+        }
+        function eitiNotesHlBindUI() {
+            eitiNotesHlApplyCssVars();
+            eitiNotesHlSyncSettingsUi();
+            var hlBtn = document.getElementById('noteHlToggle');
+            if (hlBtn && !hlBtn._eitiBound) {
+                hlBtn._eitiBound = true;
+                hlBtn.addEventListener('click', function() { eitiNotesHlToggle(); });
+            }
+            var undoBtn = document.getElementById('noteAiUndoBtn');
+            if (undoBtn && !undoBtn._eitiBound) {
+                undoBtn._eitiBound = true;
+                undoBtn.addEventListener('click', function() { eitiNotesAiUndoClick(); });
+            }
+            var redoBtn = document.getElementById('noteAiRedoBtn');
+            if (redoBtn && !redoBtn._eitiBound) {
+                redoBtn._eitiBound = true;
+                redoBtn.addEventListener('click', function() { eitiNotesAiRedoClick(); });
+            }
+            var bodyEl = document.getElementById('noteEditorBody');
+            if (bodyEl && !bodyEl._eitiHlBound) {
+                bodyEl._eitiHlBound = true;
+                bodyEl.addEventListener('input', function() { eitiNotesOnManualEdit(); });
+            }
+            var overlay = document.getElementById('noteEditorHl');
+            if (overlay && !overlay._eitiBound) {
+                overlay._eitiBound = true;
+                overlay.addEventListener('click', function() {
+                    if (bodyEl) bodyEl.focus();
+                });
+            }
+            var saveAs = document.getElementById('noteSaveAsBtn');
+            if (saveAs && !saveAs._eitiBound) {
+                saveAs._eitiBound = true;
+                saveAs.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var menu = document.getElementById('noteExportMenu');
+                    if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'save') eitiNotesExportMenuClose();
+                    else eitiNotesExportMenuOpen('save', saveAs);
+                });
+            }
+            var shareBtn = document.getElementById('noteShareBtn');
+            if (shareBtn && !shareBtn._eitiBound) {
+                shareBtn._eitiBound = true;
+                shareBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var menu = document.getElementById('noteExportMenu');
+                    if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'share') eitiNotesExportMenuClose();
+                    else eitiNotesExportMenuOpen('share', shareBtn);
+                });
+            }
+            var menu = document.getElementById('noteExportMenu');
+            if (menu && !menu._eitiBound) {
+                menu._eitiBound = true;
+                menu.addEventListener('click', function(e) {
+                    var btn = e.target.closest('[data-note-export]');
+                    if (!btn) return;
+                    e.preventDefault();
+                    eitiNotesExportChoose(btn.getAttribute('data-note-export'));
+                });
+            }
+            if (!window._eitiNotesExportDocBound) {
+                window._eitiNotesExportDocBound = true;
+                document.addEventListener('click', function(e) {
+                    var menuEl = document.getElementById('noteExportMenu');
+                    if (!menuEl || !menuEl.classList.contains('open')) return;
+                    if (e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn')) return;
+                    eitiNotesExportMenuClose();
+                });
+            }
+        }
+        window.eitiNotesDiffWords = eitiNotesDiffWords;
+        window.eitiNotesHlToggle = eitiNotesHlToggle;
+        window.eitiNotesHlSetEnabled = eitiNotesHlSetEnabled;
+        window.eitiNotesHlIsEnabled = eitiNotesHlIsEnabled;
+        window.eitiNotesHlOnAiChange = eitiNotesHlOnAiChange;
+        window.eitiNotesHlBindUI = eitiNotesHlBindUI;
+        window.eitiNotesHlOnEditorOpen = eitiNotesHlOnEditorOpen;
+        window.eitiNotesAiUndoRecord = eitiNotesAiUndoRecord;
+        window.eitiNotesAiUndoSyncButtons = eitiNotesAiUndoSyncButtons;
+        window.eitiNotesAiUndoClick = eitiNotesAiUndoClick;
+        window.eitiNotesAiRedoClick = eitiNotesAiRedoClick;
+        window.eitiNotesSaveAs = eitiNotesSaveAs;
+        window.eitiNotesShareAs = eitiNotesShareAs;
 
         // ── v13.7.16: Notes AI (Ask AI в открытой заметке) ──────────────
         var _eitiNotesAIBusy = false;
@@ -35661,7 +36502,7 @@ window.eitiLLMClearAll = async function() {
             }
             return { reply: (typeof data.reply === 'string' ? data.reply : ''), mutation: mutation };
         }
-        function eitiNotesAIPersistCurrentNote() {
+        function eitiNotesAIPersistCurrentNote(extra) {
             if (!notesCurrentId || typeof notesLoad !== 'function' || typeof notesSave !== 'function') return false;
             var notes = notesLoad();
             var index = notes.findIndex(function(n) { return n && n.id === notesCurrentId; });
@@ -35678,7 +36519,7 @@ window.eitiLLMClearAll = async function() {
                 body: bodyEl ? String(bodyEl.value || '').trim() : old.body,
                 tags: tags,
                 updated: now
-            });
+            }, extra || {});
             notesSave(notes);
             if (typeof noteAutoEmbed === 'function') noteAutoEmbed(notes[index].title, notes[index].body, notesCurrentId);
             var badge = document.getElementById('noteEditorDateBadge');
@@ -35739,9 +36580,17 @@ window.eitiLLMClearAll = async function() {
                 else if (typeof mutation.tags === 'string') tagsEl.value = mutation.tags;
                 else return { ok: false, message: 'Не заданы теги.' };
             }
+            var undoExtra = null;
+            if (nextBody !== body && typeof eitiNotesAiRememberUndo === 'function') {
+                undoExtra = eitiNotesAiRememberUndo(body, nextBody);
+            }
+            _eitiNotesHlIgnoreInput = true;
             bodyEl.value = nextBody;
             try { bodyEl.dispatchEvent(new Event('input', { bubbles: true })); } catch (e) {}
-            var saved = eitiNotesAIPersistCurrentNote();
+            _eitiNotesHlIgnoreInput = false;
+            var saved = eitiNotesAIPersistCurrentNote(undoExtra || {});
+            if (!saved && undoExtra) _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, undoExtra);
+            if (typeof eitiNotesAiUndoSyncButtons === 'function') eitiNotesAiUndoSyncButtons();
             if (typeof showToast === 'function') showToast(saved ? '✨ ИИ изменил и сохранил заметку' : '✨ ИИ изменил черновик — сохраните его вручную', 2200);
             return { ok: true, saved: saved, action: action };
         }
@@ -35917,6 +36766,7 @@ window.eitiLLMClearAll = async function() {
                 b.style.border = active ? '2px solid var(--accent-color)' : '1px solid var(--border-color)';
                 b.style.background = active ? 'rgba(255,215,0,0.15)' : 'var(--secondary-color)';
             });
+            if (typeof eitiNotesHlSyncSettingsUi === 'function') eitiNotesHlSyncSettingsUi();
         }
         function eitiNotesAIApplySize() {
             var panel = document.getElementById('notesAiPanel');
@@ -36050,7 +36900,12 @@ window.eitiLLMClearAll = async function() {
             var bodyEl = document.getElementById('noteEditorBody');
             if (!bodyEl) return;
             var cur = bodyEl.value || '';
-            bodyEl.value = cur ? (cur.replace(/\s+$/, '') + '\n\n' + text) : text;
+            var next = cur ? (cur.replace(/\s+$/, '') + '\n\n' + text) : text;
+            var undoExtra = (typeof eitiNotesAiRememberUndo === 'function') ? eitiNotesAiRememberUndo(cur, next) : null;
+            _eitiNotesHlIgnoreInput = true;
+            bodyEl.value = next;
+            _eitiNotesHlIgnoreInput = false;
+            if (typeof eitiNotesAIPersistCurrentNote === 'function') eitiNotesAIPersistCurrentNote(undoExtra || {});
             if (typeof showToast === 'function') showToast('Вставлено в заметку');
         }
         function eitiNotesAIQuickPrompt(kind) {
@@ -36156,6 +37011,7 @@ window.eitiLLMClearAll = async function() {
             eitiNotesAIRenderSettings();
             eitiNotesAIUpdateEmojiButton();
             eitiFilesAIRenderSettings();
+            if (typeof eitiNotesHlBindUI === 'function') eitiNotesHlBindUI();
             var emojiToggle = document.getElementById('notesAiEmojiToggle');
             if (emojiToggle) emojiToggle.onclick = eitiNotesAIToggleEmoji;
             eitiNotesAIFillModelMenu();
@@ -36291,6 +37147,10 @@ window.eitiLLMClearAll = async function() {
         window.eitiNotesAIToggleFullscreen = eitiNotesAIToggleFullscreen;
         window.eitiNotesAITogglePanel = eitiNotesAITogglePanel;
         window.eitiNotesAIOnEditorOpen = eitiNotesAIOnEditorOpen;
+        window.eitiNotesHlToggle = eitiNotesHlToggle;
+        window.eitiNotesHlSetEnabled = eitiNotesHlSetEnabled;
+        window.eitiNotesAiUndoClick = eitiNotesAiUndoClick;
+        window.eitiNotesAiRedoClick = eitiNotesAiRedoClick;
 
         function notesSaveNote() {
             var title = (document.getElementById('noteEditorTitle').value || '').trim();
@@ -36472,6 +37332,7 @@ window.eitiLLMClearAll = async function() {
             });
         }
         function notesInsertFmt(fmt) {
+            if (!fmt) return;
             var ta = document.getElementById('noteEditorBody');
             if (!ta) return;
             var start = ta.selectionStart, end = ta.selectionEnd;
@@ -36485,6 +37346,7 @@ window.eitiLLMClearAll = async function() {
             ta.value = ta.value.substring(0, start) + insert + ta.value.substring(end);
             ta.selectionStart = ta.selectionEnd = start + insert.length;
             ta.focus();
+            if (typeof eitiNotesOnManualEdit === 'function') eitiNotesOnManualEdit();
         }
 
         // Init notes on DOM ready

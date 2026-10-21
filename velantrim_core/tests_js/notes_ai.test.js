@@ -73,6 +73,9 @@ test('Notes AI UI and settings keys exist in the monolith', () => {
   assert.match(INDEX, /eiti_notes_ai_enabled/);
   assert.match(INDEX, /eiti_notes_ai_model/);
   assert.match(INDEX, /eiti_notes_ai_size/);
+  assert.match(INDEX, /eiti_notes_ai_highlight/);
+  assert.match(INDEX, /eiti_notes_hl_add_color/);
+  assert.match(INDEX, /eiti_notes_hl_del_color/);
   assert.match(INDEX, /NOTES_AI_DISABLED/);
   assert.match(INDEX, /function eitiNotesAICall\(/);
   assert.match(INDEX, /eitiRenderMarkdown\(out\)/);
