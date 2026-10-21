@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.19"; // Подсветка правок Ask AI, undo и экспорт заметки
+        var EITI_VERSION = "13.7.20"; // Шапка заметки, нижняя панель формата, без чипа Ask AI
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7389,23 +7389,82 @@
         .note-editor-card { display: flex; flex-direction: column; height: 100%; position: relative; }
         .note-editor-topbar {
             display: flex;
+            flex-wrap: nowrap;
             align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
+            gap: 6px 8px;
+            padding: 8px 10px;
             background: linear-gradient(180deg, var(--secondary-color) 0%, var(--primary-color) 100%);
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0;
             overflow: visible;
         }
         .note-editor-topbar .note-editor-title {
-            min-width: 0;
-            flex: 1;
+            flex: 1 1 auto;
+            min-width: 120px;
         }
-        .note-editor-topbar > div:last-child {
+        .note-editor-topbar-actions {
             flex-shrink: 0;
             display: flex;
             gap: 6px;
             align-items: center;
+            margin-left: auto;
+        }
+        .note-ai-tools {
+            display: none;
+            margin-left: auto;
+            gap: 6px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .note-ai-tools.is-visible {
+            display: flex;
+            flex: 1 1 100%;
+            justify-content: flex-end;
+        }
+        .note-more-menu {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 52px;
+            z-index: 41;
+            min-width: 210px;
+            padding: 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: var(--primary-color);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .note-more-menu.open { display: block; }
+        .note-more-menu button {
+            display: flex; align-items: center; gap: 8px; width: 100%;
+            padding: 9px 10px; margin: 0;
+            border: none; border-radius: 8px;
+            background: transparent;
+            color: var(--text-color);
+            font-size: 13px; text-align: left; cursor: pointer;
+        }
+        .note-more-menu button:active { background: var(--secondary-color); }
+        .note-more-menu button[hidden] { display: none !important; }
+        .note-more-menu .note-more-danger {
+            color: #ff6b6b;
+            margin-top: 4px;
+            border-top: 1px solid var(--border-color);
+            border-radius: 0 0 8px 8px;
+        }
+        .note-more-menu .note-more-danger:active { background: rgba(255,0,0,0.12); }
+        .note-hl-glyph {
+            font-size: 12px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            padding: 3px 5px 4px;
+            border-radius: 4px;
+            background: color-mix(in srgb, var(--notes-hl-add, #86efac) 72%, transparent);
+            color: var(--text-color);
+            box-shadow: inset 0 -2px 0 rgba(22, 163, 74, 0.55);
+        }
+        .note-editor-tool-icon.is-on .note-hl-glyph {
+            background: color-mix(in srgb, var(--notes-hl-add, #86efac) 88%, #fff 12%);
         }
         .note-editor-back {
             width: 38px; height: 38px;
@@ -7445,15 +7504,36 @@
             flex-shrink: 0;
         }
         .note-editor-toolbar {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 6px 10px;
+            display: contents;
+        }
+        .note-fmt-popover {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 52px;
+            left: auto;
+            bottom: auto;
+            width: min(320px, calc(100% - 20px));
+            z-index: 42;
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
             background: var(--primary-color);
-            border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        }
+        .note-fmt-popover.open { display: block; }
+        .note-fmt-popover-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .note-fmt-aa {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            line-height: 1;
         }
         .note-fmt-btn {
             padding: 5px 9px;
@@ -7654,10 +7734,13 @@
             bottom: calc(10px + env(safe-area-inset-bottom, 0px));
             z-index: 16;
             align-items: center;
-            gap: 8px;
+            flex-wrap: wrap;
+            gap: 6px;
             pointer-events: none;
         }
         .notes-ai-fab-bar.visible { display: flex; }
+        .note-editor-overlay:not(.notes-ai-on) .notes-ai-fab-ai { display: none !important; }
+        .notes-ai-fab-bar .note-editor-tool-icon { pointer-events: auto; }
         .notes-ai-fab-round {
             pointer-events: auto;
             width: 44px; height: 44px; flex-shrink: 0;
@@ -7682,9 +7765,15 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.28);
             display: flex; align-items: center; justify-content: center; gap: 6px;
         }
+        .note-editor-overlay.active .note-editor-body,
+        .note-editor-overlay.active .note-editor-hl { padding-bottom: 64px; }
+        .note-editor-overlay.active .note-tags-row { padding-bottom: 52px; }
         .note-editor-overlay.notes-ai-on .note-editor-body,
         .note-editor-overlay.notes-ai-on .note-editor-hl { padding-bottom: 78px; }
-        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 58px; }
+        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 64px; }
+        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-editor-body,
+        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-editor-hl { padding-bottom: 122px; }
+        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-tags-row { padding-bottom: 110px; }
         .notes-ai-find {
             display: none;
             position: absolute;
@@ -7737,12 +7826,11 @@
         .note-editor-overlay.notes-ai-fullscreen .notes-ai-empty-hint { display: none !important; }
         .notes-ai-panel-head {
             position: relative;
-            display: grid; grid-template-columns: minmax(0, 1fr) 36px; grid-template-rows: 28px 36px;
-            align-items: center; column-gap: 8px;
-            padding: 5px 12px 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 32px;
+            padding: 4px 12px 6px; flex-shrink: 0;
         }
         .notes-ai-panel-handle {
-            grid-column: 1 / -1; grid-row: 1; justify-self: center;
             width: 72px; height: 28px; padding: 0; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
             border: 0; border-radius: 99px; background: transparent; cursor: ns-resize;
@@ -7755,20 +7843,10 @@
         }
         .notes-ai-panel-handle:active span { width: 58px; opacity: 0.75; }
         .notes-ai-panel-head > button:not(.notes-ai-panel-handle) {
-            grid-column: 2; grid-row: 2;
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
             width: 32px; height: 32px; border-radius: 50%;
             border: none; background: rgba(255,255,255,0.08);
             color: var(--text-color); cursor: pointer; flex-shrink: 0;
-        }
-        .notes-ai-chip {
-            grid-column: 1; grid-row: 2;
-            flex: 1; min-width: 0;
-            display: flex; align-items: center; gap: 6px;
-            padding: 6px 10px; border-radius: 12px;
-            background: var(--secondary-color);
-            border: 1px solid var(--border-color);
-            font-size: 12px; font-weight: 600;
-            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
         .notes-ai-msgs {
             flex: 1; min-height: 0; overflow-y: auto;
@@ -7857,6 +7935,10 @@
         @media (max-width: 430px) {
             .notes-ai-fab-ask { font-size: 13px; }
             .notes-ai-panel.notes-ai-size-small { height: 42%; }
+            .note-editor-topbar .note-editor-title {
+                flex: 1 1 auto;
+                min-width: 120px;
+            }
         }
 
         /* ══════════ CALENDAR MODAL ══════════ */
@@ -8611,8 +8693,8 @@
                                     </div>
                                     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
                                         <div style="min-width:0;">
-                                            <div style="font-size:14px;font-weight:600;">🖍 Подсветка правок ИИ</div>
-                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой 🖍 или при ручном наборе.</div>
+                                            <div style="font-size:14px;font-weight:600;">Подсветка правок ИИ</div>
+                                            <div style="font-size:11px;opacity:0.55;margin-top:2px;">После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.</div>
                                         </div>
                                         <div id="notes-ai-hl-toggle" role="switch" aria-checked="true" aria-label="Подсветка правок ИИ" onclick="eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled())"
                                             style="width:44px;height:26px;border-radius:13px;background:var(--accent-color);cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;">
@@ -11107,28 +11189,29 @@
                         <div class="note-editor-topbar">
                             <button class="note-editor-back" id="noteEditorBack">←</button>
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
-                            <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;">
-                                <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ">🖍</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
-                                <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
-                                <button id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🔔</button>
-                                <button id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">☀️</button>
-                                <!-- v12.9.77: История версий заметки -->
-                                <button id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" style="width:36px;height:36px;border-radius:10px;border:1px solid var(--border-color);background:rgba(255,255,255,0.08);color:var(--text-color);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;display:none;">🕐</button>
-                                <button class="note-editor-save-icon" id="noteEditorSave" title="Сохранить">💾</button>
-                                <button class="note-editor-delete-top" id="noteEditorDelete" title="Удалить">🗑</button>
+                            <div class="note-editor-topbar-actions">
+                                <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
+                                <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
                             </div>
-                        </div>
-                        <div class="note-editor-toolbar">
-                            <button class="note-fmt-btn" data-fmt="bold" title="Жирный">𝐁</button>
-                            <button class="note-fmt-btn" data-fmt="italic" title="Курсив">𝘐</button>
-                            <button class="note-fmt-btn" data-fmt="ul" title="Список">• —</button>
-                            <button class="note-fmt-btn" data-fmt="h2" title="Заголовок">H</button>
-                            <button class="note-fmt-btn" data-fmt="line" title="Разделитель">—</button>
-                            <button class="note-fmt-btn" id="noteCopyAllBtn" title="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'').trim();var full=(t&&b)?t+'\n\n'+b:(t||b);if(!full){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
-                            <button type="button" class="note-fmt-btn" id="noteSaveAsBtn" title="Сохранить заметку" aria-haspopup="true" aria-expanded="false">⬇</button>
-                            <button type="button" class="note-fmt-btn" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false">↗</button>
-                            <div class="note-color-row" id="noteColorRow"></div>
+                            <div id="noteMoreMenu" class="note-more-menu" hidden>
+                                <button type="button" id="noteFmtToggle" title="Формат и цвет" aria-haspopup="true" aria-expanded="false" aria-label="Формат и цвет"><span class="note-fmt-aa" aria-hidden="true">Аа</span> Шрифт и цвет</button>
+                                <button type="button" id="noteSaveAsBtn" title="Сохранить как файл" aria-haspopup="true" aria-expanded="false" aria-label="Сохранить как файл">💾 Сохранить как файл</button>
+                                <button type="button" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false" aria-label="Отправить">📤 Отправить</button>
+                                <button type="button" id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание">🔔 Напоминание</button>
+                                <button type="button" id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим">☀️ Светлый режим</button>
+                                <button type="button" id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" hidden>🕐 История версий</button>
+                                <button type="button" class="note-more-danger" id="noteEditorDelete" title="Удалить заметку">🗑 Удалить заметку</button>
+                            </div>
+                            <div id="noteFmtPopover" class="note-fmt-popover" hidden>
+                                <div class="note-fmt-popover-row">
+                                    <button class="note-fmt-btn" data-fmt="bold" title="Жирный">𝐁</button>
+                                    <button class="note-fmt-btn" data-fmt="italic" title="Курсив">𝘐</button>
+                                    <button class="note-fmt-btn" data-fmt="ul" title="Список">• —</button>
+                                    <button class="note-fmt-btn" data-fmt="h2" title="Заголовок">H</button>
+                                    <button class="note-fmt-btn" data-fmt="line" title="Разделитель">—</button>
+                                </div>
+                                <div class="note-color-row" id="noteColorRow"></div>
+                            </div>
                         </div>
                         <div id="noteExportMenu" class="note-export-menu" hidden>
                             <button type="button" data-note-export="md">Markdown (.md)</button>
@@ -11141,7 +11224,7 @@
                         </div>
                         <!-- Кнопка быстрой навигации (вверх/вниз) -->
                         <button id="noteScrollBtn"
-                            style="display:none;position:absolute;right:14px;bottom:90px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:10;align-items:center;justify-content:center;transition:opacity 0.2s;"
+                            style="display:none;position:absolute;right:14px;bottom:140px;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.35);z-index:10;align-items:center;justify-content:center;transition:opacity 0.2s;"
                             onclick="eitiNoteScrollToggle()">⬇</button>
                         <div class="note-tags-row">
                             <input id="noteEditorTags" placeholder="🏷 Теги: работа, идеи, личное..." autocomplete="off"
@@ -11154,15 +11237,21 @@
                             <button type="button" id="notesAiFindGo" style="padding:6px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:12px;cursor:pointer;">Найти</button>
                         </div>
                         <div class="notes-ai-fab-bar" id="notesAiFabBar">
-                            <button type="button" class="notes-ai-fab-round" id="notesAiSearchBtn" title="Поиск в заметке" aria-label="Поиск">🔍</button>
-                            <button type="button" class="notes-ai-fab-ask" id="notesAiAskBtn"><span>✨</span><span data-i18n="Ask AI">Ask AI</span></button>
-                            <button type="button" class="notes-ai-fab-round" id="notesAiEditBtn" title="Редактировать" aria-label="Редактировать">✎</button>
+                            <button type="button" class="notes-ai-fab-round notes-ai-fab-ai" id="notesAiSearchBtn" title="Поиск в заметке" aria-label="Поиск">🔍</button>
+                            <button type="button" class="notes-ai-fab-ask notes-ai-fab-ai" id="notesAiAskBtn"><span>✨</span><span data-i18n="Ask AI">Ask AI</span></button>
+                            <button type="button" class="notes-ai-fab-round notes-ai-fab-ai" id="notesAiEditBtn" title="Редактировать" aria-label="Редактировать">✎</button>
+                            <div class="note-editor-toolbar" id="noteEditorToolbar">
+                                <div class="note-ai-tools" id="noteAiTools" hidden>
+                                    <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
+                                    <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
+                                    <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="notes-ai-panel notes-ai-size-medium" id="notesAiPanel">
                             <div class="notes-ai-panel-head">
                                 <button type="button" class="notes-ai-panel-handle" id="notesAiPanelHandle" title="Потяните, чтобы изменить высоту; двойное касание — полный экран" aria-label="Потяните, чтобы изменить высоту; двойное касание — полный экран"><span aria-hidden="true"></span></button>
                                 <button type="button" id="notesAiPanelClose" title="Закрыть">✕</button>
-                                <div class="notes-ai-chip" id="notesAiChip">📄 Заметка</div>
                             </div>
                             <div class="notes-ai-msgs" id="notesAiMsgs"></div>
                             <div class="notes-ai-quick">
@@ -12697,8 +12786,13 @@
             };
             var backBtn = document.getElementById('noteEditorBack');
             if (backBtn) backBtn.onclick = notesCloseEditor;
-            var saveBtn = document.getElementById('noteEditorSave');
-            if (saveBtn) saveBtn.onclick = notesSaveNote;
+            // v13.7.20: 💾 в шапке убран — заметка сохраняется сама (автосохранение)
+            ['noteEditorTitle','noteEditorBody','noteEditorTags'].forEach(function(fid) {
+                var fel = document.getElementById(fid);
+                if (fel && !fel._eitiAutoSaveBound) { fel._eitiAutoSaveBound = true; fel.addEventListener('input', notesAutoSaveSchedule); }
+            });
+            window.addEventListener('pagehide', function() { notesAutoSaveFlush(); });
+            document.addEventListener('visibilitychange', function() { if (document.visibilityState === 'hidden') notesAutoSaveFlush(); });
             var delBtn = document.getElementById('noteEditorDelete');
             if (delBtn) delBtn.onclick = notesDeleteNote;
             var search = document.getElementById('notesSearch');
@@ -35266,6 +35360,8 @@ window.eitiLLMClearAll = async function() {
             return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
         }
         function notesOpenEditor(id, searchQuery) {
+            notesAutoSaveFlush();
+            _notesAutoHistDone = false;
             var notes = notesLoad();
             var note = id ? notes.find(function(n){ return n.id === id; }) : null;
             notesCurrentId = note ? note.id : null;
@@ -35298,6 +35394,7 @@ window.eitiLLMClearAll = async function() {
                     dot.onclick = function() {
                         notesCurrentColor = i;
                         colorRow.querySelectorAll('.note-color-dot').forEach(function(d,j){ d.classList.toggle('selected', j===i); });
+                        notesAutoSaveSchedule();
                     };
                     colorRow.appendChild(dot);
                 });
@@ -35334,8 +35431,12 @@ window.eitiLLMClearAll = async function() {
             if (typeof noteHistoryBtnUpdate === 'function') noteHistoryBtnUpdate();
             if (typeof eitiNotesAIOnEditorOpen === 'function') eitiNotesAIOnEditorOpen();
             if (typeof eitiNotesHlOnEditorOpen === 'function') eitiNotesHlOnEditorOpen(note);
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
+            if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
         }
         function notesCloseEditor() {
+            notesAutoSaveFlush();
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
             if (typeof eitiNotesAIOnEditorClose === 'function') eitiNotesAIOnEditorClose();
             var overlay = document.getElementById('noteEditorOverlay');
             if (overlay) overlay.classList.remove('active');
@@ -35611,7 +35712,9 @@ window.eitiLLMClearAll = async function() {
             return enabled;
         }
         function eitiNotesHlToggle() {
-            return eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
+            var enabled = eitiNotesHlSetEnabled(!eitiNotesHlIsEnabled());
+            if (typeof showToast === 'function') showToast('Подсветка правок ИИ: ' + (enabled ? 'вкл' : 'выкл'), 1400);
+            return enabled;
         }
         function eitiNotesOnManualEdit() {
             if (_eitiNotesHlIgnoreInput) return;
@@ -35674,6 +35777,12 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiNotesAiUndoSyncButtons() {
             var note = eitiNotesAiUndoLiveNote();
+            var hasPair = !!(note && note.aiBefore != null && note.aiAfter != null);
+            var tools = document.getElementById('noteAiTools');
+            if (tools) {
+                tools.hidden = !hasPair;
+                tools.classList.toggle('is-visible', hasPair);
+            }
             var undoBtn = document.getElementById('noteAiUndoBtn');
             var redoBtn = document.getElementById('noteAiRedoBtn');
             var canU = eitiNotesAiUndoCanUndo(note);
@@ -35713,6 +35822,7 @@ window.eitiLLMClearAll = async function() {
                 }
             } else {
                 _eitiNotesAiUndoDraft = nextNote;
+                if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush();
             }
             if (keepHighlight && nextNote.aiBefore != null && nextNote.aiAfter != null) {
                 eitiNotesHlOnAiChange(nextNote.aiBefore, nextNote.aiAfter);
@@ -35938,15 +36048,24 @@ window.eitiLLMClearAll = async function() {
         function eitiNotesExportMenuOpen(mode, anchor) {
             var menu = document.getElementById('noteExportMenu');
             if (!menu) return;
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
+            if (typeof eitiNotesMoreMenuClose === 'function') eitiNotesMoreMenuClose();
             _eitiNotesExportMode = mode === 'share' ? 'share' : 'save';
             menu.hidden = false;
             menu.classList.add('open');
             if (anchor && anchor.getBoundingClientRect) {
                 var rect = anchor.getBoundingClientRect();
                 var card = document.querySelector('.note-editor-card');
-                var cardRect = card ? card.getBoundingClientRect() : { top: 0, right: 0 };
-                menu.style.top = Math.max(8, rect.bottom - cardRect.top + 6) + 'px';
+                var cardRect = card ? card.getBoundingClientRect() : { top: 0, right: 0, bottom: window.innerHeight };
+                var menuH = menu.offsetHeight || 132;
+                var spaceBelow = cardRect.bottom - rect.bottom;
+                if (spaceBelow < menuH + 12) {
+                    menu.style.top = Math.max(8, rect.top - cardRect.top - menuH - 6) + 'px';
+                } else {
+                    menu.style.top = Math.max(8, rect.bottom - cardRect.top + 6) + 'px';
+                }
                 menu.style.right = Math.max(8, cardRect.right - rect.right) + 'px';
+                menu.style.left = 'auto';
             }
             var saveBtn = document.getElementById('noteSaveAsBtn');
             var shareBtn = document.getElementById('noteShareBtn');
@@ -35962,6 +36081,20 @@ window.eitiLLMClearAll = async function() {
         function eitiNotesHlOnEditorOpen(note) {
             eitiNotesHlApplyCssVars();
             eitiNotesHlSyncSettingsUi();
+            var colorRow = document.getElementById('noteColorRow');
+            if (colorRow && !colorRow.childElementCount && typeof NOTE_COLORS !== 'undefined') {
+                NOTE_COLORS.forEach(function(c, i) {
+                    var dot = document.createElement('div');
+                    dot.className = 'note-color-dot' + (i === notesCurrentColor ? ' selected' : '');
+                    dot.style.background = c.bg;
+                    dot.onclick = function() {
+                        notesCurrentColor = i;
+                        colorRow.querySelectorAll('.note-color-dot').forEach(function(d, j) { d.classList.toggle('selected', j === i); });
+                        if (typeof notesAutoSaveSchedule === 'function') notesAutoSaveSchedule();
+                    };
+                    colorRow.appendChild(dot);
+                });
+            }
             _eitiNotesAiUndoDraft = notesCurrentId ? null : _eitiNotesAiUndoDraft;
             var src = note || eitiNotesAiUndoLiveNote();
             if (src && src.aiBefore != null && src.aiAfter != null && src.aiUndoAt !== 'before' && String(src.body || '') === String(src.aiAfter)) {
@@ -35970,6 +36103,52 @@ window.eitiLLMClearAll = async function() {
                 eitiNotesHlClear('open');
             }
             eitiNotesAiUndoSyncButtons();
+        }
+        function eitiNotesMoreMenuClose() {
+            var menu = document.getElementById('noteMoreMenu');
+            var btn = document.getElementById('noteMoreBtn');
+            if (menu) {
+                menu.classList.remove('open');
+                menu.hidden = true;
+            }
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+        function eitiNotesMoreMenuToggle() {
+            var menu = document.getElementById('noteMoreMenu');
+            var btn = document.getElementById('noteMoreBtn');
+            if (!menu) return false;
+            var open = !menu.classList.contains('open');
+            if (open) {
+                eitiNotesFmtPopoverClose();
+                eitiNotesExportMenuClose();
+            }
+            menu.hidden = !open;
+            menu.classList.toggle('open', open);
+            if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            return open;
+        }
+        function eitiNotesFmtPopoverClose() {
+            var pop = document.getElementById('noteFmtPopover');
+            var btn = document.getElementById('noteFmtToggle');
+            if (pop) {
+                pop.classList.remove('open');
+                pop.hidden = true;
+            }
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+        function eitiNotesFmtPopoverToggle() {
+            var pop = document.getElementById('noteFmtPopover');
+            var btn = document.getElementById('noteFmtToggle');
+            if (!pop) return false;
+            var open = !pop.classList.contains('open');
+            if (open) {
+                eitiNotesMoreMenuClose();
+                eitiNotesExportMenuClose();
+            }
+            pop.hidden = !open;
+            pop.classList.toggle('open', open);
+            if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            return open;
         }
         function eitiNotesHlBindUI() {
             eitiNotesHlApplyCssVars();
@@ -36008,8 +36187,9 @@ window.eitiLLMClearAll = async function() {
                     e.preventDefault();
                     e.stopPropagation();
                     var menu = document.getElementById('noteExportMenu');
+                    var anchor = document.getElementById('noteMoreBtn') || saveAs;
                     if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'save') eitiNotesExportMenuClose();
-                    else eitiNotesExportMenuOpen('save', saveAs);
+                    else eitiNotesExportMenuOpen('save', anchor);
                 });
             }
             var shareBtn = document.getElementById('noteShareBtn');
@@ -36019,8 +36199,9 @@ window.eitiLLMClearAll = async function() {
                     e.preventDefault();
                     e.stopPropagation();
                     var menu = document.getElementById('noteExportMenu');
+                    var anchor = document.getElementById('noteMoreBtn') || shareBtn;
                     if (menu && menu.classList.contains('open') && _eitiNotesExportMode === 'share') eitiNotesExportMenuClose();
-                    else eitiNotesExportMenuOpen('share', shareBtn);
+                    else eitiNotesExportMenuOpen('share', anchor);
                 });
             }
             var menu = document.getElementById('noteExportMenu');
@@ -36037,9 +36218,43 @@ window.eitiLLMClearAll = async function() {
                 window._eitiNotesExportDocBound = true;
                 document.addEventListener('click', function(e) {
                     var menuEl = document.getElementById('noteExportMenu');
-                    if (!menuEl || !menuEl.classList.contains('open')) return;
-                    if (e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn')) return;
-                    eitiNotesExportMenuClose();
+                    if (menuEl && menuEl.classList.contains('open') && !e.target.closest('#noteExportMenu, #noteSaveAsBtn, #noteShareBtn, #noteMoreBtn')) {
+                        eitiNotesExportMenuClose();
+                    }
+                    var more = document.getElementById('noteMoreMenu');
+                    if (more && more.classList.contains('open') && !e.target.closest('#noteMoreMenu, #noteMoreBtn')) {
+                        eitiNotesMoreMenuClose();
+                    }
+                    var fmtPop = document.getElementById('noteFmtPopover');
+                    if (fmtPop && fmtPop.classList.contains('open') && !e.target.closest('#noteFmtPopover, #noteFmtToggle')) {
+                        eitiNotesFmtPopoverClose();
+                    }
+                });
+            }
+            var fmtBtn = document.getElementById('noteFmtToggle');
+            if (fmtBtn && !fmtBtn._eitiBound) {
+                fmtBtn._eitiBound = true;
+                fmtBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    eitiNotesFmtPopoverToggle();
+                });
+            }
+            var moreBtn = document.getElementById('noteMoreBtn');
+            if (moreBtn && !moreBtn._eitiBound) {
+                moreBtn._eitiBound = true;
+                moreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    eitiNotesMoreMenuToggle();
+                });
+            }
+            var moreMenu = document.getElementById('noteMoreMenu');
+            if (moreMenu && !moreMenu._eitiBound) {
+                moreMenu._eitiBound = true;
+                moreMenu.addEventListener('click', function(e) {
+                    if (e.target.closest('#noteFmtToggle, #noteSaveAsBtn, #noteShareBtn')) return;
+                    setTimeout(eitiNotesMoreMenuClose, 0);
                 });
             }
         }
@@ -36104,6 +36319,20 @@ window.eitiLLMClearAll = async function() {
             var offsetTop = Number(vv.offsetTop) || 0;
             var parentHeight = panel && panel.parentElement ? Number(panel.parentElement.clientHeight) || 0 : 0;
             return Math.max(0, Math.floor((parentHeight || layoutHeight) - visibleHeight - offsetTop));
+        }
+        function eitiNotesSyncKeyboardChrome() {
+            var panel = document.getElementById('notesAiPanel');
+            var bar = document.getElementById('notesAiFabBar');
+            var find = document.getElementById('notesAiFindRow');
+            var kb = eitiNotesAIGetKeyboardInset(panel, window.innerHeight, window.visualViewport);
+            var safe = 'env(safe-area-inset-bottom, 0px)';
+            var gap = 10;
+            if (bar) bar.style.bottom = 'calc(' + (gap + kb) + 'px + ' + safe + ')';
+            if (find) {
+                var barH = (bar && bar.classList.contains('visible') && bar.offsetHeight) ? bar.offsetHeight : 44;
+                find.style.bottom = 'calc(' + (gap + kb + barH + 8) + 'px + ' + safe + ')';
+            }
+            if (panel) panel.style.bottom = kb + 'px';
         }
         function eitiNotesAIAvailablePanelHeight(panel) {
             var viewport = Math.max(1, Number(window.innerHeight) || 640);
@@ -36590,6 +36819,7 @@ window.eitiLLMClearAll = async function() {
             _eitiNotesHlIgnoreInput = false;
             var saved = eitiNotesAIPersistCurrentNote(undoExtra || {});
             if (!saved && undoExtra) _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, undoExtra);
+            if (!saved && !notesCurrentId && typeof notesAutoSaveFlush === 'function') { notesAutoSaveFlush(); saved = !!notesCurrentId; }
             if (typeof eitiNotesAiUndoSyncButtons === 'function') eitiNotesAiUndoSyncButtons();
             if (typeof showToast === 'function') showToast(saved ? '✨ ИИ изменил и сохранил заметку' : '✨ ИИ изменил черновик — сохраните его вручную', 2200);
             return { ok: true, saved: saved, action: action };
@@ -36782,25 +37012,19 @@ window.eitiLLMClearAll = async function() {
             var bar = document.getElementById('notesAiFabBar');
             var panel = document.getElementById('notesAiPanel');
             var find = document.getElementById('notesAiFindRow');
-            var show = eitiNotesAIControlVisible(!!(overlay && overlay.classList.contains('active')));
+            var overlayActive = !!(overlay && overlay.classList.contains('active'));
+            var show = eitiNotesAIControlVisible(overlayActive);
             if (overlay) overlay.classList.toggle('notes-ai-on', show);
             if (bar) bar.classList.toggle('visible', !!show);
+            if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
             if (!show) {
                 if (panel) panel.classList.remove('open');
                 eitiNotesAIToggleFullscreen(false);
                 if (find) find.classList.remove('visible');
             } else {
                 eitiNotesAIApplySize();
-                eitiNotesAIUpdateChip();
                 eitiNotesAIUpdateModelChip();
             }
-        }
-        function eitiNotesAIUpdateChip() {
-            var chip = document.getElementById('notesAiChip');
-            if (!chip) return;
-            var titleEl = document.getElementById('noteEditorTitle');
-            var title = titleEl ? (titleEl.value || '').trim() : '';
-            chip.textContent = '📄 ' + (title || 'Заметка');
         }
         function eitiNotesAIUpdateModelChip() {
             var el = document.getElementById('notesAiModelChip');
@@ -36847,7 +37071,6 @@ window.eitiLLMClearAll = async function() {
             panel.classList.toggle('open', open);
             if (open) {
                 if (!wasOpen) eitiNotesAIApplySize();
-                eitiNotesAIUpdateChip();
                 eitiNotesAIUpdateModelChip();
                 eitiNotesAIRenderThread();
                 var inp = document.getElementById('notesAiInput');
@@ -36920,6 +37143,7 @@ window.eitiLLMClearAll = async function() {
             }
             var msg = String(text || '').trim();
             if (!msg || _eitiNotesAIBusy) return Promise.resolve();
+            if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush();
             var titleEl = document.getElementById('noteEditorTitle');
             var bodyEl = document.getElementById('noteEditorBody');
             var tagsEl = document.getElementById('noteEditorTags');
@@ -37121,22 +37345,10 @@ window.eitiLLMClearAll = async function() {
             };
             if (window.visualViewport && !window._eitiNotesAIVvBound) {
                 window._eitiNotesAIVvBound = true;
-                var syncKb = function() {
-                    var vv = window.visualViewport;
-                    var panel = document.getElementById('notesAiPanel');
-                    var kb = eitiNotesAIGetKeyboardInset(panel, window.innerHeight, vv);
-                    var bar = document.getElementById('notesAiFabBar');
-                    var find = document.getElementById('notesAiFindRow');
-                    var inset = 'calc(' + (10 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
-                    if (bar) bar.style.bottom = inset;
-                    if (find) find.style.bottom = 'calc(' + (62 + kb) + 'px + env(safe-area-inset-bottom, 0px))';
-                    if (panel) {
-                        panel.style.bottom = kb + 'px';
-                    }
-                };
-                window.visualViewport.addEventListener('resize', syncKb);
-                window.visualViewport.addEventListener('scroll', syncKb);
+                window.visualViewport.addEventListener('resize', eitiNotesSyncKeyboardChrome);
+                window.visualViewport.addEventListener('scroll', eitiNotesSyncKeyboardChrome);
             }
+            eitiNotesSyncKeyboardChrome();
         }
         window.eitiNotesAIIsEnabled = eitiNotesAIIsEnabled;
         window.eitiNotesAISetEnabled = eitiNotesAISetEnabled;
@@ -37147,39 +37359,61 @@ window.eitiLLMClearAll = async function() {
         window.eitiNotesAIToggleFullscreen = eitiNotesAIToggleFullscreen;
         window.eitiNotesAITogglePanel = eitiNotesAITogglePanel;
         window.eitiNotesAIOnEditorOpen = eitiNotesAIOnEditorOpen;
+        window.eitiNotesSyncKeyboardChrome = eitiNotesSyncKeyboardChrome;
+        window.eitiNotesFmtPopoverToggle = eitiNotesFmtPopoverToggle;
         window.eitiNotesHlToggle = eitiNotesHlToggle;
         window.eitiNotesHlSetEnabled = eitiNotesHlSetEnabled;
         window.eitiNotesAiUndoClick = eitiNotesAiUndoClick;
         window.eitiNotesAiRedoClick = eitiNotesAiRedoClick;
 
-        function notesSaveNote() {
-            var title = (document.getElementById('noteEditorTitle').value || '').trim();
-            var body = (document.getElementById('noteEditorBody').value || '').trim();
-            if (!title && !body) { showToast('Заметка пустая'); return; }
+        // v13.7.20: единая функция сохранения редактора. Тихая (без тостов), не создаёт пустых заметок.
+        // Возвращает 'saved' | 'nochange' | 'empty' | 'gone'.
+        var _notesAutoTimer = null;
+        var _notesAutoHistDone = false;
+        function notesPersistEditor() {
+            var titleEl = document.getElementById('noteEditorTitle');
+            var bodyEl = document.getElementById('noteEditorBody');
+            if (!titleEl || !bodyEl) return 'gone';
+            var title = (titleEl.value || '').trim();
+            var body = (bodyEl.value || '').trim();
             // v9.7p2: теги смержены из monkey-patch
             var tagsEl = document.getElementById('noteEditorTags');
             var tags = tagsEl ? notesTagsFromInput(tagsEl.value) : [];
             var notes = notesLoad();
             var now = Date.now();
-            var emojiIdx = Math.floor(Math.random() * NOTE_EMOJIS.length);
+            var savedId;
             if (notesCurrentId) {
-                // v12.9.77: сохраняем текущую версию в историю ПЕРЕД обновлением
-                var _existing = notes.find(function(n){ return n.id === notesCurrentId; });
-                if (_existing && (_existing.body || _existing.title)) {
+                var _idx = notes.findIndex(function(n){ return n && n.id === notesCurrentId; });
+                if (_idx < 0) return 'gone'; // заметка удалена — не воскрешаем
+                var _existing = notes[_idx];
+                if ((_existing.title || '') === title && (_existing.body || '') === body &&
+                    (_existing.tags || []).join('\u0001') === tags.join('\u0001') &&
+                    (_existing.colorIdx || 0) === (notesCurrentColor || 0)) return 'nochange';
+                // v12.9.77: версия в историю ПЕРЕД обновлением — один раз за сеанс редактора
+                if (!_notesAutoHistDone && (_existing.body || _existing.title)) {
                     noteHistorySave(_existing);
+                    _notesAutoHistDone = true;
                 }
-                notes = notes.map(function(n){
-                    if (n.id === notesCurrentId) {
-                        return Object.assign({}, n, { title: title, body: body, updated: now, colorIdx: notesCurrentColor, tags: tags });
-                    }
-                    return n;
-                });
+                notes[_idx] = Object.assign({}, _existing, { title: title, body: body, updated: now, colorIdx: notesCurrentColor, tags: tags });
+                savedId = notesCurrentId;
             } else {
-                notes.push({ id: 'note_' + now, title: title, body: body, created: now, updated: now, colorIdx: notesCurrentColor, emojiIdx: emojiIdx, tags: tags });
+                if (!title && !body) return 'empty';
+                var emojiIdx = Math.floor(Math.random() * NOTE_EMOJIS.length);
+                var fresh = { id: 'note_' + now, title: title, body: body, created: now, updated: now, colorIdx: notesCurrentColor, emojiIdx: emojiIdx, tags: tags };
+                // пара ↶↷ от Ask AI, сделанная до первого сохранения, переезжает в заметку
+                if (typeof _eitiNotesAiUndoDraft !== 'undefined' && _eitiNotesAiUndoDraft && _eitiNotesAiUndoDraft.aiBefore != null && _eitiNotesAiUndoDraft.aiAfter != null) {
+                    ['aiBefore','aiAfter','aiUndoAt','aiDirty'].forEach(function(k){ if (_eitiNotesAiUndoDraft[k] !== undefined) fresh[k] = _eitiNotesAiUndoDraft[k]; });
+                    _eitiNotesAiUndoDraft = null;
+                }
+                notes.push(fresh);
+                savedId = fresh.id;
+                notesCurrentId = fresh.id;
+                _notesAutoHistDone = true;
+                if (typeof noteHistoryBtnUpdate === 'function') noteHistoryBtnUpdate();
             }
             notesSave(notes);
             // v12.9.77: авто-индексация вектора если модель загружена
-            noteAutoEmbed(title, body, notesCurrentId || ('note_' + now));
+            noteAutoEmbed(title, body, savedId);
             // Обновляем badge с датой сохранения
             var _badge = document.getElementById('noteEditorDateBadge');
             if (_badge) {
@@ -37187,6 +37421,31 @@ window.eitiLLMClearAll = async function() {
                 _badge.textContent = '🗓 ' + _nd.toLocaleDateString('ru',{day:'2-digit',month:'2-digit',year:'2-digit'}) + ' ' + _nd.toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'});
                 _badge.title = 'Изменено';
             }
+            return 'saved';
+        }
+        function notesEditorIsOpen() {
+            var ov = document.getElementById('noteEditorOverlay');
+            return !!(ov && ov.classList.contains('active'));
+        }
+        function notesAutoSaveSchedule() {
+            if (typeof _eitiNotesHlIgnoreInput !== 'undefined' && _eitiNotesHlIgnoreInput && notesCurrentId) return;
+            clearTimeout(_notesAutoTimer);
+            _notesAutoTimer = setTimeout(function() {
+                _notesAutoTimer = null;
+                if (notesEditorIsOpen()) { try { notesPersistEditor(); } catch (e) {} }
+            }, 800);
+        }
+        function notesAutoSaveFlush() {
+            clearTimeout(_notesAutoTimer);
+            _notesAutoTimer = null;
+            if (!notesEditorIsOpen()) return 'closed';
+            try { return notesPersistEditor(); } catch (e) { return 'error'; }
+        }
+        window.notesAutoSaveFlush = notesAutoSaveFlush;
+        // Явное сохранение (совместимость со старыми вызовами): та же функция + тост и закрытие
+        function notesSaveNote() {
+            var r = notesAutoSaveFlush();
+            if (r === 'empty') { showToast('Заметка пустая'); return; }
             showToast('📝 Заметка сохранена');
             notesCloseEditor();
             vibrate();
@@ -37299,7 +37558,7 @@ window.eitiLLMClearAll = async function() {
         // Показывать кнопку 🕐 только для существующих заметок
         function noteHistoryBtnUpdate() {
             var btn = document.getElementById('noteHistoryBtn');
-            if (btn) btn.style.display = notesCurrentId ? 'flex' : 'none';
+            if (btn) btn.hidden = !notesCurrentId;
         }
 
         // ── v12.9.77: Авто-индексация embedding при сохранении ────────────
@@ -37322,8 +37581,14 @@ window.eitiLLMClearAll = async function() {
         }
 
         function notesDeleteNote() {
-            if (!notesCurrentId) { notesCloseEditor(); return; }
+            if (!notesCurrentId) {
+                // несохранённая новая заметка: очищаем поля, чтобы автосохранение её не создало
+                clearTimeout(_notesAutoTimer); _notesAutoTimer = null;
+                ['noteEditorTitle','noteEditorBody','noteEditorTags'].forEach(function(fid) { var fel = document.getElementById(fid); if (fel) fel.value = ''; });
+                notesCloseEditor(); return;
+            }
             eitiConfirm('Удалить эту заметку?', function() {
+                clearTimeout(_notesAutoTimer); _notesAutoTimer = null;
                 var notes = notesLoad().filter(function(n){ return n.id !== notesCurrentId; });
                 notesSave(notes);
                 showToast('🗑 Удалено');
@@ -37347,6 +37612,7 @@ window.eitiLLMClearAll = async function() {
             ta.selectionStart = ta.selectionEnd = start + insert.length;
             ta.focus();
             if (typeof eitiNotesOnManualEdit === 'function') eitiNotesOnManualEdit();
+            if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
         }
 
         // Init notes on DOM ready
@@ -40966,7 +41232,8 @@ body.theme-velantrim-neutral .chat-input {
     -webkit-text-fill-color: #1a1208 !important;
 }
 .note-editor-overlay.note-light-mode .note-editor-topbar,
-.note-editor-overlay.note-light-mode .note-editor-toolbar {
+.note-editor-overlay.note-light-mode .note-editor-toolbar,
+.note-editor-overlay.note-light-mode .note-fmt-popover {
     background: #ede8de !important;
     color: #1a1208 !important;
 }
@@ -40974,11 +41241,17 @@ body.theme-velantrim-neutral .chat-input {
 .note-editor-overlay.note-light-mode .note-editor-back,
 .note-editor-overlay.note-light-mode .note-editor-save,
 .note-editor-overlay.note-light-mode #noteReminderBtn,
-.note-editor-overlay.note-light-mode #noteLightBtn {
+.note-editor-overlay.note-light-mode #noteLightBtn,
+.note-editor-overlay.note-light-mode #noteFmtToggle {
     color: #2a1e0a !important;
     -webkit-text-fill-color: #2a1e0a !important;
     background: rgba(0,0,0,0.08) !important;
     border-color: rgba(0,0,0,0.2) !important;
+}
+.note-editor-overlay.note-light-mode .note-more-danger {
+    color: #c62828 !important;
+    -webkit-text-fill-color: #c62828 !important;
+    background: transparent !important;
 }
 .note-editor-overlay.note-light-mode .note-editor-save {
     background: linear-gradient(145deg, #8b6914, #6a4e0f) !important;
@@ -40996,7 +41269,6 @@ body.theme-velantrim-neutral .chat-input {
 .note-editor-overlay.note-light-mode .notes-ai-panel,
 .note-editor-overlay.note-light-mode .notes-ai-compose-box,
 .note-editor-overlay.note-light-mode .notes-ai-msg.assistant,
-.note-editor-overlay.note-light-mode .notes-ai-chip,
 .note-editor-overlay.note-light-mode .notes-ai-model-menu {
     background: #f3eee4 !important;
     color: #1a1208 !important;
