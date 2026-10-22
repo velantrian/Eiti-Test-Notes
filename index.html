@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.9.0"; // MOSC уточнение, 👍/👎 обучение, адаптивный поиск, память, защита AI-правок, метрики
+        var EITI_VERSION = "14.0.0"; // офлайн-диалоги, стили ответов, сказки и предания (offline/), + v13.9.0 обучение
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -8987,6 +8987,17 @@
                             </button>
                             <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;">Рассуждения офлайн: EITI использует KB + эвристику вместо поиска по файлам. Не знает — скажет честно и запомнит вопрос.</div>
                             <div style="font-size:11px;opacity:0.45;text-align:center;">Также работает: напиши <b>слово?</b> — поиск без API</div>
+                            <!-- v14.0.0: стиль офлайн-ответов -->
+                            <label for="eiti-offline-style" style="font-size:13px;font-weight:600;">🌙 Стиль офлайн-ответов</label>
+                            <select id="eiti-offline-style" onchange="EitiOffline.setStyle(this.value)" style="padding:10px;border-radius:12px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;">
+                                <option value="auto">🪞 Авто — подстраиваться под меня</option>
+                                <option value="warm">💛 Тёплый</option>
+                                <option value="polite">🎩 Вежливый</option>
+                                <option value="casual">😎 Простой</option>
+                                <option value="pro">💼 Деловой (без эмодзи)</option>
+                                <option value="fun">😄 С юмором</option>
+                            </select>
+                            <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;">Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).</div>
                         </div>
                     </div>
                     <!-- v9: KB — БАЗА ЗНАНИЙ -->
@@ -21517,7 +21528,32 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             return base;
         }
 
+        // v14.0.0: обёртка — нет сети/ключа или ИИ упал → офлайн-диалоги (offline/), иначе как раньше.
         async function eitiAskDeepSeek(userText) {
+            var _internal = /^(Добавь в базу KB|Обогати базу KB)/.test(String(userText || ''));
+            var _offline = function() {
+                if (_internal || !window.EitiOffline) return Promise.resolve(null);
+                return EitiOffline.replyText(userText, { foot: true }).then(function(t) {
+                    // показываем как «🌙 EITI Offline»; в IDB сохраняет вызывающий код (как для обычного ответа ИИ)
+                    if (t && typeof eitiReceiveReply === 'function') { window._eitiOfflineReply = true; try { eitiReceiveReply(t); } finally { window._eitiOfflineReply = false; } }
+                    return t;
+                });
+            };
+            if (typeof eitiAiUnavailable === 'function' && eitiAiUnavailable()) {
+                var _t0 = await _offline();
+                if (_t0) return _t0;
+            }
+            try {
+                var _r = await _eitiAskDeepSeekCore(userText);
+                if (typeof _r === 'string' && /^⚠️ Настройте .*(API )?ключ/.test(_r)) { var _t1 = await _offline(); if (_t1) return _t1; }
+                return _r;
+            } catch (e) {
+                var _m = String(e && e.message || e);
+                if (_m !== 'sys_prompt_leak') { var _t2 = await _offline(); if (_t2) return _t2; }
+                throw e;
+            }
+        }
+        async function _eitiAskDeepSeekCore(userText) {
             // Load a requested archived chat before building system context. The
             // Promise executor below is intentionally synchronous (no await).
             var _chatByIdPreload = String(userText || '').match(/(?:загрузи|открой|покажи)\s+чат\s+(#[a-z0-9]+)/i)
@@ -29180,7 +29216,8 @@ window.eitiLLMClearAll = async function() {
             processed = processed.replace(/\[NOTE_SEARCH:[^\]]*\]/g, '');
 
             var messages = document.getElementById('messages');
-            var ai = { id: Math.random().toString(16).slice(2), role: 'assistant', text: processed, ts: Date.now(), provider: localStorage.getItem('eiti_ai_provider') || 'ai' };
+            var _offRep = !!window._eitiOfflineReply; // v14.0.0
+            var ai = { id: Math.random().toString(16).slice(2), role: 'assistant', text: processed, ts: Date.now(), provider: _offRep ? 'offline' : (localStorage.getItem('eiti_ai_provider') || 'ai') };
             chatLog.push(ai); saveChat();
             // T5: finalise the active trace against this reply text and bind it
             // to the AI message id so the 🔍 button can be rendered below.
@@ -29206,8 +29243,8 @@ window.eitiLLMClearAll = async function() {
             }
             // P6-fix: показываем источник данных рядом с меткой EITI AI
             var _kbBadge = '';
-            var _providerNow = localStorage.getItem('eiti_ai_provider') || 'ai';
-            var _provLabelMap = {deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ AI Voice','gemini-live':'🗣️ AI Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'};
+            var _providerNow = _offRep ? 'offline' : (localStorage.getItem('eiti_ai_provider') || 'ai');
+            var _provLabelMap = {offline:'🌙 EITI Offline',deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ AI Voice','gemini-live':'🗣️ AI Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'};
             var _senderLabel = _provLabelMap[_providerNow] || 'EITI AI 🤖';
             if (window._lastReplySource === 'mosc') {
                 _kbBadge = ' <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(147,197,253,0.18);color:#93c5fd;font-weight:600;vertical-align:middle;">🔷 MOSC</span>';
@@ -29246,7 +29283,7 @@ window.eitiLLMClearAll = async function() {
                     body.appendChild(bot);
                 }
             }, 50);
-            if (eitiDb && eitiCurrentChatId) {
+            if (eitiDb && eitiCurrentChatId && !_offRep) {
                 eitiAddMessage(eitiCurrentChatId, 'assistant', processed, {provider: _providerNow}).then(function(savedMsg){
                     if (savedMsg) div.dataset.idbid = savedMsg.id;
                 });
@@ -31356,6 +31393,123 @@ window.eitiLLMClearAll = async function() {
         }
         window._eitiOfflineSmallTalk = _eitiOfflineSmallTalk;
 
+        // ── v14.0.0: ОФЛАЙН-ДИАЛОГИ (offline/eiti_offline_dialogs.js + offline/core.json + lazy offline/packs/*.json) ──
+        // Отвечает, когда нет сети, нет ключа или ИИ упал. Движок и данные грузятся отложенно
+        // (requestIdleCallback после старта / по первому запросу), пакеты — по требованию.
+        // Кеш файлов — Service Worker (Cache Storage 'eiti-offline-*'), состояние диалога — IndexedDB
+        // 'eiti_offline' (не localStorage). Стиль ответа — Настройки → ✈️ Офлайн-режим.
+        var EitiOffline = (function() {
+            var BASE = 'offline/', eng = null, data = null, initP = null, PK = {}, missing = null, saveT = null, stats = { init: 0, packs: {} };
+            var STYLES = ['auto', 'warm', 'polite', 'casual', 'pro', 'fun'];
+            function style() { var s = ''; try { s = localStorage.getItem('eiti_offline_style') || 'auto'; } catch (e) {} return STYLES.indexOf(s) >= 0 ? s : 'auto'; }
+            function setStyle(s) { if (STYLES.indexOf(s) < 0) s = 'auto'; try { localStorage.setItem('eiti_offline_style', s); } catch (e) {} if (eng) eng.setStyle(s); }
+            function idb() {
+                return new Promise(function(res) {
+                    try { var r = indexedDB.open('eiti_offline', 1); r.onupgradeneeded = function() { r.result.createObjectStore('kv'); }; r.onsuccess = function() { res(r.result); }; r.onerror = function() { res(null); }; } catch (e) { res(null); }
+                });
+            }
+            function kv(mode, key, val) {
+                return idb().then(function(db) {
+                    if (!db) return null;
+                    return new Promise(function(res) {
+                        try {
+                            var tx = db.transaction('kv', mode), os = tx.objectStore('kv'), rq = mode === 'readonly' ? os.get(key) : os.put(val, key);
+                            rq.onsuccess = function() { res(mode === 'readonly' ? rq.result : true); }; rq.onerror = function() { res(null); };
+                        } catch (e) { res(null); }
+                    }).then(function(v) { try { db.close(); } catch (e) {} return v; });
+                });
+            }
+            function getJson(f) { return fetch(BASE + f).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + f); return r.json(); }); }
+            function fileFor(n) {
+                var d = data || {}, g = /^tales_(.+)$/.exec(n);
+                if (g && d.tales && d.tales.groups[g[1]]) return d.tales.groups[g[1]].file;
+                if (d.packs && d.packs[n] && d.packs[n].file) return d.packs[n].file;
+                if (d.intentPacks && d.intentPacks[n] && d.intentPacks[n].file) return d.intentPacks[n].file;
+                return 'packs/' + n + '.json';
+            }
+            function loadScript() {
+                if (window.EitiOfflineDialogs) return Promise.resolve();
+                return new Promise(function(res, rej) { var s = document.createElement('script'); s.src = BASE + 'eiti_offline_dialogs.js'; s.async = true; s.onload = res; s.onerror = function() { rej(new Error('offline engine load failed')); }; document.head.appendChild(s); });
+            }
+            function init() {
+                if (initP) return initP;
+                var t0 = performance.now();
+                initP = loadScript().then(function() { return getJson('core.json'); }).then(function(d) {
+                    data = d;
+                    eng = window.EitiOfflineDialogs.create(d, { style: style(), loadPack: function(n) {
+                        if (PK[n]) return PK[n];
+                        if (missing && missing.indexOf(n) < 0) missing.push(n);
+                        throw new Error('pack not loaded: ' + n); // движок ловит; хост догрузит асинхронно и повторит
+                    } });
+                    return kv('readonly', 'state').then(function(saved) { if (saved && saved.v === 1 && saved.st) restore(saved.st); });
+                }).then(function() { stats.init = Math.round(performance.now() - t0); return eng; })
+                  .catch(function(e) { initP = null; throw e; });
+                return initP;
+            }
+            function snap() { try { return JSON.parse(JSON.stringify(eng.state)); } catch (e) { return null; } }
+            function restore(s) { if (!s) return; var st = eng.state, k; for (k in st) if (!(k in s)) delete st[k]; for (k in s) st[k] = s[k]; }
+            function save() {
+                clearTimeout(saveT);
+                saveT = setTimeout(function() { var s = snap(); if (s) { delete s.seen; kv('readwrite', 'state', { v: 1, ts: Date.now(), st: s }); } }, 400);
+            }
+            function fetchPacks(list) {
+                return Promise.all(list.map(function(n) {
+                    if (PK[n]) return null;
+                    var t0 = performance.now();
+                    return getJson(fileFor(n)).then(function(p) { PK[n] = p; stats.packs[n] = Math.round(performance.now() - t0); });
+                }));
+            }
+            // reply(text) → {text,intent,score,…}|null. Не хватает пакета — откатываем состояние, догружаем, повторяем.
+            function reply(text) {
+                return init().then(function() {
+                    function attempt(n) {
+                        var before = snap(); missing = [];
+                        var r = eng.reply(String(text || ''));
+                        var need = missing.slice(); missing = null;
+                        if (!need.length || n >= 3) return r;
+                        if (before) restore(before);
+                        return fetchPacks(need).then(function() { return attempt(n + 1); }, function() { return r; });
+                    }
+                    return attempt(0);
+                }).then(function(r) { save(); return r && r.text ? r : null; });
+            }
+            var FOOT = { ru: '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен.</sub>', en: '\n\n<sub>🌙 Offline reply: the AI is unavailable right now.</sub>' };
+            var _footShown = false;
+            function replyText(text, opts) {
+                opts = opts || {};
+                return reply(text).then(function(r) {
+                    if (!r) return null;
+                    if (opts.minScore && !(r.score >= opts.minScore || r.fu)) return null;
+                    var t = r.text;
+                    if (opts.foot && !_footShown) { _footShown = true; t += FOOT[/[а-яё]/i.test(text) ? 'ru' : 'en']; }
+                    return t;
+                }).catch(function(e) { console.warn('[EITI offline]', e && e.message); return null; });
+            }
+            function prewarm() {
+                var go = function() { init().catch(function() {}); };
+                if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 8000 }); else setTimeout(go, 3000);
+            }
+            return { init: init, reply: reply, replyText: replyText, setStyle: setStyle, style: style, prewarm: prewarm, stats: stats, ready: function() { return !!eng; }, engine: function() { return eng; } };
+        })();
+        window.EitiOffline = EitiOffline;
+        // Отложенная инициализация: не трогаем старт (ждём load + 4 c, затем idle).
+        window.addEventListener('load', function() { var sel = document.getElementById('eiti-offline-style'); if (sel) sel.value = EitiOffline.style(); setTimeout(function() { EitiOffline.prewarm(); }, 4000); });
+        // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)
+        function eitiAiUnavailable() {
+            if (navigator.onLine === false) return true;
+            try {
+                var p = localStorage.getItem('eiti_ai_provider') || 'deepseek';
+                if (p === 'duckduckgo') return false;
+                var k = function(a, b) { return _deobfKey(localStorage.getItem(a) || (b ? localStorage.getItem(b) : '') || ''); };
+                if (p === 'gemini') return !k('eiti_gemini_key', 'eiti_apikey_gemini');
+                if (p === 'openrouter') return !k('eiti_or_key');
+                if (p === 'openai') return !k('eiti_apikey_openai', 'eiti_openai_key');
+                if (p === 'deepseek') return !k('deepseek_api_key', 'eiti_apikey_deepseek');
+            } catch (e) {}
+            return false;
+        }
+        window.eitiAiUnavailable = eitiAiUnavailable;
+
         function eitiOfflineReason(query) {
             if (eitiIntentRouter(query)) return;
             var lo = query.toLowerCase().trim();
@@ -31389,6 +31543,15 @@ window.eitiLLMClearAll = async function() {
             }
 
             // v13.7: бытовые вопросы офлайн → тёплый бытовой ответ с пометкой, что ИИ не подключён
+            // v14.0.0: сначала офлайн-диалоги (только уверенные ответы), иначе — прежняя логика KB/MOSC
+            if (window.EitiOffline && !eitiOfflineReason._skip) {
+                EitiOffline.replyText(query, { minScore: 60 }).then(function(t) {
+                    if (t) { _reply(typeof eitiRenderMarkdown === 'function' ? eitiRenderMarkdown(t) : t, '🌙 EITI Offline'); return; }
+                    eitiOfflineReason._skip = true;
+                    try { eitiOfflineReason(query); } finally { eitiOfflineReason._skip = false; }
+                });
+                return;
+            }
             var _stk = (typeof _eitiOfflineSmallTalk === 'function') ? _eitiOfflineSmallTalk(query) : null;
             if (_stk) {
                 _reply(typeof eitiRenderMarkdown === 'function' ? eitiRenderMarkdown(_stk) : _stk, '🌙 EITI Offline');
@@ -38046,6 +38209,15 @@ window.eitiLLMClearAll = async function() {
                 }
                 var input = document.getElementById('notesAiInput');
                 if (input && document.activeElement === input) input.blur();
+            }).catch(function(err) {
+                // v14.0.0: ИИ недоступен (сеть/ключ/ошибка) → офлайн-диалоги
+                if (!window.EitiOffline) throw err;
+                return EitiOffline.replyText(msg).then(function(t) {
+                    if (!t) throw err;
+                    var out = t + '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен (' + String(err && err.message || err).slice(0, 80) + ').</sub>';
+                    _eitiNotesAIChats[key].push({ role: 'assistant', text: out });
+                    if (live) { live.innerHTML = (typeof eitiRenderMarkdown === 'function') ? eitiRenderMarkdown(out) : out; live.setAttribute('data-offline', '1'); }
+                });
             }).catch(function(err) {
                 var errText = (err && err.message) ? String(err.message) : String(err);
                 if (_eitiNotesAIChats[key] && _eitiNotesAIChats[key].length && _eitiNotesAIChats[key][_eitiNotesAIChats[key].length - 1].text === msg) _eitiNotesAIChats[key].pop();

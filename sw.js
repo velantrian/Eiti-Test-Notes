@@ -1,8 +1,11 @@
-// VELANTRIM EITI — Service Worker v13.9.0
+// VELANTRIM EITI — Service Worker v14.0.0
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.9.0
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.0.0
 
-var CACHE = 'eiti-v13.9.0'; // v13.9.0: обучение (MOSC, 👍/👎, адаптивный поиск, память)
+var CACHE = 'eiti-v14.0.0'; // v14.0.0: офлайн-диалоги, сказки и предания (+ v13.9.0 обучение)
+// v14.0.0: офлайн-движок и пакеты (offline/**) — отдельный кеш без лимита 24 записей (≈30 файлов),
+// cache-first + фоновое обновление; не попадает в swTrimCache.
+var OFFLINE_CACHE = 'eiti-offline-v14.0.0';
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -55,7 +58,7 @@ self.addEventListener('install', function(e) {
 self.addEventListener('activate', function(e) {
     e.waitUntil(
         caches.keys().then(function(keys) {
-            var old = keys.filter(function(k) { return k !== CACHE; });
+            var old = keys.filter(function(k) { return k !== CACHE && k !== OFFLINE_CACHE; });
             var isUpdate = old.length > 0;
             return Promise.all(old.map(function(k) { return caches.delete(k); }))
                 .then(function() { return self.clients.claim(); })
@@ -66,7 +69,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '13.9.0' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '14.0.0' });
                         });
                     });
                     });
@@ -158,6 +161,20 @@ self.addEventListener('fetch', function(e) {
                 });
             })
         );
+        return;
+    }
+
+    // v14.0.0: offline/ (движок + core.json + packs/*.json) — SWR в OFFLINE_CACHE (лениво, по первому запросу)
+    if (url.pathname.indexOf(BASE + 'offline/') === 0 && /\.(js|json)$/.test(url.pathname)) {
+        e.respondWith(caches.open(OFFLINE_CACHE).then(function(cache) {
+            return cache.match(e.request).then(function(cached) {
+                var fresh = fetch(e.request).then(function(r) {
+                    if (r && r.ok) return cache.put(e.request, r.clone()).then(function() { return r; }).catch(function() { return r; });
+                    return r;
+                }).catch(function() { return cached; });
+                return cached || fresh;
+            });
+        }));
         return;
     }
 
