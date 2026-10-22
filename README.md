@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.9.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.0.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,16 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.0.0
+
+**Офлайн-диалоги: EITI разговаривает без сети и без ИИ**
+- Когда нет интернета, нет ключа или ИИ вернул ошибку, чат и Notes Ask AI отвечают локально: живые диалоги с контекстом (понимают «да / нет / почему / ещё» на свой прошлый вопрос), ~1750 намерений RU/EN.
+- Подборки: пословицы и мудрость, крылатые цитаты, анекдоты, скороговорки, загадки, факты, стихи.
+- **Сказки и предания (522):** славянские, европейские, тюркские, кавказские, кельтские/ирландские и о друидах. «Расскажи сказку», «дальше», «а мораль?», «кто такой Кухулин», «сказку на ночь» (спокойный режим).
+- **Стиль ответов** в Настройках → ✈️ Офлайн-режим: авто, тёплый, вежливый, простой, деловой, с юмором.
+- Файлы в `offline/` грузятся лениво (ядро ~190 КБ gzip после старта в простое, пакеты — по запросу), кешируются Service Worker'ом в отдельном кеше; состояние диалога хранится в IndexedDB `eiti_offline`.
+- Включает все изменения v13.9.0 (#24).
 
 ## 🆕 Что нового в v13.9.0
 

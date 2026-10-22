@@ -11,7 +11,7 @@ def _fn(name, size=3000):
 
 
 def test_version_and_readme_section():
-    assert 'var EITI_VERSION = "13.9.0"' in INDEX
+    assert re.search(r'var EITI_VERSION = "(13\.9\.0|1[4-9]\.\d+\.\d+)"', INDEX)  # v14+ supersedes
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "## 🆕 Что нового в v13.9.0" in readme
     assert readme.index("v13.9.0") < readme.index("## 🆕 Что нового в v13.8.1")

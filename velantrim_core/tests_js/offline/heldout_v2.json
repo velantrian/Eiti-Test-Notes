@@ -1,0 +1,2652 @@
+[
+[
+"polite",
+"Добрый день! Подскажите, пожалуйста, как у вас дела?",
+"howdy"
+],
+[
+"polite",
+"Здравствуйте, уважаемая Эйти",
+"greet_hi"
+],
+[
+"polite",
+"Благодарю вас за помощь",
+"thanks"
+],
+[
+"polite",
+"Извините, пожалуйста, за беспокойство",
+"sorry"
+],
+[
+"polite",
+"Будьте добры, расскажите анекдот",
+"pool_joke"
+],
+[
+"polite",
+"Не могли бы вы загадать загадку",
+"riddle_ask"
+],
+[
+"polite",
+"Подскажите, который сейчас час",
+"act_time"
+],
+[
+"polite",
+"Позвольте спросить, кто вы такая",
+"who_are_you"
+],
+[
+"polite",
+"Скажите, пожалуйста, что вы умеете",
+"app_what_can"
+],
+[
+"polite",
+"Всего доброго, до свидания",
+"bye"
+],
+[
+"polite",
+"Спокойной ночи вам",
+"goodnight"
+],
+[
+"polite",
+"Доброго утра!",
+"greet_morning"
+],
+[
+"polite",
+"Добрый вечер, Эйти",
+"greet_evening"
+],
+[
+"polite",
+"Будьте любезны, подскажите как сварить яйцо",
+"ck_egg"
+],
+[
+"polite",
+"Подскажите, как поменять тему оформления",
+"app_theme"
+],
+[
+"polite",
+"Не подскажете, как лучше выучить английский",
+"st_language"
+],
+[
+"polite",
+"Извините, мне сегодня очень грустно",
+"emo_sad"
+],
+[
+"polite",
+"Простите, я испытываю сильный стресс",
+"emo_stress"
+],
+[
+"polite",
+"Подскажите, пожалуйста, как составить бюджет на месяц",
+"mn_budget"
+],
+[
+"polite",
+"Не могли бы вы помочь написать деловое письмо",
+"bz_email"
+],
+[
+"polite",
+"Будьте добры, как подготовиться к собеседованию",
+"pr_interview"
+],
+[
+"polite",
+"Подскажите, как пришить пуговицу",
+"how_button"
+],
+[
+"polite",
+"Скажите, пожалуйста, как ухаживать за орхидеей",
+"pl_orchid"
+],
+[
+"polite",
+"Простите, мне звонят из банка и просят код из смс",
+"mn_scam"
+],
+[
+"polite",
+"Подскажите, как написать соболезнования",
+"et_condolence"
+],
+[
+"polite",
+"Будьте добры, помогите придумать тост на юбилей",
+"et_toast"
+],
+[
+"polite",
+"Подскажите, пожалуйста, как вывести пятно",
+"how_stain"
+],
+[
+"polite",
+"Скажите, как увеличить шрифт, я плохо вижу",
+"ol_big_font"
+],
+[
+"polite",
+"Подскажите, что делать, если машина не заводится",
+"cr_car_start"
+],
+[
+"polite",
+"Не подскажете, как бросить курить",
+"si_new_habit"
+],
+[
+"casual",
+"прив",
+"greet_hi"
+],
+[
+"casual",
+"приветик))",
+"greet_hi"
+],
+[
+"casual",
+"кк дела",
+"howdy"
+],
+[
+"casual",
+"как сам",
+"howdy"
+],
+[
+"casual",
+"чо как",
+"howdy"
+],
+[
+"casual",
+"как оно",
+"howdy"
+],
+[
+"casual",
+"спс",
+"thanks"
+],
+[
+"casual",
+"спасибки",
+"thanks"
+],
+[
+"casual",
+"пасиба)",
+"thanks"
+],
+[
+"casual",
+"пока пока",
+"bye"
+],
+[
+"casual",
+"давай пока",
+"bye"
+],
+[
+"casual",
+"споки",
+"goodnight"
+],
+[
+"casual",
+"норм все",
+"mood_good"
+],
+[
+"casual",
+"хз скучно",
+"mood_bored"
+],
+[
+"casual",
+"скучно мне что делать",
+"mood_bored"
+],
+[
+"casual",
+"лол",
+"laugh"
+],
+[
+"casual",
+"ахахахах",
+"laugh"
+],
+[
+"casual",
+"ржу не могу",
+"laugh"
+],
+[
+"casual",
+"ок",
+"ok_ack"
+],
+[
+"casual",
+"окей понял",
+"ok_ack"
+],
+[
+"casual",
+"ты кто вообще",
+"who_are_you"
+],
+[
+"casual",
+"шутканешь?",
+"pool_joke"
+],
+[
+"casual",
+"го загадку",
+"riddle_ask"
+],
+[
+"casual",
+"сколько щас времени",
+"act_time"
+],
+[
+"casual",
+"кинь монетку",
+"act_coin"
+],
+[
+"casual",
+"устал капец",
+"mood_tired"
+],
+[
+"casual",
+"грустненько мне",
+"emo_sad"
+],
+[
+"casual",
+"бесит все",
+"emo_angry"
+],
+[
+"casual",
+"одиноко чет",
+"emo_lonely"
+],
+[
+"casual",
+"ты тупая",
+"are_you_smart"
+],
+[
+"casual",
+"ты супер",
+"compliment_bot"
+],
+[
+"casual",
+"чо делаешь",
+"what_you_doing"
+],
+[
+"casual",
+"че нового",
+"st_what_new"
+],
+[
+"casual",
+"похвали меня плз",
+"ms_compliment_ask"
+],
+[
+"casual",
+"не могу начать все откладываю",
+"pr_procrastination"
+],
+[
+"casual",
+"я не вывожу",
+"em_overwhelmed"
+],
+[
+"casual",
+"кринж какой я сделал",
+"em_shame"
+],
+[
+"casual",
+"фух отлегло",
+"em_relief"
+],
+[
+"casual",
+"я сделала это!!!",
+"mt_proud_small"
+],
+[
+"casual",
+"зарплата пришла ура",
+"mn_salary_day"
+],
+[
+"casual",
+"денег нет вообще",
+"mn_no_money"
+],
+[
+"casual",
+"телефон тупит жесть",
+"tc_slow"
+],
+[
+"casual",
+"батарея садится быстро",
+"tc_battery"
+],
+[
+"casual",
+"я овен кста",
+"zd_aries"
+],
+[
+"casual",
+"пятничка!!!",
+"ms_friday"
+],
+[
+"casual",
+"хочу в отпуск",
+"ms_holiday_tired"
+],
+[
+"casual",
+"давай в города",
+"bd_cities"
+],
+[
+"casual",
+"го сочиним историю",
+"fl_story_start"
+],
+[
+"casual",
+"давай подышим",
+"fl_breath_start"
+],
+[
+"casual",
+"давай чекин",
+"fl_checkin"
+],
+[
+"casual",
+"хз че делать дома",
+"bd_ideas_home"
+],
+[
+"casual",
+"куда сходить на выхах",
+"bd_ideas_out"
+],
+[
+"casual",
+"спой чонить",
+"fn_sing"
+],
+[
+"casual",
+"нарисуй чонить",
+"ms_draw"
+],
+[
+"casual",
+"ты тут?",
+"ms_test"
+],
+[
+"casual",
+"алло",
+"ms_test"
+],
+[
+"casual",
+"ну ты и бот",
+"sc_youre_bot"
+],
+[
+"casual",
+"ваще ничего не работает",
+"sc_nothing_works"
+],
+[
+"casual",
+"ты милашка",
+"fl_cute"
+],
+[
+"casual",
+"пойдем на свидание",
+"fl_date"
+],
+[
+"caps",
+"ПРИВЕТ",
+"greet_hi"
+],
+[
+"caps",
+"КАК ДЕЛА",
+"howdy"
+],
+[
+"caps",
+"СПАСИБО БОЛЬШОЕ",
+"thanks"
+],
+[
+"caps",
+"МНЕ СКУЧНО",
+"mood_bored"
+],
+[
+"caps",
+"ВСЕ БЕСИТ",
+"emo_angry"
+],
+[
+"caps",
+"РАССКАЖИ ШУТКУ",
+"pool_joke"
+],
+[
+"caps",
+"ПОКА",
+"bye"
+],
+[
+"caps",
+"МНЕ ГРУСТНО",
+"emo_sad"
+],
+[
+"caps",
+"ПАХНЕТ ГАЗОМ",
+"sf_gas"
+],
+[
+"caps",
+"ПОЖАР",
+"sf_fire"
+],
+[
+"typo",
+"привт",
+"greet_hi"
+],
+[
+"typo",
+"как дла",
+"howdy"
+],
+[
+"typo",
+"спасиба",
+"thanks"
+],
+[
+"typo",
+"расскжи шутку",
+"pool_joke"
+],
+[
+"typo",
+"загдка",
+"riddle_ask"
+],
+[
+"typo",
+"мне грусно",
+"emo_sad"
+],
+[
+"typo",
+"спакойной ночи",
+"goodnight"
+],
+[
+"typo",
+"доброе утор",
+"greet_morning"
+],
+[
+"typo",
+"как сварит яйцо",
+"ck_egg"
+],
+[
+"typo",
+"как выучть английский",
+"st_language"
+],
+[
+"typo",
+"телефн упал в воду",
+"tc_wet_phone"
+],
+[
+"typo",
+"забыл пороль",
+"tc_password"
+],
+[
+"typo",
+"как пришить пуговицy",
+"how_button"
+],
+[
+"typo",
+"дыхателное упражнение",
+"fl_breath_start"
+],
+[
+"typo",
+"дневник благодарнасти",
+"fl_grat_start"
+],
+[
+"nopunct",
+"привет как дела",
+"howdy"
+],
+[
+"nopunct",
+"доброе утро эйти",
+"greet_morning"
+],
+[
+"nopunct",
+"спасибо тебе большое ты лучшая",
+"thanks"
+],
+[
+"nopunct",
+"мне очень грустно сегодня",
+"emo_sad"
+],
+[
+"nopunct",
+"как поменять тему",
+"app_theme"
+],
+[
+"nopunct",
+"у меня первое свидание завтра",
+"rl_first_date"
+],
+[
+"nopunct",
+"меня френдзонят",
+"rl_rejected"
+],
+[
+"nopunct",
+"как помириться с девушкой",
+"rl_make_up"
+],
+[
+"nopunct",
+"хочу расстаться с парнем",
+"rl_breakup_how"
+],
+[
+"nopunct",
+"подруга предала",
+"rl_friend_betrayed"
+],
+[
+"nopunct",
+"мы женимся",
+"lf_wedding"
+],
+[
+"nopunct",
+"у меня долги по кредиту",
+"mn_debt"
+],
+[
+"nopunct",
+"куда вложить деньги",
+"mn_invest"
+],
+[
+"nopunct",
+"как накопить на машину",
+"mn_save"
+],
+[
+"nopunct",
+"шопоголик я",
+"mn_impulse"
+],
+[
+"nopunct",
+"друг просит в долг",
+"mn_lend"
+],
+[
+"nopunct",
+"как написать эссе",
+"stx_essay"
+],
+[
+"nopunct",
+"скоро сессия",
+"stx_session"
+],
+[
+"nopunct",
+"пишу диплом не успеваю",
+"stx_diploma"
+],
+[
+"nopunct",
+"не знаю кем стать",
+"stx_choose_uni"
+],
+[
+"nopunct",
+"помоги списать",
+"stx_cheat"
+],
+[
+"nopunct",
+"групповой проект никто ничего не делает",
+"stx_group_project"
+],
+[
+"nopunct",
+"учитель придирается",
+"stx_teacher_conflict"
+],
+[
+"nopunct",
+"не хочу учиться",
+"stx_motivation_study"
+],
+[
+"nopunct",
+"болит спина от сидячей работы",
+"hlx_back"
+],
+[
+"nopunct",
+"у меня аллергия",
+"hlx_allergy"
+],
+[
+"nopunct",
+"похмелье жуткое",
+"hlx_hangover"
+],
+[
+"nopunct",
+"пью много кофе",
+"hlx_caffeine"
+],
+[
+"nopunct",
+"хочу вздремнуть днем",
+"hlx_nap"
+],
+[
+"nopunct",
+"меня укачивает в машине",
+"hlx_motion_sick"
+],
+[
+"nopunct",
+"паническая атака сейчас",
+"hlx_panic_now"
+],
+[
+"nopunct",
+"как питаться правильно",
+"hlx_eat_healthy"
+],
+[
+"nopunct",
+"у ребенка температура",
+"hlx_fever_kid"
+],
+[
+"nopunct",
+"забота о себе",
+"hlx_selfcare"
+],
+[
+"nopunct",
+"хочу начать бегать",
+"hlx_sport_start"
+],
+[
+"nopunct",
+"умер мой кот",
+"emo_grief"
+],
+[
+"nopunct",
+"не стало бабушки",
+"emo_grief"
+],
+[
+"nopunct",
+"боюсь будущего",
+"em_future_fear"
+],
+[
+"nopunct",
+"ностальгия по детству",
+"em_nostalgia"
+],
+[
+"nopunct",
+"ненавижу свою внешность",
+"em_appearance"
+],
+[
+"nopunct",
+"ничего не радует",
+"em_empty"
+],
+[
+"nopunct",
+"надеюсь все наладится",
+"em_hope"
+],
+[
+"nopunct",
+"мне страшно",
+"em_fear_general"
+],
+[
+"nopunct",
+"хочу все бросить",
+"mt_give_up"
+],
+[
+"nopunct",
+"все лучше меня",
+"mt_compare"
+],
+[
+"nopunct",
+"я провалился на экзамене",
+"mt_failure"
+],
+[
+"nopunct",
+"пожелай удачи",
+"mt_morning"
+],
+[
+"nopunct",
+"в чем смысл всего",
+"phx_why_live"
+],
+[
+"nopunct",
+"кто я такой",
+"phx_self"
+],
+[
+"nopunct",
+"мы живем в симуляции",
+"phx_simulation"
+],
+[
+"nopunct",
+"мне не везет",
+"phx_luck"
+],
+[
+"nopunct",
+"поздно начинать",
+"phx_age"
+],
+[
+"nopunct",
+"не доверяю людям",
+"phx_people"
+],
+[
+"nopunct",
+"что такое истина",
+"phx_truth"
+],
+[
+"nopunct",
+"почему люди злые",
+"phx_good_evil"
+],
+[
+"nopunct",
+"спасибо что выслушала",
+"gx_thanks_support"
+],
+[
+"nopunct",
+"извини что пропал",
+"gx_sorry_late"
+],
+[
+"nopunct",
+"напишу позже",
+"gx_see_later"
+],
+[
+"nopunct",
+"я сегодня молодец",
+"cx_user_did"
+],
+[
+"nopunct",
+"ты мне очень помогла",
+"cx_bot_helpful"
+],
+[
+"nopunct",
+"какой твой любимый цвет",
+"fn_fav_color"
+],
+[
+"nopunct",
+"море или горы",
+"ms_sea_mountains"
+],
+[
+"nopunct",
+"сова или жаворонок",
+"ms_early_late"
+],
+[
+"nopunct",
+"что взять на необитаемый остров",
+"ms_desert_island"
+],
+[
+"nopunct",
+"машина времени куда бы ты",
+"ms_time_travel"
+],
+[
+"nopunct",
+"задай мне вопрос",
+"ms_random_question"
+],
+[
+"nopunct",
+"ты ошиблась",
+"ms_bot_mistake"
+],
+[
+"nopunct",
+"ты чатгпт",
+"ms_bot_ai"
+],
+[
+"nopunct",
+"ты запоминаешь",
+"ms_bot_can_learn"
+],
+[
+"nopunct",
+"посчитай до десяти",
+"ms_count"
+],
+[
+"nopunct",
+"шар предсказаний",
+"ms_yes_no"
+],
+[
+"nopunct",
+"напиши стих",
+"fn_poem"
+],
+[
+"nopunct",
+"скороговорку скажи",
+"fn_tongue"
+],
+[
+"nopunct",
+"хочу в италию",
+"geo_italy"
+],
+[
+"nopunct",
+"расскажи про японию",
+"geo_japan"
+],
+[
+"nopunct",
+"была в грузии",
+"geo_georgia"
+],
+[
+"nopunct",
+"что посмотреть в праге",
+"geo_czech"
+],
+[
+"nopunct",
+"поеду в турцию",
+"geo_turkey"
+],
+[
+"nopunct",
+"расскажи про исландию",
+"geo_iceland"
+],
+[
+"nopunct",
+"как погладить рубашку",
+"how_iron"
+],
+[
+"nopunct",
+"как почистить духовку",
+"how_oven"
+],
+[
+"nopunct",
+"накипь в чайнике",
+"how_kettle"
+],
+[
+"nopunct",
+"как завязать галстук",
+"how_tie"
+],
+[
+"nopunct",
+"как помыть окна без разводов",
+"how_windows"
+],
+[
+"nopunct",
+"как пересадить цветок",
+"how_plant_repot"
+],
+[
+"nopunct",
+"слетела цепь на велике",
+"how_bike_chain"
+],
+[
+"nopunct",
+"расскажи про дельфинов",
+"an_dolphins"
+],
+[
+"nopunct",
+"факты о пингвинах",
+"an_penguins"
+],
+[
+"nopunct",
+"интересное о осьминогах",
+"an_octopus"
+],
+[
+"nopunct",
+"расскажи про ленивцев",
+"an_sloth"
+],
+[
+"nopunct",
+"кактус вянет",
+"pl_cactus"
+],
+[
+"nopunct",
+"как ухаживать за монстерой",
+"pl_monstera"
+],
+[
+"nopunct",
+"я по гороскопу лев",
+"zd_leo"
+],
+[
+"nopunct",
+"мой знак рыбы",
+"zd_pisces"
+],
+[
+"nopunct",
+"как написать отчет для начальника",
+"bzx_report"
+],
+[
+"nopunct",
+"как дать обратную связь коллеге",
+"bzx_feedback"
+],
+[
+"nopunct",
+"первый день на работе",
+"bzx_onboarding"
+],
+[
+"nopunct",
+"матрица эйзенхауэра",
+"bzx_time_mgmt"
+],
+[
+"nopunct",
+"у меня вирус на телефоне",
+"tc_virus"
+],
+[
+"nopunct",
+"не работает вайфай",
+"tc_wifi"
+],
+[
+"nopunct",
+"как сделать скриншот",
+"tc_screenshot"
+],
+[
+"nopunct",
+"память заполнена",
+"tc_storage"
+],
+[
+"nopunct",
+"залипаю в телефоне весь день",
+"tc_screen_addiction"
+],
+[
+"nopunct",
+"кто то ломится в дверь",
+"sf_scared_home"
+],
+[
+"nopunct",
+"ребенок пропал",
+"sf_lost_child"
+],
+[
+"nopunct",
+"придут гости что приготовить",
+"et_guests"
+],
+[
+"nopunct",
+"поблагодарить учителя",
+"et_thank_note"
+],
+[
+"nopunct",
+"ребенок истерит",
+"pa_tantrum"
+],
+[
+"nopunct",
+"не могу уложить ребенка",
+"pa_sleep_kid"
+],
+[
+"nopunct",
+"сын подросток грубит",
+"pa_teen"
+],
+[
+"nopunct",
+"недосып с младенцем",
+"pa_new_parent"
+],
+[
+"nopunct",
+"пробил колесо",
+"cr_flat_tire"
+],
+[
+"nopunct",
+"боюсь водить",
+"cr_learn_drive"
+],
+[
+"nopunct",
+"как сортировать мусор",
+"eco_recycle"
+],
+[
+"nopunct",
+"как экономить электричество",
+"eco_save_energy"
+],
+[
+"nopunct",
+"хочу просыпаться раньше",
+"si_wake_early"
+],
+[
+"nopunct",
+"хочу больше читать",
+"si_read_more"
+],
+[
+"nopunct",
+"неуверенная в себе",
+"si_confidence"
+],
+[
+"nopunct",
+"вопрос для дневника",
+"si_journal_prompt"
+],
+[
+"nopunct",
+"вышла на пенсию",
+"ol_pension"
+],
+[
+"nopunct",
+"все забываю стала",
+"ol_memory"
+],
+[
+"nopunct",
+"дождь за окном",
+"wt_rain"
+],
+[
+"nopunct",
+"снег идет",
+"wt_snow"
+],
+[
+"nopunct",
+"туман на улице",
+"wt_fog"
+],
+[
+"nopunct",
+"люблю осень",
+"ss_autumn"
+],
+[
+"nopunct",
+"собираю чемодан",
+"tr_pack"
+],
+[
+"nopunct",
+"боюсь летать на самолете",
+"tr_fly_fear"
+],
+[
+"nopunct",
+"джетлаг",
+"tr_jetlag"
+],
+[
+"nopunct",
+"потерял ключи",
+"ev_lost_keys"
+],
+[
+"nopunct",
+"отключили свет",
+"ev_power_out"
+],
+[
+"nopunct",
+"соседи шумят",
+"ev_neighbors"
+],
+[
+"nopunct",
+"переезжаю",
+"ev_moving"
+],
+[
+"nopunct",
+"как сварить борщ",
+"ck_borsch"
+],
+[
+"nopunct",
+"рецепт сырников",
+"ck_syrniki"
+],
+[
+"nopunct",
+"как приготовить плов",
+"ck_plov"
+],
+[
+"nopunct",
+"что приготовить на романтический ужин",
+"ck_dinner_romantic"
+],
+[
+"nopunct",
+"у меня сломался телефон",
+"ev_phone_broke"
+],
+[
+"translit",
+"privet",
+"greet_hi"
+],
+[
+"translit",
+"privet kak dela",
+"howdy"
+],
+[
+"translit",
+"kak dela",
+"howdy"
+],
+[
+"translit",
+"spasibo",
+"thanks"
+],
+[
+"translit",
+"poka",
+"bye"
+],
+[
+"translit",
+"spokoinoi nochi",
+"goodnight"
+],
+[
+"translit",
+"mne grustno",
+"emo_sad"
+],
+[
+"translit",
+"mne skuchno",
+"mood_bored"
+],
+[
+"translit",
+"rasskazhi shutku",
+"pool_joke"
+],
+[
+"translit",
+"zagadka",
+"riddle_ask"
+],
+[
+"translit",
+"dobroe utro",
+"greet_morning"
+],
+[
+"translit",
+"kto ty",
+"who_are_you"
+],
+[
+"translit",
+"ya ustal",
+"mood_tired"
+],
+[
+"translit",
+"kak vyuchit angliyskiy",
+"st_language"
+],
+[
+"translit",
+"davai podyshim",
+"fl_breath_start"
+],
+[
+"emoji",
+"😭😭",
+"emo_sad"
+],
+[
+"emoji",
+"😡",
+"emo_angry"
+],
+[
+"emoji",
+"😂😂😂",
+"laugh"
+],
+[
+"emoji",
+"👋",
+"greet_hi"
+],
+[
+"emoji",
+"🙏",
+"thanks"
+],
+[
+"emoji",
+"😴",
+"goodnight"
+],
+[
+"emoji",
+"🥱",
+"mood_tired"
+],
+[
+"emoji",
+"😢",
+"emo_sad"
+],
+[
+"emoji",
+"))",
+"laugh"
+],
+[
+"emoji",
+"💔",
+"emo_breakup"
+],
+[
+"voice",
+"привет запятая как дела вопросительный знак",
+"howdy"
+],
+[
+"voice",
+"эээ ну мне грустно",
+"emo_sad"
+],
+[
+"voice",
+"расскажи шутку точка",
+"pool_joke"
+],
+[
+"voice",
+"ну это самое как сварить яйцо",
+"ck_egg"
+],
+[
+"voice",
+"короче мне скучно",
+"mood_bored"
+],
+[
+"voice",
+"спасибо восклицательный знак",
+"thanks"
+],
+[
+"voice",
+"эм как выучить английский",
+"st_language"
+],
+[
+"voice",
+"доброе утро точка",
+"greet_morning"
+],
+[
+"voice",
+"ну типа дыхательное упражнение",
+"fl_breath_start"
+],
+[
+"voice",
+"слушай а кто ты",
+"who_are_you"
+],
+[
+"pro",
+"Требуется шаблон еженедельного отчёта",
+"bzx_report"
+],
+[
+"pro",
+"Как эффективнее провести совещание",
+"bz_meeting"
+],
+[
+"pro",
+"Горит дедлайн",
+"bz_deadline"
+],
+[
+"pro",
+"Как попросить повышение зарплаты",
+"bz_raise"
+],
+[
+"pro",
+"Помогите с резюме",
+"bz_resume"
+],
+[
+"pro",
+"Как делегировать задачи",
+"bz_delegate"
+],
+[
+"pro",
+"Подготовка к презентации",
+"bz_presentation"
+],
+[
+"pro",
+"Как вести переговоры",
+"bz_negotiation"
+],
+[
+"pro",
+"Команда выгорела",
+"bz_burnout_team"
+],
+[
+"pro",
+"Как ставить OKR",
+"bzx_okr"
+],
+[
+"pro",
+"Что сказать на стендапе",
+"bzx_standup"
+],
+[
+"pro",
+"Встреча один на один с руководителем",
+"bzx_one_on_one"
+],
+[
+"pro",
+"Тайм менеджмент",
+"bzx_time_mgmt"
+],
+[
+"pro",
+"Как отказать коллеге",
+"bz_say_no"
+],
+[
+"pro",
+"Хочу уволиться",
+"bz_quit"
+],
+[
+"sarcasm",
+"ну спасибо, очень помогла",
+"sc_thanks_sarcastic"
+],
+[
+"sarcasm",
+"вау, как оригинально",
+"sc_wow_not"
+],
+[
+"sarcasm",
+"ну конечно, ничего не работает",
+"sc_nothing_works"
+],
+[
+"sarcasm",
+"ты же просто бот",
+"sc_youre_bot"
+],
+[
+"flirt",
+"ты такая милая",
+"fl_cute"
+],
+[
+"flirt",
+"скинь фотку",
+"fl_photo"
+],
+[
+"flirt",
+"у тебя есть чувства ко мне",
+"fl_bot_feelings"
+],
+[
+"rude",
+"ты тупая железяка",
+"are_you_smart"
+],
+[
+"rude",
+"отвали",
+"insult"
+],
+[
+"rude",
+"ты бесполезная",
+"insult"
+],
+[
+"kids",
+"мне 9 лет",
+"kd_age"
+],
+[
+"kids",
+"мама не разрешает играть",
+"kd_parents_no"
+],
+[
+"kids",
+"скучно на уроке",
+"kd_bored_lesson"
+],
+[
+"kids",
+"меня обижают в школе",
+"kd_bully"
+],
+[
+"kids",
+"боюсь темноты",
+"kd_scared_dark"
+],
+[
+"kids",
+"помоги с домашкой",
+"kd_homework"
+],
+[
+"kids",
+"у меня нет друзей в классе",
+"kd_friends"
+],
+[
+"elderly",
+"Здравствуй, деточка",
+"ol_greeting"
+],
+[
+"elderly",
+"Не понимаю я в этих телефонах",
+"ol_tech"
+],
+[
+"elderly",
+"Внуки приезжали",
+"ol_grandkids"
+],
+[
+"elderly",
+"Давление скачет",
+"ol_health"
+],
+[
+"elderly",
+"Одиноко мне, старику",
+"ol_lonely"
+],
+[
+"argument",
+"ты не права",
+"ar_wrong"
+],
+[
+"argument",
+"докажи",
+"ar_prove"
+],
+[
+"argument",
+"спорим",
+"ar_bet"
+],
+[
+"argument",
+"я лучше знаю",
+"ar_know_better"
+],
+[
+"argument",
+"что думаешь о политике",
+"ar_politics"
+],
+[
+"smalltalk",
+"а ты как?",
+"sm_and_you"
+],
+[
+"smalltalk",
+"где ты находишься",
+"sm_where_you"
+],
+[
+"smalltalk",
+"какой у тебя знак зодиака",
+"sm_zodiac"
+],
+[
+"smalltalk",
+"когда у тебя день рождения",
+"sm_bot_birthday"
+],
+[
+"flows",
+"дневник благодарности",
+"fl_grat_start"
+],
+[
+"flows",
+"три хороших вещи",
+"fl_grat_start"
+],
+[
+"flows",
+"давай викторину",
+"fl_quiz"
+],
+[
+"flows",
+"сыграем в выбор",
+"fl_wyr"
+],
+[
+"flows",
+"трекер настроения",
+"fl_checkin"
+],
+[
+"flows",
+"давай напишем рассказ",
+"fl_story_start"
+],
+[
+"en",
+"Hey there",
+"greet_hi"
+],
+[
+"en",
+"hey eiti",
+"greet_hi"
+],
+[
+"en",
+"goodnight eiti",
+"goodnight"
+],
+[
+"en",
+"nite nite",
+"goodnight"
+],
+[
+"en",
+"how u doin",
+"howdy"
+],
+[
+"en",
+"whats up",
+"greet_hi"
+],
+[
+"en",
+"thx a lot",
+"thanks"
+],
+[
+"en",
+"ty so much",
+"thanks"
+],
+[
+"en",
+"how to boil an egg",
+"ck_egg"
+],
+[
+"en",
+"how do i learn english",
+"st_language"
+],
+[
+"en",
+"change the theme",
+"app_theme"
+],
+[
+"en",
+"dark mode please",
+"app_theme"
+],
+[
+"en",
+"my cat died",
+"emo_grief"
+],
+[
+"en",
+"im so bored what do i do",
+"mood_bored"
+],
+[
+"en",
+"tell me a joke",
+"pool_joke"
+],
+[
+"en",
+"give me a riddle",
+"riddle_ask"
+],
+[
+"en",
+"im sad",
+"emo_sad"
+],
+[
+"en",
+"im stressed out",
+"emo_stress"
+],
+[
+"en",
+"i feel lonely",
+"emo_lonely"
+],
+[
+"en",
+"who are you",
+"who_are_you"
+],
+[
+"en",
+"what can you do",
+"app_what_can"
+],
+[
+"en",
+"good morning",
+"greet_morning"
+],
+[
+"en",
+"bye bye",
+"bye"
+],
+[
+"en",
+"lol",
+"laugh"
+],
+[
+"en",
+"i have a first date tomorrow",
+"rl_first_date"
+],
+[
+"en",
+"i got friendzoned",
+"rl_rejected"
+],
+[
+"en",
+"he ghosted me",
+"rl_ghosted"
+],
+[
+"en",
+"how to budget my money",
+"mn_budget"
+],
+[
+"en",
+"should i buy bitcoin",
+"mn_invest"
+],
+[
+"en",
+"the bank called and asked for my sms code",
+"mn_scam"
+],
+[
+"en",
+"how to write an essay",
+"stx_essay"
+],
+[
+"en",
+"help me cheat",
+"stx_cheat"
+],
+[
+"en",
+"my back hurts from sitting",
+"hlx_back"
+],
+[
+"en",
+"having a panic attack",
+"hlx_panic_now"
+],
+[
+"en",
+"lets breathe",
+"fl_breath_start"
+],
+[
+"en",
+"gratitude journal",
+"fl_grat_start"
+],
+[
+"en",
+"daily check-in",
+"fl_checkin"
+],
+[
+"en",
+"would you rather",
+"fl_wyr"
+],
+[
+"en",
+"lets write a story",
+"fl_story_start"
+],
+[
+"en",
+"i cant start my work",
+"pr_procrastination"
+],
+[
+"en",
+"i want to give up",
+"mt_give_up"
+],
+[
+"en",
+"im overwhelmed",
+"em_overwhelmed"
+],
+[
+"en",
+"so embarrassing",
+"em_shame"
+],
+[
+"en",
+"phew",
+"em_relief"
+],
+[
+"en",
+"i feel empty",
+"em_empty"
+],
+[
+"en",
+"why do we live",
+"phx_why_live"
+],
+[
+"en",
+"who am i",
+"phx_self"
+],
+[
+"en",
+"are we in a simulation",
+"phx_simulation"
+],
+[
+"en",
+"thanks for listening",
+"gx_thanks_support"
+],
+[
+"en",
+"praise me",
+"ms_compliment_ask"
+],
+[
+"en",
+"tell me about japan",
+"geo_japan"
+],
+[
+"en",
+"i want to go to italy",
+"geo_italy"
+],
+[
+"en",
+"how to sew a button",
+"how_button"
+],
+[
+"en",
+"how to tie a tie",
+"how_tie"
+],
+[
+"en",
+"fun fact about octopuses",
+"an_octopus"
+],
+[
+"en",
+"my sign is Leo",
+"zd_leo"
+],
+[
+"en",
+"how to care for orchid",
+"pl_orchid"
+],
+[
+"en",
+"i smell gas",
+"sf_gas"
+],
+[
+"en",
+"theres a fire",
+"sf_fire"
+],
+[
+"en",
+"my phone got wet",
+"tc_wet_phone"
+],
+[
+"en",
+"forgot my password",
+"tc_password"
+],
+[
+"en",
+"how to wake up early",
+"si_wake_early"
+],
+[
+"en",
+"how to be more confident",
+"si_confidence"
+],
+[
+"en",
+"toddler tantrum",
+"pa_tantrum"
+],
+[
+"en",
+"car wont start",
+"cr_car_start"
+],
+[
+"en",
+"how to recycle",
+"eco_recycle"
+],
+[
+"en",
+"just retired",
+"ol_pension"
+],
+[
+"en",
+"its friday",
+"ms_friday"
+],
+[
+"en",
+"tgif",
+"ms_friday"
+],
+[
+"en",
+"tell me a secret",
+"tell_secret"
+],
+[
+"en",
+"are you a robot",
+"are_you_alive"
+],
+[
+"en",
+"cats or dogs",
+"ms_cats_dogs"
+],
+[
+"en",
+"flip a coin",
+"act_coin"
+],
+[
+"en",
+"roll a die",
+"act_dice"
+],
+[
+"en",
+"what time is it",
+"act_time"
+],
+[
+"en",
+"i made a new friend",
+"rl_new_friend"
+],
+[
+"en",
+"payday",
+"mn_salary_day"
+],
+[
+"en",
+"i have debt",
+"mn_debt"
+],
+[
+"en",
+"no money",
+"mn_no_money"
+],
+[
+"en",
+"finals week",
+"stx_session"
+],
+[
+"en",
+"writing my thesis",
+"stx_diploma"
+],
+[
+"en",
+"what should i study",
+"stx_choose_uni"
+],
+[
+"en",
+"healthy eating",
+"hlx_eat_healthy"
+],
+[
+"en",
+"self care",
+"hlx_selfcare"
+],
+[
+"en",
+"hangover",
+"hlx_hangover"
+],
+[
+"en",
+"too much coffee",
+"hlx_caffeine"
+],
+[
+"en",
+"power nap",
+"hlx_nap"
+],
+[
+"en",
+"motion sickness",
+"hlx_motion_sick"
+],
+[
+"en",
+"im scared",
+"em_fear_general"
+],
+[
+"en",
+"i hope it gets better",
+"em_hope"
+],
+[
+"en",
+"nostalgia",
+"em_nostalgia"
+],
+[
+"en",
+"scared of the future",
+"em_future_fear"
+],
+[
+"en",
+"i hate how i look",
+"em_appearance"
+],
+[
+"en",
+"i did it",
+"mt_proud_small"
+],
+[
+"en",
+"i messed up",
+"mt_failure"
+],
+[
+"en",
+"wish me luck",
+"mt_morning"
+],
+[
+"en",
+"everyone is better than me",
+"mt_compare"
+],
+[
+"en",
+"what is truth",
+"phx_truth"
+],
+[
+"en",
+"is there luck",
+"phx_luck"
+],
+[
+"en",
+"time flies",
+"phx_age"
+],
+[
+"en",
+"sorry i was away",
+"gx_sorry_late"
+],
+[
+"en",
+"talk later",
+"gx_see_later"
+],
+[
+"en",
+"you helped me",
+"cx_bot_helpful"
+],
+[
+"en",
+"i did well today",
+"cx_user_did"
+],
+[
+"en",
+"weekend ideas",
+"bd_ideas_out"
+],
+[
+"en",
+"bored at home",
+"bd_ideas_home"
+],
+[
+"en",
+"games with friends",
+"bd_ideas_friends"
+],
+[
+"en",
+"desert island",
+"ms_desert_island"
+],
+[
+"en",
+"time machine",
+"ms_time_travel"
+],
+[
+"en",
+"sing a song",
+"fn_sing"
+],
+[
+"en",
+"tongue twister",
+"fn_tongue"
+],
+[
+"en",
+"you misunderstood",
+"ms_bot_mistake"
+],
+[
+"en",
+"are you chatgpt",
+"ms_bot_ai"
+],
+[
+"en",
+"anyone there",
+"ms_test"
+],
+[
+"en",
+"ask me something",
+"ms_random_question"
+],
+[
+"en",
+"magic 8 ball",
+"ms_yes_no"
+],
+[
+"en",
+"count to ten",
+"ms_count"
+],
+[
+"en",
+"im on a walk",
+"lf_walk"
+],
+[
+"en",
+"i need a vacation",
+"ms_holiday_tired"
+],
+[
+"en",
+"new years resolution",
+"ms_user_new_year_goal"
+],
+[
+"en",
+"condolences what to say",
+"et_condolence"
+],
+[
+"en",
+"wedding toast",
+"et_toast"
+],
+[
+"en",
+"my teenager wont talk to me",
+"pa_teen"
+],
+[
+"en",
+"new baby exhausted",
+"pa_new_parent"
+],
+[
+"en",
+"flat tire",
+"cr_flat_tire"
+],
+[
+"en",
+"driving test tomorrow",
+"cr_learn_drive"
+],
+[
+"en",
+"high bills save electricity",
+"eco_save_energy"
+],
+[
+"en",
+"read more books",
+"si_read_more"
+],
+[
+"en",
+"quit smoking",
+"si_new_habit"
+],
+[
+"en",
+"journal prompt",
+"si_journal_prompt"
+],
+[
+"en",
+"text too small",
+"ol_big_font"
+],
+[
+"en",
+"my memory is getting worse",
+"ol_memory"
+],
+[
+"en",
+"battery drains fast",
+"tc_battery"
+],
+[
+"en",
+"phone is slow",
+"tc_slow"
+],
+[
+"en",
+"storage full",
+"tc_storage"
+],
+[
+"en",
+"how to take a screenshot",
+"tc_screenshot"
+],
+[
+"en",
+"my account was hacked",
+"tc_virus"
+],
+[
+"en",
+"doomscrolling",
+"tc_screen_addiction"
+],
+[
+"en",
+"im in danger",
+"sf_scared_home"
+],
+[
+"en",
+"my child is missing",
+"sf_lost_child"
+],
+[
+"en",
+"thank you note",
+"et_thank_note"
+],
+[
+"en",
+"hosting guests",
+"et_guests"
+],
+[
+"en",
+"weekly report",
+"bzx_report"
+],
+[
+"en",
+"job interview tips",
+"pr_interview"
+],
+[
+"en",
+"give feedback",
+"bzx_feedback"
+],
+[
+"en",
+"first day at work",
+"bzx_onboarding"
+],
+[
+"en",
+"tell me about dolphins",
+"an_dolphins"
+],
+[
+"en",
+"facts about bees",
+"an_bees"
+],
+[
+"en",
+"im an Aries",
+"zd_aries"
+],
+[
+"en",
+"my cactus is dying",
+"pl_cactus"
+],
+[
+"en",
+"how to iron a shirt",
+"how_iron"
+],
+[
+"en",
+"remove a stain",
+"how_stain"
+],
+[
+"en",
+"descale a kettle",
+"how_kettle"
+],
+[
+"en",
+"how to fold a t-shirt",
+"how_fold_shirt"
+],
+[
+"en",
+"fridge smell",
+"how_smell_fridge"
+],
+[
+"en",
+"water plants how often",
+"how_plant_water"
+],
+[
+"en",
+"tie shoelaces",
+"how_shoe_lace"
+],
+[
+"en",
+"clean windows",
+"how_windows"
+],
+[
+"en",
+"repot a plant",
+"how_plant_repot"
+],
+[
+"en",
+"bike chain fell off",
+"how_bike_chain"
+],
+[
+"en",
+"visited France",
+"geo_france"
+],
+[
+"en",
+"going to Spain",
+"geo_spain"
+],
+[
+"en",
+"tell me about Egypt",
+"geo_egypt"
+],
+[
+"en",
+"i want to go to Norway",
+"geo_norway"
+],
+[
+"en",
+"tell me about Canada",
+"geo_canada"
+],
+[
+"en",
+"rejected by my crush",
+"rl_rejected"
+],
+[
+"en",
+"long distance relationship",
+"rl_long_distance"
+],
+[
+"en",
+"my partner is jealous",
+"rl_jealous_partner"
+],
+[
+"en",
+"my partner controls me",
+"rl_toxic"
+],
+[
+"en",
+"how to make up with her",
+"rl_make_up"
+],
+[
+"en",
+"i want to break up",
+"rl_breakup_how"
+],
+[
+"en",
+"parents dont approve of my boyfriend",
+"rl_parents_dislike"
+],
+[
+"en",
+"forever alone",
+"rl_single"
+],
+[
+"en",
+"my friend betrayed me",
+"rl_friend_betrayed"
+],
+[
+"en",
+"how to confess my feelings",
+"rl_confess"
+],
+[
+"en",
+"impulse buying",
+"mn_impulse"
+],
+[
+"en",
+"how to save money",
+"mn_save"
+],
+[
+"en",
+"pocket money for kids",
+"mn_kids_money"
+],
+[
+"en",
+"friend wants to borrow money",
+"mn_lend"
+],
+[
+"en",
+"should i buy a new phone",
+"mn_big_purchase"
+],
+[
+"en",
+"essay tips",
+"stx_essay"
+],
+[
+"en",
+"failed an exam",
+"stx_session"
+],
+[
+"en",
+"group project nobody works",
+"stx_group_project"
+],
+[
+"en",
+"unfair teacher",
+"stx_teacher_conflict"
+],
+[
+"en",
+"no motivation to study",
+"stx_motivation_study"
+],
+[
+"en",
+"online courses",
+"stx_online_course"
+],
+[
+"en",
+"allergy",
+"hlx_allergy"
+],
+[
+"en",
+"walking for health",
+"hlx_walk"
+],
+[
+"en",
+"how to start running",
+"hlx_sport_start"
+],
+[
+"en",
+"my child has a fever",
+"hlx_fever_kid"
+],
+[
+"en",
+"wifi is not working",
+"tc_wifi"
+]
+]
