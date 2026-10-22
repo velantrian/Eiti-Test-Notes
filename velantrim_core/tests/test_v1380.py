@@ -91,4 +91,16 @@ def test_reader_switch_labeled():
     assert "viewBtn.textContent = state.mode === 'view' ? '📄 Текст' : '📖 Reader';" in INDEX
     assert ">📄 Текст</button>" in INDEX
     assert "'</>'" not in INDEX[INDEX.index("function eitiFvEnhance"):]
-    assert 'id="fv-controls"' in INDEX and "flex:1 1 100%;min-width:0;" in INDEX
+    assert 'id="fv-controls"' in INDEX and "flex:1 1 60px;min-width:0;" in INDEX and "justify-content:flex-end;flex:1 1 100%;" in INDEX
+
+
+def test_beautify_buttons_at_top():
+    notes = INDEX[INDEX.index('<div class="note-editor-topbar">'):INDEX.index('id="noteEditorBodyWrap"')]
+    assert 'id="noteBeautifyBtn"' in notes and 'onclick="eitiNoteBeautify()"' in notes
+    head = INDEX[INDEX.index('<div class="note-editor-topbar-actions">'):INDEX.index('id="noteMoreBtn"')]
+    assert 'Beautify' not in head  # заголовок заметки не сжимается
+    viewer = INDEX[INDEX.index('id="fv-header"'):INDEX.index('id="fv-pre"')]
+    assert viewer.index('id="fv-title"') < viewer.index('id="fv-beautify-btn"') < viewer.index('id="fv-controls"')
+    fn = INDEX[INDEX.index("function eitiNoteBeautify()"):INDEX.index("// ── v13.8.0: AI Docs в окне файла")]
+    assert "eitiNotesAIApplyMutation({ action: 'replace_note', body: r.body }, snapshot, EITI_BEAUTIFY_REQUEST)" in fn
+    assert "eitiDocAIBeautifyResult(raw, !!(res && res.truncated), body)" in fn

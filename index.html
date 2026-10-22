@@ -11280,6 +11280,10 @@
                                 <div class="note-color-row" id="noteColorRow"></div>
                             </div>
                         </div>
+                        <!-- v13.8.0: ✨ Оформить — одно нажатие, ИИ оформляет заметку без изменения текста -->
+                        <div class="note-beautify-row" id="noteBeautifyRow" hidden>
+                            <button type="button" class="eiti-beautify-btn" id="noteBeautifyBtn" onclick="eitiNoteBeautify()" title="ИИ оформит заметку: заголовки, списки, выделение, эмодзи — без изменения текста" aria-label="Оформить заметку с помощью ИИ">✨ Оформить</button>
+                        </div>
                         <div id="noteExportMenu" class="note-export-menu" hidden>
                             <button type="button" data-note-export="md">Markdown (.md)</button>
                             <button type="button" data-note-export="pdf">PDF</button>
@@ -29780,8 +29784,10 @@ window.eitiLLMClearAll = async function() {
                     v.innerHTML=
                         // ── Шапка вьюера ──────────────────────────────────────────
                         '<div id="fv-header" style="display:flex;flex-wrap:wrap;row-gap:8px;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;">'+
-                            '<div id="fv-title" style="color:#1d4ed8;font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 100%;min-width:0;">'+ico+' '+e(dname)+'</div>'+
-                            '<div id="fv-controls" style="display:flex;align-items:center;flex-shrink:0;margin-left:auto;">'+
+                            '<div id="fv-title" style="color:#1d4ed8;font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 60px;min-width:0;">'+ico+' '+e(dname)+'</div>'+
+                            // v13.8.0: ✨ Оформить — справа от названия, в верхней строке
+                            '<button id="fv-beautify-btn" class="eiti-beautify-btn" hidden title="ИИ оформит файл: заголовки, списки, выделение, эмодзи — без изменения текста" aria-label="Оформить файл с помощью ИИ" style="margin-left:8px;flex-shrink:0;">✨ Оформить</button>'+
+                            '<div id="fv-controls" style="display:flex;align-items:center;justify-content:flex-end;flex:1 1 100%;">'+
                                 // Три кнопки смены фона — аккуратные цветные квадраты без эмодзи
                                 '<button id="fv-bg-white" title="Белый фон"  style="width:26px;height:26px;border-radius:7px;border:1.5px solid #ccc;background:#fff;cursor:pointer;flex-shrink:0;"></button>'+
                                 '<button id="fv-bg-black" title="Чёрный фон" style="width:26px;height:26px;border-radius:7px;border:1.5px solid #555;background:#111;cursor:pointer;flex-shrink:0;margin-left:4px;"></button>'+
@@ -37760,6 +37766,7 @@ window.eitiLLMClearAll = async function() {
             var overlayActive = !!(overlay && overlay.classList.contains('active'));
             var show = eitiNotesAIControlVisible(overlayActive);
             if (overlay) overlay.classList.toggle('notes-ai-on', show);
+            if (typeof eitiNoteBeautifySync === 'function') eitiNoteBeautifySync(); // v13.8.0
             if (bar) bar.classList.toggle('visible', !!show);
             if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
             if (!show) {
@@ -50400,6 +50407,14 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         .eiti-rich .eiti-mermaid { margin: 0.6em 0; overflow-x: auto; }
         .eiti-rich .eiti-mermaid svg { max-width: 100%; height: auto; }
         .eiti-rich .mermaid-note { font-size: 11px; color: var(--rich-muted); }
+        .eiti-beautify-btn { height: 30px; padding: 0 12px; border-radius: 15px; border: 0; background: #ffd700; color: #000000; font-size: 13px; font-weight: 800; white-space: nowrap; cursor: pointer; }
+        .eiti-beautify-btn:disabled { cursor: progress; opacity: 1; }
+        .eiti-beautify-btn.busy::after { content: ''; display: inline-block; width: 10px; height: 10px; margin-left: 6px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; vertical-align: -1px; animation: eitiBeautifySpin .8s linear infinite; }
+        @keyframes eitiBeautifySpin { to { transform: rotate(360deg); } }
+        .note-beautify-row { display: flex; justify-content: flex-end; padding: 6px 12px 2px; }
+        .note-beautify-row[hidden] { display: none; }
+        .note-editor-overlay.note-light-mode .eiti-beautify-btn { background: #1d4ed8; color: #ffffff; }
+        #fv-beautify-btn { background: var(--fv-title, #1d4ed8); color: var(--fv-bg, #f8f8f8); }
         .note-view-exit { position: absolute; top: 8px; right: 12px; z-index: 6; padding: 6px 12px; border-radius: 16px; border: 1px solid var(--border-color, rgba(127,127,127,0.4)); background: var(--secondary-color, #222); color: var(--text-color, #fff); font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
         .note-editor-preview { flex: 1; overflow-y: auto; padding: 12px 16px 90px; box-sizing: border-box; }
         .note-editor-body-wrap.view-mode .note-editor-body, .note-editor-body-wrap.view-mode .note-editor-hl { display: none !important; }
@@ -50931,6 +50946,81 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
             return { start: s, end: eb };
         }
 
+        // ── v13.8.0: ✨ Оформить — общая логика для заметок и файлов ───────────
+        var EITI_BEAUTIFY_REQUEST = 'Оформи этот документ';
+        function eitiDocAIBeautifyPrompt() {
+            return 'Оформи весь документ в читаемый Markdown: заголовки (#, ##), списки, **жирный** и ==выделение== для ключевого, ' +
+                'таблицы — только если данные явно табличные, callout-блоки Obsidian (> [!note], > [!tip], > [!warning]) там, где это уместно, ' +
+                'и уместные по смыслу эмодзи и символы. СТРОГО: не меняй формулировки, факты, числа и язык текста, ничего не удаляй и не сокращай, ' +
+                'не добавляй новых сведений, сохрани порядок. Верни ТОЛЬКО готовый Markdown всего документа — без JSON, без пояснений и без обрамления ```.';
+        }
+        function eitiDocAIWordCount(text) {
+            return (String(text || '').replace(/[#>*_=`~|\-\[\]!:]+/g, ' ').match(/[\p{L}\p{N}]+/gu) || []).length;
+        }
+        function eitiDocAIBeautifyResult(raw, truncated, original) {
+            if (truncated) return { ok: false, message: '⚠️ Ответ ИИ обрезан по лимиту длины, поэтому оформление НЕ применено — текст не изменён. Попробуйте модель с большим лимитом или оформите документ по частям.' };
+            var t = String(raw || '').trim();
+            var fence = t.match(/^```(?:markdown|md)?\s*\n([\s\S]*?)\n```\s*$/i);
+            if (fence) t = fence[1].trim();
+            if (!t) return { ok: false, message: 'ИИ вернул пустой ответ — текст не изменён.' };
+            var before = eitiDocAIWordCount(original), after = eitiDocAIWordCount(t);
+            if (before > 20 && after < before * 0.85) return { ok: false, message: '⚠️ ИИ, похоже, потерял часть текста (' + after + ' слов вместо ' + before + '), поэтому оформление НЕ применено.' };
+            if (t === String(original || '').trim()) return { ok: false, message: 'ИИ не предложил изменений.' };
+            return { ok: true, body: t };
+        }
+        function eitiDocAIBeautifyAvailable(target) {
+            return !!(target && target.provider && eitiDocAIKey(target.provider));
+        }
+        function eitiBeautifyBusy(btn, on) {
+            if (!btn) return;
+            btn.disabled = !!on;
+            btn.classList.toggle('busy', !!on);
+            btn.textContent = on ? '✨ Оформляю…' : '✨ Оформить';
+            btn.setAttribute('aria-busy', on ? 'true' : 'false');
+        }
+        function eitiNoteBeautifySync() {
+            var row = document.getElementById('noteBeautifyRow');
+            if (!row) return;
+            var target = (typeof eitiNotesAIResolveTarget === 'function') ? eitiNotesAIResolveTarget() : null;
+            row.hidden = !(eitiNotesAIIsEnabled() && eitiDocAIBeautifyAvailable(target));
+        }
+        var _eitiNoteBeautifyBusy = false;
+        function eitiNoteBeautify() {
+            var btn = document.getElementById('noteBeautifyBtn');
+            var titleEl = document.getElementById('noteEditorTitle');
+            var bodyEl = document.getElementById('noteEditorBody');
+            var tagsEl = document.getElementById('noteEditorTags');
+            if (_eitiNoteBeautifyBusy || !bodyEl) return Promise.resolve();
+            var body = String(bodyEl.value || '');
+            if (!body.trim()) { if (typeof showToast === 'function') showToast('Заметка пустая — нечего оформлять'); return Promise.resolve(); }
+            if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush();
+            var title = titleEl ? String(titleEl.value || '') : '';
+            var tags = tagsEl ? String(tagsEl.value || '') : '';
+            var snapshot = { noteId: notesCurrentId, title: title, body: body, tags: tags, selectionStart: 0, selectionEnd: 0, selectionText: '' };
+            var warn = eitiDocAILongWarning(body.length);
+            if (warn && typeof showToast === 'function') showToast(warn, 4000);
+            _eitiNoteBeautifyBusy = true;
+            eitiBeautifyBusy(btn, true);
+            return Promise.resolve().then(function() {
+                return eitiNotesAICall(eitiDocAIBeautifyPrompt(), title, body, '', tags, []);
+            }).then(function(res) {
+                var raw = (res && typeof res === 'object') ? res.text : res;
+                var r = eitiDocAIBeautifyResult(raw, !!(res && res.truncated), body);
+                if (!r.ok) { if (typeof showToast === 'function') showToast(r.message, 4500); return r; }
+                if (eitiNoteViewIsOn()) eitiNoteViewSet(false);
+                var ap = eitiNotesAIApplyMutation({ action: 'replace_note', body: r.body }, snapshot, EITI_BEAUTIFY_REQUEST);
+                if (!ap.ok && typeof showToast === 'function') showToast('⚠️ ' + ap.message, 4000);
+                else if (typeof showToast === 'function') showToast('✨ Заметка оформлена — ↶ чтобы отменить', 2500);
+                return ap;
+            }).catch(function(err) {
+                if (typeof showToast === 'function') showToast('❌ ' + ((err && err.message) ? err.message : String(err)), 4000);
+            }).then(function(out) {
+                _eitiNoteBeautifyBusy = false;
+                eitiBeautifyBusy(btn, false);
+                return out;
+            });
+        }
+
         // ── v13.8.0: AI Docs в окне файла ─────────────────────────────────────
         function eitiFilesDocsIsEnabled() {
             try { return localStorage.getItem('eiti_files_aidocs_enabled') !== '0'; } catch (e) { return true; }
@@ -51066,6 +51156,32 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
             }
             if (viewBtn) viewBtn.onclick = function() { state.mode = state.mode === 'view' ? 'source' : 'view'; state.hl = null; render(); };
             v._eitiFvRender = render;
+            var beautifyBtn = v.querySelector('#fv-beautify-btn');
+            if (beautifyBtn) {
+                var bTarget = (typeof eitiNotesAIResolveTarget === 'function') ? eitiNotesAIResolveTarget(true) : null;
+                beautifyBtn.hidden = !(eitiFilesDocsIsEnabled() && eitiDocAIBeautifyAvailable(bTarget));
+                beautifyBtn.onclick = function() {
+                    if (state.busy) return;
+                    var content = ctx.getContent();
+                    if (!String(content).trim()) { if (typeof showToast === 'function') showToast('Файл пустой — нечего оформлять'); return; }
+                    var target = eitiNotesAIResolveTarget(true);
+                    var warn = eitiDocAILongWarning(content.length);
+                    if (warn && typeof showToast === 'function') showToast(warn, 4000);
+                    state.busy = true;
+                    eitiBeautifyBusy(beautifyBtn, true);
+                    var sys = eitiFilesDocsBuildSystemPrompt(ctx.getName(), content, '');
+                    eitiDocAIRequest(target, eitiDocAIBuildMessages(sys, [], eitiDocAIBeautifyPrompt()), eitiDocAIOutputBudget(content.length, target.provider)).then(function(res) {
+                        var r = eitiDocAIBeautifyResult(res.text, res.truncated, content);
+                        if (!r.ok) { if (typeof showToast === 'function') showToast(r.message, 4500); return; }
+                        if (ctx.getContent() !== content) { if (typeof showToast === 'function') showToast('Файл изменился во время ответа — повторите.', 3500); return; }
+                        if (state.mode === 'edit') state.mode = 'view';
+                        commit(r.body, 'ai', eitiDocAIChangedRange(content, r.body));
+                        if (typeof showToast === 'function') showToast('✨ Файл оформлен — ↶ чтобы отменить', 2500);
+                    }).catch(function(err) {
+                        if (typeof showToast === 'function') showToast('❌ ' + ((err && err.message) ? err.message : String(err)), 4000);
+                    }).then(function() { state.busy = false; eitiBeautifyBusy(beautifyBtn, false); });
+                };
+            }
             if (eitiFilesDocsIsEnabled()) {
                 var bar = document.createElement('div');
                 bar.className = 'fv-ai-bar';

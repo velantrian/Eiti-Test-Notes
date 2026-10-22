@@ -172,3 +172,16 @@ test('eitiDocAIRequest шлёт историю и модель Grok в api.x.ai'
   assert.equal(res.text, 'ответ');
   assert.equal(res.truncated, false);
 });
+
+test('✨ Оформить: обрезка, потеря текста и обрамление ``` обрабатываются', () => {
+  const s = loadFunctions(['eitiDocAIWordCount', 'eitiDocAIBeautifyResult', 'eitiDocAIBeautifyPrompt']);
+  const orig = 'Купить молоко и хлеб. Позвонить маме в пятницу. Встреча в 10:00 с командой по проекту Альфа, обсудить бюджет и сроки запуска.';
+  assert.equal(s.eitiDocAIBeautifyResult('# x', true, orig).ok, false);
+  assert.match(s.eitiDocAIBeautifyResult('# x', true, orig).message, /НЕ применено/);
+  assert.equal(s.eitiDocAIBeautifyResult('## 🛒 Покупки\n- молоко', false, orig).ok, false); // потеря текста
+  const good = '```markdown\n## 🛒 Купить\n- Купить молоко и хлеб.\n\n## 📞 Позвонить\n- Позвонить маме в пятницу.\n\n> [!note] 📅 Встреча в 10:00 с командой по проекту Альфа, обсудить ==бюджет== и сроки запуска.\n```';
+  const r = s.eitiDocAIBeautifyResult(good, false, orig);
+  assert.equal(r.ok, true);
+  assert.doesNotMatch(r.body, /```/);
+  assert.match(s.eitiDocAIBeautifyPrompt(), /не меняй формулировки/);
+});

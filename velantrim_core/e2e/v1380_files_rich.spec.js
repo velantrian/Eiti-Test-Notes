@@ -25,6 +25,7 @@ async function bootWithFile(page, storage = {}) {
   await page.goto('/index.html');
   await page.waitForFunction(() => typeof window.eitiFvEnhance === 'function' && typeof window.openEitiFiles === 'function');
   await expect(page.locator('#splash')).toBeHidden();
+  await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
   await page.evaluate((content) => {
     document.querySelectorAll('#eiti-onboarding, #eiti-pin-modal, .toast').forEach((el) => el.remove());
     window.__saved = [];
@@ -184,4 +185,84 @@ test('заметки: 👁 показывает оформление, ✎ воз
   await expect(page.locator('#noteViewExitBtn')).toBeHidden();
   await expect(page.locator('#noteEditorBody')).toBeVisible();
   await expect(page.locator('#noteEditorBody')).toHaveValue(/==важно==/);
+});
+
+const BEAUTY = '## 🛒 Заголовок 👋\n\n> [!tip] 💡 Текст с ==выделением==, **жирным**, [[Другая заметка]] и #идея.\n\n| Колонка | Значение |\n|---|:-:|\n| A | 1 |\n\n- пункт\n  - вложенный\n- [x] сделано\n- [ ] не сделано\n\nСноска[^1].\n\n```mermaid\ngraph TD; A-->B\n```\n\n[^1]: Текст сноски\n\ntags демо eiti author Руслан Свернуть Внутри callout скрытый комментарий';
+
+test('✨ Оформить в файле: загрузка, применение с ↶, обрезка не применяется', async ({ page }) => {
+  await bootWithFile(page, { eiti_ai_provider: 'grok', eiti_grok_key: 'xai-test', eiti_notes_ai_model: 'same' });
+  let n = 0; let release;
+  const gate = new Promise((r) => { release = r; });
+  await page.route('https://api.x.ai/v1/chat/completions', async (route) => {
+    n += 1;
+    if (n === 1) await gate;
+    await route.fulfill({ json: { choices: [{ message: { content: n === 1 ? BEAUTY : '## обрез' }, finish_reason: n === 1 ? 'stop' : 'length' }] } });
+  });
+  const btn = page.locator('#fv-beautify-btn');
+  await expect(btn).toBeVisible();
+  const geo = await page.evaluate(() => { const b = document.getElementById('fv-beautify-btn').getBoundingClientRect(), t = document.getElementById('fv-title').getBoundingClientRect(); return { bt: b.top, tt: t.top, br: b.right, tw: t.width, vw: innerWidth }; });
+  expect(Math.abs(geo.bt - geo.tt)).toBeLessThan(12); // в верхней строке
+  expect(geo.br).toBeLessThanOrEqual(geo.vw);
+  for (const sw of ['#fv-bg-black', '#fv-bg-paper', '#fv-bg-white']) {
+    await page.locator(sw).click();
+    const c = await page.evaluate(() => { const cs = getComputedStyle(document.getElementById('fv-beautify-btn')); return { fg: cs.color, bg: cs.backgroundColor }; });
+    expect(ratio(c.fg, c.bg)).toBeGreaterThanOrEqual(4.5);
+  }
+  await btn.click();
+  await expect(btn).toBeDisabled();
+  await expect(btn).toHaveText(/Оформляю/);
+  release();
+  await expect(btn).toBeEnabled();
+  expect(await page.evaluate(() => window.__saved.at(-1).content)).toContain('[!tip] 💡');
+  await page.waitForTimeout(300);
+  await shot(page, 'files-beautify.png');
+  await page.locator('#fv-ai-ask').click();
+  await page.locator('#fv-ai-undo').click();
+  expect(await page.evaluate(() => window.__saved.at(-1).content)).toContain('# Заголовок 👋');
+  await page.locator('#fv-ai-close').click();
+  const count = await page.evaluate(() => window.__saved.length);
+  await btn.click();
+  await expect(btn).toBeEnabled();
+  expect(await page.evaluate(() => window.__saved.length)).toBe(count);
+});
+
+test('✨ Оформить в заметке: вверху, применяется через ИИ-правку с ↶; без ключа скрыта', async ({ page }) => {
+  await page.setViewportSize({ width: 412, height: 860 });
+  await page.addInitScript(() => {
+    localStorage.setItem('eiti_onboarded', 'true');
+    localStorage.setItem('eiti_notes_ai_enabled', '1');
+    localStorage.setItem('eiti_notes_ai_model', 'same');
+    localStorage.setItem('eiti_ai_provider', 'grok');
+    localStorage.setItem('eiti_grok_key', 'xai-test');
+  });
+  const ORIG = 'Купить молоко и хлеб. Позвонить маме в пятницу. Встреча в 10:00 с командой по проекту Альфа, обсудить бюджет и сроки запуска.';
+  await page.route('https://api.x.ai/v1/chat/completions', async (route) => {
+    await new Promise((r) => setTimeout(r, 400));
+    await route.fulfill({ json: { choices: [{ message: { content: '## 🛒 Дела\n- Купить молоко и хлеб.\n- 📞 Позвонить маме в пятницу.\n\n> [!note] 📅 Встреча в 10:00 с командой по проекту Альфа, обсудить ==бюджет== и сроки запуска.' }, finish_reason: 'stop' }] } });
+  });
+  await page.goto('/index.html');
+  await page.waitForFunction(() => typeof window.eitiNoteBeautify === 'function' && typeof window.notesOpenEditor === 'function');
+  await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
+  await page.evaluate(() => document.querySelectorAll('#eiti-onboarding, #eiti-pin-modal, .toast').forEach((el) => el.remove()));
+  await page.evaluate(() => { if (typeof openView === 'function') openView('notes'); notesOpenEditor(null); });
+  await page.locator('#noteEditorTitle').fill('План');
+  await page.locator('#noteEditorBody').fill(ORIG);
+  const btn = page.locator('#noteBeautifyBtn');
+  await expect(btn).toBeVisible();
+  const g = await page.evaluate(() => ({ b: document.getElementById('noteBeautifyBtn').getBoundingClientRect().top, body: document.getElementById('noteEditorBody').getBoundingClientRect().top, t: document.getElementById('noteEditorTitle').getBoundingClientRect().width }));
+  expect(g.b).toBeLessThan(g.body);
+  expect(g.t).toBeGreaterThanOrEqual(150);
+  const c = await page.evaluate(() => { const cs = getComputedStyle(document.getElementById('noteBeautifyBtn')); return { fg: cs.color, bg: cs.backgroundColor }; });
+  expect(ratio(c.fg, c.bg)).toBeGreaterThanOrEqual(4.5);
+  await btn.click();
+  await expect(btn).toBeDisabled();
+  await expect(btn).toBeEnabled();
+  await expect(page.locator('#noteEditorBody')).toHaveValue(/\[!note\] 📅/);
+  await page.evaluate(() => document.querySelectorAll('.toast').forEach((el) => el.remove()));
+  await shot(page, 'notes-beautify.png');
+  await expect(page.locator('#noteUndoBtn')).toBeEnabled();
+  await page.locator('#noteUndoBtn').click();
+  await expect(page.locator('#noteEditorBody')).toHaveValue(ORIG);
+  await page.evaluate(() => { localStorage.removeItem('eiti_grok_key'); eitiNoteBeautifySync(); });
+  await expect(btn).toBeHidden();
 });
