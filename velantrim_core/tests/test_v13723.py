@@ -6,9 +6,9 @@ ROOT = Path(__file__).resolve().parents[2]
 INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 
 
-def test_version_is_13_7_23():
-    assert 'var EITI_VERSION = "13.7.23"' in INDEX
-    assert "var CACHE = 'eiti-v13.7.23'" in (ROOT / "sw.js").read_text(encoding="utf-8")
+def test_version_synced_with_sw():
+    v = re.search(r'var EITI_VERSION = "([\d.]+)"', INDEX).group(1)
+    assert f"var CACHE = 'eiti-v{v}'" in (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_undo_redo_in_header_before_copy():
