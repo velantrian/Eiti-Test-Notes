@@ -185,3 +185,46 @@ test('✨ Оформить: обрезка, потеря текста и обр�
   assert.doesNotMatch(r.body, /```/);
   assert.match(s.eitiDocAIBeautifyPrompt(), /не меняй формулировки/);
 });
+
+const BLK = ['eitiBlockTypeByEmoji', 'eitiBlockHeaderMatch', 'eitiBlockMarker', 'eitiBlocksParse', 'eitiBlocksSignature', 'eitiBlockAt', 'eitiBlockInsertAt', 'eitiBlocksOutline', 'eitiBlocksPromptRule', 'eitiBlocksUserAskedStructure', 'eitiBlocksGuard', 'eitiDocAIChangedRange'];
+const blk = () => loadFunctions(BLK, { EITI_BLOCK_TYPES: [{ id: 'topic', emoji: '🧩', label: 'Тема' }, { id: 'important', emoji: '⚠️', label: 'Важное' }, { id: 'context', emoji: '📌', label: 'Новый контекст' }] });
+const DOC3 = 'Вступление.\n\n---\n## 🧩 Покупки\n\nмолоко\n\n---\n## ⚠️ Срочно\n\nпозвонить\n';
+
+test('блоки: вставка у курсора — обычный Markdown, обычный текст не затронут', () => {
+  const s = blk();
+  const r = s.eitiBlockInsertAt('Первая строка\nВторая', 5, 'important', 'Дедлайн');
+  assert.equal(r.text, 'Первая строка\n\n---\n## ⚠️ Дедлайн\n\nВторая');
+  assert.equal(r.text.slice(r.cursor), 'Вторая');
+  assert.equal(s.eitiBlocksParse('Текст\n\n---\n## Обычный заголовок\n\n---\nещё').length, 0);
+  assert.equal(s.eitiBlocksParse('a\n---\n## 🧩 X').length, 0); // без пустой строки — setext, не блок
+  assert.equal(s.eitiBlocksParse('```\n\n---\n## 🧩 в коде\n```').length, 0);
+  const b = s.eitiBlocksParse(DOC3);
+  assert.equal(b.length, 2);
+  assert.equal(b[0].title, 'Покупки');
+  assert.equal(b[1].type, 'important');
+  assert.equal(s.eitiBlockAt(DOC3, DOC3.indexOf('позвонить')).title, 'Срочно');
+  assert.match(s.eitiBlocksPromptRule(DOC3, DOC3.indexOf('молоко')), /1\. 🧩 Покупки .*← курсор здесь/);
+  assert.equal(s.eitiBlocksPromptRule('без блоков', 0), '');
+});
+
+test('блоки: защита — порядок/число разделителей и правки через несколько блоков', () => {
+  const s = blk();
+  assert.equal(s.eitiBlocksGuard(DOC3, DOC3.replace('молоко', 'молоко и хлеб'), { message: 'добавь хлеб' }).ok, true);
+  const swapped = 'Вступление.\n\n---\n## ⚠️ Срочно\n\nпозвонить\n\n---\n## 🧩 Покупки\n\nмолоко\n';
+  assert.match(s.eitiBlocksGuard(DOC3, swapped, { message: 'исправь' }).message, /НЕ применена/);
+  assert.equal(s.eitiBlocksGuard(DOC3, DOC3.replace('\n\n---\n## ⚠️ Срочно\n', ''), { message: 'исправь' }).ok, false);
+  assert.equal(s.eitiBlocksGuard(DOC3, DOC3.replace('\n\n---\n## ⚠️ Срочно\n', ''), { message: 'удали блок Срочно' }).ok, true);
+  const cross = DOC3.replace('молоко', 'молоко!').replace('позвонить', 'позвонить!');
+  assert.match(s.eitiBlocksGuard(DOC3, cross, { message: 'исправь' }).message, /несколько блоков/);
+  assert.equal(s.eitiBlocksGuard(DOC3, cross, { allowCrossBlock: true }).ok, true);
+  assert.equal(s.eitiBlocksGuard('a b', 'c d', {}).ok, true);
+});
+
+test('блоки: Reader показывает каждый блок карточкой с заголовком', () => {
+  const s = loadFunctions(RICH.concat(['eitiBlockTypeByEmoji', 'eitiBlockHeaderMatch', 'eitiBlocksParse']), { EITI_BLOCK_TYPES: [{ id: 'topic', emoji: '🧩', label: 'Тема' }, { id: 'important', emoji: '⚠️', label: 'Важное' }, { id: 'context', emoji: '📌', label: 'Новый контекст' }] });
+  const { html } = s.eitiRichRender(DOC3);
+  assert.match(html, /<p>Вступление\.<\/p>/);
+  assert.match(html, /<section class="eiti-block b-topic"><div class="eiti-block-title">🧩 Покупки<\/div>\s*<p>молоко<\/p>\s*<\/section>/);
+  assert.match(html, /<section class="eiti-block b-important"><div class="eiti-block-title">⚠️ Срочно<\/div>/);
+  assert.doesNotMatch(html, /<hr>/);
+});

@@ -61,7 +61,7 @@ test('окно файла: светлая тема по умолчанию, ко
     const c = document.getElementById('fv-controls').getBoundingClientRect();
     return { tw: t.width, hw: h.width, cRight: c.right, vw: window.innerWidth, scroll: document.getElementById('fv-header').scrollWidth - document.getElementById('fv-header').clientWidth };
   });
-  expect(geo.tw).toBeGreaterThanOrEqual(geo.hw - 1);
+  expect(geo.tw).toBeGreaterThanOrEqual(200); // в строке 1 ещё «➕ Блок» (и «✨ Оформить» при ИИ)
   expect(geo.cRight).toBeLessThanOrEqual(geo.vw);
   expect(geo.scroll).toBeLessThanOrEqual(0);
   for (const [btn, theme] of [['#fv-bg-white', 'light'], ['#fv-bg-black', 'dark'], ['#fv-bg-paper', 'paper']]) {
@@ -265,4 +265,71 @@ test('✨ Оформить в заметке: вверху, применяетс
   await expect(page.locator('#noteEditorBody')).toHaveValue(ORIG);
   await page.evaluate(() => { localStorage.removeItem('eiti_grok_key'); eitiNoteBeautifySync(); });
   await expect(btn).toBeHidden();
+});
+
+const BLOCKS_DOC = 'Вступление к плану 🗒️\n\n---\n## 🧩 Покупки\n\n- молоко\n- хлеб\n\n---\n## ⚠️ Важное\n\nПозвонить маме **в пятницу**.\n\n---\n## 📌 Новый контекст\n\nПроект ==Альфа==: бюджет и сроки.\n';
+
+test('блоки: ⋯ → ➕ Новый блок в заметке вставляет разделитель у курсора; Reader — карточки', async ({ page }) => {
+  await page.setViewportSize({ width: 412, height: 860 });
+  await page.addInitScript(() => localStorage.setItem('eiti_onboarded', 'true'));
+  await page.goto('/index.html');
+  await page.waitForFunction(() => typeof window.eitiNoteNewBlock === 'function' && typeof window.notesOpenEditor === 'function');
+  await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
+  await page.evaluate(() => { document.querySelectorAll('#eiti-onboarding, .toast').forEach((el) => el.remove()); if (typeof openView === 'function') openView('notes'); notesOpenEditor(null); });
+  await page.locator('#noteEditorBody').fill('Первая строка\nВторая строка');
+  await page.locator('#noteEditorBody').evaluate((el) => el.setSelectionRange(3, 3));
+  await page.locator('#noteMoreBtn').click();
+  await expect(page.locator('#noteNewBlockBtn')).toBeVisible();
+  await shot(page, 'blocks-menu.png');
+  await page.locator('#noteNewBlockBtn').click();
+  await expect(page.locator('#eiti-block-dialog')).toBeVisible();
+  await page.locator('#eiti-block-title').fill('Дедлайн');
+  await page.locator('[data-block-type="important"]').click();
+  await shot(page, 'blocks-dialog.png');
+  await page.locator('#eiti-block-ok').click();
+  await expect(page.locator('#noteEditorBody')).toHaveValue('Первая строка\n\n---\n## ⚠️ Дедлайн\n\nВторая строка');
+  await page.locator('#noteMoreBtn').click();
+  await page.locator('#noteViewToggleBtn').click();
+  await expect(page.locator('#noteEditorPreview .eiti-block.b-important .eiti-block-title')).toHaveText('⚠️ Дедлайн');
+});
+
+test('блоки в файле: Reader-карточки, ➕ Блок, ИИ-правка ломающая блоки не применяется', async ({ page }) => {
+  await bootWithFile(page, { eiti_ai_provider: 'grok', eiti_grok_key: 'xai-test', eiti_notes_ai_model: 'same' });
+  let sys = '';
+  await page.route('https://api.x.ai/v1/chat/completions', async (route) => {
+    sys = route.request().postDataJSON().messages[0].content;
+    const broken = BLOCKS_DOC.replace('\n\n---\n## ⚠️ Важное\n', '');
+    await route.fulfill({ json: { choices: [{ message: { content: JSON.stringify({ reply: 'Готово', mutation: { action: 'replace_note', body: broken } }) }, finish_reason: 'stop' }] } });
+  });
+  await page.evaluate((doc) => {
+    document.getElementById('fv-close-btn').click();
+    window._idbFilesCache.push({ id: 'e2e-blocks', name: 'План.md', mime: 'text/markdown', content: doc, updated: Date.now() + 1000 });
+    window.openEitiFiles();
+  }, BLOCKS_DOC);
+  await page.locator('.ef-file-card').filter({ hasText: 'План' }).locator('[data-v]').evaluate((el) => el.click());
+  const rich = page.locator('#fv-rich');
+  await expect(rich.locator('.eiti-block')).toHaveCount(3);
+  await expect(rich.locator('.eiti-block.b-topic .eiti-block-title')).toHaveText('🧩 Покупки');
+  await expect(rich.locator('.eiti-block.b-context mark')).toHaveText('Альфа');
+  const geo = await page.evaluate(() => ({ r: document.getElementById('fv-block-btn').getBoundingClientRect().right, vw: innerWidth, t: document.getElementById('fv-title').getBoundingClientRect().width }));
+  expect(geo.r).toBeLessThanOrEqual(geo.vw);
+  for (const sw of ['#fv-bg-black', '#fv-bg-paper', '#fv-bg-white']) {
+    await page.locator(sw).click();
+    const c = await page.evaluate(() => { const cs = getComputedStyle(document.getElementById('fv-block-btn')); return { fg: cs.color, bg: cs.backgroundColor }; });
+    expect(ratio(c.fg, c.bg)).toBeGreaterThanOrEqual(4.5);
+  }
+  await page.waitForTimeout(200);
+  await shot(page, 'blocks-reader.png');
+  await page.locator('#fv-ai-ask').click();
+  await page.locator('#fv-ai-input').fill('Перепиши файл короче');
+  await page.locator('#fv-ai-send').click();
+  await expect(page.locator('.fv-ai-msg.assistant').last()).toContainText('разделители блоков');
+  expect(sys).toContain('Оглавление блоков');
+  expect(sys).toContain('2. ⚠️ Важное');
+  expect(await page.evaluate(() => window.__saved.length)).toBe(0);
+  await page.locator('#fv-ai-close').click();
+  await page.locator('#fv-block-btn').click();
+  await page.locator('#eiti-block-title').fill('Итоги');
+  await page.locator('#eiti-block-ok').click();
+  expect(await page.evaluate(() => window.__saved.at(-1).content)).toMatch(/\n\n---\n## 🧩 Итоги\n\n$/);
 });

@@ -109,6 +109,7 @@ for (const viewport of [
     const moreLabels = (await page.locator('#noteMoreMenu button:visible').allTextContents())
       .map((t) => t.replace(/\s+/g, ' ').trim());
     expect(moreLabels).toEqual([
+      '➕ Новый блок', // v13.8.0
       '👁 Просмотр с оформлением', // v13.8.0
       'Аа Шрифт и цвет',
       '💾 Сохранить как файл',

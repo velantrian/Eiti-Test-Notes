@@ -104,3 +104,18 @@ def test_beautify_buttons_at_top():
     fn = INDEX[INDEX.index("function eitiNoteBeautify()"):INDEX.index("// ── v13.8.0: AI Docs в окне файла")]
     assert "eitiNotesAIApplyMutation({ action: 'replace_note', body: r.body }, snapshot, EITI_BEAUTIFY_REQUEST)" in fn
     assert "eitiDocAIBeautifyResult(raw, !!(res && res.truncated), body)" in fn
+
+
+def test_context_blocks_wired():
+    menu = INDEX[INDEX.index('<div id="noteMoreMenu"'):]
+    menu = menu[: menu.index("</div>")]
+    assert 'id="noteNewBlockBtn"' in menu and "➕ Новый блок" in menu
+    viewer = INDEX[INDEX.index('id="fv-header"'):INDEX.index('id="fv-pre"')]
+    assert 'id="fv-block-btn"' in viewer
+    assert "return '---\\n## ' + t.emoji + ' ' + clean;" in INDEX
+    assert "eitiBlocksPromptRule(ctx.content, cursor)" in INDEX
+    assert "eitiBlocksPromptRule(String(noteBody || '')" in INDEX
+    apply = INDEX[INDEX.index("function eitiNotesAIApplyMutation("):INDEX.index("function eitiNotesAIPresetModels(")]
+    assert "eitiBlocksGuard(body, nextBody" in apply
+    assert "eitiBlocksGuard(original, t, { allowCrossBlock: true })" in INDEX
+    assert "Разделители контекстных блоков" in INDEX
