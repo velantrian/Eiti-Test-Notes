@@ -21562,9 +21562,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 try { await eitiLoadChatById(_chatByIdPreload[1].toUpperCase()); }
                 catch(e) { console.warn('[EITI] chat pre-load failed:', e && e.message); }
             }
-            // v14.1.0: факты из библиотеки знаний KB для контекста ИИ (не дольше 1.5 с; ошибки не мешают ответу)
+            // v14.1.0: факты из библиотеки знаний KB для контекста ИИ (только если индекс уже прогрет; не дольше 1.5 с; ошибки не мешают ответу)
             window._eitiKbLibCtx = [];
-            if (window.EitiKBHost) {
+            if (window.EitiKBHost && !EitiKBHost.ready()) {
+                // индекс ещё не прогрет — не задерживаем ответ ИИ, грузим в фоне
+                try { EitiKBHost.init().catch(function() {}); } catch (e) {}
+            } else if (window.EitiKBHost) {
                 try {
                     window._eitiKbLibCtx = await Promise.race([
                         EitiKBHost.facts(String(userText || ''), 4),
@@ -31515,7 +31518,9 @@ window.eitiLLMClearAll = async function() {
         // Индекс (~50 КБ gzip) строится порциями в простое; ответы — в пакетах по доменам, грузятся по требованию.
         // Файлы кеширует Service Worker (Cache Storage 'eiti-offline-*'), не localStorage. Личные факты — прежний слой KB (IndexedDB 'kb').
         var EitiKBHost = (function() {
-            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, stats = { init: 0, packs: {}, last: null };
+            // v14.2.0: шардированная библиотека. index.json — маленький манифест; kb/idx/<раздел>.json — поисковые шарды
+            // (грузятся по очереди и индексируются порциями в простое); kb/packs/… — полные ответы, по требованию.
+            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, stats = { init: 0, shards: 0, entries: 0, packs: {}, last: null };
             function getJson(f) { return fetch(BASE + f).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + f); return r.json(); }); }
             function loadScript() {
                 if (window.EitiKBLib) return Promise.resolve();
@@ -31526,24 +31531,38 @@ window.eitiLLMClearAll = async function() {
                 if (initP) return initP;
                 var t0 = performance.now();
                 initP = loadScript().then(function() { return getJson('index.json'); }).then(function(d) {
-                    idx = d; return window.EitiKBLib.createAsync(d, { yieldFn: idle });
+                    idx = d;
+                    var e = window.EitiKBLib.create({ domains: d.domains, entries: [] }), order = d.order || Object.keys(d.domains), i = 0;
+                    return new Promise(function(res, rej) {
+                        (function next() {
+                            if (i >= order.length) { res(e); return; }
+                            var dom = order[i++];
+                            getJson(d.domains[dom].shard).then(function(sh) {
+                                var rows = window.EitiKBLib.shardRows(sh);
+                                return window.EitiKBLib.addAsync(e, rows, { step: 150, yieldFn: idle });
+                            }).then(function() { stats.shards++; stats.entries = e.size; idle(next); }, rej);
+                        })();
+                    });
                 }).then(function(e) { eng = e; stats.init = Math.round(performance.now() - t0); return e; })
                   .catch(function(e) { initP = null; throw e; });
                 return initP;
             }
-            function pack(d) {
-                if (PK[d]) return Promise.resolve(PK[d]);
-                if (PKP[d]) return PKP[d];
+            function pack(d, part) {
+                part = part || 0;
+                var key = d + '#' + part;
+                if (PK[key]) return Promise.resolve(PK[key]);
+                if (PKP[key]) return PKP[key];
                 var meta = idx && idx.domains[d], t0 = performance.now();
-                PKP[d] = getJson((meta && meta.file) || ('packs/kb_' + d + '.json')).then(function(p) { PK[d] = p; stats.packs[d] = Math.round(performance.now() - t0); delete PKP[d]; return p; },
-                    function(e) { delete PKP[d]; throw e; });
-                return PKP[d];
+                var file = (meta && meta.packs && meta.packs[part]) || ('packs/kb_' + d + '.json');
+                PKP[key] = getJson(file).then(function(p) { PK[key] = p; stats.packs[key] = Math.round(performance.now() - t0); delete PKP[key]; return p; },
+                    function(e) { delete PKP[key]; throw e; });
+                return PKP[key];
             }
             function hydrate(hits) {
-                var ds = {}; hits.forEach(function(h) { ds[h.d] = 1; });
-                return Promise.all(Object.keys(ds).map(function(d) { return pack(d).catch(function() { return null; }); })).then(function() {
+                var ks = {}; hits.forEach(function(h) { ks[h.d + '#' + (h.p || 0)] = h; });
+                return Promise.all(Object.keys(ks).map(function(k) { return pack(ks[k].d, ks[k].p).catch(function() { return null; }); })).then(function() {
                     return hits.map(function(h) {
-                        var p = PK[h.d], e = p && p.entries[h.id]; if (!e) return null;
+                        var p = PK[h.d + '#' + (h.p || 0)], e = p && p.entries[h.id]; if (!e) return null;
                         var m = idx.domains[h.d] || {};
                         return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', score: h.score, cov: h.cov, prec: h.prec };
                     }).filter(Boolean);
