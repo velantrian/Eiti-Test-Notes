@@ -126,7 +126,7 @@ def main():
                    [('cap', 'wdt:P36', 'label'), ('cont', 'wdt:P30', 'label'), ('lang', 'wdt:P37', 'label'), ('cur', 'wdt:P38', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d or 'государство'), lab('Столица — ', it['cap'], 1), lab('Часть света: ', it['cont'], 2),
                                          lab('Официальный язык: ', it['lang'], 3), lab('Валюта: ', it['cur'], 2)),
-                   trig=lambda it, l: [l, 'столица ' + l, 'страна ' + l], extra='FILTER NOT EXISTS { ?x wdt:P576 ?end }', need_desc=False)
+                   trig=lambda it, l: [l, 'столица ' + l, 'страна ' + l] + (['валюта ' + l] if it['cur'] else []) + (['язык ' + l, 'официальный язык ' + l] if it['lang'] else []), extra='FILTER NOT EXISTS { ?x wdt:P576 ?end }', need_desc=False)
     if want('cities'):
         gen_simple('cities', 'Города мира', 'Cities', 'wd:Q515', 70, [('c', 'wdt:P17', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), lab('Страна: ', it['c'], 1)),
