@@ -39,16 +39,12 @@ test('keyword multiplies by 1.4 (case-insensitive)', () => {
 
 test('multipliers combine multiplicatively', () => {
   // caps (ВАЖНО) x exclamation x keyword(важно) = 1.5 * 1.3 * 1.4
-  close(eitiCalcSalience('ВАЖНО!'), 1.5 * 1.3 * 1.4);
+  close(eitiCalcSalience('ВАЖНО!'), Math.min(2.5, 1.5 * 1.3 * 1.4));
 });
 
-test('REGRESSION GUARD: the 4.0 cap is currently unreachable', () => {
-  // Each rule fires at most once, so the theoretical maximum is
-  // 1.5 * 1.3 * 1.4 = 2.73 — well below the Math.min(s, 4.0) cap.
-  // If someone raises the multipliers, this test flags that the cap
-  // now actually matters and needs revisiting.
-  const maxPossible = 1.5 * 1.3 * 1.4;
-  close(eitiCalcSalience('ВАЖНО КРИТИЧНО ОБЯЗАТЕЛЬНО!!!'), maxPossible);
-  assert.ok(maxPossible < 4.0,
-    'multipliers changed — revisit the 4.0 cap in eitiCalcSalience');
+test('v13.9.0: the salience cap (2.5) is reachable and enforced', () => {
+  // Each rule fires at most once: 1.5 * 1.3 * 1.4 = 2.73 > 2.5, so the cap now matters.
+  close(eitiCalcSalience('ВАЖНО КРИТИЧНО ОБЯЗАТЕЛЬНО!!!'), 2.5);
+  // two of three rules (caps × keyword = 2.1) stay below the cap and are not clipped
+  close(eitiCalcSalience('ВАЖНО сделать'), 1.5 * 1.4);
 });

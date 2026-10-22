@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.8.1"; // iPhone: баннер установки один раз, 16px поля, safe-area в Файлах, 44px зоны нажатия, клавиатура в AI Docs
+        var EITI_VERSION = "13.9.0"; // MOSC уточнение, 👍/👎 обучение, адаптивный поиск, память, защита AI-правок, метрики
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -513,7 +513,7 @@
                 '💳 API — Баланс и токены': '💳 API — Guthaben und Tokens',
                 'VB🦋 Velantrim Brain': 'VB🦋 Velantrim Brain',
                 '📖 Лемматизатор — Морфология': '📖 Lemmatisierer — Morphologie',
-                'FL ⚖️ Умные веса — Retrieval': 'FL ⚖️ Smarte Gewichte — Retrieval',
+                '⚖️ Веса поиска памяти': '⚖️ Gewichte der Gedächtnissuche',
                 'Материалы (iOS6 / Book / Paper)': 'Materialien (iOS6 / Book / Paper)',
                 'Создайте или восстановите резервную копию всех данных приложения.': 'Erstellen Sie eine Sicherung aller App-Daten oder stellen Sie sie wieder her.',
                 'Резервная копия данных приложения — создать или восстановить': 'App-Datensicherung — erstellen oder wiederherstellen',
@@ -2215,7 +2215,7 @@
                 '💳 API — Баланс и токены': '💳 API — Balance and tokens',
                 'VB🦋 Velantrim Brain': 'VB🦋 Velantrim Brain',
                 '📖 Лемматизатор — Морфология': '📖 Lemmatizer — Morphology',
-                'FL ⚖️ Умные веса — Retrieval': 'FL ⚖️ Smart weights — Retrieval',
+                '⚖️ Веса поиска памяти': '⚖️ Memory search weights',
                 'Материалы (iOS6 / Book / Paper)': 'Materials (iOS6 / Book / Paper)',
                 'Создайте или восстановите резервную копию всех данных приложения.': 'Create or restore a backup of all app data.',
                 'Резервная копия данных приложения — создать или восстановить': 'App data backup — create or restore',
@@ -10713,7 +10713,7 @@
                         </div>
                     </div>                    <!-- FL ⚖️ УМНЫЕ ВЕСА (RETRIEVAL CONFIG) -->
                     <div class="settings-group">
-                        <div class="settings-title" data-i18n="FL ⚖️ Умные веса — Retrieval">FL ⚖️ Умные веса — Retrieval</div>
+                        <div class="settings-title" data-i18n="⚖️ Веса поиска памяти">⚖️ Веса поиска памяти</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
                             <!-- Счётчик весов -->
                             <div id="fl-weights-stats" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:10px 12px;background:var(--secondary-color);border-radius:12px;"></div>
@@ -10790,6 +10790,11 @@
                                 </label>
                             </div>
                         </div>
+                    </div>
+                    <!-- v13.9.0: ОБУЧЕНИЕ EITI (предпочтения, адаптивный поиск, изменения AI, метрики) -->
+                    <div class="settings-group" id="eiti-learning-group">
+                        <div class="settings-title" data-i18n="🎓 Обучение EITI">🎓 Обучение EITI</div>
+                        <div id="eiti-learning-body" style="padding:14px;display:flex;flex-direction:column;gap:10px;"></div>
                     </div>
                 </div>
             </div>
@@ -15585,23 +15590,34 @@
                 var msg = (chatLog || []).find(function(m) { return m && m.id === msgId; });
                 if (!msg || msg.role === 'user') return;
                 var text = msg.text || msg.content || '';
+                // v13.9.0: vote is stored with provider/model/intent/KB fact ids and feeds
+                // per-fact usefulness + the adaptive-retrieval bandit.
+                var vote = null;
+                var _q0 = '';
+                try { var _ci = chatLog.indexOf(msg); for (var _cj = _ci - 1; _cj >= 0; _cj--) { if (chatLog[_cj] && chatLog[_cj].role === 'user') { _q0 = chatLog[_cj].text || chatLog[_cj].content || ''; break; } } } catch(_) {}
+                try { if (typeof window.eitiVoteRecord === 'function') vote = window.eitiVoteRecord(msg, positive, { query: _q0 }); } catch(_) {}
                 var entities = (typeof vbEntities === 'function') ? vbEntities(text) : [];
-                var pkgBoost = positive ? 1.0 : -0.8;
+                // v13.9.0: symmetric PKG effect (±1, no emotional +5 boost)
+                var pkgBoost = positive ? 1.0 : -1.0;
                 if (typeof pkgSaveNode === 'function' && entities && entities.length) {
                     entities.forEach(function(e) {
-                        try {
-                            // Negative feedback must weaken a node; emotional salience is positive-only.
-                            pkgSaveNode({ concept: e, category: 'feedback', weight: pkgBoost, emotional: positive });
-                        } catch(_) {}
+                        try { pkgSaveNode({ concept: e, category: 'feedback', weight: pkgBoost }); } catch(_) {}
                     });
                 }
+                // MOSC learning: map the vb intent to a MOSC concept → action, learn on the USER query
+                var q = (vote && vote._query) || text;
                 var lastIntent = window._eitiIntentStack && window._eitiIntentStack.slice(-1)[0];
-                if (lastIntent && typeof moscLearn === 'function') {
-                    try { moscLearn(text, lastIntent, positive); } catch(_) {}
+                var vbName = lastIntent && (lastIntent.intent || lastIntent.name || lastIntent);
+                var concept = (typeof eitiVbToMoscConcept === 'function' && typeof vbName === 'string') ? eitiVbToMoscConcept(vbName) : null;
+                var action = concept && window.MOSC_INTENT_MAP ? window.MOSC_INTENT_MAP[concept] : null;
+                if (!action && vote && vote.moscIntent) action = vote.moscIntent;
+                if (action && typeof window.moscLearn === 'function') {
+                    try { window.moscLearn(q, action, positive); } catch(_) {}
                 }
                 if (typeof showToast === 'function') {
                     showToast(positive ? '👍 Учту!' : '👎 Учту, исправлюсь', 1500);
                 }
+                return vote;
             }
             window.eitiMsgFeedback = eitiMsgFeedback;
 
@@ -19448,7 +19464,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     } catch(e) {}
                     // Добавляем MOSC граф в контекст Grok
                     try {
-                        var _moscAll = window._moscGraph || {};
+                        // v13.9.0: граф хранится как {слово: {концепт: вес}} — конвертируем
+                        var _moscAll = (typeof eitiMoscGraphToNodesEdges === 'function') ? eitiMoscGraphToNodesEdges(window._moscGraph || {}) : { nodes: [], edges: [] };
                         var _moscNodes = _moscAll.nodes || [];
                         var _moscEdges = _moscAll.edges || [];
                         if (_moscNodes.length > 0) {
@@ -21688,8 +21705,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var learnedFacts = eitiLearnGet();
                 if (learnedFacts.length > 0) {
                     sysContent += '\n\n=== ВЫУЧЕННЫЕ ФАКТЫ О ПОЛЬЗОВАТЕЛЕ ===';
-                    learnedFacts.slice().sort(function(a,b){ return (b.salience||1) - (a.salience||1); })
-                        .slice(0, 30).forEach(function(f) {
+                    // v13.9.0: score = recency × salience × relevance (к текущему вопросу)
+                    ((typeof eitiMemRank === 'function') ? eitiMemRank(learnedFacts, (typeof userText !== 'undefined' ? userText : ''), Date.now(), 30)
+                        : learnedFacts.slice().sort(function(a,b){ return (b.salience||1) - (a.salience||1); }).slice(0, 30)).forEach(function(f) {
                         var mark = (f.salience >= 2.0) ? '🔥 ' : (f.salience >= 1.4) ? '⭐ ' : '· ';
                         sysContent += '\n' + mark + f.fact;
                     });
@@ -22005,13 +22023,18 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         return x;
                     }).sort(function(a,b){ return b.score - a.score; });
 
+                    // v13.9.0: adaptive retrieval — bandit preset / mode (hybrid BM25+embeddings,
+                    // semantic, fts) + per-fact usefulness learned from 👍/👎
+                    var _v139Cfg = (typeof window.eitiRetrievalPick === 'function') ? window.eitiRetrievalPick() : null;
+                    if (_v139Cfg && typeof window.eitiRetrievalRerank === 'function') _scored = window.eitiRetrievalRerank(_scored, _kbAll, lower, _v139Cfg);
+
                     // ── АДАПТИВНЫЙ ЛИМИТ ────────────────────────────────────
                     // Берём факты пока score >= 40% от лучшего, но не меньше 2 и не больше 20
                     var _relFacts = [];
                     if (_scored.length > 0) {
                         var topScore = _scored[0].score;
                         // ── FL-веса из настроек пользователя ────────────
-                        var _flCfg = (typeof eitiGetRetrievalConfig === 'function') ? eitiGetRetrievalConfig() : { threshold: 0.65, maxFacts: 7 };
+                        var _flCfg = _v139Cfg || ((typeof eitiGetRetrievalConfig === 'function') ? eitiGetRetrievalConfig() : { threshold: 0.65, maxFacts: 7 });
                         var _flThresh = (_flCfg.threshold || 0.65);
                         var _flMax = Math.min((_flCfg.maxFacts || 7), 20);
                         var threshold = topScore * _flThresh; // FL threshold вместо хардкода 0.4
@@ -22028,15 +22051,16 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     // FIX v9.20: запомнить использованные KB-ID чтобы следующий вопрос получил другие факты
                     if (!window._eitiKbUsedIds) window._eitiKbUsedIds = new Set();
                     _relFacts.forEach(function(f){ if (f && f.id) window._eitiKbUsedIds.add(f.id); });
+                    if (typeof window.eitiRetrievalRecord === 'function') window.eitiRetrievalRecord(_relFacts, _v139Cfg);
 
                     // ── v13.3.0: LOCAL TRANSFORMERS.JS SEMANTIC SEARCH ───────
                     // Uses locally cached query vector (computed async on prev query) + kb_vectors from IDB
-                    if (window.eitiSemanticModel && window._eitiKbVectorized && window._eitiKbVectorized.length) {
+                    if (window.eitiSemanticModel && window._eitiKbVectorized && window._eitiKbVectorized.length && !(_v139Cfg && _v139Cfg.mode === 'fts')) {
                         var _localKbVec = window._eitiKbVectorized;
                         var _localQVec = window._eitiQueryVecCache && window._eitiQueryVecCache[lower.slice(0, 60)];
                         if (_localQVec && typeof eitiSemanticSearch === 'function') {
                             var _semResult = eitiSemanticSearch(_localQVec, _localKbVec, 0.42, 8);
-                            if (_semResult && _semResult.all) {
+                            if (_semResult && _semResult.all && !(_v139Cfg && _v139Cfg._hybridApplied)) {
                                 var _semFacts = _semResult.all.map(function(r) { return r.fact; });
                                 // Merge: add semantically-found facts not already in BM25 results
                                 _semFacts.forEach(function(sf) {
@@ -28882,31 +28906,32 @@ window.eitiLLMClearAll = async function() {
             });
 
             // ── MOSC главная точка входа (вызывается из doSend) ───────
+            // v13.9.0: НИКОГДА не блокирует отправку. При неуверенности показывает
+            // карточку «Кажется, ты хочешь…» под сообщением; выбор обучает граф.
             function moscProcess(txt) {
-                var _offDisabled = localStorage.getItem('eiti_mosc_offline_disable') !== '0';
-                if (_offDisabled && localStorage.getItem('eiti_offline_mode') === '1') return false;
-                if (txt.length < 4) return false;
-                if (typeof MOSC_PASSTHROUGH_RE !== 'undefined' && MOSC_PASSTHROUGH_RE.test(txt)) return false;
-                var graph = window._moscGraph || MOSC_DEFAULT_GRAPH;
-                var result = moscDetectIntent(txt, graph);
-
-                if (!result.intent || result.score < MOSC_WEIGHTS.curiosityThreshold) {
-                    // Совсем не понял — curiosity mode
-                    _moscPending = { query: txt, intent: null, score: 0 };
-                    moscRenderCuriosity();
-                    return true; // перехватили
-                }
-
-                if (result.score >= MOSC_WEIGHTS.confidenceThreshold) {
-                    // Уверен → не перехватываем, даём eitiIntentRouter работать
-                    return false;
-                }
-
-                // Между порогами → уточняем
-                _moscPending = { query: txt, intent: result.intent, score: result.score };
-                moscRenderClarification(result.intent, result.score);
-                return true; // перехватили, ждём ответа пользователя
+                try {
+                    if (localStorage.getItem('eiti_mosc_clarify') === '0') return false;
+                    var _offDisabled = localStorage.getItem('eiti_mosc_offline_disable') !== '0';
+                    if (_offDisabled && localStorage.getItem('eiti_offline_mode') === '1') return false;
+                    if (!txt || txt.length < 4) return false;
+                    if (typeof MOSC_PASSTHROUGH_RE !== 'undefined' && MOSC_PASSTHROUGH_RE.test(txt)) return false;
+                    var graph = window._moscGraph || MOSC_DEFAULT_GRAPH;
+                    var result = moscDetectIntent(txt, graph);
+                    window._moscLastResult = { query: txt, intent: result.intent, score: result.score, ts: Date.now() };
+                    if (!result.intent || result.intent === 'chat_ai') return false;
+                    if (result.score >= MOSC_WEIGHTS.confidenceThreshold || result.score < 0.3) return false;
+                    _moscPending = { query: txt, intent: result.intent, score: result.score };
+                    setTimeout(function () {
+                        if (typeof window.eitiMoscShowCard === 'function') window.eitiMoscShowCard(txt, result.intent, result.score);
+                    }, 60);
+                } catch (e) {}
+                return false; // не перехватываем — ответ AI идёт как обычно
             }
+            window.moscProcess = moscProcess;
+            window.moscLearn = moscLearn;
+            window.moscDetectIntent = moscDetectIntent;
+            window.MOSC_INTENT_MAP = MOSC_INTENT_MAP;
+            window.MOSC_WEIGHTS = MOSC_WEIGHTS;
 
             function doSend() {
                 // 🖼️ Image generation — detect on the user's TYPED command, BEFORE the
@@ -28924,6 +28949,15 @@ window.eitiLLMClearAll = async function() {
                     else window._eitiPastedTextBuffer = null;
                     return;
                 }
+
+                // v13.9.0: MOSC clarify (non-blocking) on the TYPED text; remember pasted/file
+                // text as untrusted so AI self-edit tags echoed from it are ignored.
+                try {
+                    if (typeof window.eitiMoscDismiss === 'function') window.eitiMoscDismiss();
+                    var _v139Files = (window._eitiChatAttachedFiles || []).map(function (f) { return (f && f.text) ? String(f.text).slice(0, 200000) : ''; }).join('\n');
+                    window._eitiLastUntrusted = (window._eitiPastedTextBuffer || '') + '\n' + _v139Files;
+                    if (_typedCmd && typeof window.moscProcess === 'function') window.moscProcess(_typedCmd);
+                } catch (_v139e) {}
 
                 // v13.4.0 P1 FIX #15: если был paste-chip — инжектим полный текст в начало.
                 if (window._eitiPastedTextBuffer) {
@@ -30414,6 +30448,8 @@ window.eitiLLMClearAll = async function() {
 
         function eitiProcessCommands(reply) {
             if (!reply) return;
+            // v13.9.0: guard AI self-edits (clamp, per-reply limits, ignore quoted/pasted/file tags, log + undo)
+            if (typeof window.eitiGuardAIReply === 'function') reply = window.eitiGuardAIReply(reply);
             var _jsExecMatches = [];
             reply.replace(/\[JS_EXEC:\s*([\s\S]*?)\]/g, function(_, code) {
                 _jsExecMatches.push(code.trim());
@@ -33667,7 +33703,7 @@ window.eitiLLMClearAll = async function() {
             if (/[А-ЯЁA-Z]{3,}/.test(fact)) s *= 1.5;          // КАПСЛОК ≥3 символа
             if (/!/.test(fact)) s *= 1.3;                        // восклицание
             if (/важно|критично|никогда|всегда|обязательно/i.test(fact)) s *= 1.4; // ключевые слова
-            return Math.min(s, 4.0); // cap чтобы не переполнять контекст
+            return Math.min(s, 2.5); // v13.9.0: достижимый cap (максимум произведения 2.73)
         }
 
         function eitiLearnFact(fact) {
@@ -33675,15 +33711,45 @@ window.eitiLLMClearAll = async function() {
             try {
                 var store = JSON.parse(localStorage.getItem(EITI_LEARN_KEY) || '[]');
                 var exists = store.some(function(f){ return f.fact === fact; });
-                if (!exists) {
-                    var sal = eitiCalcSalience(fact);
-                    var item = { fact: fact, ts: Date.now(), salience: sal, id: 'fact_' + Date.now() };
-                    store.push(item);
-                    if (store.length > 200) store = store.slice(-200);
+                if (exists) return;
+                var sal = eitiCalcSalience(fact);
+                var now = Date.now();
+                // v13.9.0: near-duplicate merge (cosine if vectors cached, else text similarity)
+                var dupIdx = (typeof eitiMemFindNearDup === 'function')
+                    ? eitiMemFindNearDup(store, fact, (typeof window !== 'undefined' && window._eitiFactVecs) || null, null) : -1;
+                if (dupIdx >= 0) {
+                    var d = store[dupIdx];
+                    if (String(fact).length > String(d.fact).length) d.fact = fact;
+                    d.salience = Math.max(d.salience || 1, sal);
+                    d.lastSeen = now; d.merged = (d.merged || 0) + 1;
                     localStorage.setItem(EITI_LEARN_KEY, JSON.stringify(store));
-                    eitiQueueIndexDoc(item.id, fact, { kind:'fact', updated: item.ts, salience: sal });
-                    var icon = sal >= 2.0 ? '🔥' : sal >= 1.4 ? '⭐' : '🧠';
-                    showToast(icon + ' Запомнено: ' + fact.slice(0, 40));
+                    eitiQueueIndexDoc(d.id, d.fact, { kind:'fact', updated: now, salience: d.salience });
+                    showToast('🔁 Уточнено: ' + String(d.fact).slice(0, 40));
+                    return;
+                }
+                var item = { fact: fact, ts: now, salience: sal, id: 'fact_' + now };
+                store.push(item);
+                if (store.length > 200) {
+                    // v13.9.0: no silent hard drop — evict the lowest recency×salience facts
+                    // into an archive (kept, restorable) and schedule LLM consolidation.
+                    var scoreOf = function (f) {
+                        var age = Math.max(0, (now - (f.lastSeen != null ? f.lastSeen : (f.ts != null ? f.ts : now))) / 86400000);
+                        return (0.25 + 0.75 * Math.pow(0.5, age / 30)) * (f.salience || 1) + (f === item ? 1e9 : 0) + (f.ts || 0) * 1e-15;
+                    };
+                    var ranked = store.slice().sort(function (a, b) { return scoreOf(a) - scoreOf(b); });
+                    var evicted = ranked.slice(0, store.length - 200);
+                    store = store.filter(function (f) { return evicted.indexOf(f) === -1; });
+                    try {
+                        var arch = JSON.parse(localStorage.getItem('eiti_learned_archive_v1') || '[]');
+                        localStorage.setItem('eiti_learned_archive_v1', JSON.stringify(arch.concat(evicted).slice(-500)));
+                    } catch (ae) {}
+                }
+                localStorage.setItem(EITI_LEARN_KEY, JSON.stringify(store));
+                eitiQueueIndexDoc(item.id, fact, { kind:'fact', updated: item.ts, salience: sal });
+                var icon = sal >= 2.0 ? '🔥' : sal >= 1.4 ? '⭐' : '🧠';
+                showToast(icon + ' Запомнено: ' + fact.slice(0, 40));
+                if (store.length >= 180 && typeof window !== 'undefined' && typeof window.eitiMemMaybeConsolidate === 'function') {
+                    setTimeout(function () { window.eitiMemMaybeConsolidate(false); }, 1500);
                 }
             } catch(e) {}
         }
@@ -37672,7 +37738,7 @@ window.eitiLLMClearAll = async function() {
                 '💳 API — Баланс и токены',
                 'VB🦋 Velantrim Brain',
                 '📖 Лемматизатор — Морфология',
-                'FL ⚖️ Умные веса — Retrieval'
+                '⚖️ Веса поиска памяти'
             ]);
             Array.from(view.querySelectorAll('.settings-group')).forEach(function (group) {
                 var title = group.querySelector(':scope > .settings-title');
@@ -51544,5 +51610,686 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         }
         document.addEventListener('DOMContentLoaded', function() { try { eitiFilesDocsRenderSettings(); } catch (e) {} });
 </script>
+    <!-- ═══ v13.9.0 — Learning loop: MOSC clarify · votes · adaptive retrieval · memory · AI self-edit guard · metrics ═══ -->
+    <style id="eiti-v1390-style">
+        .eiti-mosc-card{margin:4px 12px 8px;padding:10px 12px;border-radius:12px;background:rgba(124,92,255,0.10);border:1px solid rgba(124,92,255,0.35);font-size:13px;line-height:1.45;color:var(--text-color);max-width:100%;box-sizing:border-box;}
+        .eiti-mosc-card .mc-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+        .eiti-mosc-card button{min-height:34px;padding:6px 12px;border-radius:9px;border:1px solid rgba(255,255,255,0.18);background:var(--secondary-color);color:var(--text-color);font-size:13px;cursor:pointer;}
+        .eiti-mosc-card button.mc-yes{background:rgba(124,92,255,0.35);border-color:rgba(124,92,255,0.6);}
+        .eiti-mosc-card .mc-x{float:right;min-height:28px;padding:2px 8px;border:none;background:transparent;opacity:0.6;}
+        .eiti-learn-box{padding:10px 12px;background:var(--secondary-color);border-radius:12px;font-size:12.5px;line-height:1.5;overflow-wrap:anywhere;}
+        .eiti-learn-box h4{margin:0 0 6px;font-size:13px;}
+        .eiti-learn-box table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;}
+        .eiti-learn-box td,.eiti-learn-box th{padding:3px 4px;border-bottom:1px solid rgba(255,255,255,0.08);text-align:left;overflow-wrap:anywhere;}
+        .eiti-learn-box button{min-height:32px;padding:5px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.18);background:var(--bg-color,#1a1a1a);color:var(--text-color);font-size:12px;cursor:pointer;}
+        .eiti-learn-row{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+        .eiti-learn-muted{opacity:0.65;}
+    </style>
+    <script>
+        // ── storage helpers ────────────────────────────────────────────────
+        var EITI_V139_KEYS = {
+            votes: 'eiti_votes_v1', factUse: 'eiti_fact_use_v1', bandit: 'eiti_fl_bandit_v1',
+            banditOn: 'eiti_fl_bandit_on', selfLog: 'eiti_selfedit_log_v1', retr: 'eiti_retrieval_log_v1',
+            clarify: 'eiti_mosc_clarify', cons: 'eiti_mem_consolidation_v1', archive: 'eiti_learned_archive_v1'
+        };
+        var EITI_FL_ARMS = [
+            { id: 'wide',     label: 'Широко',       threshold: 0.5,  maxFacts: 10 },
+            { id: 'balanced', label: 'Баланс',       threshold: 0.65, maxFacts: 7 },
+            { id: 'focused',  label: 'Фокус',        threshold: 0.75, maxFacts: 5 },
+            { id: 'strict',   label: 'Строго',       threshold: 0.85, maxFacts: 3 }
+        ];
+        var EITI_GUARD_LIMITS = { MOSC_ADD: 5, MOSC_SET: 5, MOSC_DEL: 2, MOSC_DEL_EDGE: 3, MOSC_CLEAR: 1, FL_SET: 1, PKG: 5, PKG_E: 2 };
+        var EITI_VB_TO_MOSC = {
+            note_create: 'действие_память', save_to_memory: 'действие_память', note_list: 'действие_память', eiti_notes: 'действие_память',
+            note_search: 'действие_поиска', eiti_history: 'действие_поиска',
+            memory_recall: 'действие_поиска_kb', eiti_kb: 'действие_поиска_kb', fact: 'действие_поиска_kb', learn: 'действие_поиска_kb', science: 'действие_поиска_kb',
+            reminder_set: 'действие_напоминание', timer: 'действие_напоминание',
+            math: 'действие_вычисление', number_calc: 'действие_вычисление',
+            health: 'здоровье', fitness: 'здоровье',
+            emotion: 'состояние', psychology: 'состояние', meditation: 'состояние', self_reflection: 'состояние', motivation: 'состояние',
+            greeting: 'общение', farewell: 'общение', howdy: 'общение', smalltalk: 'общение', thanks: 'общение', apology: 'общение',
+            eiti_files: 'действие_файл'
+        };
+        function eitiV139Get(key, def) {
+            try { var v = JSON.parse(localStorage.getItem(key) || 'null'); return v == null ? def : v; } catch (e) { return def; }
+        }
+        function eitiV139Set(key, val) {
+            try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+        }
+        function eitiV139Esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
+        }
+
+        // ── 1) MOSC: vb intent → MOSC concept ──────────────────────────────
+        function eitiVbToMoscConcept(vbIntentName, map) {
+            if (!vbIntentName) return null;
+            map = map || EITI_VB_TO_MOSC;
+            if (map[vbIntentName]) return map[vbIntentName];
+            if (/^kb_(first_aid|vitamins)$/.test(vbIntentName)) return 'здоровье';
+            if (/^kb_/.test(vbIntentName)) return 'действие_поиска_kb';
+            return null;
+        }
+        // Graph is {word: {concept: weight}} — convert to a node/edge view (Grok voice, settings).
+        function eitiMoscGraphToNodesEdges(graph) {
+            var nodes = [], edges = [], seen = {};
+            Object.keys(graph || {}).forEach(function (w) {
+                var m = graph[w];
+                if (!m || typeof m !== 'object') return;
+                var cs = Object.keys(m);
+                if (!cs.length) return;
+                var top = cs.slice().sort(function (a, b) { return (m[b] || 0) - (m[a] || 0); })[0];
+                nodes.push({ id: w, desc: '→ ' + top + ' (' + Number(m[top] || 0).toFixed(2) + ')' });
+                cs.forEach(function (c) { edges.push({ from: w, to: c, w: m[c] }); seen[c] = 1; });
+            });
+            return { nodes: nodes, edges: edges, concepts: Object.keys(seen) };
+        }
+
+        // ── 3) Thompson-sampling bandit over retrieval presets ─────────────
+        function eitiNormalSample(rng) {
+            var u = rng() || 1e-12, v = rng();
+            return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+        }
+        function eitiGammaSample(k, rng) {
+            if (k < 1) {
+                var u0 = rng() || 1e-12;
+                return eitiGammaSample(k + 1, rng) * Math.pow(u0, 1 / k);
+            }
+            var d = k - 1 / 3, c = 1 / Math.sqrt(9 * d);
+            for (var it = 0; it < 1000; it++) {
+                var x, v;
+                do { x = eitiNormalSample(rng); v = 1 + c * x; } while (v <= 0);
+                v = v * v * v;
+                var u = rng() || 1e-12;
+                if (u < 1 - 0.0331 * x * x * x * x) return d * v;
+                if (Math.log(u) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+            }
+            return d;
+        }
+        function eitiBetaSample(a, b, rng) {
+            var x = eitiGammaSample(a, rng), y = eitiGammaSample(b, rng);
+            return (x + y) > 0 ? x / (x + y) : 0.5;
+        }
+        function eitiBanditPick(state, arms, rng) {
+            rng = rng || Math.random;
+            var best = null, bestV = -1;
+            arms.forEach(function (arm) {
+                var s = (state && state.arms && state.arms[arm.id]) || { a: 1, b: 1 };
+                var v = eitiBetaSample(s.a, s.b, rng);
+                if (v > bestV) { bestV = v; best = arm; }
+            });
+            return best;
+        }
+        function eitiBanditUpdate(state, armId, positive, delta) {
+            if (!state || !state.arms) state = { v: 1, arms: {} };
+            var d = delta == null ? 1 : delta;
+            var s = state.arms[armId] || { a: 1, b: 1 };
+            if (positive) s.a = Math.max(1, s.a + d); else s.b = Math.max(1, s.b + d);
+            state.arms[armId] = s;
+            return state;
+        }
+
+        // ── 2) per-fact usefulness, hybrid rerank ──────────────────────────
+        function eitiFactUsefulness(stats, id) {
+            var s = stats && stats[id];
+            if (!s) return 1;
+            var up = s.up || 0, dn = s.down || 0;
+            return 0.5 + (up + 1) / (up + dn + 2);
+        }
+        function eitiCosine(a, b) {
+            if (!a || !b) return 0;
+            var n = Math.min(a.length, b.length), dot = 0, na = 0, nb = 0;
+            for (var i = 0; i < n; i++) { dot += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
+            return (na && nb) ? dot / Math.sqrt(na * nb) : 0;
+        }
+        function eitiHybridMerge(scored, vecFacts, qvec, alpha, minCos) {
+            minCos = minCos == null ? 0.42 : minCos;
+            var top = 0;
+            scored.forEach(function (x) { if (x.score > top) top = x.score; });
+            var byId = {}, order = [];
+            scored.forEach(function (x) {
+                var id = x.f && x.f.id; if (!id) return;
+                byId[id] = { f: x.f, bm: top > 0 ? x.score / top : 0, cos: 0 }; order.push(id);
+            });
+            (vecFacts || []).forEach(function (f) {
+                if (!f || !f.id || !f.vector) return;
+                var c = eitiCosine(qvec, f.vector);
+                if (byId[f.id]) byId[f.id].cos = c;
+                else if (c >= minCos) { byId[f.id] = { f: f, bm: 0, cos: c }; order.push(f.id); }
+            });
+            return order.map(function (id) {
+                var e = byId[id];
+                return { f: e.f, score: (1 - alpha) * e.bm + alpha * Math.max(0, e.cos), bm: e.bm, cos: e.cos };
+            }).filter(function (x) { return x.score > 0; }).sort(function (a, b) { return b.score - a.score; });
+        }
+
+        // ── 4) memory: recency × salience × relevance, near-dup, eviction ──
+        function eitiMemTokens(s) {
+            return String(s || '').toLowerCase().replace(/ё/g, 'е').replace(/[^a-zа-я0-9\s]/g, ' ')
+                .split(/\s+/).filter(function (w) { return w.length > 2; })
+                .map(function (w) { return w.length > 5 ? w.slice(0, w.length - 2) : w; });
+        }
+        function eitiMemTextSim(a, b) {
+            var ta = eitiMemTokens(a), tb = eitiMemTokens(b);
+            if (!ta.length || !tb.length) return String(a).trim().toLowerCase() === String(b).trim().toLowerCase() ? 1 : 0;
+            var sa = {}, sb = {}, inter = 0, uni = 0, k;
+            ta.forEach(function (w) { sa[w] = 1; }); tb.forEach(function (w) { sb[w] = 1; });
+            for (k in sa) { uni++; if (sb[k]) inter++; }
+            for (k in sb) { if (!sa[k]) uni++; }
+            return uni ? inter / uni : 0;
+        }
+        function eitiMemScore(fact, query, now, halfLifeDays) {
+            now = now || Date.now();
+            halfLifeDays = halfLifeDays || 30;
+            var ageDays = Math.max(0, (now - (fact.lastSeen != null ? fact.lastSeen : (fact.ts != null ? fact.ts : now))) / 86400000);
+            var recency = 0.25 + 0.75 * Math.pow(0.5, ageDays / halfLifeDays);
+            var salience = fact.salience || 1;
+            var relevance = 1;
+            if (query) {
+                var qt = eitiMemTokens(query), ft = eitiMemTokens(fact.fact), hit = 0;
+                if (qt.length && ft.length) {
+                    var fs = {}; ft.forEach(function (w) { fs[w] = 1; });
+                    qt.forEach(function (w) { if (fs[w]) hit++; });
+                    relevance = 0.3 + Math.min(1, hit / Math.max(1, Math.min(qt.length, ft.length)));
+                } else relevance = 0.3;
+            }
+            return recency * salience * relevance;
+        }
+        function eitiMemFindNearDup(store, text, vecs, newVec) {
+            var best = -1, bestS = 0;
+            for (var i = 0; i < store.length; i++) {
+                var f = store[i]; if (!f || !f.fact) continue;
+                var s, thr;
+                if (newVec && vecs && f.id && vecs[f.id]) { s = eitiCosine(newVec, vecs[f.id]); thr = 0.92; }
+                else { s = eitiMemTextSim(f.fact, text); thr = 0.8; }
+                if (s >= thr && s > bestS) { bestS = s; best = i; }
+            }
+            return best;
+        }
+        function eitiMemRank(store, query, now, limit) {
+            return (store || []).map(function (f) { return { f: f, s: eitiMemScore(f, query, now) }; })
+                .sort(function (a, b) { return b.s - a.s; })
+                .slice(0, limit || 30).map(function (x) { return x.f; });
+        }
+        function eitiMemApplyOps(store, ops, now) {
+            now = now || Date.now();
+            var out = store.slice(), byId = {};
+            out.forEach(function (f, i) { if (f && f.id) byId[f.id] = i; });
+            var del = {}, n = 0;
+            (ops || []).forEach(function (op) {
+                if (!op || !op.op) return;
+                var kind = String(op.op).toUpperCase();
+                if (kind === 'DELETE' && op.id && byId[op.id] != null) { del[op.id] = 1; n++; }
+                else if (kind === 'UPDATE' && op.id && byId[op.id] != null && op.fact) {
+                    var f = out[byId[op.id]];
+                    out[byId[op.id]] = Object.assign({}, f, { fact: String(op.fact).slice(0, 500), lastSeen: now, merged: (f.merged || 0) + 1 });
+                    n++;
+                } else if (kind === 'ADD' && op.fact) {
+                    out.push({ fact: String(op.fact).slice(0, 500), ts: now, salience: 1.2, id: 'fact_' + now + '_' + n, consolidated: true });
+                    n++;
+                }
+            });
+            return { store: out.filter(function (f) { return !(f && del[f.id]); }), applied: n };
+        }
+
+        // ── 5) guard for AI self-edit tags ─────────────────────────────────
+        function eitiGuardClampTag(type, body) {
+            var parts = body.split('|');
+            function num(v, lo, hi, def) { var x = parseFloat(v); if (isNaN(x)) x = def; return Math.max(lo, Math.min(hi, x)); }
+            if (type === 'MOSC_ADD' || type === 'MOSC_SET') {
+                if (parts.length < 3) return null;
+                parts[0] = parts[0].trim().slice(0, 40); parts[1] = parts[1].trim().slice(0, 40);
+                if (!parts[0] || !parts[1]) return null;
+                parts[2] = String(num(parts[2], 0, 1, 0.5));
+                return parts.slice(0, 3).join('|');
+            }
+            if (type === 'PKG') {
+                if (parts.length < 3) return null;
+                parts[2] = String(num(parts[2], 0.1, 5, 1));
+                return parts.slice(0, 3).join('|');
+            }
+            if (type === 'FL_SET') {
+                var out = [];
+                body.split(',').forEach(function (pair) {
+                    var kv = pair.split('='); if (kv.length !== 2) return;
+                    var k = kv[0].trim(), v = kv[1].trim();
+                    if (k === 'threshold') out.push('threshold=' + num(v, 0.3, 0.95, 0.65));
+                    else if (k === 'maxFacts') out.push('maxFacts=' + Math.round(num(v, 1, 20, 7)));
+                    else if (k === 'mode' && /^(hybrid|semantic|fts)$/.test(v)) out.push('mode=' + v);
+                });
+                return out.length ? out.join(',') : null;
+            }
+            return body.slice(0, 80);
+        }
+        function eitiGuardReplyTags(reply, untrusted, limits) {
+            limits = limits || EITI_GUARD_LIMITS;
+            var res = { text: reply || '', accepted: [], rejected: [] };
+            if (!reply) return res;
+            // zones the AI is quoting (code fences, inline code, blockquotes) never execute
+            var zones = [], m, zre = /```[\s\S]*?(?:```|(?![\s\S]))|`[^`\n]*`|^>.*$/gm;
+            while ((m = zre.exec(reply)) !== null) { zones.push([m.index, m.index + m[0].length]); if (!m[0].length) zre.lastIndex++; }
+            function inZone(i) { return zones.some(function (z) { return i >= z[0] && i < z[1]; }); }
+            var counts = {};
+            var untr = String(untrusted || '');
+            var tre = /\[(MOSC_ADD|MOSC_SET|MOSC_DEL_EDGE|MOSC_DEL|MOSC_CLEAR|FL_SET|PKG_E|PKG)(?::([^\]]*))?\]/g;
+            var out = '', last = 0;
+            while ((m = tre.exec(reply)) !== null) {
+                var type = m[1], raw = m[0], body = m[2] || '', reason = null, repl = '';
+                if (inZone(m.index)) reason = 'quoted';
+                else if (untr && untr.indexOf(raw) !== -1) reason = 'untrusted';
+                else if ((counts[type] || 0) >= (limits[type] == null ? 3 : limits[type])) reason = 'limit';
+                if (!reason) {
+                    var cl = type === 'MOSC_CLEAR' ? '' : eitiGuardClampTag(type, body);
+                    if (cl === null) reason = 'invalid';
+                    else {
+                        counts[type] = (counts[type] || 0) + 1;
+                        repl = type === 'MOSC_CLEAR' ? '[MOSC_CLEAR]' : '[' + type + ':' + cl + ']';
+                        res.accepted.push({ type: type, raw: raw, tag: repl, clamped: repl !== raw });
+                    }
+                }
+                if (reason) res.rejected.push({ type: type, raw: raw, reason: reason });
+                out += reply.slice(last, m.index) + repl;
+                last = m.index + raw.length;
+            }
+            res.text = out + reply.slice(last);
+            return res;
+        }
+
+        // ── 6) metrics ─────────────────────────────────────────────────────
+        function eitiVoteRateBy(votes, keyFn) {
+            var t = {};
+            (votes || []).forEach(function (v) {
+                var k = keyFn(v); if (k == null || k === '') k = '—';
+                if (!t[k]) t[k] = { key: k, up: 0, down: 0 };
+                if (v.positive) t[k].up++; else t[k].down++;
+            });
+            return Object.keys(t).map(function (k) {
+                var r = t[k]; r.n = r.up + r.down; r.rate = r.n ? r.up / r.n : 0; return r;
+            }).sort(function (a, b) { return b.n - a.n; });
+        }
+        function eitiBeforeAfter(votes, ts, n) {
+            n = n || 20;
+            var before = (votes || []).filter(function (v) { return v.ts < ts; }).slice(-n);
+            var after = (votes || []).filter(function (v) { return v.ts >= ts; }).slice(0, n);
+            function rate(a) { var up = a.filter(function (v) { return v.positive; }).length; return { n: a.length, rate: a.length ? up / a.length : null }; }
+            return { before: rate(before), after: rate(after) };
+        }
+        function eitiVotePrefs(votes) {
+            votes = votes || [];
+            var byModel = eitiVoteRateBy(votes, function (v) { return (v.provider || '?') + (v.model ? ' · ' + v.model : ''); });
+            var pref = null;
+            byModel.forEach(function (r) {
+                var lap = (r.up + 1) / (r.n + 2);
+                if (r.n >= 3 && (!pref || lap > pref.score)) pref = { key: r.key, score: lap, n: r.n };
+            });
+            var up = votes.filter(function (v) { return v.positive && v.len; }), dn = votes.filter(function (v) { return !v.positive && v.len; });
+            function avg(a) { return a.length ? a.reduce(function (s, v) { return s + v.len; }, 0) / a.length : 0; }
+            var lengthPref = 'пока неясно';
+            if (up.length >= 2 && dn.length >= 2) {
+                var ru = avg(up), rd = avg(dn);
+                lengthPref = ru > rd * 1.25 ? 'подробные ответы' : rd > ru * 1.25 ? 'короткие ответы' : 'длина не важна';
+            }
+            var total = votes.length, ups = votes.filter(function (v) { return v.positive; }).length;
+            return { total: total, rate: total ? ups / total : null, preferredModel: pref ? pref.key : null, lengthPref: lengthPref, byModel: byModel };
+        }
+
+        (function () {
+            var VER = (typeof EITI_VERSION !== 'undefined') ? EITI_VERSION : '13.9.0';
+            var K = EITI_V139_KEYS;
+
+            // ── migrations (additive only; existing data untouched) ──────────
+            try {
+                if (localStorage.getItem(K.banditOn) === null) {
+                    var hasManual = false;
+                    try { var c0 = JSON.parse(localStorage.getItem('eiti_retrieval_cfg') || 'null'); hasManual = !!(c0 && c0._source !== 'ai' && (c0.threshold !== 0.65 || c0.maxFacts !== 7)); } catch (e) {}
+                    localStorage.setItem(K.banditOn, hasManual ? '0' : '1');
+                }
+                if (localStorage.getItem(K.clarify) === null) localStorage.setItem(K.clarify, '1');
+            } catch (e) {}
+
+            // ── 3) retrieval pick / rerank / record ──────────────────────────
+            window.eitiRetrievalPick = function () {
+                var cfg = (typeof eitiGetRetrievalConfig === 'function') ? eitiGetRetrievalConfig() : { mode: 'hybrid', threshold: 0.65, maxFacts: 7 };
+                var mode = /^(hybrid|semantic|fts)$/.test(cfg.mode) ? cfg.mode : 'hybrid';
+                if (localStorage.getItem(K.banditOn) === '1') {
+                    var arm = eitiBanditPick(eitiV139Get(K.bandit, null), EITI_FL_ARMS, window._eitiBanditRng || Math.random);
+                    return { threshold: arm.threshold, maxFacts: arm.maxFacts, mode: mode, arm: arm.id };
+                }
+                return { threshold: cfg.threshold || 0.65, maxFacts: cfg.maxFacts || 7, mode: mode, arm: 'manual' };
+            };
+            window.eitiRetrievalRerank = function (scored, kbAll, lower, cfg) {
+                try {
+                    cfg = cfg || {};
+                    var qv = window._eitiQueryVecCache && window._eitiQueryVecCache[String(lower || '').slice(0, 60)];
+                    var vf = window._eitiKbVectorized;
+                    if (cfg.mode !== 'fts' && qv && vf && vf.length) {
+                        scored = eitiHybridMerge(scored, vf, qv, cfg.mode === 'semantic' ? 0.8 : 0.4);
+                        var used = window._eitiKbUsedIds;
+                        if (used) scored.forEach(function (x) { if (!x.bm && used.has(x.f.id)) x.score *= 0.08; });
+                        cfg._hybridApplied = true;
+                    }
+                    var st = eitiV139Get(K.factUse, {});
+                    scored.forEach(function (x) { if (x.f && x.f.id) x.score *= eitiFactUsefulness(st, x.f.id); });
+                    return scored.sort(function (a, b) { return b.score - a.score; });
+                } catch (e) { return scored; }
+            };
+            window.eitiRetrievalRecord = function (facts, cfg) {
+                var rec = { ts: Date.now(), factIds: (facts || []).map(function (f) { return f && f.id; }).filter(Boolean).slice(0, 20),
+                    arm: (cfg && cfg.arm) || 'manual', mode: (cfg && cfg.mode) || 'hybrid', hybrid: !!(cfg && cfg._hybridApplied) };
+                window._eitiLastRetrieval = rec;
+                var log = eitiV139Get(K.retr, []); log.push(rec); eitiV139Set(K.retr, log.slice(-50));
+                return rec;
+            };
+            window.eitiBanditReset = function () {
+                localStorage.removeItem(K.bandit);
+                typeof showToast === 'function' && showToast('🎰 Адаптивный поиск сброшен');
+                window.eitiRenderLearningSettings && window.eitiRenderLearningSettings();
+            };
+            window.eitiBanditToggle = function (on) {
+                localStorage.setItem(K.banditOn, on ? '1' : '0');
+                window.eitiRenderLearningSettings && window.eitiRenderLearningSettings();
+            };
+
+            // ── 2) votes ─────────────────────────────────────────────────────
+            function prevUserText(msg) {
+                var log = (typeof chatLog !== 'undefined' && chatLog) || [];
+                var i = log.indexOf(msg);
+                for (var j = i - 1; j >= 0; j--) if (log[j] && log[j].role === 'user') return log[j].text || log[j].content || '';
+                return '';
+            }
+            function retrievalFor(ts) {
+                var log = eitiV139Get(K.retr, []);
+                for (var i = log.length - 1; i >= 0; i--) if (log[i].ts <= (ts || Date.now()) + 1000 && log[i].ts > (ts || Date.now()) - 600000) return log[i];
+                return null;
+            }
+            function applyCounters(v, sign) {
+                var st = eitiV139Get(K.factUse, {});
+                (v.factIds || []).forEach(function (id) {
+                    var s = st[id] || { up: 0, down: 0 };
+                    if (v.positive) s.up = Math.max(0, s.up + sign); else s.down = Math.max(0, s.down + sign);
+                    st[id] = s;
+                });
+                eitiV139Set(K.factUse, st);
+                if (v.arm && v.arm !== 'manual') eitiV139Set(K.bandit, eitiBanditUpdate(eitiV139Get(K.bandit, null), v.arm, v.positive, sign));
+            }
+            window.eitiVoteRecord = function (msg, positive, ctx) {
+                if (!msg) return null;
+                var text = msg.text || msg.content || '';
+                var q = (ctx && ctx.query) || prevUserText(msg);
+                var r = retrievalFor(msg.ts);
+                var stack = window._eitiIntentStack || [];
+                var top = stack.slice(-1)[0];
+                var vbName = top && (top.intent || top.name || top) ; if (typeof vbName !== 'string') vbName = null;
+                var mosc = null;
+                try { if (q && typeof window.moscDetectIntent === 'function') { var d = window.moscDetectIntent(q, window._moscGraph || {}); mosc = d && d.intent; } } catch (e) {}
+                var v = { ts: Date.now(), msgId: msg.id, positive: !!positive, provider: msg.provider || localStorage.getItem('eiti_ai_provider') || null,
+                    model: msg.model || null, intent: vbName, moscIntent: mosc, factIds: r ? r.factIds : [], arm: r ? r.arm : 'manual',
+                    mode: r ? r.mode : null, version: VER, len: text.length };
+                var votes = eitiV139Get(K.votes, []);
+                var pi = -1; votes.forEach(function (x, i) { if (x.msgId === v.msgId) pi = i; });
+                if (pi >= 0) {
+                    if (votes[pi].positive === v.positive) return votes[pi];
+                    applyCounters(votes[pi], -1); votes.splice(pi, 1);
+                }
+                applyCounters(v, 1);
+                votes.push(v); eitiV139Set(K.votes, votes.slice(-500));
+                v._query = q;
+                return v;
+            };
+
+            // ── 5) guard — wraps the outermost command processor ─────────────
+            function snapshotFor(acc) {
+                var g = window._moscGraph || {}, snap = { mosc: {}, fl: undefined, pkg: {}, moscAll: null };
+                acc.forEach(function (a) {
+                    var body = (a.tag.match(/:([^\]]*)\]$/) || [])[1] || '';
+                    var p = body.split('|');
+                    if (a.type === 'MOSC_CLEAR') snap.moscAll = JSON.parse(JSON.stringify(g));
+                    else if (/^MOSC/.test(a.type)) { var w = p[0].trim(); if (!(w in snap.mosc)) snap.mosc[w] = g[w] ? JSON.parse(JSON.stringify(g[w])) : null; }
+                    else if (a.type === 'FL_SET') snap.fl = localStorage.getItem('eiti_retrieval_cfg');
+                    else if (a.type === 'PKG' || a.type === 'PKG_E') {
+                        var c = (a.type === 'PKG' ? p[1] : p[0] || '').trim().toLowerCase();
+                        var id = 'pkg_' + c.replace(/[^a-zа-яё0-9]/gi, '_').slice(0, 40);
+                        var cache = (typeof _pkgCache !== 'undefined' && _pkgCache) || {};
+                        if (!(id in snap.pkg)) snap.pkg[id] = cache[id] ? JSON.parse(JSON.stringify(cache[id])) : null;
+                    }
+                });
+                return snap;
+            }
+            function currentFor(snap) {
+                var g = window._moscGraph || {}, cur = { mosc: {}, pkg: {} };
+                Object.keys(snap.mosc).forEach(function (w) { cur.mosc[w] = g[w] ? JSON.parse(JSON.stringify(g[w])) : null; });
+                if (snap.fl !== undefined) cur.fl = localStorage.getItem('eiti_retrieval_cfg');
+                var cache = (typeof _pkgCache !== 'undefined' && _pkgCache) || {};
+                Object.keys(snap.pkg).forEach(function (id) { cur.pkg[id] = cache[id] ? JSON.parse(JSON.stringify(cache[id])) : null; });
+                if (snap.moscAll) cur.moscCount = Object.keys(g).length;
+                return cur;
+            }
+            window.eitiGuardAIReply = function (reply) {
+                if (!reply || typeof reply !== 'string') return reply;
+                if (!/\[(MOSC_|FL_SET|PKG)/.test(reply)) return reply;
+                var memo = window._eitiGuardMemo;
+                if (memo && (memo.inp === reply || memo.out === reply) && Date.now() - memo.ts < 5000) return memo.out;
+                var g = eitiGuardReplyTags(reply, window._eitiLastUntrusted || '');
+                if (!g.accepted.length && !g.rejected.length) return reply;
+                var log = eitiV139Get(K.selfLog, []);
+                // the same reply can reach the processor twice (stream + final / stripped copy): log once
+                var sig = g.accepted.map(function (a) { return a.tag; }).join('');
+                var lastE = log[log.length - 1];
+                if (lastE && Date.now() - lastE.ts < 15000 && lastE.sig === sig && !g.rejected.length) return g.text;
+                var entry = { id: 'se_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), ts: Date.now(), version: VER,
+                    accepted: g.accepted.map(function (a) { return a.tag + (a.clamped ? ' (ограничено)' : ''); }),
+                    rejected: g.rejected.map(function (r) { return r.raw.slice(0, 80) + ' — ' + ({ quoted: 'в цитате/коде', untrusted: 'из вставки/файла', limit: 'лимит на ответ', invalid: 'неверный формат' }[r.reason] || r.reason); }),
+                    before: g.accepted.length ? snapshotFor(g.accepted) : null, after: null, undone: false, sig: sig };
+                log.push(entry); eitiV139Set(K.selfLog, log.slice(-100));
+                if (entry.before) setTimeout(function () {
+                    var l2 = eitiV139Get(K.selfLog, []);
+                    l2.forEach(function (e) { if (e.id === entry.id) e.after = currentFor(entry.before); });
+                    eitiV139Set(K.selfLog, l2);
+                }, 700);
+                if (g.rejected.length && typeof showToast === 'function') showToast('🛡 Отклонено AI-изменений: ' + g.rejected.length, 2000);
+                window._eitiGuardMemo = { inp: reply, out: g.text, ts: Date.now() };
+                return g.text;
+            };
+            window.eitiSelfEditUndo = function (id) {
+                var log = eitiV139Get(K.selfLog, []);
+                var e = log.filter(function (x) { return x.id === id; })[0];
+                if (!e || !e.before || e.undone) return false;
+                var b = e.before;
+                var g = window._moscGraph || {};
+                if (b.moscAll) g = JSON.parse(JSON.stringify(b.moscAll));
+                Object.keys(b.mosc || {}).forEach(function (w) { if (b.mosc[w] === null) delete g[w]; else g[w] = b.mosc[w]; });
+                if (b.moscAll || Object.keys(b.mosc || {}).length) {
+                    window._moscGraph = g;
+                    if (typeof window.moscSaveGraph === 'function') window.moscSaveGraph(g);
+                }
+                if (b.fl !== undefined) { if (b.fl === null) localStorage.removeItem('eiti_retrieval_cfg'); else localStorage.setItem('eiti_retrieval_cfg', b.fl); if (typeof eitiLoadRetrievalConfigUI === 'function') try { eitiLoadRetrievalConfigUI(); } catch (x) {} }
+                Object.keys(b.pkg || {}).forEach(function (pid) {
+                    try {
+                        if (typeof _pkgCache !== 'undefined' && _pkgCache) { if (b.pkg[pid] === null) delete _pkgCache[pid]; else _pkgCache[pid] = b.pkg[pid]; }
+                        if (typeof eitiDb !== 'undefined' && eitiDb) {
+                            var st = eitiDb.transaction(['pkg'], 'readwrite').objectStore('pkg');
+                            if (b.pkg[pid] === null) st.delete(pid); else st.put(b.pkg[pid]);
+                        }
+                    } catch (x) {}
+                });
+                e.undone = true; e.undoneAt = Date.now();
+                eitiV139Set(K.selfLog, log);
+                typeof showToast === 'function' && showToast('↩️ Изменение AI отменено');
+                window.eitiRenderLearningSettings && window.eitiRenderLearningSettings();
+                return true;
+            };
+            // Any (current or later) window.eitiProcessCommands — including the v12 patch that
+            // re-wraps it — gets the guard as its OUTERMOST layer.
+            function wrapGuard(f) {
+                if (typeof f !== 'function' || f._v139) return f;
+                var w = function (reply) { return f.call(this, window.eitiGuardAIReply(reply)); };
+                w._v139 = true;
+                return w;
+            }
+            (function () {
+                var cur = wrapGuard(window.eitiProcessCommands);
+                try {
+                    Object.defineProperty(window, 'eitiProcessCommands', {
+                        configurable: true, enumerable: true,
+                        get: function () { return cur; },
+                        set: function (v) { cur = wrapGuard(v); }
+                    });
+                } catch (e) { window.eitiProcessCommands = cur; }
+            })();
+            // global function declarations are non-configurable → fall back to re-wrapping after
+            // later patches (DOMContentLoaded / load / delayed) install themselves
+            function ensureGuardOutermost() {
+                var f = window.eitiProcessCommands;
+                if (typeof f === 'function' && !f._v139) window.eitiProcessCommands = wrapGuard(f);
+            }
+            document.addEventListener('DOMContentLoaded', ensureGuardOutermost);
+            window.addEventListener('load', function () { ensureGuardOutermost(); setTimeout(ensureGuardOutermost, 2000); });
+
+            // ── 1) MOSC clarify card (never blocks sending) ──────────────────
+            var LABELS = { note: '📝 сохранить заметку', file: '📁 работа с файлом', search: '🔎 поиск по заметкам', kb_search: '📚 факт из базы знаний',
+                reminder: '⏰ напоминание', calc: '🧮 вычисление', empathy: '💬 поддержка', chat_ai: '🤖 просто ответ' };
+            window.eitiMoscIntentLabel = function (a) { return LABELS[a] || a; };
+            function container() { return document.getElementById('messages') || document.getElementById('chat-messages') || document.getElementById('chatMessages'); }
+            function dismiss() { var o = document.querySelectorAll('.eiti-mosc-card'); for (var i = 0; i < o.length; i++) o[i].remove(); }
+            window.eitiMoscDismiss = dismiss;
+            window.eitiMoscShowCard = function (txt, intent, score) {
+                var box = container(); if (!box) return null;
+                dismiss();
+                var card = document.createElement('div');
+                card.className = 'eiti-mosc-card'; card.setAttribute('role', 'group'); card.setAttribute('data-intent', intent || '');
+                card._q = txt;
+                var head = intent
+                    ? '🧠 Кажется, ты хочешь: <b>' + eitiV139Esc(window.eitiMoscIntentLabel(intent)) + '</b> <span class="eiti-learn-muted">(' + Math.round((score || 0) * 100) + '%)</span>'
+                    : '🧠 Что ты хочешь сделать?';
+                var choices = Object.keys(LABELS).filter(function (a) { return a !== intent; });
+                card.innerHTML = '<button class="mc-x" aria-label="Закрыть" data-act="close">✕</button>' + head +
+                    '<div class="mc-row">' + (intent ? '<button class="mc-yes" data-act="yes">Да</button><button data-act="no">Нет</button>' : '') + '</div>' +
+                    '<div class="mc-row mc-choices"' + (intent ? ' style="display:none"' : '') + '>' +
+                    choices.map(function (a) { return '<button data-choice="' + a + '">' + eitiV139Esc(LABELS[a]) + '</button>'; }).join('') + '</div>' +
+                    '<div class="eiti-learn-muted" style="font-size:11px;margin-top:6px;">Ответ уже готовится — это просто обучение MOSC.</div>';
+                card.addEventListener('click', function (ev) {
+                    var b = ev.target.closest('button'); if (!b) return;
+                    var act = b.getAttribute('data-act'), ch = b.getAttribute('data-choice');
+                    if (act === 'close') { card.remove(); return; }
+                    if (act === 'no') {
+                        if (intent && typeof window.moscLearn === 'function') window.moscLearn(txt, intent, false);
+                        card.querySelector('.mc-choices').style.display = ''; b.parentNode.style.display = 'none'; return;
+                    }
+                    var chosen = act === 'yes' ? intent : ch;
+                    window.eitiMoscChoose(txt, chosen, intent);
+                    card.innerHTML = '✅ Запомнил: «' + eitiV139Esc(txt.slice(0, 40)) + '» → ' + eitiV139Esc(window.eitiMoscIntentLabel(chosen));
+                    setTimeout(function () { card.remove(); }, 2500);
+                });
+                box.appendChild(card);
+                return card;
+            };
+            window.eitiMoscChoose = function (txt, chosen, suggested) {
+                if (typeof window.moscLearn === 'function') {
+                    window.moscLearn(txt, chosen, true);
+                    if (suggested && suggested !== chosen) window.moscLearn(txt, suggested, false);
+                }
+                var ev = eitiV139Get('eiti_mosc_choices_v1', []); ev.push({ ts: Date.now(), suggested: suggested || null, chosen: chosen, version: VER });
+                eitiV139Set('eiti_mosc_choices_v1', ev.slice(-200));
+                if (chosen === 'note' && typeof notesLoad === 'function' && typeof notesSave === 'function') {
+                    try {
+                        var now = Date.now(), notes = notesLoad();
+                        notes.push({ id: 'note_' + now, title: txt.slice(0, 40), body: txt, created: now, updated: now, colorIdx: 0, emojiIdx: 0, source: 'mosc' });
+                        notesSave(notes);
+                        typeof showToast === 'function' && showToast('📝 Сохранено в заметки');
+                    } catch (e) {}
+                }
+            };
+
+            // ── 4) consolidation near the cap (user-visible, undoable) ───────
+            window.eitiMemMaybeConsolidate = function (force) {
+                var store = (typeof eitiLearnGet === 'function') ? eitiLearnGet() : [];
+                var st = eitiV139Get(K.cons, { lastRun: 0, history: [] });
+                if (!force && (store.length < 180 || Date.now() - (st.lastRun || 0) < 86400000)) return Promise.resolve(null);
+                if (typeof _eitiUniversalAICall !== 'function' && typeof window._eitiConsolidateLLM !== 'function') return Promise.resolve(null);
+                st.lastRun = Date.now(); eitiV139Set(K.cons, st);
+                var list = store.map(function (f) { return f.id + ' :: ' + String(f.fact).slice(0, 160); }).join('\n');
+                var prompt = 'Это выученные факты о пользователе (id :: факт). Объедини дубли и устаревшее. Верни ТОЛЬКО JSON-массив операций: ' +
+                    '{"op":"UPDATE","id":"...","fact":"..."} | {"op":"DELETE","id":"..."} | {"op":"ADD","fact":"..."}. Не удаляй уникальные факты. Максимум 40 операций.\n\n' + list;
+                var call = window._eitiConsolidateLLM || function (p) { return _eitiUniversalAICall(p, 'Ты аккуратный редактор памяти. Отвечай только JSON.', 2500, true); };
+                return Promise.resolve(call(prompt)).then(function (txt) {
+                    var ops; try { var s = String(txt || ''); ops = JSON.parse(s.slice(s.indexOf('['), s.lastIndexOf(']') + 1)); } catch (e) { ops = null; }
+                    if (!Array.isArray(ops) || !ops.length) return null;
+                    ops = ops.slice(0, 40);
+                    var before = eitiLearnGet();
+                    var r = eitiMemApplyOps(before, ops);
+                    if (!r.applied) return null;
+                    localStorage.setItem(EITI_LEARN_KEY, JSON.stringify(r.store));
+                    var st2 = eitiV139Get(K.cons, { lastRun: Date.now(), history: [] });
+                    var item = { id: 'cons_' + Date.now(), ts: Date.now(), ops: ops, applied: r.applied, before: before, beforeN: before.length, afterN: r.store.length, undone: false };
+                    st2.history = (st2.history || []).concat([item]).slice(-3);
+                    eitiV139Set(K.cons, st2);
+                    typeof showToast === 'function' && showToast('🧹 Память сжата: ' + before.length + ' → ' + r.store.length + ' (отменить — в Настройках)', 3500);
+                    window.eitiRenderLearningSettings && window.eitiRenderLearningSettings();
+                    return item;
+                }).catch(function () { return null; });
+            };
+            window.eitiMemUndoConsolidation = function (id) {
+                var st = eitiV139Get(K.cons, { history: [] });
+                var it = (st.history || []).filter(function (h) { return h.id === id; })[0];
+                if (!it || it.undone) return false;
+                localStorage.setItem(EITI_LEARN_KEY, JSON.stringify(it.before));
+                it.undone = true; eitiV139Set(K.cons, st);
+                typeof showToast === 'function' && showToast('↩️ Консолидация отменена');
+                window.eitiRenderLearningSettings && window.eitiRenderLearningSettings();
+                return true;
+            };
+
+            // ── settings view: preferences, adaptive retrieval, self-edit log, metrics ──
+            window.eitiRenderLearningSettings = function () {
+                var root = document.getElementById('eiti-learning-body'); if (!root) return;
+                var votes = eitiV139Get(K.votes, []);
+                var p = eitiVotePrefs(votes);
+                var pct = function (x) { return x == null ? '—' : Math.round(x * 100) + '%'; };
+                var bOn = localStorage.getItem(K.banditOn) === '1';
+                var bs = eitiV139Get(K.bandit, { arms: {} });
+                var cOn = localStorage.getItem(K.clarify) !== '0';
+                var log = eitiV139Get(K.selfLog, []).slice(-15).reverse();
+                var cons = eitiV139Get(K.cons, { history: [] });
+                var mem = (typeof eitiLearnGet === 'function') ? eitiLearnGet().length : 0;
+                var arch = eitiV139Get(K.archive, []).length;
+                var h = '';
+                h += '<div class="eiti-learn-box" id="eiti-learn-prefs"><h4>👍 Что я понял о твоих предпочтениях</h4>' +
+                    '<div>Оценок: <b>' + p.total + '</b> · доля 👍: <b>' + pct(p.rate) + '</b></div>' +
+                    '<div>Любимая модель: <b>' + eitiV139Esc(p.preferredModel || 'нужно ≥3 оценок') + '</b></div>' +
+                    '<div>Длина ответа: <b>' + eitiV139Esc(p.lengthPref) + '</b></div></div>';
+                h += '<div class="eiti-learn-box" id="eiti-learn-bandit"><div class="eiti-learn-row"><h4 style="margin:0">🎰 Адаптивный поиск памяти</h4>' +
+                    '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="eiti-bandit-toggle"' + (bOn ? ' checked' : '') + ' onchange="eitiBanditToggle(this.checked)"> вкл</label></div>' +
+                    '<div class="eiti-learn-muted">Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).</div><table><tr><th>Пресет</th><th>порог/факты</th><th>👍/👎</th><th>оценка</th></tr>' +
+                    EITI_FL_ARMS.map(function (a) { var s = (bs.arms || {})[a.id] || { a: 1, b: 1 }; return '<tr><td>' + a.label + '</td><td>' + a.threshold + ' / ' + a.maxFacts + '</td><td>' + (s.a - 1) + ' / ' + (s.b - 1) + '</td><td>' + pct(s.a / (s.a + s.b)) + '</td></tr>'; }).join('') +
+                    '</table><div class="mc-row" style="margin-top:6px"><button onclick="eitiBanditReset()">↺ Сбросить обучение</button></div></div>';
+                h += '<div class="eiti-learn-box"><div class="eiti-learn-row"><h4 style="margin:0">🧠 MOSC: уточнять намерение</h4>' +
+                    '<label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="eiti-mosc-clarify-toggle"' + (cOn ? ' checked' : '') + ' onchange="localStorage.setItem(\'' + K.clarify + '\',this.checked?\'1\':\'0\')"> вкл</label></div>' +
+                    '<div class="eiti-learn-muted">Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.</div></div>';
+                h += '<div class="eiti-learn-box" id="eiti-learn-memory"><h4>🗂 Память фактов</h4><div>Активных: <b>' + mem + '</b> / 200 · в архиве: <b>' + arch + '</b></div>' +
+                    (cons.history || []).slice().reverse().map(function (c) {
+                        return '<div class="eiti-learn-row" style="margin-top:4px"><span>🧹 ' + new Date(c.ts).toLocaleString() + ': ' + c.beforeN + ' → ' + c.afterN + '</span>' +
+                            (c.undone ? '<span class="eiti-learn-muted">отменено</span>' : '<button onclick="eitiMemUndoConsolidation(\'' + c.id + '\')">↩️ Отменить</button>') + '</div>';
+                    }).join('') +
+                    '<div class="mc-row" style="margin-top:6px"><button onclick="eitiMemMaybeConsolidate(true)">🧹 Сжать память сейчас</button></div></div>';
+                h += '<div class="eiti-learn-box" id="eiti-selfedit-log"><h4>🛡 Изменения от AI (MOSC / FL / PKG)</h4>' + (log.length ? log.map(function (e) {
+                    var ba = eitiBeforeAfter(votes, e.ts);
+                    return '<div style="padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.08)"><div class="eiti-learn-row"><span class="eiti-learn-muted">' + new Date(e.ts).toLocaleString() + ' · v' + eitiV139Esc(e.version) + '</span>' +
+                        (e.before && !e.undone ? '<button data-undo="' + e.id + '" onclick="eitiSelfEditUndo(\'' + e.id + '\')">↩️ Отменить</button>' : (e.undone ? '<span class="eiti-learn-muted">отменено</span>' : '')) + '</div>' +
+                        e.accepted.map(function (a) { return '<div>✅ ' + eitiV139Esc(a) + '</div>'; }).join('') +
+                        e.rejected.map(function (r) { return '<div>⛔ ' + eitiV139Esc(r) + '</div>'; }).join('') +
+                        '<div class="eiti-learn-muted">👍 до: ' + pct(ba.before.rate) + ' (' + ba.before.n + ') → после: ' + pct(ba.after.rate) + ' (' + ba.after.n + ')</div></div>';
+                }).join('') : '<div class="eiti-learn-muted">Пока нет изменений.</div>') + '</div>';
+                var byVer = eitiVoteRateBy(votes, function (v) { return 'v' + v.version; });
+                var byArm = eitiVoteRateBy(votes, function (v) { return v.arm + (v.mode ? ' · ' + v.mode : ''); });
+                var tbl = function (rows) { return '<table><tr><th>Конфиг</th><th>👍</th><th>👎</th><th>доля</th></tr>' + rows.map(function (r) { return '<tr><td>' + eitiV139Esc(r.key) + '</td><td>' + r.up + '</td><td>' + r.down + '</td><td>' + pct(r.rate) + '</td></tr>'; }).join('') + '</table>'; };
+                h += '<div class="eiti-learn-box" id="eiti-learn-metrics"><h4>📈 Метрики (только на устройстве)</h4>' + (votes.length ? '<div>По версиям</div>' + tbl(byVer) + '<div style="margin-top:6px">По конфигурации поиска</div>' + tbl(byArm) : '<div class="eiti-learn-muted">Поставь 👍/👎 под ответами — здесь появится статистика.</div>') + '</div>';
+                root.innerHTML = h;
+            };
+            document.addEventListener('click', function (e) {
+                var t = e.target && e.target.closest && e.target.closest('[onclick*="openSettings"],[data-view="settings"],.settings-btn');
+                if (t) setTimeout(window.eitiRenderLearningSettings, 50);
+            }, true);
+            setTimeout(function () { try { window.eitiRenderLearningSettings(); } catch (e) {} }, 800);
+        })();
+    </script>
 </body>
 </html>

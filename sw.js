@@ -1,8 +1,8 @@
-// VELANTRIM EITI — Service Worker v13.8.1
+// VELANTRIM EITI — Service Worker v13.9.0
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.8.1
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.9.0
 
-var CACHE = 'eiti-v13.8.1'; // v13.8.1: адаптация под iPhone Safari
+var CACHE = 'eiti-v13.9.0'; // v13.9.0: обучение (MOSC, 👍/👎, адаптивный поиск, память)
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -66,7 +66,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '13.8.1' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '13.9.0' });
                         });
                     });
                     });
