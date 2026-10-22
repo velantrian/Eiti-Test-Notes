@@ -84,6 +84,6 @@ test('host: index.html wires EitiOffline (lazy, IDB state, style setting, SW cac
   assert.match(html, /id="eiti-offline-style"/);
   assert.match(html, /async function _eitiAskDeepSeekCore\(userText\)/);
   assert.doesNotMatch(html, /<script[^>]+offline\/eiti_offline_dialogs\.js/); // not loaded at startup
-  assert.match(sw, /OFFLINE_CACHE = 'eiti-offline-v14\.0\.0'/);
+  assert.match(sw, /OFFLINE_CACHE = 'eiti-offline-v\d+\.\d+\.\d+'/);
   assert.match(sw, /k !== CACHE && k !== OFFLINE_CACHE/);
 });

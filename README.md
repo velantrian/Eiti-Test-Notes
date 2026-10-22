@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.0.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.1.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,15 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.1.0
+
+**Библиотека знаний KB: общие знания без сети и как контекст для ИИ**
+- `kb/`: 549 проверенных справочных записей в 14 разделах — физика, химия, биология, астрономия, география, история, технологии и программирование, здоровье (справочно, не замена врачу), язык, культура, быт, природа, математика и единицы, справка EITI. Часть записей — с английской версией.
+- Офлайн (нет сети, ключа или ИИ упал) уверенный ответ KB идёт первым — в чате и в Notes Ask AI, с пометкой «🧠 KB · раздел».
+- С ИИ: до 4 найденных записей добавляются в системный контекст («БИБЛИОТЕКА ЗНАНИЙ EITI»), в источниках ответа — «📚KB·N».
+- Лениво: индекс (~48 КБ gzip) строится порциями в простое через 6 с после загрузки; ответы лежат в пакетах по разделам и грузятся по требованию. Кеш — Service Worker (`eiti-offline-*`), не localStorage. Личные факты (KB_ADD) — прежний слой в IndexedDB.
+- Сборка: `python3 kb/build_kb.py` из `kb/src/*.txt` (дубли триггеров и ответов отбрасываются). Точность поиска на отложенных перефразах: `node kb/tests/eval_kb.js`.
 
 ## 🆕 Что нового в v14.0.0
 

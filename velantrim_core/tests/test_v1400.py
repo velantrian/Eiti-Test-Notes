@@ -9,11 +9,10 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_version_sync():
-    assert 'var EITI_VERSION = "14.0.0"' in HTML
-    assert "var CACHE = 'eiti-v14.0.0'" in SW
-    assert "version: '14.0.0'" in SW
-    assert "v14.0.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
-    assert "version-14.0.0" in (ROOT / "README.md").read_text(encoding="utf-8")
+    # v14.1.0+ moved the version forward; see test_v1410.py for the exact sync check.
+    m = re.search(r'var EITI_VERSION = "(\d+)\.(\d+)\.(\d+)"', HTML)
+    assert m and (int(m.group(1)), int(m.group(2))) >= (14, 0)
+    assert "var CACHE = 'eiti-v" + ".".join(m.groups()) + "'" in SW
 
 
 def test_offline_assets_and_manifest():

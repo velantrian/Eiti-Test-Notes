@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.0.0"; // офлайн-диалоги, стили ответов, сказки и предания (offline/), + v13.9.0 обучение
+        var EITI_VERSION = "14.1.0"; // библиотека знаний KB (kb/), + v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -21562,6 +21562,16 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 try { await eitiLoadChatById(_chatByIdPreload[1].toUpperCase()); }
                 catch(e) { console.warn('[EITI] chat pre-load failed:', e && e.message); }
             }
+            // v14.1.0: факты из библиотеки знаний KB для контекста ИИ (не дольше 1.5 с; ошибки не мешают ответу)
+            window._eitiKbLibCtx = [];
+            if (window.EitiKBHost) {
+                try {
+                    window._eitiKbLibCtx = await Promise.race([
+                        EitiKBHost.facts(String(userText || ''), 4),
+                        new Promise(function(r) { setTimeout(function() { r([]); }, 1500); })
+                    ]) || [];
+                } catch (e) { window._eitiKbLibCtx = []; }
+            }
             return new Promise(function(resolve, reject) {
                 var _provider = localStorage.getItem('eiti_ai_provider') || 'deepseek';
                 // ── ⚡ DS-OFF guard — только для DeepSeek-провайдера ─────────
@@ -21993,6 +22003,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     }
                 }
 
+                // ── v14.1.0: БИБЛИОТЕКА ЗНАНИЙ KB (общие проверенные факты) ──
+                if (window._eitiKbLibCtx && window._eitiKbLibCtx.length) {
+                    sysContent += '\n\n=== БИБЛИОТЕКА ЗНАНИЙ EITI (проверенные справочные факты; используй, если относятся к вопросу) ===';
+                    window._eitiKbLibCtx.forEach(function(f) { sysContent += '\n· [' + f.title + '] ' + f.q[0] + ': ' + f.a; });
+                }
                 // ── БАЗА ЗНАНИЙ KB: BM25 + Adaptive Context v9.8 ──────────
                 var _kbAll = eitiKBLoad();
                 if (_kbAll && _kbAll.length > 0) {
@@ -22407,6 +22422,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 if (l2digests && l2digests.length > 0) _lastCtxSources.push('L2·' + l2digests.length);
                 if (ctx && ctx.notesLoaded && allNotes && allNotes.length > 0) _lastCtxSources.push('📝·' + allNotes.length);
                 if (_hadHistScan) _lastCtxSources.push('🕑Ист'); // v9.15fix: используем флаг
+                if (window._eitiKbLibCtx && window._eitiKbLibCtx.length) _lastCtxSources.push('📚KB·' + window._eitiKbLibCtx.length); // v14.1.0
                 if (ctx && ctx.fileChunks && Object.keys(ctx.fileChunks).length > 0) _lastCtxSources.push('📁·' + Object.keys(ctx.fileChunks).length);
 
                 // ── doFetch: called directly or after async history scan ──
@@ -31494,6 +31510,95 @@ window.eitiLLMClearAll = async function() {
         window.EitiOffline = EitiOffline;
         // Отложенная инициализация: не трогаем старт (ждём load + 4 c, затем idle).
         window.addEventListener('load', function() { var sel = document.getElementById('eiti-offline-style'); if (sel) sel.value = EitiOffline.style(); setTimeout(function() { EitiOffline.prewarm(); }, 4000); });
+        // ── v14.1.0: БИБЛИОТЕКА ЗНАНИЙ KB (kb/eiti_kb.js + kb/index.json + lazy kb/packs/kb_<домен>.json) ──
+        // Общие знания (наука, история, география, технологии, здоровье, язык, культура, быт, математика, справка).
+        // Индекс (~50 КБ gzip) строится порциями в простое; ответы — в пакетах по доменам, грузятся по требованию.
+        // Файлы кеширует Service Worker (Cache Storage 'eiti-offline-*'), не localStorage. Личные факты — прежний слой KB (IndexedDB 'kb').
+        var EitiKBHost = (function() {
+            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, stats = { init: 0, packs: {}, last: null };
+            function getJson(f) { return fetch(BASE + f).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + f); return r.json(); }); }
+            function loadScript() {
+                if (window.EitiKBLib) return Promise.resolve();
+                return new Promise(function(res, rej) { var s = document.createElement('script'); s.src = BASE + 'eiti_kb.js'; s.async = true; s.onload = res; s.onerror = function() { rej(new Error('kb engine load failed')); }; document.head.appendChild(s); });
+            }
+            function idle(fn) { if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: 200 }); else setTimeout(fn, 0); }
+            function init() {
+                if (initP) return initP;
+                var t0 = performance.now();
+                initP = loadScript().then(function() { return getJson('index.json'); }).then(function(d) {
+                    idx = d; return window.EitiKBLib.createAsync(d, { yieldFn: idle });
+                }).then(function(e) { eng = e; stats.init = Math.round(performance.now() - t0); return e; })
+                  .catch(function(e) { initP = null; throw e; });
+                return initP;
+            }
+            function pack(d) {
+                if (PK[d]) return Promise.resolve(PK[d]);
+                if (PKP[d]) return PKP[d];
+                var meta = idx && idx.domains[d], t0 = performance.now();
+                PKP[d] = getJson((meta && meta.file) || ('packs/kb_' + d + '.json')).then(function(p) { PK[d] = p; stats.packs[d] = Math.round(performance.now() - t0); delete PKP[d]; return p; },
+                    function(e) { delete PKP[d]; throw e; });
+                return PKP[d];
+            }
+            function hydrate(hits) {
+                var ds = {}; hits.forEach(function(h) { ds[h.d] = 1; });
+                return Promise.all(Object.keys(ds).map(function(d) { return pack(d).catch(function() { return null; }); })).then(function() {
+                    return hits.map(function(h) {
+                        var p = PK[h.d], e = p && p.entries[h.id]; if (!e) return null;
+                        var m = idx.domains[h.d] || {};
+                        return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', score: h.score, cov: h.cov, prec: h.prec };
+                    }).filter(Boolean);
+                });
+            }
+            // answer(q) → уверенный ответ {id, domain, title, a, en, …} | null
+            function answer(q) {
+                return init().then(function(e) {
+                    var h = e.search(q, 3); stats.last = h[0] || null;
+                    if (!e.confident(h[0])) return null;
+                    return hydrate([h[0]]).then(function(r) { return r[0] || null; });
+                }).catch(function(err) { console.warn('[EITI KB]', err && err.message); return null; });
+            }
+            // facts(q, n) → релевантные записи для контекста ИИ (покрытие запроса ≥ 0.45)
+            function facts(q, n) {
+                return init().then(function(e) {
+                    var h = e.search(q, (n || 4) + 2), top = h[0];
+                    if (!top || top.cov < 0.45) return [];
+                    h = h.filter(function(x) { return x.cov >= 0.45 && x.score >= top.score * 0.5; }).slice(0, n || 4);
+                    return hydrate(h);
+                }).catch(function() { return []; });
+            }
+            function format(f, lang) {
+                var en = lang === 'en' && f.en;
+                return '<span style="font-size:11px;opacity:0.5;">🧠 KB · ' + (en ? f.title_en : f.title) + '</span><br>' + (en ? f.en : f.a);
+            }
+            function prewarm() {
+                var go = function() { init().catch(function() {}); };
+                if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 10000 }); else setTimeout(go, 3000);
+            }
+            return { init: init, answer: answer, facts: facts, format: format, prewarm: prewarm, stats: stats, pack: pack,
+                     ready: function() { return !!eng; }, count: function() { return idx ? idx.count : 0; }, index: function() { return idx; }, engine: function() { return eng; } };
+        })();
+        window.EitiKBHost = EitiKBHost;
+        // Все офлайн-пути (чат без сети/ключа, Notes Ask AI, офлайн-рассуждение) идут через EitiOffline.replyText:
+        // уверенный ответ библиотеки KB имеет приоритет над офлайн-диалогами.
+        (function() {
+            if (!window.EitiOffline || EitiOffline._kbWrapped) return;
+            var orig = EitiOffline.replyText, footShown = false;
+            EitiOffline.replyText = function(text, opts) {
+                opts = opts || {};
+                var q = String(text || '');
+                if (q.length > 300 || /сказк|сказан|предани|легенд|анекдот|шутк|скороговор|загадк|пословиц|поговорк|цитат|стих|^\s*(дальше|ещ[её]|продолжай)|морал/i.test(q)) return orig(text, opts);
+                return EitiKBHost.answer(q).then(function(f) {
+                    if (!f) return orig(text, opts);
+                    var en = !/[а-яё]/i.test(q) && f.en;
+                    var t = '🧠 **KB · ' + (en ? f.title_en : f.title) + '**\n\n' + (en ? f.en : f.a);
+                    if (opts.foot && !footShown) { footShown = true; t += en ? '\n\n<sub>🌙 Offline reply from the EITI knowledge base: the AI is unavailable right now.</sub>' : '\n\n<sub>🌙 Офлайн-ответ из базы знаний EITI: ИИ сейчас недоступен.</sub>'; }
+                    return t;
+                }, function() { return orig(text, opts); });
+            };
+            EitiOffline._kbWrapped = true;
+        })();
+        window.addEventListener('load', function() { setTimeout(function() { EitiKBHost.prewarm(); }, 6000); });
+
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)
         function eitiAiUnavailable() {
             if (navigator.onLine === false) return true;

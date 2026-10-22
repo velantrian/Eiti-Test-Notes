@@ -90,7 +90,7 @@ test('👍/👎 stores provider, KB fact ids and bandit arm; re-vote flips symme
   await up.click();
   let votes = await page.evaluate(() => JSON.parse(localStorage.getItem('eiti_votes_v1') || '[]'));
   expect(votes.length).toBe(1);
-  expect(votes[0]).toMatchObject({ positive: true, provider: 'deepseek', version: '14.0.0' });
+  expect(votes[0]).toMatchObject({ positive: true, provider: 'deepseek', version: '14.1.0' });
   expect(votes[0].factIds).toContain('kb_cat');
   expect(typeof votes[0].arm).toBe('string');
   let use = await page.evaluate(() => JSON.parse(localStorage.getItem('eiti_fact_use_v1') || '{}'));

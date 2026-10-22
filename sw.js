@@ -1,11 +1,11 @@
-// VELANTRIM EITI — Service Worker v14.0.0
+// VELANTRIM EITI — Service Worker v14.1.0
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.0.0
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.1.0
 
-var CACHE = 'eiti-v14.0.0'; // v14.0.0: офлайн-диалоги, сказки и предания (+ v13.9.0 обучение)
+var CACHE = 'eiti-v14.1.0'; // v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
 // v14.0.0: офлайн-движок и пакеты (offline/**) — отдельный кеш без лимита 24 записей (≈30 файлов),
 // cache-first + фоновое обновление; не попадает в swTrimCache.
-var OFFLINE_CACHE = 'eiti-offline-v14.0.0';
+var OFFLINE_CACHE = 'eiti-offline-v14.1.0';
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -69,7 +69,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '14.0.0' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '14.1.0' });
                         });
                     });
                     });
@@ -164,8 +164,8 @@ self.addEventListener('fetch', function(e) {
         return;
     }
 
-    // v14.0.0: offline/ (движок + core.json + packs/*.json) — SWR в OFFLINE_CACHE (лениво, по первому запросу)
-    if (url.pathname.indexOf(BASE + 'offline/') === 0 && /\.(js|json)$/.test(url.pathname)) {
+    // v14.1.0: offline/ (движок + core.json + packs/*.json) — SWR в OFFLINE_CACHE (лениво, по первому запросу)
+    if ((url.pathname.indexOf(BASE + 'offline/') === 0 || url.pathname.indexOf(BASE + 'kb/') === 0) && /\.(js|json)$/.test(url.pathname)) {
         e.respondWith(caches.open(OFFLINE_CACHE).then(function(cache) {
             return cache.match(e.request).then(function(cached) {
                 var fresh = fetch(e.request).then(function(r) {

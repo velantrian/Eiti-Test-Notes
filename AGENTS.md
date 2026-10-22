@@ -4,7 +4,7 @@
 
 ### Overview
 
-VELANTRIM EITI is a fully client-side PWA (Progressive Web App) whose application UI/runtime is a single monolithic `index.html` file (~3.8 MB, v14.0.0). There is **no application build step, backend, or external database**. The app uses browser-native storage (IndexedDB, localStorage), companion SQLite WASM assets (`sql-wasm.js` / `sql-wasm.wasm`), and CDN libraries for optional document/sanitization features.
+VELANTRIM EITI is a fully client-side PWA (Progressive Web App) whose application UI/runtime is a single monolithic `index.html` file (~3.8 MB, v14.1.0). There is **no application build step, backend, or external database**. The app uses browser-native storage (IndexedDB, localStorage), companion SQLite WASM assets (`sql-wasm.js` / `sql-wasm.wasm`), and CDN libraries for optional document/sanitization features.
 
 ### Running the app
 
@@ -34,6 +34,7 @@ Then open `http://localhost:8080/index.html` in Chrome.
 
 - **Single-file architecture is sacred.** All HTML, CSS, and JS lives in `index.html`. Do NOT split into modules, components, or separate files unless explicitly asked.
 - **`offline/` (v14.0.0) is the one sanctioned exception:** the offline-dialog engine (`offline/eiti_offline_dialogs.js`), its core data (`offline/core.json`) and lazy packs (`offline/packs/*.json`) are data-like assets loaded on demand by `EitiOffline` in `index.html` and cached by `sw.js` in `eiti-offline-*`. Their tests live in `velantrim_core/tests_js/offline/` and run via `offline_dialogs.test.js`.
+- **`kb/` (v14.1.0) follows the same pattern:** the general-knowledge library engine (`kb/eiti_kb.js`), its search index (`kb/index.json`) and per-domain answer packs (`kb/packs/kb_*.json`) are built from `kb/src/*.txt` by `python3 kb/build_kb.py` (never edit the JSON by hand), loaded lazily by `EitiKBHost` in `index.html` and cached by `sw.js` in `eiti-offline-*`. Tests: `velantrim_core/tests_js/kb_lib.test.js` (held-out set `kb/tests/heldout.txt`), `velantrim_core/tests/test_v1410.py`, `velantrim_core/e2e/v1410_kb.spec.js`.
 - **No root application build system.** Test/tooling dependencies already exist under `velantrim_core/e2e/package.json` and `velantrim_core/requirements.txt`. Do not add a root package manager or application build pipeline unless explicitly requested.
 - **Surgical edits only.** Make minimal targeted changes. Never rewrite or restructure unless explicitly requested.
 - **Version consistency.** `EITI_VERSION` in `index.html`, `CACHE`/`SW_UPDATED` in `sw.js`, `description` in `manifest.json`, and the README version badge must always match.
