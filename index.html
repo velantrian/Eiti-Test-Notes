@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.8.0"; // Файлы: темы без пересвета; 👁/✎ Markdown+Obsidian+Mermaid; AI Docs в файлах; ИИ с историей и защитой от обрезки
+        var EITI_VERSION = "13.8.1"; // iPhone: баннер установки один раз, 16px поля, safe-area в Файлах, 44px зоны нажатия, клавиатура в AI Docs
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -5472,6 +5472,7 @@
         body.notes-fullscreen .notes-header { display: none !important; }
         body.notes-fullscreen #view-notes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 900; }
         body.notes-fullscreen .notes-list { max-height: 100vh !important; height: calc(100vh - 20px) !important; }
+        @supports (height: 100dvh) { body.notes-fullscreen .notes-list { max-height: 100dvh !important; height: calc(100dvh - 20px) !important; } } /* v13.8.1: iOS Safari — учитываем панели браузера */
 
         body {
             font-family: 'Helvetica Neue', 'Roboto', sans-serif;
@@ -6801,8 +6802,10 @@
             font-weight: 500;
             opacity: 0.5;
             transition: all 0.3s;
-            white-space: normal;
-            word-break: break-word;
+            white-space: nowrap; /* v13.8.1: «Настройки» не переносится на iPhone SE */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 100%;
@@ -16700,11 +16703,7 @@
                 showToast('✅ EITI уже установлено как приложение');
             } else {
                 var ua = navigator.userAgent;
-                var msg = 'Chrome: нажми ⋮ → Добавить на главный экран';
-                if (/SamsungBrowser/i.test(ua)) msg = '📲 Samsung Internet: нажми ≡ (меню внизу) → "Добавить страницу на..." → "На главный экран"';
-                else if (/OPR|Opera/i.test(ua)) msg = 'Opera: нажми ⋮ → Главный экран → Добавить';
-                else if (/Firefox/i.test(ua)) msg = 'Firefox: нажми ⋮ → Установить → Добавить на главный экран';
-                else if (/iPhone|iPad/i.test(ua)) msg = 'Safari: нажми □↑ → «На экран Домой»';
+                var msg = eitiInstallHintText(ua, navigator.platform, navigator.maxTouchPoints) || 'Chrome: нажми ⋮ → Добавить на главный экран';
                 eitiShowInstallBanner(msg, true);
             }
         }
@@ -29781,7 +29780,7 @@ window.eitiLLMClearAll = async function() {
                 // Просмотр
                 item.querySelector('[data-v]').onclick=function(){
                     var v=document.createElement('div');
-                    v.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:#f8f8f8;z-index:2500;display:flex;flex-direction:column;padding:14px;box-sizing:border-box;';
+                    v.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:#f8f8f8;z-index:2500;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top, 0px)) calc(14px + env(safe-area-inset-right, 0px)) calc(14px + env(safe-area-inset-bottom, 0px)) calc(14px + env(safe-area-inset-left, 0px));box-sizing:border-box;'; // v13.8.1: safe-area (чёлка, Dynamic Island, landscape)
                     v.innerHTML=
                         // ── Шапка вьюера ──────────────────────────────────────────
                         '<div id="fv-header" style="display:flex;flex-wrap:wrap;row-gap:8px;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;">'+
@@ -29862,7 +29861,8 @@ window.eitiLLMClearAll = async function() {
                             } else {
                                 v._fvFull=false;
                                 if(hdr) hdr.style.display='flex';
-                                v.style.padding='14px';
+                                v.style.padding='';
+                                v.style.cssText += ';padding:calc(14px + env(safe-area-inset-top, 0px)) calc(14px + env(safe-area-inset-right, 0px)) calc(14px + env(safe-area-inset-bottom, 0px)) calc(14px + env(safe-area-inset-left, 0px));';
                                 pre.style.paddingTop='';
                                 pre.style.paddingLeft='';
                                 pre.style.paddingRight='';
@@ -35382,26 +35382,59 @@ window.eitiLLMClearAll = async function() {
             showToast('✅ EITI установлено как приложение!');
         });
 
+        // v13.8.1: текст подсказки установки по устройству и браузеру (iPadOS выдаёт себя за Mac)
+        function eitiInstallHintText(ua, platform, touchPoints) {
+            ua = String(ua || '');
+            var ios = /iPhone|iPad|iPod/i.test(ua) || (String(platform || '') === 'MacIntel' && Number(touchPoints) > 1);
+            if (ios) {
+                var dev = /iPad/i.test(ua) || !/iPhone|iPod/i.test(ua) ? 'iPad' : 'iPhone';
+                if (/CriOS/i.test(ua)) return 'Chrome на ' + dev + ': нажми □↑ (Поделиться) → «На экран Домой»';
+                if (/FxiOS/i.test(ua)) return 'Firefox на ' + dev + ': нажми ≡ → Поделиться → «На экран Домой»';
+                if (/EdgiOS/i.test(ua)) return 'Edge на ' + dev + ': нажми ⋯ → Поделиться → «На экран Домой»';
+                return 'Safari: нажми □↑ ' + (dev === 'iPad' ? 'вверху' : 'внизу') + ' → «На экран Домой»';
+            }
+            if (/SamsungBrowser/i.test(ua)) return 'Samsung Internet: нажми ⋮ → Добавить страницу → На главный экран';
+            if (/OPR|Opera/i.test(ua)) return 'Opera: нажми ⋮ → Главный экран → Добавить';
+            if (/Firefox/i.test(ua)) return 'Firefox: нажми ⋮ → Установить → Добавить на главный экран';
+            return null;
+        }
+        var EITI_INSTALL_HINT_SEEN_KEY = 'eiti_install_hint_seen';
+        var EITI_INSTALL_BANNER_MS = 7000;
+        function eitiInstallBannerBottom() {
+            var bar = document.querySelector('.tab-bar');
+            var h = 0;
+            if (bar) { var r = bar.getBoundingClientRect(); if (r.height > 0 && r.top < window.innerHeight) h = Math.max(0, window.innerHeight - r.top); }
+            return h ? (h + 8) + 'px' : 'calc(12px + env(safe-area-inset-bottom, 0px))';
+        }
         function eitiShowInstallBanner(customMsg, force) {
             var banner = document.getElementById('pwa-install-banner');
             if (banner) {
                 if (force) banner.remove();
                 else return;
             }
+            // v13.8.1: автоматически — только один раз за всё время; по кнопке «Установить» — всегда
+            if (!force) {
+                try { if (localStorage.getItem(EITI_INSTALL_HINT_SEEN_KEY) === '1') return; localStorage.setItem(EITI_INSTALL_HINT_SEEN_KEY, '1'); } catch (e) {}
+            }
             banner = document.createElement('div');
             banner.id = 'pwa-install-banner';
-            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:linear-gradient(135deg,#2b1e16,#5a4632);color:#ffd700;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:600;box-shadow:0 2px 12px rgba(0,0,0,0.5);gap:8px;';
-            var closeBtn = '<button onclick="document.getElementById(\'pwa-install-banner\').remove()" style="padding:6px 10px;border-radius:8px;border:none;background:rgba(255,255,255,0.15);color:#fff;cursor:pointer;font-size:13px;flex-shrink:0;">✕</button>';
+            banner.setAttribute('role', 'status');
+            // v13.8.1: внизу над панелью вкладок, ниже редакторов/просмотрщиков по z-index — не закрывает шапки
+            banner.style.cssText = 'position:fixed;left:calc(10px + env(safe-area-inset-left, 0px));right:calc(10px + env(safe-area-inset-right, 0px));bottom:' + eitiInstallBannerBottom() + ';z-index:450;border-radius:14px;background:linear-gradient(135deg,#2b1e16,#5a4632);color:#ffd700;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,0.35);transition:opacity .4s;';
+            var closeBtn = '<button onclick="document.getElementById(\'pwa-install-banner\').remove()" aria-label="Закрыть" style="padding:6px 10px;border-radius:8px;border:none;background:rgba(255,255,255,0.15);color:#fff;cursor:pointer;font-size:13px;flex-shrink:0;">✕</button>';
             if (customMsg) {
                 // Ручная инструкция для браузеров без beforeinstallprompt (iOS Safari, Firefox, Samsung, Opera)
-                // Кнопка «✅ Готово» позволяет скрыть кнопку установки после ручного добавления на экран
                 var doneBtn = '<button onclick="eitiMarkAsInstalled()" style="padding:6px 12px;border-radius:8px;border:none;background:#4ad700;color:#000;font-weight:700;cursor:pointer;font-size:12px;flex-shrink:0;white-space:nowrap;">✅ Готово</button>';
                 banner.innerHTML = '<span style="flex:1;font-size:12px;line-height:1.4;">📲 ' + customMsg + '</span>' + doneBtn + closeBtn;
             } else {
-                // Chrome/Edge — нативная установка
-                banner.innerHTML = '<span style="flex:1;">📲 Установить EITI как приложение</span><button onclick="installPWA()" style="padding:6px 14px;border-radius:8px;border:none;background:#ffd700;color:#000;font-weight:700;cursor:pointer;font-size:13px;flex-shrink:0;">Установить</button>' + closeBtn;
+                banner.innerHTML = '<span style="flex:1;">📲 Установить EITI как приложение</span><button onclick="installPWA()" style="padding:6px 14px;border-radius:8px;border:none;background:#ffd700;color:#000;font-weight:700;cursor:pointer;flex-shrink:0;">Установить</button>' + closeBtn;
             }
             document.body.appendChild(banner);
+            setTimeout(function() {
+                if (!banner.isConnected) return;
+                banner.style.opacity = '0';
+                setTimeout(function() { if (banner.isConnected) banner.remove(); }, 450);
+            }, EITI_INSTALL_BANNER_MS);
         }
         (function() {
             // Не показываем если уже установлено
@@ -35422,14 +35455,7 @@ window.eitiLLMClearAll = async function() {
             }, 1500);
             var ua = navigator.userAgent;
             var msg = null;
-            if (/SamsungBrowser/i.test(ua))
-                msg = 'Samsung Internet: нажми ⋮ → Добавить страницу → На главный экран';
-            else if (/OPR|Opera/i.test(ua))
-                msg = 'Opera: нажми ⋮ → Главный экран → Добавить';
-            else if (/Firefox/i.test(ua))
-                msg = 'Firefox: нажми ⋮ → Установить → Добавить на главный экран';
-            else if (/iPhone|iPad/i.test(ua) && !/Chrome/i.test(ua))
-                msg = 'Safari: нажми □↑ внизу → «На экран Домой»';
+            msg = eitiInstallHintText(ua, navigator.platform, navigator.maxTouchPoints); // v13.8.1: iPadOS, Chrome/Firefox на iOS
             if (msg) {
                 sessionStorage.setItem('eiti_install_hint_shown', '1');
                 // Показываем с небольшой задержкой чтобы не мешать загрузке
@@ -38513,7 +38539,7 @@ window.eitiLLMClearAll = async function() {
             var soundType = ns.sound || 'bell';
             eitiPlayNotifSound(soundType);
             // SW уведомление (попадает в шторку)
-            if (window._eitiSWReg && window._eitiSWReg.active && Notification.permission === 'granted') {
+            if (window._eitiSWReg && window._eitiSWReg.active && window.Notification && Notification.permission === 'granted') { // v13.8.1: Safari без Notification
                 try { window._eitiSWReg.active.postMessage({ type:'SHOW_NOTIFICATION', title:'🔔 VELANTRIM EITI', body: text }); } catch(e) { console.warn('SW postMessage:', e); }
             } else if (window.Notification && Notification.permission === 'granted') {
                 new Notification('🔔 VELANTRIM EITI', { body: text });
@@ -39190,9 +39216,9 @@ window.eitiLLMClearAll = async function() {
             var ns = notifSettingsLoad();
             var style = ns.style || 'both';
             eitiPlayNotifSound(ns.sound || 'bell');
-            if ((style === 'system' || style === 'both') && window._eitiSWReg && window._eitiSWReg.active && Notification.permission === 'granted') {
+            if ((style === 'system' || style === 'both') && window._eitiSWReg && window._eitiSWReg.active && window.Notification && Notification.permission === 'granted') {
                 try { window._eitiSWReg.active.postMessage({ type:'SHOW_NOTIFICATION', title:'🔔 VELANTRIM EITI', body:'Тестовое уведомление — всё работает!' }); } catch(e) {}
-            } else if ((style === 'system' || style === 'both') && Notification.permission === 'granted') {
+            } else if ((style === 'system' || style === 'both') && window.Notification && Notification.permission === 'granted') {
                 new Notification('🔔 VELANTRIM EITI', { body:'Тестовое уведомление — всё работает!' });
             }
             if (style === 'toast' || style === 'both') showToast('🔔 Тест уведомления');
@@ -50468,6 +50494,25 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         .fv-find-row button { border-radius: 10px; border: 1px solid var(--fv-btn-border, #bbb); background: var(--fv-btn-bg, #fff); color: var(--fv-btn-fg, #111); padding: 0 10px; cursor: pointer; }
         .fv-edit-area { flex: 1; width: 100%; box-sizing: border-box; resize: none; border: 1px solid var(--fv-btn-border, #bbb); border-radius: 10px; background: transparent; color: var(--fv-fg, #111); font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; padding: 8px; margin-bottom: 64px; }
         .fv-ai-flash { background: rgba(255,215,0,0.45) !important; transition: background 1.6s; }
+        /* ── v13.8.1: iPhone Safari ─────────────────────────────────────────── */
+        /* поля ввода ≥ 16px — Safari не зумит страницу при фокусе (только iOS) */
+        html.is-ios input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]):not([type=button]):not([type=submit]):not([type=reset]):not([type=image]),
+        html.is-ios textarea, html.is-ios select { font-size: 16px !important; }
+        /* зоны нажатия ≥ 44px без изменения вида: невидимый ::after вокруг кнопки */
+        #fv-bg-white, #fv-bg-black, #fv-bg-paper, #fv-beautify-btn, #noteBeautifyBtn, #fv-block-btn, #fv-view-btn, #fv-rename-btn, #fv-copy-btn, #fv-close-btn,
+        .note-editor-topbar .note-editor-tool-icon, #noteEditorBack, .eiti-fb-row > button, .msg-btn { position: relative; }
+        #fv-bg-white::after, #fv-bg-black::after, #fv-bg-paper::after, #fv-beautify-btn::after, #noteBeautifyBtn::after, #fv-block-btn::after, #fv-view-btn::after, #fv-rename-btn::after, #fv-copy-btn::after, #fv-close-btn::after,
+        .note-editor-topbar .note-editor-tool-icon::after, #noteEditorBack::after, .eiti-fb-row > button::after, .msg-btn::after {
+            content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); background: transparent; }
+        #fv-beautify-btn.busy::after, #noteBeautifyBtn.busy::after { position: static; transform: none; width: 10px; height: 10px; } /* спиннер «Оформляю…» */
+        #fv-close-btn::after { left: auto; right: 0; transform: translateY(-50%); } /* у правого края — без горизонтального выхода */
+        .fv-ai-bar .fv-ai-ask { white-space: nowrap; }
+        .fv-ai-bar .fv-ai-round::after { content: none; }
+        .tab-bar { overflow-x: clip; }
+        #eiti-lang-ru-btn, #eiti-lang-en-btn, #eiti-lang-de-btn { min-width: 0; }
+        @media (max-width: 360px) { #eiti-lang-ru-btn, #eiti-lang-en-btn, #eiti-lang-de-btn { padding: 10px 3px !important; font-size: 12px !important; gap: 3px !important; } } /* iPhone SE: «Deutsch» не вылезает */
+        /* landscape / широкий экран: шапка файла в одну строку, если помещается */
+        @media (min-width: 640px) { #fv-header #fv-controls { flex: 0 0 auto !important; margin-left: 8px; } #fv-header #fv-title { flex: 1 1 120px !important; } }
         #fv-body mark.fv-ai-hl { background: var(--fv-hl, rgba(34,197,94,0.35)); color: inherit; border-radius: 3px; }
 </style>
 <script id="eiti-v1380-script">
@@ -51407,7 +51452,18 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                     msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
                     return d;
                 };
+                // v13.8.1: панель и поиск поднимаются над клавиатурой (как Notes AI, через visualViewport)
+                var kbSync = function() {
+                    if (!v.isConnected) { if (window.visualViewport) { window.visualViewport.removeEventListener('resize', kbSync); window.visualViewport.removeEventListener('scroll', kbSync); } return; }
+                    var kb = (typeof eitiNotesAIGetKeyboardInset === 'function') ? eitiNotesAIGetKeyboardInset(panel, window.innerHeight, window.visualViewport) : 0;
+                    panel.style.bottom = kb ? kb + 'px' : '';
+                    find.style.transform = kb ? 'translateY(-' + kb + 'px)' : '';
+                    bar.style.marginBottom = kb ? kb + 'px' : '';
+                };
+                if (window.visualViewport) { window.visualViewport.addEventListener('resize', kbSync); window.visualViewport.addEventListener('scroll', kbSync); }
+                v._eitiKbSync = kbSync;
                 var openPanel = function(on) {
+                    kbSync();
                     panel.classList.toggle('open', on);
                     bar.style.display = on ? 'none' : 'flex';
                     if (on) {

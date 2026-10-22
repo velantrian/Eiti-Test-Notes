@@ -154,7 +154,7 @@ test('AI Docs: обрезанный ответ не применяет прав�
   await page.locator('#fv-ai-send').click();
   await expect(page.locator('.fv-ai-msg.assistant').last()).toContainText('НЕ применена');
   expect(model).toMatch(/^gpt-/);
-  expect(await page.evaluate(() => window.__saved.length)).toBe(0);
+  expect(await page.evaluate(() => window.__saved.filter((x) => x.name === 'Euue.md').length)).toBe(0);
 });
 
 test('AI Docs выключается в настройках', async ({ page }) => {
@@ -220,10 +220,11 @@ test('✨ Оформить в файле: загрузка, применение
   await page.locator('#fv-ai-undo').click();
   expect(await page.evaluate(() => window.__saved.at(-1).content)).toContain('# Заголовок 👋');
   await page.locator('#fv-ai-close').click();
-  const count = await page.evaluate(() => window.__saved.length);
+  // only saves of this file count — WebKit may run the chat autosave in between
+  const count = await page.evaluate(() => window.__saved.filter((x) => x.name === 'Euue.md').length);
   await btn.click();
   await expect(btn).toBeEnabled();
-  expect(await page.evaluate(() => window.__saved.length)).toBe(count);
+  expect(await page.evaluate(() => window.__saved.filter((x) => x.name === 'Euue.md').length)).toBe(count);
 });
 
 test('✨ Оформить в заметке: вверху, применяется через ИИ-правку с ↶; без ключа скрыта', async ({ page }) => {
@@ -326,7 +327,7 @@ test('блоки в файле: Reader-карточки, ➕ Блок, ИИ-пр
   await expect(page.locator('.fv-ai-msg.assistant').last()).toContainText('разделители блоков');
   expect(sys).toContain('Оглавление блоков');
   expect(sys).toContain('2. ⚠️ Важное');
-  expect(await page.evaluate(() => window.__saved.length)).toBe(0);
+  expect(await page.evaluate(() => window.__saved.filter((x) => x.name === 'Euue.md').length)).toBe(0);
   await page.locator('#fv-ai-close').click();
   await page.locator('#fv-block-btn').click();
   await page.locator('#eiti-block-title').fill('Итоги');

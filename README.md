@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.8.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.8.1-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,20 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v13.8.1
+
+**iPhone Safari: адаптация по итогам аудита**
+- Подсказка «Установить EITI» показывается один раз за всё время, сама скрывается через 7 с, стоит внизу над панелью вкладок и не закрывает шапки, редакторы и просмотр файлов.
+- На iOS поля ввода, textarea и select — 16px: Safari больше не зумит страницу при фокусе (на других платформах вид не меняется).
+- Окно файла учитывает чёлку / Dynamic Island / home-индикатор (`env(safe-area-inset-*)`), в том числе в landscape.
+- Панель AI Docs в Файлах поднимается над клавиатурой (тот же visualViewport-код, что в Notes AI).
+- Зоны нажатия ≥ 44px без изменения вида: цвета фона, ✨ Оформить, ➕ Блок, 📄 Текст/📖 Reader, ✏️ 📋 ✕, кнопки шапки заметки, 👍/👎, кнопки сообщений.
+- iPhone SE: «Ask AI» и «Настройки» не переносятся, нет лишнего пикселя прокрутки у панели вкладок.
+- Landscape / широкий экран: шапка файла в одну строку, если помещается.
+- `100dvh` с запасным `100vh`; проверка `window.Notification` перед обращением.
+- Подсказка установки знает iPadOS и называет Chrome / Firefox / Edge на iOS правильно.
+- E2E: проект `webkit-iphone` (iPhone 13), SW заблокирован, чтобы моки AI работали.
 
 ## 🆕 Что нового в v13.8.0
 
