@@ -21,19 +21,21 @@ function fakeLocalStorage(initial) {
 }
 
 // Build a sandbox with eitiLearnFact + its real eitiCalcSalience dependency.
+const lsRef = {};
 function makeLearner(initialStore) {
   const indexed = [];
   const toasts = [];
   const ls = fakeLocalStorage(
     initialStore ? { eiti_learned_v1: JSON.stringify(initialStore) } : {}
   );
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1',
     localStorage: ls,
     eitiQueueIndexDoc: (id, text, meta) => indexed.push({ id, text, meta }),
     showToast: (msg) => toasts.push(msg),
   });
   const read = () => JSON.parse(ls.getItem('eiti_learned_v1') || '[]');
+  lsRef.ls = ls;
   return { learn: sb.eitiLearnFact, read, indexed, toasts };
 }
 
@@ -75,7 +77,7 @@ test('duplicate fact is not stored twice (dedup by exact text)', () => {
   assert.strictEqual(indexed.length, 1); // not re-indexed either
 });
 
-test('store is capped at 200 — newest kept, oldest evicted', () => {
+test('v13.9.0: store is capped at 200 — newest kept, lowest-score evicted INTO the archive (no data loss)', () => {
   // Seed 200 distinct facts, then add one more unique fact.
   const seed = Array.from({ length: 200 }, (_, i) => ({
     fact: 'seed_' + i, ts: i, salience: 1.0, id: 'fact_' + i,
@@ -86,6 +88,8 @@ test('store is capped at 200 — newest kept, oldest evicted', () => {
   assert.strictEqual(store.length, 200, 'must stay capped at 200');
   assert.ok(store.some((f) => f.fact === 'freshest_fact'), 'new fact retained');
   assert.ok(!store.some((f) => f.fact === 'seed_0'), 'oldest fact evicted');
+  // evicted facts are archived, not lost
+  assert.deepStrictEqual(JSON.parse(lsRef.ls.getItem('eiti_learned_archive_v1')).map((f) => f.fact), ['seed_0']);
 });
 
 test('a corrupt store does not throw and simply learns nothing', () => {
@@ -98,4 +102,14 @@ test('a corrupt store does not throw and simply learns nothing', () => {
     showToast: () => {},
   });
   assert.doesNotThrow(() => sb.eitiLearnFact('что-то'));
+});
+
+test('v13.9.0: near-duplicate fact is merged instead of stored twice', () => {
+  const { learn, read, toasts } = makeLearner();
+  learn('пользователь любит зелёный чай по утрам');
+  learn('пользователь любит зелёный чай по утрам!');
+  const store = read();
+  assert.strictEqual(store.length, 1);
+  assert.strictEqual(store[0].merged, 1);
+  assert.ok(toasts.some((t) => t.startsWith('🔁')));
 });
