@@ -8,14 +8,14 @@ INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
-def test_version_is_13_7_22_everywhere():
-    assert 'var EITI_VERSION = "13.7.22"' in INDEX
-    assert "var CACHE = 'eiti-v13.7.22'" in SW
-    assert "version: '13.7.22'" in SW
-    assert "v13.7.22" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
+def test_version_synced_everywhere():
+    v = re.search(r'var EITI_VERSION = "([\d.]+)"', INDEX).group(1)
+    assert f"var CACHE = 'eiti-v{v}'" in SW
+    assert f"version: '{v}'" in SW
+    assert f"v{v}" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "version-13.7.22-gold" in readme and "Что нового в v13.7.22" in readme
-    assert "v13.7.22" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    assert f"version-{v}-gold" in readme and f"Что нового в v{v}" in readme
+    assert f"v{v}" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
 
 
 def test_save_chat_menu_item_after_copy_chat():

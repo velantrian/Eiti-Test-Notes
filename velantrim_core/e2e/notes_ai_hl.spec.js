@@ -28,6 +28,8 @@ async function openEditor(page, withPanel) {
     if (typeof window.eitiNotesHlBindUI === 'function') window.eitiNotesHlBindUI();
     if (typeof window.eitiNotesHlOnEditorOpen === 'function') window.eitiNotesHlOnEditorOpen(null);
     if (typeof window.eitiNotesSyncKeyboardChrome === 'function') window.eitiNotesSyncKeyboardChrome();
+    if (typeof window.eitiNoteUndoBindUI === 'function') window.eitiNoteUndoBindUI();
+    if (typeof window.eitiNoteUndoOnOpen === 'function') window.eitiNoteUndoOnOpen();
     if (openPanel && typeof window.eitiNotesAITogglePanel === 'function') window.eitiNotesAITogglePanel(true);
   }, !!withPanel);
 }
@@ -37,10 +39,9 @@ async function injectAiPair(page) {
     const body = document.getElementById('noteEditorBody');
     const title = document.getElementById('noteEditorTitle');
     if (title) title.value = 'Заголовок заметки';
+    // v13.7.23: правка ИИ — шаг общей истории ↶↷ (шапка)
+    window._eitiNotesAiUndoDraft = window.eitiNotesAiRememberUndo('до', 'после');
     if (body) body.value = 'после';
-    window.eitiNotesHlOnAiChange('до', 'после');
-    const extra = window.eitiNotesAiUndoRecord({}, 'до', 'после');
-    window._eitiNotesAiUndoDraft = extra;
     window.eitiNotesAiUndoSyncButtons();
   });
 }
@@ -113,6 +114,7 @@ for (const viewport of [
       '📤 Отправить',
       '🔔 Напоминание',
       '☀️ Светлый режим',
+      expect.stringMatching(/^Аб Подсветка правок ИИ (вкл|on)$/), // v13.7.23: Аб перенесён в ⋯
       '🗑 Удалить заметку',
     ]);
 
@@ -162,9 +164,11 @@ for (const viewport of [
     await page.evaluate(() => {
       if (typeof window.eitiNotesAITogglePanel === 'function') window.eitiNotesAITogglePanel(false);
     });
-    await expect(page.locator('#noteAiTools')).toBeHidden();
+    await expect(page.locator('#noteAiTools')).toHaveCount(0);
     await injectAiPair(page);
-    await expect(page.locator('#noteAiTools')).toBeVisible();
+    await expect(page.locator('#noteUndoBtn')).toBeVisible();
+    await expect(page.locator('#noteRedoBtn')).toBeVisible();
+    await page.locator('#noteMoreBtn').click();
 
     const toggle = page.locator('#noteHlToggle');
     await expect(toggle).toBeVisible();
@@ -183,24 +187,28 @@ test('mobile 390x844: подсветка, undo/redo и меню сохранен
   await page.setViewportSize({ width: 390, height: 844 });
   await openEditor(page, false);
 
-  await expect(page.locator('#noteAiTools')).toBeHidden();
+  await page.evaluate(() => { document.getElementById('noteEditorBody').value = 'до'; window.eitiNoteUndoOnOpen(); });
   await injectAiPair(page);
 
+  // Аб — пункт меню ⋯ «Подсветка правок ИИ»
   const toggle = page.locator('#noteHlToggle');
+  await page.locator('#noteMoreBtn').click();
   await expect(toggle).toBeVisible();
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-pressed', 'false');
   expect(await page.evaluate(() => localStorage.getItem('eiti_notes_ai_highlight'))).toBe('0');
+  await page.locator('#noteMoreBtn').click();
+  await expect(page.locator('#noteHlState')).toHaveText(/^(выкл|off)$/);
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-pressed', 'true');
   expect(await page.evaluate(() => localStorage.getItem('eiti_notes_ai_highlight'))).toBe('1');
 
-  await expect(page.locator('#noteAiUndoBtn')).toBeEnabled();
-  await page.locator('#noteAiUndoBtn').click();
+  await expect(page.locator('#noteUndoBtn')).toBeEnabled();
+  await page.locator('#noteUndoBtn').click();
   await expect(page.locator('#noteEditorBody')).toHaveValue('до');
-  await expect(page.locator('#noteAiRedoBtn')).toBeEnabled();
-  await page.locator('#noteAiRedoBtn').click();
+  await expect(page.locator('#noteRedoBtn')).toBeEnabled();
+  await page.locator('#noteRedoBtn').click();
   await expect(page.locator('#noteEditorBody')).toHaveValue('после');
 
   await page.locator('#noteMoreBtn').click();

@@ -44,10 +44,12 @@ test('подсветка Ask AI: ключи UI и хранилища есть в
   assert.match(INDEX, /aria-label="Подсветка правок ИИ"/);
   assert.match(INDEX, /note-hl-glyph/);
   assert.match(INDEX, />Аб</);
-  assert.match(INDEX, /id="noteAiTools"/);
+  // v13.7.23: нижний ряд Аб/↶/↷ убран — ↶↷ в шапке, Аб в меню ⋯
+  assert.equal(INDEX.includes('id="noteAiTools"'), false);
   assert.match(INDEX, /id="noteMoreBtn"/);
-  assert.match(INDEX, /id="noteAiUndoBtn"/);
-  assert.match(INDEX, /id="noteAiRedoBtn"/);
+  assert.match(INDEX, /id="noteUndoBtn"/);
+  assert.match(INDEX, /id="noteRedoBtn"/);
+  assert.match(INDEX, /<div id="noteMoreMenu"[\s\S]{0,1800}id="noteHlToggle"/);
   assert.match(INDEX, /id="noteSaveAsBtn"/);
   assert.match(INDEX, /id="noteShareBtn"/);
   assert.match(INDEX, /id="noteExportMenu"/);

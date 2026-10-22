@@ -218,5 +218,6 @@ test('тихое обновление: нет тоста с версией пр�
   // SW: механизм обновления на месте
   assert.match(SW, /self\.skipWaiting\(\)/);
   assert.match(SW, /SKIP_WAITING/);
-  assert.match(SW, /type: 'SW_UPDATED', version: '13\.7\.22'/);
+  const ver = INDEX.match(/var EITI_VERSION = "([\d.]+)"/)[1];
+  assert.ok(SW.includes("type: 'SW_UPDATED', version: '" + ver + "'"));
 });
