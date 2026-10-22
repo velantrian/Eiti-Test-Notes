@@ -5,7 +5,8 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
 
-const SHOTS = '/workspace/shots/v1390';
+// Screenshots: $EITI_SHOTS_DIR when set (local review), else Playwright's per-run output dir (CI-safe).
+const SHOTS = process.env.EITI_SHOTS_DIR ? path.join(process.env.EITI_SHOTS_DIR, 'v1390') : path.join(__dirname, 'test-results', 'shots-v1390');
 
 function sse(text) {
   return 'data: ' + JSON.stringify({ choices: [{ delta: { content: text } }] }) + '\n\ndata: [DONE]\n\n';
