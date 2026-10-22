@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.21"; // Светлый режим заметки через переменные, вставка «как есть», markdown-рендер
+        var EITI_VERSION = "13.7.22"; // «💾 Сохранить чат», AI Voice (Grok xAI / Gemini Live), тихое обновление без тоста версии
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -771,13 +771,13 @@
                 'Активен: Rex': 'Aktiv: Rex',
                 'Отключить AI': 'KI deaktivieren',
                 'Чат не отвечает — только локальный поиск': 'Chat antwortet nicht — nur lokale Suche',
-                'Голосовой ассистент Grok Voice (grok-voice-latest). Получить ключ: console.x.ai': 'Sprachassistent Grok Voice (grok-voice-latest). Schlüssel beziehen: console.x.ai',
-                '🗣️ Grok Голос': '🗣️ Grok Voice',
+                'Голосовой ассистент AI Voice (grok-voice-latest). Получить ключ: console.x.ai': 'Sprachassistent AI Voice (grok-voice-latest). Schlüssel beziehen: console.x.ai',
+                '🗣️ AI Voice': '🗣️ AI Voice',
                 '⚡ Grok Текст': '⚡ Grok Text',
                 '🎙️ Голос ассистента': '🎙️ Assistentenstimme',
                 'Проверить Grok ключ': 'Grok-Schlüssel testen',
                 'Проверить OpenRouter ключ': 'OpenRouter-Schlüssel testen',
-                '🔍 Поиск Grok Voice': '🔍 Grok-Voice-Suche',
+                '🔍 Поиск AI Voice': '🔍 AI-Voice-Suche',
                 'Контролируй доступ Grok к поиску. По умолчанию — OFF (экономия токенов).': 'Steuern Sie den Such-Zugriff von Grok. Standard — AUS (spart Tokens).',
                 '🚫 OFF — без поиска (по умолчанию)': '🚫 AUS — keine Suche (Standard)',
                 '🌐 Веб-поиск (Google/Tavily — через настройки поиска)': '🌐 Web-Suche (Google/Tavily — über Sucheinstellungen)',
@@ -1093,7 +1093,7 @@
                 'Провайдер': 'Provider',
                 'Провайдер озвучки': 'TTS-Provider',
                 'Язык / Голос (офлайн)': 'Sprache / Stimme (offline)',
-                'Grok Voice — нажми чтобы включить/выключить': 'Grok Voice — tippen zum Ein-/Ausschalten',
+                'AI Voice — нажми чтобы включить/выключить': 'AI Voice — tippen zum Ein-/Ausschalten',
                 'GCP Console → APIs → Cloud Text-to-Speech → Enable. Standard бесплатно до 4M симв./мес, WaveNet до 1M симв./мес.': 'GCP Console → APIs → Cloud Text-to-Speech → Enable. Standard kostenlos bis 4M Zeichen/Monat, WaveNet bis 1M Zeichen/Monat.',
                 'elevenlabs.io → Voices → Voice ID. Модель: eleven_multilingual_v2 (RU+EN)': 'elevenlabs.io → Voices → Voice ID. Modell: eleven_multilingual_v2 (RU+EN)',
                 'platform.openai.com → API Keys. tts-1-hd — лучшее качество.': 'platform.openai.com → API Keys. tts-1-hd — beste Qualität.',
@@ -1884,7 +1884,7 @@
                 '⚠️ Введи транскрипцию образца': '⚠️ Transkription der Probe eingeben',
                 '⚠️ Neural2 нет для русского → WaveNet': '⚠️ Neural2 nicht für Russisch verfügbar → WaveNet',
                 '⚠️ Backup не найден': '⚠️ Backup nicht gefunden',
-                '⚠️ Grok Voice не активен — сначала запусти 🗣️': '⚠️ Grok Voice nicht aktiv — zuerst 🗣️ starten',
+                '⚠️ AI Voice не активен — сначала запусти 🗣️': '⚠️ AI Voice nicht aktiv — zuerst 🗣️ starten',
                 '⚠️ JSON слишком большой': '⚠️ JSON zu groß',
                 '⚠️ EITI Memory: запись не найдена': '⚠️ EITI Memory: Eintrag nicht gefunden',
                 '⚠️ LLM не загружена — сначала скачай модель в настройках!': '⚠️ LLM nicht geladen — zuerst Modell in den Einstellungen herunterladen!',
@@ -1909,7 +1909,7 @@
                 '✅ Gemini ключ подтверждён': '✅ Gemini-Schlüssel bestätigt',
                 '✅ Google Drive подключён': '✅ Google Drive verbunden',
                 '✅ Grok API активен': '✅ Grok-API aktiv',
-                '✅ Grok Voice ключ активен': '✅ Grok-Voice-Schlüssel aktiv',
+                '✅ AI Voice ключ активен': '✅ AI-Voice-Schlüssel aktiv',
                 '✅ JS_EXEC выполнен': '✅ JS_EXEC ausgeführt',
                 '✅ LLM включён': '✅ LLM aktiviert',
                 '✅ MOSC граф обновлён': '✅ MOSC-Graph aktualisiert',
@@ -1947,7 +1947,7 @@
                 '✏️ Переименован': '✏️ Umbenannt',
                 '✏️ Файл переименован': '✏️ Datei umbenannt',
                 '❌ GPU адаптер недоступен.\n\n💡 Попробуй WASM-модель — она работает без WebGPU': '❌ GPU-Adapter nicht verfügbar.\\n\\n💡 Versuchen Sie ein WASM-Modell — es funktioniert ohne WebGPU',
-                '❌ Grok Voice: ошибка соединения': '❌ Grok Voice: Verbindungsfehler',
+                '❌ AI Voice: ошибка соединения': '❌ AI Voice: Verbindungsfehler',
                 '❌ IDB недоступна': '❌ IDB nicht verfügbar',
                 '❌ IndexedDB kb_vectors недоступен': '❌ IndexedDB kb_vectors nicht verfügbar',
                 '❌ JS_EXEC sandbox ошибка': '❌ JS_EXEC-Sandbox-Fehler',
@@ -2095,7 +2095,7 @@
                 'Решения': 'Lösungen',
                 'Нет подключённой модели': 'Kein verbundenes Modell',
                 'Нет подключённ': 'Keine verbundene',
-                'Grok Voice': 'Grok Voice',
+                'AI Voice': 'AI Voice',
                 'Нет заметок': 'Keine Notizen',
                 'Нажмите ＋ чтобы создать': 'Tippen Sie auf ＋, um zu erstellen',
                 'Нажмите + чтобы создать': 'Tippen Sie auf +, um zu erstellen',
@@ -2138,6 +2138,9 @@
                 'вкл': 'ein',
                 'выкл': 'aus',
                 'Скопировать чат': 'Chat kopieren',
+                'Сохранить чат': 'Chat speichern',
+                '💾 Сохранить чат как…': '💾 Chat speichern als…',
+                'Текст (.txt)': 'Text (.txt)',
                 'Чат скопирован': 'Chat kopiert',
                 'Чат пуст': 'Chat ist leer',},
                 en: {
@@ -2488,13 +2491,13 @@
                 'Активен: Rex': 'Active: Rex',
                 'Отключить AI': 'Disable AI',
                 'Чат не отвечает — только локальный поиск': 'Chat does not reply — local search only',
-                'Голосовой ассистент Grok Voice (grok-voice-latest). Получить ключ: console.x.ai': 'Grok Voice assistant (grok-voice-latest). Get key: console.x.ai',
-                '🗣️ Grok Голос': '🗣️ Grok Voice',
+                'Голосовой ассистент AI Voice (grok-voice-latest). Получить ключ: console.x.ai': 'AI Voice assistant (grok-voice-latest). Get key: console.x.ai',
+                '🗣️ AI Voice': '🗣️ AI Voice',
                 '⚡ Grok Текст': '⚡ Grok Text',
                 '🎙️ Голос ассистента': '🎙️ Assistant voice',
                 'Проверить Grok ключ': 'Test Grok key',
                 'Проверить OpenRouter ключ': 'Test OpenRouter key',
-                '🔍 Поиск Grok Voice': '🔍 Grok Voice search',
+                '🔍 Поиск AI Voice': '🔍 AI Voice search',
                 'Контролируй доступ Grok к поиску. По умолчанию — OFF (экономия токенов).': 'Control Grok’s search access. Default — OFF (saves tokens).',
                 '🚫 OFF — без поиска (по умолчанию)': '🚫 OFF — no search (default)',
                 '🌐 Веб-поиск (Google/Tavily — через настройки поиска)': '🌐 Web search (Google/Tavily — via search settings)',
@@ -2810,7 +2813,7 @@
                 'Провайдер': 'Provider',
                 'Провайдер озвучки': 'TTS provider',
                 'Язык / Голос (офлайн)': 'Language / Voice (offline)',
-                'Grok Voice — нажми чтобы включить/выключить': 'Grok Voice — tap to toggle',
+                'AI Voice — нажми чтобы включить/выключить': 'AI Voice — tap to toggle',
                 'GCP Console → APIs → Cloud Text-to-Speech → Enable. Standard бесплатно до 4M симв./мес, WaveNet до 1M симв./мес.': 'GCP Console → APIs → Cloud Text-to-Speech → Enable. Standard free up to 4M chars/mo, WaveNet up to 1M chars/mo.',
                 'elevenlabs.io → Voices → Voice ID. Модель: eleven_multilingual_v2 (RU+EN)': 'elevenlabs.io → Voices → Voice ID. Model: eleven_multilingual_v2 (RU+EN)',
                 'platform.openai.com → API Keys. tts-1-hd — лучшее качество.': 'platform.openai.com → API Keys. tts-1-hd — best quality.',
@@ -3607,7 +3610,7 @@
                 '⚠️ Введи транскрипцию образца': '⚠️ Enter the sample transcription',
                 '⚠️ Neural2 нет для русского → WaveNet': '⚠️ Neural2 not available for Russian → WaveNet',
                 '⚠️ Backup не найден': '⚠️ Backup not found',
-                '⚠️ Grok Voice не активен — сначала запусти 🗣️': '⚠️ Grok Voice is not active — start it 🗣️ first',
+                '⚠️ AI Voice не активен — сначала запусти 🗣️': '⚠️ AI Voice is not active — start it 🗣️ first',
                 '⚠️ JSON слишком большой': '⚠️ JSON too large',
                 '⚠️ EITI Memory: запись не найдена': '⚠️ EITI Memory: entry not found',
                 '⚠️ LLM не загружена — сначала скачай модель в настройках!': '⚠️ LLM not loaded — download a model in settings first!',
@@ -3632,7 +3635,7 @@
                 '✅ Gemini ключ подтверждён': '✅ Gemini key confirmed',
                 '✅ Google Drive подключён': '✅ Google Drive connected',
                 '✅ Grok API активен': '✅ Grok API active',
-                '✅ Grok Voice ключ активен': '✅ Grok Voice key active',
+                '✅ AI Voice ключ активен': '✅ AI Voice key active',
                 '✅ JS_EXEC выполнен': '✅ JS_EXEC executed',
                 '✅ LLM включён': '✅ LLM enabled',
                 '✅ MOSC граф обновлён': '✅ MOSC graph updated',
@@ -3670,7 +3673,7 @@
                 '✏️ Переименован': '✏️ Renamed',
                 '✏️ Файл переименован': '✏️ File renamed',
                 '❌ GPU адаптер недоступен.\n\n💡 Попробуй WASM-модель — она работает без WebGPU': '❌ GPU adapter unavailable.\n\n💡 Try a WASM model — it works without WebGPU',
-                '❌ Grok Voice: ошибка соединения': '❌ Grok Voice: connection error',
+                '❌ AI Voice: ошибка соединения': '❌ AI Voice: connection error',
                 '❌ IDB недоступна': '❌ IDB unavailable',
                 '❌ IndexedDB kb_vectors недоступен': '❌ IndexedDB kb_vectors unavailable',
                 '❌ JS_EXEC sandbox ошибка': '❌ JS_EXEC sandbox error',
@@ -3820,7 +3823,7 @@
                 'Решения': 'Solutions',
                 'Нет подключённой модели': 'No model connected',
                 'Нет подключённ': 'No connection',
-                'Grok Voice': 'Grok Voice',
+                'AI Voice': 'AI Voice',
                 'Нет заметок': 'No notes',
                 'Нажмите ＋ чтобы создать': 'Press ＋ to create',
                 'Нажмите + чтобы создать': 'Press + to create',
@@ -3863,6 +3866,9 @@
                 'вкл': 'on',
                 'выкл': 'off',
                 'Скопировать чат': 'Copy chat',
+                'Сохранить чат': 'Save chat',
+                '💾 Сохранить чат как…': '💾 Save chat as…',
+                'Текст (.txt)': 'Text (.txt)',
                 'Чат скопирован': 'Chat copied',
                 'Чат пуст': 'Chat is empty'
             }};
@@ -8141,10 +8147,10 @@
                             <button id="llm-mode-btn" onclick="eitiToggleLLMMode()"></button>
                             <div id="chatActionGroup"></div>
                             <button class="chat-ai-toggle" id="chat-grok-btn"
-                                title="Grok Voice — нажми чтобы включить/выключить"
+                                title="AI Voice — нажми чтобы включить/выключить"
                                 onclick="eitiChatGrokToggle()">🗣️</button>
                             <button class="chat-ai-toggle" id="chat-grok-mute-btn"
-                                title="🎙️ Выключить микрофон (Grok остаётся в фоне)"
+                                title="🎙️ Выключить микрофон (AI Voice остаётся в фоне)"
                                 onclick="eitiGrokMuteToggle()"
                                 style="font-size:13px;opacity:0.2;">🎙️</button>
                             <button class="chat-ai-toggle eiti-on" id="chat-ds-btn"
@@ -8541,10 +8547,38 @@
                                 </div>
                                 <div id="eiti-provider-label" style="font-size:11px;opacity:0.5;margin-top:8px;text-align:center;">Активен: 🤖 DeepSeek</div>
                             </div>
+                            <!-- v13.7.22: AI Voice — выбор провайдера (Grok xAI / Gemini Live) -->
+                            <div id="ai-voice-settings" style="border-top:1px solid var(--border-color);padding-top:12px;margin-top:2px;">
+                                <div style="font-size:13px;font-weight:600;margin-bottom:6px;">🗣️ AI Voice — провайдер</div>
+                                <select id="ai-voice-provider" onchange="eitiSetVoiceProvider(this.value)" aria-label="Провайдер AI Voice" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;">
+                                    <option value="grok">Grok (xAI)</option>
+                                    <option value="gemini">Gemini Live</option>
+                                </select>
+                                <div id="ai-voice-grok-box" style="margin-top:8px;display:flex;gap:6px;">
+                                    <select id="grok-live-model" disabled aria-label="Модель Grok" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;opacity:0.6;">
+                                        <option value="grok-voice-latest">grok-voice-latest</option>
+                                    </select>
+                                    <select id="grok-live-voice" onchange="eitiSetGrokVoice(this.value)" aria-label="Голос Grok" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;">
+                                        <option value="Eve">Eve</option><option value="Ara">Ara</option><option value="Leo">Leo</option><option value="Rex">Rex</option><option value="Sal">Sal</option>
+                                    </select>
+                                </div>
+                                <div id="ai-voice-gemini-box" style="display:none;margin-top:8px;">
+                                    <div style="display:flex;gap:6px;align-items:stretch;">
+                                        <input type="password" id="gemini-live-key" placeholder="Пусто — используется ключ Gemini" onchange="eitiSetGeminiLiveKey(this.value)" aria-label="Gemini API ключ для AI Voice"
+                                               style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;">
+                                        <button onclick="eitiClearKey('gemini-live-key','eiti_gemini_live_key')" title="Очистить" style="padding:0 12px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;cursor:pointer;flex-shrink:0;">🗑</button>
+                                    </div>
+                                    <div style="display:flex;gap:6px;margin-top:6px;">
+                                        <select id="gemini-live-model" onchange="eitiSetGeminiLiveModel(this.value)" aria-label="Модель Gemini Live" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;"></select>
+                                        <select id="gemini-live-voice" onchange="eitiSetGeminiLiveVoice(this.value)" aria-label="Голос Gemini Live" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;"></select>
+                                    </div>
+                                    <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Ключ: aistudio.google.com · сессия до 15 мин · поиск и инструменты — только у Grok</div>
+                                </div>
+                            </div>
                             <!-- GROK KEY -->
                             <div style="border-top:1px solid var(--border-color);padding-top:12px;margin-top:2px;">
                                 <div style="font-size:13px;font-weight:600;margin-bottom:6px;">🗣️ xAI Grok API Key</div>
-                                <div style="font-size:11px;opacity:0.5;margin-bottom:8px;line-height:1.5;">Голосовой ассистент Grok Voice (grok-voice-latest). Получить ключ: console.x.ai</div>
+                                <div style="font-size:11px;opacity:0.5;margin-bottom:8px;line-height:1.5;">Голосовой ассистент AI Voice (grok-voice-latest). Получить ключ: console.x.ai</div>
                                 <div style="display:flex;gap:6px;align-items:stretch;">
                                     <input type="password" id="grok-key" placeholder="xai-xxxxxxxxxx"
                                            style="flex:1;padding:12px;border-radius:12px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:15px;-webkit-appearance:none;">
@@ -8552,7 +8586,7 @@
                                 </div>
                                 <div style="display:flex;gap:8px;margin-top:8px;">
                                     <button id="eiti-grok-voice-btn" onclick="eitiToggleGrokVoice()"
-                                            style="flex:1;padding:10px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:700;cursor:pointer;opacity:0.45;transition:all 0.2s;">🗣️ Grok Голос</button>
+                                            style="flex:1;padding:10px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:700;cursor:pointer;opacity:0.45;transition:all 0.2s;">🗣️ AI Voice</button>
                                     <button id="eiti-grok-text-btn" onclick="eitiToggleGrokText()"
                                             style="flex:1;padding:10px;border-radius:10px;border:2px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:700;cursor:pointer;opacity:0.45;transition:all 0.2s;">⚡ Grok Текст</button>
                                 </div>
@@ -8575,7 +8609,7 @@
                                 <div id="eiti-grok-status" style="padding:8px;border-radius:10px;text-align:center;background:var(--secondary-color);min-height:32px;font-size:13px;margin-top:6px;"></div>
                                 <!-- v12.9: настройки поиска Grok Voice -->
                                 <div style="margin-top:10px;border-top:1px solid var(--border-color);padding-top:10px;">
-                                    <div style="font-size:12px;font-weight:600;opacity:0.8;margin-bottom:6px;">🔍 Поиск Grok Voice</div>
+                                    <div style="font-size:12px;font-weight:600;opacity:0.8;margin-bottom:6px;">🔍 Поиск AI Voice</div>
                                     <div style="font-size:11px;opacity:0.5;margin-bottom:8px;line-height:1.4;">Контролируй доступ Grok к поиску. По умолчанию — OFF (экономия токенов).</div>
                                     <div style="display:flex;flex-direction:column;gap:6px;">
                                         <button id="grok-search-off" onclick="eitiSetGrokSearch('off')"
@@ -9858,7 +9892,7 @@
                         <div class="settings-title" data-i18n="💾 Как устроена Система 🛠">💾 Как устроена Система 🛠</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
                             <div style="font-size:13px;opacity:0.7;line-height:1.5;">Опишите архитектуру системы в JSON. DeepSeek увидит этот блок в каждом чате как <code style="font-size:11px;background:rgba(255,255,255,0.1);padding:2px 5px;border-radius:4px;">[СИСТЕМА]</code> и сможет отвечать на вопросах о ней.</div>
-                            <textarea id="eiti-system-desc" rows="8" placeholder='{\n  "project": "VELANTRIM EITI",\n  "version": "13.2.0",\n  "memory": "DAAD FractalMemory",\n  "storage": "IndexedDB + localStorage + SQLite WASM",\n  "ai": "DeepSeek / OpenRouter / Grok Voice"\n}'
+                            <textarea id="eiti-system-desc" rows="8" placeholder='{\n  "project": "VELANTRIM EITI",\n  "version": "13.2.0",\n  "memory": "DAAD FractalMemory",\n  "storage": "IndexedDB + localStorage + SQLite WASM",\n  "ai": "DeepSeek / OpenRouter / AI Voice"\n}'
                                 style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);-webkit-text-fill-color:var(--text-color);font-size:13px;-webkit-appearance:none;resize:vertical;line-height:1.5;font-family:monospace;user-select:text;-webkit-user-select:text;"></textarea>
                             <button onclick="eitiSaveSystemDesc()"
                                     style="padding:12px;border-radius:12px;border:none;background:linear-gradient(145deg,var(--accent-color),#c9a700);color:#000;font-weight:700;font-size:15px;cursor:pointer;width:100%;">
@@ -11111,7 +11145,7 @@
                     <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;">
                         <div style="display:flex;gap:4px;">
                             <!-- 🗣️ Grok Voice -->
-                            <button onclick="eitiChatGrokToggle()" id="rne-grok-btn" title="Grok Voice"
+                            <button onclick="eitiChatGrokToggle()" id="rne-grok-btn" title="AI Voice"
                                 style="width:30px;height:28px;border-radius:8px;border:1px solid var(--border-color);background:rgba(255,255,255,0.07);color:var(--text-color);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;">🗣️</button>
                             <!-- 🔇 Mute -->
                             <button onclick="eitiGrokMuteToggle()" id="rne-grok-mute-btn" title="Заглушить микрофон"
@@ -18662,7 +18696,7 @@
                 : eitiRenderMarkdown(m.content);
             div.innerHTML =
                 '<div class="message-row"><div class="message-body">' +
-                (m.role !== 'user' ? '<div class="message-sender">' + ({deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ Grok Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'}[m.provider] || 'EITI AI 🤖') + '</div>' : '') +
+                (m.role !== 'user' ? '<div class="message-sender">' + ({deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ AI Voice','gemini-live':'🗣️ AI Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'}[m.provider] || 'EITI AI 🤖') + '</div>' : '') +
                 fileChipHtml +
                 '<div>' + rendered + '</div>' +
                 '<div class="message-time" style="font-size:11px;opacity:0.55;margin-top:3px">' + time + '</div>' +
@@ -18999,7 +19033,7 @@
             localStorage.setItem('eiti_grok_voice', on ? '0' : '1');
             _eitiUpdateGrokBtns();
             _eitiSyncChatPanelBtns();
-            showToast(on ? '🗣️ Grok Голос отключён' : '🗣️ Grok Голос активен');
+            showToast(on ? '🗣️ AI Voice отключён' : '🗣️ AI Voice активен');
         }
 
         function eitiToggleGrokText() {
@@ -19023,8 +19057,8 @@
                     ? (window._grokVoiceSpeaking ? '🔊' : '🎤')
                     : '🗣️';
                 gb.title = grokOn
-                    ? 'Grok Voice активен — нажми чтобы ПОЛНОСТЬЮ выключить'
-                    : 'Запустить Grok Voice';
+                    ? 'AI Voice активен — нажми чтобы ПОЛНОСТЬЮ выключить'
+                    : 'Запустить AI Voice';
                 if (grokOn) gb.classList.add('grok-live');
                 else gb.classList.remove('grok-live');
             }
@@ -19035,14 +19069,17 @@
                 mb.textContent = window._grokMuted ? '🔇' : '🎙️';
                 mb.classList.toggle('muted', !!window._grokMuted);
                 mb.title = grokOn
-                    ? (window._grokMuted ? '🔇 Мик выключен — нажми чтобы включить' : '🎙️ Выключить мик (Grok в фоне)')
-                    : '🎙️ Сначала запусти Grok Voice 🗣️';
+                    ? (window._grokMuted ? '🔇 Мик выключен — нажми чтобы включить' : '🎙️ Выключить мик (AI Voice в фоне)')
+                    : '🎙️ Сначала запусти AI Voice 🗣️';
             }
             if (db) db.classList.toggle('eiti-on', !!dsOn);
         }
 
         // ── Tap: Grok Voice ──────────────────────────────────────────────────
         function eitiChatGrokToggle() {
+            // v13.7.22: провайдер AI Voice — Grok (xAI, по умолчанию) или Gemini Live
+            if (window._grokVoiceActive) { eitiGrokVoiceStop(); return; }
+            if (typeof eitiVoiceProvider === 'function' && eitiVoiceProvider() === 'gemini') { eitiGeminiVoiceStart(); return; }
             var k = _deobfKey(localStorage.getItem('eiti_grok_key') || '');
             if (!k) { showToast('⚠️ Введи xAI Grok ключ в Настройки → Grok'); return; }
             if (window._grokVoiceActive) {
@@ -19129,8 +19166,8 @@
                 ? (window._grokVoiceSpeaking ? '🔊' : '🎤')
                 : '🗣️'; }
             b.title = window._grokVoiceActive
-                ? 'Grok Voice активен — нажми чтобы ПОЛНОСТЬЮ выключить'
-                : 'Запустить Grok Voice';
+                ? 'AI Voice активен — нажми чтобы ПОЛНОСТЬЮ выключить'
+                : 'Запустить AI Voice';
             if (window._grokVoiceActive) {
                 b.classList.add('grok-live');
             } else {
@@ -19145,9 +19182,9 @@
                 mb.classList.toggle('muted', !!window._grokMuted);
                 mb.title = window._grokVoiceActive
                     ? (window._grokMuted
-                        ? '🔇 Мик выключен — пиши в чат, Grok ответит голосом. Нажми чтобы включить мик'
-                        : '🎙️ Мик включён — нажми чтобы выключить (Grok останется в фоне)')
-                    : '🎙️ Сначала запусти Grok Voice 🗣️';
+                        ? '🔇 Мик выключен — пиши в чат, AI ответит голосом. Нажми чтобы включить мик'
+                        : '🎙️ Мик включён — нажми чтобы выключить (AI Voice останется в фоне)')
+                    : '🎙️ Сначала запусти AI Voice 🗣️';
             }
         }
 
@@ -19155,7 +19192,7 @@
         // Когда muted: пишешь текст в чат → Grok отвечает голосом (через eitiGrokSendText в doSend)
         function eitiGrokMuteToggle() {
             if (!window._grokVoiceActive) {
-                showToast('🗣️ Сначала запусти Grok Voice — нажми 🗣️', 2500);
+                showToast('🗣️ Сначала запусти AI Voice — нажми 🗣️', 2500);
                 return;
             }
             window._grokMuted = !window._grokMuted;
@@ -19164,14 +19201,20 @@
                     t.enabled = !window._grokMuted;
                 });
             }
+            // v13.7.22: Gemini Live — сбросить буфер аудио при паузе микрофона (audioStreamEnd)
+            if (window._eitiVoiceProv === 'gemini' && window._grokMuted && _grokWS && _grokWS.readyState === 1) {
+                try { _grokWS.send(JSON.stringify({ realtimeInput: { audioStreamEnd: true } })); } catch (e) {}
+            }
             showToast(window._grokMuted
-                ? '🔇 Мик выключен — пиши в чат, Grok ответит голосом'
+                ? '🔇 Мик выключен — пиши в чат, AI ответит голосом'
                 : '🎙️ Микрофон включён');
             _grokVoiceSetBtn('');
         }
 
         function eitiGrokVoiceStart() {
             if (window._grokVoiceActive) return;
+            if (typeof eitiVoiceProvider === 'function' && eitiVoiceProvider() === 'gemini') { eitiGeminiVoiceStart(); return; }
+            window._eitiVoiceProv = 'grok';
             var k = _deobfKey(localStorage.getItem('eiti_grok_key') || '');
             if (!k) { showToast('⚠️ Нет Grok ключа'); return; }
 
@@ -19239,7 +19282,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                             ['xai-client-secret.' + authToken]
                         );
                     } catch(e) {
-                        showToast('❌ Grok Voice: WebSocket init failed');
+                        showToast('❌ AI Voice: WebSocket init failed');
                         eitiGrokVoiceStop();
                         return;
                     }
@@ -19299,8 +19342,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         ? 'Storage: IndexedDB (chats/notes/files/KB/L2/L3 profile), localStorage (active L3 compatibility profile/facts), SQLite WASM (FTS5 when available; LIKE/IDB fallback otherwise)\n'
                         : 'Хранилище: IndexedDB (чаты/заметки/файлы/KB/L2/L3-профиль), localStorage (настройки и активный L3-совместимый профиль/факты), SQLite WASM (FTS5 при наличии; иначе LIKE/IDB fallback)\n';
                     _grokSelfInfo += _EN
-                        ? 'AI providers: DeepSeek API (main), Gemini API, Grok Voice (you), WebLLM offline\n'
-                        : 'AI провайдеры: DeepSeek API (основной), Gemini API, Grok Voice (ты), WebLLM офлайн\n';
+                        ? 'AI providers: DeepSeek API (main), Gemini API, AI Voice (you), WebLLM offline\n'
+                        : 'AI провайдеры: DeepSeek API (основной), Gemini API, AI Voice (ты), WebLLM офлайн\n';
                     _grokSelfInfo += _EN
                         ? 'Search: BM25+FTS5+Semantic (KB), TextRank (snippets), DuckDuckGo (web)\n'
                         : 'Поиск: BM25+FTS5+Semantic (KB), TextRank (сниппеты), DuckDuckGo (веб)\n';
@@ -19350,8 +19393,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         ? 'Commands available only via DeepSeek: KB_ADD, KB_EDIT, KB_DEL, MOSC_ADD, JS_EXEC\n'
                         : 'Команды только через DeepSeek: KB_ADD, KB_EDIT, KB_DEL, MOSC_ADD, JS_EXEC\n';
                     _grokSelfInfo += _EN
-                        ? 'You (Grok Voice): FULL READ AND WRITE ACCESS to notes/files/memory.\n'
-                        : 'Ты (Grok Voice): ПОЛНЫЙ ДОСТУП К ЧТЕНИЮ и ЗАПИСИ заметок/файлов/памяти.\n';
+                        ? 'You (AI Voice): FULL READ AND WRITE ACCESS to notes/files/memory.\n'
+                        : 'Ты (AI Voice): ПОЛНЫЙ ДОСТУП К ЧТЕНИЮ и ЗАПИСИ заметок/файлов/памяти.\n';
                     if (_EN) {
                         _grokSelfInfo += 'LANGUAGE: Reply in the user\'s language. If they speak Russian — reply in Russian; if they speak English — reply in English.\n';
                     } else {
@@ -19731,7 +19774,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         window._grokTranscriptAccum = '';
                         if (_grokFinalText.trim()) {
                             var _gAiId = 'grok-a-' + Date.now();
-                            chatLog.push({ id: _gAiId, role: 'assistant', text: '[🗣️ Grok Voice] ' + _grokFinalText, ts: Date.now(), provider: 'grok' });
+                            chatLog.push({ id: _gAiId, role: 'assistant', text: '[🗣️ AI Voice] ' + _grokFinalText, ts: Date.now(), provider: 'grok' });
                             saveChat();
                             // patch: process AI commands (MEM_ADD/MEM_UPDATE/MEM_DEL/KB_DEL etc) from Grok replies
                             eitiProcessCommands(_grokFinalText);
@@ -19877,7 +19920,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 };
 
                 _grokWS.onerror = function() {
-                    showToast('❌ Grok Voice: ошибка соединения');
+                    showToast('❌ AI Voice: ошибка соединения');
                     eitiGrokVoiceStop();
                 };
 
@@ -19911,17 +19954,341 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (_grokWS)        { try { _grokWS.close(); }             catch(e){} _grokWS        = null; }
             if (_grokPlayCtx) { try { _grokPlayCtx.close(); } catch(e){} _grokPlayCtx = null; } _grokPlayAt = 0; // v12.9.7 FIX H4: AudioContext leak
             window._grokMuted = false;  // сброс mute при остановке
+            window._geminiLiveReady = false;
+            window._eitiVoiceProv = '';
             _grokVoiceSetBtn('');
             _eitiSyncChatPanelBtns();
-            showToast('🗣️ Grok Voice остановлен');
+            showToast('🗣️ AI Voice остановлен');
         }
+
+        // ════════════════════════════════════════════════════════════════════
+        // v13.7.22: 🗣️ AI VOICE — провайдер Gemini Live (Grok xAI — по умолчанию)
+        //    WebSocket: wss://generativelanguage.googleapis.com/ws/
+        //      google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=KEY
+        //    Docs: https://ai.google.dev/gemini-api/docs/live-api/get-started-websocket
+        //    Использует те же глобальные _grok* (мик, плеер, mute, кнопки), чтобы
+        //    eitiGrokVoiceStop / eitiGrokMuteToggle / индикаторы работали для обоих.
+        // ════════════════════════════════════════════════════════════════════
+        var EITI_GEMINI_LIVE_MODELS = [
+            { id: 'gemini-3.8-live',                   label: 'Gemini 3.8 Live' },
+            { id: 'gemini-3.8-live-extended-thinking', label: '3.8 Live Thinking' },
+            { id: 'gemini-3.1-flash-live-preview',     label: '3.1 Flash Live (preview)' }
+        ];
+        var EITI_GEMINI_LIVE_VOICES = ['Puck','Charon','Kore','Fenrir','Aoede','Leda','Orus','Zephyr','Callirrhoe','Autonoe',
+            'Enceladus','Iapetus','Umbriel','Algieba','Despina','Erinome','Algenib','Rasalgethi','Laomedeia','Achernar',
+            'Alnilam','Schedar','Gacrux','Pulcherrima','Achird','Zubenelgenubi','Vindemiatrix','Sadachbia','Sadaltager','Sulafat'];
+        function eitiVoiceProvider() {
+            var v = '';
+            try { v = localStorage.getItem('eiti_voice_provider') || ''; } catch (e) {}
+            return v === 'gemini' ? 'gemini' : 'grok';
+        }
+        function eitiGeminiLiveModel() {
+            var v = '';
+            try { v = localStorage.getItem('eiti_gemini_live_model') || ''; } catch (e) {}
+            for (var i = 0; i < EITI_GEMINI_LIVE_MODELS.length; i++) if (EITI_GEMINI_LIVE_MODELS[i].id === v) return v;
+            return 'gemini-3.8-live';
+        }
+        function eitiGeminiLiveVoice() {
+            var v = '';
+            try { v = localStorage.getItem('eiti_gemini_live_voice') || ''; } catch (e) {}
+            return EITI_GEMINI_LIVE_VOICES.indexOf(v) !== -1 ? v : 'Puck';
+        }
+        function eitiGeminiLiveKey() {
+            var own = '', shared = '';
+            try {
+                own = _deobfKey(localStorage.getItem('eiti_gemini_live_key') || '');
+                shared = _deobfKey(localStorage.getItem('eiti_gemini_key') || '');
+            } catch (e) {}
+            return String(own || shared || '').trim();
+        }
+        function eitiGeminiLiveUrl(key) {
+            return 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent?key=' + encodeURIComponent(String(key || ''));
+        }
+        function eitiGeminiLiveSetupMessage(opts) {
+            opts = opts || {};
+            var model = String(opts.model || 'gemini-3.8-live').replace(/^models\//, '');
+            var gen = {
+                responseModalities: ['AUDIO'],
+                speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: String(opts.voice || 'Puck') } } }
+            };
+            // gemini-3.8-live: thinkingLevel не поддерживается (не передаём); extended-thinking: low/medium/high
+            if (/extended-thinking/.test(model)) gen.thinkingConfig = { thinkingLevel: 'low' };
+            var setup = {
+                model: 'models/' + model,
+                generationConfig: gen,
+                inputAudioTranscription: {},
+                outputAudioTranscription: {}
+            };
+            if (opts.instructions) setup.systemInstruction = { parts: [{ text: String(opts.instructions) }] };
+            return { setup: setup };
+        }
+        function eitiGeminiLiveInstructions(log, opts) {
+            opts = opts || {};
+            var lang = opts.lang || 'ru';
+            var lines = [
+                'Ты — AI Voice, голосовой ассистент VELANTRIM EITI v' + (opts.version || '?') + ' (модель Gemini Live).',
+                'СТИЛЬ: голосовой — отвечай разговорно и кратко, без markdown. Числа и URL проговаривай словами.',
+                lang === 'en' ? 'LANGUAGE: always reply in English.' : lang === 'de' ? 'SPRACHE: antworte immer auf Deutsch.' : 'ЯЗЫК: по умолчанию русский; если пользователь говорит на другом языке — отвечай на нём.',
+                'КОМАНДЫ (вставляй прямо в ответ, они обрабатываются автоматически, вслух не произноси):\n  [MEM_ADD:tag|текст] / [MEM_UPDATE:tag|текст] / [MEM_DEL:tag|текст]\n  [NOTE_WRITE:заголовок|текст] / [NOTE_APPEND:заголовок|текст]'
+            ];
+            var recent = (Array.isArray(log) ? log : []).filter(function(m) { return m && m.text && m.role !== 'system'; }).slice(-20);
+            if (recent.length) {
+                lines.push('=== ТЕКУЩИЙ ЧАТ (последние ' + recent.length + ') ===');
+                recent.forEach(function(m) {
+                    lines.push((m.role === 'user' ? '[Пользователь]' : '[AI]') + ': ' + String(m.text).slice(0, 400));
+                });
+                lines.push('=== КОНЕЦ ЧАТА ===');
+            }
+            return lines.join('\n');
+        }
+        function eitiGeminiLiveCloseMessage(code, reason) {
+            var r = String(reason || '').trim();
+            if (code === 1000 && !r) return '';
+            if (/api key|API_KEY|permission|unauth|401|403/i.test(r) || code === 1008) return '❌ Gemini Live: ключ отклонён' + (r ? ' — ' + r.slice(0, 120) : '');
+            if (/model|not found|404/i.test(r)) return '❌ Gemini Live: модель недоступна' + (r ? ' — ' + r.slice(0, 120) : '');
+            if (/quota|exhaust|429/i.test(r)) return '❌ Gemini Live: лимит запросов исчерпан';
+            return '❌ Gemini Live: соединение закрыто (код ' + code + ')' + (r ? ' — ' + r.slice(0, 120) : '');
+        }
+        window.eitiSetVoiceProvider = function(v) {
+            v = v === 'gemini' ? 'gemini' : 'grok';
+            try { localStorage.setItem('eiti_voice_provider', v); } catch (e) {}
+            if (window._grokVoiceActive && window._eitiVoiceProv && window._eitiVoiceProv !== v) eitiGrokVoiceStop();
+            eitiVoiceSettingsRender();
+            showToast('🗣️ AI Voice: ' + (v === 'gemini' ? 'Gemini Live' : 'Grok (xAI)'));
+        };
+        window.eitiSetGeminiLiveModel = function(v) {
+            try { localStorage.setItem('eiti_gemini_live_model', v); } catch (e) {}
+            eitiVoiceSettingsRender();
+        };
+        window.eitiSetGeminiLiveVoice = function(v) {
+            try { localStorage.setItem('eiti_gemini_live_voice', v); } catch (e) {}
+            eitiVoiceSettingsRender();
+        };
+        window.eitiSetGeminiLiveKey = function(v) {
+            v = String(v || '').trim();
+            try {
+                if (v) localStorage.setItem('eiti_gemini_live_key', _obfKey(v));
+                else localStorage.removeItem('eiti_gemini_live_key');
+            } catch (e) {}
+        };
+        function eitiVoiceSettingsRender() {
+            var prov = eitiVoiceProvider();
+            var ps = document.getElementById('ai-voice-provider');
+            if (ps) ps.value = prov;
+            var gb = document.getElementById('ai-voice-gemini-box');
+            var xb = document.getElementById('ai-voice-grok-box');
+            if (gb) gb.style.display = prov === 'gemini' ? '' : 'none';
+            if (xb) xb.style.display = prov === 'gemini' ? 'none' : 'flex';
+            var ms = document.getElementById('gemini-live-model');
+            if (ms) {
+                if (!ms.options.length) ms.innerHTML = EITI_GEMINI_LIVE_MODELS.map(function(m) { return '<option value="' + m.id + '">' + m.label + '</option>'; }).join('');
+                ms.value = eitiGeminiLiveModel();
+            }
+            var vs = document.getElementById('gemini-live-voice');
+            if (vs) {
+                if (!vs.options.length) vs.innerHTML = EITI_GEMINI_LIVE_VOICES.map(function(n) { return '<option value="' + n + '">' + n + '</option>'; }).join('');
+                vs.value = eitiGeminiLiveVoice();
+            }
+            var gv = document.getElementById('grok-live-voice');
+            if (gv) { try { gv.value = localStorage.getItem('eiti_grok_voice_name') || 'Rex'; } catch (e) {} }
+            var ki = document.getElementById('gemini-live-key');
+            if (ki && !ki.value) { try { var own = _deobfKey(localStorage.getItem('eiti_gemini_live_key') || ''); if (own) ki.value = own; } catch (e) {} }
+        }
+        window.eitiVoiceSettingsRender = eitiVoiceSettingsRender;
+
+        function _eitiGeminiLiveBubble(kind, delta) {
+            var ms = document.getElementById('messages');
+            if (!ms) return;
+            var bid = kind === 'user' ? '_gemini_live_user' : '_grok_live_bubble';
+            var tid = kind === 'user' ? '_gemini_live_user_text' : '_grok_live_text';
+            var el = document.getElementById(bid);
+            if (!el) {
+                el = document.createElement('div');
+                el.id = bid;
+                el.className = kind === 'user' ? 'message outgoing' : 'message incoming';
+                var tt = new Date().toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+                el.innerHTML = '<div class="message-row"><div class="message-body">' +
+                    '<div class="message-sender"' + (kind === 'user' ? ' style="text-align:right;">🎤 Вы' : '>🗣️ AI Voice') + '</div>' +
+                    '<div id="' + tid + '" style="white-space:pre-wrap;word-break:break-word;"></div>' +
+                    '<div class="message-time">' + tt + '</div></div></div>';
+                ms.appendChild(el);
+            }
+            var t = document.getElementById(tid);
+            if (t) t.textContent += delta;
+            if (!window._eitiScrollPaused) ms.scrollTop = ms.scrollHeight;
+        }
+        function _eitiGeminiLiveFlushUser() {
+            var txt = String(window._geminiUserAccum || '').trim();
+            window._geminiUserAccum = '';
+            var b = document.getElementById('_gemini_live_user');
+            if (b) b.id = '';
+            var t = document.getElementById('_gemini_live_user_text');
+            if (t) t.id = '';
+            if (!txt) return;
+            window._grokLastUserText = txt;
+            chatLog.push({ id: 'gvoice-u-' + Date.now(), role: 'user', text: '[🎤 Голос] ' + txt, ts: Date.now() });
+            saveChat();
+        }
+        function _eitiGeminiLiveFlushModel() {
+            var txt = String(window._grokTranscriptAccum || '');
+            window._grokTranscriptAccum = '';
+            var b = document.getElementById('_grok_live_bubble');
+            if (b) b.id = 'gvoice-msg-' + Date.now();
+            var t = document.getElementById('_grok_live_text');
+            if (t) t.id = '';
+            if (!txt.trim()) return;
+            chatLog.push({ id: 'gvoice-a-' + Date.now(), role: 'assistant', text: '[🗣️ AI Voice] ' + txt, ts: Date.now(), provider: 'gemini-live', model: eitiGeminiLiveModel() });
+            saveChat();
+            if (typeof eitiProcessCommands === 'function') eitiProcessCommands(txt);
+            if (typeof eitiL2Consolidate === 'function' && eitiCurrentChatId) {
+                clearTimeout(window._grokL2Timer);
+                window._grokL2Timer = setTimeout(function() { eitiL2Consolidate(eitiCurrentChatId); }, 5000);
+            }
+        }
+        function _eitiGeminiLiveHandle(msg) {
+            if (!msg) return;
+            if (msg.setupComplete) {
+                window._geminiLiveReady = true;
+                _grokVoiceSetBtn('');
+                showToast('🎤 AI Voice (Gemini) слушает…');
+                return;
+            }
+            if (msg.goAway) { showToast('⏳ Gemini Live: сессия скоро завершится (лимит ~15 мин)'); }
+            var sc = msg.serverContent;
+            if (!sc) return;
+            if (sc.interrupted) {
+                window._grokVoiceSpeaking = false;
+                if (_grokPlayCtx) { try { _grokPlayCtx.close(); } catch (e) {} _grokPlayCtx = null; _grokPlayAt = 0; }
+                _grokVoiceSetBtn('');
+            }
+            if (sc.inputTranscription && sc.inputTranscription.text) {
+                window._geminiUserAccum = (window._geminiUserAccum || '') + sc.inputTranscription.text;
+                _eitiGeminiLiveBubble('user', sc.inputTranscription.text);
+            }
+            if (sc.modelTurn && sc.modelTurn.parts) {
+                sc.modelTurn.parts.forEach(function(part) {
+                    if (part && part.inlineData && part.inlineData.data) {
+                        if (window._geminiUserAccum) _eitiGeminiLiveFlushUser();
+                        window._grokVoiceSpeaking = true;
+                        _grokVoiceSetBtn('');
+                        _grokPlayChunk(part.inlineData.data);
+                    }
+                });
+            }
+            if (sc.outputTranscription && sc.outputTranscription.text) {
+                if (window._geminiUserAccum) _eitiGeminiLiveFlushUser();
+                window._grokTranscriptAccum = (window._grokTranscriptAccum || '') + sc.outputTranscription.text;
+                _eitiGeminiLiveBubble('model', sc.outputTranscription.text);
+            }
+            if (sc.turnComplete) {
+                window._grokVoiceSpeaking = false;
+                _grokVoiceSetBtn('');
+                _eitiGeminiLiveFlushUser();
+                _eitiGeminiLiveFlushModel();
+            }
+        }
+        window._eitiGeminiLiveHandle = _eitiGeminiLiveHandle;
+
+        function eitiGeminiVoiceStart() {
+            if (window._grokVoiceActive) return;
+            var k = eitiGeminiLiveKey();
+            if (!k) { showToast('⚠️ Нет ключа Gemini — Настройки → AI Voice (или ключ Gemini API)'); return; }
+            if (typeof WebSocket === 'undefined') { showToast('❌ Gemini Live: WebSocket недоступен в этом браузере'); return; }
+            window._grokVoiceActive = true;
+            window._eitiVoiceProv = 'gemini';
+            window._geminiLiveReady = false;
+            window._geminiUserAccum = '';
+            window._grokTranscriptAccum = '';
+            _grokVoiceSetBtn('⏳');
+            _eitiSyncChatPanelBtns();
+            var ws;
+            try {
+                ws = new WebSocket(eitiGeminiLiveUrl(k));
+            } catch (e) {
+                showToast('❌ Gemini Live: не удалось подключиться — ' + (e.message || e));
+                window._grokVoiceActive = false; _grokVoiceSetBtn(''); _eitiSyncChatPanelBtns();
+                return;
+            }
+            _grokWS = ws;
+            ws.binaryType = 'arraybuffer';
+            ws.onopen = function() {
+                var lang = (typeof window.eitiGetAiReplyLang === 'function') ? window.eitiGetAiReplyLang() : 'auto';
+                if (lang !== 'en' && lang !== 'ru' && lang !== 'de') lang = (typeof window.eitiGetLocale === 'function' ? window.eitiGetLocale() : 'ru');
+                var instr = eitiGeminiLiveInstructions(typeof chatLog !== 'undefined' ? chatLog : [], { version: window.EITI_VERSION, lang: lang });
+                ws.send(JSON.stringify(eitiGeminiLiveSetupMessage({ model: eitiGeminiLiveModel(), voice: eitiGeminiLiveVoice(), instructions: instr })));
+            };
+            ws.onmessage = function(evt) {
+                var raw = evt.data, msg;
+                try {
+                    if (typeof raw !== 'string') raw = new TextDecoder('utf-8').decode(raw instanceof ArrayBuffer ? new Uint8Array(raw) : raw);
+                    msg = JSON.parse(raw);
+                } catch (e) { return; }
+                _eitiGeminiLiveHandle(msg);
+            };
+            ws.onerror = function() {
+                if (ws !== _grokWS) return;
+                showToast('❌ Gemini Live: ошибка соединения — проверьте ключ и сеть');
+            };
+            ws.onclose = function(ev) {
+                if (ws !== _grokWS) return; // уже остановлен вручную
+                var m = eitiGeminiLiveCloseMessage(ev && ev.code, ev && ev.reason);
+                _grokWS = null;
+                eitiGrokVoiceStop();
+                if (m) showToast(m, 4000);
+            };
+            navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } })
+            .then(function(stream) {
+                if (!window._grokVoiceActive || _grokWS !== ws) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
+                _grokStream = stream;
+                var AC = window.AudioContext || window.webkitAudioContext;
+                try { _grokMicCtx = new AC({ sampleRate: 16000 }); } catch (e) { _grokMicCtx = new AC(); }
+                _grokMicSrc = _grokMicCtx.createMediaStreamSource(stream);
+                var mime = 'audio/pcm;rate=' + Math.round(_grokMicCtx.sampleRate || 16000);
+                var sendPcm = function(buf) {
+                    if (!window._grokVoiceActive || !window._geminiLiveReady || _grokWS !== ws || ws.readyState !== 1 || window._grokMuted) return;
+                    var u8 = new Uint8Array(buf), bin = '';
+                    for (var i = 0; i < u8.length; i += 0x8000) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+                    ws.send(JSON.stringify({ realtimeInput: { audio: { data: btoa(bin), mimeType: mime } } }));
+                };
+                var code = "class GeminiPCMProcessor extends AudioWorkletProcessor{process(inputs){var ch=inputs[0]&&inputs[0][0];if(!ch||!ch.length)return true;var i16=new Int16Array(ch.length);for(var i=0;i<ch.length;i++){i16[i]=Math.max(-32768,Math.min(32767,Math.round(ch[i]*32767)));}this.port.postMessage(i16.buffer,[i16.buffer]);return true;}}registerProcessor('gemini-pcm-processor',GeminiPCMProcessor);";
+                var url = URL.createObjectURL(new Blob([code], { type: 'application/javascript' }));
+                var ctx = _grokMicCtx;
+                ctx.audioWorklet.addModule(url).then(function() {
+                    URL.revokeObjectURL(url);
+                    if (_grokMicCtx !== ctx) return;
+                    _grokProcessor = new AudioWorkletNode(ctx, 'gemini-pcm-processor');
+                    _grokProcessor.port.onmessage = function(e) { sendPcm(e.data); };
+                    _grokMicSrc.connect(_grokProcessor);
+                    _grokProcessor.connect(ctx.destination);
+                }).catch(function() {
+                    if (_grokMicCtx !== ctx) return;
+                    _grokProcessor = ctx.createScriptProcessor(2048, 1, 1);
+                    _grokMicSrc.connect(_grokProcessor);
+                    _grokProcessor.connect(ctx.destination);
+                    _grokProcessor.onaudioprocess = function(e) { sendPcm(_grokPCM16(e.inputBuffer.getChannelData(0)).buffer); };
+                });
+            })
+            .catch(function(e) {
+                showToast('❌ Микрофон: ' + (e.message || e));
+                eitiGrokVoiceStop();
+            });
+        }
+        window.eitiGeminiVoiceStart = eitiGeminiVoiceStart;
 
         // v12.9.2: отправка текста в Grok Voice (когда мик замьючен)
         // Создаёт conversation.item типа message и запрашивает response
         window.eitiGrokSendText = function(txt) {
             if (!txt || !txt.trim()) return;
             if (!window._grokVoiceActive || !_grokWS || _grokWS.readyState !== 1) {
-                showToast('⚠️ Grok Voice не активен — сначала запусти 🗣️');
+                showToast('⚠️ AI Voice не активен — сначала запусти 🗣️');
+                return;
+            }
+            // v13.7.22: Gemini Live — текст через realtimeInput.text
+            if (window._eitiVoiceProv === 'gemini') {
+                try {
+                    _grokWS.send(JSON.stringify({ realtimeInput: { text: txt.trim() } }));
+                    showToast('🤖 Текст отправлен в AI Voice');
+                } catch (e) { showToast('❌ Ошибка отправки в AI Voice: ' + e.message); }
                 return;
             }
             // v12.9.7: xAI API принимает текст и аудио одновременно
@@ -19960,6 +20327,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             });
             var lbl = document.getElementById('grok-voice-label');
             if (lbl) lbl.textContent = 'Активен: ' + name;
+            var gsel = document.getElementById('grok-live-voice'); // v13.7.22
+            if (gsel && gsel.value !== name) gsel.value = name;
             showToast('🎙️ Голос: ' + name);
         };
 
@@ -20053,7 +20422,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             'deepseek-pro': { input: 0.55, output: 2.19, name: 'DeepSeek v4-pro' },
             gemini: { input: 0.075, output: 0.30, name: 'Gemini Flash' },
             openrouter: { input: 0.20, output: 0.40, name: 'OpenRouter (avg)' },
-            grok: { input: 5.0, output: 15.0, name: 'Grok Voice' }
+            grok: { input: 5.0, output: 15.0, name: 'AI Voice' }
         };
         window._eitiTrackTokens = function(provider, inTok, outTok) {
             try {
@@ -20279,13 +20648,13 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         );
                         var _wsTimer = setTimeout(function() {
                             _testWS.close();
-                            if (st) st.innerHTML = '<span style="color:#fa0">⚠️ Voice-ключ: нет ответа за 5 сек. Возможно ключ верный — попробуй Grok Voice 🗣️</span>';
+                            if (st) st.innerHTML = '<span style="color:#fa0">⚠️ Voice-ключ: нет ответа за 5 сек. Возможно ключ верный — попробуй AI Voice 🗣️</span>';
                         }, 5000);
                         _testWS.onopen = function() {
                             clearTimeout(_wsTimer);
                             _testWS.close();
                             if (st) st.innerHTML = '<span style="color:#0f0">✅ Voice-ключ активен 🗣️<br><span style="font-size:10px;opacity:0.7;">Endpoint: Voice only (grok-voice-latest)</span></span>';
-                            showToast('✅ Grok Voice ключ активен');
+                            showToast('✅ AI Voice ключ активен');
                         };
                         _testWS.onerror = function() {
                             clearTimeout(_wsTimer);
@@ -20325,6 +20694,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         if (k) el.value = k;
                     }
                     _eitiUpdateGrokBtns();
+                    if (typeof eitiVoiceSettingsRender === 'function') eitiVoiceSettingsRender(); // v13.7.22
                     // v12.9.47: sync chunk-size slider with stored value
                     var csEl = document.getElementById('chunk-size');
                     var csVal = document.getElementById('chunk-size-val');
@@ -21229,11 +21599,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
 
                 // v12.9: если в chatLog есть сообщения от Grok Voice — предупреждаем DeepSeek
                 var _hasGrokMsgs = chatLog.some(function(m) {
-                    return m.text && (m.text.indexOf('[🎤 Голос]') === 0 || m.text.indexOf('[🗣️ Grok Voice]') === 0);
+                    return m.text && (m.text.indexOf('[🎤 Голос]') === 0 || m.text.indexOf('[🗣️ AI Voice]') === 0 || m.text.indexOf('[🗣️ Grok Voice]') === 0); // v13.7.22: старые записи — с префиксом Grok Voice
                 });
                 if (_hasGrokMsgs) {
-                    _sysStatic += '\n\n[ℹ️ КОНТЕКСТ: часть диалога выше велась голосом через Grok Voice. ' +
-                        'Сообщения помечены: [🎤 Голос] = слова пользователя, [🗣️ Grok Voice] = ответы голосового ассистента. ' +
+                    _sysStatic += '\n\n[ℹ️ КОНТЕКСТ: часть диалога выше велась голосом через AI Voice. ' +
+                        'Сообщения помечены: [🎤 Голос] = слова пользователя, [🗣️ AI Voice] = ответы голосового ассистента. ' +
                         'Учитывай этот контекст как продолжение беседы.]';
                 }
 
@@ -22866,7 +23236,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         // v12.9.43: сигнал Grok Voice об обновлении (не меняет инструкции, только триггер)
                         try {
                             if (window._grokWS && window._grokWS.readyState === 1) { // v12.9.55 FIX: _grokWs → _grokWS (typo)
-                                if (window.EITI_DEBUG) console.log('[L2] Grok Voice: новый дайджест доступен (' + topics.join(', ') + ')');
+                                if (window.EITI_DEBUG) console.log('[L2] AI Voice: новый дайджест доступен (' + topics.join(', ') + ')');
                             }
                         } catch(e){}
                     });
@@ -28777,7 +29147,7 @@ window.eitiLLMClearAll = async function() {
             // P6-fix: показываем источник данных рядом с меткой EITI AI
             var _kbBadge = '';
             var _providerNow = localStorage.getItem('eiti_ai_provider') || 'ai';
-            var _provLabelMap = {deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ Grok Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'};
+            var _provLabelMap = {deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ AI Voice','gemini-live':'🗣️ AI Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'};
             var _senderLabel = _provLabelMap[_providerNow] || 'EITI AI 🤖';
             if (window._lastReplySource === 'mosc') {
                 _kbBadge = ' <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(147,197,253,0.18);color:#93c5fd;font-weight:600;vertical-align:middle;">🔷 MOSC</span>';
@@ -29132,7 +29502,7 @@ window.eitiLLMClearAll = async function() {
                             rendered=content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
                         }
                         div.innerHTML='<div class="message-row"><div class="message-body">'
-                            +(m.role!=='user'?'<div class="message-sender">'+({deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ Grok Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'}[m.provider]||'EITI AI 🤖')+'</div>':'')
+                            +(m.role!=='user'?'<div class="message-sender">'+({deepseek:'DeepSeek 🤖',gemini:'Gemini AI 🔵',openrouter:'OpenRouter 🔀',grok:'🗣️ AI Voice','gemini-live':'🗣️ AI Voice',openai:'ChatGPT 🟢',qwen:'Qwen AI 🟣',duckduckgo:'DDG 🦆'}[m.provider]||'EITI AI 🤖')+'</div>':'')
                             +'<div>'+rendered+'</div>'
                             +'<div class="message-time" style="font-size:11px;opacity:0.55;margin-top:3px">'+time+'</div>'
                             +'</div><div class="message-controls"><button class="msg-btn" title="Копировать">📋</button></div></div>';
@@ -34913,20 +35283,16 @@ window.eitiLLMClearAll = async function() {
             try {
                 navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function(reg){
                     window._eitiSWReg = reg;
-                    // v13: updatefound listener для мгновенного тоста об обновлении
+                    // v13.7.22: тихое обновление — без всплывающих тостов при запуске.
+                    // Новый SW по-прежнему активируется (sw.js сам вызывает skipWaiting;
+                    // SKIP_WAITING шлём на всякий случай), версия видна в Настройки → О приложении.
                     reg.addEventListener('updatefound', function() {
                         var nw = reg.installing;
                         if (!nw) return;
                         nw.addEventListener('statechange', function() {
                             if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-                                setTimeout(function() {
-                                    if (typeof showToast === 'function') {
-                                        showToast('🔄 Обновление готово — нажмите для применения', 8000, function() {
-                                            nw.postMessage({ type: 'SKIP_WAITING' });
-                                            window.location.reload();
-                                        });
-                                    }
-                                }, 500);
+                                try { nw.postMessage({ type: 'SKIP_WAITING' }); } catch (e) {}
+                                window._eitiSwUpdateReady = true;
                             }
                         });
                     });
@@ -34945,14 +35311,9 @@ window.eitiLLMClearAll = async function() {
                 // v12.9.13: уведомление об обновлении SW без принудительной перезагрузки
                 navigator.serviceWorker.addEventListener('message', function(e) {
                     if (e.data && e.data.type === 'SW_UPDATED') {
-                        var v = e.data.version ? ' v' + e.data.version : '';
-                        setTimeout(function() {
-                            if (typeof showToast === 'function') {
-                                showToast('🔄 Обновление' + v + ' — нажмите для перезагрузки', 7000, function() {
-                                    window.location.reload();
-                                });
-                            }
-                        }, 1000);
+                        // v13.7.22: без тоста с версией — тихо запоминаем, что SW обновился.
+                        window._eitiSwUpdatedVersion = e.data.version || '';
+                        if (window.EITI_DEBUG) console.log('[EITI] SW updated', window._eitiSwUpdatedVersion);
                     }
                     // v12.9.79: обрабатываем ошибку кэширования SW
                     if (e.data && e.data.type === 'SW_CACHE_ERROR') {
@@ -35949,6 +36310,79 @@ window.eitiLLMClearAll = async function() {
             }
             return { filename: name + '.pdf', mime: 'application/pdf', content: (t ? t + '\n\n' : '') + b, format: 'pdf' };
         }
+        // ── v13.7.22: экспорт чата (💾 Сохранить чат → Markdown / PDF / TXT) ──
+        // Чистые функции (тестируются в tests_js/chat_export_voice.test.js); скачивание и PDF —
+        // через тот же код, что у заметок (eitiNotesDownloadFile / eitiNotesPrintPdf).
+        function eitiChatExportRole(m) {
+            if (!m) return 'EITI';
+            if (m.role === 'user') return 'Вы';
+            var prov = String(m.provider || '');
+            var vision = /-vision$/.test(prov);
+            if (vision) prov = prov.replace(/-vision$/, '');
+            var names = {
+                deepseek: 'DeepSeek', gemini: 'Gemini', openrouter: 'OpenRouter', grok: 'AI Voice (Grok)',
+                'gemini-live': 'AI Voice (Gemini)', openai: 'ChatGPT', qwen: 'Qwen', duckduckgo: 'DuckDuckGo',
+                webllm: 'WebLLM', ollama: 'Ollama'
+            };
+            var name = (prov === 'openrouter' && m.model) ? String(m.model) : (names[prov] || (prov ? prov : 'EITI'));
+            return vision ? name + ' (Vision)' : name;
+        }
+        function eitiChatExportCleanText(text) {
+            var t = String(text == null ? '' : text);
+            // картинки и вложения → короткие плейсхолдеры (base64 в файл не тащим)
+            t = t.replace(/!\[([^\]]*)\]\((?:data:[^)]*|[^)\s]+)\)/g, function(_m, alt) { return alt ? '[изображение: ' + alt + ']' : '[изображение]'; });
+            t = t.replace(/<img\b[^>]*>/gi, '[изображение]');
+            t = t.replace(/data:(image|audio|video)\/[\w.+-]+;base64,[A-Za-z0-9+\/=]+/g, function(_m, kind) {
+                return kind === 'image' ? '[изображение]' : kind === 'audio' ? '[аудио]' : '[видео]';
+            });
+            t = t.replace(/data:[\w.+-]+\/[\w.+-]+;base64,[A-Za-z0-9+\/=]{200,}/g, '[вложение]');
+            t = t.replace(/<EITI_(?:FILE|APPEND):([^>]+)>[\s\S]*?<\/EITI_(?:FILE|APPEND)>/g, '[файл: $1]');
+            return t;
+        }
+        function eitiChatExportVisible(m) {
+            if (!m || typeof m !== 'object') return false;
+            if (m.role === 'system' || m.role === 'tool' || m.hidden || m.internal || m.system) return false;
+            return String(m.text == null ? '' : m.text).trim() !== '' || !!(m.image || m.images || m.attachments || m.files);
+        }
+        function eitiChatExportStamp(ts) {
+            if (!ts) return '';
+            var d = new Date(ts);
+            if (isNaN(d.getTime())) return '';
+            var p2 = function(n) { return (n < 10 ? '0' : '') + n; };
+            return p2(d.getDate()) + '.' + p2(d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+        }
+        function eitiChatExportContent(log, format, meta) {
+            meta = meta || {};
+            var title = String(meta.title || '').trim() || 'Чат';
+            var date = meta.date instanceof Date ? meta.date : new Date(meta.date || Date.now());
+            var p2 = function(n) { return (n < 10 ? '0' : '') + n; };
+            var ymd = date.getFullYear() + '-' + p2(date.getMonth() + 1) + '-' + p2(date.getDate());
+            var fmt = (format === 'md' || format === 'markdown') ? 'md' : (format === 'pdf' ? 'pdf' : 'txt');
+            var base = 'chat-' + eitiNotesSanitizeFilename(title).replace(/\s+/g, '_') + '-' + ymd;
+            var items = (Array.isArray(log) ? log : []).filter(eitiChatExportVisible).map(function(m) {
+                var text = eitiChatExportCleanText(m.text);
+                var extra = [];
+                if (m.image || m.images) extra.push('[изображение]');
+                if (m.attachments || m.files) extra.push('[вложение]');
+                if (extra.length) text = (text ? text + '\n' : '') + extra.join(' ');
+                return { who: eitiChatExportRole(m), when: eitiChatExportStamp(m.ts), text: text };
+            });
+            var stamp = eitiChatExportStamp(date.getTime());
+            if (fmt === 'txt') {
+                var txt = title + '\nЭкспорт: ' + stamp + '\n\n' + items.map(function(it) {
+                    return (it.when ? '[' + it.when + '] ' : '') + it.who + ':\n' + it.text;
+                }).join('\n\n') + '\n';
+                return { filename: base + '.txt', mime: 'text/plain;charset=utf-8', content: txt, format: 'txt', title: title, count: items.length };
+            }
+            var body = items.map(function(it) {
+                return '**' + it.who + '**' + (it.when ? ' · ' + it.when : '') + '\n\n' + it.text;
+            }).join('\n\n---\n\n');
+            var mdBody = '_Экспорт: ' + stamp + '_\n\n' + body + '\n';
+            if (fmt === 'md') {
+                return { filename: base + '.md', mime: 'text/markdown;charset=utf-8', content: '# ' + title + '\n\n' + mdBody, format: 'md', title: title, count: items.length };
+            }
+            return { filename: base + '.pdf', mime: 'application/pdf', content: mdBody, format: 'pdf', title: title, count: items.length };
+        }
         function eitiNotesDownloadFile(content, filename, mime) {
             var payload = content;
             if (typeof payload === 'string' && String(mime || '').indexOf('text/') === 0) payload = '\uFEFF' + payload;
@@ -36012,6 +36446,32 @@ window.eitiLLMClearAll = async function() {
             }, 250);
             return true;
         }
+        // v13.7.22: 💾 Сохранить чат — заголовок чата из IndexedDB (если есть), дата в имени файла
+        function eitiChatSaveAs(format) {
+            var log = (typeof chatLog !== 'undefined' && Array.isArray(chatLog)) ? chatLog : [];
+            if (!log.filter(eitiChatExportVisible).length) { if (typeof showToast === 'function') showToast('Чат пуст'); return Promise.resolve(false); }
+            var titleP = new Promise(function(resolve) {
+                try {
+                    if (typeof eitiDb === 'undefined' || !eitiDb || !eitiCurrentChatId) return resolve('');
+                    var req = eitiDb.transaction(['chats'], 'readonly').objectStore('chats').get(eitiCurrentChatId);
+                    req.onsuccess = function() { resolve(req.result && req.result.title ? req.result.title : ''); };
+                    req.onerror = function() { resolve(''); };
+                } catch (e) { resolve(''); }
+            });
+            return titleP.then(function(title) {
+                var packed = eitiChatExportContent(log, format, { title: title || 'Чат', date: new Date() });
+                if (packed.format === 'pdf') {
+                    var ok = eitiNotesPrintPdf(packed.title, packed.content);
+                    if (ok && typeof showToast === 'function') showToast('🖨️ Выберите «Сохранить как PDF»');
+                    return ok;
+                }
+                var done = eitiNotesDownloadFile(packed.content, packed.filename, packed.mime);
+                if (typeof showToast === 'function') showToast(done ? '💾 Чат сохранён: ' + packed.filename : '❌ Не удалось сохранить чат');
+                return done;
+            });
+        }
+        window.eitiChatSaveAs = eitiChatSaveAs;
+        window.eitiChatExportContent = eitiChatExportContent;
         function eitiNotesCopyText(text) {
             var value = String(text == null ? '' : text);
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -39483,12 +39943,12 @@ window.eitiLLMClearAll = async function() {
                 note: 'Поддерживает если модель имеет 32K+ ctx и JSON mode'
             },
             grok: {
-                name: 'Grok Voice',
+                name: 'AI Voice',
                 key: 'eiti_grok_key',
                 color: '#facc15',
                 support: 'partial',
                 ctx: '131K токенов',
-                note: 'Grok Voice — только голос; Grok text через OpenRouter ✅'
+                note: 'AI Voice — только голос; Grok text через OpenRouter ✅'
             },
             offline: {
                 name: 'Офлайн (Transformers.js)',
@@ -49176,9 +49636,10 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         { id: 'attach',     icon: '📎', label: 'Прикрепить файл',           stateBtn: 'chat-attach-btn',   action: '_eitiAttachFile' },
         { id: 'deepseek',   icon: '⚡', label: 'DeepSeek AI',               stateBtn: 'chat-ds-btn',       action: 'eitiChatDSToggle' },
         { id: 'image',      icon: '🖼️', label: 'Сгенерировать изображение', stateBtn: null,                action: 'eitiImgChatGenerate' },
-        { id: 'grok',       icon: '🗣️', label: 'Grok Voice',                stateBtn: 'chat-grok-btn',     action: 'eitiChatGrokToggle' },
+        { id: 'grok',       icon: '🗣️', label: 'AI Voice',                stateBtn: 'chat-grok-btn',     action: 'eitiChatGrokToggle' },
         { id: 'grokMute',   icon: '🎙️', label: 'Заглушить микрофон',        stateBtn: 'chat-grok-mute-btn', action: 'eitiGrokMuteToggle' },
         { id: 'copyChat',   icon: '📋', label: 'Скопировать чат',           stateBtn: null,                action: '_eitiCopyChat' },
+        { id: 'saveChat',   icon: '💾', label: 'Сохранить чат',             stateBtn: null,                action: '_eitiSaveChat', defaultOn: true },
         { id: 'clearInput', icon: '♻',  label: 'Очистить ввод',             stateBtn: null,                action: '_eitiClearInput' }
     ];
 
@@ -49187,7 +49648,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
             var s = localStorage.getItem('eiti_chat_panel_btns');
             if (s) return JSON.parse(s);
         } catch (e) {}
-        return { attach: true, deepseek: true, image: false, grok: true, grokMute: true, copyChat: true, clearInput: true };
+        return { attach: true, deepseek: true, image: false, grok: true, grokMute: true, copyChat: true, saveChat: true, clearInput: true };
     }
 
     function eitiChatPlusSaveSettings(cfg) {
@@ -49229,7 +49690,10 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         var cfg = eitiChatPlusGetSettings();
         var html = '';
         EITI_CHAT_PLUS_ITEMS.forEach(function (item) {
-            if (!cfg[item.id]) return;
+            // v13.7.22: новые пункты (defaultOn) видны и у тех, у кого настройки панели уже сохранены
+            var on = cfg[item.id];
+            if (on === undefined) on = !!item.defaultOn;
+            if (!on) return;
             var isActive = false;
             if (item.stateBtn) {
                 var sb = document.getElementById(item.stateBtn);
@@ -49245,9 +49709,53 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         popup.innerHTML = html;
     }
 
+    // v13.7.22: выбор формата «Сохранить чат» — в том же всплывающем меню (стили темы)
+    function eitiChatSaveRenderPicker(popup) {
+        var _t = typeof window.T === 'function' ? window.T : function(s){return s;};
+        var rows = [
+            { fmt: 'md',  icon: '📝', label: 'Markdown (.md)' },
+            { fmt: 'pdf', icon: '📄', label: 'PDF' },
+            { fmt: 'txt', icon: '📃', label: _t('Текст (.txt)') }
+        ];
+        var html = '<div class="chat-plus-item chat-save-head" onclick="eitiChatSaveBack()" style="opacity:0.8;">' +
+            '<div class="cpi-icon">←</div><span class="cpi-label">' + _t('💾 Сохранить чат как…') + '</span></div>';
+        rows.forEach(function(r) {
+            html += '<div class="chat-plus-item" data-chat-save="' + r.fmt + '" onclick="eitiChatSavePick(\'' + r.fmt + '\')">' +
+                '<div class="cpi-icon">' + r.icon + '</div><span class="cpi-label">' + r.label + '</span></div>';
+        });
+        popup.innerHTML = html;
+        popup.style.display = 'block';
+        popup.classList.add('open');
+        var _pbtn = document.getElementById('chat-plus-btn');
+        if (_pbtn) _pbtn.classList.add('open');
+        setTimeout(function () {
+            document.addEventListener('click', function _closeSave(e) {
+                var pop = document.getElementById('chat-plus-popup');
+                var pb = document.getElementById('chat-plus-btn');
+                if (pb && pb.contains(e.target)) { document.removeEventListener('click', _closeSave); return; }
+                if (pop && !pop.contains(e.target)) {
+                    pop.style.display = 'none'; pop.classList.remove('open');
+                    if (pb) pb.classList.remove('open');
+                    document.removeEventListener('click', _closeSave);
+                }
+            });
+        }, 10);
+    }
+    function eitiChatSavePick(fmt) {
+        var popup = document.getElementById('chat-plus-popup');
+        var btn = document.getElementById('chat-plus-btn');
+        if (popup) { popup.style.display = 'none'; popup.classList.remove('open'); }
+        if (btn) btn.classList.remove('open');
+        if (typeof window.eitiChatSaveAs === 'function') window.eitiChatSaveAs(fmt);
+    }
+    window.eitiChatSavePick = eitiChatSavePick;
+    window.eitiChatSaveBack = function() { var pop = document.getElementById('chat-plus-popup'); if (pop) eitiChatPlusRender(pop); };
+
     function eitiChatPlusAction(fnName) {
         var popup = document.getElementById('chat-plus-popup');
         var btn = document.getElementById('chat-plus-btn');
+        // v13.7.22: после штатного обработчика клика «вне меню» (он видит заменённый узел) — открываем выбор формата
+        if (fnName === '_eitiSaveChat' && popup) { setTimeout(function () { eitiChatSaveRenderPicker(popup); }, 0); return; }
         if (popup) { popup.style.display = 'none'; popup.classList.remove('open'); }
         if (btn) btn.classList.remove('open');
         if (fnName === '_eitiAttachFile') {
@@ -49308,7 +49816,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
         if (!container) return;
         var cfg = eitiChatPlusGetSettings();
         var topItems = [
-            { id: 'grok',     btnId: 'chat-grok-btn',      fn: 'eitiChatGrokToggle',  icon: '🗣️', title: 'Grok Voice',          style: '' },
+            { id: 'grok',     btnId: 'chat-grok-btn',      fn: 'eitiChatGrokToggle',  icon: '🗣️', title: 'AI Voice',          style: '' },
             { id: 'grokMute', btnId: 'chat-grok-mute-btn', fn: 'eitiGrokMuteToggle',  icon: '🎙️', title: 'Заглушить микрофон', style: 'font-size:13px;' }
         ];
         var bottomItems = [

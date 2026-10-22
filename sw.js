@@ -1,8 +1,8 @@
-// VELANTRIM EITI — Service Worker v13.7.21
+// VELANTRIM EITI — Service Worker v13.7.22
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.7.21
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 13.7.22
 
-var CACHE = 'eiti-v13.7.21'; // v13.7.21: светлый режим заметки, вставка как есть, markdown-рендер
+var CACHE = 'eiti-v13.7.22'; // v13.7.22: «Сохранить чат», AI Voice (Grok / Gemini Live), тихое обновление
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -66,7 +66,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '13.7.21' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '13.7.22' });
                         });
                     });
                     });
