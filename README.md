@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.21-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.22-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,15 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.21
+## 🆕 Что нового в v13.7.22
+
+**Чат: «💾 Сохранить чат» и AI Voice с выбором провайдера**
+- В меню «+» чата после «Скопировать чат» — «💾 Сохранить чат»: Markdown, PDF или TXT. В файле роли («Вы» / имя модели) и время сообщений; служебные сообщения пропускаются, картинки и вложения заменены плейсхолдерами. Имя файла — `chat-<название>-<дата>`.
+- «Grok Voice» переименован в «AI Voice» во всём интерфейсе (меню, настройки, тосты, переводы). Старые настройки и история сохраняются.
+- Настройки → «🗣️ AI Voice — провайдер»: Grok (xAI, по умолчанию, без изменений) или Gemini Live (модели gemini-3.8-live / gemini-3.8-live-extended-thinking / gemini-3.1-flash-live-preview, 30 голосов). Ключ — отдельный или общий ключ Gemini API. Кнопка 🎙️ (mute) работает с обоими.
+- Обновление приложения теперь тихое: при запуске больше не всплывает тост с номером версии. Версия видна в Настройки → О приложении.
+
+### Выпуск v13.7.21
 
 **Заметки: светлый режим ☀️ и вставка «как есть»**
 - ☀️ в меню ⋯ теперь переключает весь редактор на светлую палитру (переменные paper-light): ⋯, 📋, «Аб», ↶/↷, ✕, меню ⋯ и экспорта, чипы Ask AI и подсветка правок ИИ читаются. Выбор запоминается. Нижняя панель приложения не меняется.
