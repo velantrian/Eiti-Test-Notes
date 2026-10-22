@@ -8,12 +8,12 @@ INDEX = (ROOT / "index.html").read_text(encoding="utf-8")
 SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
-def test_version_is_13_8_0_everywhere():
-    assert 'var EITI_VERSION = "13.8.0"' in INDEX
-    assert "var CACHE = 'eiti-v13.8.0'" in SW
-    assert "version: '13.8.0'" in SW
-    assert "v13.8.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
-    assert "version-13.8.0-gold" in (ROOT / "README.md").read_text(encoding="utf-8")
+def test_version_synced_everywhere():
+    v = re.search(r'var EITI_VERSION = "([\d.]+)"', INDEX).group(1)
+    assert f"var CACHE = 'eiti-v{v}'" in SW
+    assert f"version: '{v}'" in SW
+    assert f"v{v}" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
+    assert f"version-{v}-gold" in (ROOT / "README.md").read_text(encoding="utf-8")
 
 
 def test_file_viewer_theme_recolors_title_and_buttons():

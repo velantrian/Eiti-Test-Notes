@@ -11,6 +11,9 @@ const { test, expect } = require('@playwright/test');
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
+    // v13.8.1: the product tour opens 900 ms after load; on slower engines (WebKit)
+    // it lands mid-test and its overlay swallows the chip ✕ click → timeout.
+    localStorage.setItem('eiti_toured_v7', '1');
   });
 });
 
