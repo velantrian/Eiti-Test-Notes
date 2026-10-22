@@ -54,6 +54,15 @@ test('окно файла: светлая тема по умолчанию, ко
   await bootWithFile(page);
   const viewer = page.locator('#fv-header').locator('xpath=..');
   await expect(viewer).toHaveAttribute('data-fv-theme', 'light');
+  // название файла не сжимается кнопками, шапка помещается в 412px
+  const geo = await page.evaluate(() => {
+    const t = document.getElementById('fv-title').getBoundingClientRect(), h = document.getElementById('fv-header').getBoundingClientRect();
+    const c = document.getElementById('fv-controls').getBoundingClientRect();
+    return { tw: t.width, hw: h.width, cRight: c.right, vw: window.innerWidth, scroll: document.getElementById('fv-header').scrollWidth - document.getElementById('fv-header').clientWidth };
+  });
+  expect(geo.tw).toBeGreaterThanOrEqual(geo.hw - 1);
+  expect(geo.cRight).toBeLessThanOrEqual(geo.vw);
+  expect(geo.scroll).toBeLessThanOrEqual(0);
   for (const [btn, theme] of [['#fv-bg-white', 'light'], ['#fv-bg-black', 'dark'], ['#fv-bg-paper', 'paper']]) {
     await page.locator(btn).click();
     await expect(viewer).toHaveAttribute('data-fv-theme', theme);
@@ -66,10 +75,16 @@ test('окно файла: светлая тема по умолчанию, ко
     expect(ratio(c.copyFg, c.copyBg)).toBeGreaterThanOrEqual(4.5);
     expect(ratio(c.closeFg, c.closeBg)).toBeGreaterThanOrEqual(4.5);
     expect(ratio(c.renFg, c.renBg)).toBeGreaterThanOrEqual(4.5);
+    const vb = await page.evaluate(() => { const b = document.getElementById('fv-view-btn'); const cs = getComputedStyle(b); return { fg: cs.color, bg: cs.backgroundColor }; });
+    expect(ratio(vb.fg, vb.bg)).toBeGreaterThanOrEqual(4.5);
+    await shot(page, `files-${theme}-rendered.png`);
+    await expect(page.locator('#fv-view-btn')).toHaveText('📄 Текст');
     await page.locator('#fv-view-btn').click(); // исходный текст
+    await expect(page.locator('#fv-view-btn')).toHaveText('📖 Reader');
+    await expect(page.locator('#fv-pre')).toHaveText(SAMPLE);
     await shot(page, `files-${theme}-source.png`);
     await page.locator('#fv-view-btn').click(); // обратно к оформлению
-    await shot(page, `files-${theme}-rendered.png`);
+    await expect(page.locator('#fv-view-btn')).toHaveText('📄 Текст');
   }
   expect(await page.evaluate(() => localStorage.getItem('eiti_fv_theme'))).toBe('paper');
   await page.locator('#fv-bg-white').click();

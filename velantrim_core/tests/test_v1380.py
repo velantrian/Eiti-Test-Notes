@@ -85,3 +85,10 @@ def test_single_file_rule_kept():
     assert '<script id="eiti-v1380-script">' in INDEX
     assert '<style id="eiti-v1380-style">' in INDEX
     assert INDEX.rstrip().endswith("</html>")
+
+
+def test_reader_switch_labeled():
+    assert "viewBtn.textContent = state.mode === 'view' ? '📄 Текст' : '📖 Reader';" in INDEX
+    assert ">📄 Текст</button>" in INDEX
+    assert "'</>'" not in INDEX[INDEX.index("function eitiFvEnhance"):]
+    assert 'id="fv-controls"' in INDEX and "flex:1 1 100%;min-width:0;" in INDEX

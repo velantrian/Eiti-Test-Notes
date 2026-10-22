@@ -29779,17 +29779,17 @@ window.eitiLLMClearAll = async function() {
                     v.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:#f8f8f8;z-index:2500;display:flex;flex-direction:column;padding:14px;box-sizing:border-box;';
                     v.innerHTML=
                         // ── Шапка вьюера ──────────────────────────────────────────
-                        '<div id="fv-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;">'+
-                            '<div id="fv-title" style="color:#1d4ed8;font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:46%;">'+ico+' '+e(dname)+'</div>'+
-                            '<div style="display:flex;align-items:center;flex-shrink:0;">'+
+                        '<div id="fv-header" style="display:flex;flex-wrap:wrap;row-gap:8px;justify-content:space-between;align-items:center;margin-bottom:10px;flex-shrink:0;">'+
+                            '<div id="fv-title" style="color:#1d4ed8;font-weight:700;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1 1 100%;min-width:0;">'+ico+' '+e(dname)+'</div>'+
+                            '<div id="fv-controls" style="display:flex;align-items:center;flex-shrink:0;margin-left:auto;">'+
                                 // Три кнопки смены фона — аккуратные цветные квадраты без эмодзи
                                 '<button id="fv-bg-white" title="Белый фон"  style="width:26px;height:26px;border-radius:7px;border:1.5px solid #ccc;background:#fff;cursor:pointer;flex-shrink:0;"></button>'+
                                 '<button id="fv-bg-black" title="Чёрный фон" style="width:26px;height:26px;border-radius:7px;border:1.5px solid #555;background:#111;cursor:pointer;flex-shrink:0;margin-left:4px;"></button>'+
                                 // Коричневый квадрат вместо 📄 — чтобы не путать с кнопкой копирования
                                 '<button id="fv-bg-paper" title="Бумажный фон" style="width:26px;height:26px;border-radius:7px;border:1.5px solid #9a7a4a;background:#7a5a32;cursor:pointer;flex-shrink:0;margin-left:4px;"></button>'+
                                 // Кнопка переименования — отделена бо́льшим gap
-                                // v13.8.0: 👁 оформленный просмотр / </> исходный текст
-                                '<button id="fv-view-btn" title="Просмотр с оформлением" aria-label="Просмотр с оформлением" style="margin-left:10px;min-width:30px;height:30px;padding:0 6px;border-radius:8px;border:1px solid #b8b8b8;background:#fff;color:#111;font-size:13px;font-weight:700;cursor:pointer;flex-shrink:0;">👁</button>'+
+                                // v13.8.0: переключатель читалки «📄 Текст» ⇄ «📖 Reader»; название файла — отдельной строкой, не сжимается
+                                '<button id="fv-view-btn" title="Показать исходный текст файла" aria-label="Показать исходный текст файла" style="margin-left:10px;height:30px;padding:0 10px;border-radius:8px;border:1px solid #b8b8b8;background:#fff;color:#111;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;flex-shrink:0;">📄 Текст</button>'+
                                 '<button id="fv-rename-btn" title="Переименовать файл" style="margin-left:6px;width:30px;height:30px;border-radius:8px;border:1px solid var(--border-color);background:rgba(255,255,255,0.1);color:var(--text-color);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">✏️</button>'+
                                 // Кнопки копирования и закрытия — отделены от цветов
                                 '<button id="fv-copy-btn" title="Скопировать" style="margin-left:12px;padding:6px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-weight:700;cursor:pointer;flex-shrink:0;">📋</button>'+
@@ -51014,8 +51014,8 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                     }
                 }
                 if (viewBtn) {
-                    viewBtn.textContent = state.mode === 'view' ? '</>' : '👁';
-                    viewBtn.title = state.mode === 'view' ? 'Исходный текст' : 'Просмотр с оформлением';
+                    viewBtn.textContent = state.mode === 'view' ? '📄 Текст' : '📖 Reader'; // v13.8.0: понятный переключатель читалки
+                    viewBtn.title = state.mode === 'view' ? 'Показать исходный текст файла' : 'Reader — просмотр с оформлением';
                     viewBtn.setAttribute('aria-label', viewBtn.title);
                 }
                 var eb = v.querySelector('#fv-ai-edit'); if (eb) eb.classList.toggle('on', state.mode === 'edit');
