@@ -120,7 +120,7 @@ test('OpenRouter thinking toggle persists and disables reasoning on all OR reque
   assert.match(INDEX, /function eitiApplyORThinking\(body\)/);
 
   const endpoints = INDEX.match(/https:\/\/openrouter\.ai\/api\/v1\/chat\/completions/g) || [];
-  assert.equal(endpoints.length, 8, 'unexpected OpenRouter chat endpoint count');
+  assert.equal(endpoints.length, 9, 'unexpected OpenRouter chat endpoint count'); // v13.8.0: + eitiDocAIRequest
 
   const callSites = [
     /eitiApplyORThinking\(suggBody\)/,
@@ -130,7 +130,8 @@ test('OpenRouter thinking toggle persists and disables reasoning on all OR reque
     /if \(_l2Provider === 'openrouter'\) eitiApplyORThinking\(_l2Body\)/,
     /eitiApplyORThinking\(\{\s*model: 'deepseek\/deepseek-v4\.1-flash'/,
     /eitiApplyORThinking\(orBody\);\s*var orr = await fetch\('https:\/\/openrouter\.ai\/api\/v1\/chat\/completions'/,
-    /eitiApplyORThinking\(\{ model: model, messages: apiMsgs, max_tokens: 2000 \}\)/
+    /eitiApplyORThinking\(\{ model: model, messages: apiMsgs, max_tokens: 2000 \}\)/,
+    /if \(provider === 'openrouter'\) \{[\s\S]{0,260}eitiApplyORThinking\(body\)/
   ];
   callSites.forEach((re) => assert.match(INDEX, re));
 });
