@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "13.7.22"; // «💾 Сохранить чат», AI Voice (Grok xAI / Gemini Live), тихое обновление без тоста версии
+        var EITI_VERSION = "13.7.23"; // ↶↷ в шапке заметки для любых правок (история 50 шагов), Аб в меню ⋯, теги без пустой полосы
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7408,8 +7408,17 @@
         }
         .note-editor-topbar .note-editor-title {
             flex: 1 1 auto;
-            min-width: 120px;
+            min-width: 0; /* v13.7.23: ↶↷ в шапке — заголовок сжимается с «…», а не выталкивает кнопки */
+            overflow: hidden;
+            white-space: nowrap;
         }
+        .note-editor-topbar .note-editor-title:not(:focus) { text-overflow: ellipsis; }
+        /* v13.7.23: ↶ ↷ — те же плитки 36px, что 📋 / ⋯; недоступная — приглушена, но видна */
+        .note-undo-btn { padding: 0; }
+        .note-undo-btn .note-undo-ico { display: block; pointer-events: none; }
+        .note-undo-btn:disabled { opacity: 0.38; cursor: default; }
+        .note-editor-overlay:not(.notes-ai-on) #noteHlToggle { display: none; }
+        .note-hl-menu-item .note-hl-state { margin-left: auto; font-size: 11px; opacity: 0.7; }
         .note-editor-topbar-actions {
             flex-shrink: 0;
             display: flex;
@@ -7471,7 +7480,8 @@
             color: var(--text-color);
             box-shadow: inset 0 -2px 0 rgba(22, 163, 74, 0.55);
         }
-        .note-editor-tool-icon.is-on .note-hl-glyph {
+        .note-editor-tool-icon.is-on .note-hl-glyph,
+        #noteHlToggle.is-on .note-hl-glyph {
             background: color-mix(in srgb, var(--notes-hl-add, #86efac) 88%, #fff 12%);
         }
         .note-editor-back {
@@ -7757,15 +7767,14 @@
             box-shadow: 0 4px 16px rgba(0,0,0,0.28);
             display: flex; align-items: center; justify-content: center; gap: 6px;
         }
+        /* v13.7.23: без Notes AI нижней панели нет — теги прижаты к нижней навигации (раньше 52px пустоты) */
         .note-editor-overlay.active .note-editor-body,
-        .note-editor-overlay.active .note-editor-hl { padding-bottom: 64px; }
-        .note-editor-overlay.active .note-tags-row { padding-bottom: 52px; }
+        .note-editor-overlay.active .note-editor-hl { padding-bottom: 16px; }
+        .note-editor-overlay.active .note-tags-row { padding-bottom: calc(6px + env(safe-area-inset-bottom, 0px)); }
+        /* с Notes AI — место ровно под плавающую панель 🔍 / Ask AI / ✎ (44px + 10px отступ) */
         .note-editor-overlay.notes-ai-on .note-editor-body,
         .note-editor-overlay.notes-ai-on .note-editor-hl { padding-bottom: 78px; }
-        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: 64px; }
-        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-editor-body,
-        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-editor-hl { padding-bottom: 122px; }
-        .note-editor-overlay.notes-ai-on:has(#noteAiTools.is-visible) .note-tags-row { padding-bottom: 110px; }
+        .note-editor-overlay.notes-ai-on .note-tags-row { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
         .notes-ai-find {
             display: none;
             position: absolute;
@@ -7944,7 +7953,7 @@
             .notes-ai-panel.notes-ai-size-small { height: 42%; }
             .note-editor-topbar .note-editor-title {
                 flex: 1 1 auto;
-                min-width: 120px;
+                min-width: 0;
             }
         }
 
@@ -11231,6 +11240,9 @@
                             <button class="note-editor-back" id="noteEditorBack">←</button>
                             <input class="note-editor-title" id="noteEditorTitle" placeholder="Заголовок...">
                             <div class="note-editor-topbar-actions">
+                                <!-- v13.7.23: отмена/повтор любой правки заметки (история до 50 шагов) -->
+                                <button type="button" class="note-editor-tool-icon note-undo-btn" id="noteUndoBtn" title="Отменить" aria-label="Отменить" disabled><svg class="note-undo-ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H12"/></svg></button>
+                                <button type="button" class="note-editor-tool-icon note-undo-btn" id="noteRedoBtn" title="Повторить" aria-label="Повторить" disabled><svg class="note-undo-ico" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H12"/></svg></button>
                                 <button class="note-editor-tool-icon" id="noteCopyAllBtn" title="Копировать всю заметку" aria-label="Копировать всю заметку" onclick="(function(){var t=(document.getElementById('noteEditorTitle').value||'').trim();var b=(document.getElementById('noteEditorBody').value||'');var full=(t&&b.trim())?t+'\n\n'+b:(t||b);if(!full.trim()){showToast('Нечего копировать');return;}navigator.clipboard?navigator.clipboard.writeText(full).then(function(){showToast('📋 Скопировано!')}).catch(function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}):function(){var ta=document.createElement('textarea');ta.value=full;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('📋 Скопировано!')}()})()">📋</button>
                                 <button type="button" class="note-editor-tool-icon" id="noteMoreBtn" title="Ещё" aria-haspopup="true" aria-expanded="false" aria-label="Ещё">⋯</button>
                             </div>
@@ -11240,6 +11252,7 @@
                                 <button type="button" id="noteShareBtn" title="Отправить" aria-haspopup="true" aria-expanded="false" aria-label="Отправить">📤 Отправить</button>
                                 <button type="button" id="noteReminderBtn" onclick="eitiNoteReminder()" title="Напоминание">🔔 Напоминание</button>
                                 <button type="button" id="noteLightBtn" onclick="eitiNoteToggleLight()" title="Светлый режим">☀️ Светлый режим</button>
+                                <button type="button" id="noteHlToggle" class="note-hl-menu-item" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span> Подсветка правок ИИ <span class="note-hl-state" id="noteHlState">вкл</span></button>
                                 <button type="button" id="noteHistoryBtn" onclick="noteHistoryOpen()" title="История версий" hidden>🕐 История версий</button>
                                 <button type="button" class="note-more-danger" id="noteEditorDelete" title="Удалить заметку">🗑 Удалить заметку</button>
                             </div>
@@ -11282,11 +11295,6 @@
                             <button type="button" class="notes-ai-fab-ask notes-ai-fab-ai" id="notesAiAskBtn"><span>✨</span><span data-i18n="Ask AI">Ask AI</span></button>
                             <button type="button" class="notes-ai-fab-round notes-ai-fab-ai" id="notesAiEditBtn" title="Редактировать" aria-label="Редактировать">✎</button>
                             <div class="note-editor-toolbar" id="noteEditorToolbar">
-                                <div class="note-ai-tools" id="noteAiTools" hidden>
-                                    <button type="button" class="note-editor-tool-icon" id="noteHlToggle" title="Подсветка правок ИИ" aria-pressed="true" aria-label="Подсветка правок ИИ"><span class="note-hl-glyph" aria-hidden="true">Аб</span></button>
-                                    <button type="button" class="note-editor-tool-icon" id="noteAiUndoBtn" title="Вернуть текст до правки ИИ" aria-label="Отменить правку ИИ" disabled>↶</button>
-                                    <button type="button" class="note-editor-tool-icon" id="noteAiRedoBtn" title="Снова применить правку ИИ" aria-label="Повторить правку ИИ" disabled>↷</button>
-                                </div>
                             </div>
                         </div>
                         <div class="notes-ai-panel notes-ai-size-medium" id="notesAiPanel">
@@ -35829,6 +35837,8 @@ window.eitiLLMClearAll = async function() {
             if (typeof eitiNotesHlOnEditorOpen === 'function') eitiNotesHlOnEditorOpen(note);
             if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
             if (typeof eitiNotesSyncKeyboardChrome === 'function') eitiNotesSyncKeyboardChrome();
+            if (typeof eitiNoteUndoBindUI === 'function') eitiNoteUndoBindUI(); // v13.7.23
+            if (typeof eitiNoteUndoOnOpen === 'function') eitiNoteUndoOnOpen();
         }
         function notesCloseEditor() {
             notesAutoSaveFlush();
@@ -36052,6 +36062,8 @@ window.eitiLLMClearAll = async function() {
                 btn.classList.toggle('is-on', on);
                 btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             }
+            var st = document.getElementById('noteHlState');
+            if (st) st.textContent = on ? 'вкл' : 'выкл';
         }
         function eitiNotesHlHideOverlay() {
             var wrap = document.getElementById('noteEditorBodyWrap');
@@ -36138,7 +36150,10 @@ window.eitiLLMClearAll = async function() {
             try { var cd = e.clipboardData || (typeof window !== 'undefined' && window.clipboardData); text = cd ? (cd.getData('text/plain') || cd.getData('text') || '') : ''; } catch (err) { text = ''; }
             if (!text) return false; // fallback: стандартная вставка
             e.preventDefault();
-            return eitiNotesInsertExact(el, text);
+            _eitiNoteUndoNextKind = 'paste'; // v13.7.23: вставка — отдельный шаг ↶
+            var r = eitiNotesInsertExact(el, text);
+            _eitiNoteUndoNextKind = '';
+            return r;
         }
         function eitiNotesOnManualEdit() {
             if (_eitiNotesHlIgnoreInput) return;
@@ -36222,6 +36237,7 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiNotesAiRememberUndo(before, after) {
             var extra = eitiNotesAiUndoRecord({}, before, after);
+            if (typeof eitiNoteUndoRecordAi === 'function') eitiNoteUndoRecordAi(before, after); // v13.7.23: шаг ↶↷
             if (!notesCurrentId) {
                 _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, extra);
             } else {
@@ -36284,6 +36300,190 @@ window.eitiLLMClearAll = async function() {
             if (typeof showToast === 'function') showToast('↷ Снова текст после ИИ', 1400);
             return true;
         }
+        // ── v13.7.23: история правок заметки (↶ Отменить / ↷ Повторить) ──
+        // Снимок = заголовок + текст + теги + выделение + прокрутка. До 50 шагов на заметку (в памяти).
+        // Набор текста группируется (пауза < 700 мс, без перевода строки); вставка, вырезание,
+        // формат, правка ИИ, восстановление версии — отдельные шаги. Новая правка очищает «повтор».
+        var EITI_NOTE_UNDO_LIMIT = 50;
+        var EITI_NOTE_UNDO_GROUP_MS = 700;
+        var _eitiNoteUndoMap = {};
+        var _eitiNoteUndoKey = '';
+        var _eitiNoteUndoNextKind = '';
+        var _eitiNoteUndoApplying = false;
+        function eitiNoteUndoCreate(snap) {
+            return { stack: [snap], index: 0, lastAt: 0, lastKind: '' };
+        }
+        function eitiNoteUndoSame(a, b) {
+            return !!(a && b && a.title === b.title && a.body === b.body && a.tags === b.tags);
+        }
+        function eitiNoteUndoPush(h, snap, kind, now) {
+            if (!h || !snap) return h;
+            var cur = h.stack[h.index];
+            if (eitiNoteUndoSame(cur, snap)) {
+                h.stack[h.index] = Object.assign({}, cur, { selStart: snap.selStart, selEnd: snap.selEnd, scroll: snap.scroll });
+                return h;
+            }
+            var t = Number(now) || Date.now();
+            if (h.index < h.stack.length - 1) h.stack = h.stack.slice(0, h.index + 1); // новая правка — «повтор» очищен
+            var groupable = kind === 'type' || kind === 'title' || kind === 'tag';
+            var newline = kind === 'type' && cur && (String(snap.body).split('\n').length !== String(cur.body).split('\n').length);
+            var canGroup = groupable && h.lastKind === kind && h.index > 0 && (t - h.lastAt) < EITI_NOTE_UNDO_GROUP_MS && !newline;
+            if (canGroup) {
+                h.stack[h.index] = snap;
+            } else {
+                h.stack.push(snap);
+                h.index = h.stack.length - 1;
+            }
+            while (h.stack.length > EITI_NOTE_UNDO_LIMIT + 1) { h.stack.shift(); h.index--; }
+            h.lastAt = t;
+            h.lastKind = newline ? '' : kind;
+            return h;
+        }
+        function eitiNoteUndoCanUndo(h) { return !!(h && h.index > 0); }
+        function eitiNoteUndoCanRedo(h) { return !!(h && h.index < h.stack.length - 1); }
+        function eitiNoteUndoStep(h, dir) {
+            if (!h) return null;
+            if (dir < 0 ? !eitiNoteUndoCanUndo(h) : !eitiNoteUndoCanRedo(h)) return null;
+            h.index += dir < 0 ? -1 : 1;
+            h.lastKind = '';
+            return h.stack[h.index];
+        }
+        function eitiNoteUndoSnapshot() {
+            var t = document.getElementById('noteEditorTitle');
+            var b = document.getElementById('noteEditorBody');
+            var g = document.getElementById('noteEditorTags');
+            return {
+                title: t ? String(t.value || '') : '',
+                body: b ? String(b.value || '') : '',
+                tags: g ? String(g.value || '') : '',
+                selStart: b && b.selectionStart != null ? b.selectionStart : 0,
+                selEnd: b && b.selectionEnd != null ? b.selectionEnd : 0,
+                scroll: b ? b.scrollTop || 0 : 0
+            };
+        }
+        function eitiNoteUndoHistory() {
+            // новая заметка получает id при первом автосохранении — переносим её историю
+            if (_eitiNoteUndoKey.indexOf('new:') === 0 && notesCurrentId && _eitiNoteUndoMap[_eitiNoteUndoKey]) {
+                _eitiNoteUndoMap[notesCurrentId] = _eitiNoteUndoMap[_eitiNoteUndoKey];
+                delete _eitiNoteUndoMap[_eitiNoteUndoKey];
+                _eitiNoteUndoKey = notesCurrentId;
+            }
+            return _eitiNoteUndoKey ? _eitiNoteUndoMap[_eitiNoteUndoKey] || null : null;
+        }
+        function eitiNoteUndoOnOpen() {
+            _eitiNoteUndoKey = notesCurrentId || ('new:' + Date.now());
+            var snap = eitiNoteUndoSnapshot();
+            var h = _eitiNoteUndoMap[_eitiNoteUndoKey];
+            // заметку могли изменить вне редактора (ИИ в чате, синхронизация) — начинаем заново
+            if (!h || !eitiNoteUndoSame(h.stack[h.index], snap)) _eitiNoteUndoMap[_eitiNoteUndoKey] = eitiNoteUndoCreate(snap);
+            var keys = Object.keys(_eitiNoteUndoMap);
+            if (keys.length > 20) delete _eitiNoteUndoMap[keys[0] === _eitiNoteUndoKey ? keys[1] : keys[0]];
+            eitiNoteUndoSyncButtons();
+        }
+        function eitiNoteUndoRecord(kind) {
+            if (_eitiNoteUndoApplying) return null;
+            var h = eitiNoteUndoHistory();
+            if (!h) return null;
+            eitiNoteUndoPush(h, eitiNoteUndoSnapshot(), kind || 'type', Date.now());
+            eitiNoteUndoSyncButtons();
+            return h;
+        }
+        // правка ИИ: «до» (если ещё не в истории) и «после» — отдельный шаг
+        function eitiNoteUndoRecordAi(before, after) {
+            var h = eitiNoteUndoHistory();
+            if (!h) return null;
+            var top = h.stack[h.index];
+            eitiNoteUndoPush(h, Object.assign({}, top, { body: String(before == null ? '' : before) }), 'sync', Date.now());
+            var now = eitiNoteUndoSnapshot();
+            eitiNoteUndoPush(h, Object.assign({}, now, { body: String(after == null ? '' : after) }), 'ai', Date.now());
+            h.lastKind = '';
+            eitiNoteUndoSyncButtons();
+            return h;
+        }
+        function eitiNoteUndoSyncButtons() {
+            var h = eitiNoteUndoHistory();
+            [['noteUndoBtn', eitiNoteUndoCanUndo(h)], ['noteRedoBtn', eitiNoteUndoCanRedo(h)]].forEach(function(p) {
+                var b = document.getElementById(p[0]);
+                if (!b) return;
+                b.disabled = !p[1];
+                b.setAttribute('aria-disabled', p[1] ? 'false' : 'true');
+            });
+        }
+        function eitiNoteUndoApply(dir) {
+            var h = eitiNoteUndoHistory();
+            var snap = eitiNoteUndoStep(h, dir);
+            if (!snap) return false;
+            var t = document.getElementById('noteEditorTitle');
+            var b = document.getElementById('noteEditorBody');
+            var g = document.getElementById('noteEditorTags');
+            _eitiNoteUndoApplying = true;
+            _eitiNotesHlIgnoreInput = true;
+            try {
+                if (t) t.value = snap.title;
+                if (g) g.value = snap.tags;
+                if (b) {
+                    b.value = snap.body;
+                    try { b.setSelectionRange(Math.min(snap.selStart, snap.body.length), Math.min(snap.selEnd, snap.body.length)); } catch (e) {}
+                    b.scrollTop = snap.scroll || 0;
+                }
+            } finally {
+                _eitiNotesHlIgnoreInput = false;
+                _eitiNoteUndoApplying = false;
+            }
+            // подсветка ИИ: видна, только если текст снова совпадает с «после ИИ»
+            var note = (typeof eitiNotesAiUndoLiveNote === 'function') ? eitiNotesAiUndoLiveNote() : null;
+            if (note && note.aiBefore != null && note.aiAfter != null && snap.body === String(note.aiAfter) && snap.body !== String(note.aiBefore)) eitiNotesHlOnAiChange(note.aiBefore, note.aiAfter);
+            else if (typeof eitiNotesHlClear === 'function') eitiNotesHlClear(dir < 0 ? 'undo' : 'redo');
+            if (typeof notesAutoSaveFlush === 'function') notesAutoSaveFlush(); // ↶↷ сразу сохраняются
+            eitiNoteUndoHistory();
+            eitiNoteUndoSyncButtons();
+            if (typeof vibrate === 'function') { try { vibrate(); } catch (e) {} }
+            return true;
+        }
+        function eitiNoteUndo() { return eitiNoteUndoApply(-1); }
+        function eitiNoteRedo() { return eitiNoteUndoApply(1); }
+        function eitiNoteUndoKeydown(e) {
+            if (!e || !(e.ctrlKey || e.metaKey) || e.altKey) return false;
+            var k = String(e.key || '').toLowerCase();
+            var redo = (k === 'y' && !e.shiftKey) || (k === 'z' && e.shiftKey);
+            var undo = k === 'z' && !e.shiftKey;
+            if (!undo && !redo) return false;
+            e.preventDefault();
+            if (undo) eitiNoteUndo(); else eitiNoteRedo();
+            return true;
+        }
+        function eitiNoteUndoBindUI() {
+            var ub = document.getElementById('noteUndoBtn');
+            var rb = document.getElementById('noteRedoBtn');
+            [[ub, eitiNoteUndo], [rb, eitiNoteRedo]].forEach(function(p) {
+                if (!p[0] || p[0]._eitiUndoBound) return;
+                p[0]._eitiUndoBound = true;
+                p[0].addEventListener('mousedown', function(e) { e.preventDefault(); }); // не уводим фокус/клавиатуру
+                p[0].addEventListener('click', function() { p[1](); });
+            });
+            [['noteEditorBody', 'type'], ['noteEditorTitle', 'title'], ['noteEditorTags', 'tag']].forEach(function(p) {
+                var el = document.getElementById(p[0]);
+                if (!el || el._eitiUndoBound) return;
+                el._eitiUndoBound = true;
+                el.addEventListener('input', function(e) {
+                    if (_eitiNotesHlIgnoreInput || _eitiNoteUndoApplying) return;
+                    var kind = p[1];
+                    var it = e && e.inputType ? String(e.inputType) : '';
+                    if (_eitiNoteUndoNextKind) { kind = _eitiNoteUndoNextKind; _eitiNoteUndoNextKind = ''; }
+                    else if (it === 'insertFromPaste' || it === 'insertFromDrop') kind = 'paste';
+                    else if (it === 'deleteByCut') kind = 'cut';
+                    eitiNoteUndoRecord(kind);
+                });
+                el.addEventListener('keydown', eitiNoteUndoKeydown);
+            });
+        }
+        window.eitiNoteUndo = eitiNoteUndo;
+        window.eitiNoteRedo = eitiNoteRedo;
+        window.eitiNoteUndoRecord = eitiNoteUndoRecord;
+        window.eitiNoteUndoOnOpen = eitiNoteUndoOnOpen;
+        window.eitiNoteUndoBindUI = eitiNoteUndoBindUI;
+        window.eitiNotesAiRememberUndo = eitiNotesAiRememberUndo;
+        window._eitiNoteUndoState = function() { var h = eitiNoteUndoHistory(); return h ? { index: h.index, length: h.stack.length } : null; };
         function eitiNotesSanitizeFilename(title) {
             var clean = String(title || '').trim()
                 .replace(/[<>:"|?*\u0000-\u001f]/g, '_')
@@ -37345,6 +37545,7 @@ window.eitiLLMClearAll = async function() {
             if (!saved && undoExtra) _eitiNotesAiUndoDraft = Object.assign({}, _eitiNotesAiUndoDraft || {}, undoExtra);
             if (!saved && !notesCurrentId && typeof notesAutoSaveFlush === 'function') { notesAutoSaveFlush(); saved = !!notesCurrentId; }
             if (typeof eitiNotesAiUndoSyncButtons === 'function') eitiNotesAiUndoSyncButtons();
+            if (typeof eitiNoteUndoRecord === 'function') eitiNoteUndoRecord('ai'); // v13.7.23: заголовок/теги от ИИ — тоже шаг
             if (typeof showToast === 'function') showToast(saved ? '✨ ИИ изменил и сохранил заметку' : '✨ ИИ изменил черновик — сохраните его вручную', 2200);
             return { ok: true, saved: saved, action: action };
         }
@@ -38087,6 +38288,7 @@ window.eitiLLMClearAll = async function() {
                         var bodyEl = document.getElementById('noteEditorBody');
                         if (titleEl) titleEl.value = v.title || '';
                         if (bodyEl) bodyEl.value = v.body || '';
+                        if (typeof eitiNoteUndoRecord === 'function') eitiNoteUndoRecord('restore'); // v13.7.23
                         noteHistoryClose();
                         showToast('✅ Версия восстановлена', 2000);
                     }, null, 'Восстановить', false);
@@ -38151,6 +38353,8 @@ window.eitiLLMClearAll = async function() {
             ta.selectionStart = ta.selectionEnd = start + insert.length;
             ta.focus();
             if (typeof eitiNotesOnManualEdit === 'function') eitiNotesOnManualEdit();
+            if (typeof eitiNoteUndoRecord === 'function') eitiNoteUndoRecord('format'); // v13.7.23: формат — отдельный шаг
+            if (typeof notesAutoSaveSchedule === 'function') notesAutoSaveSchedule();
             if (typeof eitiNotesFmtPopoverClose === 'function') eitiNotesFmtPopoverClose();
         }
 

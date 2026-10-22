@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-13.7.22-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-13.7.23-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,15 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v13.7.22
+## 🆕 Что нового в v13.7.23
+
+**Заметки: ↶ Отменить / ↷ Повторить в шапке и теги без пустой полосы**
+- В шапке заметки, перед 📋, — кнопки ↶ «Отменить» и ↷ «Повторить» (изогнутые стрелки, плитки как у 📋/⋯). Работают для любых правок: набор текста, вставка, вырезание, формат, заголовок, теги, правки ИИ. История — до 50 шагов на заметку; набор текста объединяется в шаги по паузе. Недоступная кнопка приглушена. Горячие клавиши: Ctrl/Cmd+Z, Ctrl+Y, Ctrl/Cmd+Shift+Z. Отмена и повтор сразу сохраняются.
+- Нижний ряд Аб/↶/↷ убран; «Аб» теперь в меню ⋯ — «Подсветка правок ИИ» (вкл/выкл).
+- Длинный заголовок сокращается с «…», а не сжимает кнопки.
+- Без Notes AI строка тегов прижата к нижней навигации — пустой полосы больше нет.
+
+### Выпуск v13.7.22
 
 **Чат: «💾 Сохранить чат» и AI Voice с выбором провайдера**
 - В меню «+» чата после «Скопировать чат» — «💾 Сохранить чат»: Markdown, PDF или TXT. В файле роли («Вы» / имя модели) и время сообщений; служебные сообщения пропускаются, картинки и вложения заменены плейсхолдерами. Имя файла — `chat-<название>-<дата>`.

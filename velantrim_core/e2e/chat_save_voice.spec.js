@@ -250,5 +250,6 @@ test('Тихое обновление: нет тоста с версией пр�
   });
   expect(handled).toBe('13.7.22');
   expect(await versionToast()).toEqual([]);
-  await expect(page.locator('#about-version-label')).toHaveText(/VELANTRIM EITI v13\.7\.22/);
+  const ver = await page.evaluate(() => window.EITI_VERSION);
+  await expect(page.locator('#about-version-label')).toHaveText(new RegExp('VELANTRIM EITI v' + ver.replace(/\./g, '\\.')));
 });

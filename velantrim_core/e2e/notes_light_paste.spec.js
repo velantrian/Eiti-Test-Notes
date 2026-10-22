@@ -101,11 +101,15 @@ test('☀️: иконки шапки, меню ⋯, экспорт, Ask AI и �
     window.eitiNotesHlOnAiChange('до правки текст', 'после правки текст');
     window._eitiNotesAiUndoDraft = window.eitiNotesAiUndoRecord({}, 'до правки текст', 'после правки текст');
     window.eitiNotesAiUndoSyncButtons();
+    window.eitiNoteUndoRecord('ai');
   });
   await expect(page.locator('#noteEditorHl')).toBeVisible();
   await expectContrast(page, ['#noteEditorHl'], 4.5);
-  await expect(page.locator('#noteAiTools')).toBeVisible();
-  await expectContrast(page, ['#noteAiUndoBtn', '#noteHlToggle .note-hl-glyph'], 3);
+  await expect(page.locator('#noteUndoBtn')).toBeEnabled();
+  await expectContrast(page, ['#noteUndoBtn'], 3);
+  await page.locator('#noteMoreBtn').click();
+  await expectContrast(page, ['#noteHlToggle .note-hl-glyph'], 3);
+  await page.locator('#noteMoreBtn').click(); // закрыть ⋯
   if (SHOTS) await page.screenshot({ path: SHOTS + '/after-light-hl-overlay.png' });
   await page.evaluate(() => window.eitiNotesHlClear());
 
