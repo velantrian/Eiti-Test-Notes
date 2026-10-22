@@ -221,7 +221,7 @@ test('автосохранение: шапка без 💾, flush на закр�
   assert.match(fn('notesCloseEditor'), /notesAutoSaveFlush\(\)/);
   assert.match(fn('notesOpenEditor'), /notesAutoSaveFlush\(\)/);
   assert.match(fn('notesAutoSaveSchedule'), /800/);
-  assert.match(fn('notesPersistEditor'), /if \(!title && !body\) return 'empty'/);
+  assert.match(fn('notesPersistEditor'), /if \(!title && !body\.trim\(\)\) return 'empty'/);
   assert.equal(/showToast/.test(fn('notesPersistEditor')), false);
   assert.match(INDEX, /addEventListener\('pagehide', function\(\) \{ notesAutoSaveFlush\(\); \}\)/);
   assert.match(INDEX, /visibilityState === 'hidden'\) notesAutoSaveFlush\(\)/);
