@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.8.0"; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.9.0"; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -2096,6 +2096,9 @@
                 'Нет подключённой модели': 'Kein verbundenes Modell',
                 'Нет подключённ': 'Keine verbundene',
                 'AI Voice': 'AI Voice',
+                '🗣️ Голосовой ассистент': '🗣️ Sprachassistent',
+                'Grok Voice — по умолчанию; Gemini Live — нужен ключ Gemini': 'Grok Voice ist Standard; Gemini Live braucht einen Gemini-Schlüssel',
+                'Grok Voice (xAI) — по умолчанию': 'Grok Voice (xAI) — Standard',
                 'Нет заметок': 'Keine Notizen',
                 'Нажмите ＋ чтобы создать': 'Tippen Sie auf ＋, um zu erstellen',
                 'Нажмите + чтобы создать': 'Tippen Sie auf +, um zu erstellen',
@@ -3824,6 +3827,9 @@
                 'Нет подключённой модели': 'No model connected',
                 'Нет подключённ': 'No connection',
                 'AI Voice': 'AI Voice',
+                '🗣️ Голосовой ассистент': '🗣️ Voice assistant',
+                'Grok Voice — по умолчанию; Gemini Live — нужен ключ Gemini': 'Grok Voice is the default; Gemini Live needs a Gemini key',
+                'Grok Voice (xAI) — по умолчанию': 'Grok Voice (xAI) — default',
                 'Нет заметок': 'No notes',
                 'Нажмите ＋ чтобы создать': 'Press ＋ to create',
                 'Нажмите + чтобы создать': 'Press + to create',
@@ -4299,6 +4305,7 @@
     <script src="./local/eiti_local.js" defer></script>
     <script src="./local/eiti_dstate.js" defer></script>
     <script src="./local/eiti_typo.js" defer></script>
+    <script src="./local/eiti_journal.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -8593,10 +8600,11 @@
                             </div>
                             <!-- v13.7.22: AI Voice — выбор провайдера (Grok xAI / Gemini Live) -->
                             <div id="ai-voice-settings" style="border-top:1px solid var(--border-color);padding-top:12px;margin-top:2px;">
-                                <div style="font-size:13px;font-weight:600;margin-bottom:6px;">🗣️ AI Voice — провайдер</div>
+                                <div style="font-size:13px;font-weight:600;margin-bottom:6px;">🗣️ Голосовой ассистент</div>
+                                <div style="font-size:11px;opacity:0.55;margin-bottom:6px;line-height:1.4;">Grok Voice — по умолчанию; Gemini Live — нужен ключ Gemini</div>
                                 <select id="ai-voice-provider" onchange="eitiSetVoiceProvider(this.value)" aria-label="Провайдер AI Voice" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;">
-                                    <option value="grok">Grok (xAI)</option>
-                                    <option value="gemini">Gemini Live</option>
+                                    <option value="grok">Grok Voice (xAI) — по умолчанию</option>
+                                    <option value="gemini">Gemini Live (Google)</option>
                                 </select>
                                 <div id="ai-voice-grok-box" style="margin-top:8px;display:flex;gap:6px;">
                                     <select id="grok-live-model" disabled aria-label="Модель Grok" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;opacity:0.6;">
@@ -18080,9 +18088,11 @@
 
         function eitiInit() {
             return new Promise(function(resolve, reject) {
-                var req = indexedDB.open('eiti_v4', 16); // v12.9.79: добавлен store 'tts_cache' (персистентный кэш TTS аудио)
+                var req = indexedDB.open('eiti_v4', 17); // v14.9.0: + 'journal' (дневник по записям) и 'contexts'; v12.9.79: 'tts_cache'
                 req.onerror = function() { reject(req.error); };
                 req.onsuccess = function() { eitiDb = req.result; window.eitiDb = eitiDb;
+                    // v14.9.0: другая вкладка обновляет БД (v17) — освобождаем её и просим перезапуск
+                    try { eitiDb.onversionchange = function() { try { eitiDb.close(); } catch (e) {} if (typeof showToast === 'function') showToast('🔄 EITI обновился в другой вкладке — перезапустите приложение', 8000); }; } catch (e) {}
                     if (_eitiDbReadyResolve) { _eitiDbReadyResolve(); _eitiDbReadyResolve = null; }
                     // v12.9.59: storage.persist — запрашиваем persistent storage явно
                     // Без этого браузер (особенно iOS Safari) может вытеснить кэш моделей и IDB
@@ -18121,12 +18131,12 @@
                     // v13.4.0 P2 FIX #7: toast пользователю + единичный retry через 2 сек.
                     console.warn('[EITI] IDB blocked — другая вкладка держит БД');
                     if (typeof showToast === 'function') {
-                        try { showToast('⚠️ База занята другой вкладкой EITI. Закройте её и обновите страницу.', 8000); } catch(e) {}
+                        try { showToast('⚠️ База обновляется (v17): закройте другие вкладки EITI и перезапустите приложение.', 8000); } catch(e) {}
                     }
                     var _resolved = false;
                     setTimeout(function() {
                         if (_resolved) return;
-                        var fb = indexedDB.open('eiti_v4', 16);
+                        var fb = indexedDB.open('eiti_v4', 17);
                         fb.onsuccess = function() {
                             if (_resolved) return; _resolved = true;
                             eitiDb = fb.result; window.eitiDb = eitiDb;
@@ -18218,6 +18228,17 @@
                         var ttsStore = db.createObjectStore('tts_cache', { keyPath: 'id' });
                         ttsStore.createIndex('chatId', 'chatId', { unique: false });
                         ttsStore.createIndex('ts', 'ts', { unique: false });
+                    }
+                    // v14.9.0: дневник — одна запись на пункт + контексты (темы)
+                    if (!db.objectStoreNames.contains('journal')) {
+                        var js = db.createObjectStore('journal', { keyPath: 'id' });
+                        js.createIndex('chatId', 'chatId', { unique: false });
+                        js.createIndex('contextId', 'contextId', { unique: false });
+                        js.createIndex('kind', 'kind', { unique: false });
+                        js.createIndex('updatedAt', 'updatedAt', { unique: false });
+                    }
+                    if (!db.objectStoreNames.contains('contexts')) {
+                        db.createObjectStore('contexts', { keyPath: 'id' });
                     }
                     } catch(upgradeErr) { console.warn('[EITI] onupgradeneeded error:', upgradeErr); }
                 };
@@ -18512,6 +18533,7 @@
                 } catch(e) {}
                 // Orphan L1-summary в localStorage
                 try { localStorage.removeItem('eiti_l1_sum_' + chatId); } catch(e) {}
+                try { if (window.eitiJournalDetachChat) window.eitiJournalDetachChat(chatId); } catch(e) {} // v14.9.0: пункты дневника остаются без chatId
                 // Orphan TTS-кэш (base64 блобы) из IDB по chatId
                 try {
                     if (eitiDb) {
@@ -19180,7 +19202,7 @@
         function eitiChatGrokToggle() {
             // v13.7.22: провайдер AI Voice — Grok (xAI, по умолчанию) или Gemini Live
             if (window._grokVoiceActive) { eitiGrokVoiceStop(); return; }
-            if (typeof eitiVoiceProvider === 'function' && eitiVoiceProvider() === 'gemini') { eitiGeminiVoiceStart(); return; }
+            if (window.EitiVoice) { EitiVoice.start(); return; } // v14.9.0: реестр провайдеров grok|gemini
             var k = _deobfKey(localStorage.getItem('eiti_grok_key') || '');
             if (!k) { showToast('⚠️ Введи xAI Grok ключ в Настройки → Grok'); return; }
             if (window._grokVoiceActive) {
@@ -19266,9 +19288,11 @@
             else { b.textContent = window._grokVoiceActive
                 ? (window._grokVoiceSpeaking ? '🔊' : '🎤')
                 : '🗣️'; }
+            var _vl = window.EitiVoice ? EitiVoice.label() : 'AI Voice'; // v14.9.0: подпись = выбранный провайдер
             b.title = window._grokVoiceActive
-                ? 'AI Voice активен — нажми чтобы ПОЛНОСТЬЮ выключить'
-                : 'Запустить AI Voice';
+                ? _vl + ' активен — нажми чтобы ПОЛНОСТЬЮ выключить'
+                : 'Запустить ' + _vl;
+            b.setAttribute('data-voice-provider', window.EitiVoice ? EitiVoice.current() : 'grok');
             if (window._grokVoiceActive) {
                 b.classList.add('grok-live');
             } else {
@@ -19312,9 +19336,14 @@
             _grokVoiceSetBtn('');
         }
 
+        // v14.9.0: публичный вход — через реестр (выбранный провайдер); ядро Grok — _eitiGrokVoiceStartCore
         function eitiGrokVoiceStart() {
             if (window._grokVoiceActive) return;
-            if (typeof eitiVoiceProvider === 'function' && eitiVoiceProvider() === 'gemini') { eitiGeminiVoiceStart(); return; }
+            if (window.EitiVoice) return EitiVoice.start();
+            return _eitiGrokVoiceStartCore();
+        }
+        function _eitiGrokVoiceStartCore() {
+            if (window._grokVoiceActive) return;
             window._eitiVoiceProv = 'grok';
             var k = _deobfKey(localStorage.getItem('eiti_grok_key') || '');
             if (!k) { showToast('⚠️ Нет Grok ключа'); return; }
@@ -19540,7 +19569,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     _grokSelfInfo += _EN ? '\n=== END OF ARCHITECTURE ===' : '\n=== КОНЕЦ АРХИТЕКТУРЫ ===';
                     // v12.9.77: добавляем содержимое дневника (RNE) в контекст Grok
                     try {
-                        var _rneCtx = (typeof _rneData !== 'undefined') ? _rneData : null;
+                        var _rneCtx = (typeof window.eitiJournalForAI === 'function') ? window.eitiJournalForAI() : ((typeof _rneData !== 'undefined') ? _rneData : null); // v14.9.0: текущий чат → тема → общее
                         if (_rneCtx && (_rneCtx.goals || _rneCtx.facts || _rneCtx.smartSections)) {
                             _grokSelfInfo += _EN
                                 ? '\n\n=== 📓 EITI JOURNAL (RNE) ===\n'
@@ -20156,7 +20185,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             try { localStorage.setItem('eiti_voice_provider', v); } catch (e) {}
             if (window._grokVoiceActive && window._eitiVoiceProv && window._eitiVoiceProv !== v) eitiGrokVoiceStop();
             eitiVoiceSettingsRender();
-            showToast('🗣️ AI Voice: ' + (v === 'gemini' ? 'Gemini Live' : 'Grok (xAI)'));
+            showToast('🗣️ AI Voice: ' + (v === 'gemini' ? 'Gemini Live' : 'Grok Voice'));
         };
         window.eitiSetGeminiLiveModel = function(v) {
             try { localStorage.setItem('eiti_gemini_live_model', v); } catch (e) {}
@@ -20181,6 +20210,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var xb = document.getElementById('ai-voice-grok-box');
             if (gb) gb.style.display = prov === 'gemini' ? '' : 'none';
             if (xb) xb.style.display = prov === 'gemini' ? 'none' : 'flex';
+            try { eitiVoiceLabelsRender(); } catch (e) {}
             var ms = document.getElementById('gemini-live-model');
             if (ms) {
                 if (!ms.options.length) ms.innerHTML = EITI_GEMINI_LIVE_MODELS.map(function(m) { return '<option value="' + m.id + '">' + m.label + '</option>'; }).join('');
@@ -20294,7 +20324,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         function eitiGeminiVoiceStart() {
             if (window._grokVoiceActive) return;
             var k = eitiGeminiLiveKey();
-            if (!k) { showToast('⚠️ Нет ключа Gemini — Настройки → AI Voice (или ключ Gemini API)'); return; }
+            if (!k) { showToast('⚠️ Нет ключа Gemini — Настройки → AI Voice (или ключ Gemini API)'); if (window.EitiVoice) EitiVoice.offerSwitch('gemini', 'nokey'); return; }
             if (typeof WebSocket === 'undefined') { showToast('❌ Gemini Live: WebSocket недоступен в этом браузере'); return; }
             window._grokVoiceActive = true;
             window._eitiVoiceProv = 'gemini';
@@ -20330,24 +20360,33 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             ws.onerror = function() {
                 if (ws !== _grokWS) return;
                 showToast('❌ Gemini Live: ошибка соединения — проверьте ключ и сеть');
+                if (window.EitiVoice) EitiVoice.offerSwitch('gemini', 'socket');
             };
             ws.onclose = function(ev) {
                 if (ws !== _grokWS) return; // уже остановлен вручную
                 var m = eitiGeminiLiveCloseMessage(ev && ev.code, ev && ev.reason);
                 _grokWS = null;
                 eitiGrokVoiceStop();
-                if (m) showToast(m, 4000);
+                if (m) { showToast(m, 4000); if (window.EitiVoice) EitiVoice.offerSwitch('gemini', 'socket'); }
             };
+            // v14.9.0 iPhone: AudioContext создаём синхронно в обработчике нажатия (иначе Safari держит его suspended),
+            // частоту берём фактическую (iOS часто игнорирует 16000 → 44.1/48 кГц) и пересэмплируем в 16 кГц.
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!_grokMicCtx && AC) { try { _grokMicCtx = new AC({ sampleRate: 16000 }); } catch (e) { try { _grokMicCtx = new AC(); } catch (e2) {} } }
+            try { if (_grokMicCtx && _grokMicCtx.resume) _grokMicCtx.resume(); } catch (e) {}
+            if (!_grokPlayCtx && AC) { try { _grokPlayCtx = new AC({ sampleRate: 24000 }); _grokPlayAt = _grokPlayCtx.currentTime; if (_grokPlayCtx.resume) _grokPlayCtx.resume(); } catch (e) { _grokPlayCtx = null; } }
             navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } })
             .then(function(stream) {
                 if (!window._grokVoiceActive || _grokWS !== ws) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
                 _grokStream = stream;
-                var AC = window.AudioContext || window.webkitAudioContext;
-                try { _grokMicCtx = new AC({ sampleRate: 16000 }); } catch (e) { _grokMicCtx = new AC(); }
+                if (!_grokMicCtx) { try { _grokMicCtx = new AC({ sampleRate: 16000 }); } catch (e) { _grokMicCtx = new AC(); } }
                 _grokMicSrc = _grokMicCtx.createMediaStreamSource(stream);
-                var mime = 'audio/pcm;rate=' + Math.round(_grokMicCtx.sampleRate || 16000);
+                var inRate = Math.round(_grokMicCtx.sampleRate || 16000);
+                var mime = 'audio/pcm;rate=16000';
+                window._geminiMicRate = inRate;
                 var sendPcm = function(buf) {
                     if (!window._grokVoiceActive || !window._geminiLiveReady || _grokWS !== ws || ws.readyState !== 1 || window._grokMuted) return;
+                    if (inRate !== 16000) buf = eitiResamplePCM16(new Int16Array(buf), inRate, 16000).buffer;
                     var u8 = new Uint8Array(buf), bin = '';
                     for (var i = 0; i < u8.length; i += 0x8000) bin += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
                     ws.send(JSON.stringify({ realtimeInput: { audio: { data: btoa(bin), mimeType: mime } } }));
@@ -20376,6 +20415,83 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             });
         }
         window.eitiGeminiVoiceStart = eitiGeminiVoiceStart;
+
+        // v14.9.0: PCM16 → другая частота (линейная интерполяция). iPhone: 48 000 / 44 100 → 16 000 для Gemini Live.
+        function eitiResamplePCM16(i16, from, to) {
+            if (!i16 || !i16.length || !from || from === to) return i16;
+            var n = Math.max(1, Math.round(i16.length * to / from)), out = new Int16Array(n), ratio = from / to;
+            for (var i = 0; i < n; i++) {
+                var p = i * ratio, j = Math.floor(p), f = p - j, a = i16[j] || 0, b = i16[Math.min(j + 1, i16.length - 1)] || 0;
+                out[i] = Math.round(a + (b - a) * f);
+            }
+            return out;
+        }
+        window.eitiResamplePCM16 = eitiResamplePCM16;
+
+        // ════════════════════════════════════════════════════════════════════
+        // v14.9.0: РЕЕСТР ГОЛОСОВЫХ ПРОВАЙДЕРОВ  { start, stop, mute, isActive }  grok | gemini
+        //   Один активный сеанс за раз: перед стартом другой провайдер останавливается.
+        //   Нет ключа / ошибка сокета → тост с кнопкой «Переключить на …».
+        // ════════════════════════════════════════════════════════════════════
+        window.EitiVoice = (function() {
+            var L = {
+                ru: { sw: 'Переключить на', nokey: 'нет ключа', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию' },
+                en: { sw: 'Switch to', nokey: 'no API key', socket: 'connection failed', switched: 'Voice: ', def: 'default' },
+                de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard' }
+            };
+            function tr(k) { var l = 'ru'; try { l = (window.eitiGetLocale && window.eitiGetLocale()) || 'ru'; } catch (e) {} return (L[l] || L.ru)[k]; }
+            var reg = {
+                grok: { id: 'grok', label: 'Grok Voice', start: function() { return _eitiGrokVoiceStartCore(); }, stop: function() { eitiGrokVoiceStop(); },
+                        mute: function() { eitiGrokMuteToggle(); }, isActive: function() { return !!window._grokVoiceActive && window._eitiVoiceProv === 'grok'; },
+                        hasKey: function() { return !!_deobfKey(localStorage.getItem('eiti_grok_key') || ''); } },
+                gemini: { id: 'gemini', label: 'Gemini Live', start: function() { return eitiGeminiVoiceStart(); }, stop: function() { eitiGrokVoiceStop(); },
+                        mute: function() { eitiGrokMuteToggle(); }, isActive: function() { return !!window._grokVoiceActive && window._eitiVoiceProv === 'gemini'; },
+                        hasKey: function() { return !!eitiGeminiLiveKey(); } }
+            };
+            var _lastOffer = 0;
+            function current() { return eitiVoiceProvider(); }
+            function other(id) { return id === 'gemini' ? 'grok' : 'gemini'; }
+            function active() { return Object.keys(reg).filter(function(k) { return reg[k].isActive(); })[0] || ''; }
+            function start(id) {
+                id = reg[id] ? id : current();
+                var a = active();
+                if (a && a !== id) reg[a].stop();
+                if (reg[id].isActive()) return;
+                if (id === 'grok' && !reg.grok.hasKey()) { showToast('⚠️ Введи xAI Grok ключ в Настройки → Grok'); offerSwitch('grok', 'nokey'); return; }
+                return reg[id].start();
+            }
+            function offerSwitch(from, reason) {
+                if (Date.now() - _lastOffer < 1500) return;
+                _lastOffer = Date.now();
+                var to = other(from), t = document.createElement('div');
+                t.className = 'toast eiti-voice-switch-toast';
+                t.style.pointerEvents = 'auto';
+                t.style.top = '30%';
+                t.appendChild(document.createTextNode('🗣️ ' + reg[from].label + ': ' + tr(reason) + ' '));
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.className = 'eiti-voice-switch-btn';
+                b.textContent = tr('sw') + ' ' + reg[to].label;
+                b.style.cssText = 'margin-left:6px;padding:6px 10px;border-radius:8px;border:1px solid var(--accent-color,#ffd700);background:transparent;color:inherit;font-weight:700;cursor:pointer;';
+                b.onclick = function() { if (t.parentNode) t.remove(); window.eitiSetVoiceProvider(to); start(to); };
+                t.appendChild(b);
+                document.body.appendChild(t);
+                setTimeout(function() { if (t.parentNode) t.remove(); }, 7000);
+            }
+            function label(id) { return (reg[id || current()] || reg.grok).label; }
+            return { providers: reg, current: current, active: active, start: start, stop: function() { var a = active(); if (a) reg[a].stop(); },
+                     mute: function() { var a = active(); if (a) reg[a].mute(); }, isActive: function() { return !!active(); }, offerSwitch: offerSwitch, label: label, tr: tr };
+        })();
+        // Подписи кнопок голоса = выбранный провайдер
+        function eitiVoiceLabelsRender() {
+            var lb = window.EitiVoice ? EitiVoice.label() : 'AI Voice';
+            var vb = document.getElementById('eiti-grok-voice-btn'); if (vb) vb.textContent = '🗣️ ' + lb;
+            var rb = document.getElementById('rne-grok-btn'); if (rb) rb.title = lb;
+            document.querySelectorAll('.cpi-voice-prov').forEach(function(e) { e.textContent = lb; });
+            if (typeof _grokVoiceSetBtn === 'function') _grokVoiceSetBtn('');
+        }
+        window.eitiVoiceLabelsRender = eitiVoiceLabelsRender;
+        document.addEventListener('DOMContentLoaded', function() { setTimeout(eitiVoiceLabelsRender, 300); });
 
         // v12.9.2: отправка текста в Grok Voice (когда мик замьючен)
         // Создаёт conversation.item типа message и запрашивает response
@@ -41180,17 +41296,150 @@ window.eitiLLMClearAll = async function() {
             throw new Error('Провайдер ' + provider + ' не поддерживает RNE');
         }
 
+        // ── v14.9.0: нормализованное хранилище дневника ────────────────
+        // Пункты — отдельные записи в IDB 'journal' (chatId/contextId/hash/updatedAt/del), темы — в 'contexts',
+        // служебное (история чата дневника, умные разделы, счётчики) — 'reasoning' → journal_meta.
+        // _rneData остаётся «видом» в старой форме, поэтому UI дневника не меняется. Движок — local/eiti_journal.js.
+        var _jItems = [], _jCtx = [], _jDirty = {}, _jCtxDirty = {}, _jReady = false;
+        var RNE_META_KEY = 'journal_meta', RNE_BAK_KEY = 'eiti_rne_data_v1_bak';
+        function _jOk() { return !!(window.EitiJournal && window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('journal') && window.eitiDb.objectStoreNames.contains('contexts')); }
+        function _jChatId() { try { return (typeof eitiCurrentChatId !== 'undefined' && eitiCurrentChatId) ? String(eitiCurrentChatId) : null; } catch (e) { return null; } }
+        // Контекст: тема из стека тем v14.5.0 (EitiDialogHost) → иначе тема, к которой уже привязан чат → иначе нет (глобально)
+        function _jContextId(chatId) {
+            var J = window.EitiJournal; if (!J) return null;
+            try {
+                var st = window.EitiDialogHost && EitiDialogHost.state && EitiDialogHost.state();
+                if (st && st.topic && (st.topic.label || st.topic.key)) {
+                    var cx = J.ensureContext(_jCtx, J.ctxIdFor(st.topic.key || st.topic.label), st.topic.label || st.topic.key, chatId, Date.now());
+                    _jCtxDirty[cx.id] = cx; return cx.id;
+                }
+            } catch (e) {}
+            if (chatId) { var hit = _jCtx.find(function(x) { return !x.del && x.chatIds.indexOf(chatId) >= 0; }); if (hit) return hit.id; }
+            return null;
+        }
+        function _jMsgIds() { try { return (typeof chatLog !== 'undefined' ? chatLog : []).slice(-20).map(function(m) { return m && m.id; }).filter(Boolean); } catch (e) { return []; } }
+        function _jMark(list) { (list || []).forEach(function(r) { if (r) _jDirty[r.id] = r; }); }
+        // Пересобрать _rneData (старая форма) по типу дневника: perchat — только текущий чат, dated — по дате, smart — по темам
+        function _rneRebuildView() {
+            if (!window.EitiJournal || !_jReady) return;
+            var mode = (typeof _rneDiaryType !== 'undefined' && _rneDiaryType) || localStorage.getItem('eiti_rne_diary_type') || 'dated';
+            var v = EitiJournal.view(_jItems, { mode: mode, chatId: _jChatId() });
+            EitiJournal.SECTIONS.forEach(function(k) { _rneData[k] = v[k]; });
+        }
+        function _jMeta() {
+            return { id: RNE_META_KEY, migrated: 1, v: 1, chatHistory: _rneChatHistory.slice(-30), smartSections: _rneData.smartSections || [],
+                lastExtracted: _rneData.lastExtracted || 0, msgCountSinceExtract: _rneData.msgCountSinceExtract || 0, ts: Date.now() };
+        }
+        function _jFlush() {
+            var items = Object.keys(_jDirty).map(function(k) { return _jDirty[k]; }), cxs = Object.keys(_jCtxDirty).map(function(k) { return _jCtxDirty[k]; });
+            _jDirty = {}; _jCtxDirty = {};
+            try {
+                var tx = window.eitiDb.transaction(['journal', 'contexts', 'reasoning'], 'readwrite');
+                items.forEach(function(r) { tx.objectStore('journal').put(r); });
+                cxs.forEach(function(c) { tx.objectStore('contexts').put(c); });
+                tx.objectStore('reasoning').put(_jMeta());
+            } catch (e) { console.warn('[EITI journal] flush', e); }
+        }
         // ── Сохранить данные в IDB ────────────────────────────────────
         function _rneSave() {
             // v12.9.77: сохраняем последние 30 сообщений истории чата дневника
             _rneData.chatHistory = _rneChatHistory.slice(-30);
-            // v13.x: IDB — единственный мастер (LS-дублирование убрано)
+            if (_jOk() && _jReady) { _jFlush(); _rneRebuildView(); return; }
+            // fallback (БД ещё v16 / заблокирована): прежний блоб
             if (window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('reasoning')) {
                 try {
                     var tx = window.eitiDb.transaction('reasoning', 'readwrite');
                     tx.objectStore('reasoning').put({ id: RNE_IDB_KEY, data: _rneData, ts: Date.now() });
                 } catch(e) {}
             }
+        }
+        function _jReqP(rq) { return new Promise(function(res) { rq.onsuccess = function() { res(rq.result); }; rq.onerror = function() { res(null); }; }); }
+        // Загрузка + одноразовая (идемпотентная) миграция блоба eiti_rne_data_v1 → записи journal; блоб сохраняется как eiti_rne_data_v1_bak
+        function _jLoadAll() {
+            var db = window.eitiDb, J = window.EitiJournal;
+            var tx = db.transaction(['journal', 'contexts', 'reasoning'], 'readonly');
+            return Promise.all([_jReqP(tx.objectStore('journal').getAll()), _jReqP(tx.objectStore('contexts').getAll()),
+                _jReqP(tx.objectStore('reasoning').get(RNE_META_KEY)), _jReqP(tx.objectStore('reasoning').get(RNE_IDB_KEY))]).then(function(r) {
+                _jItems = r[0] || []; _jCtx = r[1] || [];
+                var meta = r[2], blob = r[3];
+                if (!meta || !meta.migrated || (blob && blob.data)) {
+                    var src = blob && blob.data, _wasMig = !!(meta && meta.migrated);
+                    if (!src) { try { var ls = localStorage.getItem('eiti_rne_v1'); if (ls) src = JSON.parse(ls); } catch (e) {} }
+                    if (src && meta && meta.migrated) src = Object.assign({}, src, { chatHistory: meta.chatHistory, smartSections: meta.smartSections });
+                    var m = J.migrate(src || {}, _jItems, _jCtx, { now: Date.now() });
+                    _jMark(m.changed); _jCtx.forEach(function(c) { _jCtxDirty[c.id] = c; });
+                    meta = m.meta;
+                    try {
+                        var w = db.transaction(['journal', 'contexts', 'reasoning'], 'readwrite');
+                        Object.keys(_jDirty).forEach(function(k) { w.objectStore('journal').put(_jDirty[k]); });
+                        Object.keys(_jCtxDirty).forEach(function(k) { w.objectStore('contexts').put(_jCtxDirty[k]); });
+                        if (blob && blob.data) { w.objectStore('reasoning').put({ id: RNE_BAK_KEY, data: blob.data, ts: blob.ts || Date.now(), migratedAt: Date.now() }); w.objectStore('reasoning').delete(RNE_IDB_KEY); }
+                        else if (src && !_wasMig) w.objectStore('reasoning').put({ id: RNE_BAK_KEY, data: src, ts: Date.now(), migratedAt: Date.now(), from: 'localStorage' });
+                        w.objectStore('reasoning').put(meta);
+                        w.oncomplete = function() { try { localStorage.removeItem('eiti_rne_v1'); } catch (e) {} };
+                    } catch (e) { console.warn('[EITI journal] migrate write', e); }
+                    _jDirty = {}; _jCtxDirty = {};
+                }
+                _rneData.smartSections = meta.smartSections || [];
+                _rneData.lastExtracted = meta.lastExtracted || 0;
+                _rneData.msgCountSinceExtract = meta.msgCountSinceExtract || 0;
+                if (meta.chatHistory && meta.chatHistory.length) _rneChatHistory = meta.chatHistory.slice();
+                _jReady = true;
+                _rneRebuildView();
+                _rneRender();
+            });
+        }
+        window.eitiJournalReload = function() { if (!_jOk()) return Promise.resolve(); return _jLoadAll(); };
+
+        // ── Загрузить данные ──────────────────────────────────────────
+        // v14.9.0: IDB 'journal' — основной источник; блоб/LS — только для одноразовой миграции.
+        function _rneLoad() {
+            if (_rneLoaded) return;
+            if (!window.EitiJournal && window.eitiDb) return; // движок (defer) ещё грузится — следующий вызов догрузит
+            if (!window.eitiDb && window.indexedDB) return; // БД ещё открывается
+            _rneLoaded = true;
+            if (_jOk()) { _jLoadAll().catch(function(e) { console.warn('[EITI journal] load', e); }); return; }
+            _rneLoadLegacy();
+        }
+        // Прежний путь (БД без 'journal'): блоб в 'reasoning' или LS
+        function _rneLoadLegacy() {
+            if (window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('reasoning')) {
+                try {
+                    var tx2 = window.eitiDb.transaction('reasoning', 'readonly');
+                    var req2 = tx2.objectStore('reasoning').get(RNE_IDB_KEY);
+                    req2.onsuccess = function() {
+                        var d2 = req2.result && req2.result.data;
+                        if (d2 && (d2.goals || d2.smartSections)) {
+                            _rneData = d2;
+                            if (_rneData.chatHistory && _rneData.chatHistory.length) _rneChatHistory = _rneData.chatHistory.slice();
+                            _rneNormalizeData();
+                            _rneRender();
+                            return;
+                        }
+                        _rneMigrateFromLS();
+                    };
+                    req2.onerror = function() { _rneMigrateFromLS(); };
+                } catch(e2) { _rneMigrateFromLS(); }
+            } else {
+                _rneMigrateFromLS();
+            }
+        }
+
+        // Крайний fallback без IDB: читаем LS-копию (миграция в journal выполнится в _jLoadAll)
+        function _rneMigrateFromLS() {
+            try {
+                var saved = localStorage.getItem('eiti_rne_v1');
+                if (saved) {
+                    var d = JSON.parse(saved);
+                    if (d && (d.goals || d.smartSections)) {
+                        _rneData = d;
+                        if (_rneData.chatHistory && _rneData.chatHistory.length) _rneChatHistory = _rneData.chatHistory.slice();
+                        _rneNormalizeData();
+                        _rneRender();
+                    }
+                }
+            } catch(e) {}
+            _rneNormalizeData();
         }
 
         // ── Нормализация данных (legacy: claim/what → text) ───────────
@@ -41217,72 +41466,6 @@ window.eitiLLMClearAll = async function() {
             });
         }
 
-        // ── Загрузить данные ──────────────────────────────────────────
-        // v13.x: IDB primary. LS используется только как one-time legacy migration.
-        function _rneLoad() {
-            if (_rneLoaded) return;
-            _rneLoaded = true;
-            if (window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('reasoning')) {
-                try {
-                    var tx2 = window.eitiDb.transaction('reasoning', 'readonly');
-                    var req2 = tx2.objectStore('reasoning').get(RNE_IDB_KEY);
-                    req2.onsuccess = function() {
-                        if (req2.result && req2.result.data) {
-                            var d2 = req2.result.data;
-                            if (d2 && (d2.goals || d2.smartSections)) {
-                                _rneData = d2;
-                                if (_rneData.chatHistory && _rneData.chatHistory.length) {
-                                    _rneChatHistory = _rneData.chatHistory.slice();
-                                }
-                                _rneNormalizeData();
-                                _rneRender();
-                                // Удаляем устаревшую LS-копию после успешной загрузки из IDB
-                                try { localStorage.removeItem('eiti_rne_v1'); } catch(e) {}
-                                return;
-                            }
-                        }
-                        // IDB пуст — one-time legacy migration из LS
-                        _rneMigrateFromLS();
-                    };
-                    req2.onerror = function() { _rneMigrateFromLS(); };
-                } catch(e2) { _rneMigrateFromLS(); }
-            } else {
-                // IDB недоступен — читаем LS (крайний fallback)
-                _rneMigrateFromLS();
-            }
-        }
-
-        // Одноразовая миграция данных из LS в IDB (запускается только если IDB пуст)
-        function _rneMigrateFromLS() {
-            try {
-                var saved = localStorage.getItem('eiti_rne_v1');
-                if (saved) {
-                    var d = JSON.parse(saved);
-                    if (d && (d.goals || d.smartSections)) {
-                        _rneData = d;
-                        if (_rneData.chatHistory && _rneData.chatHistory.length) {
-                            _rneChatHistory = _rneData.chatHistory.slice();
-                        }
-                        _rneNormalizeData();
-                        _rneRender();
-                        // Сохраняем в IDB и чистим LS
-                        if (window.eitiDb && window.eitiDb.objectStoreNames &&
-                            window.eitiDb.objectStoreNames.contains('reasoning')) {
-                            try {
-                                var txM = window.eitiDb.transaction('reasoning', 'readwrite');
-                                txM.objectStore('reasoning').put({ id: RNE_IDB_KEY, data: _rneData, ts: Date.now() });
-                                txM.oncomplete = function() {
-                                    try { localStorage.removeItem('eiti_rne_v1'); } catch(e) {}
-                                };
-                            } catch(e) {}
-                        }
-                    }
-                }
-            } catch(e) {}
-            // v12.9.73 FIX: нормализуем legacy-поля (claim/what → text) при загрузке
-            _rneNormalizeData();
-        }
-
         // ── Получить текущий чат как текст ────────────────────────────
         function _rneGetChatText() {
             if (typeof chatLog === 'undefined' || !chatLog.length) return '';
@@ -41292,7 +41475,19 @@ window.eitiLLMClearAll = async function() {
         }
 
         // ── Слияние нового с существующим ────────────────────────────
-        function _rneMerge(extracted) {
+        function _rneMerge(extracted, opts) {
+            // v14.9.0: запись в journal — с текущим чатом/темой, дедуп по хэшу текста в пределах чата
+            if (_jOk() && _jReady) {
+                opts = opts || {};
+                var _cid = opts.chatId !== undefined ? (opts.chatId == null ? null : String(opts.chatId)) : _jChatId();
+                var _src = opts.source || (document.visibilityState === 'hidden' ? 'dreaming' : 'auto');
+                _jMark(EitiJournal.mergeExtracted(_jItems, extracted, { chatId: _cid, contextId: opts.contextId !== undefined ? opts.contextId : _jContextId(_cid),
+                    source: _src, msgIds: opts.msgIds || (opts.chatId !== undefined ? [] : _jMsgIds()), now: Date.now() }));
+                _rneData.lastExtracted = Date.now();
+                _rneData.msgCountSinceExtract = 0;
+                _rneRebuildView();
+                return;
+            }
             ['goals','facts','questions','gaps','solutions'].forEach(function(key) {
                 if (Array.isArray(extracted[key])) {
                     extracted[key].forEach(function(item) {
@@ -41337,7 +41532,7 @@ window.eitiLLMClearAll = async function() {
                 var raw = await _rneCallLLM(RNE_EXTRACT_PROMPT + chatText);
                 var clean = raw.replace(/```json|```/g, '').trim();
                 var extracted = _rneRepairJSON(raw);
-                _rneMerge(extracted);
+                _rneMerge(extracted, { source: document.visibilityState === 'hidden' ? 'dreaming' : 'manual' });
                 _rneSave();
                 // v12.9.77 FIX: переключаемся на первую непустую секцию
                 var _sects2 = ['goals','facts','questions','gaps','solutions'];
@@ -41374,15 +41569,24 @@ window.eitiLLMClearAll = async function() {
                         var excerpt = msgs.slice(0, 6).map(function(m) {
                             return (m.role === 'user' ? 'П' : 'AI') + ': ' + (m.content || m.text || '').slice(0, 300);
                         }).join('\n');
-                        summaries.push('[Чат: ' + (chats[i].title || 'без названия') + ']\n' + excerpt);
+                        summaries.push({ chatId: chats[i].id, msgIds: msgs.slice(0, 6).map(function(m) { return m.id; }).filter(Boolean), text: '[Чат: ' + (chats[i].title || 'без названия') + ']\n' + excerpt });
                     }
                 }
                 if (!summaries.length) { if (st) st.textContent = '⚠️ История пуста'; return; }
                 if (st) st.textContent = '⏳ Анализирую ' + summaries.length + ' чатов...';
-                var histPrompt = RNE_EXTRACT_PROMPT + summaries.join('\n\n---\n\n');
-                var raw = await _rneCallLLM(histPrompt);
-                var extracted = _rneRepairJSON(raw);
-                _rneMerge(extracted);
+                if (_jOk() && _jReady) {
+                    // v14.9.0: каждый чат — отдельно, с его chatId (пункты привязаны к своему чату)
+                    for (var si = 0; si < summaries.length; si++) {
+                        if (st) st.textContent = '⏳ Анализирую чат ' + (si + 1) + '/' + summaries.length + '...';
+                        try {
+                            var rawC = await _rneCallLLM(RNE_EXTRACT_PROMPT + summaries[si].text);
+                            _rneMerge(_rneRepairJSON(rawC), { chatId: summaries[si].chatId, contextId: null, msgIds: summaries[si].msgIds, source: 'history' });
+                        } catch (eC) { console.warn('[EITI journal] history chat', eC); }
+                    }
+                } else {
+                    var raw = await _rneCallLLM(RNE_EXTRACT_PROMPT + summaries.map(function(x) { return x.text; }).join('\n\n---\n\n'));
+                    _rneMerge(_rneRepairJSON(raw));
+                }
                 _rneSave();
                 // v12.9.77 FIX: переключаемся на первую непустую секцию
                 var _sects = ['goals','facts','questions','gaps','solutions'];
@@ -41479,6 +41683,7 @@ window.eitiLLMClearAll = async function() {
         // ── Рендер текущей секции ─────────────────────────────────────
         function _rneRender() {
             _rneLoad();
+            _rneRebuildView(); // v14.9.0: актуальный чат/тип дневника
 
             // v12.9.77: smartSections — свернуть/развернуть + 📋 + scroll
             var secEl = document.getElementById('rne-smart-sections');
@@ -41588,6 +41793,12 @@ window.eitiLLMClearAll = async function() {
 
         // ── Удалить элемент ───────────────────────────────────────────
         window.eitiRneDeleteItem = function(section, idx) {
+            var _it = _rneData[section] && _rneData[section][idx];
+            if (_it && _it._jid && _jReady) {
+                var _r = _jItems.find(function(x) { return x.id === _it._jid; });
+                if (_r) { EitiJournal.tombstone(_r, Date.now()); _jMark([_r]); }
+                _rneSave(); _rneRender(); return;
+            }
             if (_rneData[section]) { _rneData[section].splice(idx, 1); _rneSave(); _rneRender(); }
         };
 
@@ -41664,7 +41875,25 @@ window.eitiLLMClearAll = async function() {
             }, 2500);
         });
 
-        window.eitiRneRefresh = function() { _rneLoad(); _rneUpdateBadge(); _rneRender(); };
+        window.eitiRneRefresh = function() { _rneLoad(); _rneRebuildView(); _rneUpdateBadge(); _rneRender(); };
+        // v14.9.0: совместимость — старая форма {goals,facts,questions,gaps,solutions,smartSections}, порядок для ИИ:
+        // текущий чат → его тема → остальное (по 15 на раздел)
+        window.eitiJournalForAI = function(cap) {
+            if (!(_jReady && window.EitiJournal)) return _rneData;
+            var cid = _jChatId(), cx = cid ? (_jCtx.find(function(x) { return !x.del && x.chatIds.indexOf(cid) >= 0; }) || {}).id : null;
+            var v = EitiJournal.forAI(_jItems, { chatId: cid, contextId: cx || null, cap: cap || 15 });
+            v.smartSections = _rneData.smartSections || [];
+            return v;
+        };
+        window.eitiRNEGet = function() { _rneLoad(); return window.eitiJournalForAI(); };
+        // Удаление чата: пункты остаются, но без привязки к чату
+        window.eitiJournalDetachChat = function(chatId) {
+            if (!(_jOk() && _jReady) || !chatId) return;
+            var d = EitiJournal.detachChat(_jItems, _jCtx, chatId, Date.now());
+            _jMark(d.items); d.contexts.forEach(function(c) { _jCtxDirty[c.id] = c; });
+            if (d.items.length || d.contexts.length) _rneSave();
+        };
+        window._eitiJournalDebug = function() { return { ready: _jReady, items: _jItems, contexts: _jCtx }; };
 
         // v12.9.77: очистить весь дневник
         window.eitiRneClear = function() {
@@ -41674,7 +41903,13 @@ window.eitiLLMClearAll = async function() {
                 _rneLoaded = false; // сбросим флаг чтобы перезагрузилось
                 _rneLoaded = true;  // но не перезагружаем из storage
                 try { localStorage.removeItem('eiti_rne_v1'); } catch(e) {}
-                if (window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('reasoning')) {
+                if (_jOk() && _jReady) {
+                    // v14.9.0: метки удаления (del:1) — очистка дойдёт и до других устройств через Drive
+                    var _now = Date.now();
+                    _jMark(EitiJournal.tombstoneAll(_jItems, _now));
+                    _jCtx.forEach(function(c) { if (!c.del) { c.del = 1; c.updatedAt = Math.max(_now, (c.updatedAt || 0) + 1); _jCtxDirty[c.id] = c; } });
+                    _rneSave();
+                } else if (window.eitiDb && window.eitiDb.objectStoreNames && window.eitiDb.objectStoreNames.contains('reasoning')) {
                     try {
                         var tx = window.eitiDb.transaction('reasoning', 'readwrite');
                         tx.objectStore('reasoning').delete(RNE_IDB_KEY);
@@ -41809,6 +42044,7 @@ window.eitiLLMClearAll = async function() {
             _rneDiaryType = type;
             localStorage.setItem('eiti_rne_diary_type', type);
             _rneUpdateDiaryButtons();
+            _rneRebuildView(); _rneRender(); // v14.9.0: тип дневника реально меняет выборку
             // v12.9.78 FIX: НЕ закрываем попап — пользователь закроет сам
             if (typeof showToast === 'function') showToast('📝 ' + ({perchat:'Отдельный для каждого чата',dated:'С разделением по датам',user:'Выбор тем',smart:'Умный дневник'}[type]||type), 1500);
             // Показать иконку типа над кнопками
@@ -41870,12 +42106,16 @@ window.eitiLLMClearAll = async function() {
                 // Сохраняем разделы — рендер выполнит _rneRender() ниже
                 if (extracted.sections) {
                     _rneData.smartSections = extracted.sections;
+                    if (_jOk() && _jReady) (extracted.sections || []).forEach(function(sx) {
+                        if (sx && sx.title) { var cx = EitiJournal.ensureContext(_jCtx, EitiJournal.ctxIdFor(sx.title), sx.title, null, Date.now()); _jCtxDirty[cx.id] = cx; }
+                    });
                 }
-                _rneMerge(extracted);
+                _rneMerge(extracted, { chatId: null, contextId: null, source: 'smart' });
                 _rneSave();
                 _rneRender();
                 _rneDiaryType = 'smart';
                 localStorage.setItem('eiti_rne_diary_type', 'smart');
+                _rneRebuildView(); _rneRender();
                 if (st) st.textContent = '✅ Умный дневник создан · ' + (extracted.sections||[]).length + ' разделов';
             } catch(e) {
                 if (st) st.textContent = '❌ ' + e.message;
@@ -46102,7 +46342,7 @@ var DRIVE_FOLDER = 'EITI';
 var DRIVE_FILE   = 'eiti_backup.json';
 var API = 'https://www.googleapis.com/drive/v3/files';
 var UPLOAD = 'https://www.googleapis.com/upload/drive/v3/files';
-var SYNC_STORES = { notes: 'id', chats: 'id', messages: 'id', files: 'name', kb: 'id', l2: 'chatId' };
+var SYNC_STORES = { notes: 'id', chats: 'id', messages: 'id', files: 'name', kb: 'id', l2: 'chatId', journal: 'id', contexts: 'id' }; // v14.9.0: + дневник (метки del:1 — обычные записи, LWW по updatedAt)
 var DEBOUNCE_MS = 8000;
 var LS = {
     tok: 'eiti_drive_token', ts: 'eiti_drive_token_ts', exp: 'eiti_drive_token_exp', email: 'eiti_drive_email',
@@ -46372,6 +46612,10 @@ function _apply(m) {
         if (a.kb && (a.kb.puts.length || a.kb.dels.length)) {
             try { _kbMemCache = null; _kbActiveCache = null; } catch (e) {}
             if (typeof eitiKBLoadAsync === 'function') eitiKBLoadAsync();
+        }
+        // v14.9.0: дневник — перечитать записи (без перезагрузки)
+        if (((a.journal && (a.journal.puts.length || a.journal.dels.length)) || (a.contexts && (a.contexts.puts.length || a.contexts.dels.length))) && typeof window.eitiJournalReload === 'function') {
+            try { window.eitiJournalReload(); } catch (e) {}
         }
         return changed;
     }).finally(function(){ _applying = false; });
@@ -46769,9 +47013,10 @@ window.getRelevantMemories = function(memArray, query, max) {
         var rne = eitiRNEGet();
         if (rne) {
           var rlines = [];
-          if (rne.goals && rne.goals.length)    rlines.push('Цели: ' + rne.goals.slice(0,3).join(' | '));
-          if (rne.questions && rne.questions.length) rlines.push('Вопросы: ' + rne.questions.slice(0,3).join(' | '));
-          if (rne.facts && rne.facts.length)    rlines.push('Факты: ' + rne.facts.slice(0,3).join(' | '));
+          var _tx = function(a) { return a.slice(0,3).map(function(x) { return typeof x === 'string' ? x : (x && x.text) || ''; }).join(' | '); }; // v14.9.0
+          if (rne.goals && rne.goals.length)    rlines.push('Цели: ' + _tx(rne.goals));
+          if (rne.questions && rne.questions.length) rlines.push('Вопросы: ' + _tx(rne.questions));
+          if (rne.facts && rne.facts.length)    rlines.push('Факты: ' + _tx(rne.facts));
           if (rlines.length) parts.push('\n=== 🗓 RNE ДНЕВНИК ===\n' + rlines.join('\n'));
         }
       }
@@ -50949,6 +51194,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
             html += '<div class="chat-plus-item' + (isActive ? ' cpi-active' : '') + '" onclick="eitiChatPlusAction(\'' + item.action + '\')">' +
                 '<div class="cpi-icon">' + item.icon + '</div>' +
                 '<span class="cpi-label">' + _t(item.label) + '</span>' +
+                (item.id === 'grok' && window.EitiVoice ? '<span class="cpi-voice-prov" style="font-size:11px;opacity:0.6;margin-right:6px;">' + EitiVoice.label() + '</span>' : '') + // v14.9.0
                 (item.stateBtn ? '<span class="cpi-state">' + (isActive ? _t('вкл') : _t('выкл')) + '</span>' : '') +
                 '</div>';
         });

@@ -29,20 +29,16 @@ def test_save_chat_menu_item_after_copy_chat():
 
 
 def test_no_visible_grok_voice_strings():
-    bad = []
-    for n, line in enumerate(INDEX.split("\n"), 1):
-        t = line.strip()
-        if not re.search(r"Grok Voice|Grok-Voice|Grok Голос", t):
-            continue
-        if t.startswith(("//", "/*", "*", "<!--")) or "indexOf('[🗣️ Grok Voice]')" in t:
-            continue
-        bad.append(n)
-    assert bad == []
+    # v14.9.0: провайдер голоса снова выбирается явно («Grok Voice» / «Gemini Live»),
+    # но пункт плюс-меню остаётся нейтральным «AI Voice».
+    items = INDEX[INDEX.index("var EITI_CHAT_PLUS_ITEMS"):]
+    items = items[: items.index("];")]
+    assert "label: 'AI Voice'" in items and "Grok Voice" not in items
 
 
 def test_voice_provider_settings_ui_and_keys():
-    for marker in ('id="ai-voice-provider"', '<option value="grok">Grok (xAI)</option>',
-                   '<option value="gemini">Gemini Live</option>', 'id="gemini-live-key"',
+    for marker in ('id="ai-voice-provider"', '<option value="grok">Grok Voice (xAI) — по умолчанию</option>',
+                   '<option value="gemini">Gemini Live (Google)</option>', 'id="gemini-live-key"',
                    'id="gemini-live-model"', 'id="gemini-live-voice"', "eiti_voice_provider",
                    "eiti_gemini_live_model", "eiti_gemini_live_voice", "eiti_gemini_live_key"):
         assert marker in INDEX, marker

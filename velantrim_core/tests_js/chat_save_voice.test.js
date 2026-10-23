@@ -88,16 +88,10 @@ test('меню «+»: «💾 Сохранить чат» сразу после �
   assert.match(INDEX, /'Сохранить чат': 'Chat speichern'/);
 });
 
-test('переименование: нет видимого «Grok Voice» (только комментарии и совместимость)', () => {
-  const offenders = INDEX.split('\n').map((l, i) => [i + 1, l]).filter(([, l]) => {
-    const t = l.trim();
-    if (!/Grok Voice|Grok-Voice|Grok Голос/.test(t)) return false;
-    if (/^(\/\/|\/\*|\*|<!--)/.test(t)) return false;
-    // обратная совместимость: распознаём старый префикс в истории
-    if (t.includes("indexOf('[🗣️ Grok Voice]')")) return false;
-    return true;
-  });
-  assert.deepEqual(offenders, []);
+test('плюс-меню: нейтральный «AI Voice»; провайдер (Grok Voice / Gemini Live) — отдельной подписью (v14.9.0)', () => {
+  const items = INDEX.slice(INDEX.indexOf('var EITI_CHAT_PLUS_ITEMS'));
+  assert.equal(items.slice(0, items.indexOf('];')).includes('Grok Voice'), false);
+  assert.match(INDEX, /cpi-voice-prov/);
   assert.match(INDEX, /'🗣️ AI Voice остановлен'/);
   assert.match(INDEX, /label: 'AI Voice'/);
   // внутренние id / ключи localStorage прежние
@@ -183,7 +177,8 @@ test('Gemini Live: протокол — setupComplete, realtimeInput.audio, audi
   assert.match(start, /ws\.binaryType = 'arraybuffer'/);
   assert.match(start, /new TextDecoder\('utf-8'\)/);
   assert.match(start, /realtimeInput: \{ audio: \{ data: btoa\(bin\), mimeType: mime \} \}/);
-  assert.match(start, /'audio\/pcm;rate=' \+ Math\.round/);
+  assert.match(start, /'audio\/pcm;rate=16000'/); // v14.9.0: всегда 16 кГц, пересэмплирование
+  assert.match(start, /eitiResamplePCM16/);
   assert.match(start, /!window\._geminiLiveReady/);
   const h = extractFunction('_eitiGeminiLiveHandle');
   assert.match(h, /msg\.setupComplete/);
@@ -201,7 +196,8 @@ test('Grok путь без изменений: URL, подпротокол, clie
   assert.match(start, /fetch\('https:\/\/api\.x\.ai\/v1\/realtime\/client_secrets'/);
   assert.match(start, /type: 'input_audio_buffer\.append', audio: b64/);
   assert.match(start, /type: 'session\.update',\s*session: \{\s*voice: _grokVoiceName/);
-  assert.match(start, /eitiVoiceProvider\(\) === 'gemini'\) \{ eitiGeminiVoiceStart\(\); return; \}/);
+  assert.match(start, /if \(window\.EitiVoice\) return EitiVoice\.start\(\);/); // v14.9.0: реестр провайдеров
+  assert.match(INDEX, /gemini: \{ id: 'gemini', label: 'Gemini Live', start: function\(\) \{ return eitiGeminiVoiceStart\(\); \}/);
   const toggle = extractFunction('eitiChatGrokToggle');
   assert.match(toggle, /eiti_grok_key/);
 });
