@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.3.0"; // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.4.0"; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -17908,16 +17908,17 @@
         function _eitiLocalEsc(x) { return String(x || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); }
         function _eitiLocalNoteChip(id) {
             var n = null; try { n = (typeof notesLoad === 'function' ? notesLoad() : []).find(function(x) { return x && x.id === id; }); } catch (e) {}
-            var label = n ? (String(n.title || '').trim() || 'заметка') : 'заметка удалена';
+            var _L = typeof window.eitiOfflineLang === 'function' ? (window._eitiLocalChipLang || window.eitiOfflineLang('')) : 'ru';
+            var label = n ? (String(n.title || '').trim() || window.eitiOfflineStr('chip', _L, 'note')) : window.eitiOfflineStr('chip', _L, 'deleted');
             if (label.length > 40) label = label.slice(0, 39) + '…';
             return '<span class="msg-file-chip eiti-local-note-chip" data-note-id="' + _eitiLocalEsc(id) + '" role="button" tabindex="0"'
                 + ' onclick="if(typeof eitiOpenNoteById===\'function\')eitiOpenNoteById(this.getAttribute(\'data-note-id\'))"'
-                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);' + (n ? '' : 'opacity:0.5;') + '">📝 ' + _eitiLocalEsc(label) + ' · открыть</span>';
+                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);' + (n ? '' : 'opacity:0.5;') + '">📝 ' + _eitiLocalEsc(label) + ' · ' + window.eitiOfflineStr('chip', _L, 'open') + '</span>';
         }
         function _eitiLocalFileChip(name) {
             return '<span class="msg-file-chip eiti-local-file-chip" data-fname="' + _eitiLocalEsc(name) + '" role="button" tabindex="0"'
                 + ' onclick="if(typeof eitiDownloadFile===\'function\')eitiDownloadFile(this.getAttribute(\'data-fname\'))"'
-                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);">📄 ' + _eitiLocalEsc(name) + ' · скачать</span>';
+                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);">📄 ' + _eitiLocalEsc(name) + ' · ' + window.eitiOfflineStr('chip', typeof window.eitiOfflineLang === 'function' ? (window._eitiLocalChipLang || window.eitiOfflineLang('')) : 'ru', 'download') + '</span>';
         }
         window.eitiOpenNoteById = function(id) {
             var n = null; try { n = notesLoad().find(function(x) { return x && x.id === id; }); } catch (e) {}
@@ -17942,6 +17943,7 @@
             t = t.replace(/<EITI_(?:FILE|APPEND):([^>]+)>[\s\S]*?<\/EITI_(?:FILE|APPEND)>/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
             t = t.replace(/⟦EITIFILE:([^⟧]+)⟧/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
             // v14.2.0: ссылки «открыть заметку / файл» из локальных ответов EITI Local
+            if (/⟦EITI(NOTE|UFILE):/.test(t)) { var _tl = t.replace(/⟦[^⟧]*⟧/g, ''); window._eitiLocalChipLang = /[а-яё]/i.test(_tl) ? 'ru' : (typeof window.eitiOfflineLang === 'function' ? window.eitiOfflineLang(_tl) : 'en'); }
             t = t.replace(/⟦EITINOTE:([\w.:-]+)⟧/g, function(_m, id){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalNoteChip(id)); return ph; });
             t = t.replace(/⟦EITIUFILE:([^⟧]+)⟧/g, function(_m, nm){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalFileChip(nm)); return ph; });
             // Escape HTML first
@@ -21572,7 +21574,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             }
             try {
                 var _r = await _eitiAskDeepSeekCore(userText);
-                if (typeof _r === 'string' && /^⚠️ Настройте .*(API )?ключ/.test(_r)) { var _t1 = await _offline(); if (_t1) return _t1; }
+                if (typeof _r === 'string' && (/^⚠️ Настройте .*(API )?ключ/.test(_r) || /^⚠️ (I have no offline answer for that\. Set up|Darauf habe ich offline keine Antwort\. Richte)/.test(_r))) { var _t1 = await _offline(); if (_t1) return _t1; }
                 return _r;
             } catch (e) {
                 var _m = String(e && e.message || e);
@@ -21616,10 +21618,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _orKey = _deobfKey(localStorage.getItem('eiti_or_key') || '');
                 var _openaiKey = _deobfKey(localStorage.getItem('eiti_apikey_openai') || localStorage.getItem('eiti_openai_key') || '');
                 var _stNoKey = (typeof _eitiOfflineSmallTalk === 'function') ? _eitiOfflineSmallTalk(userText) : null;
-                if (_provider === 'gemini' && !_geminiKey) { resolve(_stNoKey || '⚠️ Настройте Google Gemini API ключ в Настройки → ⚡ Google Gemini'); return; }
-                if (_provider === 'openrouter' && !_orKey) { resolve(_stNoKey || '⚠️ Настройте OpenRouter API ключ в Настройки → 🔀 OpenRouter'); return; }
-                if (_provider === 'openai' && !_openaiKey) { resolve(_stNoKey || '⚠️ Настройте ChatGPT API ключ в Настройки → API → выбери ChatGPT'); return; }
-                if (_provider !== 'gemini' && _provider !== 'openrouter' && _provider !== 'openai' && !key) { resolve(_stNoKey || '⚠️ Настройте DeepSeek API ключ в Настройки → 🤖 DeepSeek AI'); return; }
+                // v14.4.0: подсказка «нет ключа» — на языке офлайн-ответа (ru — прежний текст)
+                var _nkLang = typeof window.eitiOfflineLang === 'function' ? window.eitiOfflineLang(userText) : 'ru';
+                if (_stNoKey && _nkLang !== 'ru' && /[а-яё]/i.test(_stNoKey)) _stNoKey = null;
+                var _eitiNoKey = function(p) { return typeof window.eitiOfflineStr === 'function' ? window.eitiOfflineStr('noKey', _nkLang, p) : ''; };
+                if (_provider === 'gemini' && !_geminiKey) { resolve(_stNoKey || _eitiNoKey('gemini')); return; }
+                if (_provider === 'openrouter' && !_orKey) { resolve(_stNoKey || _eitiNoKey('openrouter')); return; }
+                if (_provider === 'openai' && !_openaiKey) { resolve(_stNoKey || _eitiNoKey('openai')); return; }
+                if (_provider !== 'gemini' && _provider !== 'openrouter' && _provider !== 'openai' && !key) { resolve(_stNoKey || _eitiNoKey('deepseek')); return; }
 
                 var messagesEl = document.getElementById('messages');
 
@@ -31448,6 +31454,44 @@ window.eitiLLMClearAll = async function() {
         // (requestIdleCallback после старта / по первому запросу), пакеты — по требованию.
         // Кеш файлов — Service Worker (Cache Storage 'eiti-offline-*'), состояние диалога — IndexedDB
         // 'eiti_offline' (не localStorage). Стиль ответа — Настройки → ✈️ Офлайн-режим.
+        // ── v14.4.0: ЯЗЫК ОФЛАЙН-ОТВЕТОВ ──
+        // 1) явная настройка «язык ответов ИИ» (не auto) — главная;
+        // 2) язык самого сообщения: кириллица → ru, немецкие признаки → de, английские → en;
+        // 3) иначе (цифры, «ok», непонятная латиница) — язык приложения. В RU-интерфейсе латиница → en (как раньше).
+        window.eitiOfflineLang = function(text) {
+            var set = 'auto', ui = 'ru';
+            try { set = typeof window.eitiGetAiReplyLang === 'function' ? window.eitiGetAiReplyLang() : 'auto'; } catch (e) {}
+            if (set === 'ru' || set === 'en' || set === 'de') return set;
+            try { ui = (typeof window.eitiGetLocale === 'function' && window.eitiGetLocale()) || 'ru'; } catch (e) {}
+            if (ui !== 'en' && ui !== 'de') ui = 'ru';
+            var s = String(text || ''), LL = window.EitiLocalLib;
+            if (/[а-яё]/i.test(s)) return 'ru';
+            // детектор — в local/eiti_local.js (грузится на старте; offline/ — лениво)
+            var h = LL && LL.langHint ? LL.langHint(s) : (/[äöüß]/i.test(s) ? 'de' : null);
+            if (h === 'de' || h === 'en') return h;
+            if (/[a-z]/i.test(s)) return ui === 'ru' ? 'en' : ui;
+            return ui;
+        };
+        // офлайн-строки хоста по языкам (ru — прежние тексты без изменений)
+        window.EITI_OFFLINE_STR = {
+            foot: { ru: '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен.</sub>', en: '\n\n<sub>🌙 Offline reply: the AI is unavailable right now.</sub>', de: '\n\n<sub>🌙 Offline-Antwort: Die KI ist gerade nicht verfügbar.</sub>' },
+            kbFoot: { ru: '\n\n<sub>🌙 Офлайн-ответ из базы знаний EITI: ИИ сейчас недоступен.</sub>', en: '\n\n<sub>🌙 Offline reply from the EITI knowledge base: the AI is unavailable right now.</sub>', de: '\n\n<sub>🌙 Offline-Antwort aus der EITI-Wissensbasis: Die KI ist gerade nicht verfügbar.</sub>' },
+            kbEnNote: { de: '\n\n<sub>🇬🇧 Dieser Eintrag ist nur auf Englisch verfügbar.</sub>' },
+            notesFoot: { ru: '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен (', en: '\n\n<sub>🌙 Offline reply: the AI is unavailable right now (', de: '\n\n<sub>🌙 Offline-Antwort: Die KI ist gerade nicht verfügbar (' },
+            noKey: {
+                deepseek: { ru: '⚠️ Настройте DeepSeek API ключ в Настройки → 🤖 DeepSeek AI', en: '⚠️ I have no offline answer for that. Set up a DeepSeek API key in Settings → 🤖 DeepSeek AI', de: '⚠️ Darauf habe ich offline keine Antwort. Richte einen DeepSeek-API-Schlüssel ein: Einstellungen → 🤖 DeepSeek AI' },
+                gemini: { ru: '⚠️ Настройте Google Gemini API ключ в Настройки → ⚡ Google Gemini', en: '⚠️ I have no offline answer for that. Set up a Google Gemini API key in Settings → ⚡ Google Gemini', de: '⚠️ Darauf habe ich offline keine Antwort. Richte einen Google-Gemini-API-Schlüssel ein: Einstellungen → ⚡ Google Gemini' },
+                openrouter: { ru: '⚠️ Настройте OpenRouter API ключ в Настройки → 🔀 OpenRouter', en: '⚠️ I have no offline answer for that. Set up an OpenRouter API key in Settings → 🔀 OpenRouter', de: '⚠️ Darauf habe ich offline keine Antwort. Richte einen OpenRouter-API-Schlüssel ein: Einstellungen → 🔀 OpenRouter' },
+                openai: { ru: '⚠️ Настройте ChatGPT API ключ в Настройки → API → выбери ChatGPT', en: '⚠️ I have no offline answer for that. Set up a ChatGPT API key in Settings → API → choose ChatGPT', de: '⚠️ Darauf habe ich offline keine Antwort. Richte einen ChatGPT-API-Schlüssel ein: Einstellungen → API → ChatGPT wählen' },
+                qwen: { ru: '⚠️ Настройте Qwen API ключ в Настройки → 🟣 Qwen AI', en: '⚠️ I have no offline answer for that. Set up a Qwen API key in Settings → 🟣 Qwen AI', de: '⚠️ Darauf habe ich offline keine Antwort. Richte einen Qwen-API-Schlüssel ein: Einstellungen → 🟣 Qwen AI' }
+            },
+            chip: { open: { ru: 'открыть', en: 'open', de: 'öffnen' }, download: { ru: 'скачать', en: 'download', de: 'herunterladen' }, note: { ru: 'заметка', en: 'note', de: 'Notiz' }, deleted: { ru: 'заметка удалена', en: 'note deleted', de: 'Notiz gelöscht' } }
+        };
+        window.eitiOfflineStr = function(key, lang, sub) {
+            var o = window.EITI_OFFLINE_STR[key]; if (sub) o = o && o[sub];
+            if (!o) return '';
+            return o[lang] != null ? o[lang] : (o.en != null ? o.en : o.ru);
+        };
         var EitiOffline = (function() {
             var BASE = 'offline/', eng = null, data = null, initP = null, PK = {}, missing = null, saveT = null, stats = { init: 0, packs: {} };
             var STYLES = ['auto', 'warm', 'polite', 'casual', 'pro', 'fun'];
@@ -31478,8 +31522,10 @@ window.eitiLLMClearAll = async function() {
                 return 'packs/' + n + '.json';
             }
             function loadScript() {
-                if (window.EitiOfflineDialogs) return Promise.resolve();
-                return new Promise(function(res, rej) { var s = document.createElement('script'); s.src = BASE + 'eiti_offline_dialogs.js'; s.async = true; s.onload = res; s.onerror = function() { rej(new Error('offline engine load failed')); }; document.head.appendChild(s); });
+                // v14.4.0: немецкий слой грузится вместе с движком; его ошибка не ломает RU/EN
+                var de = window.EitiOfflineDE ? Promise.resolve() : new Promise(function(res) { var sd = document.createElement('script'); sd.src = BASE + 'eiti_offline_de.js'; sd.async = true; sd.onload = res; sd.onerror = function() { res(); }; document.head.appendChild(sd); });
+                if (window.EitiOfflineDialogs) return de;
+                return Promise.all([de, new Promise(function(res, rej) { var s = document.createElement('script'); s.src = BASE + 'eiti_offline_dialogs.js'; s.async = true; s.onload = res; s.onerror = function() { rej(new Error('offline engine load failed')); }; document.head.appendChild(s); })]);
             }
             function init() {
                 if (initP) return initP;
@@ -31510,28 +31556,37 @@ window.eitiLLMClearAll = async function() {
                 }));
             }
             // reply(text) → {text,intent,score,…}|null. Не хватает пакета — откатываем состояние, догружаем, повторяем.
-            function reply(text) {
+            // v14.4.0: lang ('ru'|'en'|'de'). de: немецкая фраза → английский эквивалент для движка,
+            // ответ основных намерений — немецким шаблоном (EitiOfflineDE), остальное — по-английски (не по-русски).
+            function reply(text, lang) {
+                var DE = window.EitiOfflineDE, inp = String(text || '');
+                if (lang === 'de' && DE && !/[а-яё]/i.test(inp)) inp = DE.toEn(inp) || inp;
                 return init().then(function() {
                     function attempt(n) {
                         var before = snap(); missing = [];
-                        var r = eng.reply(String(text || ''));
+                        var r = eng.reply(inp);
                         var need = missing.slice(); missing = null;
                         if (!need.length || n >= 3) return r;
                         if (before) restore(before);
                         return fetchPacks(need).then(function() { return attempt(n + 1); }, function() { return r; });
                     }
                     return attempt(0);
-                }).then(function(r) { save(); return r && r.text ? r : null; });
+                }).then(function(r) {
+                    save();
+                    if (!r || !r.text) return null;
+                    if (lang === 'de' && DE && !/[а-яё]/i.test(String(text || ''))) { var loc = DE.localize(r.intent, r.text); if (loc) { r.text = loc; r.lang = 'de'; } else r.lang = 'en'; }
+                    return r;
+                });
             }
-            var FOOT = { ru: '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен.</sub>', en: '\n\n<sub>🌙 Offline reply: the AI is unavailable right now.</sub>' };
             var _footShown = false;
             function replyText(text, opts) {
                 opts = opts || {};
-                return reply(text).then(function(r) {
+                var lang = opts.lang || window.eitiOfflineLang(text);
+                return reply(text, lang).then(function(r) {
                     if (!r) return null;
                     if (opts.minScore && !(r.score >= opts.minScore || r.fu)) return null;
                     var t = r.text;
-                    if (opts.foot && !_footShown) { _footShown = true; t += FOOT[/[а-яё]/i.test(text) ? 'ru' : 'en']; }
+                    if (opts.foot && !_footShown) { _footShown = true; t += window.eitiOfflineStr('foot', /[а-яё]/i.test(t) ? 'ru' : lang); }
                     return t;
                 }).catch(function(e) { console.warn('[EITI offline]', e && e.message); return null; });
             }
@@ -31637,11 +31692,15 @@ window.eitiLLMClearAll = async function() {
                 opts = opts || {};
                 var q = String(text || '');
                 if (q.length > 300 || /сказк|сказан|предани|легенд|анекдот|шутк|скороговор|загадк|пословиц|поговорк|цитат|стих|^\s*(дальше|ещ[её]|продолжай)|морал/i.test(q)) return orig(text, opts);
+                var lang = opts.lang || window.eitiOfflineLang(q);
                 return EitiKBHost.answer(q).then(function(f) {
                     if (!f) return orig(text, opts);
-                    var en = !/[а-яё]/i.test(q) && f.en;
+                    // v14.4.0: не-русский язык → английский текст записи; без него — не русский текст, а офлайн-диалоги
+                    if (lang !== 'ru' && !f.en) return orig(text, opts);
+                    var en = lang !== 'ru';
                     var t = '🧠 **KB · ' + (en ? f.title_en : f.title) + '**\n\n' + (en ? f.en : f.a);
-                    if (opts.foot && !footShown) { footShown = true; t += en ? '\n\n<sub>🌙 Offline reply from the EITI knowledge base: the AI is unavailable right now.</sub>' : '\n\n<sub>🌙 Офлайн-ответ из базы знаний EITI: ИИ сейчас недоступен.</sub>'; }
+                    if (lang === 'de') t += window.eitiOfflineStr('kbEnNote', 'de');
+                    if (opts.foot && !footShown) { footShown = true; t += window.eitiOfflineStr('kbFoot', lang); }
                     return t;
                 }, function() { return orig(text, opts); });
             };
@@ -31660,12 +31719,12 @@ window.eitiLLMClearAll = async function() {
                 try { files = (typeof getAiTextStore === 'function' ? getAiTextStore().files : []).filter(function(f) { return f && f.name && (typeof isUserFile !== 'function' || isUserFile(f)) && f.id !== '__chat_bg__' && f.name !== '__chat_bg__'; }); } catch (e) {}
                 return { notes: notes, files: files };
             }
-            function reply(text) {
+            function reply(text, lang) {
                 var q = String(text || '');
                 if (!window.EitiLocalLib || !q || q.length > 200) return null;
                 stats.calls++;
                 var r = null;
-                try { r = EitiLocalLib.reply(q, data(), Date.now()); } catch (e) { console.warn('[EITI local]', e && e.message); return null; }
+                try { r = EitiLocalLib.reply(q, data(), Date.now(), { lang: lang || window.eitiOfflineLang(q) }); } catch (e) { console.warn('[EITI local]', e && e.message); return null; }
                 if (!r) return null;
                 stats.hits++; stats.last = r.intent;
                 return (r.kind === 'calc' ? '🧮 ' : '🗂 ') + r.text;
@@ -31677,7 +31736,7 @@ window.eitiLLMClearAll = async function() {
             if (!window.EitiOffline || EitiOffline._localWrapped) return;
             var orig = EitiOffline.replyText;
             EitiOffline.replyText = function(text, opts) {
-                var t = EitiLocalHost.reply(text);
+                var t = EitiLocalHost.reply(text, opts && opts.lang);
                 return t ? Promise.resolve(t) : orig(text, opts);
             };
             EitiOffline._localWrapped = true;
@@ -38403,7 +38462,7 @@ window.eitiLLMClearAll = async function() {
                 if (!window.EitiOffline) throw err;
                 return EitiOffline.replyText(msg).then(function(t) {
                     if (!t) throw err;
-                    var out = t + '\n\n<sub>🌙 Офлайн-ответ: ИИ сейчас недоступен (' + String(err && err.message || err).slice(0, 80) + ').</sub>';
+                    var out = t + window.eitiOfflineStr('notesFoot', window.eitiOfflineLang(msg)) + String(err && err.message || err).slice(0, 80) + ').</sub>';
                     _eitiNotesAIChats[key].push({ role: 'assistant', text: out });
                     if (live) { live.innerHTML = (typeof eitiRenderMarkdown === 'function') ? eitiRenderMarkdown(out) : out; live.setAttribute('data-offline', '1'); }
                 });
@@ -47760,7 +47819,7 @@ window.eitiAskDeepSeek = function(userText) {
 
     return new Promise(function(resolve, reject) {
         if (!QWEN.getKey()) {
-            resolve('⚠️ Настройте Qwen API ключ в Настройки → 🟣 Qwen AI');
+            resolve(typeof window.eitiOfflineStr === 'function' ? window.eitiOfflineStr('noKey', window.eitiOfflineLang(userText), 'qwen') : '⚠️ Настройте Qwen API ключ в Настройки → 🟣 Qwen AI');
             return;
         }
 

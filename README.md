@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.3.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.4.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,13 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.4.0
+
+- 🌐 **Офлайн-ответы на языке приложения и сообщения (RU / EN / DE).** Раньше без ключа ИИ в EN/DE-интерфейсе часть ответов приходила по-русски. Теперь язык выбирается так: явная настройка «язык ответов ИИ» → язык самого сообщения (кириллица → RU, немецкие признаки → DE, английские → EN) → язык приложения. Русское поведение не изменилось.
+- 🧮 **EITI Local** (калькулятор и вопросы о заметках/файлах) отвечает шаблонами на RU/EN/DE, понимает немецкие числа и операции («zwanzig prozent von dreihundert», «sieben mal acht») и вопросы («wie viele Notizen habe ich», «finde in meinen Notizen …»).
+- 🧠 **KB**: для EN/DE — английский текст статьи; статьи без перевода не показываются по-русски, вопрос уходит офлайн-диалогам.
+- 💬 **Офлайн-диалоги**: новый `offline/eiti_offline_de.js` — немецкие шаблоны для основных намерений (приветствия, спасибо, как дела, помощь, прощание, кто ты, что умеешь, настроение…); остальное — по-английски, без машинного перевода. Подсказка «нет ключа», подписи «офлайн-ответ» и чипы «открыть/скачать» — тоже на нужном языке.
 
 ## 🆕 Что нового в v14.3.0
 
