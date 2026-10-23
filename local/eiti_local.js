@@ -14,8 +14,8 @@
   var LANGS = { ru: 1, en: 1, de: 1 };
   function langOf(q, lang) { return LANGS[lang] ? lang : (isRu(q) ? 'ru' : 'en'); }
   // langHint(text) → 'de' | 'en' | null — язык латинского текста (те же списки, что в offline/eiti_offline_de.js)
-  var HINT_DE = /\s(und|ich|du|nicht|ist|bist|danke|bitte|hallo|tschüss|tschüs|guten|gute|morgen|abend|nacht|wie|was|wer|kannst|machst|geht|es|mir|dich|dir|mich|ein|eine|einen|noch|ja|nein|doch|hilfe|witz|märchen|geschichte|erzähl|erzähle|wieviel|viele|notizen|notiz|dateien|mal|geteilt|durch|wurzel|prozent|von|tag|heute|gestern|habe|hab|meine|mein|deine|dein|sehr|gut|schlecht|entschuldigung|tut|leid|klar|genau|toll|super|servus|moin|grüß|grüss|weiter|nochmal|vielen|dank)(?=\s)/g;
-  var HINT_EN = /\s(the|and|you|your|are|is|what|how|who|hello|hi|hey|thanks|thank|please|can|do|does|my|me|i|it|this|that|tell|joke|story|notes?|files?|times|plus|minus|of|good|morning|night|bye|yes|no|help|more|another)(?=\s)/g;
+  var HINT_DE = /\s(und|ich|du|nicht|ist|bist|danke|bitte|hallo|tschüss|tschüs|guten|gute|morgen|abend|nacht|wie|was|wer|kannst|machst|geht|es|mir|dich|dir|mich|ein|eine|einen|noch|ja|nein|doch|hilfe|witz|märchen|geschichte|erzähl|erzähle|wieviel|viele|notizen|notiz|dateien|mal|geteilt|durch|wurzel|prozent|von|tag|heute|gestern|habe|hab|meine|mein|deine|dein|sehr|gut|schlecht|entschuldigung|tut|leid|klar|genau|toll|super|servus|moin|grüß|grüss|weiter|nochmal|vielen|dank|zwei|drei|vier|sechs|sieben|acht|neun|zehn|elf|zwölf|zwanzig|dreißig|hundert|tausend|hoch|komma|quadrat|berechne|rechne|multipliziert|dividiert|hälfte)(?=\s)/g;
+  var HINT_EN = /\s(the|and|you|your|are|is|what|how|who|hello|hi|hey|thanks|thank|please|can|do|does|my|me|i|it|this|that|tell|joke|story|notes?|files?|times|plus|minus|of|good|morning|night|bye|yes|no|help|more|another|two|three|four|five|six|seven|eight|nine|ten|twenty|thirty|hundred|thousand|divided|multiplied|squared|cubed|root|percent|calculate|half)(?=\s)/g;
   function langHint(text) {
     var raw = String(text || '');
     if (/[а-яё]/i.test(raw)) return null;
@@ -100,6 +100,8 @@
         continue;
       }
       if ((t === 'hundred' || t === 'hundert') && any && cur > 0 && cur < 10) { cur *= 100; lastSmall = 100; n++; continue; }
+      // v14.10.0: «hundred / hundert» без множителя = 100 («a hundred plus five», «hundert minus zwei»)
+      if ((t === 'hundred' || t === 'hundert') && !any) { cur = 100; lastSmall = 100; any = true; n++; continue; }
       if (Object.prototype.hasOwnProperty.call(MULT, t)) {
         total += (any ? (cur || 1) : 1) * MULT[t]; cur = 0; any = true; lastSmall = 1000; n++; continue;
       }
@@ -131,7 +133,7 @@
       return { v: base.v, n: base.n + 1 };
     }
     // «два и пять» → 2,5 (только словами/цифрами, дробная часть — целое число)
-    if ((toks[j] === 'и' || toks[j] === 'point') && toks[j + 1] !== undefined) {
+    if ((toks[j] === 'и' || toks[j] === 'point' || toks[j] === 'komma' || toks[j] === 'запятая') && toks[j + 1] !== undefined) {
       var fp = null, fn = 0;
       if (/^\d+$/.test(toks[j + 1])) { fp = toks[j + 1]; fn = 1; }
       else { var ri = readInt(toks, j + 1); if (ri && ri.v < 1000) { fp = String(ri.v); fn = ri.n; } }
@@ -147,6 +149,8 @@
   // ───────────────────────── калькулятор ─────────────────────────
   // Многословные операторы → однословные метки (порядок важен: длинные первыми).
   var PHRASES = [
+    // v14.10.0: «half of 50», «die Hälfte von 50», «половина от 50» → 0.5 × 50
+    [/(?:^|\s)(?:die\s+)?(?:half of|hälfte von|haelfte von|половина от|половину от|половина из)(?=\s)/g, ' 0.5 MUL '],
     [/квадратн[а-я]* корн[а-я]* из|квадратный корень из|корень квадратный из|корень из|корня из|square root of|root of|sqrt|quadratwurzel aus|wurzel aus|wurzel von/g, ' SQRT '],
     [/кубическ[а-я]* корн?[а-я]* из/g, ' CBRT '],
     [/в квадрате|в квадрат|squared|zum quadrat|im quadrat/g, ' SQ '],
@@ -175,8 +179,11 @@
     if (/\b\d{1,4}[./-]\d{1,2}[./-]\d{1,4}\b/.test(s) || /\b\d{1,2}:\d{2}\b/.test(s) || /\+\d[\d\s()-]{8,}/.test(s) || /\bv?\d+\.\d+\.\d+/.test(s)) return null;
     s = s.replace(PREFIX, '').replace(/[?!=]+\s*$/, '').replace(/\s*=\s*\??$/, '').trim();
     if (!s) return null;
+    // v14.10.0: «twenty-five» → «twenty five» (дефис между словами — не минус); артикли the/a/an/der/die/das — шум
+    s = s.replace(/([a-zäöüß])-(?=[a-zäöüß])/g, '$1 ');
     s = deSplit(s);
     PHRASES.forEach(function (p) { s = s.replace(p[0], p[1]); });
+    s = (' ' + s + ' ').replace(/\s(?:the|an?|der|die|das)(?=\s)/g, ' ').trim();
     s = s.replace(/(\d),(\d)/g, '$1.$2')
       .replace(/[×xх](?=\s*[\d(])/g, ' MUL ').replace(/\*\*/g, ' POW ').replace(/[*·]/g, ' MUL ')
       .replace(/[÷:/]/g, ' DIV ').replace(/[−–—]/g, '-').replace(/\+/g, ' ADD ').replace(/-/g, ' SUB ')
@@ -304,7 +311,7 @@
     var e = parse(toks);
     if (!e || !hasOperator(e)) return null;
     // без явного языка — как раньше: кириллица или одни цифры → по-русски
-    var L = LANGS[lang] ? lang : (isRu(q) || !/[a-z]/i.test(q) ? 'ru' : 'en');
+    var L = LANGS[lang] ? lang : (isRu(q) || !/[a-z]/i.test(q) ? 'ru' : (langHint(q) === 'de' ? 'de' : 'en'));
     var shown = show(e, L);
     try {
       var v = ev(e);

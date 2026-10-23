@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.9.0"; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.10.0"; // v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -879,6 +879,7 @@
                 '🤖 AI улучшить': '🤖 KI-Verbesserung',
                 '🧹 Очистить всё': '🧹 Alles leeren',
                 'Введите сообщение... (Enter — отправить)': 'Nachricht eingeben… (Enter — Senden)',
+                'Сообщение…': 'Nachricht…', 'Сообщение': 'Nachricht', 'Enter — отправить, Shift+Enter — новая строка': 'Enter — senden, Umschalt+Enter — neue Zeile',
                 'Введите API-ключ...': 'API-Schlüssel eingeben…',
                 'Введите API ключ — приложение подключится к серверу и покажет баланс, расход токенов и денег.': 'Geben Sie den API-Schlüssel ein — die App verbindet sich mit dem Server und zeigt Guthaben, Token- und Kostenverbrauch.',
                 'Введи вопрос вручную…': 'Frage manuell eingeben…',
@@ -2602,6 +2603,7 @@
                 '🤖 AI улучшить': '🤖 AI improve',
                 '🧹 Очистить всё': '🧹 Clear all',
                 'Введите сообщение... (Enter — отправить)': 'Type a message... (Enter — send)',
+                'Сообщение…': 'Message…', 'Сообщение': 'Message', 'Enter — отправить, Shift+Enter — новая строка': 'Enter — send, Shift+Enter — new line',
                 'Введите API-ключ...': 'Enter API key...',
                 'Введите API ключ — приложение подключится к серверу и покажет баланс, расход токенов и денег.': 'Enter the API key — the app will connect to the server and show your balance, token and dollar usage.',
                 'Введи вопрос вручную…': 'Type a question manually…',
@@ -3957,6 +3959,11 @@
             }
             // Walks all text nodes under root, replacing any node text whose trimmed value
             // exists as a key in REV[targetLocale]. Preserves leading/trailing whitespace.
+            // v14.10.0: «🎙️ Голос: Rex» — переводим известный префикс «…:» у динамических строк (тосты, подписи)
+            function _prefixTr(rev, t) {
+                var m = /^([^:]{2,60}:)\s+(.+)$/.exec(t);
+                return m && rev[m[1]] ? rev[m[1]] + ' ' + m[2] : null;
+            }
             function walkAndTranslate(root, targetLocale) {
                 if (!root) return;
                 var rev = REV[targetLocale] || {};
@@ -3974,6 +3981,7 @@
                             var trail = v.match(/\s*$/)[0];
                             node.nodeValue = lead + rev[trimmed] + trail;
                         }
+                        else { var _px = _prefixTr(rev, trimmed); if (_px) node.nodeValue = v.match(/^\s*/)[0] + _px + v.match(/\s*$/)[0]; }
                         continue;
                     }
                     if (node.nodeType !== 1) continue;
@@ -4142,12 +4150,17 @@
             } else {
                 _initApply();
             }
-            return { T: T, setLocale: setLocale, getLocale: getLocale, applyDOM: applyDOM, addDict: addDict, _dict: DICT };
+            function tr(x) { if (x == null || state.locale === 'ru') return x; var rev = REV[state.locale] || {}, t = String(x).trim(); return rev[t] || _prefixTr(rev, t) || x; }
+            return { T: T, tr: tr, setLocale: setLocale, getLocale: getLocale, applyDOM: applyDOM, addDict: addDict, _dict: DICT };
         })();
         window.T = window.EITI_I18N.T;
         window.eitiSetLocale = window.EITI_I18N.setLocale;
         window.eitiGetLocale = window.EITI_I18N.getLocale;
         window.eitiApplyI18n = window.EITI_I18N.applyDOM;
+
+        // v14.10.0: перевод строк, найденных аудитом EN/DE (e2e v14100_i18n.spec.js сканирует экраны на кириллицу)
+        window.EITI_I18N.addDict('en', {"Голосовой ассистент": "Voice assistant", "Добавить на главный экран": "Add to Home Screen", "Хороший ответ": "Good answer", "Плохой ответ": "Bad answer", "Озвучить / Пауза / Продолжить": "Speak / Pause / Resume", "Скопировать": "Copy", "Функции чата": "Chat functions", "Добавить музыку": "Add music", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Shuffle", "Повтор": "Repeat", "🌐 Язык / Language": "🌐 Language", "Лёгкий reasoning": "Light reasoning", "Макс. reasoning": "Max reasoning", "актуальный Flash": "current Flash", "флагман · reasoning": "flagship · reasoning", "баланс · замена 3.5": "balanced · replaces 3.5", "быстро · дёшево": "fast · cheap", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: current Flash · fast and strong", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "On — thinking · Off — fast mode for all Gemini", "✓ Подтвердить ключ Qwen": "✓ Confirm Qwen key", "🔌 Проверить статус": "🔌 Check status", "DashScope · ключ выше · 235B": "DashScope · key above · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "On — model default mode · Off — reasoning is disabled per request", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Separate live list of free OpenRouter endpoints. Requires an OpenRouter API key; free endpoints cost $0 per token, but OpenRouter limits and availability apply.", "Выбрать бесплатную модель…": "Choose a free model…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Off — button hidden, no requests. Off by default: notes are never sent to an LLM without explicit consent.", "Подсветка правок ИИ": "AI edit highlighting", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "After Ask AI, show insertions and struck-through deletions. Turned off by the «Аб» button or when you type manually.", "Цвета подсветки": "Highlight colours", "AI Docs в файлах": "AI Docs in files", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "At the bottom of an open file: 🔍 search, ✨ Ask AI, ✎ edit. The AI sees the whole file and remembers the window's questions; edits are highlighted, ↶↷ undo them.", "🔗 Проактивные рекомендации": "🔗 Proactive suggestions", "При сохранении файла подсказывать связь с заметками и памятью": "When saving a file, suggest links to notes and memory", "🌙 Стиль офлайн-ответов": "🌙 Offline reply style", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Without network, without a key or when the AI fails, EITI answers offline: dialogues, jokes, proverbs, riddles, tales and legends («a bedtime story», «go on», «who is Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:status|title|...]", "🎓 Обучение EITI": "🎓 EITI learning", "👍 Что я понял о твоих предпочтениях": "👍 What I learned about your preferences", "Оценок:": "Ratings:", "· доля 👍:": "· 👍 share:", "Любимая модель:": "Favourite model:", "нужно ≥3 оценок": "needs ≥3 ratings", "Длина ответа:": "Reply length:", "пока неясно": "not clear yet", "🎰 Адаптивный поиск памяти": "🎰 Adaptive memory search", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Tunes the threshold and number of facts from your 👍/👎 (Thompson sampling).", "Пресет": "Preset", "порог/факты": "threshold/facts", "оценка": "score", "Широко": "Broad", "Фокус": "Focus", "Строго": "Strict", "↺ Сбросить обучение": "↺ Reset learning", "🧠 MOSC: уточнять намерение": "🧠 MOSC: clarify intent", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "A «Looks like you want…» card under the message. Does not block sending.", "🗂 Память фактов": "🗂 Fact memory", "Активных:": "Active:", "/ 200 · в архиве:": "/ 200 · archived:", "🧹 Сжать память сейчас": "🧹 Compact memory now", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Changes by AI (MOSC / FL / PKG)", "Пока нет изменений.": "No changes yet.", "📈 Метрики (только на устройстве)": "📈 Metrics (on device only)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Rate replies with 👍/👎 — statistics will appear here.", "🎙️ Голос:": "🎙️ Voice:", "🔊 Голос:": "🔊 Voice:", "🚫 Grok поиск отключён": "🚫 Grok search disabled", "Провайдер AI Voice": "AI Voice provider", "Модель Grok": "Grok model", "Голос Grok": "Grok voice", "Цвет добавленного текста": "Colour of added text", "Цвет удалённого текста": "Colour of deleted text", "Удалить": "Delete", "Редактировать": "Edit", "Озвучить": "Speak", "Копировать": "Copy"});
+        window.EITI_I18N.addDict('de', {"Голосовой ассистент": "Sprachassistent", "Добавить на главный экран": "Zum Home-Bildschirm", "Хороший ответ": "Gute Antwort", "Плохой ответ": "Schlechte Antwort", "Озвучить / Пауза / Продолжить": "Vorlesen / Pause / Fortsetzen", "Скопировать": "Kopieren", "Функции чата": "Chat-Funktionen", "Добавить музыку": "Musik hinzufügen", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Zufällige Reihenfolge", "Повтор": "Wiederholen", "🌐 Язык / Language": "🌐 Sprache", "Лёгкий reasoning": "Leichtes Reasoning", "Макс. reasoning": "Max. Reasoning", "актуальный Flash": "aktuelles Flash", "флагман · reasoning": "Flaggschiff · Reasoning", "баланс · замена 3.5": "ausgewogen · ersetzt 3.5", "быстро · дёшево": "schnell · günstig", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: aktuelles Flash · schnell und stark", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "An — denkend · Aus — schneller Modus für alle Gemini", "✓ Подтвердить ключ Qwen": "✓ Qwen-Schlüssel bestätigen", "🔌 Проверить статус": "🔌 Status prüfen", "DashScope · ключ выше · 235B": "DashScope · Schlüssel oben · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "An — Standardmodus des Modells · Aus — Reasoning wird per Anfrage abgeschaltet", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Eigene Live-Liste kostenloser OpenRouter-Endpunkte. Erfordert einen OpenRouter-API-Schlüssel; kostenlose Endpunkte kosten $0 pro Token, es gelten aber Limits und Verfügbarkeit von OpenRouter.", "Выбрать бесплатную модель…": "Kostenloses Modell wählen…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Aus — Schaltfläche ausgeblendet, keine Anfragen. Standardmäßig aus: Notizen gehen nie ohne ausdrückliche Zustimmung an ein LLM.", "Подсветка правок ИИ": "KI-Änderungen hervorheben", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "Nach Ask AI Einfügungen und durchgestrichene Löschungen zeigen. Wird mit der Taste «Аб» oder beim manuellen Tippen ausgeschaltet.", "Цвета подсветки": "Hervorhebungsfarben", "AI Docs в файлах": "AI Docs in Dateien", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "Unten in einer geöffneten Datei: 🔍 Suche, ✨ Ask AI, ✎ Bearbeiten. Die KI sieht die ganze Datei und merkt sich die Fragen des Fensters; Änderungen werden hervorgehoben, ↶↷ macht sie rückgängig.", "🔗 Проактивные рекомендации": "🔗 Proaktive Empfehlungen", "При сохранении файла подсказывать связь с заметками и памятью": "Beim Speichern einer Datei Verbindungen zu Notizen und Gedächtnis vorschlagen", "🌙 Стиль офлайн-ответов": "🌙 Stil der Offline-Antworten", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Ohne Netz, ohne Schlüssel oder bei KI-Ausfall antwortet EITI offline: Dialoge, Witze, Sprichwörter, Rätsel, Märchen und Sagen («Gute-Nacht-Geschichte», «weiter», «wer ist Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:Status|Titel|...]", "🎓 Обучение EITI": "🎓 EITI-Lernen", "👍 Что я понял о твоих предпочтениях": "👍 Was ich über deine Vorlieben gelernt habe", "Оценок:": "Bewertungen:", "· доля 👍:": "· 👍-Anteil:", "Любимая модель:": "Lieblingsmodell:", "нужно ≥3 оценок": "mind. 3 Bewertungen nötig", "Длина ответа:": "Antwortlänge:", "пока неясно": "noch unklar", "🎰 Адаптивный поиск памяти": "🎰 Adaptive Gedächtnissuche", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Passt Schwelle und Anzahl der Fakten an deine 👍/👎 an (Thompson Sampling).", "Пресет": "Voreinstellung", "порог/факты": "Schwelle/Fakten", "оценка": "Wertung", "Широко": "Breit", "Фокус": "Fokus", "Строго": "Streng", "↺ Сбросить обучение": "↺ Lernen zurücksetzen", "🧠 MOSC: уточнять намерение": "🧠 MOSC: Absicht klären", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "Eine Karte «Du möchtest wohl…» unter der Nachricht. Blockiert das Senden nicht.", "🗂 Память фактов": "🗂 Faktengedächtnis", "Активных:": "Aktiv:", "/ 200 · в архиве:": "/ 200 · archiviert:", "🧹 Сжать память сейчас": "🧹 Gedächtnis jetzt verdichten", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Änderungen durch KI (MOSC / FL / PKG)", "Пока нет изменений.": "Noch keine Änderungen.", "📈 Метрики (только на устройстве)": "📈 Metriken (nur auf dem Gerät)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Bewerte Antworten mit 👍/👎 — hier erscheint dann die Statistik.", "🎙️ Голос:": "🎙️ Stimme:", "🔊 Голос:": "🔊 Stimme:", "🚫 Grok поиск отключён": "🚫 Grok-Suche deaktiviert", "Провайдер AI Voice": "AI-Voice-Anbieter", "Модель Grok": "Grok-Modell", "Голос Grok": "Grok-Stimme", "Цвет добавленного текста": "Farbe des eingefügten Texts", "Цвет удалённого текста": "Farbe des gelöschten Texts", "Удалить": "Löschen", "Редактировать": "Bearbeiten", "Озвучить": "Vorlesen", "Копировать": "Kopieren"});
 
         // ─────────────────────────────────────────────────────────────────
         // AI reply language — независимо от UI-локали.
@@ -7037,6 +7050,33 @@
             margin-top:4px;
             flex-shrink:0;
         }
+        /* v14.10.0: действия сообщения — компактный горизонтальный ряд под текстом (не съедает ширину) */
+        #messages .message-row{ flex-direction:column; align-items:stretch; gap:0; }
+        #messages .message-row:has(> .message-controls){ min-width:150px; }
+        #messages .message-row:has(> .message-controls) > .message-body > .message-time:last-child{ min-height:32px; display:flex; align-items:center; }
+        #messages .message-row > .message-controls{
+            flex-direction:row; flex-wrap:wrap; justify-content:flex-end; align-self:flex-end;
+            gap:2px; margin:-32px 0 0 0; margin-inline-start:auto; opacity:.55; transition:opacity .15s;
+        }
+        #messages .message-row > .message-controls:hover, #messages .message-row > .message-controls:focus-within{ opacity:1; }
+        #messages .message-row > .message-controls .msg-btn{
+            width:32px; height:32px; min-width:32px; padding:0; border:none!important; border-radius:8px;
+            background:transparent!important; box-shadow:none!important; font-size:14px; line-height:1;
+        }
+        #messages .message-row > .message-controls .msg-btn:active{ background:rgba(127,127,127,.18)!important; }
+        .chat-input::placeholder{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        /* v14.10.0: композер-«пилюля» (как ChatGPT/Grok): + слева, поле с микрофоном внутри, ➤ справа — всё 44px */
+        .chat-input-panel{ align-items:flex-end !important; gap:8px !important; padding-top:6px !important; padding-bottom:6px !important; }
+        .chat-input-panel .chat-left-col, .chat-input-panel .chat-right-col{ min-height:44px !important; justify-content:flex-end !important; }
+        .chat-input-panel .chat-plus-btn, .chat-input-panel .chat-send-btn{ width:44px !important; height:44px !important; min-width:44px !important; min-height:44px !important; padding:0 !important; border-radius:50% !important; display:inline-flex !important; align-items:center; justify-content:center; line-height:1 !important; }
+        .chat-input-panel #input.chat-input{ box-sizing:border-box !important; min-height:44px !important; height:44px; font-size:16px !important; line-height:20px !important; padding:11px 46px 11px 16px !important; border-radius:22px !important; border:1px solid rgba(255,215,0,.28) !important; margin:0 !important; resize:none; transition:border-radius .15s; }
+        .chat-input-panel #input.chat-input.eiti-multiline{ border-radius:18px !important; }
+        .chat-input-panel #input.chat-input:focus{ border-color:rgba(255,215,0,.6) !important; }
+        .eiti-composer-mic{ position:absolute; right:2px; bottom:2px; width:40px; height:40px; border-radius:50%; border:none; background:transparent; color:rgba(255,215,0,.7); display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; z-index:2; }
+        .eiti-composer-mic:hover, .eiti-composer-mic:focus-visible{ color:#ffd700; background:rgba(255,215,0,.08); }
+        [dir="rtl"] .eiti-composer-mic{ right:auto; left:2px; }
+        [dir="rtl"] .chat-input-panel #input.chat-input{ padding:11px 16px 11px 46px !important; }
+
         .msg-btn{
             width:26px;
             height:26px;
@@ -8143,7 +8183,7 @@
                             <div id="chat-classic-btns" style="display:none;flex-direction:column;align-items:center;gap:3px;"></div>
                         </div>
                         <!-- CENTRE: input + attach indicator -->
-                        <div class="chat-center-col" style="flex:1;display:flex;flex-direction:column;min-width:0;">
+                        <div class="chat-center-col" style="position:relative;flex:1;display:flex;flex-direction:column;min-width:0;">
                             <div id="chat-attach-indicator">
                                 <div id="chat-attach-files-list"></div>
                                 <div style="display:flex;gap:4px;flex-shrink:0;align-items:center;">
@@ -8152,7 +8192,8 @@
                                     <button onclick="eitiChatDetachFile()" title="Убрать все файлы" style="background:none;border:none;color:rgba(255,215,0,0.5);cursor:pointer;font-size:13px;padding:0;flex-shrink:0;">✕</button>
                                 </div>
                             </div>
-                            <textarea class="chat-input" placeholder="Введите сообщение... (Enter — отправить)" id="input" rows="1"></textarea>
+                            <textarea class="chat-input" placeholder="Сообщение…" title="Enter — отправить, Shift+Enter — новая строка" aria-label="Сообщение" id="input" rows="1"></textarea>
+                            <button type="button" id="eiti-composer-mic" class="eiti-composer-mic" title="Голосовой ассистент" aria-label="Голосовой ассистент" onclick="if(typeof eitiToggleGrokVoice==='function')eitiToggleGrokVoice()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
                         </div>
                         <!-- RIGHT: attach proxy (classic mode) + send -->
                         <div class="chat-right-col" style="justify-content:space-between;min-height:36px;">
@@ -9168,7 +9209,7 @@
                     <div class="settings-group">
                         <div class="settings-title" data-i18n="📋 Персональная Доска">📋 Персональная Доска</div>
                         <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
-                            <div style="font-size:13px;opacity:0.7;line-height:1.5;">Kanban-доска задач. Хранится в IndexedDB (store <code>tasks</code>). AI добавляет задачи через <code>[TASK_ADD:статус|название|...]</code>.</div>
+                            <div style="font-size:13px;opacity:0.7;line-height:1.5;">Kanban-доска задач. Хранится в IndexedDB (store <code>tasks</code>). AI добавляет задачи через <code>[TASK_ADD:status|title|...]</code>.</div>
                             <div id="eiti-tasks-stats" style="padding:10px;border-radius:10px;background:var(--secondary-color);font-size:13px;text-align:center;opacity:0.8;">⏳ Загрузка...</div>
                             <button onclick="showPersonalBoard()" style="padding:12px;border-radius:12px;border:none;background:linear-gradient(145deg,#1a4a8a,#1565c0);color:#fff;font-weight:700;font-size:14px;cursor:pointer;">📋 Открыть доску</button>
                             <div style="display:flex;gap:8px;">
@@ -15528,7 +15569,7 @@
                 if (m.role !== 'user') {
                     var fbDiv = document.createElement('div');
                     fbDiv.className = 'eiti-fb-row';
-                    fbDiv.style.cssText = 'display:flex;gap:6px;margin-top:4px;opacity:0.5;';
+                    fbDiv.style.cssText = 'display:inline-flex;align-items:center;min-height:32px;gap:6px;margin-top:4px;opacity:0.5;';
                     var btnUp = document.createElement('button');
                     btnUp.textContent = '👍'; btnUp.title = 'Хороший ответ';
                     btnUp.style.cssText = 'background:none;border:none;cursor:pointer;font-size:15px;padding:2px 6px;';
@@ -16694,6 +16735,8 @@
             if (allToasts.length >= 3) allToasts[0].remove();
             var toast = document.createElement('div');
             toast.className = 'toast';
+            // v14.10.0: тост переводится сразу (раньше — только асинхронно через MutationObserver, и успевал мелькнуть по-русски)
+            try { if (window.EITI_I18N && window.EITI_I18N.tr) message = window.EITI_I18N.tr(message); } catch (e) {}
             toast.textContent = message;
             document.body.appendChild(toast);
             setTimeout(function() { if (toast.parentNode) toast.remove(); }, duration || 2000);
@@ -28089,7 +28132,7 @@ window.eitiToggleLLMMode = function() {
     } else {
         if (btn) { btn.style.opacity = '0.5'; btn.style.background = ''; btn.style.borderRadius = ''; }
         if (sendBtn) { sendBtn.style.background = ''; }
-        if (input) input.placeholder = 'Введите сообщение... (Enter — отправить)';
+        if (input) input.placeholder = 'Сообщение…';
         if (typeof showToast === 'function') showToast('🤖 LLM режим ВЫКЛ', 2000);
     }
 };
@@ -28365,7 +28408,7 @@ window.eitiToggleLLM = function() {
             var _pauseInput = document.getElementById('input');
             if (_pauseBtn) { _pauseBtn.style.opacity = '0.5'; _pauseBtn.style.background = ''; _pauseBtn.style.borderRadius = ''; }
             if (_pauseSend) _pauseSend.style.background = '';
-            if (_pauseInput) _pauseInput.placeholder = 'Введите сообщение... (Enter — отправить)';
+            if (_pauseInput) _pauseInput.placeholder = 'Сообщение…';
         }
         _eitiLLMUpdateStatus('⏸ Приостановлено', cfg.model);
         _eitiLLMUpdateToggleBtn(true, cfg.model);
@@ -29467,22 +29510,7 @@ window.eitiLLMClearAll = async function() {
             _replyBtns[1].onclick = function() { copyText(processed).then(function(){ showToast('Скопировано'); }); };
             var _delBtn = div.querySelector('.eiti-del-btn');
             if (_delBtn) _delBtn.onclick = function() { if (typeof eitiDeleteMessage === 'function') eitiDeleteMessage(ai.id, div); };
-            // Sticky bottom controls for long messages
-            setTimeout(function() {
-                var body = div.querySelector('.message-body');
-                if (body && body.scrollHeight > 220) {
-                    var bot = document.createElement('div');
-                    bot.className = 'msg-bottom-controls';
-                    var bSpeak = document.createElement('button');
-                    bSpeak.className = 'msg-btn tts-btn'; bSpeak.title = 'Озвучить'; bSpeak.textContent = '🔊';
-                    bSpeak.onclick = function() { toggleSpeech(ai.id, processed); };
-                    var bCopy = document.createElement('button');
-                    bCopy.className = 'msg-btn'; bCopy.title = 'Копировать'; bCopy.textContent = '📋';
-                    bCopy.onclick = function() { copyText(processed).then(function(){ showToast('Скопировано'); }); };
-                    bot.appendChild(bSpeak); bot.appendChild(bCopy);
-                    body.appendChild(bot);
-                }
-            }, 50);
+            // v14.10.0: дублирующий нижний блок 🔊📋 для длинных ответов убран — у каждого сообщения ровно один ряд действий
             if (eitiDb && eitiCurrentChatId && !_offRep) {
                 eitiAddMessage(eitiCurrentChatId, 'assistant', processed, {provider: _providerNow}).then(function(savedMsg){
                     if (savedMsg) div.dataset.idbid = savedMsg.id;
@@ -29668,7 +29696,7 @@ window.eitiLLMClearAll = async function() {
                 // KB and MOSC defaults are initialized from their current inline/versioned sources.
             }).then(function() {
             // KB loaded into _kbMemCache — ready for sync calls
-            eitiPatchSendButton();eitiUpdateFileCount();
+            eitiPatchSendButton();window.eitiChatReady = true;eitiUpdateFileCount();
                 var k = _deobfKey(localStorage.getItem('deepseek_api_key') || '');
                 var el = document.getElementById('deepseek-key');
                 if (k && el) el.value = k;
@@ -29677,6 +29705,7 @@ window.eitiLLMClearAll = async function() {
                 console.warn('EITI boot error:', e);
                 // Still patch send button even if IndexedDB failed
                 eitiPatchSendButton();
+                window.eitiChatReady = true;
             });
             }); // end eitiWhenDbReady
         }, 2200);
@@ -36333,7 +36362,7 @@ window.eitiLLMClearAll = async function() {
                     // Если beforeinstallprompt не сработал — показываем ручную инструкцию
                     if (!window._deferredPromptFired) {
                         btn.style.display = '';
-                        btn.title = 'Добавить на главный экран';
+                        btn.title = (typeof window.T === 'function') ? window.T('Добавить на главный экран') : 'Добавить на главный экран';
                     }
                 }
             }, 1500);
@@ -36399,9 +36428,16 @@ window.eitiLLMClearAll = async function() {
             var panel = el.closest ? el.closest('.chat-input-panel') : null;
             if (panel) panel.classList.toggle('composing', (el.value || '').length > 0);
             var apply = function() {
-                var cap = Math.max(120, Math.round((window.innerHeight || 600) * 0.4));
+                // v14.10.0: растёт по строке до ~6 строк, дальше — прокрутка внутри поля
+                var cs = window.getComputedStyle ? getComputedStyle(el) : null;
+                var lh = cs ? (parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.3 || 21) : 21;
+                var pad = cs ? (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0) + (parseFloat(cs.borderTopWidth) || 0) + (parseFloat(cs.borderBottomWidth) || 0) : 0;
+                var cap = Math.min(Math.max(120, Math.round((window.innerHeight || 600) * 0.4)), Math.round(lh * 6 + pad));
                 el.style.height = 'auto';
-                el.style.height = Math.min(el.scrollHeight, cap) + 'px';
+                var bdr = cs && cs.boxSizing === 'border-box' ? (parseFloat(cs.borderTopWidth) || 0) + (parseFloat(cs.borderBottomWidth) || 0) : 0;
+                el.style.height = Math.min(el.scrollHeight + bdr, cap) + 'px';
+                el.classList.toggle('eiti-multiline', el.scrollHeight > lh * 1.5 + pad); // пилюля → скруглённый прямоугольник
+                el.style.overflowY = el.scrollHeight > cap + 1 ? 'auto' : 'hidden';
             };
             apply();
             requestAnimationFrame(apply); // пересчёт после реальной раскладки/смены ширины
@@ -46700,7 +46736,10 @@ function _schedule() {
     if (!signedIn()) return;
     _dirty = true;
     clearTimeout(_debounce);
-    _debounce = setTimeout(function(){ eitiDriveSyncNow('change'); }, DEBOUNCE_MS);
+    // v14.10.0: страница уже скрыта (свернули во время синхронизации или запись в IDB пришла после
+    // visibilitychange) — отправляем сразу, а не через 8 с: скрытую вкладку браузер может заморозить.
+    var _hidden = document.visibilityState === 'hidden';
+    _debounce = setTimeout(function(){ eitiDriveSyncNow(_hidden ? 'hidden' : 'change'); }, _hidden ? 0 : DEBOUNCE_MS);
 }
 
 // Изменения в синхронизируемых IDB-хранилищах → отложенная синхронизация (~8 с).

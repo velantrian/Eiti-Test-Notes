@@ -10,7 +10,10 @@ async function boot(page, loc) {
     localStorage.setItem('eiti_locale', l); localStorage.setItem('eiti_ai_reply_lang', 'auto');
   }, loc);
   await page.goto('/index.html');
-  await page.waitForFunction(() => !!window.EitiLocalLib && typeof eitiDb !== 'undefined' && !!eitiDb);
+  // v14.10.0: root cause of the CI flake — the real #send handler is installed by eitiPatchSendButton()
+  // only after the boot chain (2.2 s timer → IDB → chat restore → KB init). On a slow runner the first
+  // click hit the pre-boot button and was lost, so no reply ever came. Wait for the explicit ready flag.
+  await page.waitForFunction(() => !!window.EitiLocalLib && typeof eitiDb !== 'undefined' && !!eitiDb && window.eitiChatReady === true, null, { timeout: 30000 });
   await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
   await page.evaluate(() => { document.querySelectorAll('#eiti-onboarding,#eiti-pin-modal,.toast').forEach((e) => e.remove()); localStorage.removeItem('eiti_ds_off'); });
 }
@@ -18,10 +21,18 @@ async function ask(page, q) {
   const msgs = page.locator('#messages .message.incoming');
   const n = await msgs.count();
   await page.locator('#input').fill(q);
+  await expect(page.locator('#input')).toHaveValue(q);
   await page.locator('#send').click();
   await expect.poll(() => msgs.count(), { timeout: 45000 }).toBeGreaterThan(n);
-  await page.waitForTimeout(400);
-  return (await msgs.last().innerText()).replace(/\s+/g, ' ');
+  // Deterministic settle instead of a fixed sleep: no typing dots and the text is unchanged across two polls.
+  let prev = null;
+  await expect.poll(async () => {
+    const last = msgs.last();
+    if (await last.locator('.eiti-typing-dots').count()) { prev = null; return false; }
+    const t = (await last.innerText()).replace(/\s+/g, ' ').trim();
+    const stable = t.length > 0 && t === prev; prev = t; return stable;
+  }, { timeout: 20000, intervals: [150] }).toBe(true);
+  return prev;
 }
 
 test.describe('v14.4.0 offline language', () => {

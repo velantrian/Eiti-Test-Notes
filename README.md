@@ -7,10 +7,16 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.9.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.10.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
+
+</div>
+
+<div align="center">
+
+**[🚀 Установить](#-установить-приложение) · [🆕 Что нового](#-что-нового-в-v14100) · [🏗️ Как устроен проект](#️-как-устроен-проект) · [📐 Архитектура подробно](docs/ARCHITECTURE.md) · [⚠️ Ограничения PWA](docs/PWA_LIMITS.md) · [🤖 AGENTS.md](AGENTS.md)**
 
 </div>
 
@@ -42,7 +48,97 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v14.9.0
+## 🆕 Что нового в v14.10.0
+
+- 🧮 **Офлайн-калькулятор понимает английский и немецкий**: числа словами (*twenty-five*, *a hundred*, *zweiundzwanzig*, *hundert*), операторы (*times*, *divided by*, *to the power of*, *mal*, *geteilt durch*, *hoch*), вопросы (*what is…*, *was ist…*), *half of / die Hälfte von / половина от*, корень, десятичная запятая (*2,5*, *komma*). Отвечает на языке пользователя и в его формате чисел (`2,5` и `20.000` в DE, `2.5` и `20,000` в EN).
+- 📚 **Поиск в библиотеке знаний стал умнее**: падежи («о Наполеоне», «Наполеона») → лемма, аббревиатуры и написания (МГУ, МФТИ, США, СССР, «эппл» → Apple), транслитерация (*napoleon* ↔ «наполеон»). Добавлена статья Apple. Точность top-1 на отложенном наборе: 0.921 → 0.940.
+- 💬 **Действия с сообщением** — один компактный ряд приглушённых иконок под текстом, рядом со временем и Trace (≥ 32 px, RTL). Исправлен дубль 🔊📋 у длинных офлайн-ответов.
+- ⌨️ **Поле ввода** — в одну строку («Сообщение…» / «Message…» / «Nachricht…»), растёт до ~6 строк, после отправки сжимается. Подсказка про Enter — во всплывающей подсказке.
+- 🌍 **Полный перевод интерфейса на EN и DE**: настройки, голос, плеер, подсказки, тосты, `aria`/`title`. Автотест сканирует все основные экраны на кириллицу.
+- ✅ **Стабильный e2e**: тесты ждут явного флага готовности чата `window.eitiChatReady`, а не таймеров.
+- 📐 Новый документ [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+---
+
+## 🏗️ Как устроен проект
+
+EITI — **клиентское PWA без backend и без сборки**. GitHub Pages раздаёт статические файлы; всё — интерфейс, память, офлайн-ответы, синхронизация — работает в браузере. Подробно, с диаграммами: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
+
+```mermaid
+flowchart LR
+    U([👤]) --> UI["index.html<br/>UI + runtime"]
+    UI <--> IDB[("IndexedDB eiti_v4 v17")]
+    UI --> OFF["Офлайн: local/ · kb/ · offline/"]
+    UI -. сеть .-> AI["AI-провайдеры"]
+    UI -. сеть .-> V["Голос: Grok (по умолчанию) / Gemini Live"]
+    UI -. сеть .-> D["Google Drive (drive.file)"]
+    SW["sw.js"] -- кеш --> UI
+```
+
+### 📂 Файлы
+
+| Путь | Назначение |
+|---|---|
+| `index.html` | Всё приложение: UI, IndexedDB, память, провайдеры, голос, Drive, i18n |
+| `sw.js` · `manifest.json` | Service Worker (кеши `eiti-v*` и `eiti-offline-v*`) и манифест PWA |
+| `local/` | Офлайн-движки: калькулятор RU/EN/DE (`eiti_local.js`), опечатки, память диалога, дневник, слияние для Drive |
+| `kb/` | Библиотека знаний ~29 тыс. статей: движок `eiti_kb.js`, исходники `src/`, сборка `build_kb.py` |
+| `offline/` | Офлайн-диалоги и сказки RU/EN/DE |
+| `velantrim_core/` | Тесты: `tests_js/` (Node), `tests/` (pytest), `e2e/` (Playwright) |
+| `docs/` | [ARCHITECTURE.md](docs/ARCHITECTURE.md), [PWA_LIMITS.md](docs/PWA_LIMITS.md) и др. |
+
+### 🗄️ Данные
+
+| Где | Что |
+|---|---|
+| IndexedDB `eiti_v4` **v17** | `chats`, `messages`, `notes`, `files`, `kb`, `l2`, `l3`, `reasoning`, `pkg`, `tasks`, … и **`journal`** (дневник: одна запись на пункт) + **`contexts`** (темы) |
+| localStorage | тема, язык, настройки, API-ключи (ключи никогда не синхронизируются) |
+| SQLite WASM | производный поисковый индекс, перестраивается из IDB |
+
+### 📓 Дневник
+
+Каждый пункт (цель, факт, вопрос, пробел, решение) — отдельная запись с `chatId`, `contextId`, `msgIds`, `hash`, `createdAt/updatedAt`. Дубли ищутся по хешу внутри чата, удаление — надгробие `del:1`. В контекст ИИ сначала идёт текущий чат, потом его тема, потом остальное.
+
+### ☁️ Синхронизация с Google Drive
+
+| | |
+|---|---|
+| Вход | Google Identity Services, scope `drive.file` (только свои файлы), один раз |
+| Файл | `EITI/eiti_backup.json` |
+| Слияние | по каждой записи: `id` + `updatedAt`, побеждает более новая |
+| Удаления | надгробия хранятся 90 дней |
+| Client ID | `EITI_GOOGLE_CLIENT_ID` в `index.html` — пустая заглушка, вписывается владельцем развёртывания |
+
+### 🔌 Офлайн-конвейер
+
+```mermaid
+flowchart LR
+    M[Сообщение] --> T[Опечатки] --> L[Калькулятор и свои данные] --> K[Библиотека знаний] --> S[Сказки] --> D[Память диалога] --> O[Офлайн-диалоги]
+```
+
+Первый уверенный слой отвечает — на языке пользователя (RU/EN/DE).
+
+### 🗣️ Голос
+
+**Grok Voice** — по умолчанию; **Gemini Live** — по выбору в Настройках → «Голосовой ассистент». Без ключа — тост с кнопкой переключения.
+
+### 🧪 Тесты и CI
+
+| Уровень | Команда |
+|---|---|
+| Node | `node --test velantrim_core/tests_js/*.test.js` |
+| pytest | `cd velantrim_core && pip install -r requirements.txt && pytest tests/` |
+| Playwright | `cd velantrim_core/e2e && npm ci && npx playwright test --project=chromium` |
+
+CI (`.github/workflows/test.yml`) запускает все три уровня на каждый PR в `main`; после merge `pages.yml` публикует сайт.
+
+### 🚢 Релиз
+
+Ветка `feat/vX.Y.Z` → версия синхронно в `index.html`, `sw.js`, `manifest.json`, `README.md`, `AGENTS.md` → тесты → PR → зелёный CI → merge владельцем. Подробнее — [ARCHITECTURE.md § 11](docs/ARCHITECTURE.md#11-процесс-релиза).
+
+---
+
+## Что было в v14.9.0
 
 - 📓 **Дневник — запись на каждый пункт.** Цели, факты, вопросы, пробелы и решения хранятся отдельными записями в IndexedDB `journal` (`chatId`, `contextId`, `msgIds`, `hash`, `createdAt/updatedAt`, `del`), темы — в `contexts`. База обновлена до v17; старый дневник переносится автоматически один раз (копия остаётся как `eiti_rne_data_v1_bak`). Интерфейс дневника не изменился.
 - 💬 **«Отдельный для каждого чата» теперь работает по-настоящему**, «по датам» сортирует по дате изменения, «умный» — по темам. Дубли определяются по тексту внутри чата, а не по первым 60 символам. «Анализ истории» разбирает каждый чат отдельно и привязывает пункты к нему. В контекст ИИ сначала идёт текущий чат, потом его тема, потом остальное.

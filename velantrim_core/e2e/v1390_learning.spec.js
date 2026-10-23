@@ -20,11 +20,12 @@ async function boot(page, reply) {
   });
   await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
+    localStorage.setItem('eiti_locale', 'ru'); // v14.10.0: these checks assert Russian labels; the browser locale is en-US and the UI is now fully translated
     localStorage.setItem('eiti_toured_v7', '1');
     localStorage.setItem('eiti_install_hint_seen', '1');
   });
   await page.goto('/index.html');
-  await page.waitForFunction(() => typeof window.moscProcess === 'function' && typeof window.eitiVoteRecord === 'function' && typeof window._obfKey === 'function', null, { timeout: 20_000 });
+  await page.waitForFunction(() => typeof window.moscProcess === 'function' && typeof window.eitiVoteRecord === 'function' && typeof window._obfKey === 'function' && window.eitiChatReady === true, null, { timeout: 30_000 });
   await expect(page.locator('#splash')).toBeHidden({ timeout: 15_000 });
   await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
   await page.evaluate(() => {
