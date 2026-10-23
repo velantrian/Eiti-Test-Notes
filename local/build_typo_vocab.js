@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// v14.6.0: builds local/eiti_typo_vocab.json — the vocabulary of every offline layer for EitiTypo.
+// v14.8.0: builds local/eiti_typo_vocab.json — the vocabulary of every offline layer for EitiTypo.
 // Sources: offline intents (core + intent packs), DE layer, EITI Local (notes/calculator), dialogue-state words,
 // KB triggers (targets) and KB/offline answers (known words only — never correction targets).
 // Format: { v, n, t: "word word*freq …" } — words are folded (ё→е, ü→ue, ä→ae, ö→oe, ß→ss); freq 0 = known only.

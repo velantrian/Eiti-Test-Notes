@@ -1,4 +1,4 @@
-// v14.6.0 — offline typo tolerance: accuracy, no false corrections, DE folding, speed.
+// v14.8.0 — offline typo tolerance: accuracy, no false corrections, DE folding, speed.
 const test = require('node:test'), assert = require('node:assert');
 const path = require('path'), fs = require('fs');
 const ROOT = path.join(__dirname, '..', '..');

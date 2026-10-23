@@ -1,4 +1,4 @@
-// v14.6.0: offline typo tolerance in the real chat (no AI key): calculator, intents, layout, German folding; lazy vocab.
+// v14.8.0: offline typo tolerance in the real chat (no AI key): calculator, intents, layout, German folding; lazy vocab.
 const { test, expect } = require('@playwright/test');
 
 async function boot(page, loc) {
@@ -22,7 +22,7 @@ async function ask(page, q) {
   return (await msgs.last().innerText()).replace(/\s+/g, ' ');
 }
 
-test.describe('v14.6.0 typo tolerance', () => {
+test.describe('v14.8.0 typo tolerance', () => {
   test.setTimeout(240000);
 
   test('vocab is not fetched at startup, only on first offline message', async ({ page }) => {

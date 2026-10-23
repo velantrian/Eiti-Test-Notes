@@ -1,4 +1,4 @@
-// VELANTRIM EITI — EitiTypo v14.6.0: offline typo tolerance (RU / EN / DE).
+// VELANTRIM EITI — EitiTypo v14.8.0: offline typo tolerance (RU / EN / DE).
 // Order: normalize (case, ё→е, folding ü→ue ä→ae ö→oe ß→ss — input and vocabulary are folded the same way,
 // nothing is blindly rewritten) → wrong keyboard layout (ghbdtn → привет) → curated table (short words/slang,
 // DE typos) → collapsed repeats → missing space/hyphen → Damerau-Levenshtein over the vocabulary of all offline
@@ -10,7 +10,7 @@
   if (root) root.EitiTypo = api;
 })(typeof window !== 'undefined' ? window : null, function () {
   'use strict';
-  var VERSION = '14.6.0';
+  var VERSION = '14.8.0';
 
   function fold(s) {
     return String(s || '').toLowerCase().replace(/ё/g, 'е').replace(/ü/g, 'ue').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ß/g, 'ss');

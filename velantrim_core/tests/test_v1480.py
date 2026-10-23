@@ -1,4 +1,4 @@
-"""v14.6.0: offline typo tolerance (RU/EN/DE) — version sync and wiring."""
+"""v14.8.0: offline typo tolerance (RU/EN/DE) — version sync and wiring."""
 import json
 from pathlib import Path
 
@@ -8,18 +8,18 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_version_sync():
-    assert 'var EITI_VERSION = "14.6.0"' in HTML
-    assert "var CACHE = 'eiti-v14.6.0'" in SW
-    assert "var OFFLINE_CACHE = 'eiti-offline-v14.6.0'" in SW
-    assert "version: '14.6.0'" in SW
-    assert "v14.6.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
+    assert 'var EITI_VERSION = "14.8.0"' in HTML
+    assert "var CACHE = 'eiti-v14.8.0'" in SW
+    assert "var OFFLINE_CACHE = 'eiti-offline-v14.8.0'" in SW
+    assert "version: '14.8.0'" in SW
+    assert "v14.8.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "version-14.6.0" in readme and "Что нового в v14.6.0" in readme
+    assert "version-14.8.0" in readme and "Что нового в v14.8.0" in readme
 
 
 def test_typo_module_loaded_and_cached():
     js = (ROOT / "local" / "eiti_typo.js").read_text(encoding="utf-8")
-    assert "14.6.0" in js
+    assert "14.8.0" in js
     assert 'src="./local/eiti_typo.js" defer' in HTML
     assert "BASE + 'local/eiti_typo.js'" in SW
     assert "BASE + 'local/eiti_typo_vocab.json'" in SW

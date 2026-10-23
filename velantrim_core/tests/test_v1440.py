@@ -8,7 +8,7 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_version_sync_moved():
-    """Version checks moved to test_v1450.py."""
+    """v14.7.0+ moved the version forward; see test_v1470.py for the exact sync check."""
 
 
 def _old_version_sync():

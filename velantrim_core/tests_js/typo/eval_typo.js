@@ -1,4 +1,4 @@
-// v14.6.0: typo-set evaluation — behaviour of the offline layers (EITI Local → offline dialogs) for
+// v14.8.0: typo-set evaluation — behaviour of the offline layers (EITI Local → offline dialogs) for
 // typo text without / with EitiTypo, compared with the behaviour for the clean text.
 const fs = require('fs');
 const path = require('path');
