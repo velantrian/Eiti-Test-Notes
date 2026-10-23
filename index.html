@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.4.0"; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.7.0"; // v14.7.0: Google Drive — вход один раз и автосинхронизация (слияние по id/updatedAt); // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -10912,29 +10912,18 @@
                         <div id="drive-status-email" style="font-size:12px;opacity:0.55;margin-top:3px;display:none;"></div>
                     </div>
                 </div>
-                <!-- Client ID -->
-                <div class="settings-group">
-                    <div class="settings-title" data-i18n="🔑 Google OAuth Client ID">🔑 Google OAuth Client ID</div>
-                    <div style="font-size:12px;opacity:0.6;margin-bottom:8px;line-height:1.5;">
-                        Создай проект в <b>console.cloud.google.com</b> → APIs &amp; Services → Credentials → OAuth 2.0 Client ID (тип: Web). Добавь URL этого PWA в Authorized Origins и Redirect URIs.
-                    </div>
-                    <input id="drive-client-id-input" type="text" placeholder="xxxx.apps.googleusercontent.com"
-                        style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--border-color);background:rgba(255,255,255,0.07);color:var(--text-color);font-size:13px;box-sizing:border-box;"
-                        oninput="localStorage.setItem('eiti_drive_client_id', this.value.trim())">
-                    <div style="font-size:11px;opacity:0.45;margin-top:6px;">Сохраняется локально, не передаётся никуда кроме Google OAuth.</div>
-                </div>
                 <!-- Кнопки подключения -->
                 <div class="settings-group">
                     <div class="settings-title" data-i18n="🔗 Авторизация">🔗 Авторизация</div>
                     <div style="display:flex;flex-direction:column;gap:10px;">
-                        <button onclick="eitiDriveConnect()" style="padding:13px;border-radius:13px;border:none;background:linear-gradient(145deg,#1a73e8,#1557b0);color:#fff;font-weight:700;font-size:14px;cursor:pointer;">🔗 Подключить Google Drive</button>
+                        <button onclick="eitiDriveConnect()" id="drive-connect-btn" style="padding:13px;border-radius:13px;border:none;background:linear-gradient(145deg,#1a73e8,#1557b0);color:#fff;font-weight:700;font-size:14px;cursor:pointer;">🔐 Войти через Google</button>
                         <button onclick="eitiDriveDisconnect()" id="drive-disconnect-btn" style="padding:11px;border-radius:13px;border:1px solid #7b2020;background:rgba(123,32,32,0.15);color:#ff6b6b;font-size:13px;font-weight:600;cursor:pointer;display:none;">🔌 Отключить</button>
                     </div>
                 </div>
                 <!-- Синхронизация -->
                 <div class="settings-group" id="drive-sync-group" style="display:none;">
                     <div class="settings-title" data-i18n="🔄 Синхронизация">🔄 Синхронизация</div>
-                    <div style="font-size:12px;opacity:0.6;margin-bottom:10px;line-height:1.5;">Файл <code>eiti_backup.json</code> в папке EITI на твоём Drive.</div>
+                    <div style="font-size:12px;opacity:0.6;margin-bottom:10px;line-height:1.5;">Файл <code>eiti_backup.json</code> в папке EITI на твоём Drive. Синхронизируется сам: при открытии, после изменений и при сворачивании.</div>
                     <div style="display:flex;gap:10px;">
                         <button onclick="eitiDriveUpload()" style="flex:1;padding:12px;border-radius:12px;border:none;background:linear-gradient(145deg,#2d7a3a,#1b5e20);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">📤 Сохранить на Drive</button>
                         <button onclick="eitiDriveDownload()" style="flex:1;padding:12px;border-radius:12px;border:none;background:linear-gradient(145deg,#1a5a9a,#1565c0);color:#fff;font-weight:700;font-size:13px;cursor:pointer;">📥 Загрузить с Drive</button>
@@ -45794,277 +45783,473 @@ window._eitiInitSQL = _initSQL;
 </script>
 <script>
 // ═══════════════════════════════════════════════════
-// ☁️ GOOGLE DRIVE SYNC — v12.9.12
-// PKCE-less token flow через Google Identity Services
+// ☁️ GOOGLE DRIVE SYNC — v14.7.0 (было v12.9.12: ручной бэкап)
+// Войти через Google один раз → автосинхронизация (открытие, изменения ~8 с, сворачивание/возврат).
+// GIS token client (грузится лениво), scope drive.file, один JSON: EITI/eiti_backup.json.
+// Слияние по id/updatedAt + метки удаления — local/eiti_drive_sync.js (тоже лениво).
 // ═══════════════════════════════════════════════════
+// ▼▼▼ ЗАПОЛНИТЬ: общий OAuth Client ID (тип Web) из Google Cloud Console, например
+//     '1234567890-abc.apps.googleusercontent.com'. Пока пусто — используется ID, введённый в настройках.
+var EITI_GOOGLE_CLIENT_ID = '';
+// ▲▲▲
 (function() {
 'use strict';
 
-var DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file';
+var DRIVE_SCOPE  = 'https://www.googleapis.com/auth/drive.file';
 var DRIVE_FOLDER = 'EITI';
 var DRIVE_FILE   = 'eiti_backup.json';
-var _driveToken  = null;
-var _driveEmail  = null;
-var _tokenClient = null;
+var API = 'https://www.googleapis.com/drive/v3/files';
+var UPLOAD = 'https://www.googleapis.com/upload/drive/v3/files';
+var SYNC_STORES = { notes: 'id', chats: 'id', messages: 'id', files: 'name', kb: 'id', l2: 'chatId' };
+var DEBOUNCE_MS = 8000;
+var LS = {
+    tok: 'eiti_drive_token', ts: 'eiti_drive_token_ts', exp: 'eiti_drive_token_exp', email: 'eiti_drive_email',
+    on: 'eiti_drive_signed_in', consented: 'eiti_drive_consented', folder: 'eiti_drive_folder_id', file: 'eiti_drive_file_id',
+    state: 'eiti_drive_sync_state', last: 'eiti_drive_last_sync', cid: 'eiti_drive_client_id'
+};
+var _driveToken = null, _driveEmail = null, _tokenClient = null, _pending = [];
+var _devNoted = false, _keyMap = {}, _renewTimer = null, _debounce = null, _dirty = false, _syncing = null, _applying = false, _lastSyncTs = 0;
 
-// ── Утилиты хранилища ──────────────────────────────
-function _saveToken(tok) {
+var T = {
+    ru: { signin: '🔐 Войти через Google', signout: '🔌 Выйти', connected: 'Подключено', off: 'Не подключено',
+          synced: '✅ Синхронизировано', syncing: '⏳ Синхронизация…', resume: '☁️ Нажми, чтобы продолжить синхронизацию',
+          needId: '⚠️ Нужен Google OAuth Client ID', err: '❌ Ошибка синхронизации', signedIn: '✅ Google Drive подключён',
+          restored: '✅ Данные с Drive применены', signedOut: '🔌 Google Drive отключён', noFolder: '⚠️ Папка EITI не видна этому приложению — см. справку' },
+    en: { signin: '🔐 Sign in with Google', signout: '🔌 Sign out', connected: 'Connected', off: 'Not connected',
+          synced: '✅ Synced', syncing: '⏳ Syncing…', resume: '☁️ Tap to resume sync',
+          needId: '⚠️ Google OAuth Client ID required', err: '❌ Sync error', signedIn: '✅ Google Drive connected',
+          restored: '✅ Drive data applied', signedOut: '🔌 Google Drive disconnected', noFolder: '⚠️ EITI folder not visible to this app — see help' },
+    de: { signin: '🔐 Mit Google anmelden', signout: '🔌 Abmelden', connected: 'Verbunden', off: 'Nicht verbunden',
+          synced: '✅ Synchronisiert', syncing: '⏳ Synchronisiere…', resume: '☁️ Tippen, um die Synchronisierung fortzusetzen',
+          needId: '⚠️ Google OAuth Client ID erforderlich', err: '❌ Synchronisierungsfehler', signedIn: '✅ Google Drive verbunden',
+          restored: '✅ Drive-Daten übernommen', signedOut: '🔌 Google Drive getrennt', noFolder: '⚠️ EITI-Ordner für diese App nicht sichtbar — siehe Hilfe' }
+};
+function t(k) {
+    var l = 'ru';
+    try { l = (window.eitiGetLocale && window.eitiGetLocale()) || 'ru'; } catch (e) {}
+    l = String(l).slice(0, 2);
+    return (T[l] || T.ru)[k] || T.ru[k];
+}
+function toast(s) { if (typeof showToast === 'function') showToast(s); }
+function hhmm(ts) { var d = new Date(ts); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2); }
+function clientId() { return (EITI_GOOGLE_CLIENT_ID || localStorage.getItem(LS.cid) || '').trim(); }
+function signedIn() { return localStorage.getItem(LS.on) === '1'; }
+
+// ── Токен ──────────────────────────────────────────
+function _saveToken(tok, expiresIn) {
     _driveToken = tok;
-    localStorage.setItem('eiti_drive_token',       tok);
-    localStorage.setItem('eiti_drive_token_ts',    String(Date.now()));
+    var exp = Date.now() + (Number(expiresIn) || 3599) * 1000;
+    localStorage.setItem(LS.tok, tok);
+    localStorage.setItem(LS.ts, String(Date.now()));
+    localStorage.setItem(LS.exp, String(exp));
+    _scheduleRenew(exp);
 }
 function _loadToken() {
-    var tok = localStorage.getItem('eiti_drive_token');
-    var ts  = parseInt(localStorage.getItem('eiti_drive_token_ts') || '0');
-    if (!tok || (Date.now() - ts) > 55 * 60 * 1000) { _driveToken = null; return null; }
+    var tok = localStorage.getItem(LS.tok);
+    var exp = parseInt(localStorage.getItem(LS.exp) || '0', 10) ||
+              (parseInt(localStorage.getItem(LS.ts) || '0', 10) + 55 * 60000);
+    _driveEmail = localStorage.getItem(LS.email) || '';
+    if (!tok || Date.now() > exp - 60000) { _driveToken = null; return null; }
     _driveToken = tok;
-    _driveEmail = localStorage.getItem('eiti_drive_email') || '';
     return tok;
 }
 function _clearToken() {
-    _driveToken = null; _driveEmail = null; _tokenClient = null;
-    ['eiti_drive_token','eiti_drive_token_ts','eiti_drive_email'].forEach(function(k){ localStorage.removeItem(k); });
+    _driveToken = null;
+    [LS.tok, LS.ts, LS.exp].forEach(function(k){ localStorage.removeItem(k); });
+}
+function _scheduleRenew(exp) {
+    clearTimeout(_renewTimer);
+    var ms = Math.max(5000, exp - Date.now() - 5 * 60000);
+    _renewTimer = setTimeout(function() {
+        if (signedIn()) _requestToken(false).catch(function(){ _showResume(); });
+    }, ms);
 }
 
-// ── Рендер статуса ─────────────────────────────────
+// ── GIS (Google Identity Services), лениво ─────────
+function _loadScript(src, ready) {
+    return new Promise(function(res, rej) {
+        if (ready()) { res(); return; }
+        var s = document.createElement('script');
+        s.src = src; s.async = true;
+        s.onload = function(){ res(); };
+        s.onerror = function(){ rej(new Error('load ' + src)); };
+        document.head.appendChild(s);
+    });
+}
+function _loadGIS() { return _loadScript('https://accounts.google.com/gsi/client', function(){ return !!(window.google && google.accounts && google.accounts.oauth2); }); }
+function _loadLib() { return _loadScript('local/eiti_drive_sync.js', function(){ return !!window.EitiDriveSync; }); }
+
+function _flush(err, resp) {
+    var p = _pending; _pending = [];
+    p.forEach(function(x){ err ? x.rej(err) : x.res(resp); });
+}
+// interactive=true — по нажатию кнопки (consent только в первый раз); false — тихое продление prompt:''.
+function _requestToken(interactive) {
+    var cid = clientId();
+    if (!cid) return Promise.reject(new Error(t('needId')));
+    return _loadGIS().then(function() {
+        return new Promise(function(res, rej) {
+            _pending.push({ res: res, rej: rej });
+            if (_pending.length > 1) return;
+            if (!_tokenClient || _tokenClient._cid !== cid) {
+                _tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: cid,
+                    scope: DRIVE_SCOPE,
+                    callback: function(resp) {
+                        if (!resp || resp.error || !resp.access_token) { _flush(new Error((resp && resp.error) || 'auth')); return; }
+                        _saveToken(resp.access_token, resp.expires_in);
+                        localStorage.setItem(LS.consented, '1');
+                        _hideResume();
+                        _flush(null, resp.access_token);
+                    },
+                    error_callback: function(e) { _flush(new Error((e && e.type) || 'popup')); }
+                });
+                _tokenClient._cid = cid;
+            }
+            var first = interactive && localStorage.getItem(LS.consented) !== '1';
+            // Первый вход: выбор аккаунта Google → «Продолжить»; дальше тихо (prompt '').
+            var opts = { prompt: first ? 'select_account consent' : '' };
+            if (_driveEmail) opts.login_hint = _driveEmail;
+            try { _tokenClient.requestAccessToken(opts); } catch (e) { _flush(e); }
+        });
+    });
+}
+function _getToken() {
+    var tok = _loadToken();
+    if (tok) return Promise.resolve(tok);
+    return _requestToken(false);
+}
+
+// ── Баннер «нажми, чтобы продолжить» ───────────────
+function _showResume() {
+    if (document.getElementById('eiti-drive-resume')) return;
+    var b = document.createElement('button');
+    b.id = 'eiti-drive-resume';
+    b.type = 'button';
+    b.textContent = t('resume');
+    b.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:99990;padding:9px 16px;border-radius:20px;border:1px solid rgba(26,115,232,0.5);background:rgba(20,40,80,0.92);color:#cfe3ff;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,0.35);cursor:pointer;max-width:90vw;';
+    b.onclick = function() {
+        _requestToken(true).then(function(){ _hideResume(); eitiDriveSyncNow('resume'); })
+            .catch(function(e){ toast(t('err') + ': ' + e.message); });
+    };
+    document.body.appendChild(b);
+}
+function _hideResume() { var b = document.getElementById('eiti-drive-resume'); if (b) b.remove(); }
+
+// ── Drive API ──────────────────────────────────────
+function _driveRequest(method, url, body, contentType, _retried) {
+    return _getToken().then(function(tok) {
+        var opts = { method: method, headers: { 'Authorization': 'Bearer ' + tok } };
+        if (body != null) { opts.headers['Content-Type'] = contentType || 'application/json'; opts.body = body; }
+        return fetch(url, opts);
+    }).then(function(r) {
+        if (r.status === 401 && !_retried) {
+            _clearToken();
+            return _requestToken(false).then(function(){ return _driveRequest(method, url, body, contentType, true); });
+        }
+        if (r.status === 401) { _clearToken(); throw new Error('401'); }
+        if (!r.ok && r.status !== 404) throw new Error('HTTP ' + r.status);
+        return r;
+    });
+}
+function _json(r) { return r.status === 404 ? null : r.json(); }
+function _q(s) { return encodeURIComponent(s); }
+
+// Существующую папку EITI используем, новую создаём только если её нет.
+function _findOrCreateFolder() {
+    var cached = localStorage.getItem(LS.folder);
+    var check = cached
+        ? _driveRequest('GET', API + '/' + cached + '?fields=id,trashed').then(_json).then(function(d){ return d && !d.trashed ? d.id : null; })
+        : Promise.resolve(null);
+    return check.then(function(id) {
+        if (id) return id;
+        return _driveRequest('GET', API + '?q=' + _q("name='" + DRIVE_FOLDER + "' and mimeType='application/vnd.google-apps.folder' and trashed=false") +
+            '&fields=files(id,name,modifiedTime)&orderBy=modifiedTime desc').then(_json).then(function(d) {
+            if (d && d.files && d.files.length) return d.files[0].id;
+            return _driveRequest('POST', API + '?fields=id', JSON.stringify({ name: DRIVE_FOLDER, mimeType: 'application/vnd.google-apps.folder' }))
+                .then(_json).then(function(x){ return x.id; });
+        });
+    }).then(function(id){ localStorage.setItem(LS.folder, id); return id; });
+}
+function _findFile(folderId) {
+    return _driveRequest('GET', API + '?q=' + _q("name='" + DRIVE_FILE + "' and '" + folderId + "' in parents and trashed=false") +
+        '&fields=files(id,name,version,modifiedTime)&orderBy=modifiedTime desc').then(_json).then(function(d) {
+        var f = d && d.files && d.files[0];
+        if (f) localStorage.setItem(LS.file, f.id);
+        return f || null;
+    });
+}
+function _meta(fileId) {
+    return _driveRequest('GET', API + '/' + fileId + '?fields=id,version,modifiedTime,trashed').then(_json);
+}
+function _upload(folderId, fileId, json) {
+    if (fileId) return _driveRequest('PATCH', UPLOAD + '/' + fileId + '?uploadType=media&fields=id,version,modifiedTime', json, 'application/json').then(_json);
+    var meta = JSON.stringify({ name: DRIVE_FILE, parents: [folderId], mimeType: 'application/json' });
+    var b = 'eitiboundary' + Date.now();
+    var body = '--' + b + '\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n' + meta + '\r\n--' + b +
+        '\r\nContent-Type: application/json\r\n\r\n' + json + '\r\n--' + b + '--';
+    return _driveRequest('POST', UPLOAD + '?uploadType=multipart&fields=id,version,modifiedTime', body, 'multipart/related; boundary=' + b).then(_json);
+}
+
+// ── Локальные данные ───────────────────────────────
+function _db() { return window.eitiDb || null; }
+function _getAll(store) {
+    return new Promise(function(res) {
+        var db = _db();
+        if (!db || !db.objectStoreNames.contains(store)) { res([]); return; }
+        try {
+            var rq = db.transaction([store], 'readonly').objectStore(store).getAll();
+            rq.onsuccess = function(){ res(rq.result || []); };
+            rq.onerror = function(){ res([]); };
+        } catch (e) { res([]); }
+    });
+}
+function _write(store, puts, dels) {
+    return new Promise(function(res) {
+        var db = _db();
+        if (!db || !db.objectStoreNames.contains(store) || (!puts.length && !dels.length)) { res(); return; }
+        try {
+            var tx = db.transaction([store], 'readwrite'), os = tx.objectStore(store);
+            puts.forEach(function(v){ os.put(v); });
+            dels.forEach(function(id){ os.delete(id); });
+            tx.oncomplete = function(){ res(); }; tx.onerror = function(){ res(); }; tx.onabort = function(){ res(); };
+        } catch (e) { res(); }
+    });
+}
+function _collect() {
+    var notesP = (window._idbNotesCache && window._idbNotesCache.length) || typeof idbRefreshNotesCache !== 'function'
+        ? Promise.resolve(window._idbNotesCache || []) : idbRefreshNotesCache();
+    var names = Object.keys(SYNC_STORES).filter(function(n){ return n !== 'notes'; });
+    return Promise.all([notesP].concat(names.map(_getAll))).then(function(all) {
+        var stores = { notes: all[0] || [] };
+        names.forEach(function(n, i){ stores[n] = all[i + 1]; });
+        _keyMap = {};
+        Object.keys(stores).forEach(function(n) {
+            var m = _keyMap[n] = {}, k = SYNC_STORES[n];
+            stores[n].forEach(function(it){ if (it && it[k] != null) m[String(it[k])] = it[k]; });
+        });
+        var settings = {};
+        for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); settings[k] = localStorage.getItem(k); }
+        return { stores: stores, settings: settings };
+    });
+}
+// Записать победившие удалённые версии обратно: IDB + кэши, без перезагрузки.
+function _apply(m) {
+    _applying = true;
+    var S = window.EitiDriveSync, jobs = [], changed = 0;
+    Object.keys(m.apply.stores).forEach(function(name) {
+        var a = m.apply.stores[name];
+        // Заметки: удаление в приложении убирает их только из кэша — дочищаем IDB по меткам удаления.
+        var dels = a.dels.slice();
+        if (name === 'notes') {
+            var merged = m.sync.stores.notes || {};
+            Object.keys(merged).forEach(function(id){ if (merged[id].del && dels.indexOf(id) < 0) dels.push(id); });
+        }
+        changed += a.puts.length + a.dels.length;
+        if (name === 'notes' && (a.puts.length || a.dels.length) && typeof notesSave === 'function') {
+            var byId = {};
+            (window._idbNotesCache || []).forEach(function(n){ byId[n.id] = n; });
+            a.dels.forEach(function(id){ delete byId[id]; });
+            a.puts.forEach(function(n){ byId[n.id] = n; });
+            var list = Object.keys(byId).map(function(id){ return byId[id]; })
+                .sort(function(x, y){ return (y.updated || 0) - (x.updated || 0); });
+            notesSave(list);
+        }
+        var puts = name === 'notes' ? [] : a.puts;
+        var km = _keyMap[name] || {};
+        jobs.push(_write(name, puts, dels.map(function(id){ return Object.prototype.hasOwnProperty.call(km, id) ? km[id] : id; })));
+    });
+    var st = m.apply.settings;
+    st.puts.forEach(function(kv){ if (!S.isSecretKey(kv[0])) { try { localStorage.setItem(kv[0], kv[1]); } catch (e) {} } });
+    st.dels.forEach(function(k){ if (!S.isSecretKey(k)) localStorage.removeItem(k); });
+    changed += st.puts.length + st.dels.length;
+    return Promise.all(jobs).then(function() {
+        var a = m.apply.stores;
+        if (a.notes && (a.notes.puts.length || a.notes.dels.length) && typeof notesRender === 'function') { try { notesRender(); } catch (e) {} }
+        if (a.files && (a.files.puts.length || a.files.dels.length) && typeof idbRefreshFilesCache === 'function') idbRefreshFilesCache();
+        if (a.kb && (a.kb.puts.length || a.kb.dels.length)) {
+            try { _kbMemCache = null; _kbActiveCache = null; } catch (e) {}
+            if (typeof eitiKBLoadAsync === 'function') eitiKBLoadAsync();
+        }
+        return changed;
+    }).finally(function(){ _applying = false; });
+}
+
+// ── Синхронизация ──────────────────────────────────
+function _setStatus(s) {
+    var el = document.getElementById('drive-sync-status');
+    if (el) el.textContent = s;
+    var badge = document.getElementById('drive-menu-badge');
+    if (badge && signedIn()) badge.textContent = s.indexOf('✅') === 0 ? s : badge.textContent;
+}
+function _syncOnce(S, attempt) {
+    var state = {};
+    try { state = JSON.parse(localStorage.getItem(LS.state) || '{}') || {}; } catch (e) {}
+    var folderId, file, remote = null;
+    return _findOrCreateFolder().then(function(fid) {
+        folderId = fid;
+        var known = localStorage.getItem(LS.file);
+        return known ? _meta(known).then(function(x){ return x && !x.trashed ? x : _findFile(fid); }) : _findFile(fid);
+    }).then(function(f) {
+        file = f;
+        if (!f) return null;
+        return _driveRequest('GET', API + '/' + f.id + '?alt=media').then(function(r){ return r.status === 404 ? null : r.text(); })
+            .then(function(txt){ try { remote = txt ? JSON.parse(txt) : null; } catch (e) { remote = null; } });
+    }).then(function() {
+        return _collect();
+    }).then(function(data) {
+        var now = Date.now();
+        var local = S.buildLocal(data, SYNC_STORES, state, now);
+        var m = S.merge(local, S.fromRemote(remote), now);
+        return _apply(m).then(function(applied) {
+            var needUpload = !file || m.remoteChanged || !remote || remote.format !== S.FORMAT;
+            if (!needUpload) return { m: m, applied: applied, f: file };
+            // Перед записью проверяем, что файл не поменял другой девайс (version/modifiedTime).
+            var guard = file ? _meta(file.id) : Promise.resolve(null);
+            return guard.then(function(cur) {
+                if (file && cur && (cur.version !== file.version || cur.modifiedTime !== file.modifiedTime)) {
+                    if (attempt < 3) return { retry: true };
+                }
+                var json = JSON.stringify(S.toFile(m.sync, window.EITI_VERSION || '?', now));
+                return _upload(folderId, file && file.id, json).then(function(f2) {
+                    if (f2 && f2.id) localStorage.setItem(LS.file, f2.id);
+                    return { m: m, applied: applied, f: f2 };
+                });
+            });
+        });
+    }).then(function(res) {
+        if (res.retry) return _syncOnce(S, attempt + 1);
+        localStorage.setItem(LS.state, JSON.stringify(res.m.state));
+        return res;
+    });
+}
+window.eitiDriveSyncNow = function(reason) {
+    if (!signedIn() || !clientId()) return Promise.resolve(null);
+    if (_syncing) { _dirty = true; return _syncing; }
+    _dirty = false;
+    clearTimeout(_debounce);
+    _setStatus(t('syncing'));
+    _syncing = _loadLib().then(function() {
+        return _syncOnce(window.EitiDriveSync, 1);
+    }).then(function(res) {
+        _lastSyncTs = Date.now();
+        localStorage.setItem(LS.last, String(_lastSyncTs));
+        _setStatus(t('synced') + ' ' + hhmm(_lastSyncTs));
+        if (res && res.applied && (reason === 'manual' || reason === 'signin')) toast(t('restored'));
+        window.dispatchEvent(new CustomEvent('eiti-drive-synced', { detail: { reason: reason, applied: res ? res.applied : 0 } }));
+        return res;
+    }).catch(function(e) {
+        console.warn('[EITI Drive] sync failed:', e);
+        var msg = String(e && e.message || e);
+        if (/popup|auth|401|interaction|consent|access_denied/i.test(msg)) _showResume();
+        _setStatus(t('err') + ': ' + msg);
+        return null;
+    }).finally(function() {
+        _syncing = null;
+        if (_dirty) _schedule();
+    });
+    return _syncing;
+};
+function _schedule() {
+    if (!signedIn()) return;
+    _dirty = true;
+    clearTimeout(_debounce);
+    _debounce = setTimeout(function(){ eitiDriveSyncNow('change'); }, DEBOUNCE_MS);
+}
+
+// Изменения в синхронизируемых IDB-хранилищах → отложенная синхронизация (~8 с).
+(function hookIDB() {
+    if (!window.IDBObjectStore || IDBObjectStore.prototype._eitiDriveHooked) return;
+    var P = IDBObjectStore.prototype;
+    ['put', 'add', 'delete', 'clear'].forEach(function(fn) {
+        var orig = P[fn];
+        P[fn] = function() {
+            try { if (!_applying && SYNC_STORES[this.name] && signedIn() && this.transaction.db.name === (_db() && _db().name)) _schedule(); } catch (e) {}
+            return orig.apply(this, arguments);
+        };
+    });
+    P._eitiDriveHooked = true;
+})();
+
+document.addEventListener('visibilitychange', function() {
+    if (!signedIn()) return;
+    if (document.visibilityState === 'hidden') { if (_dirty) eitiDriveSyncNow('hidden'); }
+    else if (Date.now() - (parseInt(localStorage.getItem(LS.last) || '0', 10) || _lastSyncTs) > 30000) eitiDriveSyncNow('visible');
+});
+
+// ── UI ─────────────────────────────────────────────
 function _renderStatus() {
-    var connected = !!_loadToken();
+    var on = signedIn();
     var icon  = document.getElementById('drive-status-icon');
     var text  = document.getElementById('drive-status-text');
     var email = document.getElementById('drive-status-email');
     var disco = document.getElementById('drive-disconnect-btn');
+    var conn  = document.getElementById('drive-connect-btn');
     var sync  = document.getElementById('drive-sync-group');
     var badge = document.getElementById('drive-menu-badge');
-    if (connected) {
-        if (icon)  icon.textContent  = '✅';
-        if (text)  { text.textContent = 'Подключено'; text.style.color = '#4ad700'; }
-        if (email) { email.style.display = 'block'; email.textContent = _driveEmail || ''; }
-        if (disco) disco.style.display = 'block';
-        if (sync)  sync.style.display  = 'block';
-        if (badge) badge.textContent   = '✅ ' + (_driveEmail ? _driveEmail.split('@')[0] : 'Подключено');
-    } else {
-        if (icon)  icon.textContent  = '🔌';
-        if (text)  { text.textContent = 'Не подключено'; text.style.color = 'var(--text-color)'; }
-        if (email) email.style.display = 'none';
-        if (disco) disco.style.display = 'none';
-        if (sync)  sync.style.display  = 'none';
-        if (badge) badge.textContent   = 'Не подключено';
-    }
+    // Client ID — только константа в коде (раньше сохранённый ID тоже работает), пользователю не показывается.
+    var hasId = !!clientId();
+    if (conn)  { conn.textContent = t('signin'); conn.style.display = on ? 'none' : ''; conn.disabled = !hasId; conn.style.opacity = hasId ? '' : '0.5'; }
+    if (!hasId && !_devNoted) { _devNoted = true; console.info('[EITI Drive] dev: EITI_GOOGLE_CLIENT_ID is empty — set it in index.html to enable «Войти через Google».'); }
+    if (disco) { disco.textContent = t('signout'); disco.style.display = on ? 'block' : 'none'; }
+    if (icon)  icon.textContent = on ? '✅' : '🔌';
+    if (text)  text.textContent = on ? t('connected') : t('off');
+    if (email) { email.style.display = on && _driveEmail ? 'block' : 'none'; email.textContent = _driveEmail || ''; }
+    if (sync)  sync.style.display = on ? 'block' : 'none';
+    var last = parseInt(localStorage.getItem(LS.last) || '0', 10);
+    if (badge) badge.textContent = on ? (last ? t('synced') + ' ' + hhmm(last) : '✅ ' + (_driveEmail ? _driveEmail.split('@')[0] : t('connected'))) : t('off');
+    if (on && last) { var st = document.getElementById('drive-sync-status'); if (st && !st.textContent) st.textContent = t('synced') + ' ' + hhmm(last); }
 }
 
-// ── Загрузка GIS (Google Identity Services) ────────
-function _loadGIS(cb) {
-    if (window.google && window.google.accounts) { cb(); return; }
-    var s = document.createElement('script');
-    s.src = 'https://accounts.google.com/gsi/client';
-    s.async = true;
-    s.defer = true;
-    s.onload  = cb;
-    s.onerror = function() { if (typeof showToast === 'function') showToast('❌ Не удалось загрузить Google Auth'); };
-    document.head.appendChild(s);
-}
-
-// ── Авторизация ────────────────────────────────────
 window.eitiDriveConnect = function() {
-    var clientId = (localStorage.getItem('eiti_drive_client_id') || '').trim();
-    if (!clientId) {
-        if (typeof showToast === 'function') showToast('⚠️ Введи Google OAuth Client ID выше');
-        return;
-    }
-    _loadGIS(function() {
-        _tokenClient = google.accounts.oauth2.initTokenClient({
-            client_id: clientId,
-            scope: DRIVE_SCOPE,
-            callback: function(resp) {
-                if (resp.error) {
-                    if (typeof showToast === 'function') showToast('❌ Auth error: ' + resp.error);
-                    return;
-                }
-                _saveToken(resp.access_token);
-                // Получаем email через tokeninfo
-                fetch('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + resp.access_token)
-                    .then(function(r){ return r.json(); })
-                    .then(function(d){
-                        _driveEmail = d.email || '';
-                        localStorage.setItem('eiti_drive_email', _driveEmail);
-                        _renderStatus();
-                        if (typeof showToast === 'function') showToast('✅ Google Drive подключён · ' + _driveEmail);
-                    }).catch(function(){ _renderStatus(); });
-            }
-        });
-        _tokenClient.requestAccessToken({ prompt: 'consent' });
-    });
-};
-
-window.eitiDriveDisconnect = function() {
-    if (_driveToken && window.google && window.google.accounts) {
-        google.accounts.oauth2.revoke(_driveToken, function(){});
-    }
-    _clearToken();
-    _renderStatus();
-    if (typeof showToast === 'function') showToast('🔌 Google Drive отключён');
-};
-
-// ── Drive API helpers ──────────────────────────────
-function _driveRequest(method, url, body, contentType) {
-    var tok = _loadToken();
-    if (!tok) return Promise.reject(new Error('Нет токена'));
-    var opts = {
-        method: method,
-        headers: { 'Authorization': 'Bearer ' + tok }
-    };
-    if (body) {
-        opts.headers['Content-Type'] = contentType || 'application/json';
-        opts.body = body;
-    }
-    return fetch(url, opts).then(function(r) {
-        if (r.status === 401) { _clearToken(); _renderStatus(); throw new Error('Токен истёк — переподключись'); }
-        return r;
-    });
-}
-
-function _findOrCreateFolder() {
-    return _driveRequest('GET',
-        "https://www.googleapis.com/drive/v3/files?q=name%3D'" + DRIVE_FOLDER + "'+and+mimeType%3D'application%2Fvnd.google-apps.folder'+and+trashed%3Dfalse&fields=files(id,name)"
-    ).then(function(r){ return r.json(); }).then(function(d) {
-        if (d.files && d.files.length > 0) return d.files[0].id;
-        // Создаём папку
-        return _driveRequest('POST', 'https://www.googleapis.com/drive/v3/files',
-            JSON.stringify({ name: DRIVE_FOLDER, mimeType: 'application/vnd.google-apps.folder' })
-        ).then(function(r){ return r.json(); }).then(function(d){ return d.id; });
-    });
-}
-
-function _findFile(folderId) {
-    return _driveRequest('GET',
-        "https://www.googleapis.com/drive/v3/files?q=name%3D'" + DRIVE_FILE + "'+and+'" + folderId + "'+in+parents+and+trashed%3Dfalse&fields=files(id,name,modifiedTime)"
-    ).then(function(r){ return r.json(); }).then(function(d) {
-        return (d.files && d.files.length > 0) ? d.files[0] : null;
-    });
-}
-
-// ── Сборка данных для бэкапа ───────────────────────
-function _collectBackupData() {
-    // localStorage settings
-    var settings = {};
-    var exclude = /eiti_drive_token|deepseek_api_key|eiti_apikey|eiti_openrouter|eiti_grok|eiti_xai|apikey|api_key|token/i;
-    for (var i = 0; i < localStorage.length; i++) {
-        var k = localStorage.key(i);
-        if (!exclude.test(k)) settings[k] = localStorage.getItem(k);
-    }
-    // IDB data — собираем через существующие кэши
-    var chats   = window._idbChatsCache;
-    var notes   = window._idbNotesCache;
-    var files   = window._idbFilesCache;
-    var l2      = window._idbL2Cache;
-    var kb      = window._kbMemCache;
-    // P4 FIX: защита от тихого бэкапа пустых данных при незавершённой IDB-загрузке
-    if (!chats || !notes) {
-        throw new Error('IDB-кэш не готов — повтори после полной загрузки приложения');
-    }
-    chats = chats || [];
-    notes = notes || [];
-    files = files || [];
-    l2    = l2    || [];
-    kb    = kb    || [];
-    return {
-        version: window.EITI_VERSION || '?',
-        exported: new Date().toISOString(),
-        settings: settings,
-        chats:    chats,
-        notes:    notes,
-        files:    files,
-        l2:       l2,
-        kb:       kb
-    };
-}
-
-// ── Upload ─────────────────────────────────────────
-window.eitiDriveUpload = function() {
-    var statusEl = document.getElementById('drive-sync-status');
-    if (statusEl) statusEl.textContent = '⏳ Сохраняю...';
-    var json = JSON.stringify(_collectBackupData(), null, 2);
-    var blob = new Blob([json], { type: 'application/json' });
-    _findOrCreateFolder().then(function(folderId) {
-        return _findFile(folderId).then(function(existing) {
-            if (existing) {
-                // PATCH — обновляем содержимое
-                return _driveRequest('PATCH',
-                    'https://www.googleapis.com/upload/drive/v3/files/' + existing.id + '?uploadType=media',
-                    blob, 'application/json'
-                );
-            } else {
-                // POST multipart — создаём с метаданными
-                var meta = JSON.stringify({ name: DRIVE_FILE, parents: [folderId] });
-                var boundary = 'eitiboundary';
-                var body = '--' + boundary + '\r\nContent-Type: application/json\r\n\r\n' +
-                    meta + '\r\n--' + boundary + '\r\nContent-Type: application/json\r\n\r\n' +
-                    json + '\r\n--' + boundary + '--';
-                return _driveRequest('POST',
-                    'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart',
-                    body, 'multipart/related; boundary=' + boundary
-                );
-            }
-        });
+    if (!clientId()) { toast(t('needId')); return; }
+    _requestToken(true).then(function() {
+        localStorage.setItem(LS.on, '1');
+        return _driveRequest('GET', 'https://www.googleapis.com/drive/v3/about?fields=user(emailAddress)').then(_json)
+            .then(function(d){ _driveEmail = (d && d.user && d.user.emailAddress) || ''; localStorage.setItem(LS.email, _driveEmail); })
+            .catch(function(){});
     }).then(function() {
-        var ts = new Date().toLocaleTimeString('ru');
-        if (statusEl) statusEl.textContent = '✅ Сохранено · ' + ts;
-        if (typeof showToast === 'function') showToast('✅ Бэкап на Drive сохранён');
-    }).catch(function(e) {
-        if (statusEl) statusEl.textContent = '❌ ' + e.message;
-        if (typeof showToast === 'function') showToast('❌ Drive upload: ' + e.message);
-    });
+        _renderStatus();
+        toast(t('signedIn') + (_driveEmail ? ' · ' + _driveEmail : ''));
+        return eitiDriveSyncNow('signin');
+    }).then(_renderStatus).catch(function(e) { toast(t('err') + ': ' + e.message); });
 };
-
-// ── Download ───────────────────────────────────────
-window.eitiDriveDownload = function() {
-    var statusEl = document.getElementById('drive-sync-status');
-    if (statusEl) statusEl.textContent = '⏳ Загружаю...';
-    _findOrCreateFolder().then(function(folderId) {
-        return _findFile(folderId);
-    }).then(function(file) {
-        if (!file) throw new Error('Файл не найден на Drive');
-        return _driveRequest('GET',
-            'https://www.googleapis.com/drive/v3/files/' + file.id + '?alt=media'
-        ).then(function(r){ return r.json(); });
-    }).then(function(data) {
-        if (!data || !data.version) throw new Error('Неверный формат бэкапа');
-        // Применяем settings в localStorage
-        if (data.settings) {
-            Object.keys(data.settings).forEach(function(k) {
-                localStorage.setItem(k, data.settings[k]);
-            });
-        }
-        // KB
-        if (Array.isArray(data.kb) && data.kb.length && typeof eitiKBSave === 'function') {
-            eitiKBSave(data.kb);
-        }
-        var ts = new Date().toLocaleTimeString('ru');
-        if (statusEl) statusEl.textContent = '✅ Загружено · ' + ts;
-        if (typeof showToast === 'function') showToast('✅ Бэкап с Drive загружен · перезагрузи приложение');
-    }).catch(function(e) {
-        if (statusEl) statusEl.textContent = '❌ ' + e.message;
-        if (typeof showToast === 'function') showToast('❌ Drive download: ' + e.message);
-    });
+window.eitiDriveDisconnect = function() {
+    if (_driveToken && window.google && google.accounts && google.accounts.oauth2) { try { google.accounts.oauth2.revoke(_driveToken, function(){}); } catch (e) {} }
+    _clearToken();
+    clearTimeout(_renewTimer); clearTimeout(_debounce);
+    [LS.on, LS.consented, LS.email, LS.state, LS.last, LS.file].forEach(function(k){ localStorage.removeItem(k); });
+    _driveEmail = null;
+    _hideResume();
+    _renderStatus();
+    var st = document.getElementById('drive-sync-status'); if (st) st.textContent = '';
+    toast(t('signedOut'));
 };
+// Ручные кнопки оставлены: обе выполняют полную синхронизацию (слияние в обе стороны).
+window.eitiDriveUpload = function() { return eitiDriveSyncNow('manual'); };
+window.eitiDriveDownload = function() { return eitiDriveSyncNow('manual'); };
 
-// ── Навигация ──────────────────────────────────────
 window.eitiDriveOpenView = function() {
     document.querySelectorAll('.content-view').forEach(function(v){ v.classList.remove('active'); });
     var v = document.getElementById('view-drive');
     if (v) v.classList.add('active');
-    // Подставить сохранённый Client ID
-    var inp = document.getElementById('drive-client-id-input');
-    if (inp) inp.value = localStorage.getItem('eiti_drive_client_id') || '';
     _renderStatus();
     if (typeof vibrate === 'function') vibrate();
 };
 
-// ── Инициализация при загрузке ─────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-    _loadToken();
+// ── Старт: после готовности IndexedDB — синхронизация при открытии ──
+function _boot() {
+    var tok = _loadToken();
+    // Миграция: старые пользователи с действующим токеном считаются вошедшими.
+    if (tok && !localStorage.getItem(LS.on)) { localStorage.setItem(LS.on, '1'); localStorage.setItem(LS.consented, '1'); }
     _renderStatus();
-});
+    if (!signedIn()) return;
+    var exp = parseInt(localStorage.getItem(LS.exp) || '0', 10);
+    if (tok && exp) _scheduleRenew(exp);
+    var go = function(){ setTimeout(function(){ eitiDriveSyncNow('open'); }, 2500); };
+    if (typeof eitiWhenDbReady === 'function') eitiWhenDbReady(go); else go();
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', _boot); else _boot();
 
 })();
 
