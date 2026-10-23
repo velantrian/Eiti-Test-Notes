@@ -203,7 +203,32 @@ flowchart TD
 | Ключ | xAI | Google AI Studio |
 | Микрофон | PCM 16 кГц (на iPhone пересэмплирование, AudioContext создаётся в обработчике нажатия) | то же |
 
-Провайдеры зарегистрированы в `window.EitiVoice` (`grok` | `gemini`), кнопка голоса подписана выбранным. Без ключа или при обрыве — тост с кнопкой «Переключить на …».
+Ассистент запускается из меню **«+»** (пункт «🗣️ Голосовой ассистент» с подписью провайдера и ссылкой «изменить» → `eitiOpenVoiceSettings()`, открывает и подсвечивает Настройки → AI → «Голосовой ассистент»; та же ссылка — в меню типа дневника). Провайдеры зарегистрированы в `window.EitiVoice` (`grok` | `gemini`), кнопка голоса подписана выбранным. Без ключа или при обрыве — тост с кнопкой «Переключить на …».
+
+### Голосовой ввод (🎤 в поле сообщения)
+
+Это не ассистент, а диктовка текста в поле (`eitiDictationToggle`). Сообщение само не отправляется.
+
+```mermaid
+flowchart TD
+    TAP[Нажатие 🎤] --> SUP{SpeechRecognition есть?}
+    SUP -- нет --> T1[Тост «не поддерживается», 🎤 неактивна]
+    SUP -- да --> ON{navigator.onLine?}
+    ON -- да --> REM["Онлайн-распознавание<br/>(Chrome: серверы Google)"]
+    REM -- ошибка network --> LOC
+    ON -- нет --> LOC["SpeechRecognition.available({langs, processLocally:true})"]
+    LOC -- available --> RUN["recognition.processLocally = true → start()"]
+    LOC -- downloadable --> INS["SpeechRecognition.install(...)"] --> RUN
+    LOC -- unavailable / нет API --> GB[Тост: офлайн-ввод голосом в Gboard]
+```
+
+| Параметр | Значение |
+|---|---|
+| Язык | по языку приложения: `ru-RU`, `en-US`, `de-DE` |
+| Результаты | `interimResults` — текст виден по мере речи; финальный остаётся, к уже набранному тексту дописывается |
+| Состояние | пульсирующая золотая кнопка, `aria-pressed`, подпись «Остановить запись» |
+| Ошибки | `not-allowed`, `no-speech`, `network`, `audio-capture`, `language-not-supported` → переведённые тосты |
+| Тест | `velantrim_core/e2e/v14100_dictation.spec.js` (SpeechRecognition замокан, оба пути — онлайн и на устройстве) |
 
 ## 8. Service Worker и кеширование
 

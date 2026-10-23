@@ -88,7 +88,7 @@ for (const theme of ['ios6-leather', 'paper-light']) {
     expect(i).toBeGreaterThanOrEqual(0);
     expect(labels[i + 1]).toBe('Сохранить чат');
     expect(labels.join('|')).not.toContain('Grok Voice');
-    expect(labels).toContain('AI Voice');
+    expect(labels.some((l) => /Голосовой ассистент|Voice assistant/.test(l))).toBe(true); // v14.10.0
     const tag = theme === 'paper-light' ? '-light' : '';
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/after-chat-menu${tag}.png` });
 
