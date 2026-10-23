@@ -65,7 +65,16 @@ test('empty input is one line at 390px, grows per line up to ~6 lines, resets af
   await input.fill('x'); await input.dispatchEvent('input');
   const h1 = (await input.boundingBox()).height;
   expect(Math.abs(h0 - h1)).toBeLessThanOrEqual(3);
-  expect(h0).toBeLessThan(60); // was ~74 px (two-line placeholder)
+  expect(h0).toBeLessThanOrEqual(44); expect(h0).toBeGreaterThanOrEqual(40); // pill; was ~74 px (two-line placeholder)
+  const geo = await page.evaluate(() => { const r = (id) => document.getElementById(id).getBoundingClientRect(); const i = r('input'), cs = getComputedStyle(document.getElementById('input'));
+    return { i: { t: i.top, b: i.bottom, l: i.left, r: i.right, h: i.height }, mic: r('eiti-composer-mic'), plus: r('chat-plus-btn'), send: r('send'), fs: parseFloat(cs.fontSize), pt: parseFloat(cs.paddingTop), pb: parseFloat(cs.paddingBottom), rad: parseFloat(cs.borderTopLeftRadius) }; });
+  expect(geo.fs).toBeGreaterThanOrEqual(16); // iOS: no zoom on focus
+  expect(Math.abs(geo.pt - geo.pb)).toBeLessThanOrEqual(1); // placeholder vertically centred
+  expect(geo.rad).toBeGreaterThanOrEqual(geo.i.h / 2 - 1); // pill
+  for (const b of [geo.mic, geo.plus, geo.send]) { expect(b.width).toBeGreaterThanOrEqual(40); expect(b.height).toBeGreaterThanOrEqual(40); }
+  expect(geo.mic.left).toBeGreaterThanOrEqual(geo.i.l); expect(geo.mic.right).toBeLessThanOrEqual(geo.i.r + 1); // mic inside the pill
+  expect(geo.mic.top).toBeGreaterThanOrEqual(geo.i.t - 1); expect(geo.mic.bottom).toBeLessThanOrEqual(geo.i.b + 1);
+  expect(Math.abs(geo.plus.height - geo.i.h)).toBeLessThanOrEqual(4); expect(Math.abs(geo.send.height - geo.i.h)).toBeLessThanOrEqual(4);
   await input.fill('1\n2\n3'); await input.dispatchEvent('input');
   const h3 = (await input.boundingBox()).height;
   expect(h3).toBeGreaterThan(h1 + 20);
