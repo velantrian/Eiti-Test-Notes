@@ -35,5 +35,6 @@ def test_local_engine_has_no_eval():
 def test_local_checked_first_in_offline_paths():
     # router: EITI Local before every other intent; offline wrapper: before KB and offline dialogs
     router = HTML.index("function eitiIntentRouter(txt)")
-    assert HTML.index("EitiLocalHost.reply(txt)", router) < HTML.index("P8: Обработка выбора обогащения KB", router)
+    # v14.6.0: the router passes the typo-corrected text (_locQ) to EITI Local
+    assert HTML.index("EitiLocalHost.reply(_locQ)", router) < HTML.index("P8: Обработка выбора обогащения KB", router)
     assert HTML.index("EitiOffline._localWrapped = true") > HTML.index("EitiOffline._kbWrapped = true")

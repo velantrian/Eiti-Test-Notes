@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.5.0"; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.6.0"; // v14.6.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4298,6 +4298,7 @@
     <!-- v14.2.0: «простой интеллект» на устройстве — калькулятор и ответы по своим заметкам/файлам (≈20 КБ, без сети) -->
     <script src="./local/eiti_local.js" defer></script>
     <script src="./local/eiti_dstate.js" defer></script>
+    <script src="./local/eiti_typo.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -25807,7 +25808,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 if (_irWebRx.test(txt) && _irSearchVerbRx.test(txt)) return false;
 
                 // ── v14.2.0: EITI Local — калькулятор и вопросы о своих заметках/файлах (раньше остальных интентов) ──
-                var _locT = window.EitiLocalHost ? EitiLocalHost.reply(txt) : null;
+                // v14.6.0: опечатки исправляются и до локального калькулятора/команд заметок
+                var _locQ = window.EitiTypoHost ? EitiTypoHost.fix(txt, window.eitiOfflineLang ? window.eitiOfflineLang(txt) : undefined).text : txt;
+                var _locT = window.EitiLocalHost ? EitiLocalHost.reply(_locQ) : null;
                 if (_locT) { _intentReply(eitiRenderMarkdown(_locT), 'EITI Local'); return true; }
 
                 // ── P8: Обработка выбора обогащения KB (1 / 2) ───────
@@ -31995,6 +31998,50 @@ window.eitiLLMClearAll = async function() {
                 return EitiDialogHost.step(q, L).then(function(r) { return r.text ? r.text : orig(r.q, o2); }, function() { return orig(text, opts); });
             };
             EitiOffline._dstateWrapped = true;
+        })();
+        // ── v14.6.0: ОПЕЧАТКИ (local/eiti_typo.js) — нормализация и нечёткое сопоставление до всех офлайн-слоёв ──
+        // Словарь (local/eiti_typo_vocab.json) грузится лениво при первом офлайн-запросе: на старте 0 запросов.
+        window.EitiTypoHost = (function() {
+            var p = null;
+            function load() {
+                if (!window.EitiTypo) return Promise.resolve(false);
+                if (EitiTypo.loaded()) return Promise.resolve(true);
+                if (!p) p = fetch('./local/eiti_typo_vocab.json').then(function(r) { return r.ok ? r.json() : null; })
+                    .then(function(j) { if (j) EitiTypo.load(j); return !!j; }, function() { p = null; return false; });
+                return p;
+            }
+            function fix(text, lang) {   // синхронно: если словарь ещё не загружен — без изменений (и запускаем загрузку)
+                var q = String(text || '');
+                if (!window.EitiTypo || !q.trim()) return { text: q, changes: [] };
+                if (!EitiTypo.loaded()) { load(); return { text: q, changes: [] }; }
+                try { return EitiTypo.correct(q, lang); } catch (e) { return { text: q, changes: [] }; }
+            }
+            // Подсказка «понял как: …» — только при исправлении раскладки (ghbdtn → привет): переписано всё сообщение.
+            function hint(r, lang) {
+                if (!r || !r.layout) return '';
+                var lab = lang === 'en' ? 'read as' : lang === 'de' ? 'verstanden als' : 'понял как';
+                return '_(' + lab + ': «' + r.text.replace(/[*_`<>]/g, '') + '»)_\n\n';
+            }
+            return { load: load, fix: fix, hint: hint };
+        })();
+        (function() {
+            if (!window.EitiOffline || EitiOffline._typoWrapped) return;
+            var orig = EitiOffline.replyText;
+            EitiOffline.replyText = function(text, opts) {
+                opts = opts || {};
+                var q = String(text || '');
+                if (!window.EitiTypo || !q.trim() || q.length > 400) return orig(text, opts);
+                return EitiTypoHost.load().then(function() {
+                    var L = opts.lang || window.eitiOfflineLang(q);
+                    var r = EitiTypoHost.fix(q, L);
+                    if (r.text === q) return orig(text, opts);
+                    var o2 = {}; for (var k in opts) o2[k] = opts[k];
+                    o2.lang = r.layout ? window.eitiOfflineLang(r.text) : L; o2.typoFrom = q;
+                    var h = EitiTypoHost.hint(r, o2.lang);
+                    return Promise.resolve(orig(r.text, o2)).then(function(t) { return t && h ? h + t : t; });
+                }, function() { return orig(text, opts); });
+            };
+            EitiOffline._typoWrapped = true;
         })();
 
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)

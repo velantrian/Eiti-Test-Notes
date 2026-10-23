@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.5.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.6.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,13 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.6.0
+
+- ⌨️ **Терпимость к опечаткам офлайн** (`local/eiti_typo.js`): перед калькулятором, командами заметок, KB, сказками, памятью диалога и офлайн-интентами сообщение нормализуется — ё→е, ш/щ, удвоенные/пропущенные буквы, соседние клавиши (ЙЦУКЕН / QWERTY / QWERTZ), неверная раскладка (*ghbdtn* → «привет», *руддщ* → «hello»), пропущенные пробелы/дефисы («кактвои дела», «чтото»), регистр.
+- 🔎 **Нечёткое сопоставление** по словарю всех офлайн-слоёв (Дамерау–Левенштейн: ≤3 букв — только курируемая таблица «еше / ище → ещё», 4–7 — 1 правка, 8+ — 2); частые слова в приоритете, правильные слова не переписываются (список общеупотребительных слов RU/EN/DE + защита словоформ). Индекс symmetric-delete строится лениво при первом офлайн-запросе; словарь `local/eiti_typo_vocab.json` тоже грузится лениво — на старте 0 запросов.
+- 🇩🇪 **Немецкий**: сравнение по «свёрнутой» форме (ü→ue, ä→ae, ö→oe, ß→ss) для ввода и словаря — *Taetigkeit*, *Strasse*, *Wasser*, *neue* не ломаются, *Tatigkeit* → *Tätigkeit*; плюс небольшая таблица частых опечаток (*dnake → danke*, *vileicht → vielleicht*).
+- 💬 Подсказка «понял как: …» показывается только при исправлении раскладки (переписано всё сообщение); мелкие исправления — молча.
 
 ## 🆕 Что нового в v14.5.0
 
