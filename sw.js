@@ -1,11 +1,11 @@
-// VELANTRIM EITI — Service Worker v14.3.0
+// VELANTRIM EITI — Service Worker v14.4.0
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.3.0
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.4.0
 
-var CACHE = 'eiti-v14.3.0'; // v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
+var CACHE = 'eiti-v14.4.0'; // v14.4.0: офлайн-ответы RU/EN/DE; v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
 // v14.0.0: офлайн-движок и пакеты (offline/**) — отдельный кеш без лимита 24 записей (≈30 файлов),
 // cache-first + фоновое обновление; не попадает в swTrimCache.
-var OFFLINE_CACHE = 'eiti-offline-v14.3.0';
+var OFFLINE_CACHE = 'eiti-offline-v14.4.0';
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -14,6 +14,7 @@ var CORE = [
     BASE,
     BASE + 'index.html',
     BASE + 'manifest.json',
+    BASE + 'offline/eiti_offline_de.js', // v14.4.0: немецкий слой офлайн-диалогов
     BASE + 'local/eiti_local.js', // v14.2.0: локальный калькулятор/ответы по своим данным — нужен офлайн с первого запуска
     BASE + 'icon-192.png',
     BASE + 'icon-192-maskable.png',
@@ -70,7 +71,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '14.3.0' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '14.4.0' });
                         });
                     });
                     });

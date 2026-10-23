@@ -1,4 +1,4 @@
-// VELANTRIM EITI v14.2.0 — «простой интеллект» на устройстве: калькулятор (цифры и числа словами, RU/EN)
+// VELANTRIM EITI v14.4.0 — «простой интеллект» на устройстве: калькулятор (цифры и числа словами, RU/EN/DE)
 // и ответы по собственным данным пользователя (заметки, файлы). Чистая логика без DOM и без eval:
 // хост передаёт снимок данных, движок возвращает готовый текст ответа или null («не моё — пусть отвечают другие»).
 (function (root) {
@@ -10,6 +10,21 @@
       .replace(/[«»"“”„]/g, '').replace(/\s+/g, ' ').trim();
   }
   function isRu(s) { return /[а-яё]/i.test(String(s || '')); }
+  // v14.4.0: язык ответа. opts.lang ('ru'|'en'|'de') задаёт хост (язык приложения + язык ввода); без него — по тексту вопроса.
+  var LANGS = { ru: 1, en: 1, de: 1 };
+  function langOf(q, lang) { return LANGS[lang] ? lang : (isRu(q) ? 'ru' : 'en'); }
+  // langHint(text) → 'de' | 'en' | null — язык латинского текста (те же списки, что в offline/eiti_offline_de.js)
+  var HINT_DE = /\s(und|ich|du|nicht|ist|bist|danke|bitte|hallo|tschüss|tschüs|guten|gute|morgen|abend|nacht|wie|was|wer|kannst|machst|geht|es|mir|dich|dir|mich|ein|eine|einen|noch|ja|nein|doch|hilfe|witz|märchen|geschichte|erzähl|erzähle|wieviel|viele|notizen|notiz|dateien|mal|geteilt|durch|wurzel|prozent|von|tag|heute|gestern|habe|hab|meine|mein|deine|dein|sehr|gut|schlecht|entschuldigung|tut|leid|klar|genau|toll|super|servus|moin|grüß|grüss|weiter|nochmal|vielen|dank)(?=\s)/g;
+  var HINT_EN = /\s(the|and|you|your|are|is|what|how|who|hello|hi|hey|thanks|thank|please|can|do|does|my|me|i|it|this|that|tell|joke|story|notes?|files?|times|plus|minus|of|good|morning|night|bye|yes|no|help|more|another)(?=\s)/g;
+  function langHint(text) {
+    var raw = String(text || '');
+    if (/[а-яё]/i.test(raw)) return null;
+    if (/[äöüß]/i.test(raw)) return 'de';
+    var s = (' ' + raw.toLowerCase().replace(/[^a-zäöüß0-9]+/g, ' ').replace(/\s+/g, ' ').trim() + ' ').replace(/ /g, '  ');
+    var d = (s.match(HINT_DE) || []).length, e = (s.match(HINT_EN) || []).length;
+    return d > 0 && d > e ? 'de' : (e > 0 ? 'en' : null);
+  }
+  function M(L, ru, en, de) { return L === 'ru' ? ru : L === 'de' ? (de != null ? de : en) : en; }
 
   // ───────────────────────── числа словами ─────────────────────────
   // Формы — именительный и косвенные падежи («трёхсот», «семи», «двадцати»).
@@ -52,9 +67,14 @@
   def(700, 'семьсот семисот семистам');
   def(800, 'восемьсот восьмисот восьмистам');
   def(900, 'девятьсот девятисот девятистам');
+  // v14.4.0: немецкие числа (простые формы; составные «einundzwanzig» — только цифрами)
+  def(0, 'null'); def(1, 'eins ein eine'); def(2, 'zwei'); def(3, 'drei'); def(4, 'vier'); def(5, 'fünf funf'); def(6, 'sechs'); def(7, 'sieben');
+  def(8, 'acht'); def(9, 'neun'); def(10, 'zehn'); def(11, 'elf'); def(12, 'zwölf zwolf'); def(13, 'dreizehn'); def(14, 'vierzehn'); def(15, 'fünfzehn');
+  def(16, 'sechzehn'); def(17, 'siebzehn'); def(18, 'achtzehn'); def(19, 'neunzehn'); def(20, 'zwanzig'); def(30, 'dreißig dreissig'); def(40, 'vierzig');
+  def(50, 'fünfzig'); def(60, 'sechzig'); def(70, 'siebzig'); def(80, 'achtzig'); def(90, 'neunzig');
   var MULT = {};
-  'тысяча тысячи тысяч тысячу тысячам thousand thousands'.split(' ').forEach(function (f) { MULT[f] = 1e3; });
-  'миллион миллиона миллионов million millions'.split(' ').forEach(function (f) { MULT[f] = 1e6; });
+  'тысяча тысячи тысяч тысячу тысячам thousand thousands tausend'.split(' ').forEach(function (f) { MULT[f] = 1e3; });
+  'миллион миллиона миллионов million millions millionen'.split(' ').forEach(function (f) { MULT[f] = 1e6; });
   'миллиард миллиарда миллиардов billion billions'.split(' ').forEach(function (f) { MULT[f] = 1e9; });
   var HALF = { 'полтора': 1.5, 'полторы': 1.5, 'полутора': 1.5, 'половина': 0.5, 'половину': 0.5, 'пол': 0.5, 'half': 0.5 };
   var FRAC = { 'десятая': 10, 'десятых': 10, 'десятые': 10, 'сотая': 100, 'сотых': 100, 'тысячная': 1000, 'тысячных': 1000 };
@@ -79,7 +99,7 @@
         if (rank === 10) lastSmall = 1; // «двенадцать» закрывает десятки и единицы
         continue;
       }
-      if (t === 'hundred' && any && cur > 0 && cur < 10) { cur *= 100; lastSmall = 100; n++; continue; }
+      if ((t === 'hundred' || t === 'hundert') && any && cur > 0 && cur < 10) { cur *= 100; lastSmall = 100; n++; continue; }
       if (Object.prototype.hasOwnProperty.call(MULT, t)) {
         total += (any ? (cur || 1) : 1) * MULT[t]; cur = 0; any = true; lastSmall = 1000; n++; continue;
       }
@@ -127,20 +147,27 @@
   // ───────────────────────── калькулятор ─────────────────────────
   // Многословные операторы → однословные метки (порядок важен: длинные первыми).
   var PHRASES = [
-    [/квадратн[а-я]* корн[а-я]* из|квадратный корень из|корень квадратный из|корень из|корня из|square root of|root of|sqrt/g, ' SQRT '],
+    [/квадратн[а-я]* корн[а-я]* из|квадратный корень из|корень квадратный из|корень из|корня из|square root of|root of|sqrt|quadratwurzel aus|wurzel aus|wurzel von/g, ' SQRT '],
     [/кубическ[а-я]* корн?[а-я]* из/g, ' CBRT '],
-    [/в квадрате|в квадрат|squared/g, ' SQ '],
+    [/в квадрате|в квадрат|squared|zum quadrat|im quadrat/g, ' SQ '],
     [/в кубе|cubed/g, ' CUBE '],
-    [/в степени|в \d+ степени|to the power of|to the power|\bpower\b/g, ' POW '],
-    [/умножить на|умножить|умноженное на|умножь на|помножить на|помножь на|multiplied by|times/g, ' MUL '],
-    [/разделить на|разделить|делить на|деленное на|разделенное на|подели на|поделить на|раздели на|divided by|over/g, ' DIV '],
+    [/в степени|в \d+ степени|to the power of|to the power|\bpower\b|\bhoch\b/g, ' POW '],
+    [/умножить на|умножить|умноженное на|умножь на|помножить на|помножь на|multiplied by|times|multipliziert mit|\bmal\b/g, ' MUL '],
+    [/разделить на|разделить|делить на|деленное на|разделенное на|подели на|поделить на|раздели на|divided by|over|geteilt durch|dividiert durch|\bdurch\b/g, ' DIV '],
     [/прибавить к|прибавить|прибавь|сложить с|плюс|plus|and add|add/g, ' ADD '],
     [/отнять от|отнять|отними|вычесть из|вычесть|минус|minus|subtract/g, ' SUB '],
-    [/процентов от|процента от|процент от|% от|percent of|% of/g, ' PCTOF '],
-    [/процентов|процента|процент|percent/g, ' PCT ']
+    [/процентов от|процента от|процент от|% от|percent of|% of|prozent von|% von/g, ' PCTOF '],
+    [/процентов|процента|процент|percent|prozent/g, ' PCT ']
   ];
-  var PREFIX = /^(?:(?:eiti|эйти)[,:]?\s+)?(?:(?:а|ну|скажи|подскажи|пожалуйста|please|быстро)[,]?\s+)*(?:сколько будет|сколько это|сколько|посчитай(?: мне)?|подсчитай|вычисли|рассчитай|реши|calculate|compute|what is|what's|whats|how much is|calc)?\s*(?:пожалуйста\s+|please\s+)?/;
+  var PREFIX = /^(?:(?:eiti|эйти)[,:]?\s+)?(?:(?:а|ну|скажи|подскажи|пожалуйста|please|bitte|быстро)[,]?\s+)*(?:сколько будет|сколько это|сколько|посчитай(?: мне)?|подсчитай|вычисли|рассчитай|реши|calculate|compute|what is|what's|whats|how much is|calc|was ist|was sind|wie viel ist|wieviel ist|wie viel sind|berechne|rechne)?\s*(?:пожалуйста\s+|please\s+|bitte\s+)?/;
 
+  // v14.4.0: немецкие составные числительные: «dreihundert» → «drei hundert», «einundzwanzig» → «zwanzig ein»
+  var DE_ONES = 'ein|eins|zwei|drei|vier|fünf|funf|sechs|sieben|acht|neun', DE_TENS = 'zwanzig|dreißig|dreissig|vierzig|fünfzig|sechzig|siebzig|achtzig|neunzig';
+  function deSplit(s) {
+    return s.replace(new RegExp('(^|\\s)(' + DE_ONES + ')und(' + DE_TENS + ')(?=\\s|$|hundert|tausend)', 'g'), '$1$3 $2')
+      .replace(new RegExp('(^|\\s)(' + DE_ONES + '|zehn|elf|zwölf|' + DE_TENS + ')?(hundert|tausend)(?=\\S)', 'g'), function (m, a, b, c) { return a + (b ? b + ' ' : '') + c + ' '; })
+      .replace(new RegExp('(^|\\s)(' + DE_ONES + '|zehn|elf|zwölf|' + DE_TENS + ')(hundert|tausend)(?=\\s|$)', 'g'), '$1$2 $3');
+  }
   function tokenizeCalc(q) {
     var s = norm(q);
     if (s.length > 160) return null;
@@ -148,6 +175,7 @@
     if (/\b\d{1,4}[./-]\d{1,2}[./-]\d{1,4}\b/.test(s) || /\b\d{1,2}:\d{2}\b/.test(s) || /\+\d[\d\s()-]{8,}/.test(s) || /\bv?\d+\.\d+\.\d+/.test(s)) return null;
     s = s.replace(PREFIX, '').replace(/[?!=]+\s*$/, '').replace(/\s*=\s*\??$/, '').trim();
     if (!s) return null;
+    s = deSplit(s);
     PHRASES.forEach(function (p) { s = s.replace(p[0], p[1]); });
     s = s.replace(/(\d),(\d)/g, '$1.$2')
       .replace(/[×xх](?=\s*[\d(])/g, ' MUL ').replace(/\*\*/g, ' POW ').replace(/[*·]/g, ' MUL ')
@@ -240,12 +268,14 @@
   function hasOperator(e) { return e.k !== 'n' && e.k !== 'p' && !(e.k === 'neg' && e.e.k === 'n') ? true : e.k === 'p' ? hasOperator(e.e) : false; }
 
   function fmtNum(v, ru) {
+    // ru: true | 'ru' → «1 234,5»; 'de' → «1.234,5»; false | 'en' → «1,234.5»
+    var de = ru === 'de'; ru = ru === true || ru === 'ru' || de;
     if (!isFinite(v)) return '∞';
     var r = Math.abs(v) >= 1e15 || (Math.abs(v) < 1e-9 && v !== 0) ? v.toPrecision(10).replace(/\.?0+e/, 'e') : String(+v.toPrecision(12));
     if (/e/.test(r)) { var m = r.split('e'); return m[0].replace('.', ru ? ',' : '.') + ' × 10^' + (+m[1]); }
     var neg = r.charAt(0) === '-'; if (neg) r = r.slice(1);
     var parts = r.split('.'), ip = parts[0];
-    if (ip.length > 4) ip = ip.replace(/\B(?=(\d{3})+(?!\d))/g, ru ? '\u00a0' : ',');
+    if (ip.length > 4) ip = ip.replace(/\B(?=(\d{3})+(?!\d))/g, de ? '.' : ru ? '\u00a0' : ',');
     return (neg ? '−' : '') + ip + (parts[1] ? (ru ? ',' : '.') + parts[1] : '');
   }
   var PREC = { add: 1, sub: 1, mul: 2, div: 2, neg: 3, pow: 4 };
@@ -256,7 +286,7 @@
       case 'p': return '(' + show(e.e, ru) + ')';
       case 'neg': s = '−' + show(e.e, ru, 'neg'); if (parent && parent !== 'neg') return '(' + s + ')'; break;
       case 'pct': return show(e.e, ru, 'pow') + '%';
-      case 'pctof': return show(e.a, ru, 'pow') + '% ' + (ru ? 'от' : 'of') + ' ' + show(e.b, ru, 'pow');
+      case 'pctof': return show(e.a, ru, 'pow') + '% ' + (ru === 'de' ? 'von' : ru === true || ru === 'ru' ? 'от' : 'of') + ' ' + show(e.b, ru, 'pow');
       case 'sqrt': return '√' + show(e.e, ru, 'pow');
       case 'cbrt': return '∛' + show(e.e, ru, 'pow');
       case 'pow': s = e.sup === 2 ? show(e.a, ru, 'pow') + '²' : e.sup === 3 ? show(e.a, ru, 'pow') + '³' : show(e.a, ru, 'pow') + '^' + show(e.b, ru, 'pow'); break;
@@ -268,23 +298,24 @@
   }
 
   // calc(text) → { expr, value, text } | { error, text } | null (это не арифметика)
-  function calc(q) {
+  function calc(q, lang) {
     var toks = tokenizeCalc(q);
     if (!toks || !toks.length) return null;
     var e = parse(toks);
     if (!e || !hasOperator(e)) return null;
-    var ru = isRu(q) || !/[a-z]/i.test(q);
-    var shown = show(e, ru);
+    // без явного языка — как раньше: кириллица или одни цифры → по-русски
+    var L = LANGS[lang] ? lang : (isRu(q) || !/[a-z]/i.test(q) ? 'ru' : 'en');
+    var shown = show(e, L);
     try {
       var v = ev(e);
-      if (!isFinite(v)) return { error: 'big', text: ru ? 'Получается слишком большое число.' : 'The result is too large.' };
+      if (!isFinite(v)) return { error: 'big', text: M(L, 'Получается слишком большое число.', 'The result is too large.', 'Das Ergebnis ist zu groß.') };
       if (Math.abs(v) < 1e-12) v = 0; else v = +v.toPrecision(12);
-      return { expr: shown, value: v, text: shown + ' = ' + fmtNum(v, ru) };
+      return { expr: shown, value: v, text: shown + ' = ' + fmtNum(v, L) };
     } catch (x) {
       var c = x && x.code;
-      var msg = c === 'div0' ? (ru ? shown + ': на ноль делить нельзя.' : shown + ': division by zero is undefined.')
-        : c === 'negroot' ? (ru ? shown + ': квадратный корень из отрицательного числа не определён среди действительных чисел.' : shown + ': the square root of a negative number is not a real number.')
-          : (ru ? 'Не получается посчитать ' + shown + '.' : 'Cannot compute ' + shown + '.');
+      var msg = c === 'div0' ? shown + M(L, ': на ноль делить нельзя.', ': division by zero is undefined.', ': Division durch null ist nicht definiert.')
+        : c === 'negroot' ? shown + M(L, ': квадратный корень из отрицательного числа не определён среди действительных чисел.', ': the square root of a negative number is not a real number.', ': Die Quadratwurzel einer negativen Zahl ist keine reelle Zahl.')
+          : M(L, 'Не получается посчитать ' + shown + '.', 'Cannot compute ' + shown + '.', shown + ' lässt sich nicht berechnen.');
       return { error: c || 'bad', text: msg };
     }
   }
@@ -302,21 +333,21 @@
   function pad(s) { return ' ' + String(s).replace(/[^\p{L}\p{N}]+/gu, ' ').trim() + ' '; }
   function period(s, now) {
     var d0 = startOfDay(now), m, ps = pad(s), t = function (src) { return U(src).test(ps); };
-    if (t('\\b(сегодня|today)\\b')) return { from: d0, to: d0 + DAY, ru: 'сегодня', en: 'today' };
-    if (t('\\bпозавчера\\b|\\bday before yesterday\\b')) return { from: d0 - 2 * DAY, to: d0 - DAY, ru: 'позавчера', en: 'the day before yesterday' };
-    if (t('\\b(вчера|yesterday)\\b')) return { from: d0 - DAY, to: d0, ru: 'вчера', en: 'yesterday' };
-    if ((m = ps.match(U('\\b(?:за|в) последни[ех] ' + NUMW + ' (?:дн|сут)|\\bthe (?:last|past) (\\d+) days\\b')))) {
-      var n = m[1] ? (/^\d+$/.test(m[1]) ? +m[1] : W[m[1]]) : +m[2];
-      if (n > 0 && n <= 3660) return { from: d0 - (n - 1) * DAY, to: d0 + DAY, ru: 'за последние ' + n + ' ' + plural(n, 'день', 'дня', 'дней'), en: 'in the last ' + n + ' days' };
+    if (t('\\b(сегодня|today|heute)\\b')) return { from: d0, to: d0 + DAY, ru: 'сегодня', en: 'today', de: 'heute' };
+    if (t('\\bпозавчера\\b|\\bday before yesterday\\b|\\bvorgestern\\b')) return { from: d0 - 2 * DAY, to: d0 - DAY, ru: 'позавчера', en: 'the day before yesterday', de: 'vorgestern' };
+    if (t('\\b(вчера|yesterday|gestern)\\b')) return { from: d0 - DAY, to: d0, ru: 'вчера', en: 'yesterday', de: 'gestern' };
+    if ((m = ps.match(U('\\b(?:за|в) последни[ех] ' + NUMW + ' (?:дн|сут)|\\bthe (?:last|past) (\\d+) days\\b|\\b(?:in )?den letzten (\\d+) tagen\\b')))) {
+      var n = m[1] ? (/^\d+$/.test(m[1]) ? +m[1] : W[m[1]]) : +(m[2] || m[3]);
+      if (n > 0 && n <= 3660) return { from: d0 - (n - 1) * DAY, to: d0 + DAY, ru: 'за последние ' + n + ' ' + plural(n, 'день', 'дня', 'дней'), en: 'in the last ' + n + ' days', de: 'in den letzten ' + n + ' Tagen' };
     }
-    if (t('\\b(?:прошл|предыдущ)\\w* недел|\\blast week\\b')) { var w = startOfWeek(now); return { from: w - 7 * DAY, to: w, ru: 'на прошлой неделе', en: 'last week' }; }
-    if (t('\\bза (?:последнюю )?неделю\\b|\\bpast week\\b')) return { from: d0 - 6 * DAY, to: d0 + DAY, ru: 'за неделю', en: 'in the past week' };
-    if (t('\\b(?:эт|текущ)\\w* недел|\\bна неделе\\b|\\bthis week\\b')) return { from: startOfWeek(now), to: d0 + DAY, ru: 'на этой неделе', en: 'this week' };
-    if (t('\\b(?:прошл|предыдущ)\\w* месяц|\\blast month\\b')) return { from: addMonths(now, -1), to: addMonths(now, 0), ru: 'в прошлом месяце', en: 'last month' };
-    if (t('\\bза (?:последний )?месяц\\b|\\bpast month\\b')) return { from: d0 - 29 * DAY, to: d0 + DAY, ru: 'за месяц', en: 'in the past month' };
-    if (t('\\b(?:эт|текущ)\\w* месяц|\\bthis month\\b')) return { from: addMonths(now, 0), to: d0 + DAY, ru: 'в этом месяце', en: 'this month' };
-    if (t('\\bпрошл\\w* год|\\blast year\\b')) { var y = startOfYear(now); return { from: new Date(new Date(y).getFullYear() - 1, 0, 1).getTime(), to: y, ru: 'в прошлом году', en: 'last year' }; }
-    if (t('\\b(?:эт|текущ)\\w* год|\\bза год\\b|\\bthis year\\b')) return { from: startOfYear(now), to: d0 + DAY, ru: 'в этом году', en: 'this year' };
+    if (t('\\b(?:прошл|предыдущ)\\w* недел|\\blast week\\b|\\bletzte woche\\b|\\bvorige woche\\b')) { var w = startOfWeek(now); return { from: w - 7 * DAY, to: w, ru: 'на прошлой неделе', en: 'last week', de: 'letzte Woche' }; }
+    if (t('\\bза (?:последнюю )?неделю\\b|\\bpast week\\b|\\bvergangene woche\\b')) return { from: d0 - 6 * DAY, to: d0 + DAY, ru: 'за неделю', en: 'in the past week', de: 'in der vergangenen Woche' };
+    if (t('\\b(?:эт|текущ)\\w* недел|\\bна неделе\\b|\\bthis week\\b|\\bdiese woche\\b')) return { from: startOfWeek(now), to: d0 + DAY, ru: 'на этой неделе', en: 'this week', de: 'diese Woche' };
+    if (t('\\b(?:прошл|предыдущ)\\w* месяц|\\blast month\\b|\\bletzten monat\\b|\\bletzter monat\\b')) return { from: addMonths(now, -1), to: addMonths(now, 0), ru: 'в прошлом месяце', en: 'last month', de: 'im letzten Monat' };
+    if (t('\\bза (?:последний )?месяц\\b|\\bpast month\\b')) return { from: d0 - 29 * DAY, to: d0 + DAY, ru: 'за месяц', en: 'in the past month', de: 'im vergangenen Monat' };
+    if (t('\\b(?:эт|текущ)\\w* месяц|\\bthis month\\b|\\bdiesen monat\\b|\\bdiesem monat\\b')) return { from: addMonths(now, 0), to: d0 + DAY, ru: 'в этом месяце', en: 'this month', de: 'diesen Monat' };
+    if (t('\\bпрошл\\w* год|\\blast year\\b|\\bletztes jahr\\b|\\bletzten jahr\\b')) { var y = startOfYear(now); return { from: new Date(new Date(y).getFullYear() - 1, 0, 1).getTime(), to: y, ru: 'в прошлом году', en: 'last year', de: 'letztes Jahr' }; }
+    if (t('\\b(?:эт|текущ)\\w* год|\\bза год\\b|\\bthis year\\b|\\bdieses jahr\\b|\\bdiesem jahr\\b')) return { from: startOfYear(now), to: d0 + DAY, ru: 'в этом году', en: 'this year', de: 'dieses Jahr' };
     return null;
   }
 
@@ -325,19 +356,19 @@
   function noteTouched(n) { return +(n.updated || n.created || 0); }
   function liveNotes(notes) { return (notes || []).filter(function (n) { return n && n.status !== 'deleted' && !n.deleted && !n.trashed && (n.title || n.body || n.content); }); }
   function body(n) { return String(n.body != null ? n.body : (n.content || '')); }
-  function title(n, ru) { var t = String(n.title || '').trim(); if (t) return t; var b = body(n).trim().split('\n')[0].slice(0, 50); return b || (ru ? '(без заголовка)' : '(untitled)'); }
+  function title(n, L) { var t = String(n.title || '').trim(); if (t) return t; var b = body(n).trim().split('\n')[0].slice(0, 50); return b || M(L === true ? 'ru' : L, '(без заголовка)', '(untitled)', '(ohne Titel)'); }
   function tagsOf(n) {
     var t = n.tags; if (!t) return [];
     if (!Array.isArray(t)) t = String(t).split(/[,;\s]+/);
     return t.map(function (x) { return norm(x).replace(/^#/, ''); }).filter(Boolean);
   }
   function plural(n, a, b, c) { var m10 = n % 10, m100 = n % 100; return m10 === 1 && m100 !== 11 ? a : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? b : c; }
-  function notesW(n, ru) { return ru ? n + ' ' + plural(n, 'заметка', 'заметки', 'заметок') : n + ' ' + (n === 1 ? 'note' : 'notes'); }
-  function filesW(n, ru) { return ru ? n + ' ' + plural(n, 'файл', 'файла', 'файлов') : n + ' ' + (n === 1 ? 'file' : 'files'); }
-  function fmtDate(t, ru) {
+  function notesW(n, L) { return M(L, n + ' ' + plural(n, 'заметка', 'заметки', 'заметок'), n + ' ' + (n === 1 ? 'note' : 'notes'), n + ' ' + (n === 1 ? 'Notiz' : 'Notizen')); }
+  function filesW(n, L) { return M(L, n + ' ' + plural(n, 'файл', 'файла', 'файлов'), n + ' ' + (n === 1 ? 'file' : 'files'), n + ' ' + (n === 1 ? 'Datei' : 'Dateien')); }
+  function fmtDate(t, L) {
     if (!t) return '';
     var d = new Date(t), p = function (x) { return (x < 10 ? '0' : '') + x; };
-    return ru ? p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes())
+    return L === 'ru' || L === 'de' || L === true ? p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes())
       : d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
   }
   function utf8Len(s) { s = String(s || ''); var n = 0; for (var i = 0; i < s.length; i++) { var c = s.charCodeAt(i); n += c < 0x80 ? 1 : c < 0x800 ? 2 : (c >= 0xd800 && c < 0xdc00) ? (i++, 4) : 3; } return n; }
@@ -349,9 +380,10 @@
     return utf8Len(c);
   }
   function fmtBytes(b, ru) {
+    var de = ru === 'de'; ru = ru === true || ru === 'ru';
     var u = ru ? ['Б', 'КБ', 'МБ', 'ГБ'] : ['B', 'KB', 'MB', 'GB'], i = 0, v = b;
     while (v >= 1024 && i < 3) { v /= 1024; i++; }
-    return (i ? (v >= 100 ? Math.round(v) : +v.toFixed(1)) : v).toString().replace('.', ru ? ',' : '.') + ' ' + u[i];
+    return (i ? (v >= 100 ? Math.round(v) : +v.toFixed(1)) : v).toString().replace('.', ru || de ? ',' : '.') + ' ' + u[i];
   }
   function snippet(text, terms, len) {
     var t = String(text || '').replace(/\s+/g, ' ').trim(); len = len || 120;
@@ -362,11 +394,11 @@
     return (s ? '…' : '') + t.slice(s, s + len) + (s + len < t.length ? '…' : '');
   }
   function chip(n) { return '⟦EITINOTE:' + String(n.id).replace(/[^\w.:-]/g, '') + '⟧'; }
-  function noteLine(n, ru, terms) {
+  function noteLine(n, L, terms) {
     var sn = snippet(body(n), terms || [], 110);
-    return '• **' + title(n, ru) + '** · ' + fmtDate(noteTouched(n), ru) + (sn ? '\n  ' + sn : '') + (n.id ? ' ' + chip(n) : '');
+    return '• **' + title(n, L) + '** · ' + fmtDate(noteTouched(n), L) + (sn ? '\n  ' + sn : '') + (n.id ? ' ' + chip(n) : '');
   }
-  var STOPQ = /^(и|в|во|на|о|об|обо|про|по|с|со|к|из|за|для|мне|мои|мой|моих|my|the|a|an|of|about|on|in|for|что|это)$/;
+  var STOPQ = /^(и|в|во|на|о|об|обо|про|по|с|со|к|из|за|для|мне|мои|мой|моих|my|the|a|an|of|about|on|in|for|что|это|meine|meinen|meiner|über|uber|von|zu|zum|zur|der|die|das|den|dem|ein|eine|einen|und|im)$/;
   function queryTerms(x) {
     return norm(x).replace(/[^\p{L}\p{N}\s#-]/gu, ' ').split(/\s+/).filter(function (w) { return w && !STOPQ.test(w); })
       .map(function (w) { w = w.replace(/^#/, ''); return w.length > 5 ? w.slice(0, w.length - 2) : w.length > 4 ? w.slice(0, 4) : w; }); // грубая основа: «кошке» → «кош», «рецептах» → «рецепт»
@@ -375,7 +407,7 @@
     var terms = queryTerms(q); if (!terms.length) return { terms: terms, hits: [] };
     var hits = [];
     notes.forEach(function (n) {
-      var tt = norm(title(n, true)), bb = norm(body(n)), tg = tagsOf(n).join(' '), sc = 0, all = true;
+      var tt = norm(title(n, 'ru')), bb = norm(body(n)), tg = tagsOf(n).join(' '), sc = 0, all = true;
       terms.forEach(function (t) {
         var ht = tt.indexOf(t) >= 0, hb = bb.indexOf(t) >= 0, hg = tg.indexOf(t) >= 0;
         if (!ht && !hb && !hg) all = false;
@@ -388,12 +420,12 @@
   }
 
   // Распознавание запросов о своих данных. Фразы заякорены на всё сообщение — обычная болтовня не срабатывает.
-  var LEAD = '^(?:(?:eiti|эйти)[,:]?\\s+)?(?:(?:а|ну|слушай|скажи|подскажи|покажи|напомни|пожалуйста|please|hey|tell me|show me)[,]?\\s+)*';
-  var TAIL = '\\s*(?:пожалуйста|please)?\\s*[?.!]*$';
+  var LEAD = '^(?:(?:eiti|эйти)[,:]?\\s+)?(?:(?:а|ну|слушай|скажи|подскажи|покажи|напомни|пожалуйста|please|hey|tell me|show me|bitte|sag mir|zeig mir|zeige mir)[,]?\\s+)*';
+  var TAIL = '\\s*(?:пожалуйста|please|bitte)?\\s*[?.!]*$';
   function rx(body) { return new RegExp((LEAD + '(?:' + body + ')' + TAIL).replace(/\\w/g, '[\\p{L}\\p{N}_]'), 'u'); }
-  var NOTE = '(?:замет(?:к\\w*|ок)|записк\\w*|записок|записей|записи|запись|notes?)';
-  var FILE = '(?:файл\\w*|documents?|files?)';
-  var PER = '(?:\\s+(?:(?:за|на|в|во|с)\\s+(?:сегодня|вчера|позавчера|(?:эту |этой |прошлую |прошлой |последнюю )?недел[июе]|(?:этот |этом |прошлый |прошлом |последний )?месяц[е]?|(?:этот |этом |прошлый |прошлом )?год[у]?|последни[ех]\\s+[\\p{L}\\d]+\\s+(?:дн\\w*|сут\\w*))|сегодня|вчера|позавчера|today|yesterday|(?:this|last) (?:week|month|year)|(?:in|over) the (?:last|past) (?:\\d+ days|week|month)|in the past week))?';
+  var NOTE = '(?:замет(?:к\\w*|ок)|записк\\w*|записок|записей|записи|запись|notes?|notizen|notiz)';
+  var FILE = '(?:файл\\w*|documents?|files?|dateien|datei|dokumente)';
+  var PER = '(?:\\s+(?:(?:за|на|в|во|с)\\s+(?:сегодня|вчера|позавчера|(?:эту |этой |прошлую |прошлой |последнюю )?недел[июе]|(?:этот |этом |прошлый |прошлом |последний )?месяц[е]?|(?:этот |этом |прошлый |прошлом )?год[у]?|последни[ех]\\s+[\\p{L}\\d]+\\s+(?:дн\\w*|сут\\w*))|сегодня|вчера|позавчера|today|yesterday|(?:this|last) (?:week|month|year)|(?:in|over) the (?:last|past) (?:\\d+ days|week|month)|in the past week|heute|gestern|vorgestern|(?:diese|letzte) woche|(?:diesen|letzten) monat|(?:dieses|letztes) jahr|in den letzten \\d+ tagen))?';
   var INTENTS = [
     { id: 'notes_count', re: rx('(?:сколько|какое количество|количество|число)\\s+(?:у меня\\s+|всего\\s+|есть\\s+|сейчас\\s+)*(?:моих\\s+)?' + NOTE + '(?:\\s+(?:у меня|всего|есть|сохранено|в приложении))*' + PER + '|сколько\\s+(?:я\\s+)?(?:написал\\w*|создал\\w*|записал\\w*|сделал\\w*)\\s+' + NOTE + PER + '|сколько\\s+' + NOTE + '\\s+(?:я\\s+)?(?:написал\\w*|создал\\w*|записал\\w*|сделал\\w*)' + PER + '|how many notes(?: do i have| have i (?:got|written|made|created)| did i (?:write|make|create))?' + PER + '|(?:count|number of)(?: my)? notes' + PER) },
     { id: 'files_size', re: rx('(?:сколько|какой)\\s+(?:места|объ[еь]м\\w*|размер\\w*)\\s+(?:занима\\w+\\s+)?(?:у меня\\s+)?(?:мои\\s+|все\\s+)?(?:' + FILE + '|хранилищ\\w*)(?:\\s+занима\\w+)?|(?:размер|объ[еь]м|вес)\\s+(?:моих\\s+|всех\\s+)?(?:' + FILE + '|хранилищ\\w* файлов|хранилищ\\w*)|сколько (?:весят|занимают) (?:мои |все )?' + FILE + '|(?:total )?(?:file )?storage (?:size|used|usage)|(?:size of|total size of) (?:my |all )?files|how much (?:space|storage) do (?:my |all )?files (?:take|use|take up)') },
@@ -406,6 +438,20 @@
     { id: 'notes_search', re: rx('(?:что|что-нибудь|что-то)\\s+(?:у меня\\s+)?(?:есть\\s+)?(?:в\\s+(?:моих\\s+)?заметках|в\\s+(?:моих\\s+)?записях)\\s+(?:про|о|об|обо|насчет|по поводу|по)\\s+(.+)|(?:найди|поищи|ищи|покажи)\\s+(?:мне\\s+)?(?:в\\s+(?:моих\\s+)?(?:заметках|записях)\\s+(?:про\\s+|о\\s+|об\\s+)?(.+)|(?:мои\\s+)?(?:заметк\\w*|записи)\\s+(?:про|о|об|обо|где есть|со словом|с текстом|по)\\s+(.+))|(?:мои\\s+)?(?:заметк\\w*|записи)\\s+(?:про|о|об|обо)\\s+(.+)|где\\s+я\\s+(?:писал\\w*|записал\\w*|упоминал\\w*)\\s+(?:про|о|об)\\s+(.+)|(?:search|find|look)\\s+(?:in\\s+)?(?:my\\s+)?notes\\s+(?:for|about)\\s+(.+)|(?:find|show)\\s+(?:my\\s+)?notes\\s+(?:about|on|mentioning|with)\\s+(.+)|what(?:\\s+do)?\\s+(?:my\\s+)?notes\\s+say\\s+about\\s+(.+)|what did i write about\\s+(.+)|(?:my\\s+)?notes about\\s+(.+)') },
     { id: 'files_search', re: rx('(?:что|что-нибудь)\\s+(?:есть\\s+)?в\\s+(?:моих\\s+)?файлах\\s+(?:про|о|об|по)\\s+(.+)|(?:найди|поищи)\\s+в\\s+(?:моих\\s+)?файлах\\s+(?:про\\s+|о\\s+)?(.+)|(?:search|find)\\s+(?:in\\s+)?(?:my\\s+)?files\\s+(?:for|about)\\s+(.+)') }
   ];
+  // v14.4.0: немецкие формулировки тех же запросов (отдельными записями — порядок русских/английских не меняется)
+  var GNOTE = '(?:notizen|notiz)', GFILE = '(?:dateien|datei|dokumente)';
+  [
+    ['files_size', 'wie ?viel (?:speicher|speicherplatz|platz) (?:belegen|brauchen|verbrauchen|nehmen) (?:meine |alle )?' + GFILE + '(?: ein)?|(?:gesamt)?gr(?:ö|o)(?:ß|ss)e (?:meiner |aller )?' + GFILE + '|wie gro(?:ß|ss) sind (?:meine |alle )?' + GFILE],
+    ['notes_count', 'wie ?viele (?:meiner )?' + GNOTE + '(?:\\s+(?:habe ich|hab ich|gibt es|sind es|sind gespeichert))?' + PER + '|wie ?viele ' + GNOTE + ' habe ich' + PER + '(?: (?:geschrieben|erstellt|angelegt))?|anzahl (?:meiner |der )?' + GNOTE + PER],
+    ['files_count', 'wie ?viele (?:meiner )?' + GFILE + '(?:\\s+(?:habe ich|hab ich|gibt es))?|anzahl (?:meiner |der )?' + GFILE],
+    ['notes_last', '(?:meine\\s+)?(?:letzte|neueste|jüngste|juengste)\\s+notiz|was (?:war|ist) meine (?:letzte|neueste) notiz'],
+    ['notes_longest', '(?:meine\\s+)?(?:längste|laengste|größte|groesste)\\s+notiz|welche notiz ist (?:die )?(?:längste|laengste)'],
+    ['notes_shortest', '(?:meine\\s+)?(?:kürzeste|kuerzeste|kleinste)\\s+notiz'],
+    ['notes_tag', '(?:alle\\s+)?(?:meine\\s+)?notizen\\s+(?:mit (?:dem )?tag|getaggt mit|unter (?:dem )?tag|zum tag)\\s+(#?[\\p{L}\\d_-]+)'],
+    ['notes_period', 'was habe ich' + PER + '\\s+(?:notiert|geschrieben|aufgeschrieben|gespeichert)|(?:meine\\s+)?notizen (?:von|für|fur) (?:heute|gestern|vorgestern|diese woche|letzte woche|diesen monat|letzten monat)'],
+    ['notes_search', '(?:finde|suche|such|zeige|zeig)\\s+(?:mir\\s+)?(?:in\\s+)?(?:meinen\\s+)?notizen\\s+(?:(?:über|uber|zu|zum|zur|mit|nach)\\s+)?(.+)|(?:meine\\s+)?notizen\\s+(?:über|uber|zu|zum|zur)\\s+(.+)|was habe ich über\\s+(.+?)\\s+(?:geschrieben|notiert)|was steht in meinen notizen (?:über|uber|zu)\\s+(.+)'],
+    ['files_search', '(?:finde|suche|such)\\s+(?:in\\s+)?(?:meinen\\s+)?dateien\\s+(?:(?:nach|über|uber|zu)\\s+)?(.+)|was steht in meinen dateien (?:über|uber|zu)\\s+(.+)']
+  ].forEach(function (x) { INTENTS.push({ id: x[0], re: rx(x[1]), de: true }); });
 
   function detect(q) {
     var s = norm(q);
@@ -415,95 +461,104 @@
       if (m) {
         var arg = null; for (var k = 1; k < m.length; k++) if (m[k]) { arg = m[k].trim(); break; }
         if (arg) arg = arg.replace(/[?.!]+$/, '').replace(/\s+(пожалуйста|please)$/, '').trim();
-        return { intent: INTENTS[i].id, arg: arg, s: s };
+        return { intent: INTENTS[i].id, arg: arg, s: s, de: !!INTENTS[i].de };
       }
     }
     return null;
   }
 
   // answer(q, data, now) → { intent, text } | null. data = { notes:[…], files:[…] }.
-  function answerData(q, data, now) {
+  function answerData(q, data, now, lang) {
     var d = detect(q); if (!d) return null;
     now = now || Date.now();
-    var ru = isRu(q), notes = liveNotes(data && data.notes), files = (data && data.files) || [];
+    var L = LANGS[lang] ? lang : (d.de ? 'de' : (isRu(q) ? 'ru' : 'en')), notes = liveNotes(data && data.notes), files = (data && data.files) || [];
     var per = period(d.s, now), t, list;
     var inPer = function (n) { var x = noteTime(n); return x >= per.from && x < per.to; };
+    var P = function (x) { return x[L] || x.en; };
+    var more = function (k) { return M(L, '\n…и ещё ' + k, '\n…and ' + k + ' more', '\n…und ' + k + ' weitere'); };
     switch (d.intent) {
       case 'notes_count':
-        if (per) { var c = notes.filter(inPer).length; t = ru ? 'Создано ' + per.ru + ': ' + notesW(c, ru) + '. Всего у тебя ' + notesW(notes.length, ru) + '.' : 'Notes created ' + per.en + ': ' + c + '. Total: ' + notesW(notes.length, ru) + '.'; }
+        if (per) { var c = notes.filter(inPer).length; t = M(L, 'Создано ' + per.ru + ': ' + notesW(c, L) + '. Всего у тебя ' + notesW(notes.length, L) + '.', 'Notes created ' + per.en + ': ' + c + '. Total: ' + notesW(notes.length, L) + '.', 'Erstellt ' + per.de + ': ' + notesW(c, L) + '. Insgesamt hast du ' + notesW(notes.length, L) + '.'); }
         else {
           var wk = notes.filter(function (n) { return noteTime(n) >= startOfDay(now) - 6 * DAY; }).length;
-          t = ru ? 'У тебя ' + notesW(notes.length, ru) + (notes.length ? ', из них за последние 7 дней: ' + wk + '.' : '.') : 'You have ' + notesW(notes.length, ru) + (notes.length ? ', ' + wk + ' of them from the last 7 days.' : '.');
+          t = M(L, 'У тебя ' + notesW(notes.length, L) + (notes.length ? ', из них за последние 7 дней: ' + wk + '.' : '.'), 'You have ' + notesW(notes.length, L) + (notes.length ? ', ' + wk + ' of them from the last 7 days.' : '.'),
+            'Du hast ' + notesW(notes.length, L) + (notes.length ? ', davon ' + wk + ' aus den letzten 7 Tagen.' : '.'));
         }
         break;
       case 'files_count': {
-        var bytes = files.reduce(function (a, f) { return a + fileBytes(f); }, 0);
-        t = ru ? 'У тебя ' + filesW(files.length, ru) + (files.length ? ' (' + fmtBytes(bytes, ru) + ').' : '.') : 'You have ' + filesW(files.length, ru) + (files.length ? ' (' + fmtBytes(bytes, ru) + ').' : '.');
+        var bytes = files.reduce(function (a, f) { return a + fileBytes(f); }, 0), sz = files.length ? ' (' + fmtBytes(bytes, L) + ').' : '.';
+        t = M(L, 'У тебя ' + filesW(files.length, L) + sz, 'You have ' + filesW(files.length, L) + sz, 'Du hast ' + filesW(files.length, L) + sz);
         break;
       }
       case 'files_size': {
         var tot = 0, big = null;
         files.forEach(function (f) { var b = fileBytes(f); tot += b; if (!big || b > big.b) big = { f: f, b: b }; });
-        t = ru ? 'Файлы занимают ' + fmtBytes(tot, ru) + ' (' + filesW(files.length, ru) + ')' + (big ? '. Самый крупный — «' + big.f.name + '», ' + fmtBytes(big.b, ru) + '.' : '.')
-          : 'Files take up ' + fmtBytes(tot, ru) + ' (' + filesW(files.length, ru) + ')' + (big ? '. The largest is “' + big.f.name + '”, ' + fmtBytes(big.b, ru) + '.' : '.');
+        t = M(L, 'Файлы занимают ' + fmtBytes(tot, L) + ' (' + filesW(files.length, L) + ')' + (big ? '. Самый крупный — «' + big.f.name + '», ' + fmtBytes(big.b, L) + '.' : '.'),
+          'Files take up ' + fmtBytes(tot, L) + ' (' + filesW(files.length, L) + ')' + (big ? '. The largest is “' + big.f.name + '”, ' + fmtBytes(big.b, L) + '.' : '.'),
+          'Deine Dateien belegen ' + fmtBytes(tot, L) + ' (' + filesW(files.length, L) + ')' + (big ? '. Die größte ist „' + big.f.name + '“, ' + fmtBytes(big.b, L) + '.' : '.'));
         break;
       }
       case 'notes_last': {
-        if (!notes.length) { t = ru ? 'Заметок пока нет.' : 'You have no notes yet.'; break; }
+        if (!notes.length) { t = M(L, 'Заметок пока нет.', 'You have no notes yet.', 'Du hast noch keine Notizen.'); break; }
         var last = notes.slice().sort(function (a, b) { return noteTouched(b) - noteTouched(a); })[0];
-        t = (ru ? 'Последняя заметка:\n' : 'Your latest note:\n') + noteLine(last, ru);
+        t = M(L, 'Последняя заметка:\n', 'Your latest note:\n', 'Deine neueste Notiz:\n') + noteLine(last, L);
         break;
       }
       case 'notes_longest': case 'notes_shortest': {
-        if (!notes.length) { t = ru ? 'Заметок пока нет.' : 'You have no notes yet.'; break; }
-        var srt = notes.slice().sort(function (a, b) { return body(b).length - body(a).length; });
-        var nn = d.intent === 'notes_longest' ? srt[0] : srt[srt.length - 1], L = body(nn).trim(), wc = L ? L.split(/\s+/).length : 0;
-        t = (ru ? (d.intent === 'notes_longest' ? 'Самая длинная заметка' : 'Самая короткая заметка') + ' — ' + L.length + ' ' + plural(L.length, 'символ', 'символа', 'символов') + ', ' + wc + ' ' + plural(wc, 'слово', 'слова', 'слов') + ':\n'
-          : (d.intent === 'notes_longest' ? 'Your longest note' : 'Your shortest note') + ' — ' + L.length + ' characters, ' + wc + ' words:\n') + noteLine(nn, ru);
+        if (!notes.length) { t = M(L, 'Заметок пока нет.', 'You have no notes yet.', 'Du hast noch keine Notizen.'); break; }
+        var srt = notes.slice().sort(function (a, b) { return body(b).length - body(a).length; }), lg = d.intent === 'notes_longest';
+        var nn = lg ? srt[0] : srt[srt.length - 1], Lb = body(nn).trim(), wc = Lb ? Lb.split(/\s+/).length : 0;
+        t = M(L, (lg ? 'Самая длинная заметка' : 'Самая короткая заметка') + ' — ' + Lb.length + ' ' + plural(Lb.length, 'символ', 'символа', 'символов') + ', ' + wc + ' ' + plural(wc, 'слово', 'слова', 'слов') + ':\n',
+          (lg ? 'Your longest note' : 'Your shortest note') + ' — ' + Lb.length + ' characters, ' + wc + ' words:\n',
+          (lg ? 'Deine längste Notiz' : 'Deine kürzeste Notiz') + ' — ' + Lb.length + ' Zeichen, ' + wc + ' ' + (wc === 1 ? 'Wort' : 'Wörter') + ':\n') + noteLine(nn, L);
         break;
       }
       case 'notes_tag': {
         var tag = norm(d.arg || '').replace(/^#/, '');
         list = notes.filter(function (n) { return tagsOf(n).indexOf(tag) >= 0; }).sort(function (a, b) { return noteTouched(b) - noteTouched(a); });
-        t = list.length ? (ru ? 'Заметки с тегом #' + tag + ' — ' + list.length + ':\n' : 'Notes tagged #' + tag + ' — ' + list.length + ':\n') + list.slice(0, 8).map(function (n) { return noteLine(n, ru); }).join('\n') + (list.length > 8 ? (ru ? '\n…и ещё ' + (list.length - 8) : '\n…and ' + (list.length - 8) + ' more') : '')
-          : (ru ? 'Заметок с тегом #' + tag + ' нет.' : 'No notes are tagged #' + tag + '.');
+        t = list.length ? M(L, 'Заметки с тегом #' + tag + ' — ' + list.length + ':\n', 'Notes tagged #' + tag + ' — ' + list.length + ':\n', 'Notizen mit dem Tag #' + tag + ' — ' + list.length + ':\n') + list.slice(0, 8).map(function (n) { return noteLine(n, L); }).join('\n') + (list.length > 8 ? more(list.length - 8) : '')
+          : M(L, 'Заметок с тегом #' + tag + ' нет.', 'No notes are tagged #' + tag + '.', 'Keine Notizen mit dem Tag #' + tag + '.');
         break;
       }
       case 'notes_period': {
-        var pp = per || { from: startOfDay(now), to: startOfDay(now) + DAY, ru: 'сегодня', en: 'today' };
+        var pp = per || { from: startOfDay(now), to: startOfDay(now) + DAY, ru: 'сегодня', en: 'today', de: 'heute' };
         list = notes.filter(function (n) { var x = noteTime(n); return x >= pp.from && x < pp.to; }).sort(function (a, b) { return noteTime(b) - noteTime(a); });
-        t = list.length ? (ru ? 'Заметки, созданные ' + pp.ru + ' — ' + list.length + ':\n' : 'Notes created ' + pp.en + ' — ' + list.length + ':\n') + list.slice(0, 10).map(function (n) { return noteLine(n, ru); }).join('\n') + (list.length > 10 ? (ru ? '\n…и ещё ' + (list.length - 10) : '\n…and ' + (list.length - 10) + ' more') : '')
-          : (ru ? 'Заметок, созданных ' + pp.ru + ', нет.' : 'No notes were created ' + pp.en + '.');
+        t = list.length ? M(L, 'Заметки, созданные ' + pp.ru + ' — ' + list.length + ':\n', 'Notes created ' + pp.en + ' — ' + list.length + ':\n', 'Notizen, erstellt ' + P(pp) + ' — ' + list.length + ':\n') + list.slice(0, 10).map(function (n) { return noteLine(n, L); }).join('\n') + (list.length > 10 ? more(list.length - 10) : '')
+          : M(L, 'Заметок, созданных ' + pp.ru + ', нет.', 'No notes were created ' + pp.en + '.', 'Keine Notizen ' + P(pp) + ' erstellt.');
         break;
       }
       case 'notes_search': {
         var r = searchNotes(notes, d.arg || '');
         if (!r.terms.length) return null;
-        t = r.hits.length ? (ru ? 'Нашёл в заметках про «' + d.arg + '» — ' + r.hits.length + ':\n' : 'Found ' + r.hits.length + ' note' + (r.hits.length === 1 ? '' : 's') + ' about “' + d.arg + '”:\n') + r.hits.slice(0, 5).map(function (n) { return noteLine(n, ru, r.terms); }).join('\n') + (r.hits.length > 5 ? (ru ? '\n…и ещё ' + (r.hits.length - 5) : '\n…and ' + (r.hits.length - 5) + ' more') : '')
-          : (ru ? 'В заметках ничего не нашлось про «' + d.arg + '».' : 'Nothing about “' + d.arg + '” in your notes.');
+        var k = r.hits.length;
+        t = k ? M(L, 'Нашёл в заметках про «' + d.arg + '» — ' + k + ':\n', 'Found ' + k + ' note' + (k === 1 ? '' : 's') + ' about “' + d.arg + '”:\n', k + (k === 1 ? ' Notiz' : ' Notizen') + ' zu „' + d.arg + '“ gefunden:\n') + r.hits.slice(0, 5).map(function (n) { return noteLine(n, L, r.terms); }).join('\n') + (k > 5 ? more(k - 5) : '')
+          : M(L, 'В заметках ничего не нашлось про «' + d.arg + '».', 'Nothing about “' + d.arg + '” in your notes.', 'In deinen Notizen steht nichts zu „' + d.arg + '“.');
         break;
       }
       case 'files_search': {
         var terms = queryTerms(d.arg || ''); if (!terms.length) return null;
         var fh = files.filter(function (f) { var c = typeof f.content === 'string' && !/^data:/.test(f.content) ? norm(f.content) : ''; var nm = norm(f.name); return terms.every(function (x) { return c.indexOf(x) >= 0 || nm.indexOf(x) >= 0; }); });
-        t = fh.length ? (ru ? 'Нашёл в файлах про «' + d.arg + '» — ' + fh.length + ':\n' : 'Found ' + fh.length + ' file' + (fh.length === 1 ? '' : 's') + ' about “' + d.arg + '”:\n') + fh.slice(0, 5).map(function (f) { var sn = typeof f.content === 'string' && !/^data:/.test(f.content) ? snippet(f.content, terms, 100) : ''; return '• **' + f.name + '**' + (sn ? '\n  ' + sn : '') + ' ⟦EITIUFILE:' + String(f.name).replace(/[⟦⟧]/g, '') + '⟧'; }).join('\n')
-          : (ru ? 'В файлах ничего не нашлось про «' + d.arg + '».' : 'Nothing about “' + d.arg + '” in your files.');
+        var fk = fh.length;
+        t = fk ? M(L, 'Нашёл в файлах про «' + d.arg + '» — ' + fk + ':\n', 'Found ' + fk + ' file' + (fk === 1 ? '' : 's') + ' about “' + d.arg + '”:\n', fk + (fk === 1 ? ' Datei' : ' Dateien') + ' zu „' + d.arg + '“ gefunden:\n') + fh.slice(0, 5).map(function (f) { var sn = typeof f.content === 'string' && !/^data:/.test(f.content) ? snippet(f.content, terms, 100) : ''; return '• **' + f.name + '**' + (sn ? '\n  ' + sn : '') + ' ⟦EITIUFILE:' + String(f.name).replace(/[⟦⟧]/g, '') + '⟧'; }).join('\n')
+          : M(L, 'В файлах ничего не нашлось про «' + d.arg + '».', 'Nothing about “' + d.arg + '” in your files.', 'In deinen Dateien steht nichts zu „' + d.arg + '“.');
         break;
       }
     }
-    return t ? { intent: d.intent, text: t } : null;
+    return t ? { intent: d.intent, text: t, lang: L } : null;
   }
 
   // Главная точка входа: калькулятор → данные пользователя. → { kind, intent, text } | null
-  function reply(q, data, now) {
-    var c = calc(q);
+  // opts.lang — язык ответа ('ru'|'en'|'de'); без него — по тексту вопроса (как до v14.4.0)
+  function reply(q, data, now, opts) {
+    var lang = opts && opts.lang;
+    var c = calc(q, lang);
     if (c) return { kind: 'calc', intent: 'calc', text: c.text, value: c.value, error: c.error || null };
-    var a = answerData(q, data, now);
-    if (a) return { kind: 'data', intent: a.intent, text: a.text };
+    var a = answerData(q, data, now, lang);
+    if (a) return { kind: 'data', intent: a.intent, text: a.text, lang: a.lang };
     return null;
   }
 
-  var API = { reply: reply, calc: calc, detect: detect, answerData: answerData, period: period, readNumber: function (s) { var t = norm(s).split(' '); var r = readNumber(t, 0); return r && r.n === t.length ? r.v : null; }, searchNotes: searchNotes, fmtBytes: fmtBytes, fileBytes: fileBytes, version: '14.2.0' };
+  var API = { reply: reply, calc: calc, detect: detect, answerData: answerData, period: period, readNumber: function (s) { var t = norm(s).split(' '); var r = readNumber(t, 0); return r && r.n === t.length ? r.v : null; }, searchNotes: searchNotes, fmtBytes: fmtBytes, fileBytes: fileBytes, langOf: langOf, langHint: langHint, version: '14.4.0' };
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
   if (root) root.EitiLocalLib = API;
 })(typeof window !== 'undefined' ? window : (typeof globalThis !== 'undefined' ? globalThis : this));
