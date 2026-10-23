@@ -15,6 +15,33 @@
    'the a an of what how why who when where which is are was were be in on at to and or for does do did can could ' +
    'tell me about please explain i you it its this that with from by as').split(' ').forEach(function (w) { STOP[w] = 1; });
 
+  // v14.10.0: аббревиатуры и бренды → полные названия, как они записаны в триггерах базы (запрос расширяется, не заменяется)
+  var ALIAS = {
+    'мгу': 'московский государственный университет', 'спбгу': 'санкт петербургский государственный университет',
+    'мфти': 'московский физико технический институт', 'мгту': 'московский государственный технический университет',
+    'мгимо': 'московский государственный институт международных отношений', 'вшэ': 'высшая школа экономики',
+    'сша': 'соединенные штаты америки', 'ссср': 'советский союз', 'рф': 'россия', 'оон': 'организация объединенных наций',
+    'нато': 'североатлантический альянс', 'мкс': 'международная космическая станция', 'днк': 'дезоксирибонуклеиновая кислота',
+    'эппл': 'apple', 'эпл': 'apple', 'гугл': 'google', 'майкрософт': 'microsoft', 'амазон': 'amazon'
+  };
+  // v14.10.0: грубая «лемма» для бонуса точного слова — падежные окончания не мешают («Наполеона» = «Наполеон»)
+  function lem(w) {
+    if (!/[а-я]/.test(w) || w.length < 5) return w;
+    return w.replace(/(ами|ями|ого|его|ому|ему|ой|ей|ом|ем|ам|ям|ах|ях|ов|ев|ую|юю|ая|яя|ые|ие|ый|ий|а|я|у|ю|е|ы|и|о)$/, '');
+  }
+  // транслитерация латиница ↔ кириллица (для имён: «napoleon» → «наполеон», «эпл» уже в ALIAS)
+  var L2C = [['shch', 'щ'], ['sch', 'ш'], ['sh', 'ш'], ['ch', 'ч'], ['zh', 'ж'], ['kh', 'х'], ['ts', 'ц'], ['yu', 'ю'], ['ya', 'я'], ['yo', 'е'],
+    ['ph', 'ф'], ['th', 'т'], ['a', 'а'], ['b', 'б'], ['c', 'к'], ['d', 'д'], ['e', 'е'], ['f', 'ф'], ['g', 'г'], ['h', 'х'], ['i', 'и'], ['j', 'дж'],
+    ['k', 'к'], ['l', 'л'], ['m', 'м'], ['n', 'н'], ['o', 'о'], ['p', 'п'], ['q', 'к'], ['r', 'р'], ['s', 'с'], ['t', 'т'], ['u', 'у'], ['v', 'в'],
+    ['w', 'в'], ['x', 'кс'], ['y', 'й'], ['z', 'з']];
+  var C2L = { 'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
+    'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y',
+    'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya' };
+  function translit(w) {
+    if (/^[a-z]+$/.test(w)) { var o = '', i = 0; outer: while (i < w.length) { for (var k = 0; k < L2C.length; k++) if (w.substr(i, L2C[k][0].length) === L2C[k][0]) { o += L2C[k][1]; i += L2C[k][0].length; continue outer; } o += w[i++]; } return o; }
+    if (/^[а-я]+$/.test(w)) { var r = ''; for (var j = 0; j < w.length; j++) r += C2L[w[j]] != null ? C2L[w[j]] : w[j]; return r; }
+    return null;
+  }
   function norm(s) {
     return String(s || '').toLowerCase().replace(/ё/g, 'е')
       .replace(/[^a-zа-я0-9+#²³ ]+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -44,7 +71,7 @@
     var inv = {}, df = {}, trig = [], full = [];
     function addRange(from, to) {
       for (var i = from; i < to; i++) {
-        var e = E[i], seen = {}, ts = String(e.t || '').split('|'), tt = [], fw = words(e.t.replace(/\|/g, ' '));
+        var e = E[i], seen = {}, ts = String(e.t || '').split('|'), tt = [], fw = words(e.t.replace(/\|/g, ' ')).map(lem);
         full[i] = fw.length ? '|' + fw.join('|') + '|' : '';
         for (var j = 0; j < ts.length; j++) {
           var tk = tokens(ts[j]);
@@ -73,7 +100,14 @@
 
     // search(query, k) → [{id, d, score, cov}] sorted; cov = доля IDF запроса, найденная в записи (0..1)
     function search(query, k) {
-      var q = tokens(query), uq = [], u = {}, qw = words(query);
+      // v14.10.0: расширение запроса — аббревиатуры (МГУ), бренды по-русски (Эппл), транслит для слов, которых нет в индексе
+      var nq = norm(query), extra = [], drop = {};
+      nq.split(' ').forEach(function (w) {
+        if (ALIAS[w]) extra.push(ALIAS[w]);
+        else if (w.length >= 4 && !STOP[w] && !inv[stem(w)]) { var tr = translit(w); if (tr && inv[stem(tr)]) { extra.push(tr); drop[w] = 1; } }
+      });
+      if (extra.length) query = nq.split(' ').filter(function (w) { return !ALIAS[w] && !drop[w]; }).join(' ') + ' ' + extra.join(' ');
+      var q = tokens(query), uq = [], u = {}, qw = words(query).map(lem);
       // «почему / как / зачем …» — вопрос-объяснение: справочные карточки (имена, города) уступают объясняющим статьям
       var why = /(^|\s)(почему|отчего|зачем|как|каким образом|why|how)(\s|$)/.test(norm(query)) ? 0.6 : 1;
       for (var i = 0; i < q.length; i++) if (!u[q[i]]) { u[q[i]] = 1; uq.push(q[i]); }
@@ -158,5 +192,5 @@
       })();
     });
   }
-  return { create: create, createAsync: createAsync, shardRows: shardRows, addAsync: addAsync, tokens: tokens, norm: norm, version: 2 };
+  return { lem: lem, translit: translit, alias: ALIAS, create: create, createAsync: createAsync, shardRows: shardRows, addAsync: addAsync, tokens: tokens, norm: norm, version: 2 };
 });

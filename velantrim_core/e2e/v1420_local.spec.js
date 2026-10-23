@@ -13,7 +13,7 @@ async function boot(page, offlineMode) {
     localStorage.setItem('eiti_offline_mode', off ? '1' : '0');
   }, !!offlineMode);
   await page.goto('/index.html');
-  await page.waitForFunction(() => typeof window.EitiLocalHost === 'object' && !!window.EitiLocalLib && typeof eitiDb !== 'undefined' && !!eitiDb);
+  await page.waitForFunction(() => typeof window.EitiLocalHost === 'object' && !!window.EitiLocalLib && typeof eitiDb !== 'undefined' && !!eitiDb && window.eitiChatReady === true, null, { timeout: 30000 });
   await expect(page.locator('#splash')).toBeHidden();
   await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
   await page.evaluate(() => {

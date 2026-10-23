@@ -158,3 +158,21 @@ test('host wiring in index.html', () => {
   const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8');
   assert.ok(sw.includes("url.pathname.indexOf(BASE + 'kb/') === 0"));
 });
+
+// v14.10.0: misses reported by the user — case forms, abbreviations, brands, transliteration
+test('KB finds Наполеон / МГУ / Apple in any form (case, abbreviation, Russian spelling, translit)', () => {
+  const e = K.create(FULL);
+  const cases = [
+    ['Наполеон', /наполеон бонапарт/], ['кто такой Наполеон', /наполеон бонапарт/], ['расскажи про Наполеона', /наполеон бонапарт/],
+    ['napoleon', /наполеон бонапарт/], ['МГУ', /Московский государственный университет/], ['что такое МГУ', /Московский государственный университет/],
+    ['когда основан МГУ', /Московский государственный университет/], ['Apple', /^apple\|/], ['что такое Apple', /^apple\|/], ['компания Эппл', /^apple\|/],
+  ];
+  const byId = {}; FULL.entries.forEach((x) => { byId[x.i] = x; });
+  for (const [q, re] of cases) {
+    const h = e.search(q, 1)[0];
+    assert.ok(h && re.test(byId[h.id].t), q + ' → ' + (h && byId[h.id].t));
+    assert.ok(e.confident(h), q + ' not confident');
+  }
+  assert.strictEqual(K.lem('наполеона'), K.lem('наполеон'));
+  assert.strictEqual(K.translit('napoleon'), 'наполеон');
+});

@@ -8,6 +8,7 @@ const ARTIFACTS = '/opt/cursor/artifacts';
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
+    localStorage.setItem('eiti_locale', 'ru'); // v14.10.0: these checks assert Russian labels; the browser locale is en-US and the UI is now fully translated
     localStorage.setItem('eiti_notes_ai_enabled', '1');
   });
 });
