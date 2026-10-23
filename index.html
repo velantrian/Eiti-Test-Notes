@@ -46721,7 +46721,10 @@ function _schedule() {
     if (!signedIn()) return;
     _dirty = true;
     clearTimeout(_debounce);
-    _debounce = setTimeout(function(){ eitiDriveSyncNow('change'); }, DEBOUNCE_MS);
+    // v14.10.0: страница уже скрыта (свернули во время синхронизации или запись в IDB пришла после
+    // visibilitychange) — отправляем сразу, а не через 8 с: скрытую вкладку браузер может заморозить.
+    var _hidden = document.visibilityState === 'hidden';
+    _debounce = setTimeout(function(){ eitiDriveSyncNow(_hidden ? 'hidden' : 'change'); }, _hidden ? 0 : DEBOUNCE_MS);
 }
 
 // Изменения в синхронизируемых IDB-хранилищах → отложенная синхронизация (~8 с).
