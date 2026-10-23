@@ -14,39 +14,64 @@ async function boot(page, loc, ls = {}) {
   await page.evaluate(() => document.querySelectorAll('#eiti-onboarding,#eiti-pin-modal,.toast').forEach((e) => e.remove()));
 }
 
-test('chat AI item: current model, change → picker, pick switches & persists, no-key → settings', async ({ page }) => {
+test('«+» shows one compact AI row; «change» opens a separate sheet with a provider accordion', async ({ page }) => {
   await boot(page, 'ru', { eiti_ai_provider: 'deepseek', eiti_ds_model: 'deepseek-flash', deepseek_api_key: 'x', eiti_or_key: 'x' });
   await page.locator('#chat-plus-btn').click();
   const item = page.locator('#chat-plus-popup .chat-plus-item', { has: page.locator('.cpi-ai-change') });
   await expect(item.locator('.cpi-ai-cur')).toHaveText('DeepSeek · V4.1 Flash');
   await expect(item.locator('.cpi-state')).toHaveText(/вкл|выкл/);
+  await expect(page.locator('#chat-plus-popup .chat-ai-row, #chat-plus-popup [data-ai-model]')).toHaveCount(0); // no model list in «+»
+  await page.screenshot({ path: '/workspace/screens/plus-menu-compact.png' }).catch(() => {});
   await item.locator('.cpi-ai-change').click();
-  const rows = page.locator('#chat-plus-popup .chat-ai-row');
-  expect(await rows.count()).toBeGreaterThanOrEqual(19); // 4 DS + 4 Gemini + 5 OR + 6 Qwen + off
-  await expect(page.locator('.chat-ai-row.cpi-active')).toHaveAttribute('data-ai-model', 'deepseek-flash');
-  await expect(page.locator('.chat-ai-row[data-ai-prov="gemini"]').first().locator('.chat-ai-key')).toHaveText(/нужен ключ/);
-  await expect(page.locator('.chat-ai-row[data-ai-prov="deepseek"]').first().locator('.chat-ai-key')).toHaveCount(0);
-  await page.screenshot({ path: '/workspace/screens/plus-ai-picker.png' }).catch(() => {});
-  await page.locator('.chat-ai-row[data-ai-model="anthropic/claude-sonnet-5.5"]').click();
+  await expect(page.locator('#chat-plus-popup')).toBeHidden();
+  const sheet = page.locator('#eiti-ai-sheet');
+  await expect(sheet.locator('.eas-panel')).toBeVisible();
+  const h = await sheet.locator('.eas-panel').evaluate((e) => e.getBoundingClientRect().height);
+  expect(h).toBeLessThanOrEqual(844 * 0.6 + 1);
+  await expect(sheet.locator('.eas-group')).toHaveCount(4);
+  await expect(sheet.locator('.eas-none')).toBeVisible();
+  // accordion: current provider expanded, others collapsed
+  await expect(sheet.locator('.eas-group.eas-open')).toHaveCount(1);
+  await expect(sheet.locator('.eas-group.eas-open')).toHaveAttribute('data-ai-prov', 'deepseek');
+  await expect(sheet.locator('.eas-model:visible')).toHaveCount(4);
+  await expect(sheet.locator('.eas-group[data-ai-prov="gemini"] .eas-sub')).toHaveText(/нужен ключ/);
+  await expect(sheet.locator('.eas-group[data-ai-prov="deepseek"] .eas-sub')).toHaveText('V4.1 Flash');
+  await page.screenshot({ path: '/workspace/screens/ai-picker-sheet.png' }).catch(() => {});
+  await sheet.locator('.eas-group[data-ai-prov="openrouter"] .eas-prov').click();
+  await expect(sheet.locator('.eas-group.eas-open')).toHaveCount(1);
+  await expect(sheet.locator('.eas-group.eas-open')).toHaveAttribute('data-ai-prov', 'openrouter');
+  await sheet.locator('[data-ai-model="anthropic/claude-sonnet-5.5"]').click();
+  await expect(sheet).toHaveCount(0); // closes on select
   expect(await page.evaluate(() => [localStorage.getItem('eiti_ai_provider'), localStorage.getItem('eiti_or_model')])).toEqual(['openrouter', 'anthropic/claude-sonnet-5.5']);
+  await expect(page.locator('#eiti-pcheck-or')).toHaveText('✅');
+  await page.locator('#chat-plus-btn').click();
   await expect(item.locator('.cpi-ai-cur')).toHaveText('OpenRouter · anthropic/claude-sonnet-5.5');
   await expect(item.locator('.cpi-icon')).toHaveText('🔀');
-  // same setting as Settings: the provider card is checked
-  await expect(page.locator('#eiti-pcheck-or')).toHaveText('✅');
-  // no key → link opens Settings at the key field
+  // backdrop closes; close button closes
   await item.locator('.cpi-ai-change').click();
-  await page.locator('.chat-ai-row[data-ai-prov="qwen"]').first().locator('.chat-ai-key').click();
+  await page.mouse.click(195, 60);
+  await expect(sheet).toHaveCount(0);
+  await page.locator('#chat-plus-btn').click();
+  await item.locator('.cpi-ai-change').click();
+  await sheet.locator('.eas-close').click();
+  await expect(sheet).toHaveCount(0);
+  // no key → settings key field
+  await page.locator('#chat-plus-btn').click();
+  await item.locator('.cpi-ai-change').click();
+  await sheet.locator('.eas-group[data-ai-prov="qwen"] .eas-prov').click();
+  await sheet.locator('.eas-group[data-ai-prov="qwen"] .chat-ai-key').click();
   await expect(page.locator('#qwen-key-main')).toBeFocused({ timeout: 3000 });
   expect(await page.evaluate(() => localStorage.getItem('eiti_ai_provider'))).toBe('openrouter');
 });
 
-test('picker is translated (EN/DE)', async ({ page }) => {
+test('sheet is translated (EN/DE)', async ({ page }) => {
   await boot(page, 'de', { eiti_ai_provider: 'none' });
   await page.locator('#chat-plus-btn').click();
   const item = page.locator('#chat-plus-popup .chat-plus-item', { has: page.locator('.cpi-ai-change') });
   await expect(item.locator('.cpi-ai-cur')).toHaveText('KI deaktivieren');
   await expect(item.locator('.cpi-ai-change')).toHaveText('ändern');
   await item.locator('.cpi-ai-change').click();
-  await expect(page.locator('.chat-ai-head')).toContainText('Chat-Modell');
-  await expect(page.locator('.chat-ai-key').first()).toContainText('Schlüssel nötig');
+  await expect(page.locator('#eiti-ai-sheet .eas-head')).toContainText('Chat-Modell');
+  await expect(page.locator('#eiti-ai-sheet .eas-sub').first()).toContainText('Schlüssel nötig');
+  await expect(page.locator('#eiti-ai-sheet .eas-close')).toHaveAttribute('aria-label', 'Schließen');
 });
