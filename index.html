@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.4.0"; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.5.0"; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4297,6 +4297,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js" defer></script>
     <!-- v14.2.0: «простой интеллект» на устройстве — калькулятор и ответы по своим заметкам/файлам (≈20 КБ, без сети) -->
     <script src="./local/eiti_local.js" defer></script>
+    <script src="./local/eiti_dstate.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -8308,6 +8309,33 @@
                                 <div style="font-size:11px;opacity:0.5;line-height:1.5;margin-top:6px;">
                                     <span data-i18n="Авто — AI отвечает на языке вашего сообщения. Можно зафиксировать RU или EN.">Авто — AI отвечает на языке вашего сообщения. Можно зафиксировать RU, EN или DE.</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══ 💾 РАЗМЕР ЧАТА И ХРАНИЛИЩЕ (v14.5.0) ═══ -->
+                    <div class="settings-group" id="eiti-storage-group">
+                        <div class="settings-title" data-i18n="💾 Размер чата и хранилище">💾 Размер чата и хранилище</div>
+                        <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+                            <div id="eiti-storage-stats" style="display:flex;flex-direction:column;gap:6px;">
+                                <div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;"><span data-i18n="История чата">История чата</span><b id="eiti-st-chat">…</b></div>
+                                <div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;"><span data-i18n="Офлайн-кэши и KB">Офлайн-кэши и KB</span><b id="eiti-st-cache">…</b></div>
+                                <div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;"><span data-i18n="Память диалога">Память диалога</span><b id="eiti-st-dialog">…</b></div>
+                                <div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;"><span data-i18n="Всего занято">Всего занято</span><b id="eiti-st-total">…</b></div>
+                            </div>
+                            <div id="eiti-st-warn" style="display:none;font-size:12px;padding:8px 10px;border-radius:8px;background:rgba(255,160,0,.15);" data-i18n="⚠️ Хранилище занимает много места — можно очистить историю или кэши.">⚠️ Хранилище занимает много места — можно очистить историю или кэши.</div>
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                                <label for="eiti-chat-limit" style="font-size:13px;" data-i18n="Хранить сообщений">Хранить сообщений</label>
+                                <select id="eiti-chat-limit" onchange="eitiSetChatLimit(this.value)" style="-webkit-appearance:none;appearance:none;min-width:150px;padding:9px 12px;border-radius:10px;border:1px solid var(--border-color);background-color:transparent;background-image:none;color:inherit;font-size:14px;font-weight:600;text-align:center;">
+                                    <option value="200">200</option><option value="500">500</option><option value="1000">1000</option><option value="0" data-i18n="без ограничений">без ограничений</option>
+                                </select>
+                            </div>
+                            <div style="font-size:11px;opacity:0.55;line-height:1.5;" data-i18n="Самые старые сообщения удаляются автоматически. Заметки и файлы не затрагиваются.">Самые старые сообщения удаляются автоматически. Заметки и файлы не затрагиваются.</div>
+                            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                                <button id="eiti-clear-chat-btn" type="button" onclick="eitiClearChatHistory()" style="flex:1;min-width:140px;padding:10px 8px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:600;cursor:pointer;"><span data-i18n="🗑 Очистить историю чата">🗑 Очистить историю чата</span></button>
+                                <button id="eiti-clear-cache-btn" type="button" onclick="eitiClearOfflineCaches()" style="flex:1;min-width:140px;padding:10px 8px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:600;cursor:pointer;"><span data-i18n="🧹 Очистить офлайн-кэши">🧹 Очистить офлайн-кэши</span></button>
+                                <button id="eiti-reset-dialog-btn" type="button" onclick="eitiResetDialogMemory()" style="flex:1;min-width:140px;padding:10px 8px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:600;cursor:pointer;"><span data-i18n="🔄 Сбросить память диалога">🔄 Сбросить память диалога</span></button>
+                                <button id="eiti-storage-refresh-btn" type="button" onclick="eitiStorageRefresh()" style="flex:1;min-width:140px;padding:10px 8px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:13px;font-weight:600;cursor:pointer;"><span data-i18n="↻ Обновить">↻ Обновить</span></button>
                             </div>
                         </div>
                     </div>
@@ -18410,6 +18438,7 @@
                 tx.oncomplete = function() {
                     resolve(msg);
                     eitiTrimMessages(chatId);
+                    if (window.eitiTrimGlobalSoon) eitiTrimGlobalSoon(); // v14.5.0: лимит «Хранить сообщений»
                     // ── ПАТЧ L1-RAG: фоновая индексация нового сообщения ──
                     eitiIndexMessageForSearch(chatId, msg.id, role, content, Date.now());
                     // v12.9.43: периодическая L2 консолидация каждые 50 сообщений
@@ -21572,6 +21601,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _t0 = await _offline();
                 if (_t0) return _t0;
             }
+            // v14.5.0: ИИ подключён — память диалога тоже ведём; сводка уходит в системный контекст
+            try { if (!_internal && window.EitiDialogHost && !(typeof eitiAiUnavailable === "function" && eitiAiUnavailable())) EitiDialogHost.note(userText); } catch (e) {}
             try {
                 var _r = await _eitiAskDeepSeekCore(userText);
                 if (typeof _r === 'string' && (/^⚠️ Настройте .*(API )?ключ/.test(_r) || /^⚠️ (I have no offline answer for that\. Set up|Darauf habe ich offline keine Antwort\. Richte)/.test(_r))) { var _t1 = await _offline(); if (_t1) return _t1; }
@@ -22044,6 +22075,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     sysContent += '\n\n=== БИБЛИОТЕКА ЗНАНИЙ EITI (проверенные справочные факты; используй, если относятся к вопросу) ===';
                     window._eitiKbLibCtx.forEach(function(f) { sysContent += '\n· [' + f.title + '] ' + f.q[0] + ': ' + f.a; });
                 }
+                // ── v14.5.0: компактная сводка состояния диалога (слоты/темы) ──
+                try {
+                    var _dsSum = window.EitiDialogHost ? EitiDialogHost.summary() : '';
+                    if (_dsSum) sysContent += '\n\n=== СОСТОЯНИЕ ДИАЛОГА (dialogue state; use it to resolve "there / it / he / тогда / там") ===\n' + _dsSum;
+                } catch (e) {}
                 // ── БАЗА ЗНАНИЙ KB: BM25 + Adaptive Context v9.8 ──────────
                 var _kbAll = eitiKBLoad();
                 if (_kbAll && _kbAll.length > 0) {
@@ -31594,7 +31630,10 @@ window.eitiLLMClearAll = async function() {
                 var go = function() { init().catch(function() {}); };
                 if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 8000 }); else setTimeout(go, 3000);
             }
-            return { init: init, reply: reply, replyText: replyText, setStyle: setStyle, style: style, prewarm: prewarm, stats: stats, ready: function() { return !!eng; }, engine: function() { return eng; } };
+            return { init: init, reply: reply, replyText: replyText, setStyle: setStyle, style: style, prewarm: prewarm, stats: stats, ready: function() { return !!eng; }, engine: function() { return eng; },
+                // v14.5.0: сброс памяти офлайн-движка (Настройки → Размер чата)
+                resetState: function() { clearTimeout(saveT); eng = null; initP = null; return kv('readwrite', 'state', null); },
+                stateSize: function() { try { return eng ? JSON.stringify(eng.state).length : 0; } catch (e) { return 0; } } };
         })();
         window.EitiOffline = EitiOffline;
         // Отложенная инициализация: не трогаем старт (ждём load + 4 c, затем idle).
@@ -31740,6 +31779,222 @@ window.eitiLLMClearAll = async function() {
                 return t ? Promise.resolve(t) : orig(text, opts);
             };
             EitiOffline._localWrapped = true;
+        })();
+
+        // ── v14.5.0: ПАМЯТЬ ДИАЛОГА (local/eiti_dstate.js) — слоты, стек тем, фреймы, уточнения ──
+        // Внешний слой всех офлайн-путей: разрешает «там / тогда / он / это / there / dort …» по слотам и передаёт
+        // KB/диалогам уже развёрнутый вопрос. Состояние — маленькое (≤4 КБ), IndexedDB 'eiti_offline' → kv 'dstate'.
+        var EitiDialogHost = (function() {
+            var st = null, loadP = null, saveT = null, last = { q: '', t: 0 };
+            function db() {
+                return new Promise(function(res) {
+                    try { var r = indexedDB.open('eiti_offline', 1); r.onupgradeneeded = function() { r.result.createObjectStore('kv'); }; r.onsuccess = function() { res(r.result); }; r.onerror = function() { res(null); }; } catch (e) { res(null); }
+                });
+            }
+            function kv(mode, val) {
+                return db().then(function(d) {
+                    if (!d) return null;
+                    return new Promise(function(res) {
+                        try {
+                            var tx = d.transaction('kv', mode === 'get' ? 'readonly' : 'readwrite'), os = tx.objectStore('kv');
+                            var rq = mode === 'get' ? os.get('dstate') : mode === 'del' ? os.delete('dstate') : os.put(val, 'dstate');
+                            rq.onsuccess = function() { res(mode === 'get' ? rq.result : true); }; rq.onerror = function() { res(null); };
+                        } catch (e) { res(null); }
+                    }).then(function(v) { try { d.close(); } catch (e) {} return v; });
+                });
+            }
+            function load() {
+                if (st) return Promise.resolve(st);
+                if (!loadP) loadP = kv('get').then(function(s) { st = st || window.EitiDState.create(s); return st; }, function() { st = st || window.EitiDState.create(); return st; });
+                return loadP;
+            }
+            function save() { clearTimeout(saveT); saveT = setTimeout(function() { if (st) kv('put', JSON.parse(JSON.stringify(st))); }, 300); }
+            function reset() { clearTimeout(saveT); st = window.EitiDState ? window.EitiDState.create() : null; loadP = null; return kv('del'); }
+            // онлайн-путь: запоминаем реплику (без ответа), чтобы сводка для ИИ была актуальной
+            function note(text) {
+                if (!window.EitiDState) return;
+                var go = function() { var L = window.eitiOfflineLang(text), r = EitiDState.resolve(st, text, L); EitiDState.observe(st, r.clarify ? text : r.text, { refs: r.refs || [] }); save(); };
+                if (st) go(); else load().then(go);
+            }
+            function summary() { return st && window.EitiDState ? EitiDState.summary(st) : ''; }
+            function size() { try { return st ? JSON.stringify(st).length : 0; } catch (e) { return 0; } }
+            // step(text, L) → { text } (готовый ответ слоя) | { q } (развёрнутый вопрос для KB/диалогов)
+            function step(text, L) {
+                return load().then(function() {
+                    var D = window.EitiDState, q = String(text || '');
+                    // защита от двойного вызова одного и того же сообщения (повтор офлайн-пути после ошибки ИИ)
+                    if (q === last.q && Date.now() - last.t < 5000) return { q: last.r || q };
+                    last = { q: q, t: Date.now(), r: q };
+                    var m = D.meta(st, q, L); if (m) { save(); return { text: m.text }; }
+                    var q2 = q;
+                    if (st.pending) { var a = D.answerClarify(st, q, L); if (a) q2 = a.text; }
+                    var r = D.resolve(st, q2, L);
+                    if (r.clarify) { st.turn++; var c = D.askClarify(st, r.clarify, L); save(); return { text: c }; }
+                    var f = D.observe(st, r.text, { refs: r.refs });
+                    var fr = D.frame(st, f, r.text, L); save();
+                    last.r = r.text;
+                    window._eitiDStateLastQ = r.text; // для тестов/отладки: развёрнутый вопрос
+                    return fr ? { text: fr.text } : { q: r.text };
+                });
+            }
+            return { load: load, step: step, note: note, summary: summary, reset: reset, size: size, state: function() { return st; } };
+        })();
+        window.EitiDialogHost = EitiDialogHost;
+
+        // ── v14.5.0: НАСТРОЙКИ → РАЗМЕР ЧАТА И ХРАНИЛИЩЕ ──
+        // Только история чата (chats/messages/l2 + FTS), офлайн-кэши SW и память диалога. Заметки/файлы/KB-факты не трогаем.
+        (function() {
+            var TT = function(k, v) { return window.T ? T(k, v) : k; };
+            function fmt(b) {
+                b = b || 0; var u = ['B', 'KB', 'MB', 'GB'], i = 0;
+                while (b >= 1024 && i < 3) { b /= 1024; i++; }
+                return (i ? b.toFixed(b < 10 ? 1 : 0) : b) + ' ' + u[i];
+            }
+            function getLimit() { var v = localStorage.getItem('eiti_chat_limit'); return v == null ? 500 : (parseInt(v, 10) || 0); }
+            function msgStats() {
+                return new Promise(function(res) {
+                    if (!window.eitiDb) return res({ n: 0, bytes: 0 });
+                    try {
+                        var n = 0, bytes = 0, rq = eitiDb.transaction('messages', 'readonly').objectStore('messages').openCursor();
+                        rq.onsuccess = function() { var c = rq.result; if (!c) return res({ n: n, bytes: bytes }); n++; try { bytes += new Blob([JSON.stringify(c.value)]).size; } catch (e) {} c.continue(); };
+                        rq.onerror = function() { res({ n: n, bytes: bytes }); };
+                    } catch (e) { res({ n: 0, bytes: 0 }); }
+                });
+            }
+            function cacheStats() {
+                if (!window.caches) return Promise.resolve({ n: 0, bytes: 0 });
+                return caches.keys().then(function(keys) {
+                    var n = 0, bytes = 0;
+                    return Promise.all(keys.filter(function(k) { return /^eiti-offline/.test(k); }).map(function(k) {
+                        return caches.open(k).then(function(c) { return c.keys().then(function(rs) {
+                            return Promise.all(rs.map(function(r) { return c.match(r).then(function(m) {
+                                if (!m) return; n++;
+                                var L = +m.headers.get('content-length');
+                                if (L) { bytes += L; return; }
+                                return m.blob().then(function(b) { bytes += b.size; });
+                            }); }));
+                        }); });
+                    })).then(function() { return { n: n, bytes: bytes }; });
+                }).catch(function() { return { n: 0, bytes: 0 }; });
+            }
+            function setTxt(id, t) { var e = document.getElementById(id); if (e) e.textContent = t; }
+            window.eitiStorageRefresh = function() {
+                var sel = document.getElementById('eiti-chat-limit'); if (sel) sel.value = String(getLimit());
+                var ds = (window.EitiDialogHost ? EitiDialogHost.size() : 0) + (window.EitiOffline && EitiOffline.stateSize ? EitiOffline.stateSize() : 0);
+                setTxt('eiti-st-dialog', fmt(ds));
+                return Promise.all([msgStats(), cacheStats(), navigator.storage && navigator.storage.estimate ? navigator.storage.estimate().catch(function() { return null; }) : Promise.resolve(null)]).then(function(a) {
+                    setTxt('eiti-st-chat', TT('{n} сообщ. · {s}', { n: a[0].n, s: fmt(a[0].bytes) }));
+                    setTxt('eiti-st-cache', TT('{n} файлов · {s}', { n: a[1].n, s: fmt(a[1].bytes) }));
+                    var est = a[2], used = est && est.usage != null ? est.usage : a[0].bytes + a[1].bytes + ds;
+                    setTxt('eiti-st-total', fmt(used) + (est && est.quota ? ' / ' + fmt(est.quota) : ''));
+                    var w = document.getElementById('eiti-st-warn');
+                    if (w) w.style.display = (used > 300 * 1024 * 1024 || (est && est.quota && used / est.quota > 0.8)) ? '' : 'none';
+                    return { messages: a[0], caches: a[1], dialog: ds, usage: used, quota: est && est.quota };
+                });
+            };
+            // глобальный лимит: удаляем самые старые сообщения по всем чатам, счётчики чатов правим
+            window.eitiTrimGlobal = function() {
+                var lim = getLimit();
+                if (!lim || !window.eitiDb) return Promise.resolve(0);
+                return new Promise(function(res) {
+                    try {
+                        var tx = eitiDb.transaction(['messages', 'chats'], 'readwrite'), ms = tx.objectStore('messages'), all = [];
+                        var rq = ms.openCursor();
+                        rq.onsuccess = function() {
+                            var c = rq.result;
+                            if (c) { all.push({ id: c.value.id, chat: c.value.chat_id, t: c.value.created || '' }); c.continue(); return; }
+                            if (all.length <= lim) return;
+                            all.sort(function(a, b) { return a.t < b.t ? -1 : a.t > b.t ? 1 : 0; });
+                            var del = all.slice(0, all.length - lim), per = {};
+                            del.forEach(function(m) { ms.delete(m.id); per[m.chat] = (per[m.chat] || 0) + 1; });
+                            var cs = tx.objectStore('chats');
+                            Object.keys(per).forEach(function(id) {
+                                var g = cs.get(isNaN(+id) ? id : (typeof del[0].chat === 'number' ? +id : id));
+                                g.onsuccess = function() { var ch = g.result; if (ch && typeof ch.count === 'number') { ch.count = Math.max(0, ch.count - per[id]); cs.put(ch); } };
+                            });
+                            tx._trimmed = del.length;
+                        };
+                        tx.oncomplete = function() { res(tx._trimmed || 0); };
+                        tx.onerror = tx.onabort = function() { res(0); };
+                    } catch (e) { res(0); }
+                });
+            };
+            var _trimT = null;
+            window.eitiTrimGlobalSoon = function() { clearTimeout(_trimT); _trimT = setTimeout(function() { eitiTrimGlobal(); }, 1500); };
+            window.eitiSetChatLimit = function(v) {
+                localStorage.setItem('eiti_chat_limit', String(parseInt(v, 10) || 0));
+                return eitiTrimGlobal().then(function(n) { if (n && window.showToast) showToast(TT('Удалено старых сообщений: {n}', { n: n })); return eitiStorageRefresh(); });
+            };
+            window.eitiClearChatHistory = function() {
+                if (!confirm(TT('Удалить всю историю чата? Заметки и файлы останутся.'))) return Promise.resolve(false);
+                return new Promise(function(res) {
+                    try {
+                        var names = ['chats', 'messages', 'l2'].filter(function(n) { return eitiDb.objectStoreNames.contains(n); });
+                        var tx = eitiDb.transaction(names, 'readwrite');
+                        names.forEach(function(n) { tx.objectStore(n).clear(); });
+                        tx.oncomplete = function() { res(true); }; tx.onerror = function() { res(false); };
+                    } catch (e) { res(false); }
+                }).then(function(ok) {
+                    try { if (typeof _db !== 'undefined' && _db && typeof _fts5Available !== 'undefined' && _fts5Available) { _db.run('DELETE FROM chat_history_fts'); if (typeof _persistSQLDebounced === 'function') _persistSQLDebounced(); } } catch (e) {}
+                    try { Object.keys(localStorage).forEach(function(k) { if (/^eiti_l1_sum_/.test(k)) localStorage.removeItem(k); }); } catch (e) {}
+                    try { if (window._eitiL2Cache && _eitiL2Cache.length) _eitiL2Cache.length = 0; } catch (e) {}
+                    try { if (typeof chatLog !== 'undefined') chatLog = []; } catch (e) {}
+                    var m = document.getElementById('messages'); if (m) m.innerHTML = '';
+                    try { eitiCreateChat('Чат ' + new Date().toLocaleTimeString('ru')).then(function(c) { eitiCurrentChatId = c.id; window.eitiCurrentChatId = c.id; }); } catch (e) {}
+                    if (window.showToast) showToast(ok ? TT('История чата очищена') : TT('Не удалось очистить историю'));
+                    eitiStorageRefresh();
+                    return ok;
+                });
+            };
+            window.eitiClearOfflineCaches = function() {
+                if (!confirm(TT('Удалить офлайн-кэши и KB-пакеты? Они скачаются заново при необходимости.'))) return Promise.resolve(false);
+                return (window.caches ? caches.keys() : Promise.resolve([])).then(function(keys) {
+                    return Promise.all(keys.filter(function(k) { return /^eiti-offline/.test(k); }).map(function(k) { return caches.delete(k); }));
+                }).then(function() { if (window.showToast) showToast(TT('Офлайн-кэши очищены')); eitiStorageRefresh(); return true; });
+            };
+            window.eitiResetDialogMemory = function() {
+                if (!confirm(TT('Сбросить память диалога (темы, места, отсылки)?'))) return Promise.resolve(false);
+                return Promise.all([
+                    window.EitiDialogHost ? EitiDialogHost.reset() : null,
+                    window.EitiOffline && EitiOffline.resetState ? EitiOffline.resetState() : null
+                ]).then(function() { if (window.showToast) showToast(TT('Память диалога сброшена')); eitiStorageRefresh(); return true; });
+            };
+            // обновляем цифры при открытии настроек
+            document.addEventListener('click', function(e) { var t = e.target && e.target.closest && e.target.closest('[data-view="settings"]'); if (t) setTimeout(eitiStorageRefresh, 300); }, true);
+            if (window.EITI_I18N) {
+                EITI_I18N.addDict('en', {
+                    '💾 Размер чата и хранилище': '💾 Chat size & storage', 'История чата': 'Chat history', 'Офлайн-кэши и KB': 'Offline caches & KB',
+                    'Память диалога': 'Dialogue memory', 'Всего занято': 'Total used', '⚠️ Хранилище занимает много места — можно очистить историю или кэши.': '⚠️ Storage is getting large — consider clearing history or caches.',
+                    'Хранить сообщений': 'Keep messages', 'без ограничений': 'unlimited', 'Самые старые сообщения удаляются автоматически. Заметки и файлы не затрагиваются.': 'The oldest messages are removed automatically. Notes and files are never touched.',
+                    '🗑 Очистить историю чата': '🗑 Clear chat history', '🧹 Очистить офлайн-кэши': '🧹 Clear offline caches', '🔄 Сбросить память диалога': '🔄 Reset dialogue memory', '↻ Обновить': '↻ Refresh',
+                    '{n} сообщ. · {s}': '{n} msgs · {s}', '{n} файлов · {s}': '{n} files · {s}', 'Удалено старых сообщений: {n}': 'Old messages removed: {n}',
+                    'Удалить всю историю чата? Заметки и файлы останутся.': 'Delete all chat history? Notes and files will be kept.', 'История чата очищена': 'Chat history cleared', 'Не удалось очистить историю': 'Could not clear history',
+                    'Удалить офлайн-кэши и KB-пакеты? Они скачаются заново при необходимости.': 'Delete offline caches and KB packs? They will be downloaded again when needed.', 'Офлайн-кэши очищены': 'Offline caches cleared',
+                    'Сбросить память диалога (темы, места, отсылки)?': 'Reset dialogue memory (topics, places, references)?', 'Память диалога сброшена': 'Dialogue memory reset'
+                });
+                EITI_I18N.addDict('de', {
+                    '💾 Размер чата и хранилище': '💾 Chatgröße & Speicher', 'История чата': 'Chatverlauf', 'Офлайн-кэши и KB': 'Offline-Caches & KB',
+                    'Память диалога': 'Gesprächsgedächtnis', 'Всего занято': 'Insgesamt belegt', '⚠️ Хранилище занимает много места — можно очистить историю или кэши.': '⚠️ Der Speicher wird groß — Verlauf oder Caches leeren?',
+                    'Хранить сообщений': 'Nachrichten behalten', 'без ограничений': 'unbegrenzt', 'Самые старые сообщения удаляются автоматически. Заметки и файлы не затрагиваются.': 'Die ältesten Nachrichten werden automatisch gelöscht. Notizen und Dateien bleiben unberührt.',
+                    '🗑 Очистить историю чата': '🗑 Chatverlauf löschen', '🧹 Очистить офлайн-кэши': '🧹 Offline-Caches leeren', '🔄 Сбросить память диалога': '🔄 Gesprächsgedächtnis zurücksetzen', '↻ Обновить': '↻ Aktualisieren',
+                    '{n} сообщ. · {s}': '{n} Nachr. · {s}', '{n} файлов · {s}': '{n} Dateien · {s}', 'Удалено старых сообщений: {n}': 'Alte Nachrichten gelöscht: {n}',
+                    'Удалить всю историю чата? Заметки и файлы останутся.': 'Gesamten Chatverlauf löschen? Notizen und Dateien bleiben erhalten.', 'История чата очищена': 'Chatverlauf gelöscht', 'Не удалось очистить историю': 'Verlauf konnte nicht gelöscht werden',
+                    'Удалить офлайн-кэши и KB-пакеты? Они скачаются заново при необходимости.': 'Offline-Caches und KB-Pakete löschen? Sie werden bei Bedarf neu geladen.', 'Офлайн-кэши очищены': 'Offline-Caches geleert',
+                    'Сбросить память диалога (темы, места, отсылки)?': 'Gesprächsgedächtnis (Themen, Orte, Bezüge) zurücksetzen?', 'Память диалога сброшена': 'Gesprächsgedächtnis zurückgesetzt'
+                });
+            }
+        })();
+        (function() {
+            if (!window.EitiOffline || EitiOffline._dstateWrapped) return;
+            var orig = EitiOffline.replyText;
+            EitiOffline.replyText = function(text, opts) {
+                opts = opts || {};
+                var q = String(text || '');
+                if (!window.EitiDState || !q.trim() || q.length > 300) return orig(text, opts);
+                var L = opts.lang || window.eitiOfflineLang(q), o2 = {}; for (var k in opts) o2[k] = opts[k]; o2.lang = L;
+                return EitiDialogHost.step(q, L).then(function(r) { return r.text ? r.text : orig(r.q, o2); }, function() { return orig(text, opts); });
+            };
+            EitiOffline._dstateWrapped = true;
         })();
 
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)

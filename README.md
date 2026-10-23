@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.4.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.5.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,14 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.5.0
+
+- **Память диалога офлайн** (`local/eiti_dstate.js`): слоты *тема / сущность / место / время / цель / настроение*. «Хочу в Грузию весной» → «а что там посмотреть?» понимается как «что посмотреть в Грузии» (и так уходит в KB). Отсылки *там / туда / оттуда / тогда / он / она / это*, *there / then / he / it*, *dort / dorthin / damals / er / es*.
+- **Стек тем**: «о чём мы говорили?», «вернёмся к …», *back to …*, *zurück zu …*; темы угасают через несколько реплик.
+- **Фреймы**: планирование поездки (куда → когда → план) и выбор между вариантами («A или B?» → критерий → совет).
+- **Уточнения**: при неоднозначной отсылке — «Ты имеешь в виду X или Y?». С подключённым ИИ в системный контекст уходит компактная сводка состояния.
+- **Настройки → 💾 Размер чата и хранилище**: объём истории, офлайн-кэшей/KB, памяти диалога и общий (`navigator.storage.estimate`); очистка истории / кэшей / сброс памяти (с подтверждением, заметки и файлы не трогаются); лимит «Хранить сообщений» 200 / 500 / 1000 / без ограничений с авто-удалением самых старых.
 
 ## 🆕 Что нового в v14.4.0
 
