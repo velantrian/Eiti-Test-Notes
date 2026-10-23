@@ -152,7 +152,9 @@ test('Настройки AI Voice: провайдер/модель/голос с
   await expect(page.locator('#gemini-live-model')).toHaveValue('gemini-3.8-live-extended-thinking');
   await expect(page.locator('#gemini-live-voice')).toHaveValue('Kore');
   const visible = await page.evaluate(() => document.body.innerText);
-  expect(visible).not.toContain('Grok Voice');
+  expect(typeof visible).toBe('string');
+  await expect(page.locator('#ai-voice-settings')).toContainText('Голосовой ассистент'); // v14.9.0: провайдер выбирается явно
+  await expect(page.locator('#ai-voice-provider option[value="grok"]')).toHaveText('Grok Voice (xAI) — по умолчанию');
   await page.locator('#ai-voice-settings').scrollIntoViewIfNeeded();
   if (SHOTS) { await page.evaluate(() => document.getElementById('ai-voice-settings').scrollIntoView({ block: 'center' })); await page.waitForTimeout(300); await page.screenshot({ path: `${SHOTS}/after-chat-settings-voice.png` }); }
 });

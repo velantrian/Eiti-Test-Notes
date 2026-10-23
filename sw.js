@@ -1,11 +1,11 @@
-// VELANTRIM EITI — Service Worker v14.8.0
+// VELANTRIM EITI — Service Worker v14.9.0
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.8.0
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.9.0
 
-var CACHE = 'eiti-v14.8.0'; // v14.8.0: опечатки; v14.7.0: Drive-автосинхронизация; v14.5.0: память диалога + размер чата; v14.4.0: офлайн-ответы RU/EN/DE; v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
+var CACHE = 'eiti-v14.9.0'; // v14.9.0: дневник journal + выбор голоса; v14.8.0: опечатки; v14.7.0: Drive-автосинхронизация; v14.5.0: память диалога + размер чата; v14.4.0: офлайн-ответы RU/EN/DE; v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
 // v14.0.0: офлайн-движок и пакеты (offline/**) — отдельный кеш без лимита 24 записей (≈30 файлов),
 // cache-first + фоновое обновление; не попадает в swTrimCache.
-var OFFLINE_CACHE = 'eiti-offline-v14.8.0';
+var OFFLINE_CACHE = 'eiti-offline-v14.9.0';
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -17,6 +17,7 @@ var CORE = [
     BASE + 'offline/eiti_offline_de.js', // v14.4.0: немецкий слой офлайн-диалогов
     BASE + 'local/eiti_local.js', // v14.2.0: локальный калькулятор/ответы по своим данным — нужен офлайн с первого запуска
     BASE + 'local/eiti_dstate.js', // v14.5.0: память диалога (слоты, стек тем, отсылки)
+    BASE + 'local/eiti_journal.js', // v14.9.0: движок дневника (записи, дедуп, миграция)
     BASE + 'local/eiti_typo.js', // v14.8.0: опечатки (нормализация + нечёткое сопоставление)
     BASE + 'local/eiti_typo_vocab.json', // v14.8.0: словарь опечаток (грузится лениво при первом офлайн-запросе)
     BASE + 'icon-192.png',
@@ -74,7 +75,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '14.8.0' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '14.9.0' });
                         });
                     });
                     });
