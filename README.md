@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.4.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.7.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -42,7 +42,12 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v14.4.0
+## 🆕 Что нового в v14.7.0
+
+- ☁️ **Google Drive: вход один раз и автосинхронизация.** Кнопка «Войти через Google» (согласие только в первый раз, дальше тихое продление токена). Синхронизация сама: при открытии, через ~8 с после изменений, при сворачивании (отправка) и возврате (получение). Файл тот же: `EITI/eiti_backup.json`, существующая папка используется повторно. Слияние по id и времени изменения, метки удаления, настройки по ключам, API-ключи никогда не уходят на Drive. Восстановление пишет заметки, чаты, файлы и настройки прямо в IndexedDB без перезагрузки. Движок слияния: `local/eiti_drive_sync.js` (грузится лениво).
+- Общий OAuth Client ID задаётся константой `EITI_GOOGLE_CLIENT_ID` в `index.html`; пока она пустая, работает ID, введённый в настройках. Scope `drive.file` видит только файлы, созданные тем же Cloud-проектом.
+
+## Что нового в v14.4.0
 
 - 🌐 **Офлайн-ответы на языке приложения и сообщения (RU / EN / DE).** Раньше без ключа ИИ в EN/DE-интерфейсе часть ответов приходила по-русски. Теперь язык выбирается так: явная настройка «язык ответов ИИ» → язык самого сообщения (кириллица → RU, немецкие признаки → DE, английские → EN) → язык приложения. Русское поведение не изменилось.
 - 🧮 **EITI Local** (калькулятор и вопросы о заметках/файлах) отвечает шаблонами на RU/EN/DE, понимает немецкие числа и операции («zwanzig prozent von dreihundert», «sieben mal acht») и вопросы («wie viele Notizen habe ich», «finde in meinen Notizen …»).
