@@ -9,13 +9,7 @@ HTML = (ROOT / "index.html").read_text(encoding="utf-8")
 SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
-def test_version_sync():
-    assert 'var EITI_VERSION = "14.1.0"' in HTML
-    assert "var CACHE = 'eiti-v14.1.0'" in SW
-    assert "var OFFLINE_CACHE = 'eiti-offline-v14.1.0'" in SW
-    assert "version: '14.1.0'" in SW
-    assert "v14.1.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
-    assert "version-14.1.0" in (ROOT / "README.md").read_text(encoding="utf-8")
+# v14.2.0+ moved the version forward; see test_v1420.py for the exact sync check.
 
 
 def test_kb_assets():

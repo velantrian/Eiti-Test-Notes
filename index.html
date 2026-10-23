@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.1.0"; // библиотека знаний KB (kb/), + v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.2.0"; // EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4295,6 +4295,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <!-- v13.4.0 P0 #2: DOMPurify для санитизации HTML (offline-first через SW CORE) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js" defer></script>
+    <!-- v14.2.0: «простой интеллект» на устройстве — калькулятор и ответы по своим заметкам/файлам (≈20 КБ, без сети) -->
+    <script src="./local/eiti_local.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -17902,6 +17904,28 @@
         window.eitiClearLemma=eitiClearLemma;window.eitiEnrichLemmaAI=eitiEnrichLemmaAI;
         window.eitiCorrectLemmaAI=eitiCorrectLemmaAI;window.eitiApplyLemmaEnrichment=eitiApplyLemmaEnrichment;
         window.eitiUpdateState=eitiUpdateState;
+        // v14.2.0: чипы «📝 открыть заметку» / «📄 файл» для ответов EITI Local (id/имя экранируются, onclick — через data-атрибут)
+        function _eitiLocalEsc(x) { return String(x || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); }
+        function _eitiLocalNoteChip(id) {
+            var n = null; try { n = (typeof notesLoad === 'function' ? notesLoad() : []).find(function(x) { return x && x.id === id; }); } catch (e) {}
+            var label = n ? (String(n.title || '').trim() || 'заметка') : 'заметка удалена';
+            if (label.length > 40) label = label.slice(0, 39) + '…';
+            return '<span class="msg-file-chip eiti-local-note-chip" data-note-id="' + _eitiLocalEsc(id) + '" role="button" tabindex="0"'
+                + ' onclick="if(typeof eitiOpenNoteById===\'function\')eitiOpenNoteById(this.getAttribute(\'data-note-id\'))"'
+                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);' + (n ? '' : 'opacity:0.5;') + '">📝 ' + _eitiLocalEsc(label) + ' · открыть</span>';
+        }
+        function _eitiLocalFileChip(name) {
+            return '<span class="msg-file-chip eiti-local-file-chip" data-fname="' + _eitiLocalEsc(name) + '" role="button" tabindex="0"'
+                + ' onclick="if(typeof eitiDownloadFile===\'function\')eitiDownloadFile(this.getAttribute(\'data-fname\'))"'
+                + ' style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);">📄 ' + _eitiLocalEsc(name) + ' · скачать</span>';
+        }
+        window.eitiOpenNoteById = function(id) {
+            var n = null; try { n = notesLoad().find(function(x) { return x && x.id === id; }); } catch (e) {}
+            if (!n) { if (typeof showToast === 'function') showToast('Заметка не найдена'); return false; }
+            if (typeof openView === 'function') openView('notes');
+            setTimeout(function() { if (typeof notesOpenEditor === 'function') notesOpenEditor(id); }, 80);
+            return true;
+        };
         function eitiRenderMarkdown(text) {
             if (!text) return '';
             var t = String(text);
@@ -17917,6 +17941,9 @@
             }
             t = t.replace(/<EITI_(?:FILE|APPEND):([^>]+)>[\s\S]*?<\/EITI_(?:FILE|APPEND)>/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
             t = t.replace(/⟦EITIFILE:([^⟧]+)⟧/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
+            // v14.2.0: ссылки «открыть заметку / файл» из локальных ответов EITI Local
+            t = t.replace(/⟦EITINOTE:([\w.:-]+)⟧/g, function(_m, id){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalNoteChip(id)); return ph; });
+            t = t.replace(/⟦EITIUFILE:([^⟧]+)⟧/g, function(_m, nm){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalFileChip(nm)); return ph; });
             // Escape HTML first
             t = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
             // v13.7.21: код (```блоки``` и `инлайн`) прячем в плейсхолдеры U+E001 — остальные
@@ -25737,6 +25764,10 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _irSearchVerbRx = /(найди|поищи|посмотри|загляни|узнай|покажи|погугли|нагугли|знайди|пошукай|подивись|find|search|look up)/i;
                 if (_irWebRx.test(txt) && _irSearchVerbRx.test(txt)) return false;
 
+                // ── v14.2.0: EITI Local — калькулятор и вопросы о своих заметках/файлах (раньше остальных интентов) ──
+                var _locT = window.EitiLocalHost ? EitiLocalHost.reply(txt) : null;
+                if (_locT) { _intentReply(eitiRenderMarkdown(_locT), 'EITI Local'); return true; }
+
                 // ── P8: Обработка выбора обогащения KB (1 / 2) ───────
                 if (window._awaitingEnrichChoice && /^[12]$/.test(txt.trim())) {
                     var _choice = txt.trim();
@@ -31617,6 +31648,40 @@ window.eitiLLMClearAll = async function() {
             EitiOffline._kbWrapped = true;
         })();
         window.addEventListener('load', function() { setTimeout(function() { EitiKBHost.prewarm(); }, 6000); });
+
+        // ── v14.2.0: EITI LOCAL — «простой интеллект» по своим данным + калькулятор (local/eiti_local.js) ──
+        // Синхронно и без сети: снимок заметок (notesLoad) и пользовательских файлов (getAiTextStore) → готовый ответ или null.
+        // Проверяется ПЕРВЫМ во всех офлайн-путях: роутер офлайн-режима и EitiOffline.replyText (раньше KB и офлайн-диалогов).
+        var EitiLocalHost = (function() {
+            var stats = { calls: 0, hits: 0, last: null };
+            function data() {
+                var notes = [], files = [];
+                try { notes = typeof notesLoad === 'function' ? notesLoad() : []; } catch (e) {}
+                try { files = (typeof getAiTextStore === 'function' ? getAiTextStore().files : []).filter(function(f) { return f && f.name && (typeof isUserFile !== 'function' || isUserFile(f)) && f.id !== '__chat_bg__' && f.name !== '__chat_bg__'; }); } catch (e) {}
+                return { notes: notes, files: files };
+            }
+            function reply(text) {
+                var q = String(text || '');
+                if (!window.EitiLocalLib || !q || q.length > 200) return null;
+                stats.calls++;
+                var r = null;
+                try { r = EitiLocalLib.reply(q, data(), Date.now()); } catch (e) { console.warn('[EITI local]', e && e.message); return null; }
+                if (!r) return null;
+                stats.hits++; stats.last = r.intent;
+                return (r.kind === 'calc' ? '🧮 ' : '🗂 ') + r.text;
+            }
+            return { reply: reply, stats: stats, data: data };
+        })();
+        window.EitiLocalHost = EitiLocalHost;
+        (function() {
+            if (!window.EitiOffline || EitiOffline._localWrapped) return;
+            var orig = EitiOffline.replyText;
+            EitiOffline.replyText = function(text, opts) {
+                var t = EitiLocalHost.reply(text);
+                return t ? Promise.resolve(t) : orig(text, opts);
+            };
+            EitiOffline._localWrapped = true;
+        })();
 
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)
         function eitiAiUnavailable() {
