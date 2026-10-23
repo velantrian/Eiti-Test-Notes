@@ -109,6 +109,7 @@
     function confident(h) {
       if (!h || h.cov < 0.6 || h.prec < 0.5) return false;
       if (h.g && !h.ex) return false;               // справочные (сгенерированные) статьи — только при точном совпадении слова
+      if (h.g && h.prec < 0.75) return false;       // v14.3.0: и почти весь триггер назван («доброе утро» ≠ «Доброе утро, Вьетнам»)
       if (h.qn === 1) return h.prec === 1;          // одно слово — только точный короткий триггер
       return h.mt >= 2;                              // иначе минимум два слова триггера совпали
     }
@@ -129,11 +130,20 @@
       })();
     });
   }
-  // shardRows(domain, shard) → записи индекса из компактного шарда v2 {d, e: [[hash, triggers, keys, part]]}
+  // shardRows(domain, shard) → записи индекса из компактного шарда v2 {d, e: [[hash, triggers, keys, part]]} или v3 {d, g, px, pp, e: [[hash, triggers, keys]]}
   function shardRows(sh) {
     // сгенерированные (энциклопедические) шарды g=1 весят чуть меньше рукописных объясняющих статей
-    var d = sh.d, e = sh.e || [], w = sh.g ? 0.8 : 1, out = new Array(e.length);
-    for (var i = 0; i < e.length; i++) out[i] = { i: 'kbl_' + d + '_' + e[i][0], d: d, t: e[i][1], k: e[i][2], p: e[i][3], w: w };
+    // v3 (v14.3.0, компактный): px — таблица префиксов («кто такой »), «~N» = px[N] + первый триггер; часть пакета = позиция / pp
+    var d = sh.d, e = sh.e || [], w = sh.g ? 0.8 : 1, out = new Array(e.length), px = sh.px, pp = sh.pp;
+    for (var i = 0; i < e.length; i++) {
+      var t = e[i][1];
+      if (px && t.indexOf('~') >= 0) {
+        var ts = t.split('|');
+        for (var j = 1; j < ts.length; j++) { var m = /^~(\d+)$/.exec(ts[j]); if (m) ts[j] = px[+m[1]] + ts[0]; }
+        t = ts.join('|');
+      }
+      out[i] = { i: 'kbl_' + d + '_' + e[i][0], d: d, t: t, k: e[i][2], p: e[i].length > 3 ? e[i][3] : (pp ? Math.floor(i / pp) : 0), w: w };
+    }
     return out;
   }
   // addAsync(engine, rows, opts) — индексирует порциями по opts.step (120), уступая поток между порциями
