@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.0.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.1.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,15 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.1.0
+
+**Библиотека знаний KB: общие знания без сети и как контекст для ИИ**
+- `kb/`: 11 110 справочных записей в 33 разделах. 549 записей написаны и проверены вручную (14 тематических разделов; здоровье — только справочно, не замена врачу). Ещё ≈10 560 сгенерированы из Wikidata (CC0) скриптом `kb/gen/gen_kb.py`: люди, страны, города, химические элементы, реки, горы, озёра, острова, виды, книги, картины, музыка, фильмы, события, войны, блюда, языки, языки программирования, понятия. Индекс разбит на шарды (`kb/idx/*.json`, ≈363 КБ gzip всего, крупнейший ≈71 КБ). Ответы — в пакетах до 400 записей (крупнейший ≈23 КБ gzip). Ничего не грузится при старте: фоновый прогрев начинается через 6 с после load, индексация идёт порциями в idle.
+- Офлайн (нет сети, ключа или ИИ упал) уверенный ответ KB идёт первым — в чате и в Notes Ask AI, с пометкой «🧠 KB · раздел».
+- С ИИ: до 4 найденных записей добавляются в системный контекст («БИБЛИОТЕКА ЗНАНИЙ EITI»), в источниках ответа — «📚KB·N».
+- Лениво: индекс (~48 КБ gzip) строится порциями в простое через 6 с после загрузки; ответы лежат в пакетах по разделам и грузятся по требованию. Кеш — Service Worker (`eiti-offline-*`), не localStorage. Личные факты (KB_ADD) — прежний слой в IndexedDB.
+- Сборка: `python3 kb/build_kb.py` из `kb/src/*.txt` (дубли триггеров и ответов отбрасываются). Точность поиска на отложенных перефразах: `node kb/tests/eval_kb.js`.
 
 ## 🆕 Что нового в v14.0.0
 
