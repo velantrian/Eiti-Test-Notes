@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.2.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.3.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -41,6 +41,13 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.3.0
+
+- 📚 **Библиотека знаний выросла до ~29 тыс. статей** (было ~11 тыс.): 27 новых разделов — космос (планеты, спутники, созвездия, звёзды), космические миссии, минералы, динозавры, болезни (только справочно), анатомия, компании, научные законы, праздники, достопримечательности, музеи, университеты, моря и вулканы, пустыни, видеоигры, оперы и балеты, мифология, религии, писатели, композиторы, художники, философы, учёные, нобелевские лауреаты, спортсмены, клубы и виды спорта, аэропорты; плюс новые сущности в существующих разделах.
+- 🧹 Только новое: дедупликация по триггерам с ручными статьями и прежними разделами (`build_kb.py --strict`), фильтры вандализма в описаниях, без событий после 2020 и без несовершеннолетних.
+- 📱 Быстро на iPhone: компактные шарды v3 (префиксы и номера пачек не повторяются), индекс по-прежнему ленивый и шардированный.
+- 🛡️ Болтовня («привет, как дела?», «доброе утро») не перехватывается названиями фильмов/книг.
 
 ## 🆕 Что нового в v14.2.0
 

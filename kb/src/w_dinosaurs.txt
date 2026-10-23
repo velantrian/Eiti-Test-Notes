@@ -1,0 +1,658 @@
+# Динозавры и древние животные | Dinosaurs and prehistoric animals
+# @generated from Wikidata (CC0) by kb/gen/gen_more.py — do not edit by hand
+Тираннозавр; Tyrannosaurus || Тираннозавр (лат. Tyrannosaurus) — род тираннозаврид.
+Археоптерикс; Archaeopteryx || Археоптерикс (лат. Archaeopteryx) — род манираптор.
+Трицератопсы; Triceratops || Трицератопсы (лат. Triceratops) — род цератопсид.
+велоцираптор; Velociraptor || Велоцираптор (лат. Velociraptor) — род дромеозаврид.
+Спинозавр; Spinosaurus || Спинозавр (лат. Spinosaurus) — род спинозаврид.
+Диплодок; Diplodocus || Диплодок (лат. Diplodocus) — род юрских завропод.
+Брахиозавр; Brachiosaurus || Брахиозавр (лат. Brachiosaurus) — род брахиозаврид.
+апатозавр; Apatosaurus || Апатозавр (лат. Apatosaurus) — род динозавров.
+Аллозавры; Allosaurus || Аллозавры (лат. Allosaurus) — вымерший род крупных теропод.
+Игуанодон; Iguanodon || Игуанодон (лат. Iguanodon) — род орнитоподных динозавров.
+анкилозавр; Ankylosaurus || Анкилозавр (лат. Ankylosaurus) — род динозавров.
+птицетазовые; Ornithischia || Птицетазовые (лат. Ornithischia) — одна из двух основных клад динозавров.
+Завроподы; Sauropoda || Завроподы (лат. Sauropoda) — клада завроподоморфных динозавров.
+Цератозавр; Ceratosaurus || Цератозавр (лат. Ceratosaurus) — род цератозавров.
+Паразауролофы; Parasaurolophus || Паразауролофы (лат. Parasaurolophus) — род гадрозаврид с изогнутым гребнем.
+Carnotaurus || Carnotaurus — род абелизаврид.
+Аргентинозавр; Argentinosaurus || Аргентинозавр (лат. Argentinosaurus) — род титанозавров.
+Альбертозавр; Albertosaurus || Альбертозавр (лат. Albertosaurus) — род тираннозаврид.
+Компсогнат; Compsognathus || Компсогнат (лат. Compsognathus) — род теропод-компсогнатид юрского периода.
+завроподоморфы; Sauropodomorpha || Завроподоморфы (лат. Sauropodomorpha) — подотряд ящеротазовых динозавров.
+Эдмонтозавры; Edmontosaurus || Эдмонтозавры (лат. Edmontosaurus) — род птицетазовых динозавров.
+Дилофозавр; Dilophosaurus || Дилофозавр (лат. Dilophosaurus) — род тероподных динозавров.
+Пахицефалозавр; Pachycephalosaurus || Пахицефалозавр (лат. Pachycephalosaurus) — род пахицефалозаврид.
+дейноних; Deinonychus || Дейноних (лат. Deinonychus) — род дромеозаврид.
+Акрокантозавр; Acrocanthosaurus || Акрокантозавр (лат. Acrocanthosaurus) — род динозавров семейства карахадонтозаврид.
+Кархародонтозавр; Carcharodontosaurus || Кархародонтозавр (лат. Carcharodontosaurus) — род кархародонтозаврид.
+Барионикс; Baryonyx || Барионикс (лат. Baryonyx) — род спинозаврид.
+анкилозавры; Ankylosauria || Анкилозавры (лат. Ankylosauria) — инфраотряд птицетазовых динозавров.
+Платеозавр; Plateosaurus || Платеозавр (лат. Plateosaurus) — род триасовых завроподоморф.
+Овираптор; Oviraptor || Овираптор (лат. Oviraptor) — род овирапторид.
+Дромеозавриды; Dromaeosauridae || Дромеозавриды (лат. Dromaeosauridae) — семейство манираптор.
+Цератопсы; Ceratopsia || Цератопсы (лат. Ceratopsia) — клада птицетазовых динозавров.
+Тарбозавр; Tarbosaurus || Тарбозавр (лат. Tarbosaurus) — род тираннозаврид.
+Целофиз; Coelophysis || Целофиз (лат. Coelophysis) — вымерший род теропод.
+Абелизавр; Abelisaurus || Абелизавр (лат. Abelisaurus) — род абелизаврид.
+Микрораптор; Microraptor || Микрораптор (лат. Microraptor) — род дромеозаврид.
+Стиракозавры; Styracosaurus || Стиракозавры (лат. Styracosaurus) — род цератопсид.
+Мегалозавр; Megalosaurus || Мегалозавр (лат. Megalosaurus) — род динозавров.
+Галлимим; Gallimimus || Галлимим (лат. Gallimimus) — род тероподных динозавров.
+Сколозавры; Euoplocephalus || Сколозавры (лат. Euoplocephalus) — род анкилозаврид.
+Кентрозавр; Kentrosaurus || Кентрозавр (лат. Kentrosaurus) — род стегозавров.
+Коритозавр; Corythosaurus || Коритозавр (лат. Corythosaurus) — род гадрозаврид.
+Протоцератопс; Protoceratops || Протоцератопс (лат. Protoceratops) — род цератопсов.
+Маменчизавр; Mamenchisaurus || Маменчизавр (лат. Mamenchisaurus) — род мамэньсизаврид.
+Пситтакозавр; Psittacosaurus || Пситтакозавр (лат. Psittacosaurus) — род цератопсов.
+Барозавр; Barosaurus || Барозавр (лат. Barosaurus) — род завроподных динозавров.
+Brontosaurus || Brontosaurus — род гигантских четвероногих завроподных динозавров.
+Горгозавры; Gorgosaurus || Горгозавры (лат. Gorgosaurus) — род тираннозаврид.
+тиреофоры; Thyreophora || Тиреофоры (лат. Thyreophora) — клада птицетазовых динозавров.
+гадрозавриды; Hadrosauridae || Гадрозавриды (лат. Hadrosauridae) — семейство птицетазовых динозавров.
+целурозавры; Coelurosauria || Целурозавры (лат. Coelurosauria) — клада тероподных динозавров.
+Камптозавр; Camptosaurus || Камптозавр (лат. Camptosaurus) — род орнитоподных динозавров.
+орнитоподы; Ornithopoda || Орнитоподы (лат. Ornithopoda) — инфраотряд птицетазовых травоядных динозавров..
+Ламбеозавр; Lambeosaurus || Ламбеозавр (лат. Lambeosaurus) — род гадрозаврид.
+Суперзавр; Supersaurus || Суперзавр (лат. Supersaurus) — гигантский завроподоморфный динозавр.
+Торозавр; Torosaurus || Торозавр (лат. Torosaurus) — род цератопсид.
+Дасплетозавр; Daspletosaurus || Дасплетозавр (лат. Daspletosaurus) — род тероподовых динозавров.
+Авимим; Avimimus || Авимим (лат. Avimimus) — род овирапторозавров.
+Аламозавр; Alamosaurus || Аламозавр (лат. Alamosaurus) — род титанозавров.
+цератозавры; Ceratosauria || Цератозавры (лат. Ceratosauria) — инфраотряд тероподовых динозавров.
+Торвозавр; Torvosaurus || Торвозавр (лат. Torvosaurus) — род мегалозаврид.
+Тетануры; Tetanurae || Тетануры (лат. Tetanurae) — клада тероподных динозавров.
+Amphicoelias || Amphicoelias — род травоядных динозавров из группы зауропод.
+Спинозавриды; Spinosauridae || Спинозавриды (лат. Spinosauridae) — семейство тероподных динозавров.
+цератопсиды; Ceratopsidae || Цератопсиды (лат. Ceratopsidae) — семейство цератопсов.
+Завропосейдон; Sauroposeidon || Завропосейдон (лат. Sauroposeidon) — род завроподных динозавров.
+Струтиомим; Struthiomimus || Струтиомим (лат. Struthiomimus) — род тероподовых динозавров.
+Теризинозавр; Therizinosaurus || Теризинозавр (лат. Therizinosaurus) — род теризинозаврид.
+Гесперорнисы; Hesperornis || Гесперорнисы (лат. Hesperornis) — род вымерших авиал, или птиц в широком смысле.
+Пахиринозавры; Pachyrhinosaurus || Пахиринозавры (лат. Pachyrhinosaurus) — род цератопсид.
+Троодонтиды; Troodontidae || Троодонтиды (лат. Troodontidae) — семейство манираптор.
+Эдмонтония; Edmontonia || Эдмонтония (лат. Edmontonia) — род позднемеловых анкилозавров.
+манирапторы; Maniraptora || Манирапторы (лат. Maniraptora) — клада целурозавров.
+Дейнохейрус; Deinocheirus || Дейнохейрус (лат. Deinocheirus) — род тероподных динозавров.
+Завролофы; Saurolophus || Завролофы (лат. Saurolophus) — вымерший род гадрозаврид.
+Cryolophosaurus ellioti || Cryolophosaurus ellioti — род тероподных динозавров.
+Гетеродонтозавр; Heterodontosaurus || Гетеродонтозавр (лат. Heterodontosaurus) — род птицетазовых динозавров.
+Зухомим; Suchomimus || Зухомим (лат. Suchomimus) — род спинозаврид.
+Ахиллобатор; Achillobator || Ахиллобатор (лат. Achillobator) — род дромеозаврид.
+Центрозавры; Centrosaurus || Центрозавры (лат. Centrosaurus) — род цератопсид.
+Дромеозавр; Dromaeosaurus || Дромеозавр (лат. Dromaeosaurus) — род дромеозаврид.
+Пахицефалозавры; Pachycephalosauria || Пахицефалозавры (лат. Pachycephalosauria) — инфраотряд животных.
+Ставрикозавр; Staurikosaurus || Ставрикозавр (лат. Staurikosaurus) — род герреразаврид.
+Карнозавры; Carnosauria || Карнозавры (лат. Carnosauria) — инфраотряд динозавров.
+Сцелидозавр; Scelidosaurus || Сцелидозавр (лат. Scelidosaurus) — род птицетазовых динозавров.
+Ирритатор; Irritator || Ирритатор (лат. Irritator) — род спинозаврид.
+Шантунгозавр; Shantungosaurus || Шантунгозавр (лат. Shantungosaurus) — род динозавров.
+Авиалы; Avialae || Авиалы (лат. Avialae) — птицы и их ближайшие вымершие родственники.
+тираннозавриды; Tyrannosauridae || Тираннозавриды (лат. Tyrannosauridae) — семейство тероподных динозавров.
+целофизоиды; Coelophysoidea || Целофизоиды (лат. Coelophysoidea) — надсемейство тероподных динозавров.
+Ютараптор; Utahraptor || Ютараптор (лат. Utahraptor) — род дромеозаврид.
+гигантораптор; Gigantoraptor || Гигантораптор (лат. Gigantoraptor) — род ценагнатид.
+Yutyrannus || Yutyrannus — род тираннозавроид.
+Афровенатор; Afrovenator abakensis || Афровенатор (лат. Afrovenator abakensis) — род тероподовых динозавров.
+Синорнитозавр; Sinornithosaurus || Синорнитозавр (лат. Sinornithosaurus) — род дромеозаврид.
+Huayangosaurus || Huayangosaurus — род стегозавров.
+Конфуциусорнис; Confuciusornis || Конфуциусорнис (лат. Confuciusornis) — род вымерших авиал, или птиц в широком смысле.
+Кархародонтозавриды; Carcharodontosauridae || Кархародонтозавриды (лат. Carcharodontosauridae) — семейство вымерших животных.
+Тираннозавроиды; Tyrannosauroidea || Тираннозавроиды (лат. Tyrannosauroidea) — надсемейство целурозавров.
+Mapusaurus || Mapusaurus — род кархародонтозаврид.
+цераподы; Cerapoda || Цераподы (лат. Cerapoda) — один из двух подотрядов или групп птицетазовых динозавров.
+Дейнонихозавры; Deinonychosauria || Дейнонихозавры (лат. Deinonychosauria) — клада манираптор.
+Хасмозавр; Chasmosaurus || Хасмозавр (лат. Chasmosaurus) — род цератопсид.
+Минми; Minmi || Минми (лат. Minmi) — род небольших динозавров из семейства анкилозаврид.
+Алиорам; Alioramus || Алиорам (лат. Alioramus) — род тираннозаврид.
+Анхизавр; Anchisaurus || Анхизавр (лат. Anchisaurus) — род завроподоморф.
+Агилизавр; Agilisaurus || Агилизавр (лат. Agilisaurus) — род птицетазовых динозавров.
+Титанозавры; Titanosauria || Титанозавры (лат. Titanosauria) — клада завроподных динозавров.
+Мононик; Mononykus || Мононик (лат. Mononykus) — род альваресзаврид.
+Орнитомимозавры; Ornithomimosauria || Орнитомимозавры (лат. Ornithomimosauria) — инфраотряд целурозавров.
+Majungasaurus || Majungasaurus — род абелизаврид.
+Герреразавриды; Herrerasauridae || Герреразавриды (лат. Herrerasauridae) — семейство ящеротазовых динозавров.
+Акантофолис; Acanthopholis || Акантофолис (лат. Acanthopholis) — род анкилозавров.
+Анкилозавриды; Ankylosauridae || Анкилозавриды (лат. Ankylosauridae) — семейство анкилозавров.
+Monolophosaurus || Monolophosaurus — род юрских теропод.
+Компсогнатиды; Compsognathidae || Компсогнатиды (лат. Compsognathidae) — семейство целурозавров.
+Balaur bondoc || Balaur bondoc — род тероподовых динозавров.
+Megaraptor || Megaraptor — род тероподных динозавров.
+Diplodocidae || Diplodocidae — семейство завроподовых динозавров.
+Рахонавис; Rahonavis || Рахонавис (лат. Rahonavis) — род вымерших животных.
+Египтозавр; Aegyptosaurus || Египтозавр (лат. Aegyptosaurus) — род меловых титанозавров.
+Брахиозавриды; Brachiosauridae || Брахиозавриды (лат. Brachiosauridae) — семейство завроподных динозавров.
+Ахелоузавр; Achelousaurus || Ахелоузавр (лат. Achelousaurus) — род цератопсид.
+игуанодонты; Iguaonodontia || Игуанодонты (лат. Iguaonodontia) — группа позднеюрских-раннемеловых орнитоподных динозавров.
+Скутеллозавр; Scutellosaurus || Скутеллозавр (лат. Scutellosaurus) — род птицетазовых динозавров.
+Буитрераптор; Buitreraptor || Буитрераптор (лат. Buitreraptor) — род дромеозаврид.
+Гетеродонтозавриды; Heterodontosauridae || Гетеродонтозавриды (лат. Heterodontosauridae) — семейство птицетазовых динозавров.
+Каудиптерикс; Caudipteryx || Каудиптерикс (лат. Caudipteryx) — род овирапторозавров.
+Альваресзавр; Alvarezsaurus || Альваресзавр (лат. Alvarezsaurus) — род альваресзаврид.
+Аллозавроиды; Allosauroidea || Аллозавроиды (лат. Allosauroidea) — надсемейство вымерших животных.
+Masiakasaurus || Masiakasaurus — род ноазаврид.
+Бэмбираптор; Bambiraptor || Бэмбираптор (лат. Bambiraptor) — род вымерших животных.
+Заурорнитоид; Saurornithoides || Заурорнитоид (лат. Saurornithoides) — род троодонтид.
+Сегнозавр; Segnosaurus || Сегнозавр (лат. Segnosaurus) — род теризинозаврид.
+Багацератопс; Bagaceratops rozhdestvenskyi || Багацератопс (лат. Bagaceratops rozhdestvenskyi) — род цератопсов.
+Зуницератопс; Zuniceratops || Зуницератопс (лат. Zuniceratops) — род цератопсов.
+Polacanthus || Polacanthus — род анкилозавров.
+Нигерзавр; Nigersaurus taqueti || Нигерзавр (лат. Nigersaurus taqueti) — род завроподовых динозавров.
+Зауропельта; Sauropelta || Зауропельта (лат. Sauropelta) — род анкилозавров.
+Marginocephalia || Marginocephalia — клада птицетазовых динозавров.
+Wuerhosaurus || Wuerhosaurus — род стегозавров.
+Стегоцер; Stegoceras || Стегоцер (лат. Stegoceras) — род пахицефалозаврид.
+Homalocephale || Homalocephale — род пахицефалозаврид.
+Антарктозавр; Antarctosaurus || Антарктозавр (лат. Antarctosaurus) — род титанозавров.
+Энанциорнисовые птицы; Enantiornithes || Энанциорнисовые птицы (лат. Enantiornithes) — клада вымерших авиал, или птиц в широком смысле.
+Агустиния; Agustinia || Агустиния (лат. Agustinia) — род завроподных динозавров.
+Уненлагия; Unenlagia || Уненлагия (лат. Unenlagia) — род дромеозаврид.
+Пентацератопс; Pentaceratops || Пентацератопс (лат. Pentaceratops) — род цератопсид.
+овирапториды; Oviraptoridae || Овирапториды (лат. Oviraptoridae) — семейство овирапторозавров.
+Гастония; Gastonia || Гастония (лат. Gastonia) — род анкилозавров.
+Нодозавриды; Nodosauridae || Нодозавриды (лат. Nodosauridae) — семейство анкилозавров.
+Нанотиранус; Nanotyrannus || Нанотиранус (лат. Nanotyrannus) — род тираннозавроид.
+Зупайзавр; Zupaysaurus || Зупайзавр (лат. Zupaysaurus) — род тероподных динозавров.
+Zhuchengtyrannus || Zhuchengtyrannus — род азиатских тираннозаврид.
+Alxasaurus elesitaiensis; Alxasaurus || Alxasaurus elesitaiensis (лат. Alxasaurus) — род теризинозавров.
+Раджазавр; Rajasaurus || Раджазавр (лат. Rajasaurus) — род абелизаврид.
+Ornithurae || Ornithurae — клада авиал (птиц в широком смысле).
+Тираннотитан; Tyrannotitan chubutensis || Тираннотитан (лат. Tyrannotitan chubutensis) — род кархародонтозаврид.
+Sinoceratops || Sinoceratops — род цератопсид.
+Aeolosaurus || Aeolosaurus — род меловых титанозавров.
+Aerosteon || Aerosteon — род нептичьих теропод.
+Noasaurus || Noasaurus — род ноазаврид.
+литронакс; Lythronax || Литронакс (лат. Lythronax) — род североамериканских тираннозаврид.
+овирапторозавры; Oviraptorosauria || Овирапторозавры (лат. Oviraptorosauria) — клада манираптор.
+Адазавр; Adasaurus || Адазавр (лат. Adasaurus) — род дромеозаврид.
+Конкавенатор; Concavenator || Конкавенатор (лат. Concavenator) — Вид динозавров теропод, живший на территории современной Испании.
+Австраловенатор; Australovenator wintonensis || Австраловенатор (лат. Australovenator wintonensis) — род тероподных динозавров.
+Паралититан; Paralititan || Паралититан (лат. Paralititan) — Род растительноядных динозавров.
+Дацентрур; Dacentrurus || Дацентрур (лат. Dacentrurus) — род стегозавров.
+Манирапториформы; Maniraptoriformes || Манирапториформы (лат. Maniraptoriformes) — клада целурозавров.
+Европазавр; Europasaurus || Европазавр (лат. Europasaurus) — род завроподных динозавров.
+годжиразавр; Gojirasaurus || Годжиразавр (лат. Gojirasaurus) — род крупных триасовых динозавров-теропод надсемейства целофизоидов.
+Агухацератопс; Agujaceratops || Агухацератопс (лат. Agujaceratops) — род позднемеловых цератопсид.
+Omeisaurus || Omeisaurus — род мамэньсизаврид.
+Эйниозавр; Einiosaurus || Эйниозавр (лат. Einiosaurus) — род цератопсид.
+Грипозавр; Gryposaurus || Грипозавр (лат. Gryposaurus) — род гадрозаврид живших 83-74 млн лет назад.
+Рапетозавр; Rapetosaurus || Рапетозавр (лат. Rapetosaurus) — Род растительноядных динозавров.
+Dreadnoughtus || Dreadnoughtus — род вымерших животных.
+Ауказавр; Aucasaurus || Ауказавр (лат. Aucasaurus) — позднемеловой род динозавров.
+Дриптозавр; Dryptosaurus || Дриптозавр (лат. Dryptosaurus) — род тираннозавроид.
+Shuvuuia || Shuvuuia — род альваресзаврид.
+Анхицератопс; Anchiceratops || Анхицератопс (лат. Anchiceratops) — род цератопсид.
+Riojasaurus || Riojasaurus — род динозавров.
+Атласкопкозавр; Atlascopcosaurus || Атласкопкозавр (лат. Atlascopcosaurus) — род животных.
+Alectrosaurus || Alectrosaurus — род тероподовых динозавров.
+Diplodocoidea || Diplodocoidea — надсемейство завроподных динозавров.
+Альтирин; Altirhinus || Альтирин (лат. Altirhinus) — род вымерших животных.
+пелеканимим; Pelecanimimus || Пелеканимим (лат. Pelecanimimus) — род вымерших животных.
+Процератозавр; Proceratosaurus || Процератозавр (лат. Proceratosaurus) — род тираннозавроид.
+Micropachycephalosaurus || Micropachycephalosaurus — род птицетазовых динозавров.
+Харонозавр; Charonosaurus || Харонозавр (лат. Charonosaurus) — род гадрозаврид.
+эпидексиптерикс; Epidexipteryx || Эпидексиптерикс (лат. Epidexipteryx) — род скансориоптеригид.
+Хиндезавр; Chindesaurus || Хиндезавр (лат. Chindesaurus) — род ящеротазовых динозавров.
+Рапторекс; Raptorex || Рапторекс (лат. Raptorex) — род динозавров.
+шунозавр; Shunosaurus || Шунозавр (лат. Shunosaurus) — род динозавров.
+Юравенатор; Juravenator || Юравенатор (лат. Juravenator) — род тероподовых динозавров.
+Dracorex || Dracorex — синоним рода динозавров.
+Adamantisaurus || Adamantisaurus — род позднемеловых титанозавров.
+гилеозавр; Hylaeosaurus || Гилеозавр (лат. Hylaeosaurus) — род анкилозавров.
+Неовенатор; Neovenator || Неовенатор (лат. Neovenator) — род тероподовых динозавров.
+цяньчжоузавр; Qianzhousaurus || Цяньчжоузавр (лат. Qianzhousaurus) — род тираннозаврид.
+Метриакантозавр; Metriacanthosaurus parkeri || Метриакантозавр (лат. Metriacanthosaurus parkeri) — род аллозавроид.
+ультразавр; Ultrasaurus || Ультразавр (лат. Ultrasaurus) — сомнительный род растительноядных ящеротазовых динозавров из группы завроподов.
+гарпимим; Harpymimus || Гарпимим (лат. Harpymimus) — род динозавров.
+Chirostenotes || Chirostenotes — род ценагнатид.
+Авацератопс; Avaceratops || Авацератопс (лат. Avaceratops) — род цератопсид.
+Джобария; Jobaria || Джобария (лат. Jobaria) — род завроподных динозавров.
+Тератофоней; Teratophoneus || Тератофоней (лат. Teratophoneus) — род позднемеловых тираннозаврид.
+Эотиранн; Eotyrannus || Эотиранн (лат. Eotyrannus) — род тираннозавроид.
+Magyarosaurus || Magyarosaurus — род карликовых титанозавров.
+Альваресзавриды; Alvarezsauridae || Альваресзавриды (лат. Alvarezsauridae) — семейство целурозавров.
+Космоцератопс; Kosmoceratops || Космоцератопс (лат. Kosmoceratops) — род цератопсид.
+Prenocephale || Prenocephale — род пахицефалозаврид.
+Макронарии; Macronaria || Макронарии (лат. Macronaria) — клада динозавров.
+Немегтозавр; Nemegtosaurus || Немегтозавр (лат. Nemegtosaurus) — род титанозавров.
+Ахиллезавр; Achillesaurus || Ахиллезавр (лат. Achillesaurus) — род альваресзаврид.
+Прокомпсогнат; Procompsognathus || Прокомпсогнат (лат. Procompsognathus) — род триасовых теропод.
+Hesperosaurus || Hesperosaurus — род стегозавров.
+Byronosaurus || Byronosaurus — род троодонтид.
+мирагая; Miragaia || Мирагая (лат. Miragaia) — род стегозавров.
+Saurornitholestes || Saurornitholestes — род дромеозаврид.
+Aurornis || Aurornis — род манираптор.
+Мегапнозавр; Megapnosaurus || Мегапнозавр (лат. Megapnosaurus) — вымерший род теропод.
+Арагозавр; Aragosaurus || Арагозавр (лат. Aragosaurus) — род вымерших животных.
+Дилофозавриды; Dilophosauridae || Дилофозавриды (лат. Dilophosauridae) — устаревшее семейство тероподных динозавров.
+Orodromeus || Orodromeus — Род динозавров.
+Альбертацератопс; Albertaceratops || Альбертацератопс (лат. Albertaceratops) — род цератопсид.
+Эухелоп; Euhelopus || Эухелоп (лат. Euhelopus) — род вымерших животных.
+Протархеоптерикс; Protarchaeopteryx || Протархеоптерикс (лат. Protarchaeopteryx) — род овирапторозавров.
+Микровенатор; Microvenator || Микровенатор (лат. Microvenator) — род ценагнатид.
+Лилиенстерн; Liliensternus || Лилиенстерн (лат. Liliensternus) — род тероподных динозавров.
+Ichthyovenator || Ichthyovenator — род спинозаврид.
+андезавр; Andesaurus || Андезавр (лат. Andesaurus) — род динозавров.
+Segisaurus || Segisaurus — род динозавров.
+Anserimimus || Anserimimus — род динозавров.
+Криптопс; Kryptops || Криптопс (лат. Kryptops) — род абелизаврид.
+Теризинозавриды; Therizinosauridae || Теризинозавриды (лат. Therizinosauridae) — семейство теризинозавров.
+Эотрицератопс; Eotriceratops || Эотрицератопс (лат. Eotriceratops) — род цератопсид.
+Scansoriopteryx || Scansoriopteryx — род скансориоптеригид.
+Рабдодон; Rhabdodon || Рабдодон (лат. Rhabdodon) — род вымерших животных.
+Atlasaurus imelakei || Atlasaurus imelakei — вымерший род динозавров.
+Аардоникс; Aardonyx || Аардоникс (лат. Aardonyx) — род завроподоморфных динозавров.
+Сиамотиран; Siamotyrannus || Сиамотиран (лат. Siamotyrannus) — род аллозавроид.
+Аляскацефал; Alaskacephale || Аляскацефал (лат. Alaskacephale) — род пахицефалозаврид.
+Lexovisaurus || Lexovisaurus — род юрских тиреофор.
+ноазавриды; Noasauridae || Ноазавриды (лат. Noasauridae) — семейство цератозавров.
+Telmatosaurus || Telmatosaurus — архаичный род птицетазовых динозавров.
+Utahceratops || Utahceratops — род цератопсид.
+Синозавр; Sinosaurus || Синозавр (лат. Sinosaurus) — род тероподных динозавров.
+Guaibasaurus || Guaibasaurus — вымерший род ящеротазовых динозавров.
+Conchoraptor || Conchoraptor — род овирапторид.
+Bonitasaura || Bonitasaura — род вымерших животных.
+Garudimimus || Garudimimus — род тероподовых динозавров.
+Abydosaurus || Abydosaurus — род брахиозаврид.
+целофизиды; Coelophysidae || Целофизиды (лат. Coelophysidae) — вымершее семейство теропод.
+Anchiornis huxleyi || Anchiornis huxleyi — вид тероподовых динозавров.
+Titanoceratops ouranos; Titanoceratops || Titanoceratops ouranos (лат. Titanoceratops) — род цератопсид.
+Diplodocus hallorum || Diplodocus hallorum — вид крупных диплодоков.
+инцисивозавр; Incisivosaurus || Инцисивозавр (лат. Incisivosaurus) — род овирапторозавров.
+гигантозавр; Gigantosaurus || Гигантозавр (лат. Gigantosaurus) — род завроподных динозавров.
+Nasutoceratops; Nasutoceratops titusi || Nasutoceratops (лат. Nasutoceratops titusi) — род цератопсид.
+Линьхэраптор; Linheraptor || Линьхэраптор (лат. Linheraptor) — род тероподовых динозавров.
+Xiaotingia zhengi || Xiaotingia zhengi — род манираптор.
+Хилантаизавр; Chilantaisaurus || Хилантаизавр (лат. Chilantaisaurus) — род вымерших животных.
+Эмаузавры; Emausaurus || Эмаузавры (лат. Emausaurus) — Вид динозавров.
+Скансориоптеригиды; Scansoriopterygidae || Скансориоптеригиды (лат. Scansoriopterygidae) — семейство манираптор.
+дикреозавриды; Dicraeosauridae || Дикреозавриды (лат. Dicraeosauridae) — семейство диплодокоидей.
+Неозавроподы; Neosauropoda || Неозавроподы (лат. Neosauropoda) — группа ящеротазовых динозавров.
+Goyocephale || Goyocephale — род пахицефалозаврид.
+Oryctodromeus || Oryctodromeus — род птицетазовых динозавров, известных из отложений позднего мелового периода.
+Chungkingosaurus || Chungkingosaurus — род стегозавров.
+Yaverlandia || Yaverlandia — род вымерших животных.
+Диаблоцератопс; Diabloceratops || Диаблоцератопс (лат. Diabloceratops) — род цератопсид.
+Labocania || Labocania — род тираннозаврид.
+Atrociraptor || Atrociraptor — род дромеозаврид.
+Sinornithoides || Sinornithoides — род троодонтид.
+Ламбеозаврины; Lambeosaurinae || Ламбеозаврины (лат. Lambeosaurinae) — подсемейство вымерших животных.
+Leptoceratopsidae || Leptoceratopsidae — семейство цератопсов.
+Indosaurus || Indosaurus — вымерший род динозавров.
+Cristatusaurus || Cristatusaurus — род спинозаврид.
+Тураноцератопс; Turanoceratops || Тураноцератопс (лат. Turanoceratops) — род цератопсов.
+Puertasaurus || Puertasaurus — род титанозавров.
+Stokesosaurus || Stokesosaurus — род тираннозавроид.
+Гадрозавроиды; Hadrosauroidea || Гадрозавроиды (лат. Hadrosauroidea) — надсемейство птицетазовых динозавров.
+Prenoceratops || Prenoceratops — род цератопсов.
+Занабазар; Zanabazar || Занабазар (лат. Zanabazar) — род троодонтид.
+Montanoceratops || Montanoceratops — род цератопсов.
+Dakotaraptor || Dakotaraptor — спорный род тероподных динозавров.
+Аппалачиозавр; Appalachiosaurus || Аппалачиозавр (лат. Appalachiosaurus) — род тираннозавроид.
+Килеск; Kileskus || Килеск (лат. Kileskus) — род тираннозавроид.
+Archaeoceratops || Archaeoceratops — род цератопсов.
+Janenschia || Janenschia — род вымерших животных.
+Tsaagan || Tsaagan — род дромеозаврид.
+Стегозавриды; Stegosauridae || Стегозавриды (лат. Stegosauridae) — семейство динозавров-тиреофор.
+Бороговия; Borogovia || Бороговия (лат. Borogovia) — род троодонтид.
+Malawisaurus || Malawisaurus — род титанозавров.
+ценагнатазия; Caenagnathasia || Ценагнатазия (лат. Caenagnathasia) — род ценагнатид.
+Xiongguanlong || Xiongguanlong — род тираннозавроид.
+Элмизавр; Elmisaurus || Элмизавр (лат. Elmisaurus) — род ценагнатид.
+Gargoyleosaurus || Gargoyleosaurus — род анкилозавров.
+Анимантаркс; Animantarx || Анимантаркс (лат. Animantarx) — род анкилозавров.
+Coahuilaceratops || Coahuilaceratops — род цератопсид.
+Altispinax || Altispinax — род вымерших животных.
+Эрликозавр; Erlikosaurus || Эрликозавр (лат. Erlikosaurus) — род теризинозаврид.
+Tianyuraptor ostromi || Tianyuraptor ostromi — род дромеозаврид.
+процератозавриды; Proceratosauridae || Процератозавриды (лат. Proceratosauridae) — семейство тираннозавроид.
+Struthiosaurus || Struthiosaurus — род позднемеловых анкилозавров.
+Ajkaceratops; Ajkaceratops kozmai || Ajkaceratops (лат. Ajkaceratops kozmai) — род цератопсов.
+платеозавриды; Plateosauridae || Платеозавриды (лат. Plateosauridae) — семейство завроподоморфных динозавров.
+Velocisaurus || Velocisaurus — род ноазаврид.
+Limusaurus inextricabilis; Limusaurus || Limusaurus inextricabilis (лат. Limusaurus) — род ноазаврид.
+Chilesaurus || Chilesaurus — род динозавров.
+Huaxiagnathus || Huaxiagnathus — род динозавров.
+реббахизавриды; Rebbachisauridae || Реббахизавриды (лат. Rebbachisauridae) — семейство завроподных динозавров.
+Metriacanthosauridae || Metriacanthosauridae — семейство аллозавроид.
+Panphagia || Panphagia — Род динозавров.
+Dinheirosaurus lourinhanensis || Dinheirosaurus lourinhanensis — род диплодоцид.
+Massospondylidae || Massospondylidae — семейство вымерших животных.
+итемир; Itemirus || Итемир (лат. Itemirus) — род дромеозаврид.
+Археоптериксовые; Archaeopterygidae || Археоптериксовые (лат. Archaeopterygidae) — семейство животных.
+Neuquenraptor || Neuquenraptor — род дромеозаврид.
+Amtocephale gobiensis; Amtocephale || Amtocephale gobiensis (лат. Amtocephale) — Род динозавров.
+лессемозавр; Lessemsaurus || Лессемозавр (лат. Lessemsaurus) — род динозавров.
+Liaoceratops || Liaoceratops — род цератопсов.
+Cerasinops || Cerasinops — род цератопсов.
+Чанъюйраптор; Changyuraptor || Чанъюйраптор (лат. Changyuraptor) — вид хищных динозавров.
+Graciliraptor || Graciliraptor — род дромеозаврид.
+Цетиозавриды; Cetiosauridae || Цетиозавриды (лат. Cetiosauridae) — семейство завроподных динозавров.
+Marshosaurus || Marshosaurus — Вымерший род динозавров.
+Heyuannia || Heyuannia — род овирапторид.
+Nemegtomaia barsboldi; Nemegtomaia || Nemegtomaia barsboldi (лат. Nemegtomaia) — род овирапторид.
+Ринчения; Rinchenia || Ринчения (лат. Rinchenia) — род овирапторид.
+Медузацератопс; Medusaceratops lokii || Медузацератопс (лат. Medusaceratops lokii) — род цератопсид.
+Ксеноцератопсы; Xenoceratops || Ксеноцератопсы (лат. Xenoceratops) — род цератопсид.
+Алгоазавр; Algoasaurus || Алгоазавр (лат. Algoasaurus) — род вымерших животных.
+Zuolong salleei; Zuolong || Zuolong salleei (лат. Zuolong) — Род позднеюрских тероподов.
+Эукнемезавр; Eucnemesaurus || Эукнемезавр (лат. Eucnemesaurus) — род примитивных динозавров.
+Siats || Siats — род вымерших животных.
+Вендицератопс; Wendiceratops || Вендицератопс (лат. Wendiceratops) — род цератопсид.
+Vagaceratops || Vagaceratops — род цератопсид.
+Eolambia || Eolambia — род вымерших животных.
+Протоцератопсиды; Protoceratopsidae || Протоцератопсиды (лат. Protoceratopsidae) — семейство цератопсов.
+Regaliceratops || Regaliceratops — род цератопсид.
+Эокурсор; Eocursor || Эокурсор (лат. Eocursor) — род базальных птицетазовых динозавров.
+Алетопельта; Aletopelta || Алетопельта (лат. Aletopelta) — род анкилозавров.
+Gigantspinosaurus || Gigantspinosaurus — род стегозавров.
+Aviatyrannis || Aviatyrannis — род тираннозавроид.
+сантанараптор; Santanaraptor || Сантанараптор (лат. Santanaraptor) — род тираннозавроид.
+Jaxartosaurus || Jaxartosaurus — род гадрозаврид.
+Falcarius || Falcarius — род теризинозавров.
+Гилмореозавры; Gilmoreosaurus || Гилмореозавры (лат. Gilmoreosaurus) — род птицетазовых динозавров.
+Draconyx || Draconyx — род орнитоподных динозавров.
+Albalophosaurus || Albalophosaurus — род цератопсов.
+Asiatosaurus || Asiatosaurus — род меловых завропод.
+Patagonykus || Patagonykus — род манираптор.
+Stenopelix || Stenopelix — род цератопсов.
+Brontomerus || Brontomerus — род завроподных динозавров.
+Игуаноколосс; Iguanacolossus || Игуаноколосс (лат. Iguanacolossus) — род животных.
+Конфуциусорнитиды; Confuciusornithidae || Конфуциусорнитиды (лат. Confuciusornithidae) — семейство вымерших авиал, или птиц в широком смысле.
+тираннозавр рекс; Tyrannosaurus rex || Тираннозавр рекс (лат. Tyrannosaurus rex) — вид позднемеловых тираннозаврид.
+Zhuchengceratops || Zhuchengceratops — род динозавров.
+Juratyrant langhami || Juratyrant langhami — вид позднеюрских тираннозавроидов.
+Arenysaurus || Arenysaurus — род гадрозаврид.
+Фукуизавр; Fukuisaurus || Фукуизавр (лат. Fukuisaurus) — род вымерших животных.
+Valdosaurus || Valdosaurus — Вымерший род динозавров.
+Laquintasaura venezuelae; Laquintasaura || Laquintasaura venezuelae (лат. Laquintasaura) — вымерший род примитивных птицетазовых динозавров.
+ценагнатиды; Caenagnathidae || Ценагнатиды (лат. Caenagnathidae) — семейство овирапторозавров.
+Guaibasauridae || Guaibasauridae — семейство примитивных ящеротазовых динозавров.
+Gobisaurus || Gobisaurus — вымерший род рептилий.
+Qiaowanlong || Qiaowanlong — род вымерших животных.
+Chaoyangsauridae || Chaoyangsauridae — семейство цератопсов.
+Dysalotosaurus || Dysalotosaurus — род вымерших животных.
+Linhenykus monodactylus; Linhenykus || Linhenykus monodactylus (лат. Linhenykus) — род альваресзаврид.
+Ekrixinatosaurus || Ekrixinatosaurus — род абелизаврид.
+Anchisauria || Anchisauria — клада завроподоморфных динозавров.
+Alvarezsauroidea || Alvarezsauroidea — надсемейство манираптор.
+Tanycolagreus || Tanycolagreus — род динозавров.
+Jeyawati || Jeyawati — Род динозавров.
+тимурленгия; Timurlengia || Тимурленгия (лат. Timurlengia) — род тираннозавроид.
+Mamenchisauridae || Mamenchisauridae — семейство завроподных динозавров.
+Jakapil || Jakapil — род динозавров из подотряда тиреофор.
+Sanjuansaurus || Sanjuansaurus — род герреразаврид.
+Anoplosaurus || Anoplosaurus — род птицетазовых динозавров.
+Тираннорапторы; Tyrannoraptora || Тираннорапторы (лат. Tyrannoraptora) — клада целурозавров.
+номингия; Nomingia || Номингия (лат. Nomingia) — род ценагнатид.
+Acheroraptor || Acheroraptor — род дромеозаврид.
+Hulsanpes || Hulsanpes — род дромеозаврид.
+Acristavus || Acristavus — род гадрозаврид.
+Агносфитис; Agnosphitys || Агносфитис (лат. Agnosphitys) — вымерший род архозавров.
+Гондванатитан; Gondwanatitan || Гондванатитан (лат. Gondwanatitan) — род вымерших животных.
+Tethyshadros || Tethyshadros — род вымерших животных.
+отниелозавр; Othnielosaurus || Отниелозавр (лат. Othnielosaurus) — род животных.
+Aepyornithomimus || Aepyornithomimus — род орнитомимид.
+Rinconsaurus || Rinconsaurus — род завроподных динозавров.
+Savannasaurus || Savannasaurus — род завроподных динозавров.
+Zby atlanticus || Zby atlanticus — род завроподных динозавров.
+котазавр; Kotasaurus || Котазавр (лат. Kotasaurus) — род завроподных динозавров.
+Hungarosaurus || Hungarosaurus — род анкилозавров.
+Coloradisaurus || Coloradisaurus — род завроподоморфных динозавров.
+Maip || Maip — род тероподных динозавров.
+Ляонинозавр; Liaoningosaurus || Ляонинозавр (лат. Liaoningosaurus) — род анкилозавров.
+Энигмозавр; Enigmosaurus || Энигмозавр (лат. Enigmosaurus) — род теризинозаврид.
+Yuxisaurus || Yuxisaurus — род базальных тиреофор.
+Илокелезия; Ilokelesia || Илокелезия (лат. Ilokelesia) — род динозавров.
+Нэмэгтозавриды; Nemegtosauridae || Нэмэгтозавриды (лат. Nemegtosauridae) — семейство титанозавров.
+Hanssuesia || Hanssuesia — род пахицефалозаврид.
+Eshanosaurus || Eshanosaurus — род тероподных динозавров.
+Tameryraptor || Tameryraptor — род кархародонтозаврид.
+Ajancingenia || Ajancingenia — род овирапторид.
+Orkoraptor || Orkoraptor — род вымерших животных.
+Ganzhousaurus nankangensis || Ganzhousaurus nankangensis — род овирапторид.
+Machairasaurus || Machairasaurus — род овирапторид.
+дриозавриды; Dryosauridae || Дриозавриды (лат. Dryosauridae) — семейство птицетазовых динозавров.
+Dracopelta || Dracopelta — род анкилозавров.
+Aquilops || Aquilops — род цератопсов.
+Shenzhousaurus || Shenzhousaurus — род орнитомимозавров.
+Ксиксиазавр; Xixiasaurus || Ксиксиазавр (лат. Xixiasaurus) — род троодонтид.
+Proa || Proa — род вымерших животных.
+Sauroniops || Sauroniops — род вымерших животных.
+Iberomesornis romerali || Iberomesornis romerali — род энанциорнисовых птиц.
+Kakuru kujani || Kakuru kujani — вид вымерших животных.
+Panamericansaurus || Panamericansaurus — род титанозавров.
+Raptor; Rapator || Raptor (лат. Rapator) — сомнительный род тероподных динозавров.
+Фукуититан; Fukuititan || Фукуититан (лат. Fukuititan) — род вымерших животных.
+Caenagnathoidea || Caenagnathoidea — надсемейство овирапторозавров.
+Adratiklit || Adratiklit — род юрских стегозаврид.
+Colepiocephale || Colepiocephale — род пахицефалозаврид.
+Galeamopus || Galeamopus — род диплодоцид.
+Teyuwasu || Teyuwasu — вымерший род динозавров.
+Lithostrotia || Lithostrotia — клада титанозавров.
+Vallibonavenatrix || Vallibonavenatrix — род спинозаврид.
+Bagaraatan || Bagaraatan — род тираннозавроид.
+Khankhuuluu || Khankhuuluu — род тираннозавроид.
+Lamplughsaura || Lamplughsaura — род динозавров.
+Angolatitan || Angolatitan — род вымерших животных.
+Spicomellus || Spicomellus — род динозавров.
+анкилополлексии; Ankylopollexia || Анкилополлексии (лат. Ankylopollexia) — клада животных.
+Yurgovuchia doellingi || Yurgovuchia doellingi — род динозавров.
+Амаргазавр; Amargasaurus cazaui || Амаргазавр (лат. Amargasaurus cazaui) — род дикреозаврид.
+Eudromaeosauria || Eudromaeosauria — клада дромеозаврид.
+Camarillasaurus || Camarillasaurus — род спинозаврид.
+Plateosauria || Plateosauria — клада завроподоморфных динозавров.
+Suskityrannus || Suskityrannus — род тираннозавроид.
+Megaraptora || Megaraptora — клада тероподных динозавров.
+Cruxicheiros || Cruxicheiros — род динозавров.
+Tatisaurus || Tatisaurus — род птицетазовых динозавров.
+ценагнат; Caenagnathus || Ценагнат (лат. Caenagnathus) — род ценагнатид.
+Bicentenaria argentina; Bicentenaria || Bicentenaria argentina (лат. Bicentenaria) — род целурозавров.
+Moros intrepidus || Moros intrepidus — вид динозавров.
+Velafrons || Velafrons — род гадрозаврид.
+Lametasaurus || Lametasaurus — сомнительный вид травоядных динозавров.
+Notocolossus || Notocolossus — род титанозавров.
+Wiehenvenator || Wiehenvenator — род вымерших животных.
+Traukutitan || Traukutitan — род вымерших животных.
+Dakotadon || Dakotadon — род животных.
+Similicaudipteryx || Similicaudipteryx — род овирапторозавров.
+Ornithoscelida || Ornithoscelida — предлагаемая клада динозавров.
+Лукалкан; Llukalkan || Лукалкан (лат. Llukalkan) — род абелизаврид.
+Ulughbegsaurus || Ulughbegsaurus — род аллозавроид.
+Buriolestes || Buriolestes — род завроподоморф.
+Albinykus || Albinykus — род альваресзаврид.
+Urbacodon || Urbacodon — род тероподных динозавров.
+Berthasaura || Berthasaura — род ноазаврид.
+Erliansaurus || Erliansaurus — род теризинозаврид.
+Zhongyuansaurus || Zhongyuansaurus — род анкилозавров.
+Hoplitosaurus || Hoplitosaurus — род анкилозавров.
+Лофоротон; Lophorhothon atopus || Лофоротон (лат. Lophorhothon atopus) — род динозавров.
+Narambuenatitan || Narambuenatitan — род вымерших животных.
+Geminiraptor || Geminiraptor — род троодонтид.
+Gobivenator || Gobivenator — род троодонтид.
+Linhevenator tani; Linhevenator || Linhevenator tani (лат. Linhevenator) — род троодонтид.
+хуананьзавр; Huanansaurus || Хуананьзавр (лат. Huanansaurus) — род овирапторид.
+Сцелидозавриды; Scelidosauridae || Сцелидозавриды (лат. Scelidosauridae) — семейство птицетазовых динозавров.
+Paludititan || Paludititan — род вымерших животных.
+Pantydraco || Pantydraco — род вымерших животных.
+шисиния; Shixinggia || Шисиния (лат. Shixinggia) — род овирапторид.
+Shanag || Shanag — род дромеозаврид.
+Alcovasaurus || Alcovasaurus — род юрских стегозаврид.
+Ahvaytum || Ahvaytum — род ящеротазовых динозавров.
+Керберозавр; Kerberosaurus || Керберозавр (лат. Kerberosaurus) — род гадрозаврид.
+Abdarainurus || Abdarainurus — род титанозавров.
+Magnapaulia || Magnapaulia — род орнитоподовых динозавров.
+Bashanosaurus || Bashanosaurus — род стегозавров.
+Regnosaurus || Regnosaurus — род птицетазовых динозавров.
+Тава; Tawa hallae || Тава (лат. Tawa hallae) — род ящеротазовых динозавров.
+Equijubus || Equijubus — Род динозавров.
+Iberospinus || Iberospinus — род спинозаврид.
+Angulomastacator || Angulomastacator — Род динозавров.
+Ceratosuchops || Ceratosuchops — род спинозаврид.
+Priconodon crassus || Priconodon crassus — род анкилозавров.
+Bonapartenykus || Bonapartenykus — род вымерших животных.
+Pterospondylus || Pterospondylus — ископаемый род динозавров.
+Sierraceratops || Sierraceratops — род цератопсид.
+Kangnasaurus || Kangnasaurus — род птицетазовых динозавров.
+Hesperornithoides || Hesperornithoides — род позднемеловых троодонтид.
+Machairoceratops || Machairoceratops — род цератопсид.
+Albertadromeus || Albertadromeus — род позднемеловых птицетазовых динозавров.
+Blasisaurus || Blasisaurus — род позднемеловых гадрозаврид.
+Crittendenceratops || Crittendenceratops — род центрозаврин.
+Alioramini || Alioramini — клада тираннозаврид.
+Tongtianlong || Tongtianlong — род овирапторид.
+Теризинозавроиды; Therizinosauroidea || Теризинозавроиды (лат. Therizinosauroidea) — надсемейство вымерших животных.
+Luoyanggia || Luoyanggia — род овирапторид.
+весперзавр; Vespersaurus || Весперзавр (лат. Vespersaurus) — род ноазаврид.
+Пампараптор; Pamparaptor || Пампараптор (лат. Pamparaptor) — Вымерший вид динозавров.
+Alpkarakush || Alpkarakush — род метриакантозаврид.
+фукуивенатор; Fukuivenator || Фукуивенатор (лат. Fukuivenator) — род манираптор.
+Yixianosaurus longimanus || Yixianosaurus longimanus — род манираптор.
+Tonganosaurus || Tonganosaurus — род мамэньсизаврид.
+Thanos simonattoi || Thanos simonattoi — вид динозавров.
+Apatosaurinae || Apatosaurinae — подсемейство динозавров.
+Deinocheiridae || Deinocheiridae — семейство тероподных динозавров.
+Quetecsaurus || Quetecsaurus — род завроподовых динозавров.
+Astrophocaudia || Astrophocaudia — род завроподных динозавров.
+Thescelosauridae || Thescelosauridae — семейство птицетазовых динозавров.
+Cedrorestes || Cedrorestes — род животных.
+Bihariosaurus || Bihariosaurus — род животных.
+Boreonykus || Boreonykus — род дромеозаврид.
+Alnashetri || Alnashetri — род альваресзаврид.
+Philovenator || Philovenator — род троодонтид.
+Asylosaurus || Asylosaurus — род динозавров.
+Lambeosaurini || Lambeosaurini — триба животных.
+Pararhabdodon || Pararhabdodon — род гадрозаврид.
+Yongjinglong || Yongjinglong — род вымерших животных.
+Theiophytalia || Theiophytalia — род вымерших животных.
+Murusraptor || Murusraptor — род вымерших животных.
+Hippodraco || Hippodraco — род вымерших животных.
+Duriatitan || Duriatitan — род вымерших животных.
+шамозавр; Shamosaurus || Шамозавр (лат. Shamosaurus) — род анкилозавров.
+Chuxiongosaurus || Chuxiongosaurus — род вымерших животных.
+хиерозавр; Hierosaurus || Хиерозавр (лат. Hierosaurus) — род анкилозавров.
+Enigmacursor || Enigmacursor — род птицетазовых динозавров.
+Elasmaria || Elasmaria — клада орнитоподных динозавров.
+Sonidosaurus || Sonidosaurus — род позднемеловых титанозавров.
+Albertavenator || Albertavenator — род троодонтид.
+Rhinorex || Rhinorex — род вымерших животных.
+Macrogryphosaurus || Macrogryphosaurus — род орнитоподовых динозавров.
+Delapparentia || Delapparentia — род орнитоподных динозаров.
+Mexidracon || Mexidracon — род орнитомимид.
+Rukwatitan || Rukwatitan — род титанозавров.
+Yulong mini || Yulong mini — род овирапторид.
+Duonychus || Duonychus — род теризинозаврид.
+Nankangia || Nankangia — род овирапторид.
+Ojoraptorsaurus boerei; Ojoraptorsaurus || Ojoraptorsaurus boerei (лат. Ojoraptorsaurus) — род ценагнатид.
+Epichirostenotes || Epichirostenotes — род ценагнатид.
+Apatoraptor || Apatoraptor — род ценагнатид.
+Arkharavia heterocoelica || Arkharavia heterocoelica — вид вымерших животных.
+Natovenator || Natovenator — род тероподных динозавров.
+Gnathovorax || Gnathovorax — род герреразаврид.
+Orthomerus || Orthomerus — род динозавров.
+Kurupi || Kurupi — род абелизаврид.
+Guemesia || Guemesia — род тероподовых динозавров семейства абелизаврид.
+Niebla antiqua || Niebla antiqua — род абелизаврид.
+Jeholosauridae || Jeholosauridae — семейство животных.
+Моринозавр; Morinosaurus || Моринозавр (лат. Morinosaurus) — род динозавров.
+Europatitan || Europatitan — род завроподных динозавров.
+платеозаврав; Plateosauravus || Платеозаврав (лат. Plateosauravus) — род динозавров.
+Unaysauridae || Unaysauridae — клада завроподоморфных динозавров.
+Xianshanosaurus || Xianshanosaurus — род раннемеловых завропод.
+Archaeocursor || Archaeocursor — род базальных птицетазовых динозавров.
+Sanxiasaurus || Sanxiasaurus — род птицетазовых динозавров.
+Pulaosaurus || Pulaosaurus — род птицетазовых динозавров.
+Parasaurolophini || Parasaurolophini — триба гадрозаврид.
+хагриф; Hagryphus || Хагриф (лат. Hagryphus) — род тероподовых динозавров.
+Tichosteus || Tichosteus — род динозавров.
+Terminocavus || Terminocavus — род цератопсид.
+Imperobator || Imperobator — род позднемеловых теропод.
+Platytholus || Platytholus — род пахицефалозаврид.
+Wulagasaurus || Wulagasaurus — род животных.
+Foraminacephale || Foraminacephale — род пахицефалозаврид.
+Amanzia greppini; Amanzia || Amanzia greppini (лат. Amanzia) — род завроподных динозавров.
+Sasayamagnomus || Sasayamagnomus — род цератопсов.
+Huehuecanauhtlus || Huehuecanauhtlus — род орнитоподовых динозавров.
+Siluosaurus || Siluosaurus — род вымерших животных.
+джаратитан; Dzharatitanis || Джаратитан (лат. Dzharatitanis) — род завроподных динозавров.
+Longipteryx || Longipteryx — род энанциорнисовых птиц.
+Mosaiceratops || Mosaiceratops — род цератопсов.
+Rativates || Rativates — род орнитомимид.
+Энанциорнисы; Enantiornis || Энанциорнисы (лат. Enantiornis) — род энанциорнисовых птиц.
+Лонгиптеригиды; Longipterygidae || Лонгиптеригиды (лат. Longipterygidae) — семейство энанциорнисовых птиц.
+Tlatolophus || Tlatolophus — род гадрозаврид.
+Analong || Analong — род мамэньсизаврид.
+Afromimus || Afromimus — род нептичьих теропод.
+Brodavis || Brodavis — Род вымерших птиц.
+Eotyrannus lengi || Eotyrannus lengi — вид раннемеловых тираннозавроидов.
+Ostromia || Ostromia — род манираптор.
+Lepidus praecisio || Lepidus praecisio — род тероподных динозавров.
+Adynomosaurus || Adynomosaurus — род гадрозаврид.
+Canardia || Canardia — род гадрозаврид.
+Yuanmouraptor || Yuanmouraptor — род метриакантозаврид.
+Этоникс; Aetonyx || Этоникс (лат. Aetonyx) — род вымерших животных.
+Chuanqilong || Chuanqilong — род анкилозавров.
+Денверзавр; Denversaurus || Денверзавр (лат. Denversaurus) — род нодозаврид.
+Chucarosaurus || Chucarosaurus — род титанозавров.
+Brachylophosaurini || Brachylophosaurini — триба динозавров.
+Daemonosaurus || Daemonosaurus — род ящеротазовых динозавров.
+Maleriraptor || Maleriraptor — род ящеротазовых динозавров.
+Zigongosaurus || Zigongosaurus — синоним рода вымерших животных.
+Kukufeldia || Kukufeldia — синоним рода динозавров.
+Herrerasauria || Herrerasauria — клада ящеротазовых динозавров.
+Sellacoxa || Sellacoxa — синоним рода динозавров.
+Shishugounykus || Shishugounykus — род альваресзаврид.
+Tyrannomimus || Tyrannomimus — род орнитомимозавров.
+Gongpoquansaurus || Gongpoquansaurus — род орнитоподовых динозавров.
+Sellosaurus || Sellosaurus — род завропод.
+Cratoavis || Cratoavis — род энанциорнисовых птиц.
+Thyreosaurus || Thyreosaurus — род стегозаврид.
+Abditosaurus || Abditosaurus — род позднемеловых титанозавров.
+Elemgasem || Elemgasem — род абелизаврид.
+Nambalia || Nambalia — род вымерших животных.
+Isaberrysaura || Isaberrysaura — род птицетазовых динозавров.
+Erythrovenator || Erythrovenator — род базальных динозавров-теропод.
+Jaculinykus || Jaculinykus — род альваресзаврид.
+Ferenceratops || Ferenceratops — род цератопсов.
+Ferrisaurus || Ferrisaurus — род цератопсов.
+Tsintaosaurini || Tsintaosaurini — Триба травоядных динозавров.
+Riojavenatrix || Riojavenatrix — род спинозаврид.
+Jinyunpelta || Jinyunpelta — род птицетазовых динозавров.
+Tototlmimus || Tototlmimus — род орнитомимид.
+Gorgosaurus libratus || Gorgosaurus libratus — вид североамериканских тираннозаврид.
+Трицератопс грубый; Triceratops horridus || Трицератопс грубый (лат. Triceratops horridus) — вид цератопсид.
+Issi || Issi — род завроподоморфных динозавров.
+Wudingloong || Wudingloong — род завроподоморф.
+сибиротитан; Sibirotitan || Сибиротитан (лат. Sibirotitan) — род завроподных динозавров.
+Bicharracosaurus || Bicharracosaurus — род завроподных динозавров.
+Avisauridae || Avisauridae — семейство вымерших птиц.
+Неоцератопсии; Neoceratopsia || Неоцератопсии (лат. Neoceratopsia) — клада цератопсов.
+Punatitan || Punatitan — Род динозавров.
+Адеопаппозавр; Adeopapposaurus mognai || Адеопаппозавр (лат. Adeopapposaurus mognai) — род динозавров.
+Dzharaonyx || Dzharaonyx — род альваресзаврид.
+Ondogurvel || Ondogurvel — род альваресзаврид.
+Vectipelta || Vectipelta — род анкилозавров.
+тенгризавр; Tengrisaurus || Тенгризавр (лат. Tengrisaurus) — род титанозавров.
+Petrustitan || Petrustitan — род титанозавров.
+Ponerosteus || Ponerosteus — род динозавров.
+Sahaliyania || Sahaliyania — род динозавров.
+Aeolosaurini || Aeolosaurini — клада титанозавров.
+Furcatoceratops || Furcatoceratops — род цератопсид.
+Proplanicoxa || Proplanicoxa — род животных.
+Canadaga || Canadaga — вымерший род нелетающих птиц позднего мелового периода.
+Yantaloong || Yantaloong — род завроподных динозавров.
+Wamweracaudia || Wamweracaudia — род мамэньсизаврид.
+Shanweiniao cooperorum || Shanweiniao cooperorum — род энанциорнисовых птиц.
+Minimocursor || Minimocursor — род птицетазовых динозавров.
+Iyuku || Iyuku — род птицетазовых динозавров из группы игуанодонтов инфраотряда орнитопод.
+Gremlin; Gremlin slobodorum || Gremlin (лат. Gremlin slobodorum) — род цератопсов.
+Triceratops prorsus || Triceratops prorsus — вид позднемеловых цератопсид.
+Campananeyen || Campananeyen — род реббахизаврид.
+Мегалозавроиды; Spinosauroidea || Мегалозавроиды (лат. Spinosauroidea) — надсемейство тероподных динозавров.
+Smitanosaurus || Smitanosaurus — род дикреозаврид.
+Jian; Jian changmaensis || Jian (лат. Jian changmaensis) — род дромеозаврид.
+Huaxiaosaurus || Huaxiaosaurus — род животных.
+Bohaiornithidae || Bohaiornithidae — семейство энанциорнисовых птиц.
+Tongnanlong || Tongnanlong — род мамэньсизаврид.
+Chakisaurus || Chakisaurus — род орнитоподных динозавров.
+Foskeia || Foskeia — род орнитоподных динозавров.

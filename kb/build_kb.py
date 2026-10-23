@@ -24,6 +24,18 @@ def keys(ans, n):
     a = re.sub(r'\s+', ' ', ans)
     return a[:n].rsplit(' ', 1)[0] if len(a) > n else a
 
+def compact_row(hh, r, k, px):
+    """[hash, triggers, keys]: trigger «<prefix><first>» → «~N» (px[N] + first); keys keep only words not in triggers."""
+    first, out = r['q'][0], [r['q'][0]]
+    for t in r['q'][1:]:
+        if len(t) > len(first) and t.endswith(first):
+            pre = t[:-len(first)]
+            if pre not in px: px[pre] = len(px)
+            out.append('~%d' % px[pre])
+        else: out.append(t)
+    tw = set(norm(' '.join(r['q'])).split())
+    return [hh, '|'.join(out), ' '.join(w for w in norm(k).split() if w not in tw)]
+
 def gz(b): return len(gzip.compress(b, 9))
 
 def dump(path, obj):
@@ -73,16 +85,21 @@ def build():
             recs.append((eid, h[:n], rec))
         if not recs: continue
         nparts = (len(recs) + PART - 1) // PART
-        pfiles, pgz, pbytes, shard = [], [], 0, []
+        pfiles, pgz, pbytes, shard, px = [], [], 0, [], {}
         for pi in range(nparts):
             chunk = recs[pi * PART:(pi + 1) * PART]
             f = 'packs/kb_%s.json' % dom if nparts == 1 else 'packs/kb_%s_%d.json' % (dom, pi)
             b = dump(os.path.join(HERE, f), {'v': 2, 'domain': dom, 'part': pi, 'entries': {e: r for e, _, r in chunk}})
             pfiles.append(f); pgz.append(gz(b)); pbytes += len(b)
             kn = 40 if gen else 110
-            for _, hh, r in chunk: shard.append([hh, '|'.join(r['q']), keys(r['a'], kn), pi])
+            for _, hh, r in chunk:
+                if gen: shard.append(compact_row(hh, r, keys(r['a'], kn), px))
+                else: shard.append([hh, '|'.join(r['q']), keys(r['a'], kn), pi])
         sf = 'idx/%s.json' % dom
-        sb = dump(os.path.join(HERE, sf), dict({'v': 2, 'd': dom, 'e': shard}, **({'g': 1} if gen else {})))
+        if gen:   # v3 compact: prefix table «кто такой », part implied by position (PART), keys without trigger words
+            sb = dump(os.path.join(HERE, sf), {'v': 3, 'd': dom, 'g': 1, 'pp': PART, 'px': [k for k, _ in sorted(px.items(), key=lambda x: x[1])], 'e': shard})
+        else:
+            sb = dump(os.path.join(HERE, sf), {'v': 2, 'd': dom, 'e': shard})
         domains[dom] = {'title': title[0].strip(), 'title_en': (title[1].strip() if len(title) > 1 else dom), 'gen': gen,
                         'count': len(recs), 'shard': sf, 'shard_gz': gz(sb), 'shard_bytes': len(sb),
                         'packs': pfiles, 'pack_gz_max': max(pgz), 'pack_bytes': pbytes}

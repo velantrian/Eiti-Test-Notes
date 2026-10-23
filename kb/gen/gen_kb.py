@@ -60,6 +60,7 @@ def ok_label(l):
 def desc(it):
     d = it['d']
     if not d or len(d) < 4 or re.search(r'страница значений|Викимедиа|wikimedia|категория', d, re.I): return ''
+    if re.search(r'["!?]|похвал|https?:', d): return ''   # вандализм/мусор в описаниях
     return d
 
 def sent(*parts):
@@ -88,17 +89,24 @@ class Out:
 
 def gen_people():
     o = Out('people', 'Личности', 'People')
-    its = q_items('wd:Q5', 85, [('b', 'wdt:P569', 'year'), ('e', 'wdt:P570', 'year'), ('c', 'wdt:P27', 'label')], limit=6000)
+    its = q_items('wd:Q5', 62, [('b', 'wdt:P569', 'year'), ('e', 'wdt:P570', 'year'), ('c', 'wdt:P27', 'label')], limit=6000)
+    last = {}
     for it in its:
+        w = it['l'].split()
+        if len(w) > 1: last[w[-1].lower()] = last.get(w[-1].lower(), 0) + 1
+    for rank, it in enumerate(its):
         l, d = it['l'], desc(it)
         if not ok_label(l) or not d: continue
+        w = l.split()
+        # самые известные (верхние 1500 по числу статей) с уникальной фамилией: «кто такой Ленин» → Владимир Ильич Ленин
+        it['alias'] = w[-1] if rank < 1500 and len(w) > 1 and len(w[-1]) >= 4 and last.get(w[-1].lower()) == 1 and w[-1].lower().replace('ё', 'е') not in other_labels() and re.match(r'^[А-ЯЁ][а-яё-]+$', w[-1]) else ''
         b, e = yr(it['b']), yr(it['e'])
-        if not b: continue
+        if not b or (b.isdigit() and int(b) >= 2005): continue   # без даты рождения и без детей/подростков
         if not b.isdigit() or int(b) < 1500:   # древние даты приблизительны — не указываем
             b = e = ''
         life = ('(%s–%s)' % (b, e) if e else '(род. %s)' % b) if b else ''
         a = sent('%s — %s.' % (sent(l, life), d), ('Гражданство: %s.' % few(it['c'], 2)) if b and few(it['c'], 2) else '')
-        o.add([l, 'кто такой ' + l] if ' ' in l else [l], a)
+        o.add(([l, 'кто такой ' + l] if ' ' in l else [l]) + (['кто такой ' + it['alias']] if it.get('alias') else []), a)
     o.write()
 
 def gen_simple(dom, title, title_en, cls, minsl, props, fmt, trig=None, limit=6000, extra='', cls_path='wdt:P31', need_desc=True, en=False):
@@ -109,8 +117,54 @@ def gen_simple(dom, title, title_en, cls, minsl, props, fmt, trig=None, limit=60
             continue   # недавние/текущие события — нестабильные факты, пропускаем
         if not ok_label(l) or (need_desc and not d): continue
         a = fmt(it, l, d)
-        if a: o.add((trig(it, l) if trig else [l]), a)
+        if not a: continue
+        tt = trig(it, l) if trig else [l]
+        if dom in WORKS and plain_title(l) and len(tt) > 1: tt = tt[1:]   # «Собака», «Доброе утро» — только «картина/фильм/кто написал …»
+        o.add(tt, a)
     o.write()
+
+WORKS = {'books', 'films', 'paintings', 'music', 'games', 'stage'}
+CHAT = set("""привет как дела|как дела|доброе утро|добрый день|добрый вечер|спокойной ночи|спасибо|пока|до свидания|я тебя люблю|люблю тебя|
+я устал|мне грустно|мне скучно|мне одиноко|что делать|не знаю|давай поговорим|расскажи сказку|что нового|как тебя зовут|ты кто|кто ты|
+скажи что-нибудь|всё хорошо|все хорошо|всё будет хорошо|все будет хорошо|я здесь|где ты|ты где|помоги мне|помогите|прости|извини|
+с днём рождения|с днем рождения|с новым годом|ничего|почему|зачем|что это|кто я|я не знаю|давай|поехали|ну и что|и что|вот так|
+мама|папа|собака|кошка|кот|лошадь|птица|рыба|человек|мир|война|мать|отец|дети|идиот|дурак|подарок|сюрприз|тишина|одиночество|дом|семья|друг|друзья|любовь|жизнь|счастье|сон|если|когда|утро|вечер|ночь|день|время|музыка|игра|работа|школа|дождь|снег|погода""".replace('\n', '').split('|'))
+_COMMON = None
+def common_words():
+    """нарицательные слова, уже известные библиотеке (виды, блюда, понятия, ручные триггеры) — в нижнем регистре."""
+    global _COMMON
+    if _COMMON is None:
+        _COMMON = set()
+        for f in os.listdir(SRC):
+            if not f.endswith('.txt') or f in ('w_books.txt', 'w_films.txt', 'w_paintings.txt', 'w_music.txt', 'w_games.txt', 'w_stage.txt'): continue
+            for line in open(os.path.join(SRC, f), encoding='utf-8'):
+                if '||' in line and not line.startswith('#'):
+                    for t in line.split('||')[0].split(';'):
+                        t = t.strip()
+                        if t and t == t.lower(): _COMMON.add(t.replace('ё', 'е'))
+    return _COMMON
+
+_LABELS = None
+def other_labels():
+    """все триггеры других разделов (в нижнем регистре) — фамилия-псевдоним не должна их перекрывать («Марс», «Сатурн»)."""
+    global _LABELS
+    if _LABELS is None:
+        _LABELS = set()
+        for f in os.listdir(SRC):
+            if not f.endswith('.txt') or f == 'w_people.txt': continue
+            for line in open(os.path.join(SRC, f), encoding='utf-8'):
+                if '||' in line and not line.startswith('#'):
+                    for t in line.split('||')[0].split(';'):
+                        t = t.strip().lower().replace('ё', 'е')
+                        _LABELS.add(t)
+                        for w in t.split(): _LABELS.add(w)
+    return _LABELS
+
+def plain_title(l):
+    """название-реплика («Доброе утро») или одно обычное слово («Собака») — легко путается с репликой в чате."""
+    n = re.sub(r'[^а-яёa-z0-9 -]+', ' ', l.lower()).split()
+    k = ' '.join(n)
+    return k in CHAT or k.startswith('язык программирования') or (len(n) == 1 and k.replace('ё', 'е') in common_words())
 
 def lab(prefix, v, n=3):
     s = few(v, n)
@@ -128,7 +182,7 @@ def main():
                                          lab('Официальный язык: ', it['lang'], 3), lab('Валюта: ', it['cur'], 2)),
                    trig=lambda it, l: [l, 'столица ' + l, 'страна ' + l] + (['валюта ' + l] if it['cur'] else []) + (['язык ' + l, 'официальный язык ' + l] if it['lang'] else []), extra='FILTER NOT EXISTS { ?x wdt:P576 ?end }', need_desc=False)
     if want('cities'):
-        gen_simple('cities', 'Города мира', 'Cities', 'wd:Q515', 70, [('c', 'wdt:P17', 'label')],
+        gen_simple('cities', 'Города мира', 'Cities', 'wd:Q515', 48, [('c', 'wdt:P17', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), lab('Страна: ', it['c'], 1)),
                    trig=lambda it, l: [l, 'город ' + l], cls_path='wdt:P31/wdt:P279*')
     if want('elements'):
@@ -137,30 +191,30 @@ def main():
                    trig=lambda it, l: [l, 'элемент ' + l, 'атомный номер ' + l] + (['символ ' + one(it['sym'])] if one(it['sym']) else []), need_desc=False,
                    extra='?x wdt:P1086 ?an . FILTER(xsd:integer(?an) >= 1 && xsd:integer(?an) <= 118)')
     if want('rivers'):
-        gen_simple('rivers', 'Реки', 'Rivers', 'wd:Q4022', 30, [('c', 'wdt:P17', 'label'), ('m', 'wdt:P403', 'label')],
+        gen_simple('rivers', 'Реки', 'Rivers', 'wd:Q4022', 22, [('c', 'wdt:P17', 'label'), ('m', 'wdt:P403', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), lab('Протекает по странам: ', it['c'], 4), lab('Впадает в: ', it['m'], 1)),
                    trig=lambda it, l: ['река ' + l, l])
     if want('mountains'):
-        gen_simple('mountains', 'Горы и вершины', 'Mountains', 'wd:Q8502', 30, [('c', 'wdt:P17', 'label'), ('h', 'wdt:P2044', 'v')],
+        gen_simple('mountains', 'Горы и вершины', 'Mountains', 'wd:Q8502', 22, [('c', 'wdt:P17', 'label'), ('h', 'wdt:P2044', 'v')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), ('Высота — около %d м.' % round(float(one(it['h'])))) if one(it['h']) else '', lab('Страна: ', it['c'], 3)),
                    trig=lambda it, l: ['гора ' + l, l], cls_path='wdt:P31/wdt:P279*')
     if want('lakes'):
         gen_simple('lakes', 'Озёра, моря и острова', 'Lakes, seas, islands', 'wd:Q23397', 25, [('c', 'wdt:P17', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), lab('Страна: ', it['c'], 4)), trig=lambda it, l: ['озеро ' + l, l])
     if want('islands'):
-        gen_simple('islands', 'Острова', 'Islands', 'wd:Q23442', 40, [('c', 'wdt:P17', 'label')],
+        gen_simple('islands', 'Острова', 'Islands', 'wd:Q23442', 28, [('c', 'wdt:P17', 'label')],
                    lambda it, l, d: sent('%s — %s.' % (l, d), lab('Государство: ', it['c'], 2)), trig=lambda it, l: ['остров ' + l, l])
     if want('species'):
-        gen_simple('species', 'Животные и растения', 'Animals and plants', 'wd:Q16521', 60, [('lat', 'wdt:P225', 'v'), ('par', 'wdt:P171', 'label')],
+        gen_simple('species', 'Животные и растения', 'Animals and plants', 'wd:Q16521', 42, [('lat', 'wdt:P225', 'v'), ('par', 'wdt:P171', 'label')],
                    lambda it, l, d: sent('%s%s — %s.' % (l, (' (лат. %s)' % one(it['lat'])) if one(it['lat']) and one(it['lat']).lower() != l.lower() else '', d),
                                          lab('Входит в таксон: ', it['par'], 1)),
                    trig=lambda it, l: [l] + ([one(it['lat'])] if one(it['lat']) else []))
     if want('books'):
-        gen_simple('books', 'Литература', 'Literature', 'wd:Q7725634 wd:Q47461344 wd:Q25379 wd:Q8261 wd:Q5185279', 30, [('a', 'wdt:P50', 'label'), ('y', 'wdt:P577', 'year')],
+        gen_simple('books', 'Литература', 'Literature', 'wd:Q7725634 wd:Q47461344 wd:Q25379 wd:Q8261 wd:Q5185279', 22, [('a', 'wdt:P50', 'label'), ('y', 'wdt:P577', 'year')],
                    lambda it, l, d: sent('«%s» — %s.' % (l, d), lab('Автор: ', it['a'], 2), ('Опубликовано: %s.' % yr(it['y'])) if yr(it['y']) else ''),
                    trig=lambda it, l: [l, 'кто написал ' + l])
     if want('paintings'):
-        gen_simple('paintings', 'Живопись', 'Paintings', 'wd:Q3305213', 20, [('a', 'wdt:P170', 'label'), ('y', 'wdt:P571', 'year'), ('m', 'wdt:P195', 'label')],
+        gen_simple('paintings', 'Живопись', 'Paintings', 'wd:Q3305213', 14, [('a', 'wdt:P170', 'label'), ('y', 'wdt:P571', 'year'), ('m', 'wdt:P195', 'label')],
                    lambda it, l, d: sent('«%s» — %s.' % (l, d), lab('Автор: ', it['a'], 1), ('Создана: %s.' % yr(it['y'])) if yr(it['y']) else '', lab('Собрание: ', it['m'], 1)),
                    trig=lambda it, l: [l, 'картина ' + l])
     if want('music'):
@@ -168,7 +222,7 @@ def main():
                    lambda it, l, d: sent('«%s» — %s.' % (l, d), lab('Композитор: ', it['a'], 2), lab('Исполнитель: ', it['p'], 2), ('Год: %s.' % yr(it['y'])) if yr(it['y']) else ''),
                    trig=lambda it, l: [l, 'произведение ' + l])
     if want('films'):
-        gen_simple('films', 'Кино', 'Films', 'wd:Q11424', 60, [('a', 'wdt:P57', 'label'), ('y', 'wdt:P577', 'year')],
+        gen_simple('films', 'Кино', 'Films', 'wd:Q11424', 42, [('a', 'wdt:P57', 'label'), ('y', 'wdt:P577', 'year')],
                    lambda it, l, d: sent('«%s» — %s.' % (l, d), lab('Режиссёр: ', it['a'], 2), ('Год выхода: %s.' % yr(it['y'])) if yr(it['y']) else ''),
                    trig=lambda it, l: [l, 'фильм ' + l])
     if want('battles'):
