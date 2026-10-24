@@ -320,28 +320,33 @@
   "people": "китайцы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Pangu"
+   "https://en.wikipedia.org/wiki/Pangu",
+   "https://zh.wikisource.org/wiki/%E8%97%9D%E6%96%87%E9%A1%9E%E8%81%9A/%E5%8D%B7001",
+   "https://zh.wikisource.org/wiki/%E8%BF%B0%E7%95%B0%E8%A8%98"
   ],
   "title": "Паньгу отделяет небо от земли",
-  "summary": "Вначале был лишь бесформенный хаос, сгустившийся в космическое яйцо; в нём пробудился Паньгу. Взмахом топора он отделил мутное инь — землю — от ясного ян — неба и, чтобы они не сомкнулись, встал между ними; каждый день небо поднималось на десять чи, земля опускалась, а Паньгу рос. Когда он умер, дыхание его стало ветром и облаками, голос — громом, левый глаз — солнцем, правый — луной, голова — горами, кровь — реками, борода — звёздами и Млечным Путём, пот — дождём.",
+  "summary": "Согласно «Саньу лицзи» Сюй Чжэна (цитата в «Ивэнь лэйцзюй»), небо и земля были хаосом, похожим на куриное яйцо, и в нём родился Паньгу. Через 18 000 лет они разделились: светлое ян стало небом, мутное инь — землёй. Паньгу, находясь между ними, девять раз в день менялся; каждый день небо поднималось на один чжан, земля утолщалась на один чжан и Паньгу вырастал на один чжан. Так продолжалось ещё 18 000 лет, поэтому небо отстоит от земли на 90 000 ли. «Шуи цзи» собирает предания о его смерти: голова стала четырьмя священными вершинами, глаза — солнцем и луной, жир — реками и морями, волосы — растениями; по словам «прежних учёных», его слёзы стали реками, дыхание — ветром, голос — громом, а зрачки — молнией.",
   "moral": "Мир рождается из труда и самопожертвования.",
   "title_en": "Pangu Separates Heaven and Earth",
-  "summary_en": "In the beginning there was only formless chaos, which coalesced into a cosmic egg; within it Pangu awoke. With a swing of his axe he separated murky yin, the earth, from clear yang, the sky, and to keep them apart stood between them; each day the sky rose ten feet, the earth sank and Pangu grew. When he died his breath became wind and clouds, his voice thunder, his left eye the sun, his right eye the moon, his head the mountains, his blood rivers, his facial hair the stars and the Milky Way, his sweat the rain.",
-  "moral_en": "The world is born of labour and self-sacrifice."
+  "summary_en": "According to Xu Zheng's Sanwu liji (quoted in the Yiwen leiju), heaven and earth were once a chaos like a hen's egg, and Pangu was born inside it. After 18,000 years they opened: the clear yang became heaven and the murky yin became earth. Pangu, between them, changed nine times a day; each day heaven rose by one zhang, the earth grew one zhang thicker and Pangu grew one zhang taller. This went on for another 18,000 years, which is why heaven is 90,000 li from earth. The Shuyi ji collects sayings about his death: his head became the four sacred peaks, his eyes the sun and moon, his fat the rivers and seas, his hair the plants; 'earlier scholars' said his tears became the rivers, his breath the wind, his voice thunder and his pupils lightning.",
+  "moral_en": "The world is born of labour and self-sacrifice.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Hou_Yi"
+   "https://en.wikipedia.org/wiki/Hou_Yi",
+   "https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E6%9C%AC%E7%B6%93%E8%A8%93"
   ],
   "title": "Хоу И и десять солнц",
-  "summary": "Сначала десять солнц поочерёдно ходили по небу, но однажды вышли все вместе играть и стали сжигать землю. Император Яо поручил лучнику Хоу И усмирить их. Тот сначала увещевал их, затем пугал луком, а когда они не послушались, стал сбивать одно за другим; падая, солнца превращались в трёхногих воронов. Последнее солнце пощадили ради людей — по одной версии, по просьбе Яо и матери солнц Сихэ.",
+  "summary": "Во времена Яо вместе взошли десять солнц: они выжгли посевы и погубили растения, людям нечего было есть, а чудовища Яюй, Цзаочи, Цзюин, Дафэн, Фэнси и Сюшэ губили народ. Яо послал И, и тот убил Цзаочи в пустошах Чоухуа и Цзюина на реке Сюн, сбил стрелой на шнуре Дафэна у болота Цинцю, стрелял в десять солнц вверху и убил Яюя внизу, разрубил Сюшэ у Дунтина и поймал Фэнси в Санлине. Народ возрадовался и сделал Яо Сыном Неба («Хуайнань-цзы», «Бэнь цзин»). Сколько солнц упало, в «Хуайнань-цзы» не сказано; поздние подробности — вороны, пощажённое солнце — в этом тексте отсутствуют.",
   "moral": "Мера во всём: и избыток благого губителен.",
   "title_en": "Hou Yi and the Ten Suns",
-  "summary_en": "At first ten suns crossed the sky one at a time, but one day they all came out together to play and began scorching the earth. Emperor Yao charged the archer Hou Yi with subduing them. He first reasoned with them, then threatened them with his bow, and when they did not listen he shot them down one by one; as they fell they turned into three-legged crows. The last sun was spared for humanity's sake — in one version at the request of Yao and of the suns' mother Xihe.",
-  "moral_en": "Moderation in all things: even an excess of good is ruinous."
+  "summary_en": "In the time of Yao ten suns came out together, scorching the crops and killing the plants, so that the people had nothing to eat, and the monsters Yayu, Zaochi, Jiuying, Dafeng, Fengxi and Xiushe preyed on them. Yao sent Yi, who killed Zaochi in the wilds of Chouhua and Jiuying on the Xiong River, brought down Dafeng with a corded arrow at the Qingqiu marsh, shot at the ten suns above and killed Yayu below, cut Xiushe in two at Dongting and captured Fengxi at Sanglin. The people rejoiced and made Yao Son of Heaven (Huainanzi, 'Ben jing'). The Huainanzi does not say how many suns fell; later details such as crows or a spared sun are not in this text.",
+  "moral_en": "Moderation in all things: even an excess of good is ruinous.",
+  "verified": true
  },
  {
   "group": "other",
@@ -640,28 +645,32 @@
   "people": "китайцы",
   "type": "миф (Хуайнаньцзы)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Nüwa"
+   "https://en.wikipedia.org/wiki/Nüwa",
+   "https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93"
   ],
   "title": "Нюйва чинит небо",
-  "summary": "Четыре столпа, державшие небо, рухнули (поздние источники объясняют это тем, что Гунгун в ярости ударился головой о гору Бучжоу). Половина неба обвалилась, земля треснула, леса горели, вода хлестала из трещин, а дикие звери нападали на людей. Нюйва пожалела созданных ею людей: собрала в реке камни пяти цветов, расплавила их и залатала небо — с тех пор облака разноцветны. Она убила гигантскую черепаху (в некоторых версиях — Ао) и поставила её четыре ноги вместо столпов; ноги оказались неравной длины, и небо осталось слегка наклонённым. Затем Нюйва прогнала зверей, потушила огонь и остановила потоп пеплом сожжённого тростника.",
-  "moral": "Мир можно исправить, даже если починка не будет совершенной.",
+  "summary": "В глубокой древности рухнули четыре полюса и раскололись девять областей; небо перестало всё покрывать, а земля — всё нести; пожары пылали не угасая, воды разливались без конца, свирепые звери пожирали людей, хищные птицы хватали стариков и слабых. Тогда Нюйва расплавила камни пяти цветов и залатала синее небо, отрубила ноги огромной черепахе Ао и поставила на них четыре полюса, убила чёрного дракона, чтобы спасти Цзичжоу, и сложила золу тростника, чтобы остановить потоп. Небо было залатано, полюса выпрямились, воды высохли, Цзичжоу успокоился, и народ выжил («Хуайнань-цзы», «Лань мин»). Связи с Гунгуном в «Хуайнань-цзы» нет; она появляется в поздних источниках, здесь не проверенных.",
+  "moral": "Даже разрушенный мир можно исправить.",
   "title_en": "Nüwa Mends the Sky",
-  "summary_en": "The four pillars holding up the sky collapsed (later sources blame Gonggong, who smashed his head against Mount Buzhou in rage). Half the sky fell, the earth cracked, forests burned, water gushed from the cracks and wild beasts attacked people. Nüwa took pity on the humans she had made: she gathered stones of five colours from a riverbed, melted them and patched the sky — which is why clouds are many-coloured. She killed a giant turtle (named Ao in some versions) and set its four legs up as new pillars; the legs were of unequal length, so the sky stayed slightly tilted. Then Nüwa drove off the beasts, put out the fire and stopped the flood with the ashes of burnt reeds.",
-  "moral_en": "The world can be mended even if the repair is not perfect."
+  "summary_en": "In remote antiquity the four poles broke down and the nine provinces split apart; heaven no longer covered everything and earth no longer bore everything; fires blazed unquenched, floods ran without end, fierce beasts devoured the people and birds of prey seized the old and weak. Then Nüwa smelted stones of five colours to patch the azure sky, cut off the legs of the great turtle Ao to set up the four poles, killed the black dragon to save Jizhou and piled up reed ashes to stop the floodwaters. The sky was patched, the poles stood straight, the waters dried up, Jizhou was at peace and the people survived (Huainanzi, 'Lan ming'). The Huainanzi does not blame this on Gonggong; that link is made in later sources not checked here.",
+  "moral_en": "Even a broken world can be mended.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Nüwa"
+   "https://en.wikipedia.org/wiki/Nüwa",
+   "https://zh.wikisource.org/wiki/%E5%A4%AA%E5%B9%B3%E5%BE%A1%E8%A6%BD/0078"
   ],
   "title": "Нюйва лепит людей",
-  "summary": "Нюйва, страдая от одиночества, вылепила людей из жёлтой глины. Так появились знатные и богатые — ведь их она сделала собственными руками. Лепить каждого было слишком долго, поэтому большинство людей она создала, протащив верёвку через грязь, — разлетевшиеся комья стали простыми людьми; этот миф объяснял сословное неравенство древнего Китая. По другой версии, Нюйва и её брат Фуси пережили великий потоп, поженились по велению Неба, и Нюйва родила ком плоти; его разрезали на куски, разбросали по миру, и из кусков вышли люди.",
+  "summary": "Народное предание, записанное в «Фэнсу тунъи» Ин Шао (цитата в «Тайпин юйлань», гл. 78): когда небо и земля разделились, а людей ещё не было, Нюйва вылепила людей из жёлтой земли. Работа оказалась ей не по силам, и она протянула верёвку через грязь и, подняв её, сделала из неё людей. Поэтому богатые и знатные — люди из жёлтой земли, а бедные, низкие и простые — люди из верёвки. Рассказ о потопе, Нюйве и Фуси взят из других источников, здесь не проверенных, и опущен.",
   "moral": "Миф часто объясняет, почему общество устроено так, а не иначе.",
   "title_en": "Nüwa Shapes Humankind",
-  "summary_en": "Lonely, Nüwa moulded people from yellow clay. These became the rich nobles, since she had made them with her own hands. Making each one was too slow, so she created most people by dragging a rope through mud — the flung clods became commoners; the myth explained ancient China's social hierarchy. In another version Nüwa and her brother Fuxi survived a great flood, married at Heaven's command, and Nüwa bore a ball of flesh; it was cut up and scattered across the world, and the pieces became human beings.",
-  "moral_en": "Myth often explains why society is ordered the way it is."
+  "summary_en": "A popular saying recorded in Ying Shao's Fengsu tongyi (quoted in the Taiping yulan, ch. 78): when heaven and earth had opened and there were no people yet, Nüwa kneaded yellow earth into human beings. The work was too heavy for her strength, so she drew a cord through the mud and lifted it out to make people. That is why the rich and noble are people of yellow earth, while the poor, lowly and common are people of the cord. The flood story of Nüwa and Fuxi comes from other sources not checked here and is left out.",
+  "moral_en": "Myth often explains why society is ordered the way it is.",
+  "verified": true
  },
  {
   "group": "other",
@@ -687,42 +696,49 @@
   "people": "китайцы",
   "type": "миф (Шань хай цзин; Ши цзи)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Gun_(Chinese_mythology)"
+   "https://en.wikipedia.org/wiki/Gun_(Chinese_mythology)",
+   "https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E6%B5%B7%E5%85%A7%E7%B6%93"
   ],
   "title": "Гунь и самовозрастающая земля",
-  "summary": "Во время великого потопа при императоре Яо отцу Юя, Гуню, поручили сдержать воды. Девять лет он строил дамбы, но безуспешно. По «Каталогу гор и морей», он украл у богов сижан — самовозрастающую землю; дамбы из неё росли вместе с водой, но, поднявшись слишком высоко, рухнули, и потоп погубил множество людей; за это Гуня казнил Чжужун. По Сыма Цяню, Гуня казнил (или изгнал на гору Юйшань) император Шунь. Ван Чун пишет, что дух Гуня превратился в жёлтого медведя; по другим версиям, он бросился в бездну и стал её богом.",
+  "summary": "Потоп поднялся до неба. Гунь украл у Владыки саморастущую землю (сижан), чтобы запрудить потоп, не дождавшись повеления Владыки. Владыка велел Чжужуну убить Гуня в окрестностях Юй (Пернатой горы). Из Гуня родился Юй, и Владыка наконец повелел Юю разложить землю и устроить девять областей («Шаньхайцзин», «Хай нэй цзин»). Другие подробности — девять лет плотин, казнь по приказу Шуня, дух Гуня в виде жёлтого медведя — взяты из источников, здесь не проверенных, и опущены.",
   "moral": "Сдерживать стихию силой — не значит её победить.",
   "title_en": "Gun and the Self-Growing Soil",
-  "summary_en": "During the great flood under Emperor Yao, Yu's father Gun was charged with holding back the waters. For nine years he built dykes, without success. According to the Classic of Mountains and Seas, he stole xirang, self-renewing soil, from the gods; dykes made of it rose with the water, but when they grew too high they collapsed, and the flood killed many people; for this Zhurong executed Gun. According to Sima Qian, Emperor Shun executed (or exiled to Feather Mountain) Gun. Wang Chong writes that Gun's spirit became a yellow bear; in other versions he leapt into an abyss and became its god.",
-  "moral_en": "Holding back nature by force is not the same as mastering it."
+  "summary_en": "The flood rose up to the sky. Gun stole the Emperor's self-swelling soil (xirang) to dam the flood, without waiting for the Emperor's command. The Emperor ordered Zhurong to kill Gun on the outskirts of Yu (Feather Mountain). From Gun, Yu was born, and the Emperor at last ordered Yu to spread out the soil and settle the nine provinces (Shanhaijing, 'Hai nei jing'). Other details sometimes told — nine years of dykes, execution by Shun, Gun's spirit becoming a yellow bear — come from sources not checked here and are left out.",
+  "moral_en": "Holding back nature by force is not the same as mastering it.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Yu_the_Great"
+   "https://en.wikipedia.org/wiki/Yu_the_Great",
+   "https://zh.wikisource.org/wiki/%E5%AD%9F%E5%AD%90/%E6%BB%95%E6%96%87%E5%85%AC%E4%B8%8A",
+   "https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E6%9C%AC%E7%B6%93%E8%A8%93"
   ],
   "title": "Великий Юй укрощает воды",
-  "summary": "Юй продолжил дело отца, Гуня, но сначала изучил реки, чтобы понять причину неудачи. Вместо плотин он вместе с Хоуцзи прорыл каналы, отводившие паводок на поля, и углублял русла. Тринадцать лет Юй ел и спал вместе с рабочими и сам чистил ил; руки и ноги его покрылись мозолями. Он ушёл на работы через четыре дня после свадьбы и трижды проходил мимо своего дома, не заходя: в первый раз жена рожала, во второй сын уже звал отца, в третий сыну было больше десяти лет, — но Юй отвечал, что не может отдыхать, пока люди лишены крова. Он открыл узкий проход у горы Лунмэнь («Врата Юя»). В поздних пересказах ему помогали жёлтый дракон и чёрная черепаха; говорят также, что он убил девятиглавого Сянлю.",
+  "summary": "Во времена Яо потоп разлился по земле, травы буйно разрослись, звери расплодились, хлеба не вызревали. Встревоженный Яо возвысил Шуня, чтобы навести порядок. Юй прочистил Девять рек, расчистил Цзи и Та и вывел их в море, открыл Жу и Хань, отвёл Хуай и Сы в Цзян — и лишь тогда Срединные земли смогли прокормиться. Юй восемь лет провёл вне дома и трижды прошёл мимо своих ворот, не войдя («Мэн-цзы», «Тэн Вэнь-гун, I»). По «Хуайнань-цзы» («Бэнь цзин»), при Шуне Гунгун поднял потоп; Лунмэнь и Люйлян ещё не были открыты, люди спасались на холмах и деревьях; Шунь послал Юя прочистить три реки и пять озёр, открыть ущелье И и отвести воды на восток к морю. Жена, сын и драконы-помощники из поздних пересказов в этих текстах отсутствуют.",
   "moral": "Труд для общего блага требует личных жертв.",
   "title_en": "Yu the Great Tames the Waters",
-  "summary_en": "Yu continued his father Gun's work, but first studied the rivers to learn why it had failed. Instead of dams he and Hou Ji dug canals that diverted floodwater into fields, and dredged the riverbeds. For thirteen years Yu ate and slept with the workers and cleared silt himself; his hands and feet became thick with calluses. He left for the work four days after his wedding and passed his own door three times without entering: the first time his wife was in labour, the second his son could already call to him, the third his son was over ten — but Yu said he could not rest while people were homeless. He opened the narrow channel at Mount Longmen ('Yu's Gateway'). In later retellings a yellow dragon and a black turtle helped him; he is also said to have killed the nine-headed Xiangliu.",
-  "moral_en": "Work for the common good demands personal sacrifice."
+  "summary_en": "In Yao's time the flood ran wild over the land, plants ran riot, beasts multiplied and the grain did not ripen. Yao, troubled, raised up Shun to bring order. Yu dredged the Nine Rivers, cleared the Ji and the Ta and led them to the sea, opened the Ru and the Han, drained the Huai and the Si into the Jiang, and only then could the central lands feed themselves. Yu spent eight years away and passed his own door three times without going in (Mencius, 'Teng Wen Gong I'). The Huainanzi ('Ben jing') says that under Shun, Gonggong stirred up the flood; Longmen and Lüliang were not yet opened and the people fled to hills and trees; Shun sent Yu to dredge the three rivers and five lakes, open the Yi gorge and lead the waters east to the sea. The wife, the son and the dragon helpers of later retellings are not in these texts.",
+  "moral_en": "Work for the common good demands personal sacrifice.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Chang'e"
+   "https://en.wikipedia.org/wiki/Chang'e",
+   "https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93"
   ],
   "title": "Чанъэ улетает на Луну",
-  "summary": "Когда десять солнц разом взошли и сжигали землю, лучник Хоу И сбил девять из них и получил в награду две порции эликсира бессмертия. Не желая бессмертия без жены, он не выпил эликсир и оставил его Чанъэ. Пока Хоу И охотился, его ученик Фэнмэн ворвался в дом и потребовал эликсир; Чанъэ, чтобы не отдать его, выпила обе порции, вознеслась и выбрала своим жилищем Луну, чтобы оставаться ближе к мужу. Хоу И выставил её любимые фрукты и пирожные — отсюда обычай праздника Середины осени — и, по этой версии, покончил с собой. В более древних версиях Чанъэ сама похитила эликсир у мужа и бежала на Луну, чтобы он не смог её догнать.",
+  "summary": "«Хуайнань-цзы» («Лань мин») упоминает эту историю лишь как сравнение: И выпросил у Си-ван-му снадобье бессмертия, а Хэн-э (Чанъэ) украла его и бежала на луну. И остался в тоске, не имея способа достать ещё, потому что не знал, откуда берётся снадобье. Поздние версии — ученик Фэнмэн, Чанъэ, выпившая снадобье, чтобы оно не досталось ему, подношения на Праздник середины осени — в этом тексте отсутствуют и опущены.",
   "moral": "Бессмертие в одиночестве может стать разлукой навеки.",
   "title_en": "Chang'e Flies to the Moon",
-  "summary_en": "When ten suns rose at once and scorched the earth, the archer Hou Yi shot down nine and was rewarded with two portions of the elixir of immortality. Not wanting immortality without his wife, he did not drink it and left it with Chang'e. While Hou Yi was hunting, his apprentice Fengmeng broke into the house and demanded the elixir; to keep it from him Chang'e drank both portions, rose up and chose the Moon as her home so as to stay near her husband. Hou Yi set out the fruits and cakes she loved — the origin of the Mid-Autumn custom — and, in this version, killed himself. In older versions Chang'e stole the elixir from her husband and fled to the Moon so that he could not follow her.",
-  "moral_en": "Immortality alone can become an eternal parting."
+  "summary_en": "The Huainanzi ('Lan ming') tells the story only as a comparison: Yi asked the Queen Mother of the West for the elixir of immortality, and Heng'e (Chang'e) stole it and fled to the moon. Yi was left desolate, with no means of getting more, because he did not know where the elixir came from. Later versions — the apprentice Fengmeng, Chang'e drinking to keep the elixir from him, the Mid-Autumn offerings — are not in this text and are left out.",
+  "moral_en": "Immortality alone can become an eternal parting.",
+  "verified": true
  },
  {
   "group": "other",
@@ -873,14 +889,16 @@
   "people": "китайцы",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Zhou_Mu_Wang"
+   "https://en.wikipedia.org/wiki/Zhou_Mu_Wang",
+   "https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E5%91%A8%E7%A9%86%E7%8E%8B%E7%AF%87"
   ],
   "title": "Царь Му у Царицы-матери Запада",
-  "summary": "Чжоуский царь Му мечтал стать бессмертным и решил посетить божественный рай на горе Куньлунь, чтобы отведать персиков бессмертия. Отважный возничий Цзаофу довёз его туда на колеснице. Роман IV в. до н. э. «Жизнеописание сына Неба Му» рассказывает о визите царя к Царице-матери Запада; позднее его воспевал поэт Ли Шанъинь. Предание наделяет царя восемью знаменитыми скакунами.",
-  "moral": "Даже цари ищут бессмертия у пределов мира.",
+  "summary": "Чародей с крайнего запада увлёк чжоуского царя Му в странствие духа; очнувшись, царь увидел, что не покидал своего места. После этого он перестал заботиться о делах государства и отправился в дальний путь на колеснице, запряжённой восемью знаменитыми конями, с возничим Цзаофу. В стране Цзюйсоу его напоили кровью белого лебедя; он остановился на Куньлуне, посетил дворец Жёлтого императора и был гостем Си-ван-му, пируя у Яшмового пруда; она пела ему, он отвечал ей, и слова были печальны. Затем он поехал посмотреть, где заходит солнце, проезжая по десять тысяч ли в день, и вздохнул, что потомки станут перечислять его проступки за то, что он искал удовольствий, а не добродетели («Ле-цзы», «Чжоу Му-ван»). О персиках бессмертия в «Ле-цзы» ничего нет.",
+  "moral": "Даже странствия царя могут кончиться сожалением.",
   "title_en": "King Mu Visits the Queen Mother of the West",
-  "summary_en": "King Mu of Zhou dreamed of becoming immortal and resolved to visit the divine paradise of Mount Kunlun to taste the peaches of immortality. The brave charioteer Zaofu drove him there. The 4th-century BC romance 'Tale of King Mu, Son of Heaven' tells of the king's visit to the Queen Mother of the West; the poet Li Shangyin later retold it. Tradition gives the king eight famous stallions.",
-  "moral_en": "Even kings seek immortality at the edge of the world."
+  "summary_en": "A conjurer from the far west took King Mu of Zhou on a journey of the spirit; when the king came back to himself he found he had never left his seat. After that he stopped caring for affairs of state and travelled far in a chariot drawn by eight famous steeds, with Zaofu as charioteer. In the land of Jusou he was given white swan's blood to drink; he camped on Kunlun, visited the palace of the Yellow Emperor, and was the guest of the Queen Mother of the West, feasting by the Jasper Pool; she sang for him and he answered her, and the words were sad. He went on to see where the sun sets, covering ten thousand li in a day, and then sighed that later ages would count up his faults for pursuing pleasure instead of virtue (Liezi, 'Zhou Mu wang'). The Liezi says nothing of peaches of immortality.",
+  "moral_en": "Even a king's wanderings may end in regret.",
+  "verified": true
  },
  {
   "group": "other",
