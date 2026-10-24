@@ -2214,14 +2214,16 @@
   "people": "китайцы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Kuafu"
+   "https://en.wikipedia.org/wiki/Kuafu",
+   "https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87"
   ],
   "title": "Куафу гонится за солнцем",
-  "summary": "Великан Куафу решил догнать и поймать солнце и бежал за ним с востока на запад. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный персиковый лес Дэнлинь.",
+  "summary": "Великан Куафу решил догнать и поймать солнце и гнался за его тенью до долины Юйгу. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный лес Дэн.",
   "moral": "Отвага без меры сил ведёт к гибели, но оставляет след.",
   "title_en": "Kuafu Chases the Sun",
-  "summary_en": "The giant Kuafu resolved to chase and catch the sun and ran after it from east to west. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast peach forest of Denglin.",
-  "moral_en": "Courage beyond one's strength leads to ruin, yet leaves its mark."
+  "summary_en": "The giant Kuafu resolved to chase and catch the sun and pursued its shadow as far as the Yu Valley. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast Deng forest.",
+  "moral_en": "Courage beyond one's strength leads to ruin, yet leaves its mark.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2390,14 +2392,16 @@
   "people": "римляне (Авл Геллий по Апиону)",
   "type": "предание",
   "sources": [
-   "https://en.wikipedia.org/wiki/Androcles"
+   "https://en.wikipedia.org/wiki/Androcles",
+   "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Gellius/5*.html"
   ],
   "title": "Андрокл и лев",
-  "summary": "Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы большую занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Расспросив его, император помиловал раба и отдал ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».",
+  "summary": "Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы огромную занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Гай Цезарь расспросил его; рассказ записали и пронесли по цирку, и по требованию народа Андрокла освободили и голосованием отдали ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».",
   "moral": "Добро возвращается, и благодарность бывает даже у зверя.",
   "title_en": "Androcles and the Lion",
-  "summary_en": "The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a large thorn from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Having questioned him, the emperor pardoned the slave and gave him the lion; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'",
-  "moral_en": "Kindness returns, and even a beast can be grateful."
+  "summary_en": "The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a huge splinter from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Gaius Caesar questioned him; his story was written up and carried round the Circus, and at the people's request Androcles was freed and given the lion by their vote; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'",
+  "moral_en": "Kindness returns, and even a beast can be grateful.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2633,84 +2637,96 @@
   "people": "китайцы",
   "type": "притча (Чжуан-цзы, гл. 17)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Zhuangzi_(book)"
+   "https://en.wikipedia.org/wiki/Zhuangzi_(book)",
+   "https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E7%A7%8B%E6%B0%B4"
   ],
   "title": "Радость рыб",
   "summary": "Чжуан-цзы и Хуэй-цзы гуляли по мосту над рекой Хао. Чжуан-цзы сказал: «Как свободно резвятся рыбки — вот радость рыб!» Хуэй-цзы возразил: «Ты не рыба — откуда тебе знать радость рыб?» — «Ты не я — откуда тебе знать, что я не знаю радости рыб?» — «Я не ты и потому не знаю тебя; но ты точно не рыба, значит, ты не знаешь радости рыб». Чжуан-цзы ответил: «Вернёмся к началу. Ты спросил, откуда я знаю, — значит, уже знал, что я знаю. Я знаю это здесь, над рекой Хао».",
   "moral": "Знание — это и отношение, а не только логический вывод.",
   "title_en": "The Joy of Fish",
   "summary_en": "Zhuangzi and Huizi were strolling on the bridge over the river Hao. Zhuangzi said, 'See how freely the minnows dart about — that is the joy of fish!' Huizi objected: 'You are not a fish — how do you know the joy of fish?' 'You are not me — how do you know I do not know the joy of fish?' 'I am not you, so I do not know you; but you are certainly not a fish, so you do not know the joy of fish.' Zhuangzi replied: 'Let us go back to the start. You asked how (whence) I know — so you already knew that I know. I know it here, above the Hao.'",
-  "moral_en": "Knowing is also a relationship, not only a logical inference."
+  "moral_en": "Knowing is also a relationship, not only a logical inference.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "притча (Чжуан-цзы, гл. 18)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Zhuangzi_(book)"
+   "https://en.wikipedia.org/wiki/Zhuangzi_(book)",
+   "https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E8%87%B3%E6%A8%82"
   ],
   "title": "Чжуан-цзы бьёт в таз над умершей женой",
   "summary": "Когда умерла жена Чжуан-цзы, Хуэй-цзы пришёл выразить соболезнование и застал его сидящим враскоряку, бьющим в таз и поющим. «Она жила с тобой, растила детей, состарилась — достаточно было бы не плакать; но бить в таз и петь — не слишком ли?» Чжуан-цзы ответил: когда она умерла, он горевал, как всякий. Но потом подумал о времени, когда её ещё не было, — не было ни тела, ни даже духа; в смешении туманного и неуловимого произошла перемена — появился дух, потом тело, потом жизнь, а теперь новая перемена — смерть. Это как смена четырёх времён года. Она спокойно легла в огромных покоях, и рыдать над ней значило бы не понимать судьбы, — поэтому он перестал.",
   "moral": "Смерть — лишь ещё одно превращение в круговороте природы.",
   "title_en": "Zhuangzi Drums on a Tub for His Dead Wife",
   "summary_en": "When Zhuangzi's wife died, Huizi came to offer condolences and found him sitting sprawled out, drumming on a tub and singing. 'She lived with you, raised your children and grew old — it would be enough not to weep; but drumming and singing — isn't that too much?' Zhuangzi replied that when she died he grieved like anyone. But then he thought of the time before she existed — before she had a body, even a spirit; in the jumble of mystery a change took place and there was spirit, then a body, then life, and now another change — death. It is like the progression of the four seasons. She now lies peacefully in a vast room, and to weep over her would show he did not understand fate — so he stopped.",
-  "moral_en": "Death is only one more transformation in the cycle of nature."
+  "moral_en": "Death is only one more transformation in the cycle of nature.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "притча (Чжуан-цзы, гл. 32)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Zhuangzi_(book)"
+   "https://en.wikipedia.org/wiki/Zhuangzi_(book)",
+   "https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E5%88%97%E7%A6%A6%E5%AF%87"
   ],
   "title": "Похороны Чжуан-цзы",
   "summary": "Когда Чжуан-цзы был при смерти, ученики захотели устроить ему пышные похороны. Он ответил: небо и земля будут его внутренним и внешним гробом, солнце и луна — парой нефритовых дисков, звёзды — жемчугом, а вся тьма вещей — погребальными дарами; чего ещё не хватает? Ученики сказали, что боятся, как бы вороны и коршуны не съели учителя. «Наверху меня съедят вороны и коршуны, внизу — медведки и муравьи. Отнимать у одних, чтобы отдать другим, — не пристрастно ли это?»",
   "moral": "Мудрец не цепляется за тело и после смерти.",
   "title_en": "The Funeral of Zhuangzi",
   "summary_en": "When Zhuangzi was dying his disciples wanted to give him a lavish funeral. He answered that heaven and earth would be his inner and outer coffins, the sun and moon his pair of jade discs, the stars his pearls, and the myriad things his funeral gifts — what was lacking? The disciples said they feared crows and kites would eat their master. 'Above ground I'll be eaten by crows and kites, below ground by mole crickets and ants. To rob one to feed the other — how partial!'",
-  "moral_en": "A sage does not cling to the body, even in death."
+  "moral_en": "A sage does not cling to the body, even in death.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "притча (Ле-цзы, кн. 5)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Yugong_Yishan"
+   "https://en.wikipedia.org/wiki/Yugong_Yishan",
+   "https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87"
   ],
   "title": "Глупый старик передвигает горы",
-  "summary": "Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Небесные боги, тронутые его упорством, велели раздвинуть горы. Притчу пересказал Лю Сян, а в 1945 г. её использовал Мао Цзэдун.",
+  "summary": "Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Бог, держащий змей, доложил об этом Небесному владыке, и тот, тронутый его искренностью, велел двум сыновьям Куаэ унести горы. Притча взята из «Ле-цзы» (глава «Тан вэнь»), а в 1945 г. её использовал Мао Цзэдун.",
   "moral": "Упорство поколений превозмогает то, что не под силу одному.",
   "title_en": "The Foolish Old Man Removes the Mountains",
-  "summary_en": "A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The gods of Heaven, moved by his perseverance, ordered the mountains moved apart. Liu Xiang retold the fable, and Mao Zedong used it in 1945.",
-  "moral_en": "The persistence of generations overcomes what one person cannot."
+  "summary_en": "A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The snake-holding god reported this to the Emperor of Heaven, who, moved by his sincerity, ordered the two sons of Kua'e to carry the mountains away. The fable comes from the Liezi (chapter \"Tang wen\"), and Mao Zedong used it in 1945.",
+  "moral_en": "The persistence of generations overcomes what one person cannot.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "легенда (Хань Фэй-цзы)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Bian_He"
+   "https://en.wikipedia.org/wiki/Bian_He",
+   "https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%92%8C%E6%B0%8F"
   ],
   "title": "Нефрит господина Хэ",
-  "summary": "Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. На вопрос царя он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (Имена царей в версиях различаются.)",
+  "summary": "Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. Когда царь послал узнать причину, он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (У Хань Фэя это цари Ли, У и Вэнь; в других версиях имена иные.)",
   "moral": "Правду не всегда признают сразу, но она не перестаёт быть правдой.",
   "title_en": "The Jade of Mr He",
-  "summary_en": "A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. Asked by the king, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (The kings' names differ between versions.)",
-  "moral_en": "Truth is not always recognised at once, but it does not stop being truth."
+  "summary_en": "A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. When the king sent someone to ask why, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (In the Han Feizi the kings are Li, Wu and Wen; other versions name them differently.)",
+  "moral_en": "Truth is not always recognised at once, but it does not stop being truth.",
+  "verified": true
  },
  {
   "group": "other",
   "people": "китайцы",
   "type": "легенда (Ле-цзы)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Zhou_Mu_Wang"
+   "https://en.wikipedia.org/wiki/Zhou_Mu_Wang",
+   "https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87"
   ],
   "title": "Механический человек Янь Ши",
   "summary": "Мастер Янь Ши представил чжоускому царю Му человекоподобную фигуру своей работы. Она ходила быстрым шагом, кивала головой, пела, когда мастер касался её подбородка, и танцевала, когда касался руки, — все принимали её за живого человека. В конце представления она подмигнула придворным дамам, и разгневанный царь хотел казнить мастера, но Янь Ши тут же разобрал фигуру: она была сделана из кожи, дерева, клея и лака, а внутри имела все органы. Царь вынул сердце — и рот перестал говорить, печень — и глаза перестали видеть, почки — и ноги перестали ходить. Царь пришёл в восторг.",
   "moral": "Искусство мастера может сравняться с природой — и смутить властителя.",
   "title_en": "Yan Shi's Mechanical Man",
   "summary_en": "The artificer Yan Shi presented King Mu of Zhou with a human-shaped figure of his own making. It walked briskly, nodded its head, sang when he touched its chin and danced when he touched its hand — everyone took it for a living person. At the end of the show it winked at the court ladies, and the angry king wanted to execute its maker, but Yan Shi at once took it apart: it was made of leather, wood, glue and lacquer, with all the organs inside. The king removed the heart and the mouth could no longer speak, the liver and the eyes could not see, the kidneys and the legs could not walk. The king was delighted.",
-  "moral_en": "A master's craft can rival nature — and unsettle a ruler."
+  "moral_en": "A master's craft can rival nature — and unsettle a ruler.",
+  "verified": true
  },
  {
   "group": "other",
