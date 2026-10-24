@@ -953,3 +953,21 @@ A father turns into a bear and then a wolf to frighten his two elder daughters, 
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 54. Работник у Отца-Солнца
+
+*гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову) — волшебная сказка*
+
+Батраку не везёт: град бьёт только его полосу пшеницы, а камень, за который он нанялся, тает. Потом у него похищают жену. Он находит её у Отца-Солнца и нанимается к нему. Он идёт по небу вместе с Солнцем, колотит святого Илью, принёсшего завтрак, и святого Петра с обедом и нарочно идёт нижней дорогой, сжигая сады. Солнце спрашивает, зачем. Он отвечает: Илья побил градом его пшеницу, Пётр растопил его камень, а «ты горюешь о садах, а я — о жене». Солнце отдаёт ему жену.
+
+**Мораль:** Обиженный находит правду даже у небесных сил.
+
+### The workman at Father Sun's
+
+A labourer has no luck: hail strikes only his strip of wheat, and the stone he worked for melts away. Then his wife is carried off. He finds her at Father Sun's and hires himself to him. Travelling the sky with the Sun, he thrashes St Elijah, who brings breakfast, and St Peter, who brings dinner, and deliberately takes the lower road, burning the gardens. The Sun asks why. He answers: Elijah hailed on his wheat, Peter melted his stone, and 'you grieve for your gardens, I for my wife'. The Sun gives him back his wife.
+
+**Moral:** The wronged find justice even among the heavenly powers.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

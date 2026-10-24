@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 16
+## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 17
 
 - Утка, два яйца и сотворение земли / The duck, two eggs and the making of the earth (марийцы)
 - Кугу Юмо, Керемет и собака / Kugu Yumo, Keremet and the dog (марийцы)
@@ -21,8 +21,9 @@
 - Колдун и колдунья / Enchanter and enchantress (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
 - Дурак и телёнок / The fool and the calf (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
 - Неудачливый покойник / The unlucky corpse (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Коза и козлята / The goat and the kids (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 20
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 22
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -44,8 +45,10 @@
 - Как Добро и Зло были попутчиками / How Good and Evil were companions (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III))
 - Сорок рассказов / The forty stories (туркмены (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912))
 - Дураки / The fools (уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI))
+- Хитрость лисы / The trick of the fox (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III))
+- Слепой / The blind man (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1906))
 
-## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 18
+## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 26
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
 - Начало творения / The beginning of creation (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
@@ -65,8 +68,16 @@
 - Три брата и их сестра / Three brothers and their sister (ханты (иртышские остяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Патканову))
 - Перелётные птицы / Flying birds (якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Худякову))
 - Отчего на луне пятна / Why there are spots on the Moon (якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1897))
+- Лиса и собака / The fox and the dog (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
+- Храбрый гиляк и благодарный тигр / The brave Gilyak and the grateful tiger (нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу))
+- Гиляк, оскорбивший хозяина огня / The Gilyak who offended the Fire-lord (нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу))
+- Начало / The beginning (эвенки (тунгусы) (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1911))
+- Шаман / The shaman (юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону))
+- Лиса и мужик / The fox and the peasant (саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину))
+- Отчего у медведя короткий хвост / Why the bear's tail is short (саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину))
+- Происхождение верблюда / Origin of the camel (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову))
 
-## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 53
+## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 54
 
 - Калев, Линда и рождение Калевипоэга / Kalev, Linda and the birth of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
 - Проклятый меч / The cursed sword (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
@@ -121,26 +132,28 @@
 - Царевич, ставший лягушкой / The tsar's son who became a frog (латыши (Coxwell, Siberian and Other Folk-Tales, 1925; по В. Ф. Миллеру))
 - Солнце, Мороз и Ветер / Sun, Frost and Wind (литовцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Афанасьеву (Поэтические воззрения славян)))
 - Сватовство Солнца / The Sun's courtship (гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову))
+- Работник у Отца-Солнца / The workman at Father Sun's (гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову))
 
-## Итого / Total: 107
+## Итого / Total: 119
 
 - алтайцы: 2
 - башкиры: 1
 - белорусы: 1
-- буряты: 3
-- гагаузы: 1
+- буряты: 4
+- гагаузы: 2
 - казахи: 1
 - калмыки: 12
 - калмыки/ойраты: 3
 - карелы/финны: 10
-- киргизы: 2
+- киргизы: 4
 - коряки: 1
 - латыши: 2
 - литовцы: 2
 - марийцы: 9
-- мордва: 2
-- нивхи: 1
+- мордва: 3
+- нивхи: 3
 - русские: 10
+- саамы: 2
 - самодийцы: 1
 - татары: 2
 - туркмены: 1
@@ -149,9 +162,9 @@
 - украинцы: 12
 - ханты: 1
 - чуваши: 1
-- чукчи: 2
-- эвенки: 1
+- чукчи: 3
+- эвенки: 2
 - эвены: 1
 - эстонцы: 15
-- юкагиры: 2
+- юкагиры: 3
 - якуты: 3

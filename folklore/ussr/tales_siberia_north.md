@@ -323,3 +323,147 @@ An orphan girl is taken in out of greed by a princely kinsman, and his wicked wi
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 19. Лиса и собака
+
+*чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу) — этиологическая сказка*
+
+Творец велит лисе есть мясо и всё мягкое и живое, что найдёт, а собаке передать, что та будет служить хозяину, охранять его добро и кормиться из его рук: «Её жизнь — твоя смерть». Лиса передаёт его слова, собака не верит, что Творец так сказал, и они ссорятся и расходятся. С тех пор лиса кормится мышами и зайцами в степи, а собака ловит лис для человека.
+
+**Мораль:** Так объясняется вражда собаки и лисы.
+
+### The fox and the dog
+
+The Creator tells the fox to eat meat and anything soft and living it finds, and to tell the dog that it will serve a master, guard his goods and take food from him: 'His life will be your death.' The fox passes this on, the dog refuses to believe the Creator said it, and they quarrel and part. Ever since, the fox has lived on mice and hares in the steppe, and the dog has caught foxes for man.
+
+**Moral:** This explains the enmity of dog and fox.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 20. Храбрый гиляк и благодарный тигр
+
+*нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу) — волшебная сказка*
+
+На соболиной охоте вход в шалаш загораживает тигр. Во сне он говорит отцу, что старший сын хвастался силой и должен с ним сразиться. Отец с младшим уходят. Юноша с маленьким китайским топором бьётся с тигром. Тигр, прыгнув за ним на лиственницу, застревает в развилке, и юноша вытаскивает его за загривок, отпуская живым. Тигр везёт его на спине к дому, сбрасывает шкуру и становится человеком. В благодарность он отдаёт гостю свою сестру. Шестеро тигров-людей приносят в селение меха. Летом жена маньчжурского правителя шлёт «жене-тигрице» трубку и платок. Младший брат, увязавшийся следом, пугает тигров своей ногой из угла, но старший успокаивает их. Он приводит жену домой, и они живут.
+
+**Мораль:** Пощада сильному врагу оборачивается родством.
+
+### The brave Gilyak and the grateful tiger
+
+On a sable hunt a tiger blocks the tent entrance. In a dream it tells the father that his elder son has boasted of his strength and must fight it. The father and younger son leave. The youth fights the tiger with a little Chinese axe. The tiger leaps after him into a larch and sticks in a fork, and the youth hauls it out by the scruff and lets it go alive. The tiger carries him on its back to a hut, throws off its skin and becomes a man. Out of gratitude he gives his guest his sister. Six tiger-men carry furs to the village. In summer the Manchurian governor's wife sends a pipe and kerchief to the 'tigress wife'. The younger brother, who tags along, frightens the tigers by showing his foot from a corner, but the elder reassures them. He brings his wife home and they live.
+
+**Moral:** Mercy to a strong enemy turns into kinship.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 21. Гиляк, оскорбивший хозяина огня
+
+*нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу) — быличка*
+
+Старшему из пяти охотников не везёт на соболей. В гневе он кормит огонь одной чашкой со словами «если хозяин здесь, пусть ест» и топором разбивает очаг. Во сне ему велят остаться, и незнакомец приводит его в дом, полный соболей. Человек с перевязанной раной на лице дарит ему двадцать соболей и передаёт вызов тому, кто разбил очаг: на следующий год пусть вооружится — кто сильнее, тот и убьёт. Летом этот гиляк погибает на охоте.
+
+**Мораль:** Хозяина огня нельзя оскорблять.
+
+### The Gilyak who offended the Fire-lord
+
+The chief of five hunters has no luck with sables. In anger he feeds the fire a single cup ('If the lord is present, let him eat!') and smashes the hearth with an axe. In a dream he is told to stay, and a stranger leads him to a house full of sables. A man with a bandaged wound on his face gives him twenty sables and a challenge for whoever broke the hearth: next year let him arm himself; the stronger will kill the other. That summer the Gilyak perishes on a hunt.
+
+**Moral:** The lord of the fire must not be insulted.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 22. Начало
+
+*эвенки (тунгусы) (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1911) — миф*
+
+Сначала была земля. Потом семь лет огонь пожирал её, и всё стало потоком, морем. Сгорели почти все тунгусы, но юноша и девушка, а из птиц — орёл, взлетели в небо. Когда море высохло, они спустились на землю. (Рассказ жены старосты тунгусского стойбища.)
+
+**Мораль:** Мир обновляется через огонь, а начало людям дают уцелевшие.
+
+### The beginning
+
+In the beginning there was earth. Then for seven years fire consumed it and everything became a stream, a sea. Nearly all the Tunguses were burned, but a youth and a maiden, and from among the birds an eagle, flew up into the sky. When the sea had evaporated they came down. (Told by the wife of a Tungus settlement's headman.)
+
+**Moral:** The world is renewed by fire, and the survivors begin humankind anew.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 23. Шаман
+
+*юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону) — шаманский рассказ*
+
+Шаман бьёт в бубен, призывает предков и девушек-помощниц и отправляется в царство теней за душой больного. Его облаивает собака старухи со скребком для шкур, но он не слушает её слов. Он переплывает в лодке реку мёртвых к дому умерших родичей больного и силой забирает тень. Чтобы она не вырвалась, он вбирает её в себя и закрывает уши. Помощники трижды кружат его к солнцу, девушки растирают ему суставы. Он вкладывает душу в больное место и отпускает теней.
+
+**Мораль:** Шаман — посредник между живыми и мёртвыми.
+
+### The shaman
+
+A shaman beats his drum, summons his ancestors and helper-maidens and sets off to the land of shades for a sick man's soul. An old woman's dog barks at him, but he ignores her words. He crosses the river of the dead in a canoe to the house of the sick man's dead kin and takes the shade by force. So that it cannot escape, he takes it into himself and closes his ears. His helpers whirl him three times toward the sun and the maidens rub his joints. He puts the soul into the painful spot and dismisses the shades.
+
+**Moral:** The shaman mediates between the living and the dead.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 24. Лиса и мужик
+
+*саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину) — сказка о животных*
+
+Лиса, подружившаяся с лопарём, жарит мясо на палке, и жир выжигает ей глаза. Мужик ведёт её к сосне, и смола склеивает глаза. У берёзы кора даёт ей глаза, но узкие. Лиса лезет не в свою нору под деревом, мужик дёргает её за хвост и отрывает его. Лиса остаётся жить под деревом, а мужик находит в её прежнем жилище клад золота и серебра.
+
+**Мораль:** Этиология: отсюда у лисы узкие глаза.
+
+### The fox and the peasant
+
+A vixen who has befriended a Lapp roasts meat on a stick, and the fat burns her eyes. The man takes her to a pine, and the resin glues her eyes shut. At a birch, the bark gives her eyes, but narrow ones. She pushes into a hole under a tree that is not hers, the man pulls her by the tail and it comes off. The vixen stays under the tree, and the man finds a hoard of gold and silver in her old home.
+
+**Moral:** An origin tale: why the fox has narrow eyes.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 25. Отчего у медведя короткий хвост
+
+*саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину) — сказка о животных*
+
+Лиса притворяется мёртвой на дороге, лопарь перекладывает её с саней на сани, пока она не оказывается на возу с рыбой. Она перегрызает верёвку, воз отстаёт, и лиса уходит в лес с рыбой. Медведю она говорит, что ловила хвостом в проруби. Медведь сидит у проруби, пока хвост не примерзает. Лиса поднимает шум, медведь рвётся и отрывает хвост. С тех пор у медведей короткие хвосты.
+
+**Мораль:** Доверчивость дорого обходится.
+
+### Why the bear's tail is short
+
+A vixen plays dead on the road, and a Lapp moves her from sleigh to sleigh until she ends up on the fish sleigh. She gnaws through the rope, the sleigh is left behind, and she goes into the forest with a fish. She tells the bear she caught it by dangling her tail through the ice. The bear sits at the ice-hole until his tail freezes in. The vixen raises an alarm, the bear tears himself free and loses the tail. Ever since, bears have short tails.
+
+**Moral:** Credulity costs dearly.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 26. Происхождение верблюда
+
+*буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову) — этиологическая легенда*
+
+В давние времена, чтобы поразить Бога, ведьма срезала себе груди и прилепила их на спину. Разгневанный Бог наделил её человеческим голосом и сделал её верблюдом, никому не милым, в наказание за зло. (В переводе — стихами.)
+
+**Мораль:** Кощунство наказывается навеки.
+
+### Origin of the camel
+
+Long ago, to startle God, a witch cut off her breasts and set them on her back. Angered, God gave her a human voice and made her a camel, dear to no one, as punishment for her evil. (Rendered in verse.)
+
+**Moral:** Blasphemy is punished for ever.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

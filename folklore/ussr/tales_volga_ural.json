@@ -222,5 +222,19 @@
    "https://archive.org/details/siberian-and-other-folk-tales"
   ],
   "group": "volga_ural"
+ },
+ {
+  "title": "Коза и козлята",
+  "summary": "Коза запирает козлят в землянке и, возвращаясь из леса, поёт им тонким голосом про молоко, что течёт из вымени на копытце и в ямку. Волк поёт грубо, и козлята не открывают. Тогда волк точит язык на точиле, поёт тонко, и козлята выбегают. Волк их душит. Коза поёт снова и снова, никто не выходит, и она понимает, что их убил волк. Она уходит из леса в деревню и живёт теперь у хозяина.",
+  "moral": "Осторожность нельзя ослаблять; отсюда коза — домашнее животное.",
+  "title_en": "The goat and the kids",
+  "summary_en": "A goat shuts her kids in a mud hut and, coming home from the forest, sings to them in a gentle voice of milk flowing from her udder to her hoof and into a hollow. The wolf sings roughly, and the kids do not open. Then the wolf sharpens his tongue on a whetstone and sings sweetly, and the kids run out. The wolf strangles them. The goat sings again and again, no one comes out, and she knows the wolf has killed them. She leaves the forest for a village and now lives with an owner.",
+  "moral_en": "Vigilance must not be relaxed; this is also why the goat is a domestic animal.",
+  "people": "мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову)",
+  "type": "сказка о животных",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "volga_ural"
  }
 ]

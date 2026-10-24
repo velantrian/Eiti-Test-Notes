@@ -224,6 +224,20 @@
   "group": "volga_ural"
  },
  {
+  "title": "Коза и козлята",
+  "summary": "Коза запирает козлят в землянке и, возвращаясь из леса, поёт им тонким голосом про молоко, что течёт из вымени на копытце и в ямку. Волк поёт грубо, и козлята не открывают. Тогда волк точит язык на точиле, поёт тонко, и козлята выбегают. Волк их душит. Коза поёт снова и снова, никто не выходит, и она понимает, что их убил волк. Она уходит из леса в деревню и живёт теперь у хозяина.",
+  "moral": "Осторожность нельзя ослаблять; отсюда коза — домашнее животное.",
+  "title_en": "The goat and the kids",
+  "summary_en": "A goat shuts her kids in a mud hut and, coming home from the forest, sings to them in a gentle voice of milk flowing from her udder to her hoof and into a hollow. The wolf sings roughly, and the kids do not open. Then the wolf sharpens his tongue on a whetstone and sings sweetly, and the kids run out. The wolf strangles them. The goat sings again and again, no one comes out, and she knows the wolf has killed them. She leaves the forest for a village and now lives with an owner.",
+  "moral_en": "Vigilance must not be relaxed; this is also why the goat is a domestic animal.",
+  "people": "мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову)",
+  "type": "сказка о животных",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "volga_ural"
+ },
+ {
   "title": "Как ханский сын отправился за Сиддхи-Кюром",
   "summary": "Учитель Нагарджуна велит провинившемуся ханскому сыну принести ему волшебного мертвеца Сиддхи-Кюра. Путь лежит через ущелье мертвецов-великанов, луг мертвецов-карликов и сад мёртвых детей: каждых надо отогнать заклинанием и горстью освящённого ячменя. Сиддхи-Кюр убегает на манговое дерево и спускается, лишь когда герой замахивается топором «Белая луна». Пленника сажают в пёстрый мешок на сотню мест и завязывают шнуром из ста нитей. Есть в дороге можно неубывающую лепёшку. Главный запрет: не раскрывать рта всю дорогу. Мертвец просит кивнуть в знак согласия и начинает рассказывать сказки. Каждая кончается тем, что слушатель невольно восклицает, а Сиддхи-Кюр улетает со словами: «Хорошо вырваться из этого мира!»",
   "moral": "Молчание труднее подвига: оно ломается от одного сочувственного слова.",
@@ -504,6 +518,34 @@
   "group": "steppe_central_asia"
  },
  {
+  "title": "Хитрость лисы",
+  "summary": "Волк, тигр и лиса закапывают кадку масла. Лиса трижды уходит «давать имя» новорождённым племянникам и съедает масло, называя их «На палец», «До середины» и «Слизано». Звери покупают в долг верблюда. Лиса натравливает их на примкнувшего к ним лиса-самца, а сама прячет мясо и за ночь съедает его. Волку она говорит, что ела свои задние части, предлагает отведать и его и убивает его. Пойманная тигром, она просит его сказать «магыт» и выскакивает из открытой пасти. Наконец перепёлка уговаривает лису зажмуриться и держаться за её хвост, приносит её к людям, и те лису убивают.",
+  "moral": "На всякого хитреца найдётся хитрее.",
+  "title_en": "The trick of the fox",
+  "summary_en": "A wolf, a tiger and a fox bury a pail of butter. Three times the fox goes off to 'name' a newborn nephew and eats butter, calling them 'Finger's-breadth', 'Middle of the Back' and 'Lick-lick'. The animals buy a camel on credit. The fox sets them chasing a dog-fox who has joined them, hides the meat and eats it all in the night. She tells the wolf she ate her own hind-quarters, offers to taste his, and kills him. Caught by the tiger, she asks him to say 'magyt' and escapes from his open mouth. At last a quail persuades the fox to shut her eyes and hold its tail, carries her to some men, and they kill her.",
+  "moral_en": "Every trickster meets a better one.",
+  "people": "киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III)",
+  "type": "сказка о животных",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "steppe_central_asia"
+ },
+ {
+  "title": "Слепой",
+  "summary": "Слепой при всём народе со слезами хватает чужую жену и уверяет, что она сбежала от него с этим зрячим. Судья запирает всех троих в отдельные юрты и ставит слухачей. Женщина молит Бога избавить её от слепого, зрячий корит слепого за неблагодарность, а слепой злорадствует: «Хитрость моя хороша — добуду жену!» Судья отдаёт жену зрячему, а слепого наказывает за клевету, и тот от стыда кусает палец до крови.",
+  "moral": "Тайные слова выдают правду.",
+  "title_en": "The blind man",
+  "summary_en": "Before the whole village a blind man tearfully seizes another man's wife and claims she ran off with this sighted man. The judge shuts all three in separate tents and posts listeners. The woman prays to be saved from the blind man, the sighted man reproaches him for ingratitude, and the blind man gloats, 'My scheme is good; I shall get a wife!' The judge gives the woman to the sighted man and punishes the blind man for slander, and he bites his finger till it bleeds for shame.",
+  "moral_en": "Words spoken in secret reveal the truth.",
+  "people": "киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1906)",
+  "type": "бытовая сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "steppe_central_asia"
+ },
+ {
   "title": "Эр Соготох — Одинокий муж",
   "summary": "Богатырь Эр Соготох не знает, откуда он родом. Он обращается к духу-хозяйке Среднего мира, живущей в священном дереве, и узнаёт о своём божественном происхождении: ему суждено стать родоначальником племени ураангхай-саха. Он едет за суженой и проходит множество испытаний в борьбе с абасы, враждебными племенами Нижнего мира. Найдя предназначенную ему жену, он становится праотцем процветающего народа.",
   "moral": "Узнав своё происхождение, человек обретает и предназначение.",
@@ -750,6 +792,118 @@
   "moral_en": "The orphan finds a protector in the sky.",
   "people": "якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1897)",
   "type": "этиологическая сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Лиса и собака",
+  "summary": "Творец велит лисе есть мясо и всё мягкое и живое, что найдёт, а собаке передать, что та будет служить хозяину, охранять его добро и кормиться из его рук: «Её жизнь — твоя смерть». Лиса передаёт его слова, собака не верит, что Творец так сказал, и они ссорятся и расходятся. С тех пор лиса кормится мышами и зайцами в степи, а собака ловит лис для человека.",
+  "moral": "Так объясняется вражда собаки и лисы.",
+  "title_en": "The fox and the dog",
+  "summary_en": "The Creator tells the fox to eat meat and anything soft and living it finds, and to tell the dog that it will serve a master, guard his goods and take food from him: 'His life will be your death.' The fox passes this on, the dog refuses to believe the Creator said it, and they quarrel and part. Ever since, the fox has lived on mice and hares in the steppe, and the dog has caught foxes for man.",
+  "moral_en": "This explains the enmity of dog and fox.",
+  "people": "чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу)",
+  "type": "этиологическая сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Храбрый гиляк и благодарный тигр",
+  "summary": "На соболиной охоте вход в шалаш загораживает тигр. Во сне он говорит отцу, что старший сын хвастался силой и должен с ним сразиться. Отец с младшим уходят. Юноша с маленьким китайским топором бьётся с тигром. Тигр, прыгнув за ним на лиственницу, застревает в развилке, и юноша вытаскивает его за загривок, отпуская живым. Тигр везёт его на спине к дому, сбрасывает шкуру и становится человеком. В благодарность он отдаёт гостю свою сестру. Шестеро тигров-людей приносят в селение меха. Летом жена маньчжурского правителя шлёт «жене-тигрице» трубку и платок. Младший брат, увязавшийся следом, пугает тигров своей ногой из угла, но старший успокаивает их. Он приводит жену домой, и они живут.",
+  "moral": "Пощада сильному врагу оборачивается родством.",
+  "title_en": "The brave Gilyak and the grateful tiger",
+  "summary_en": "On a sable hunt a tiger blocks the tent entrance. In a dream it tells the father that his elder son has boasted of his strength and must fight it. The father and younger son leave. The youth fights the tiger with a little Chinese axe. The tiger leaps after him into a larch and sticks in a fork, and the youth hauls it out by the scruff and lets it go alive. The tiger carries him on its back to a hut, throws off its skin and becomes a man. Out of gratitude he gives his guest his sister. Six tiger-men carry furs to the village. In summer the Manchurian governor's wife sends a pipe and kerchief to the 'tigress wife'. The younger brother, who tags along, frightens the tigers by showing his foot from a corner, but the elder reassures them. He brings his wife home and they live.",
+  "moral_en": "Mercy to a strong enemy turns into kinship.",
+  "people": "нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу)",
+  "type": "волшебная сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Гиляк, оскорбивший хозяина огня",
+  "summary": "Старшему из пяти охотников не везёт на соболей. В гневе он кормит огонь одной чашкой со словами «если хозяин здесь, пусть ест» и топором разбивает очаг. Во сне ему велят остаться, и незнакомец приводит его в дом, полный соболей. Человек с перевязанной раной на лице дарит ему двадцать соболей и передаёт вызов тому, кто разбил очаг: на следующий год пусть вооружится — кто сильнее, тот и убьёт. Летом этот гиляк погибает на охоте.",
+  "moral": "Хозяина огня нельзя оскорблять.",
+  "title_en": "The Gilyak who offended the Fire-lord",
+  "summary_en": "The chief of five hunters has no luck with sables. In anger he feeds the fire a single cup ('If the lord is present, let him eat!') and smashes the hearth with an axe. In a dream he is told to stay, and a stranger leads him to a house full of sables. A man with a bandaged wound on his face gives him twenty sables and a challenge for whoever broke the hearth: next year let him arm himself; the stronger will kill the other. That summer the Gilyak perishes on a hunt.",
+  "moral_en": "The lord of the fire must not be insulted.",
+  "people": "нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу)",
+  "type": "быличка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Начало",
+  "summary": "Сначала была земля. Потом семь лет огонь пожирал её, и всё стало потоком, морем. Сгорели почти все тунгусы, но юноша и девушка, а из птиц — орёл, взлетели в небо. Когда море высохло, они спустились на землю. (Рассказ жены старосты тунгусского стойбища.)",
+  "moral": "Мир обновляется через огонь, а начало людям дают уцелевшие.",
+  "title_en": "The beginning",
+  "summary_en": "In the beginning there was earth. Then for seven years fire consumed it and everything became a stream, a sea. Nearly all the Tunguses were burned, but a youth and a maiden, and from among the birds an eagle, flew up into the sky. When the sea had evaporated they came down. (Told by the wife of a Tungus settlement's headman.)",
+  "moral_en": "The world is renewed by fire, and the survivors begin humankind anew.",
+  "people": "эвенки (тунгусы) (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1911)",
+  "type": "миф",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Шаман",
+  "summary": "Шаман бьёт в бубен, призывает предков и девушек-помощниц и отправляется в царство теней за душой больного. Его облаивает собака старухи со скребком для шкур, но он не слушает её слов. Он переплывает в лодке реку мёртвых к дому умерших родичей больного и силой забирает тень. Чтобы она не вырвалась, он вбирает её в себя и закрывает уши. Помощники трижды кружат его к солнцу, девушки растирают ему суставы. Он вкладывает душу в больное место и отпускает теней.",
+  "moral": "Шаман — посредник между живыми и мёртвыми.",
+  "title_en": "The shaman",
+  "summary_en": "A shaman beats his drum, summons his ancestors and helper-maidens and sets off to the land of shades for a sick man's soul. An old woman's dog barks at him, but he ignores her words. He crosses the river of the dead in a canoe to the house of the sick man's dead kin and takes the shade by force. So that it cannot escape, he takes it into himself and closes his ears. His helpers whirl him three times toward the sun and the maidens rub his joints. He puts the soul into the painful spot and dismisses the shades.",
+  "moral_en": "The shaman mediates between the living and the dead.",
+  "people": "юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону)",
+  "type": "шаманский рассказ",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Лиса и мужик",
+  "summary": "Лиса, подружившаяся с лопарём, жарит мясо на палке, и жир выжигает ей глаза. Мужик ведёт её к сосне, и смола склеивает глаза. У берёзы кора даёт ей глаза, но узкие. Лиса лезет не в свою нору под деревом, мужик дёргает её за хвост и отрывает его. Лиса остаётся жить под деревом, а мужик находит в её прежнем жилище клад золота и серебра.",
+  "moral": "Этиология: отсюда у лисы узкие глаза.",
+  "title_en": "The fox and the peasant",
+  "summary_en": "A vixen who has befriended a Lapp roasts meat on a stick, and the fat burns her eyes. The man takes her to a pine, and the resin glues her eyes shut. At a birch, the bark gives her eyes, but narrow ones. She pushes into a hole under a tree that is not hers, the man pulls her by the tail and it comes off. The vixen stays under the tree, and the man finds a hoard of gold and silver in her old home.",
+  "moral_en": "An origin tale: why the fox has narrow eyes.",
+  "people": "саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину)",
+  "type": "сказка о животных",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Отчего у медведя короткий хвост",
+  "summary": "Лиса притворяется мёртвой на дороге, лопарь перекладывает её с саней на сани, пока она не оказывается на возу с рыбой. Она перегрызает верёвку, воз отстаёт, и лиса уходит в лес с рыбой. Медведю она говорит, что ловила хвостом в проруби. Медведь сидит у проруби, пока хвост не примерзает. Лиса поднимает шум, медведь рвётся и отрывает хвост. С тех пор у медведей короткие хвосты.",
+  "moral": "Доверчивость дорого обходится.",
+  "title_en": "Why the bear's tail is short",
+  "summary_en": "A vixen plays dead on the road, and a Lapp moves her from sleigh to sleigh until she ends up on the fish sleigh. She gnaws through the rope, the sleigh is left behind, and she goes into the forest with a fish. She tells the bear she caught it by dangling her tail through the ice. The bear sits at the ice-hole until his tail freezes in. The vixen raises an alarm, the bear tears himself free and loses the tail. Ever since, bears have short tails.",
+  "moral_en": "Credulity costs dearly.",
+  "people": "саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину)",
+  "type": "сказка о животных",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "siberia_north"
+ },
+ {
+  "title": "Происхождение верблюда",
+  "summary": "В давние времена, чтобы поразить Бога, ведьма срезала себе груди и прилепила их на спину. Разгневанный Бог наделил её человеческим голосом и сделал её верблюдом, никому не милым, в наказание за зло. (В переводе — стихами.)",
+  "moral": "Кощунство наказывается навеки.",
+  "title_en": "Origin of the camel",
+  "summary_en": "Long ago, to startle God, a witch cut off her breasts and set them on her back. Angered, God gave her a human voice and made her a camel, dear to no one, as punishment for her evil. (Rendered in verse.)",
+  "moral_en": "Blasphemy is punished for ever.",
+  "people": "буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову)",
+  "type": "этиологическая легенда",
   "sources": [
    "https://archive.org/details/siberian-and-other-folk-tales"
   ],
@@ -1494,6 +1648,20 @@
   "title_en": "The Sun's courtship",
   "summary_en": "A father turns into a bear and then a wolf to frighten his two elder daughters, who offer to herd his horses. On an old woman's advice the youngest puts on her father's wedding coat and pistol and mounts a thin mare that has eaten burning embers. For three years she herds the horses. The Sun falls in love with her but cannot tell whether she is a youth or a girl, and on his mother's advice tests her at the bazaar. Her amulet tells her to look only at men's things. Only at the end does she show the Sun her braids, and he draws her up on a golden swing. The amulet tells her to keep silent seven days, but she keeps silent seven years, and the Sun takes another bride. The rival sends her for a sieve. By way of Mother Sunday, Mother Friday and Mother Wednesday she reaches a vampire. A mouse plays the fiddle in her place, and linen, brush and stone become a river, a forest and a stony waste. When the rival tells her to cut out her tongue, the Sun rushes in with bloody hands. The girl becomes a swallow and the rival a goat, both fly up the chimney, and the Sun is unmarried to this day.",
   "moral_en": "A misjudged measure of word and silence parts lovers for ever.",
+  "people": "гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову)",
+  "type": "волшебная сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "west"
+ },
+ {
+  "title": "Работник у Отца-Солнца",
+  "summary": "Батраку не везёт: град бьёт только его полосу пшеницы, а камень, за который он нанялся, тает. Потом у него похищают жену. Он находит её у Отца-Солнца и нанимается к нему. Он идёт по небу вместе с Солнцем, колотит святого Илью, принёсшего завтрак, и святого Петра с обедом и нарочно идёт нижней дорогой, сжигая сады. Солнце спрашивает, зачем. Он отвечает: Илья побил градом его пшеницу, Пётр растопил его камень, а «ты горюешь о садах, а я — о жене». Солнце отдаёт ему жену.",
+  "moral": "Обиженный находит правду даже у небесных сил.",
+  "title_en": "The workman at Father Sun's",
+  "summary_en": "A labourer has no luck: hail strikes only his strip of wheat, and the stone he worked for melts away. Then his wife is carried off. He finds her at Father Sun's and hires himself to him. Travelling the sky with the Sun, he thrashes St Elijah, who brings breakfast, and St Peter, who brings dinner, and deliberately takes the lower road, burning the gardens. The Sun asks why. He answers: Elijah hailed on his wheat, Peter melted his stone, and 'you grieve for your gardens, I for my wife'. The Sun gives him back his wife.",
+  "moral_en": "The wronged find justice even among the heavenly powers.",
   "people": "гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову)",
   "type": "волшебная сказка",
   "sources": [

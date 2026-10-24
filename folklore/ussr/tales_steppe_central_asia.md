@@ -359,3 +359,39 @@ A young wife hiccups while milking and kneels begging the cow to tell no one. He
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 21. Хитрость лисы
+
+*киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III) — сказка о животных*
+
+Волк, тигр и лиса закапывают кадку масла. Лиса трижды уходит «давать имя» новорождённым племянникам и съедает масло, называя их «На палец», «До середины» и «Слизано». Звери покупают в долг верблюда. Лиса натравливает их на примкнувшего к ним лиса-самца, а сама прячет мясо и за ночь съедает его. Волку она говорит, что ела свои задние части, предлагает отведать и его и убивает его. Пойманная тигром, она просит его сказать «магыт» и выскакивает из открытой пасти. Наконец перепёлка уговаривает лису зажмуриться и держаться за её хвост, приносит её к людям, и те лису убивают.
+
+**Мораль:** На всякого хитреца найдётся хитрее.
+
+### The trick of the fox
+
+A wolf, a tiger and a fox bury a pail of butter. Three times the fox goes off to 'name' a newborn nephew and eats butter, calling them 'Finger's-breadth', 'Middle of the Back' and 'Lick-lick'. The animals buy a camel on credit. The fox sets them chasing a dog-fox who has joined them, hides the meat and eats it all in the night. She tells the wolf she ate her own hind-quarters, offers to taste his, and kills him. Caught by the tiger, she asks him to say 'magyt' and escapes from his open mouth. At last a quail persuades the fox to shut her eyes and hold its tail, carries her to some men, and they kill her.
+
+**Moral:** Every trickster meets a better one.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 22. Слепой
+
+*киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1906) — бытовая сказка*
+
+Слепой при всём народе со слезами хватает чужую жену и уверяет, что она сбежала от него с этим зрячим. Судья запирает всех троих в отдельные юрты и ставит слухачей. Женщина молит Бога избавить её от слепого, зрячий корит слепого за неблагодарность, а слепой злорадствует: «Хитрость моя хороша — добуду жену!» Судья отдаёт жену зрячему, а слепого наказывает за клевету, и тот от стыда кусает палец до крови.
+
+**Мораль:** Тайные слова выдают правду.
+
+### The blind man
+
+Before the whole village a blind man tearfully seizes another man's wife and claims she ran off with this sighted man. The judge shuts all three in separate tents and posts listeners. The woman prays to be saved from the blind man, the sighted man reproaches him for ingratitude, and the blind man gloats, 'My scheme is good; I shall get a wife!' The judge gives the woman to the sighted man and punishes the blind man for slander, and he bites his finger till it bleeds for shame.
+
+**Moral:** Words spoken in secret reveal the truth.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
