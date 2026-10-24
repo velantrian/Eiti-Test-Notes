@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.11.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.12.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -47,6 +47,11 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.12.0
+
+- 🗣️ **Голосовой ассистент на выбор** (Настройки → ИИ → «Голосовой ассистент»): Grok Voice, Gemini Live, **OpenAI Realtime** (WebRTC, свой ключ), **Qwen Omni Realtime** и **Алиса (Яндекс)** — через свой WebSocket-прокси (браузер не умеет передавать ключ в заголовке), **Mistral Voxtral** (распознавание Voxtral → чат Mistral → голос браузера или Voxtral TTS).
+- 🌀 **Mistral AI как обычный ИИ чата**: карточка провайдера с ключом и моделью (Medium 3.5, Large 4, Small 4, Ministral 3 14B/8B) и группа в меню «+» → ИИ.
 
 ## 🆕 Что нового в v14.11.0
 

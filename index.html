@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.11.0"; // v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.12.0"; // v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4161,6 +4161,8 @@
         // v14.10.0: перевод строк, найденных аудитом EN/DE (e2e v14100_i18n.spec.js сканирует экраны на кириллицу)
         window.EITI_I18N.addDict('en', {"Закрыть": "Close", "Настройки": "Settings", "🤖 Модель чата": "🤖 Chat model", "нужен ключ": "needs key", "🎤 Офлайн-распознавание недоступно — включите офлайн-ввод голосом в Gboard (клавиатура → 🎤)": "🎤 Offline recognition isn't available — turn on offline voice typing in Gboard (keyboard → 🎤)", "🎤 Загружаю языковой пакет для офлайн-распознавания…": "🎤 Downloading the language pack for offline recognition…", "Голосовой ввод": "Voice typing", "Остановить запись": "Stop recording", "изменить": "change", "🗣️ Голосовой ассистент…": "🗣️ Voice assistant…", "🎤 Голосовой ввод не поддерживается в этом браузере": "🎤 Voice typing isn't supported in this browser", "🎤 Нет доступа к микрофону — разрешите его в настройках браузера": "🎤 No microphone access — allow it in the browser settings", "🎤 Речь не распознана — попробуйте ещё раз": "🎤 No speech detected — try again", "🎤 Голосовой ввод требует интернет": "🎤 Voice typing needs an internet connection", "🎤 Микрофон не найден": "🎤 No microphone found", "🎤 Этот язык не поддерживается для голосового ввода": "🎤 This language isn't supported for voice typing", "🎤 Не удалось начать запись": "🎤 Couldn't start recording", "Голосовой ассистент": "Voice assistant", "Добавить на главный экран": "Add to Home Screen", "Хороший ответ": "Good answer", "Плохой ответ": "Bad answer", "Озвучить / Пауза / Продолжить": "Speak / Pause / Resume", "Скопировать": "Copy", "Функции чата": "Chat functions", "Добавить музыку": "Add music", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Shuffle", "Повтор": "Repeat", "🌐 Язык / Language": "🌐 Language", "Лёгкий reasoning": "Light reasoning", "Макс. reasoning": "Max reasoning", "актуальный Flash": "current Flash", "флагман · reasoning": "flagship · reasoning", "баланс · замена 3.5": "balanced · replaces 3.5", "быстро · дёшево": "fast · cheap", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: current Flash · fast and strong", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "On — thinking · Off — fast mode for all Gemini", "✓ Подтвердить ключ Qwen": "✓ Confirm Qwen key", "🔌 Проверить статус": "🔌 Check status", "DashScope · ключ выше · 235B": "DashScope · key above · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "On — model default mode · Off — reasoning is disabled per request", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Separate live list of free OpenRouter endpoints. Requires an OpenRouter API key; free endpoints cost $0 per token, but OpenRouter limits and availability apply.", "Выбрать бесплатную модель…": "Choose a free model…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Off — button hidden, no requests. Off by default: notes are never sent to an LLM without explicit consent.", "Подсветка правок ИИ": "AI edit highlighting", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "After Ask AI, show insertions and struck-through deletions. Turned off by the «Аб» button or when you type manually.", "Цвета подсветки": "Highlight colours", "AI Docs в файлах": "AI Docs in files", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "At the bottom of an open file: 🔍 search, ✨ Ask AI, ✎ edit. The AI sees the whole file and remembers the window's questions; edits are highlighted, ↶↷ undo them.", "🔗 Проактивные рекомендации": "🔗 Proactive suggestions", "При сохранении файла подсказывать связь с заметками и памятью": "When saving a file, suggest links to notes and memory", "🌙 Стиль офлайн-ответов": "🌙 Offline reply style", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Without network, without a key or when the AI fails, EITI answers offline: dialogues, jokes, proverbs, riddles, tales and legends («a bedtime story», «go on», «who is Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:status|title|...]", "🎓 Обучение EITI": "🎓 EITI learning", "👍 Что я понял о твоих предпочтениях": "👍 What I learned about your preferences", "Оценок:": "Ratings:", "· доля 👍:": "· 👍 share:", "Любимая модель:": "Favourite model:", "нужно ≥3 оценок": "needs ≥3 ratings", "Длина ответа:": "Reply length:", "пока неясно": "not clear yet", "🎰 Адаптивный поиск памяти": "🎰 Adaptive memory search", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Tunes the threshold and number of facts from your 👍/👎 (Thompson sampling).", "Пресет": "Preset", "порог/факты": "threshold/facts", "оценка": "score", "Широко": "Broad", "Фокус": "Focus", "Строго": "Strict", "↺ Сбросить обучение": "↺ Reset learning", "🧠 MOSC: уточнять намерение": "🧠 MOSC: clarify intent", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "A «Looks like you want…» card under the message. Does not block sending.", "🗂 Память фактов": "🗂 Fact memory", "Активных:": "Active:", "/ 200 · в архиве:": "/ 200 · archived:", "🧹 Сжать память сейчас": "🧹 Compact memory now", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Changes by AI (MOSC / FL / PKG)", "Пока нет изменений.": "No changes yet.", "📈 Метрики (только на устройстве)": "📈 Metrics (on device only)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Rate replies with 👍/👎 — statistics will appear here.", "🎙️ Голос:": "🎙️ Voice:", "🔊 Голос:": "🔊 Voice:", "🚫 Grok поиск отключён": "🚫 Grok search disabled", "Провайдер AI Voice": "AI Voice provider", "Модель Grok": "Grok model", "Голос Grok": "Grok voice", "Цвет добавленного текста": "Colour of added text", "Цвет удалённого текста": "Colour of deleted text", "Удалить": "Delete", "Редактировать": "Edit", "Озвучить": "Speak", "Копировать": "Copy"});
         window.EITI_I18N.addDict('de', {"Закрыть": "Schließen", "Настройки": "Einstellungen", "🤖 Модель чата": "🤖 Chat-Modell", "нужен ключ": "Schlüssel nötig", "🎤 Офлайн-распознавание недоступно — включите офлайн-ввод голосом в Gboard (клавиатура → 🎤)": "🎤 Offline-Erkennung nicht verfügbar – aktiviere die Offline-Spracheingabe in Gboard (Tastatur → 🎤)", "🎤 Загружаю языковой пакет для офлайн-распознавания…": "🎤 Sprachpaket für die Offline-Erkennung wird geladen…", "Голосовой ввод": "Spracheingabe", "Остановить запись": "Aufnahme stoppen", "изменить": "ändern", "🗣️ Голосовой ассистент…": "🗣️ Sprachassistent…", "🎤 Голосовой ввод не поддерживается в этом браузере": "🎤 Spracheingabe wird in diesem Browser nicht unterstützt", "🎤 Нет доступа к микрофону — разрешите его в настройках браузера": "🎤 Kein Mikrofonzugriff – bitte in den Browser-Einstellungen erlauben", "🎤 Речь не распознана — попробуйте ещё раз": "🎤 Keine Sprache erkannt – bitte erneut versuchen", "🎤 Голосовой ввод требует интернет": "🎤 Spracheingabe braucht eine Internetverbindung", "🎤 Микрофон не найден": "🎤 Kein Mikrofon gefunden", "🎤 Этот язык не поддерживается для голосового ввода": "🎤 Diese Sprache wird für die Spracheingabe nicht unterstützt", "🎤 Не удалось начать запись": "🎤 Aufnahme konnte nicht gestartet werden", "Голосовой ассистент": "Sprachassistent", "Добавить на главный экран": "Zum Home-Bildschirm", "Хороший ответ": "Gute Antwort", "Плохой ответ": "Schlechte Antwort", "Озвучить / Пауза / Продолжить": "Vorlesen / Pause / Fortsetzen", "Скопировать": "Kopieren", "Функции чата": "Chat-Funktionen", "Добавить музыку": "Musik hinzufügen", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Zufällige Reihenfolge", "Повтор": "Wiederholen", "🌐 Язык / Language": "🌐 Sprache", "Лёгкий reasoning": "Leichtes Reasoning", "Макс. reasoning": "Max. Reasoning", "актуальный Flash": "aktuelles Flash", "флагман · reasoning": "Flaggschiff · Reasoning", "баланс · замена 3.5": "ausgewogen · ersetzt 3.5", "быстро · дёшево": "schnell · günstig", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: aktuelles Flash · schnell und stark", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "An — denkend · Aus — schneller Modus für alle Gemini", "✓ Подтвердить ключ Qwen": "✓ Qwen-Schlüssel bestätigen", "🔌 Проверить статус": "🔌 Status prüfen", "DashScope · ключ выше · 235B": "DashScope · Schlüssel oben · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "An — Standardmodus des Modells · Aus — Reasoning wird per Anfrage abgeschaltet", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Eigene Live-Liste kostenloser OpenRouter-Endpunkte. Erfordert einen OpenRouter-API-Schlüssel; kostenlose Endpunkte kosten $0 pro Token, es gelten aber Limits und Verfügbarkeit von OpenRouter.", "Выбрать бесплатную модель…": "Kostenloses Modell wählen…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Aus — Schaltfläche ausgeblendet, keine Anfragen. Standardmäßig aus: Notizen gehen nie ohne ausdrückliche Zustimmung an ein LLM.", "Подсветка правок ИИ": "KI-Änderungen hervorheben", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "Nach Ask AI Einfügungen und durchgestrichene Löschungen zeigen. Wird mit der Taste «Аб» oder beim manuellen Tippen ausgeschaltet.", "Цвета подсветки": "Hervorhebungsfarben", "AI Docs в файлах": "AI Docs in Dateien", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "Unten in einer geöffneten Datei: 🔍 Suche, ✨ Ask AI, ✎ Bearbeiten. Die KI sieht die ganze Datei und merkt sich die Fragen des Fensters; Änderungen werden hervorgehoben, ↶↷ macht sie rückgängig.", "🔗 Проактивные рекомендации": "🔗 Proaktive Empfehlungen", "При сохранении файла подсказывать связь с заметками и памятью": "Beim Speichern einer Datei Verbindungen zu Notizen und Gedächtnis vorschlagen", "🌙 Стиль офлайн-ответов": "🌙 Stil der Offline-Antworten", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Ohne Netz, ohne Schlüssel oder bei KI-Ausfall antwortet EITI offline: Dialoge, Witze, Sprichwörter, Rätsel, Märchen und Sagen («Gute-Nacht-Geschichte», «weiter», «wer ist Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:Status|Titel|...]", "🎓 Обучение EITI": "🎓 EITI-Lernen", "👍 Что я понял о твоих предпочтениях": "👍 Was ich über deine Vorlieben gelernt habe", "Оценок:": "Bewertungen:", "· доля 👍:": "· 👍-Anteil:", "Любимая модель:": "Lieblingsmodell:", "нужно ≥3 оценок": "mind. 3 Bewertungen nötig", "Длина ответа:": "Antwortlänge:", "пока неясно": "noch unklar", "🎰 Адаптивный поиск памяти": "🎰 Adaptive Gedächtnissuche", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Passt Schwelle und Anzahl der Fakten an deine 👍/👎 an (Thompson Sampling).", "Пресет": "Voreinstellung", "порог/факты": "Schwelle/Fakten", "оценка": "Wertung", "Широко": "Breit", "Фокус": "Fokus", "Строго": "Streng", "↺ Сбросить обучение": "↺ Lernen zurücksetzen", "🧠 MOSC: уточнять намерение": "🧠 MOSC: Absicht klären", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "Eine Karte «Du möchtest wohl…» unter der Nachricht. Blockiert das Senden nicht.", "🗂 Память фактов": "🗂 Faktengedächtnis", "Активных:": "Aktiv:", "/ 200 · в архиве:": "/ 200 · archiviert:", "🧹 Сжать память сейчас": "🧹 Gedächtnis jetzt verdichten", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Änderungen durch KI (MOSC / FL / PKG)", "Пока нет изменений.": "Noch keine Änderungen.", "📈 Метрики (только на устройстве)": "📈 Metriken (nur auf dem Gerät)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Bewerte Antworten mit 👍/👎 — hier erscheint dann die Statistik.", "🎙️ Голос:": "🎙️ Stimme:", "🔊 Голос:": "🔊 Stimme:", "🚫 Grok поиск отключён": "🚫 Grok-Suche deaktiviert", "Провайдер AI Voice": "AI-Voice-Anbieter", "Модель Grok": "Grok-Modell", "Голос Grok": "Grok-Stimme", "Цвет добавленного текста": "Farbe des eingefügten Texts", "Цвет удалённого текста": "Farbe des gelöschten Texts", "Удалить": "Löschen", "Редактировать": "Bearbeiten", "Озвучить": "Vorlesen", "Копировать": "Kopieren"});
+        window.EITI_I18N.addDict('en', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice is the default; the others need their own key or proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — key below", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Needs your own proxy: it adds the Api-Key header (Yandex Cloud key) and forwards the Realtime protocol.", "Адрес прокси Qwen": "Qwen proxy URL", "Адрес прокси Яндекс": "Yandex proxy URL", "Активен: 🌀 Mistral AI": "Active: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI Realtime voice", "Голос браузера": "Browser voice", "Ключ Mistral AI": "Mistral AI key", "Ключ OpenAI для голосового ассистента": "OpenAI key for the voice assistant", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Uses the Mistral chat key (below). Phrase → Voxtral → Mistral chat model → speech. Not instant like a live call: the reply comes after a pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Key: platform.openai.com · WebRTC straight from the browser, the key goes only to OpenAI", "Модель Mistral": "Mistral model", "Модель OpenAI Realtime": "OpenAI Realtime model", "Модель Qwen Omni": "Qwen Omni model", "Нет Mistral API ключа": "No Mistral API key", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Needs your own proxy: a browser cannot pass the DashScope key to a WebSocket. The proxy adds the Authorization header and forwards the Realtime protocol.", "Озвучка Mistral": "Mistral speech", "готово": "ready", "ключ отклонён": "key rejected", "нет временного ключа": "no ephemeral key", "нет прокси": "no proxy set", "нужен ключ": "key needed", "нужен прокси": "proxy needed", "прокси недоступен": "proxy unreachable", "слушаю…": "listening…", "соединение закрыто": "connection closed", "соединение прервано": "connection lost", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "set the proxy URL (wss://) in Settings → AI → Voice assistant", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ The proxy URL must start with wss://", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Set a Mistral API key in Settings → 🌀 Mistral AI", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ No Mistral key — Settings → AI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ No OpenAI key — Settings → AI → Voice assistant", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC is not available in this browser", "❌ Запись звука недоступна в этом браузере": "❌ Audio recording is not available in this browser", "🌀 Mistral AI активирован": "🌀 Mistral AI activated"}); // v14.12.0
+        window.EITI_I18N.addDict('de', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice ist Standard; die anderen brauchen eigenen Schlüssel oder Proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — Schlüssel unten", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Eigener Proxy nötig: er setzt den Api-Key-Header (Yandex-Cloud-Schlüssel) und leitet das Realtime-Protokoll weiter.", "Адрес прокси Qwen": "Qwen-Proxy-URL", "Адрес прокси Яндекс": "Yandex-Proxy-URL", "Активен: 🌀 Mistral AI": "Aktiv: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI-Realtime-Stimme", "Голос браузера": "Browser-Stimme", "Ключ Mistral AI": "Mistral-AI-Schlüssel", "Ключ OpenAI для голосового ассистента": "OpenAI-Schlüssel für den Sprachassistenten", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Nutzt den Mistral-Chat-Schlüssel (unten). Satz → Voxtral → Mistral-Chatmodell → Sprachausgabe. Nicht sofort wie ein Live-Gespräch: Antwort nach einer Pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Schlüssel: platform.openai.com · WebRTC direkt im Browser, der Schlüssel geht nur an OpenAI", "Модель Mistral": "Mistral-Modell", "Модель OpenAI Realtime": "OpenAI-Realtime-Modell", "Модель Qwen Omni": "Qwen-Omni-Modell", "Нет Mistral API ключа": "Kein Mistral-API-Schlüssel", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Eigener Proxy nötig: Ein Browser kann den DashScope-Schlüssel nicht an einen WebSocket übergeben. Der Proxy setzt den Authorization-Header und leitet das Realtime-Protokoll weiter.", "Озвучка Mistral": "Mistral-Sprachausgabe", "готово": "bereit", "ключ отклонён": "Schlüssel abgelehnt", "нет временного ключа": "kein temporärer Schlüssel", "нет прокси": "kein Proxy", "нужен ключ": "Schlüssel nötig", "нужен прокси": "Proxy nötig", "прокси недоступен": "Proxy nicht erreichbar", "слушаю…": "höre zu…", "соединение закрыто": "Verbindung geschlossen", "соединение прервано": "Verbindung unterbrochen", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "Proxy-URL (wss://) in Einstellungen → KI → Sprachassistent eintragen", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ Die Proxy-URL muss mit wss:// beginnen", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Mistral-API-Schlüssel in Einstellungen → 🌀 Mistral AI eintragen", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ Kein Mistral-Schlüssel — Einstellungen → KI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ Kein OpenAI-Schlüssel — Einstellungen → KI → Sprachassistent", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC ist in diesem Browser nicht verfügbar", "❌ Запись звука недоступна в этом браузере": "❌ Audioaufnahme ist in diesem Browser nicht verfügbar", "🌀 Mistral AI активирован": "🌀 Mistral AI aktiviert"}); // v14.12.0
 
         // ─────────────────────────────────────────────────────────────────
         // AI reply language — независимо от UI-локали.
@@ -8614,6 +8616,22 @@
                                         <span style="display:block;font-size:11px;opacity:0.55;">DashScope · ключ выше · 235B</span></span>
                                         <span id="eiti-pcheck-qwen" style="font-size:20px;opacity:0.2;">⬜</span>
                                     </div>
+                                    <!-- v14.12.0: Mistral AI -->
+                                    <div id="eiti-provider-card-mistral" onclick="eitiSetProvider('mistral')"
+                                        style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;border:2px solid var(--border-color);background:var(--secondary-color);cursor:pointer;transition:all 0.2s;">
+                                        <span id="eiti-picon-mistral" style="font-size:20px;flex-shrink:0;display:inline-block;">🌀</span>
+                                        <span style="flex:1;"><span style="font-size:14px;font-weight:700;">Mistral AI</span>
+                                        <span style="display:block;font-size:11px;opacity:0.55;">Medium 3.5 · Large 4 · Small 4 — ключ ниже</span></span>
+                                        <span id="eiti-pcheck-mistral" style="font-size:20px;opacity:0.2;">⬜</span>
+                                    </div>
+                                    <div id="eiti-mistral-key-box" style="display:flex;flex-direction:column;gap:6px;padding:0 2px 4px;">
+                                        <div style="display:flex;gap:6px;align-items:stretch;">
+                                            <input type="password" id="mistral-key" placeholder="Mistral API key (console.mistral.ai)" oninput="eitiSetMistralKey(this.value)" aria-label="Ключ Mistral AI"
+                                                   style="flex:1;min-width:0;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;">
+                                            <button onclick="eitiClearKey('mistral-key','eiti_mistral_key')" title="Очистить" style="padding:0 12px;border-radius:10px;border:1px solid rgba(255,80,80,0.4);background:rgba(255,80,80,0.08);color:#ff6b6b;font-size:16px;cursor:pointer;flex-shrink:0;">🗑</button>
+                                        </div>
+                                        <select id="mistral-model" onchange="eitiMistralSetModel(this.value)" aria-label="Модель Mistral" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;"></select>
+                                    </div>
                                     <!-- v13.3.5: Web Search — Google Grounding / Tavily / Off -->
                                     <div style="border-top:1px solid var(--border-color);padding-top:10px;margin-top:4px;">
                                         <div style="font-size:13px;font-weight:700;margin-bottom:8px;">🌐 Веб-поиск</div>
@@ -8669,11 +8687,16 @@
                             <!-- v13.7.22: AI Voice — выбор провайдера (Grok xAI / Gemini Live) -->
                             <div id="ai-voice-settings" style="border-top:1px solid var(--border-color);padding-top:12px;margin-top:2px;">
                                 <div style="font-size:13px;font-weight:600;margin-bottom:6px;">🗣️ Голосовой ассистент</div>
-                                <div style="font-size:11px;opacity:0.55;margin-bottom:6px;line-height:1.4;">Grok Voice — по умолчанию; Gemini Live — нужен ключ Gemini</div>
+                                <div style="font-size:11px;opacity:0.55;margin-bottom:6px;line-height:1.4;">Grok Voice — по умолчанию; остальным нужен свой ключ или прокси</div>
                                 <select id="ai-voice-provider" onchange="eitiSetVoiceProvider(this.value)" aria-label="Провайдер AI Voice" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;">
                                     <option value="grok">Grok Voice (xAI) — по умолчанию</option>
                                     <option value="gemini">Gemini Live (Google)</option>
+                                    <option value="openai">OpenAI Realtime</option>
+                                    <option value="qwen">Qwen Omni Realtime</option>
+                                    <option value="yandex">Алиса (Яндекс)</option>
+                                    <option value="mistral">Mistral Voxtral</option>
                                 </select>
+                                <div id="ai-voice-state" style="font-size:12px;margin-top:6px;"></div>
                                 <div id="ai-voice-grok-box" style="margin-top:8px;display:flex;gap:6px;">
                                     <select id="grok-live-model" disabled aria-label="Модель Grok" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;opacity:0.6;">
                                         <option value="grok-voice-latest">grok-voice-latest</option>
@@ -8693,6 +8716,37 @@
                                         <select id="gemini-live-voice" onchange="eitiSetGeminiLiveVoice(this.value)" aria-label="Голос Gemini Live" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;"></select>
                                     </div>
                                     <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Ключ: aistudio.google.com · сессия до 15 мин · поиск и инструменты — только у Grok</div>
+                                </div>
+                                <!-- v14.12.0: OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral -->
+                                <div id="ai-voice-openai-box" style="display:none;margin-top:8px;">
+                                    <div style="display:flex;gap:6px;align-items:stretch;">
+                                        <input type="password" id="openai-voice-key" placeholder="sk-…" onchange="eitiSetOpenAIVoiceKey(this.value)" aria-label="Ключ OpenAI для голосового ассистента" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;">
+                                        <button onclick="eitiClearKey('openai-voice-key','eiti_openai_voice_key')" title="Очистить" style="padding:0 12px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;cursor:pointer;flex-shrink:0;">🗑</button>
+                                    </div>
+                                    <div style="display:flex;gap:6px;margin-top:6px;">
+                                        <select id="openai-voice-model" onchange="eitiSetVoicePref('openaiModel', this.value)" aria-label="Модель OpenAI Realtime" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;"></select>
+                                        <select id="openai-voice-voice" onchange="eitiSetVoicePref('openaiVoice', this.value)" aria-label="Голос OpenAI Realtime" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;"></select>
+                                    </div>
+                                    <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI</div>
+                                </div>
+                                <div id="ai-voice-qwen-box" style="display:none;margin-top:8px;">
+                                    <input type="url" id="qwen-voice-proxy" placeholder="wss://…" onchange="eitiSetVoicePref('qwenProxy', this.value)" aria-label="Адрес прокси Qwen" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;">
+                                    <select id="qwen-voice-model" onchange="eitiSetVoicePref('qwenModel', this.value)" aria-label="Модель Qwen Omni" style="margin-top:6px;width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;"></select>
+                                    <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.</div>
+                                </div>
+                                <div id="ai-voice-yandex-box" style="display:none;margin-top:8px;">
+                                    <input type="url" id="yandex-voice-proxy" placeholder="wss://…" onchange="eitiSetVoicePref('yandexProxy', this.value)" aria-label="Адрес прокси Яндекс" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;">
+                                    <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.</div>
+                                </div>
+                                <div id="ai-voice-mistral-box" style="display:none;margin-top:8px;">
+                                    <div style="display:flex;gap:6px;">
+                                        <select id="mistral-voice-tts" onchange="eitiSetVoicePref('mistralTts', this.value)" aria-label="Озвучка Mistral" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:14px;-webkit-appearance:none;flex:1;min-width:0;">
+                                            <option value="browser">Голос браузера</option>
+                                            <option value="voxtral">Voxtral TTS</option>
+                                        </select>
+                                        <button type="button" onclick="eitiOpenSettingsAt('mistral-key','mistral-key')" style="padding:0 12px;border-radius:10px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;cursor:pointer;flex-shrink:0;">🔑 Mistral</button>
+                                    </div>
+                                    <div style="font-size:11px;opacity:0.5;margin-top:6px;line-height:1.4;">Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.</div>
                                 </div>
                             </div>
                             <!-- GROK KEY -->
@@ -20185,7 +20239,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         function eitiVoiceProvider() {
             var v = '';
             try { v = localStorage.getItem('eiti_voice_provider') || ''; } catch (e) {}
-            return v === 'gemini' ? 'gemini' : 'grok';
+            return ['gemini', 'openai', 'qwen', 'yandex', 'mistral'].indexOf(v) >= 0 ? v : 'grok'; // v14.12.0
         }
         function eitiGeminiLiveModel() {
             var v = '';
@@ -20255,11 +20309,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             return '❌ Gemini Live: соединение закрыто (код ' + code + ')' + (r ? ' — ' + r.slice(0, 120) : '');
         }
         window.eitiSetVoiceProvider = function(v) {
-            v = v === 'gemini' ? 'gemini' : 'grok';
+            v = ['gemini', 'openai', 'qwen', 'yandex', 'mistral'].indexOf(v) >= 0 ? v : 'grok'; // v14.12.0
             try { localStorage.setItem('eiti_voice_provider', v); } catch (e) {}
             if (window._grokVoiceActive && window._eitiVoiceProv && window._eitiVoiceProv !== v) eitiGrokVoiceStop();
             eitiVoiceSettingsRender();
-            showToast('🗣️ AI Voice: ' + (v === 'gemini' ? 'Gemini Live' : 'Grok Voice'));
+            showToast('🗣️ AI Voice: ' + (window.EitiVoice ? EitiVoice.label(v) : v));
         };
         window.eitiSetGeminiLiveModel = function(v) {
             try { localStorage.setItem('eiti_gemini_live_model', v); } catch (e) {}
@@ -20283,7 +20337,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var gb = document.getElementById('ai-voice-gemini-box');
             var xb = document.getElementById('ai-voice-grok-box');
             if (gb) gb.style.display = prov === 'gemini' ? '' : 'none';
-            if (xb) xb.style.display = prov === 'gemini' ? 'none' : 'flex';
+            if (xb) xb.style.display = prov === 'grok' ? 'flex' : 'none';
+            ['openai', 'qwen', 'yandex', 'mistral'].forEach(function(p) { var b = document.getElementById('ai-voice-' + p + '-box'); if (b) b.style.display = prov === p ? '' : 'none'; });
+            try { eitiVoiceExtRender(prov); } catch (e) {}
             try { eitiVoiceLabelsRender(); } catch (e) {}
             var ms = document.getElementById('gemini-live-model');
             if (ms) {
@@ -20343,7 +20399,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var t = document.getElementById('_grok_live_text');
             if (t) t.id = '';
             if (!txt.trim()) return;
-            chatLog.push({ id: 'gvoice-a-' + Date.now(), role: 'assistant', text: '[🗣️ AI Voice] ' + txt, ts: Date.now(), provider: 'gemini-live', model: eitiGeminiLiveModel() });
+            chatLog.push({ id: 'gvoice-a-' + Date.now(), role: 'assistant', text: '[🗣️ AI Voice] ' + txt, ts: Date.now(), provider: (window._eitiVoiceProv || 'gemini') + '-live', model: window._eitiVoiceProv === 'gemini' || !window._eitiVoiceProv ? eitiGeminiLiveModel() : '' });
             saveChat();
             if (typeof eitiProcessCommands === 'function') eitiProcessCommands(txt);
             if (typeof eitiL2Consolidate === 'function' && eitiCurrentChatId) {
@@ -20507,11 +20563,346 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         //   Один активный сеанс за раз: перед стартом другой провайдер останавливается.
         //   Нет ключа / ошибка сокета → тост с кнопкой «Переключить на …».
         // ════════════════════════════════════════════════════════════════════
+        // ════════════════════════════════════════════════════════════════════
+        // v14.12.0: ДОП. ГОЛОСОВЫЕ ПРОВАЙДЕРЫ  openai | qwen | yandex | mistral
+        //   openai  — OpenAI Realtime по WebRTC прямо из браузера: ключ пользователя →
+        //             POST /v1/realtime/client_secrets (временный ek_…) → POST /v1/realtime/calls (SDP).
+        //   qwen    — Qwen-Omni-Realtime (Model Studio). WebSocket требует заголовок Authorization,
+        //             браузер его не шлёт → только через прокси пользователя (wss://…), протокол OpenAI Realtime.
+        //   yandex  — «Алиса (Яндекс)»: Yandex AI Studio Realtime API (совместим с OpenAI Realtime),
+        //             заголовок Api-Key → тоже через прокси. Логотип не показываем (товарный знак).
+        //   mistral — Voxtral: запись фразы → /v1/audio/transcriptions → чат Mistral → озвучка
+        //             (голос браузера или Voxtral TTS /v1/audio/speech). Всё напрямую (CORS открыт).
+        // ════════════════════════════════════════════════════════════════════
+        var EITI_OAI_RT_MODELS = ['gpt-realtime-2.1', 'gpt-realtime'];
+        var EITI_OAI_RT_VOICES = ['marin', 'cedar', 'alloy', 'ash', 'ballad', 'coral', 'echo', 'sage', 'shimmer', 'verse'];
+        var EITI_QWEN_RT_MODELS = ['qwen3.8-omni-flash-realtime', 'qwen3.5-omni-plus-realtime'];
+        var EITI_VOICE_IDS = ['grok', 'gemini', 'openai', 'qwen', 'yandex', 'mistral'];
+        function _eitiLS(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+        function _eitiT(s) { return typeof window.T === 'function' ? window.T(s) : s; }
+        function eitiOpenAIVoiceKey() { return String(_deobfKey(_eitiLS('eiti_openai_voice_key')) || _deobfKey(_eitiLS('eiti_openai_key')) || _deobfKey(_eitiLS('eiti_apikey_openai')) || '').trim(); }
+        function eitiOpenAIVoiceModel() { var v = _eitiLS('eiti_openai_voice_model'); return EITI_OAI_RT_MODELS.indexOf(v) >= 0 ? v : EITI_OAI_RT_MODELS[0]; }
+        function eitiOpenAIVoiceVoice() { var v = _eitiLS('eiti_openai_voice_voice'); return EITI_OAI_RT_VOICES.indexOf(v) >= 0 ? v : 'marin'; }
+        function eitiQwenVoiceModel() { var v = _eitiLS('eiti_qwen_voice_model'); return EITI_QWEN_RT_MODELS.indexOf(v) >= 0 ? v : EITI_QWEN_RT_MODELS[0]; }
+        function eitiMistralKey() { return String(_deobfKey(_eitiLS('eiti_mistral_key')) || '').trim(); }
+        function eitiVoiceProxyUrl(p) { return String(_eitiLS('eiti_' + p + '_voice_proxy')).trim(); }
+        function eitiVoiceProxyValid(u) { return /^wss:\/\/[^\s/]+[^\s]*$/i.test(u) || /^ws:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/[^\s]*)?$/i.test(u); }
+        function eitiVoiceProxyFullUrl(p, u) {
+            u = u || eitiVoiceProxyUrl(p);
+            if (p === 'qwen' && !/[?&]model=/.test(u)) u += (u.indexOf('?') < 0 ? '?' : '&') + 'model=' + encodeURIComponent(eitiQwenVoiceModel());
+            return u;
+        }
+        window.eitiVoiceProxyValid = eitiVoiceProxyValid;
+        window.eitiVoiceProxyFullUrl = eitiVoiceProxyFullUrl;
+        window.eitiSetVoicePref = function(k, v) {
+            var keys = { openaiModel: 'eiti_openai_voice_model', openaiVoice: 'eiti_openai_voice_voice', qwenModel: 'eiti_qwen_voice_model', qwenProxy: 'eiti_qwen_voice_proxy', yandexProxy: 'eiti_yandex_voice_proxy', mistralTts: 'eiti_mistral_tts' };
+            v = String(v == null ? '' : v).trim();
+            try { if (keys[k]) { if (v) localStorage.setItem(keys[k], v); else localStorage.removeItem(keys[k]); } } catch (e) {}
+            if ((k === 'qwenProxy' || k === 'yandexProxy') && v && !eitiVoiceProxyValid(v)) showToast(_eitiT('⚠️ Адрес прокси должен начинаться с wss://'));
+            eitiVoiceSettingsRender();
+        };
+        window.eitiSetOpenAIVoiceKey = function(v) {
+            v = String(v || '').trim();
+            try { if (v) localStorage.setItem('eiti_openai_voice_key', _obfKey(v)); else localStorage.removeItem('eiti_openai_voice_key'); } catch (e) {}
+        };
+        function _eitiVoiceLang() {
+            var lang = (typeof window.eitiGetAiReplyLang === 'function') ? window.eitiGetAiReplyLang() : 'auto';
+            if (lang !== 'en' && lang !== 'ru' && lang !== 'de') lang = (typeof window.eitiGetLocale === 'function' ? window.eitiGetLocale() : 'ru');
+            return lang;
+        }
+        function _eitiVoiceInstr(label) {
+            return eitiGeminiLiveInstructions(typeof chatLog !== 'undefined' ? chatLog : [], { version: window.EITI_VERSION, lang: _eitiVoiceLang() }).replace('модель Gemini Live', 'модель ' + label);
+        }
+        function _eitiVoiceBegin(prov) {
+            window._grokVoiceActive = true;
+            window._eitiVoiceProv = prov;
+            window._geminiLiveReady = false;
+            window._geminiUserAccum = '';
+            window._grokTranscriptAccum = '';
+            _grokVoiceSetBtn('⏳');
+            _eitiSyncChatPanelBtns();
+        }
+        function _eitiVoiceFail(prov, shim, msg) {
+            if (shim && _grokWS !== shim) return; // уже остановлен / заменён
+            _grokWS = null;
+            eitiGrokVoiceStop();
+            showToast('❌ ' + (window.EitiVoice ? EitiVoice.label(prov) : prov) + ': ' + msg, 4500);
+            if (window.EitiVoice) EitiVoice.offerSwitch(prov, 'socket');
+        }
+        // Общий обработчик событий протокола OpenAI Realtime (OpenAI WebRTC, Qwen/Yandex через прокси)
+        function _eitiRtHandle(prov, msg, playAudio) {
+            var t = (msg && msg.type) || '';
+            if (t === 'session.updated' || (t === 'session.created' && prov === 'openai')) {
+                if (!window._geminiLiveReady) { window._geminiLiveReady = true; _grokVoiceSetBtn(''); showToast('🎤 ' + EitiVoice.label(prov) + ' — ' + _eitiT('слушаю…')); }
+                return;
+            }
+            if ((t === 'response.audio.delta' || t === 'response.output_audio.delta') && msg.delta) {
+                if (!playAudio) return;
+                window._grokVoiceSpeaking = true; _grokVoiceSetBtn('🔊'); _grokPlayChunk(msg.delta); return;
+            }
+            if (t === 'output_audio_buffer.started') { window._grokVoiceSpeaking = true; _grokVoiceSetBtn('🔊'); return; }
+            if (t === 'output_audio_buffer.stopped') { window._grokVoiceSpeaking = false; _grokVoiceSetBtn(''); return; }
+            if (t === 'response.audio_transcript.delta' || t === 'response.output_audio_transcript.delta' || t === 'response.output_text.delta' || t === 'response.text.delta') {
+                if (window._geminiUserAccum) _eitiGeminiLiveFlushUser();
+                window._grokTranscriptAccum = (window._grokTranscriptAccum || '') + (msg.delta || '');
+                _eitiGeminiLiveBubble('model', msg.delta || '');
+                return;
+            }
+            if (t === 'conversation.item.input_audio_transcription.delta' && msg.delta) {
+                window._geminiUserAccum = (window._geminiUserAccum || '') + msg.delta; _eitiGeminiLiveBubble('user', msg.delta); return;
+            }
+            if (t === 'conversation.item.input_audio_transcription.completed') {
+                if (!window._geminiUserAccum && msg.transcript) { window._geminiUserAccum = msg.transcript; _eitiGeminiLiveBubble('user', msg.transcript); }
+                _eitiGeminiLiveFlushUser(); return;
+            }
+            if (t === 'response.done') {
+                if (playAudio) { window._grokVoiceSpeaking = false; _grokVoiceSetBtn(''); }
+                _eitiGeminiLiveFlushUser(); _eitiGeminiLiveFlushModel(); return;
+            }
+            if (t === 'error') {
+                var e = msg.error || {};
+                showToast('❌ ' + EitiVoice.label(prov) + ': ' + String(e.message || e.code || 'error').slice(0, 160), 4500);
+            }
+        }
+        window._eitiRtHandle = _eitiRtHandle;
+        // Микрофон → PCM16 нужной частоты → base64 (для WebSocket-провайдеров)
+        function _eitiMicPump(rate, guard, send) {
+            var AC = window.AudioContext || window.webkitAudioContext;
+            if (!_grokMicCtx && AC) { try { _grokMicCtx = new AC({ sampleRate: rate }); } catch (e) { try { _grokMicCtx = new AC(); } catch (e2) {} } }
+            try { if (_grokMicCtx && _grokMicCtx.resume) _grokMicCtx.resume(); } catch (e) {}
+            if (!_grokPlayCtx && AC) { try { _grokPlayCtx = new AC({ sampleRate: 24000 }); _grokPlayAt = _grokPlayCtx.currentTime; if (_grokPlayCtx.resume) _grokPlayCtx.resume(); } catch (e) { _grokPlayCtx = null; } }
+            return navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+                if (!guard(true)) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
+                _grokStream = stream;
+                var ctx = _grokMicCtx;
+                _grokMicSrc = ctx.createMediaStreamSource(stream);
+                var inRate = Math.round(ctx.sampleRate || rate);
+                _grokProcessor = ctx.createScriptProcessor(4096, 1, 1);
+                _grokMicSrc.connect(_grokProcessor);
+                _grokProcessor.connect(ctx.destination);
+                _grokProcessor.onaudioprocess = function(e) {
+                    if (!guard(false) || window._grokMuted) return;
+                    var i16 = _grokPCM16(e.inputBuffer.getChannelData(0));
+                    if (inRate !== rate) i16 = eitiResamplePCM16(i16, inRate, rate);
+                    send(_grokB64(i16));
+                };
+            });
+        }
+        // ── OpenAI Realtime (WebRTC) ──────────────────────────────────────
+        function eitiOpenAIVoiceStart() {
+            if (window._grokVoiceActive) return;
+            var key = eitiOpenAIVoiceKey();
+            if (!key) { showToast(_eitiT('⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент')); EitiVoice.offerSwitch('openai', 'nokey'); return; }
+            if (typeof RTCPeerConnection === 'undefined' || !navigator.mediaDevices) { showToast(_eitiT('❌ WebRTC недоступен в этом браузере')); return; }
+            _eitiVoiceBegin('openai');
+            var pc = new RTCPeerConnection(), dc = null, audio = document.createElement('audio');
+            audio.autoplay = true;
+            var shim = { readyState: 0, kind: 'webrtc',
+                send: function(s) { if (dc && dc.readyState === 'open') dc.send(s); },
+                close: function() { shim.readyState = 3; try { if (dc) dc.close(); } catch (e) {} try { pc.close(); } catch (e) {} try { audio.srcObject = null; } catch (e) {} } };
+            _grokWS = shim;
+            pc.ontrack = function(e) { audio.srcObject = e.streams[0]; };
+            pc.onconnectionstatechange = function() { if (pc.connectionState === 'failed') _eitiVoiceFail('openai', shim, _eitiT('соединение прервано')); };
+            var session = { type: 'realtime', model: eitiOpenAIVoiceModel(), instructions: _eitiVoiceInstr('OpenAI Realtime'), audio: { output: { voice: eitiOpenAIVoiceVoice() } } };
+            fetch('https://api.openai.com/v1/realtime/client_secrets', {
+                method: 'POST', headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ expires_after: { anchor: 'created_at', seconds: 600 }, session: session })
+            }).then(function(r) {
+                if (!r.ok) return r.text().then(function(t) { var m = t; try { m = JSON.parse(t).error.message; } catch (e) {} throw new Error((r.status === 401 ? _eitiT('ключ отклонён') : 'HTTP ' + r.status) + ' — ' + String(m).slice(0, 120)); });
+                return r.json();
+            }).then(function(j) {
+                var ek = j && (j.value || (j.client_secret && j.client_secret.value));
+                if (!ek) throw new Error(_eitiT('нет временного ключа'));
+                if (_grokWS !== shim) throw new Error('aborted');
+                return navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+                    if (_grokWS !== shim) { stream.getTracks().forEach(function(t) { t.stop(); }); throw new Error('aborted'); }
+                    _grokStream = stream;
+                    pc.addTrack(stream.getAudioTracks()[0], stream);
+                    dc = pc.createDataChannel('oai-events');
+                    dc.onopen = function() { shim.readyState = 1; };
+                    dc.onmessage = function(e) { var m; try { m = JSON.parse(e.data); } catch (_) { return; } _eitiRtHandle('openai', m, false); };
+                    return pc.createOffer();
+                }).then(function(offer) {
+                    return pc.setLocalDescription(offer).then(function() {
+                        return fetch('https://api.openai.com/v1/realtime/calls', { method: 'POST', body: offer.sdp, headers: { 'Authorization': 'Bearer ' + ek, 'Content-Type': 'application/sdp' } });
+                    });
+                }).then(function(r) {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.text();
+                }).then(function(sdp) {
+                    if (_grokWS !== shim) return;
+                    return pc.setRemoteDescription({ type: 'answer', sdp: sdp });
+                });
+            }).catch(function(e) {
+                if (String(e && e.message) === 'aborted') return;
+                _eitiVoiceFail('openai', shim, String((e && e.message) || e));
+            });
+        }
+        window.eitiOpenAIVoiceStart = eitiOpenAIVoiceStart;
+        // ── Qwen-Omni-Realtime / Алиса (Яндекс) — через прокси пользователя (WebSocket, протокол OpenAI Realtime) ──
+        function eitiRtProxyVoiceStart(prov) {
+            if (window._grokVoiceActive) return;
+            var label = EitiVoice.label(prov), raw = eitiVoiceProxyUrl(prov);
+            if (!eitiVoiceProxyValid(raw)) { showToast('⚠️ ' + label + ': ' + _eitiT('укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент'), 4500); EitiVoice.offerSwitch(prov, 'noproxy'); return; }
+            if (typeof WebSocket === 'undefined') { showToast('❌ WebSocket'); return; }
+            var rate = prov === 'qwen' ? 16000 : 24000;
+            _eitiVoiceBegin(prov);
+            var ws;
+            try { ws = new WebSocket(eitiVoiceProxyFullUrl(prov, raw)); } catch (e) { _grokWS = null; eitiGrokVoiceStop(); showToast('❌ ' + label + ': ' + (e.message || e)); return; }
+            _grokWS = ws;
+            ws.onopen = function() {
+                var s = { modalities: ['text', 'audio'], instructions: _eitiVoiceInstr(label), input_audio_format: 'pcm16', output_audio_format: 'pcm16', turn_detection: { type: 'server_vad' } };
+                ws.send(JSON.stringify({ type: 'session.update', session: s }));
+                _eitiMicPump(rate, function(first) { return _grokWS === ws && ws.readyState === 1 && (first || !!window._geminiLiveReady); }, function(b64) {
+                    ws.send(JSON.stringify({ type: 'input_audio_buffer.append', audio: b64 }));
+                }).catch(function(e) { showToast('❌ ' + _eitiT('Микрофон') + ': ' + (e.message || e)); eitiGrokVoiceStop(); });
+            };
+            ws.onmessage = function(evt) { var m; try { m = JSON.parse(typeof evt.data === 'string' ? evt.data : new TextDecoder().decode(evt.data)); } catch (e) { return; } _eitiRtHandle(prov, m, true); };
+            ws.onerror = function() { _eitiVoiceFail(prov, ws, _eitiT('прокси недоступен')); };
+            ws.onclose = function(ev) { if (ws !== _grokWS) return; _eitiVoiceFail(prov, ws, _eitiT('соединение закрыто') + ' (' + (ev && ev.code) + ')'); };
+        }
+        window.eitiRtProxyVoiceStart = eitiRtProxyVoiceStart;
+        // ── Mistral Voxtral: фраза → транскрипция → чат → озвучка ─────────
+        function eitiMistralTranscribe(blob, key) {
+            var fd = new FormData();
+            fd.append('model', 'voxtral-mini-transcribe-3-0');
+            fd.append('file', blob, 'voice.' + (/mp4/.test(blob.type) ? 'm4a' : 'webm'));
+            return fetch('https://api.mistral.ai/v1/audio/transcriptions', { method: 'POST', headers: { 'Authorization': 'Bearer ' + key }, body: fd })
+                .then(function(r) { if (!r.ok) throw new Error('Voxtral HTTP ' + r.status); return r.json(); })
+                .then(function(j) { return String((j && j.text) || '').trim(); });
+        }
+        window.eitiMistralTranscribe = eitiMistralTranscribe;
+        function _eitiSpeakClean(t) { return String(t || '').replace(/\[(MEM_|NOTE_|TASK_)[^\]]*\]/g, '').replace(/[*_`#>]+/g, '').trim(); }
+        function eitiMistralSpeak(text, key) {
+            text = _eitiSpeakClean(text);
+            if (!text) return Promise.resolve();
+            function browserTts() {
+                return new Promise(function(res) {
+                    if (!window.speechSynthesis || typeof SpeechSynthesisUtterance === 'undefined') return res();
+                    var u = new SpeechSynthesisUtterance(text), l = _eitiVoiceLang();
+                    u.lang = l === 'en' ? 'en-US' : l === 'de' ? 'de-DE' : 'ru-RU';
+                    u.onend = u.onerror = function() { res(); };
+                    try { speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) { res(); }
+                });
+            }
+            if (_eitiLS('eiti_mistral_tts') !== 'voxtral') return browserTts();
+            return fetch('https://api.mistral.ai/v1/audio/speech', { method: 'POST', headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: 'voxtral-mini-tts-3-0', input: text.slice(0, 3000), voice_id: _eitiLS('eiti_mistral_tts_voice') || 'gb_jane_neutral', response_format: 'mp3' }) })
+                .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(function(j) {
+                    return new Promise(function(res) {
+                        var a = new Audio('data:audio/mpeg;base64,' + j.audio_data);
+                        window._eitiMistralAudio = a;
+                        a.onended = a.onerror = function() { res(); };
+                        a.play().catch(function() { res(); });
+                    });
+                }).catch(function() { return browserTts(); });
+        }
+        window.eitiMistralSpeak = eitiMistralSpeak;
+        function eitiMistralVoiceTurn(text, shim) {
+            var key = eitiMistralKey();
+            text = String(text || '').trim();
+            if (!text || !shim || _grokWS !== shim) return Promise.resolve('');
+            shim.busy = true;
+            window._geminiUserAccum = text; _eitiGeminiLiveBubble('user', text); _eitiGeminiLiveFlushUser();
+            _grokVoiceSetBtn('⏳');
+            var msgs = [{ role: 'system', content: _eitiVoiceInstr('Mistral Voxtral') }];
+            (typeof chatLog !== 'undefined' ? chatLog : []).slice(-20).forEach(function(m) { if (m && m.text && m.role !== 'system') msgs.push({ role: m.role === 'user' ? 'user' : 'assistant', content: String(m.text) }); });
+            var model = window.MISTRAL ? MISTRAL.getModel() : 'mistral-small-2603';
+            return fetch('https://api.mistral.ai/v1/chat/completions', { method: 'POST', headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: model, messages: msgs, max_tokens: 600 }) })
+                .then(function(r) { if (!r.ok) throw new Error('Mistral HTTP ' + r.status); return r.json(); })
+                .then(function(j) {
+                    var reply = String((j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '').trim();
+                    if (_grokWS !== shim) return '';
+                    window._grokTranscriptAccum = reply; _eitiGeminiLiveBubble('model', reply); _eitiGeminiLiveFlushModel();
+                    window._grokVoiceSpeaking = true; _grokVoiceSetBtn('🔊');
+                    return eitiMistralSpeak(reply, key).then(function() { return reply; });
+                })
+                .catch(function(e) { showToast('❌ Mistral: ' + (e.message || e), 4000); return ''; })
+                .then(function(r) { shim.busy = false; window._grokVoiceSpeaking = false; if (_grokWS === shim) _grokVoiceSetBtn(''); return r; });
+        }
+        window.eitiMistralVoiceTurn = eitiMistralVoiceTurn;
+        function eitiMistralVoiceStart() {
+            if (window._grokVoiceActive) return;
+            var key = eitiMistralKey();
+            if (!key) { showToast(_eitiT('⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI')); EitiVoice.offerSwitch('mistral', 'nokey'); return; }
+            if (typeof MediaRecorder === 'undefined' || !navigator.mediaDevices) { showToast(_eitiT('❌ Запись звука недоступна в этом браузере')); return; }
+            _eitiVoiceBegin('mistral');
+            var st = { rec: null, chunks: [], lastVoice: 0, startedAt: 0, timer: 0 };
+            var shim = { readyState: 1, kind: 'mistral', busy: false,
+                send: function(s) { try { var m = JSON.parse(s); if (m.type === 'conversation.item.create' && m.item && m.item.content) eitiMistralVoiceTurn(m.item.content[0].text, shim); } catch (e) {} },
+                close: function() { shim.readyState = 3; clearInterval(st.timer); try { if (st.rec && st.rec.state !== 'inactive') st.rec.stop(); } catch (e) {} try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {} try { if (window._eitiMistralAudio) window._eitiMistralAudio.pause(); } catch (e) {} } };
+            _grokWS = shim;
+            window._eitiMistralShim = shim;
+            navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+                if (_grokWS !== shim) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
+                _grokStream = stream;
+                var AC = window.AudioContext || window.webkitAudioContext;
+                _grokMicCtx = new AC();
+                _grokMicSrc = _grokMicCtx.createMediaStreamSource(stream);
+                var an = _grokMicCtx.createAnalyser(); an.fftSize = 1024; _grokMicSrc.connect(an);
+                var buf = new Float32Array(an.fftSize);
+                window._geminiLiveReady = true; _grokVoiceSetBtn('');
+                showToast('🎤 Mistral Voxtral — ' + _eitiT('слушаю…'));
+                st.timer = setInterval(function() {
+                    if (_grokWS !== shim) { clearInterval(st.timer); return; }
+                    if (shim.busy || window._grokMuted) return;
+                    an.getFloatTimeDomainData(buf);
+                    var s = 0; for (var i = 0; i < buf.length; i++) s += buf[i] * buf[i];
+                    var rms = Math.sqrt(s / buf.length), now = Date.now();
+                    if (rms > 0.02) {
+                        st.lastVoice = now;
+                        if (!st.rec) {
+                            st.chunks = []; st.startedAt = now;
+                            try { st.rec = new MediaRecorder(stream); } catch (e) { return; }
+                            st.rec.ondataavailable = function(e) { if (e.data && e.data.size) st.chunks.push(e.data); };
+                            st.rec.onstop = function() {
+                                var dur = st.lastVoice - st.startedAt, blob = new Blob(st.chunks, { type: (st.rec && st.rec.mimeType) || 'audio/webm' });
+                                st.rec = null;
+                                if (_grokWS !== shim || dur < 300 || !blob.size) return;
+                                shim.busy = true; _grokVoiceSetBtn('⏳');
+                                eitiMistralTranscribe(blob, key).then(function(txt) {
+                                    shim.busy = false;
+                                    if (txt) return eitiMistralVoiceTurn(txt, shim);
+                                    _grokVoiceSetBtn('');
+                                }).catch(function(e) { shim.busy = false; _grokVoiceSetBtn(''); showToast('❌ ' + (e.message || e), 3500); });
+                            };
+                            st.rec.start();
+                        }
+                    } else if (st.rec && st.rec.state === 'recording' && now - st.lastVoice > 1100) {
+                        try { st.rec.stop(); } catch (e) {}
+                    }
+                }, 100);
+            }).catch(function(e) { showToast('❌ ' + _eitiT('Микрофон') + ': ' + (e.message || e)); eitiGrokVoiceStop(); });
+        }
+        window.eitiMistralVoiceStart = eitiMistralVoiceStart;
+
+        function eitiVoiceExtRender(prov) {
+            function fill(id, list, val) { var s = document.getElementById(id); if (!s) return; if (!s.options.length) s.innerHTML = list.map(function(m) { return '<option value="' + m + '">' + m + '</option>'; }).join(''); s.value = val; }
+            fill('openai-voice-model', EITI_OAI_RT_MODELS, eitiOpenAIVoiceModel());
+            fill('openai-voice-voice', EITI_OAI_RT_VOICES, eitiOpenAIVoiceVoice());
+            fill('qwen-voice-model', EITI_QWEN_RT_MODELS, eitiQwenVoiceModel());
+            var ok = document.getElementById('openai-voice-key'); if (ok && !ok.value) { var kv = _deobfKey(_eitiLS('eiti_openai_voice_key')); if (kv) ok.value = kv; }
+            ['qwen', 'yandex'].forEach(function(p) { var i = document.getElementById(p + '-voice-proxy'); if (i && document.activeElement !== i) i.value = eitiVoiceProxyUrl(p); });
+            var mt = document.getElementById('mistral-voice-tts'); if (mt) mt.value = _eitiLS('eiti_mistral_tts') === 'voxtral' ? 'voxtral' : 'browser';
+            var st = document.getElementById('ai-voice-state');
+            if (st && window.EitiVoice) {
+                var need = EitiVoice.needs(prov);
+                st.innerHTML = need ? '<button type="button" class="eiti-voice-need" onclick="eitiVoiceNeedFix()" style="background:none;border:none;padding:4px 0;color:var(--accent-color,#ffd700);text-decoration:underline;cursor:pointer;font-size:12px;">' + (need === 'proxy' ? '🔌 ' + _eitiT('нужен прокси') : '🔑 ' + _eitiT('нужен ключ')) + '</button>' : '<span style="opacity:.6">✓ ' + _eitiT('готово') + '</span>';
+            }
+        }
+        window.eitiVoiceExtRender = eitiVoiceExtRender;
+        window.eitiVoiceNeedFix = function() {
+            var p = eitiVoiceProvider();
+            var f = { grok: 'grok-key', gemini: 'gemini-live-key', openai: 'openai-voice-key', qwen: 'qwen-voice-proxy', yandex: 'yandex-voice-proxy', mistral: 'mistral-key' }[p];
+            if (f) window.eitiOpenSettingsAt(f, f);
+        };
         window.EitiVoice = (function() {
             var L = {
-                ru: { sw: 'Переключить на', nokey: 'нет ключа', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию' },
-                en: { sw: 'Switch to', nokey: 'no API key', socket: 'connection failed', switched: 'Voice: ', def: 'default' },
-                de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard' }
+                ru: { sw: 'Переключить на', nokey: 'нет ключа', noproxy: 'нет прокси', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию', alice: 'Алиса (Яндекс)' },
+                en: { sw: 'Switch to', nokey: 'no API key', noproxy: 'no proxy set', socket: 'connection failed', switched: 'Voice: ', def: 'default', alice: 'Alice (Yandex)' },
+                de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', noproxy: 'kein Proxy', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard', alice: 'Alice (Yandex)' }
             };
             function tr(k) { var l = 'ru'; try { l = (window.eitiGetLocale && window.eitiGetLocale()) || 'ru'; } catch (e) {} return (L[l] || L.ru)[k]; }
             var reg = {
@@ -20522,9 +20913,21 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         mute: function() { eitiGrokMuteToggle(); }, isActive: function() { return !!window._grokVoiceActive && window._eitiVoiceProv === 'gemini'; },
                         hasKey: function() { return !!eitiGeminiLiveKey(); } }
             };
+            // v14.12.0: OpenAI Realtime (WebRTC) · Qwen Omni / Алиса (Яндекс) — через прокси · Mistral Voxtral
+            function _act(id) { return function() { return !!window._grokVoiceActive && window._eitiVoiceProv === id; }; }
+            var _stop = function() { eitiGrokVoiceStop(); }, _mute = function() { eitiGrokMuteToggle(); };
+            reg.openai = { id: 'openai', label: 'OpenAI Realtime', start: function() { return eitiOpenAIVoiceStart(); }, stop: _stop, mute: _mute, isActive: _act('openai'),
+                           hasKey: function() { return !!eitiOpenAIVoiceKey(); } };
+            reg.qwen = { id: 'qwen', label: 'Qwen Omni', proxy: true, start: function() { return eitiRtProxyVoiceStart('qwen'); }, stop: _stop, mute: _mute, isActive: _act('qwen'),
+                         hasKey: function() { return eitiVoiceProxyValid(eitiVoiceProxyUrl('qwen')); } };
+            reg.yandex = { id: 'yandex', label: 'Алиса (Яндекс)', proxy: true, start: function() { return eitiRtProxyVoiceStart('yandex'); }, stop: _stop, mute: _mute, isActive: _act('yandex'),
+                           hasKey: function() { return eitiVoiceProxyValid(eitiVoiceProxyUrl('yandex')); } };
+            reg.mistral = { id: 'mistral', label: 'Mistral Voxtral', start: function() { return eitiMistralVoiceStart(); }, stop: _stop, mute: _mute, isActive: _act('mistral'),
+                            hasKey: function() { return !!eitiMistralKey(); } };
             var _lastOffer = 0;
             function current() { return eitiVoiceProvider(); }
-            function other(id) { return id === 'gemini' ? 'grok' : 'gemini'; }
+            function other(id) { return id === 'grok' ? 'gemini' : 'grok'; }
+            function needs(id) { var r = reg[id || current()]; if (!r || r.hasKey()) return ''; return r.proxy ? 'proxy' : 'key'; }
             function active() { return Object.keys(reg).filter(function(k) { return reg[k].isActive(); })[0] || ''; }
             function start(id) {
                 id = reg[id] ? id : current();
@@ -20541,20 +20944,20 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 t.className = 'toast eiti-voice-switch-toast';
                 t.style.pointerEvents = 'auto';
                 t.style.top = '30%';
-                t.appendChild(document.createTextNode('🗣️ ' + reg[from].label + ': ' + tr(reason) + ' '));
+                t.appendChild(document.createTextNode('🗣️ ' + label(from) + ': ' + tr(reason) + ' '));
                 var b = document.createElement('button');
                 b.type = 'button';
                 b.className = 'eiti-voice-switch-btn';
-                b.textContent = tr('sw') + ' ' + reg[to].label;
+                b.textContent = tr('sw') + ' ' + label(to);
                 b.style.cssText = 'margin-left:6px;padding:6px 10px;border-radius:8px;border:1px solid var(--accent-color,#ffd700);background:transparent;color:inherit;font-weight:700;cursor:pointer;';
                 b.onclick = function() { if (t.parentNode) t.remove(); window.eitiSetVoiceProvider(to); start(to); };
                 t.appendChild(b);
                 document.body.appendChild(t);
                 setTimeout(function() { if (t.parentNode) t.remove(); }, 7000);
             }
-            function label(id) { return (reg[id || current()] || reg.grok).label; }
+            function label(id) { var r = reg[id || current()] || reg.grok; return r.id === 'yandex' ? tr('alice') : r.label; }
             return { providers: reg, current: current, active: active, start: start, stop: function() { var a = active(); if (a) reg[a].stop(); },
-                     mute: function() { var a = active(); if (a) reg[a].mute(); }, isActive: function() { return !!active(); }, offerSwitch: offerSwitch, label: label, tr: tr };
+                     mute: function() { var a = active(); if (a) reg[a].mute(); }, isActive: function() { return !!active(); }, offerSwitch: offerSwitch, label: label, tr: tr, needs: needs, ids: function() { return Object.keys(reg); } };
         })();
         // Подписи кнопок голоса = выбранный провайдер
         function eitiVoiceLabelsRender() {
@@ -21368,7 +21771,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
 
         function eitiSetProvider(p, silent) {
             if (!silent) {
-                var iconMap = { deepseek:'eiti-picon-ds', gemini:'eiti-picon-gm', openrouter:'eiti-picon-or', qwen:'eiti-picon-qwen', none:'eiti-picon-none' };
+                var iconMap = { deepseek:'eiti-picon-ds', gemini:'eiti-picon-gm', openrouter:'eiti-picon-or', qwen:'eiti-picon-qwen', mistral:'eiti-picon-mistral', none:'eiti-picon-none' };
                 if (iconMap[p]) _eitiPopIcon(iconMap[p]);
             }
             localStorage.setItem('eiti_ai_provider', p);
@@ -21395,8 +21798,8 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (gmBtn) { gmBtn.style.border = p==='gemini'   ? accent : normal; gmBtn.style.background = p==='gemini'   ? accentBg : normalBg; }
             if (orBtn) { orBtn.style.border = p==='openrouter' ? accent : normal; orBtn.style.background = p==='openrouter' ? accentBg : normalBg; }
             // Update ALL provider cards (including Qwen) — mutually exclusive single selection
-            var cards = { deepseek: 'eiti-provider-card-ds', gemini: 'eiti-provider-card-gm', openrouter: 'eiti-provider-card-or', qwen: 'eiti-provider-card-qwen', none: 'eiti-provider-card-none' };
-            var checks = { deepseek: 'eiti-pcheck-ds', gemini: 'eiti-pcheck-gm', openrouter: 'eiti-pcheck-or', qwen: 'eiti-pcheck-qwen', none: 'eiti-pcheck-none' };
+            var cards = { deepseek: 'eiti-provider-card-ds', gemini: 'eiti-provider-card-gm', openrouter: 'eiti-provider-card-or', qwen: 'eiti-provider-card-qwen', mistral: 'eiti-provider-card-mistral', none: 'eiti-provider-card-none' };
+            var checks = { deepseek: 'eiti-pcheck-ds', gemini: 'eiti-pcheck-gm', openrouter: 'eiti-pcheck-or', qwen: 'eiti-pcheck-qwen', mistral: 'eiti-pcheck-mistral', none: 'eiti-pcheck-none' };
             Object.keys(cards).forEach(function(key) {
                 var card = document.getElementById(cards[key]);
                 var check = document.getElementById(checks[key]);
@@ -21410,9 +21813,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var orModel = eitiGetORModel();
                 orModelCard.textContent = orModel;
             }
-            var labels = { deepseek: 'Активен: 🤖 DeepSeek', gemini: 'Активен: ⚡ Gemini', openrouter: 'Активен: 🔀 OpenRouter', qwen: 'Активен: 🟣 Qwen AI', none: '🚫 AI отключён' };
+            var labels = { deepseek: 'Активен: 🤖 DeepSeek', gemini: 'Активен: ⚡ Gemini', openrouter: 'Активен: 🔀 OpenRouter', qwen: 'Активен: 🟣 Qwen AI', mistral: 'Активен: 🌀 Mistral AI', none: '🚫 AI отключён' };
             if (lbl) lbl.textContent = labels[p] || labels.deepseek;
-            var toasts = { deepseek: '🤖 DeepSeek активирован', gemini: '⚡ Gemini активирован', openrouter: '🔀 OpenRouter активирован', qwen: '🟣 Qwen AI активирован', none: '🚫 AI провайдер отключён' };
+            var toasts = { deepseek: '🤖 DeepSeek активирован', gemini: '⚡ Gemini активирован', openrouter: '🔀 OpenRouter активирован', qwen: '🟣 Qwen AI активирован', mistral: '🌀 Mistral AI активирован', none: '🚫 AI провайдер отключён' };
             if (!silent) showToast(toasts[p] || toasts.deepseek);
         }
 
@@ -36616,6 +37019,7 @@ window.eitiLLMClearAll = async function() {
                 gemini:     { icon: '⚡', name: 'Gemini',     key: 'eiti_gemini_key',  input: 'gemini-key' },
                 openrouter: { icon: '🔀', name: 'OpenRouter', key: 'eiti_or_key',      input: 'openrouter-key' },
                 qwen:       { icon: '🟣', name: 'Qwen',       key: 'eiti_qwen_key',    input: 'qwen-key-main' },
+                mistral:    { icon: '🌀', name: 'Mistral',    key: 'eiti_mistral_key', input: 'mistral-key' }, // v14.12.0
                 none:       { icon: '🚫', name: 'Отключить AI' }
             };
             var DS_NAMES = { 'deepseek-flash': 'V4.1 Flash', 'deepseek-v4-pro-low': 'V4 Pro Low', 'deepseek-v4-pro-high': 'V4 Pro High', 'deepseek-v4-pro-max': 'V4 Pro Max' };
@@ -36626,6 +37030,7 @@ window.eitiLLMClearAll = async function() {
                 if (p === 'gemini') return String(m).replace(/^gemini-/, '');
                 if (p === 'openrouter') return String(m);
                 if (p === 'qwen') { var q = (window.QWEN && QWEN.MODELS || []).filter(function (x) { return x.id === m; })[0]; return q ? q.label : m; }
+                if (p === 'mistral') return window.MISTRAL ? MISTRAL.label(m) : m;
                 return '';
             }
             function curModel(p) {
@@ -36634,6 +37039,7 @@ window.eitiLLMClearAll = async function() {
                     if (p === 'gemini') return g('eitiGetGeminiModel') ? eitiGetGeminiModel() : localStorage.getItem('eiti_gemini_model');
                     if (p === 'openrouter') return g('eitiGetORModel') ? eitiGetORModel() : localStorage.getItem('eiti_or_model');
                     if (p === 'qwen') return window.QWEN ? QWEN.getModel() : localStorage.getItem('eiti_qwen_model');
+                    if (p === 'mistral') return window.MISTRAL ? MISTRAL.getModel() : localStorage.getItem('eiti_mistral_model');
                 } catch (e) {}
                 return '';
             }
@@ -36653,6 +37059,7 @@ window.eitiLLMClearAll = async function() {
                 var orc = curModel('openrouter'); if (orc && orp.indexOf(orc) < 0) orp.push(orc);
                 orp.forEach(function (m) { out.push({ p: 'openrouter', m: m }); });
                 ((cat.qwen && cat.qwen.ids) || []).forEach(function (m) { out.push({ p: 'qwen', m: m }); });
+                ((window.MISTRAL && MISTRAL.MODELS) || []).forEach(function (m) { out.push({ p: 'mistral', m: m.id }); });
                 out.push({ p: 'none', m: '' });
                 return out;
             }
@@ -36667,7 +37074,7 @@ window.eitiLLMClearAll = async function() {
                 var html = '<div class="eas-backdrop" onclick="eitiChatAISheetClose()"></div>' +
                     '<div class="eas-panel" role="dialog" aria-modal="true" aria-label="' + esc(_t('🤖 Модель чата')) + '">' +
                     '<div class="eas-head"><span>' + esc(_t('🤖 Модель чата')) + '</span><button type="button" class="eas-close" aria-label="' + esc(_t('Закрыть')) + '" onclick="eitiChatAISheetClose()">✕</button></div><div class="eas-body">';
-                ['deepseek', 'gemini', 'openrouter', 'qwen'].forEach(function (p) {
+                ['deepseek', 'gemini', 'openrouter', 'qwen', 'mistral'].forEach(function (p) {
                     var info = AI_PROV[p], key = hasKey(p), open = p === cp;
                     var sub = key ? esc(modelName(p, curModel(p))) : '🔑 ' + esc(_t('нужен ключ'));
                     html += '<div class="eas-group' + (open ? ' eas-open' : '') + '" data-ai-prov="' + p + '">' +
@@ -36710,6 +37117,7 @@ window.eitiLLMClearAll = async function() {
                     else if (r.p === 'gemini' && g('eitiSetGeminiModel')) eitiSetGeminiModel(r.m);
                     else if (r.p === 'openrouter' && g('eitiSetORModel')) eitiSetORModel(r.m);
                     else if (r.p === 'qwen' && g('eitiQwenSetModel')) eitiQwenSetModel(r.m);
+                    else if (r.p === 'mistral' && g('eitiMistralSetModel')) eitiMistralSetModel(r.m);
                     if (g('eitiSetProvider')) eitiSetProvider(r.p, true); else localStorage.setItem('eiti_ai_provider', r.p);
                 } catch (e) { try { localStorage.setItem('eiti_ai_provider', r.p); } catch (_) {} }
                 window.showToast = _st;
@@ -49052,6 +49460,136 @@ window.eitiQwenToggleDeep = function() {
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. QWEN TTS — CosyVoice
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─────────────────────────────────────────────────────────────────────────────
+// v14.12.0: MISTRAL AI — обычный провайдер чата (api.mistral.ai, OpenAI-совместимый, CORS открыт)
+// ─────────────────────────────────────────────────────────────────────────────
+var MISTRAL = {
+    ENDPOINT: 'https://api.mistral.ai/v1/chat/completions',
+    MODELS: [
+        { id: 'mistral-medium-3-5',  label: 'Medium 3.5' },
+        { id: 'mistral-large-4',     label: 'Large 4' },
+        { id: 'mistral-small-2603',  label: 'Small 4' },
+        { id: 'ministral-14b-2512',  label: 'Ministral 3 14B' },
+        { id: 'ministral-8b-2512',   label: 'Ministral 3 8B' }
+    ],
+    getKey: function() {
+        var v = localStorage.getItem('eiti_mistral_key') || '';
+        return String(typeof _deobfKey === 'function' ? _deobfKey(v) : v).trim();
+    },
+    getModel: function() {
+        var m = localStorage.getItem('eiti_mistral_model') || '';
+        return MISTRAL.MODELS.some(function(x) { return x.id === m; }) ? m : 'mistral-medium-3-5';
+    },
+    label: function(id) { var q = MISTRAL.MODELS.filter(function(x) { return x.id === id; })[0]; return q ? q.label : id; },
+    ask: function(messages, onChunk, onDone, onError, signal) {
+        var key = MISTRAL.getKey();
+        if (!key) { onError(new Error('Нет Mistral API ключа')); return; }
+        fetch(MISTRAL.ENDPOINT, { method: 'POST', signal: signal || undefined,
+            headers: { 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json', 'Accept': 'text/event-stream' },
+            body: JSON.stringify({ model: MISTRAL.getModel(), messages: messages, stream: true, max_tokens: 4000 }) })
+        .then(function(r) {
+            if (!r.ok) return r.text().then(function(t) {
+                var msg = 'Mistral HTTP ' + r.status;
+                try { var j = JSON.parse(t); msg += ' — ' + (j.message || (j.error && j.error.message) || t.slice(0, 100)); } catch (e) {}
+                onError(new Error(msg));
+            });
+            var reader = r.body.getReader(), dec = new TextDecoder(), buf = '', result = '';
+            function read() {
+                return reader.read().then(function(c) {
+                    if (c.done) { onDone(result); return; }
+                    buf += dec.decode(c.value, { stream: true });
+                    var lines = buf.split('\n'); buf = lines.pop();
+                    lines.forEach(function(line) {
+                        line = line.trim();
+                        if (line.indexOf('data:') !== 0) return;
+                        var d = line.slice(5).trim(); if (!d || d === '[DONE]') return;
+                        try { var delta = JSON.parse(d).choices[0].delta.content; if (typeof delta === 'string' && delta) { result += delta; onChunk(delta, result); } } catch (e) {}
+                    });
+                    return read();
+                });
+            }
+            return read();
+        }).catch(onError);
+    }
+};
+window.MISTRAL = MISTRAL;
+window.eitiMistralSetModel = function(m) {
+    if (!MISTRAL.MODELS.some(function(x) { return x.id === m; })) return;
+    localStorage.setItem('eiti_mistral_model', m);
+    var s = document.getElementById('mistral-model'); if (s) s.value = m;
+    if (typeof showToast === 'function') showToast('🌀 Mistral: ' + MISTRAL.label(m));
+};
+window.eitiSetMistralKey = function(v) {
+    v = String(v || '').trim();
+    if (v) localStorage.setItem('eiti_mistral_key', typeof _obfKey === 'function' ? _obfKey(v) : v);
+    else localStorage.removeItem('eiti_mistral_key');
+};
+window.eitiMistralRenderSettings = function() {
+    var s = document.getElementById('mistral-model');
+    if (s) { if (!s.options.length) s.innerHTML = MISTRAL.MODELS.map(function(m) { return '<option value="' + m.id + '">' + m.label + ' (' + m.id + ')</option>'; }).join(''); s.value = MISTRAL.getModel(); }
+    var k = document.getElementById('mistral-key'); if (k && !k.value) { var kv = MISTRAL.getKey(); if (kv) k.value = kv; }
+};
+document.addEventListener('DOMContentLoaded', function() { setTimeout(function() { try { window.eitiMistralRenderSettings(); } catch (e) {} }, 300); });
+(function() {
+    var _prevAsk = window.eitiAskDeepSeek;
+    window.eitiAskDeepSeek = function(userText) {
+        if ((localStorage.getItem('eiti_ai_provider') || 'deepseek') !== 'mistral')
+            return typeof _prevAsk === 'function' ? _prevAsk(userText) : Promise.reject(new Error('AI не настроен'));
+        return new Promise(function(resolve, reject) {
+            if (!MISTRAL.getKey()) {
+                resolve(typeof window.eitiOfflineStr === 'function' ? window.eitiOfflineStr('noKey', window.eitiOfflineLang(userText), 'mistral') : '⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI');
+                return;
+            }
+            var messagesEl = document.getElementById('messages');
+            var liveDiv = document.createElement('div');
+            var liveId = 'eiti-mistral-live-' + Date.now();
+            liveDiv.className = 'message incoming'; liveDiv.id = liveId;
+            var time = new Date().toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+            liveDiv.innerHTML = '<div class="message-row"><div class="message-body"><div class="message-sender">🌀 Mistral · ' + MISTRAL.label(MISTRAL.getModel()) + '</div>' +
+                '<div id="' + liveId + '-text" style="min-height:24px;"><div class="eiti-typing-dots"><span></span><span></span><span></span></div></div>' +
+                '<div class="message-time">' + time + '</div></div></div>';
+            if (messagesEl) { messagesEl.appendChild(liveDiv); messagesEl.scrollTop = messagesEl.scrollHeight; }
+            var textEl = document.getElementById(liveId + '-text');
+            var lang = typeof window.eitiGetEffectiveReplyLang === 'function' ? window.eitiGetEffectiveReplyLang(userText) : 'ru';
+            var sys = typeof window.eitiGetSystemKnowledge === 'function' ? window.eitiGetSystemKnowledge(userText) : ((typeof EITI_SYSTEM_KNOWLEDGE !== 'undefined') ? EITI_SYSTEM_KNOWLEDGE : '');
+            var instr = typeof eitiGetInstructions === 'function' ? eitiGetInstructions() : '';
+            if (instr) sys = (lang === 'de' ? '🔴 REGEL #1 — IMMER BEFOLGEN: ' : lang === 'en' ? '🔴 RULE #1 — ALWAYS FOLLOW: ' : '🔴 ПРАВИЛО №1 — ВСЕГДА СОБЛЮДАТЬ: ') + instr + '\n\n' + sys;
+            var forced = typeof window.eitiGetAiReplyLang === 'function' ? window.eitiGetAiReplyLang() : 'auto';
+            if (forced === 'de') sys = '🌐 SPRACHE: Antworte IMMER auf Deutsch.\n\n' + sys;
+            else if (forced === 'en') sys = '🌐 LANGUAGE OVERRIDE: Always reply in English.\n\n' + sys;
+            else if (forced === 'ru') sys = '🌐 ЯЗЫК: Всегда отвечай на русском.\n\n' + sys;
+            var history = [{ role: 'system', content: sys }];
+            if (typeof chatLog !== 'undefined') chatLog.slice(-20).forEach(function(m) { if (m && m.text) history.push({ role: m.role === 'user' ? 'user' : 'assistant', content: m.text }); });
+            history.push({ role: 'user', content: userText });
+            var ctx = typeof eitiPrepareContextPromise === 'function' ? eitiPrepareContextPromise(userText, history).catch(function() { return history; }) : Promise.resolve(history);
+            ctx.then(function(h) {
+                MISTRAL.ask(h, function(d, full) {
+                    if (textEl) textEl.textContent = full;
+                    if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                }, function(result) {
+                    if (textEl && typeof eitiRenderMarkdown === 'function') textEl.innerHTML = eitiRenderMarkdown(result);
+                    var row = liveDiv.querySelector('.message-row');
+                    if (row) {
+                        var ctrl = document.createElement('div'); ctrl.className = 'message-controls';
+                        ctrl.innerHTML = '<button class="msg-btn tts-btn" title="Озвучить">🔊</button><button class="msg-btn" title="Копировать">📋</button>';
+                        ctrl.querySelectorAll('.msg-btn')[0].onclick = function() { toggleSpeech(liveId, result); };
+                        ctrl.querySelectorAll('.msg-btn')[1].onclick = function() { if (typeof copyText === 'function') copyText(result).then(function() { showToast('Скопировано'); }); };
+                        row.appendChild(ctrl);
+                    }
+                    if (typeof chatLog !== 'undefined') chatLog.push({ id: liveId, role: 'assistant', text: result, ts: Date.now(), provider: 'mistral', model: MISTRAL.getModel() });
+                    if (typeof saveChat === 'function') saveChat();
+                    if (typeof eitiUpdateState === 'function') eitiUpdateState(result);
+                    if (typeof window._eitiPassiveObserver === 'function') window._eitiPassiveObserver(userText, result);
+                    resolve(result);
+                }, function(err) {
+                    if (textEl) textEl.innerHTML = '<span style="color:#ff6b6b">❌ Mistral: ' + String(err.message || err).replace(/</g, '&lt;') + '</span>';
+                    reject(err);
+                });
+            }).catch(reject);
+        });
+    };
+})();
 
 var QWEN_TTS = {
     ENDPOINT: 'https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/text-2-speech/call',
