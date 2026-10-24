@@ -796,17 +796,17 @@ At first there was only darkness where the creator Kishelamakank slept; he dream
 
 *индейцы чероки — легенда*
 
-Нуннехи — «Народ, живущий везде», бессмертные духи-люди чероки, живущие в подземных домах на безлесных вершинах Аппалачей. Охотники слышат их песни и барабаны, но звук всё время перемещается. Показываются они лишь по своей воле, выглядя как обычные чероки: однажды четыре женщины-нуннехи протанцевали всю ночь в городе Ноттели и исчезли на берегу реки. Нуннехи помогают заблудившимся зимой. Охотник Яхула, отставший от своих, прожил у них долго и стал бессмертным. Затосковав, он навестил родных, но не смог есть их пищу, отведав еды нуннехи, и, отказавшись выбрать смерть среди своих вместо бессмертия, вернулся к нуннехи, хотя часто навещал людей.
+Нуннехи — «Народ, живущий везде», бессмертные духи-люди чероки, живущие в подземных домах на безлесных вершинах Аппалачей. Охотники слышат их песни и барабаны, но звук всё время перемещается. Показываются они лишь по своей воле, выглядя как обычные чероки: однажды четыре женщины-нуннехи протанцевали полночи в городе Ноттели и исчезли у речного брода. Нуннехи помогают заблудившимся зимой. Торговец скотом Яхула, потерявшийся после большой охоты, прожил у них долго и стал бессмертным. Затосковав, он навестил родных, но не смог есть их пищу, отведав еды нуннехи, и, отказавшись выбрать смерть среди своих вместо бессмертия, вернулся к нуннехи, хотя часто навещал людей.
 
 **Мораль:** Иной мир щедр, но тот, кто вкусил его, уже не может вернуться прежним.
 
 ### The Nunnehi and Yahula
 
-The Nunnehi, 'the People Who Live Anywhere', are immortal spirit people of the Cherokee, living in underground townhouses on treeless Appalachian peaks. Hunters hear their songs and drums, but the sound keeps shifting. They show themselves only when they wish, looking like ordinary Cherokee: once four Nunnehi women danced all night at Nottely town and vanished at the river. They help those lost in winter. The hunter Yahula, separated from his party, lived long among them and became immortal. Homesick, he visited his kin but could not eat their food after eating that of the Nunnehi, and, refusing to choose death with his people over immortality, returned to the Nunnehi, though he often visited.
+The Nunnehi, 'the People Who Live Anywhere', are immortal spirit people of the Cherokee, living in underground townhouses on treeless Appalachian peaks. Hunters hear their songs and drums, but the sound keeps shifting. They show themselves only when they wish, looking like ordinary Cherokee: once four Nunnehi women danced half the night at Nottely town and vanished at the river ford. They help those lost in winter. The stock trader Yahula, lost after a great hunt, lived long among them and became immortal. Homesick, he visited his kin but could not eat their food after eating that of the Nunnehi, and, refusing to choose death with his people over immortality, returned to the Nunnehi, though he often visited.
 
 **Moral:** The otherworld is generous, but one who has tasted it cannot return unchanged.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Nunnehi
+Источники / Sources: https://en.wikipedia.org/wiki/Nunnehi, https://www.gutenberg.org/ebooks/45634
 
 ---
 
@@ -824,6 +824,6 @@ Many Southeastern and Great Lakes peoples know a Horned Serpent. The Cherokee ca
 
 **Moral:** Great natural power is double: dangerous and healing.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Uktena
+Источники / Sources: https://en.wikipedia.org/wiki/Uktena, https://www.gutenberg.org/ebooks/45634
 
 ---

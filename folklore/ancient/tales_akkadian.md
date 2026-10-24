@@ -292,17 +292,19 @@ In a dream Enkidu saw the gods decide that for Humbaba and the Bull one of the h
 
 *вавилоняне — эпос (таблицы IX–X)*
 
-Устрашённый смертью, Гильгамеш в звериных шкурах отправился к Утнапишти, единственному человеку, получившему бессмертие. Он убил львов в горах, прошёл мимо людей-скорпионов через тоннель солнца в полной тьме, успев выйти до восхода, и оказался в саду богов с деревьями из самоцветов. Трактирщица Сидури отговаривала его, но направила к перевозчику Уршанаби. Гильгамеш сгоряча разбил каменные обереги лодочника, и ему пришлось срубить сто двадцать шестов, чтобы пересечь Воды смерти. Утнапишти упрекнул его: бороться с общей участью людей бесполезно.
+Устрашённый смертью, Гильгамеш в звериных шкурах отправился к Утнапишти, единственному человеку, получившему бессмертие. Он убил львов в горах, прошёл мимо людей-скорпионов через тоннель солнца в полной тьме, успев выйти до восхода, и оказался в саду богов с деревьями из самоцветов. Трактирщица Сидури (у Томпсона — Сабиту) отговаривала его, но направила к перевозчику Уршанаби. Гильгамеш сгоряча разбил загадочные «каменные» предметы лодочника, и ему пришлось срубить сто двадцать шестов, чтобы пересечь Воды смерти. Утнапишти упрекнул его: бороться с общей участью людей бесполезно.
 
 **Мораль:** От смерти нельзя убежать, можно лишь потерять радость жизни.
 
 ### Gilgamesh's Quest for Immortality
 
-Terrified of death, Gilgamesh set out in animal skins to find Utnapishtim, the only man granted immortality. He killed lions in the mountains, passed the scorpion people and went through the sun's tunnel in total darkness, coming out just before sunrise into the garden of the gods with trees of gems. The alewife Siduri tried to dissuade him but sent him to the ferryman Urshanabi. Gilgamesh rashly smashed the ferryman's stone charms and had to cut a hundred and twenty poles to cross the Waters of Death. Utnapishtim rebuked him: fighting the common fate of humanity is futile.
+Terrified of death, Gilgamesh set out in animal skins to find Utnapishtim, the only man granted immortality. He killed lions in the mountains, passed the scorpion people and went through the sun's tunnel in total darkness, coming out just before sunrise into the garden of the gods with trees of gems. The alewife Siduri (Sabitu in Thompson) tried to dissuade him but sent him to the ferryman Urshanabi. Gilgamesh rashly smashed the ferryman's mysterious 'stone things' and had to cut a hundred and twenty poles to cross the Waters of Death. Utnapishtim rebuked him: fighting the common fate of humanity is futile.
 
 **Moral:** Death cannot be outrun; one can only lose the joy of life.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Gilgamesh
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Gilgamesh, https://archive.org/details/thompson-1928-gilgamesh
+
+Права / Rights: Thompson 1928 translation: copyright status unclear; retold in own words
 
 ---
 
@@ -310,17 +312,19 @@ Terrified of death, Gilgamesh set out in animal skins to find Utnapishtim, the o
 
 *вавилоняне — эпос (таблица XI)*
 
-Утнапишти рассказал, как Эа велел ему построить корабль, как шесть дней бушевала буря и все люди обратились в глину, как ковчег пристал к горе Нимуш и он выпустил голубя, ласточку и ворона, а после жертвы Энлиль даровал ему и жене вечную жизнь. Он предложил Гильгамешу не спать шесть дней и семь ночей, но тот сразу уснул, и жена Утнапишти пекла по хлебу на каждый день его сна. На прощание Утнапишти открыл тайну травы молодости на дне моря; Гильгамеш добыл её, но, когда он купался, змея украла траву и сбросила кожу. Гильгамеш вернулся в Урук и показал Уршанаби его великие стены.
+Утнапишти рассказал, как Эа велел ему построить корабль, как шесть дней бушевала буря и все люди обратились в глину, как ковчег пристал к горе Ницир (в новых изданиях — Нимуш) и он выпустил голубя, ласточку и ворона, а после жертвы Энлиль даровал ему и жене вечную жизнь. Он предложил Гильгамешу не спать шесть дней и семь ночей, но тот сразу уснул, и жена Утнапишти пекла ему хлеб и отмечала на стене каждый день его сна. На прощание Утнапишти открыл тайну травы молодости на дне моря; Гильгамеш добыл её, но, когда он купался, змея украла траву и сбросила кожу. Гильгамеш вернулся в Урук и показал Уршанаби его великие стены.
 
 **Мораль:** Бессмертие человеку не дано; остаются дела его рук.
 
 ### Gilgamesh: Utnapishtim's Tale and the Plant of Youth
 
-Utnapishtim told how Ea had him build a boat, how the storm raged six days until all people turned to clay, how the ark grounded on Mount Nimush and he released a dove, a swallow and a raven, and how after his sacrifice Enlil granted him and his wife eternal life. He challenged Gilgamesh to stay awake six days and seven nights, but Gilgamesh fell asleep at once, and Utnapishtim's wife baked a loaf for each day he slept. At parting Utnapishtim revealed the secret of a plant of youth on the sea floor; Gilgamesh got it, but while he bathed a snake stole it and shed its skin. Gilgamesh returned to Uruk and showed Urshanabi its great walls.
+Utnapishtim told how Ea had him build a boat, how the storm raged six days until all people turned to clay, how the ark grounded on Mount Nisir (read Nimush in later editions) and he released a dove, a swallow and a raven, and how after his sacrifice Enlil granted him and his wife eternal life. He challenged Gilgamesh to stay awake six days and seven nights, but Gilgamesh fell asleep at once, and Utnapishtim's wife baked his bread and marked each day of his sleep on the wall. At parting Utnapishtim revealed the secret of a plant of youth on the sea floor; Gilgamesh got it, but while he bathed a snake stole it and shed its skin. Gilgamesh returned to Uruk and showed Urshanabi its great walls.
 
 **Moral:** Immortality is not given to man; the works of his hands remain.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Gilgamesh
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Gilgamesh, https://archive.org/details/thompson-1928-gilgamesh
+
+Права / Rights: Thompson 1928 translation: copyright status unclear; retold in own words
 
 ---
 
