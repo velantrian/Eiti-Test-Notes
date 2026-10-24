@@ -46,7 +46,7 @@ Brothers captured an old enemy and decided to put him to death. Leaving for thre
 
 ### The Four Sages
 
-Four old highlanders argued about what weighs heaviest on a man. One said a stolen bride, another a stolen favourite horse, a third the accidental killing of an innocent man. The fourth said all of these can be made good, but unworthy offspring can never be. Recorded by A. Malsagov in 1960.
+Four old highlanders argued about what weighs heaviest on a man. One said a stolen bride, another a stolen favourite horse, a third the accidental killing of an innocent man. The fourth said all of these can be made good, but unworthy offspring can never be. Recorded by A. Malsagov in 1960 from L. Malsagova.
 
 **Moral:** The worst misfortune is unworthy children.
 
