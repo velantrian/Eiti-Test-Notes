@@ -2,15 +2,15 @@
 
 ## 1. Листья тополя
 
-*ингуши — предание*
+*вайнахи (запись на чеченском языке) — предание*
 
-Двое друзей добивались одной девушки; она досталась тому, кто остановил коня у самого края пропасти. Позже второй друг убил его в набеге, и умирающий сказал: пусть листья серебристого тополя выдадут убийцу. Через годы сын убитого, ставший абреком, ехал рядом с убийцей, не зная его. Под тополем листья зашелестели, и спутник засмеялся и сам рассказал свою тайну. Сын отомстил за отца, а листья тополя с тех пор дрожат на ветру. Записано А. О. Мальсаговым в 1976 г. от Д. Хубаева (Урус-Мартан).
+Двое друзей добивались одной девушки; она досталась тому, кто остановил коня у самого края пропасти. Позже второй друг убил его в набеге, и умирающий сказал: пусть листья серебристого тополя выдадут убийцу. Через годы сын убитого, ставший абреком, ехал рядом с убийцей, не зная его. Под тополем листья зашелестели, и спутник засмеялся и сам рассказал свою тайну. Сын отомстил за отца, а листья тополя с тех пор дрожат на ветру. Записано А. О. Мальсаговым в 1976 г. на чеченском языке от Д. Хубатва (Урус-Мартан).
 
 **Мораль:** Тайное преступление рано или поздно выходит наружу.
 
 ### Poplar Leaves
 
-Two friends wanted the same girl, and she went to the one who reined in his horse closest to the edge of a cliff. Later the other friend killed him on a raid. Dying, the man said: let the leaves of the silver poplar reveal my killer. Years later the dead man's son, now an abrek, rode beside the killer without knowing who he was. Under a poplar the leaves rustled, the killer laughed and told his secret, and the son avenged his father. Poplar leaves have trembled in the wind ever since. Recorded by A. Malsagov in 1976 from D. Khubaev (Urus-Martan).
+Two friends wanted the same girl, and she went to the one who reined in his horse closest to the edge of a cliff. Later the other friend killed him on a raid. Dying, the man said: let the leaves of the silver poplar reveal my killer. Years later the dead man's son, now an abrek, rode beside the killer without knowing who he was. Under a poplar the leaves rustled, the killer laughed and told his secret, and the son avenged his father. Poplar leaves have trembled in the wind ever since. Recorded by A. Malsagov in 1976 in Chechen from D. Khubatva (Urus-Martan).
 
 **Moral:** A hidden crime comes to light sooner or later.
 
