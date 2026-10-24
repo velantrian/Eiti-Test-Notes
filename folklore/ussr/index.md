@@ -40,7 +40,7 @@
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
 
-## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 24
+## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 46
 
 - Калев, Линда и рождение Калевипоэга / Kalev, Linda and the birth of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
 - Проклятый меч / The cursed sword (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
@@ -66,18 +66,44 @@
 - Кантеле и похищение Сампо (руны 39–43) / The kantele and the theft of the Sampo (runes 39–43) (карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии))
 - Месть Лоухи: болезни, медведь, похищенные огонь, солнце и луна (руны 45–49) / Louhi's revenge: plagues, the bear, stolen fire, sun and moon (runes 45–49) (карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии))
 - Марьятта и уход Вяйнямёйнена (руна 50) / Mariatta and Wainamoinen's departure (rune 50) (карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии))
+- Млечный Путь (Линду) / The Milky Way (Lindu) (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Видевик, Койт и Эмарик / Videvik, Koit and Ämarik (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Дева у моста Васкъяла / The maiden at the Vaskjala bridge (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Женщина на луне / The woman in the moon (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Крестины у карлика / The dwarf's christening (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Невеста-ведьма (дочь Рыугутая) / The witch-bride (Rõugutaja's daughter) (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Мачеха / The stepmother (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Чёрт и кузнец по имени «Сам» / The Devil and the smith called 'Myself' (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Визит чёрта и три петуха / The Devil's visit and the three cocks (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Два брата и Мороз / The two brothers and the Frost (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Уход бога песни Ванемуйне / The song-god's departure (эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду))
+- Мёртвая мать / The dead mother (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Клад (поп в козлиной шкуре) / The treasure (the priest in the goat-skin) (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Три копейки / The three copecks (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Скупой Марко Богатый / Marko the Rich, the miser (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Дурак и берёза / The fool and the birch-tree (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Лихо одноглазое / One-eyed Likho (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Матушка Пятница / Mother Friday (быличка)
+- Вазуза и Волга / Vazuza and Volga (легенда о реках)
+- Морозко / Frost (Morozko) (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Чёрный ручей и Ильмень / The Black Brook and Lake Ilmen (легенда о реках)
+- Сож и Днепр / Sozh and Dnieper (белорусы (Ralston, Russian Folk-Tales, 1873: «In White-Russia»))
 
-## Итого / Total: 52
+## Итого / Total: 74
 
 - башкиры: 1
+- белорусы: 1
+- быличка: 1
 - казахи: 1
 - калмыки: 10
 - калмыки/ойраты: 3
 - карелы/финны: 10
 - киргизы: 1
+- легенда о реках: 2
 - литовцы: 1
 - марийцы: 9
+- русские: 7
 - татары: 2
 - украинцы: 9
-- эстонцы: 4
+- эстонцы: 15
 - якуты: 1

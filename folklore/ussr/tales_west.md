@@ -431,3 +431,399 @@ Chaste Mariatta, a shepherdess, becomes pregnant from a mountain-berry that leap
 Источники / Sources: https://www.gutenberg.org/ebooks/5186
 
 ---
+
+## 25. Млечный Путь (Линду)
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — легенда*
+
+Дочь Уку, прекрасная Линду, ведает перелётами всех птиц. К ней сватаются Полярная звезда, Месяц и Солнце, но она отказывает им: они вечно ходят одним путём. Северное сияние приезжает в алмазной карете, и Линду соглашается. Жених уезжает на север и обещает вернуться к свадьбе, но не возвращается. Линду плачет в подвенечном наряде, из её слёз текут ручьи, а птицы остаются без присмотра. Уку велит ветрам поднять дочь на небо. Её фата — это Млечный Путь, и оттуда она по-прежнему направляет птиц и машет рукой Северному сиянию.
+
+**Мораль:** Горе можно превратить в служение.
+
+### The Milky Way (Lindu)
+
+Uko's daughter, lovely Lindu, directs the migrations of all birds. The North Star, the Moon and the Sun woo her, but she refuses them: they always travel the same path. The Northern Light comes in a diamond coach, and Lindu accepts him. The bridegroom departs northward promising to return for the wedding, but never comes. Lindu weeps in her bridal dress, her tears become brooks, and the birds go untended. Uko bids the winds lift his daughter to heaven. Her veil is the Milky Way, and from there she still guides the birds and waves to the Northern Light.
+
+**Moral:** Grief can be turned into service.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 26. Видевик, Койт и Эмарик
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — легенда*
+
+Создатель имеет трёх слуг: девушек Видевик и Эмарик и юношу Койта. Видевик, глядясь в реку, забывает о волах, а Месяц, вместо того чтобы светить, спускается к ней. Во тьме волк задирает вола. Создатель наказывает волка, впрягая его на небе рядом с волом, а Видевик отдаёт в жёны Месяцу, чтобы она следила за его ходом. Эмарик он поручает гасить заходящее солнце, а Койту — разжигать его утром. Летними ночами их руки встречаются в поцелуе. Создатель предлагает им пожениться, но они просят остаться вечными возлюбленными.
+
+**Мораль:** Любовь, которая всегда нова, ценнее любой печати.
+
+### Videvik, Koit and Ämarik
+
+The Creator has three servants: the maidens Videvik and Ämarik and the youth Koit. Videvik, admiring herself in a river, forgets her oxen, and the Moon, instead of shining, comes down to her. In the darkness a wolf kills an ox. The Creator punishes the wolf by yoking it in the sky with the ox, and gives Videvik to the Moon as wife, to keep watch over his course. He charges Ämarik with putting out the setting sun and Koit with kindling it in the morning. On summer nights their hands meet in a kiss. The Creator offers to wed them, but they ask to remain lovers forever.
+
+**Moral:** A love that stays ever new is worth more than any seal.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 27. Дева у моста Васкъяла
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — легенда*
+
+Чистая и скромная девушка купается летним вечером у моста Васкъяла и не может отвести глаз от Месяца. Тайком она мечтает жить с ним на небе. Месяц знает её желание, и с тех пор её лицо видно на луне. Она ищет на земле такую же чистую подругу и не находит. Тогда она в печали закрывает лицо чёрным покрывалом, а потом снова с надеждой открывает его.
+
+**Мораль:** Чистота сердца редка и потому драгоценна.
+
+### The maiden at the Vaskjala bridge
+
+A pure, modest maiden bathes one summer evening at the Vaskjala bridge and cannot take her eyes off the Moon. Secretly she longs to live with him in the sky. The Moon knows her wish, and ever since her face has been seen in the moon. She seeks an equally pure companion on earth and finds none. Then she sorrowfully hides her face under a black veil, and later uncovers it again in hope.
+
+**Moral:** Purity of heart is rare and therefore precious.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 28. Женщина на луне
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — легенда*
+
+Поздним субботним вечером женщина идёт по воду и бранит Месяц: чего он зевает наверху, лучше бы помог носить воду. Месяц спускается и уносит её на небо. Там она и стоит с двумя вёдрами в назидание тем, кто работает поздно вечером в праздники.
+
+**Мораль:** Не насмехайся над небесами и чти праздник.
+
+### The woman in the moon
+
+Late one Saturday evening a woman goes for water and scolds the Moon: why gape up there, he had better help her carry water. The Moon comes down and carries her up to the sky. There she still stands with her two pails, a warning to those who work late on holiday evenings.
+
+**Moral:** Do not mock the heavens; keep the holy day.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 29. Крестины у карлика
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Барышня не даёт служанке убить змею. Вскоре к ней приходит человечек, живущий под кухонным крыльцом, и зовёт в крёстные. В подземном доме она видит над собой подвешенный меч, и жена карлика объясняет: недавно и её жизнь висела на волоске, ведь она и была той змеёй. Карлик насыпает гостье в передник земли, говоря не презирать даже малый дар. К утру земля становится золотом и серебром. Позже злая служанка выливает под крыльцо кипящее молоко, и ребёнок карлика погибает. Карлик велит барышне уйти, и дом с его жителями сгорает дотла.
+
+**Мораль:** Милосердие вознаграждается, а злоба губит дом.
+
+### The dwarf's christening
+
+A young lady stops her maid from killing a snake. Soon a little man who lives under the kitchen steps asks her to be godmother to his child. In his underground house she sees a sword hanging over her, and the dwarf's wife explains that her own life recently hung by a hair, for she was that snake. The dwarf fills the guest's apron with earth, saying not to despise even a small gift. By morning the earth has turned to gold and silver. Later the wicked maid pours boiling milk under the steps, and the dwarf's child dies. The dwarf tells the lady to leave, and the house and its people burn to ashes.
+
+**Moral:** Mercy is rewarded; malice destroys a house.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 30. Невеста-ведьма (дочь Рыугутая)
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Говорят, что у красивой дочери лесного Рыугутая кожа из коры, и женихов у неё нет. Мать приворотным зельем заманивает парня, но он в первую же ночь бежит и женится на другой. Когда у той родится ребёнок, ведьма обращает молодую мать в волчицу и подкладывает мужу свою дочь. Нянька с плачущим ребёнком встречает волчицу, и обман раскрывается. Муж заманивает ведьму с дочерью в баню и сжигает её.
+
+**Мораль:** Подменой счастья не построить.
+
+### The witch-bride (Rõugutaja's daughter)
+
+Rõugutaja's daughter in the wood is beautiful but said to have a skin of bark, and she has no suitors. Her mother lures a youth with a love-potion, but he flees on the first night and marries another. When his wife bears a child, the witch turns the young mother into a wolf and puts her own daughter in her place. The nurse, walking the crying child, meets the wolf, and the deceit comes to light. The husband lures the witch and her daughter into the bath-house and burns it.
+
+**Moral:** Happiness cannot be built on a substitution.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 31. Мачеха
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Мать выдаёт под фатой свою младшую дочь за жениха старшей, сводной сестры. Раскрыв обман по дороге, муж бросает подменную невесту под лёд и берёт свою настоящую. Через год мать по пути к мнимой дочери срывает кувшинку, и цветок говорит ей, что он и есть её дочь. С помощью колдуна мать и дочь превращаются в чёрную собаку и чёрную кошку, но месть им не удаётся: им мешает колдунья, прежде подружившаяся с молодой женой.
+
+**Мораль:** Кто роет яму другому, сам в неё попадает.
+
+### The stepmother
+
+A mother marries off her younger daughter, veiled, to the suitor of the elder half-sister. Discovering the trick on the road, the husband throws the false bride under the ice and takes his true one. A year later, on her way to visit her supposed daughter, the mother picks a water-lily, which tells her it is her own daughter. With a magician's help mother and daughter turn into a black dog and a black cat, but their revenge fails: a sorceress who had befriended the young wife thwarts them.
+
+**Moral:** Who digs a pit for another falls into it.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 32. Чёрт и кузнец по имени «Сам»
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Чёрт приходит к слесарю и просит отлить ему новые глаза. Мастер привязывает его спиной к скамье, называется «Сам» и льёт ему в глаза расплавленное олово. Чёрт выбегает со скамьёй на спине и кричит товарищам, что это сделал «Сам». Он умирает, и собака, лиса, крыса и волк хоронят его под навозом белой кобылы. «С тех пор чертей больше нет», — добавляет рассказчик.
+
+**Мораль:** Хитрость побеждает силу.
+
+### The Devil and the smith called 'Myself'
+
+The Devil comes to a locksmith asking to have new eyes cast. The smith binds him on his back to a bench, says his name is 'Myself' and pours molten tin into his eyes. The Devil runs out with the bench on his back, telling his fellows that 'Myself' did it. He dies, and the dog, fox, rat and wolf bury him under a white mare's dung. 'Since then there has been no devil more,' the narrator adds.
+
+**Moral:** Cunning beats strength.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 33. Визит чёрта и три петуха
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Пока мужей нет дома, к двум жёнам приходят чёрт с сыном в обличье мужей. Дети замечают когти, хвост и железные зубы. Мать укладывает детей на печь за можжевельником и крестит их, конец пояса привязывает к полену и с вилами забирается на крышу. Чёрт лезет к ней, но она отбивает его. Поют красный, белый и чёрный петухи, и с криком чёрного петуха («мой убийца!») черти проваливаются сквозь землю.
+
+**Мораль:** Детская наблюдательность и материнская смекалка спасают дом.
+
+### The Devil's visit and the three cocks
+
+While the husbands are away, the Devil and his son come to two wives disguised as the husbands. The children notice claws, a tail and iron teeth. The mother puts the children on the stove behind juniper, signs them with the cross, ties the end of her girdle to a log and climbs onto the roof with a pitchfork. The Devil climbs after her, but she beats him back. A red, a white and a black cock crow, and at the black cock's crow ('my murderer!') the devils sink into the ground.
+
+**Moral:** A child's eye and a mother's wit save the house.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 34. Два брата и Мороз
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — сказка/легенда*
+
+Мороз губит рожь бедного брата, и тот идёт искать обидчика. Мать Морозов прячет его на печи. Мороз дарит ему мешок, который по слову «открой» даёт еду. Богатый брат выменивает мешок на скот, но бедняк не может прокормить стадо и снова беднеет. Тогда Мороз даёт ему второй мешок, из которого выскакивают двое с дубинами. Бедняк меняется мешками с богатым братом. Тот на пиру для знатных гостей открывает мешок, и все бывают биты, а гости потом добавляют и хозяину. Бедняк же кормится первым мешком всю жизнь.
+
+**Мораль:** Жадность сама себя наказывает.
+
+### The two brothers and the Frost
+
+The Frost ruins the poor brother's rye, and he goes to seek the culprit. The Frosts' mother hides him on the stove. The Frost gives him a sack that yields food at the word 'open'. The rich brother buys it for cattle, but the poor man cannot feed the herd and grows poor again. Then the Frost gives him a second sack, out of which two men with cudgels leap. The poor man swaps sacks with the rich brother. At a feast for grand guests the rich brother opens it and everyone is thrashed, and the guests then beat the host too. The poor man lives on the first sack all his life.
+
+**Moral:** Greed punishes itself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 35. Уход бога песни Ванемуйне
+
+*эстонцы (Kirby, The Hero of Esthonia, 1895; по Яннсену и Крейцвальду) — легенда*
+
+На холме Таара все существа получают язык, кто сколько уловил из песни Ванемуйне. Река Эма берёт шелест его одежд, деревья — шум его облачения, соловей и жаворонок — мелодии. Рыбы высовывают из воды только глаза, видят движение губ, но не слышат и остаются немыми. Лишь человек понимает всё. Позже на празднике певцов старая карга поёт насмешливую песню, и народ хохочет. Вступает седой старец с прекрасной песней, но толпа снова и снова подхватывает песню старухи. Старец в гневе исчезает с громом. Это был Ванемуйне, и с тех пор его слышат лишь немногие певцы.
+
+**Мораль:** Глумление прогоняет священное.
+
+### The song-god's departure
+
+On the Hill of Taara all beings receive their language according to what they grasped of Vanemuine's song. The river Ema takes the rustle of his garments, the trees the rushing of his robes, the nightingale and lark his melodies. The fishes put only their eyes above water, see his lips move but cannot hear, and stay dumb. Only man understands everything. Later, at a festival of singers, an old hag sings a mocking song and the people roar with laughter. A hoary old man begins a glorious song, but the crowd again and again takes up the hag's chant. The old man vanishes in anger with a roar. It was Vanemuine, and since then only a few bards hear him.
+
+**Moral:** Mockery drives away the sacred.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/19438
+
+---
+
+## 36. Мёртвая мать
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Жена умирает сразу после родов. Днём младенец не берёт еды и кричит, а ночью спит тихо. Нянька подслушивает: в полночь кто-то входит и кормит ребёнка. Родня прячет свечу в горшке и в полночь открывает свет. У колыбели стоит на коленях мёртвая мать в погребальной одежде и кормит дитя. При свете она встаёт, печально смотрит на младенца и молча уходит, а ребёнок оказывается мёртв.
+
+**Мораль:** Связь матери с ребёнком сильнее смерти, но мёртвых нельзя тревожить.
+
+### The dead mother
+
+A wife dies right after giving birth. By day the baby refuses food and cries, but at night it sleeps quietly. The nurse keeps watch: at midnight someone comes in and suckles the child. The kinsfolk hide a candle in a pot and uncover the light at midnight. The dead mother kneels by the cradle in her burial clothes, nursing the child. In the light she rises, gazes sadly at her little one and goes out silently, and the baby is found dead.
+
+**Moral:** A mother's bond outlasts death, but the dead must not be disturbed.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 37. Клад (поп в козлиной шкуре)
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Бедный старик не может похоронить жену, а жадный поп без денег отказывает. Старик сам роет могилу и находит горшок золота. Поп, узнав о кладе, надевает козлиную шкуру, велит жене зашить его и ночью, назвавшись чёртом, требует деньги. Старик выбрасывает горшок: жил без денег, проживёт и так. Дома жена пытается распороть шкуру, но течёт кровь: шкура приросла к попу. Не помогает и возврат денег.
+
+**Мораль:** Жадность прирастает к человеку навсегда.
+
+### The treasure (the priest in the goat-skin)
+
+A poor old man cannot bury his wife, and the greedy priest refuses without money. The old man digs the grave himself and finds a pot of gold. Learning of it, the priest puts on a goat-skin, has his wife sew him in and at night, calling himself the Devil, demands the money. The old man throws out the pot: he lived without money before and will again. At home the wife tries to unpick the skin, but blood flows: it has grown onto the priest. Even returning the money does not help.
+
+**Moral:** Greed grows onto a man for good.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 38. Три копейки
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Сирота служит по копейке в год и бросает каждую в колодец: всплывёт — значит служил честно. На третий год всплывают все три. На них он выкупает у мальчишек кошку. Купец берёт кошку в плавание и в стране, где не знают кошек, продаёт её за столько золота, сколько её закроет. Он хочет утаить золото, но буря заставляет его покаяться, и он всё отдаёт сироте. Тот покупает ладан и воскуряет его Богу. Явившийся старец спрашивает, чего он хочет — богатства или доброй жены. По совету трёхлетнего «старшего брата» пахарей сирота выбирает жену и получает красавицу.
+
+**Мораль:** Честный труд и милосердие приносят больше, чем богатство.
+
+### The three copecks
+
+An orphan serves for a copeck a year and throws each into a well: if it floats, he served honestly. In the third year all three float. With them he buys a kitten from boys. A merchant takes the cat on a voyage and, in a land without cats, sells it for as much gold as will cover it. He means to keep the gold, but a storm makes him repent, and he hands it all to the orphan. The orphan buys incense and burns it to God. An old man appears and asks whether he wants riches or a good wife. On the advice of the ploughmen's three-year-old 'eldest brother' he chooses the wife and receives a beauty.
+
+**Moral:** Honest work and mercy bring more than riches.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 39. Скупой Марко Богатый
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Марко Богатый занимает у мужика копейку на подаяние и всё не отдаёт. Наконец он притворяется мёртвым. Мужик «в уплату» обмывает покойника кипятком и читает над гробом псалтирь в церкви. Ночью разбойники делят добычу и спорят о золотой сабле. Мужик выскакивает и предлагает отдать её тому, кто отрубит голову покойнику. Марко вскакивает, разбойники бегут, и добычу делят пополам. Но копейку Марко так и не отдаёт: «сдачи нет».
+
+**Мораль:** Скупость неисправима.
+
+### Marko the Rich, the miser
+
+Marko the Rich borrows a copeck from a peasant for alms and never repays it. At last he pretends to be dead. 'In return for the copeck' the peasant washes the corpse with boiling water and reads psalms over the coffin in church. At night robbers share out loot and quarrel over a golden sabre. The peasant jumps out and proposes it go to whoever cuts off the corpse's head. Marko leaps up, the robbers flee, and the two split the loot. But Marko never pays the copeck: 'no change'.
+
+**Moral:** Miserliness is incurable.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 40. Дурак и берёза
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Дураку при разделе достаётся тощий бык. По пути на ярмарку скрипучая берёза, как ему кажется, торгует быка в долг, и он оставляет быка у неё. Быка съедают волки. На третий день дурак рубит «должника» и находит в дупле разбойничий горшок с золотом. Встречному дьячку он выбалтывает правду и убивает его, когда тот хватает золото. Братья прячут тело, а в погреб бросают козла. Дурак показывает искавшим козлиную голову, и над ним смеются.
+
+**Мораль:** Простота иногда спасает лучше хитрости.
+
+### The fool and the birch-tree
+
+The Simpleton inherits only a skinny ox. On the way to the fair a creaking birch seems to him to be buying the ox on credit, and he leaves the ox with it. Wolves eat the ox. On the third day he hacks the 'debtor' down and finds robbers' gold in its hollow. He blurts the truth to a passing sexton and kills him when he grabs the gold. The brothers hide the body and throw a goat into the cellar. The fool shows the searchers the goat's head, and they laugh at him.
+
+**Moral:** Simplicity sometimes saves better than cunning.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 41. Лихо одноглазое
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Кузнец, не видавший лиха, идёт его искать вместе с портным. В лесной избе высокая одноглазая старуха режет портного и съедает его. Кузнец обещает выковать ей новый глаз, связывает её и выжигает раскалённым шилом здоровый глаз. Утром он выбирается из избы в вывернутом тулупе среди овец. По дороге он хватает золотой топор, и рука прилипает. Кузнец отрезает руку ножом и бежит. Дома он показывает обрубок: вот оно, лихо.
+
+**Мораль:** Не ищи беды — она сама найдётся.
+
+### One-eyed Likho
+
+A smith who has never seen evil (likho) goes looking for it with a tailor. In a forest hut a tall one-eyed hag cuts the tailor's throat and eats him. The smith offers to forge her a new eye, ties her up and burns out her good eye with a red-hot awl. In the morning he slips out among the sheep in an inside-out sheepskin. On the road he grabs a golden-handled hatchet, and his hand sticks to it. He cuts off his hand with a knife and flees. At home he shows the stump: that is what evil looks like.
+
+**Moral:** Don't go looking for trouble; it will find you.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 42. Матушка Пятница
+
+*быличка — сказка/быличка*
+
+Женщина, не почитая Пятницу, чешет и прядёт лён и засыпает. Входит Пятница в белом и в гневе набивает ей глаза кострикой. Проснувшись, женщина кричит от боли и молит о прощении, обещая свечу. Ночью Пятница возвращается и вынимает сор из её глаз.
+
+**Мораль:** Святое время нужно чтить.
+
+### Mother Friday
+
+A woman who does not honour Friday combs and spins flax and falls asleep. Friday enters in white and angrily stuffs her eyes with flax dust. Waking, the woman cries out in pain and begs forgiveness, promising a candle. At night Friday returns and takes the dust out of her eyes.
+
+**Moral:** Holy time must be honoured.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 43. Вазуза и Волга
+
+*легенда о реках — сказка/быличка*
+
+Волга и Вазуза спорят, кто мудрее и сильнее, и решают: кто первой встанет и добежит до Каспия, та и победила. Ночью Вазуза тайком убегает кратчайшим путём. Волга догоняет её у Зубцова, и испуганная Вазуза просит взять её с собой младшей сестрой. С тех пор весной Вазуза просыпается первой и будит Волгу.
+
+**Мораль:** Сила — в спокойном достоинстве, а не в хитрой поспешности.
+
+### Vazuza and Volga
+
+Volga and Vazuza argue over which is wiser and stronger and agree that whoever first rises and reaches the Caspian wins. At night Vazuza sneaks off by the shortest way. Volga overtakes her at Zubtsov, and the frightened Vazuza asks to be carried along as the younger sister. Since then Vazuza wakes first in spring and rouses Volga.
+
+**Moral:** Strength lies in calm dignity, not in sly haste.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 44. Морозко
+
+*русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву) — сказка/быличка*
+
+Мачеха велит старику отвезти падчерицу Марфу «к жениху» — Морозу — и оставить в лесу под сосной. Мороз, прыгая по елям, трижды спрашивает: «Тепло ли тебе, девица?» Замерзающая Марфа ласково отвечает: «Тепло, батюшка». Мачехиных дочерей везут туда же, но они бранят Мороза и замерзают насмерть. Старуха сначала ругается, но потом мирится с падчерицей, а Марфа выходит замуж и живёт счастливо. (Ralston приводит и вариант с собакой, предсказывающей: «Хозяйскую дочь в серебре и золоте везут»).
+
+**Мораль:** Кротость и терпение вознаграждаются, брань губит.
+
+### Frost (Morozko)
+
+The stepmother has the old man take his daughter Marfa 'to her bridegroom' Frost and leave her in the forest under a pine. Frost, leaping from fir to fir, asks three times, 'Art thou warm, maiden?' Freezing Marfa gently answers, 'Warm, Father Frost.' The stepmother's daughters are taken there too, but they curse Frost and freeze to death. The old woman rages at first but then makes peace with her stepdaughter, and Marfa marries and lives happily. (Ralston also gives a variant with a dog barking that 'the master's daughter is borne along in silver and gold'.)
+
+**Moral:** Meekness and patience are rewarded; abuse destroys.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 45. Чёрный ручей и Ильмень
+
+*легенда о реках — сказка/быличка*
+
+Человек ставит мельницу на Чёрном ручье у Ильменя, и рыбы жалуются ручью. К новгородскому рыбаку подходит незнакомец в чёрном и просит передать в Новгороде высокому мужику в синем: «Дядя Ильмень, Чёрный ручей бьёт тебе челом на мельницу». За это он показывает рыбаку богатое место. Ильмень отвечает: «Не было мельницы — и не будет». Ночью ручей и озеро бушуют, и вода сносит мельницу.
+
+**Мораль:** Не обижай реку — у неё есть заступники.
+
+### The Black Brook and Lake Ilmen
+
+A man builds a mill on the Black Brook by Lake Ilmen, and the fish complain to the brook. A stranger in black asks a Novgorod angler to tell a tall peasant in blue in Novgorod: 'Uncle Ilmen, the Black Brook petitions you about a mill.' In return he shows the angler a place teeming with fish. Ilmen replies: 'There was no mill before, and there shall be none.' At night the brook and the lake rage, and the waters sweep the mill away.
+
+**Moral:** Do not wrong a river; it has protectors.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
+
+## 46. Сож и Днепр
+
+*белорусы (Ralston, Russian Folk-Tales, 1873: «In White-Russia») — легенда о реках*
+
+У слепого старика Двины два сына: буйный старший Сож и кроткий младший Днепр, любимец матери. Жена обманом заставляет мужа благословить Днепр вместо старшего, и Днепр становится большой рекой. Отец позволяет Сожу обогнать брата: тогда тот станет ему слугой. Сож мчится напролом и договаривается с вороном, чтобы тот каркнул, когда догонит Днепр. Но гриф нападает на ворона, ворон каркает раньше времени, и Сож, выскочив из-под земли, падает прямо в Днепр.
+
+**Мораль:** Благословение не отнять силой.
+
+### Sozh and Dnieper
+
+Blind old Dvina has two sons: boisterous elder Sozh and gentle younger Dnieper, his mother's favourite. The wife tricks her husband into blessing Dnieper instead of the elder, and Dnieper becomes a great river. The father lets Sozh try to outrun his brother: then Dnieper would be his servant. Sozh tears ahead and arranges for the raven to croak when it reaches Dnieper. But the vulture attacks the raven, the raven croaks too soon, and Sozh, bursting from underground, falls straight into the Dnieper.
+
+**Moral:** A blessing cannot be seized by force.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/22373
+
+---
