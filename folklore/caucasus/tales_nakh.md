@@ -2969,3 +2969,57 @@ Long ago there lived a man called Seska Solsa. He ate a whole sheep at one sitti
 Источники / Sources: https://books.yandex.ru/books/vFBsJBa0/read-online
 
 ---
+
+## 166. Скала Сеска-Солсы на Цей-Ломе
+
+*ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания) — топонимическое предание*
+
+Среди крошечных пашен под скалами Цей-Лома лежит огромная каменная глыба, когда-то оторвавшаяся от горы и застывшая на полпути к пропасти, придавив целое поле. В старину о ней пели песни, но от них осталось лишь предание: эту скалу в гневе обрушил на своих врагов великий нарт Сеска-Солса. Поэтому её и зовут скалой Сеска-Солсы. (Источник — роман Базоркина; независимой фольклорной записи этого предания пока не найдено.)
+
+**Мораль:** Даже камни хранят память о героях.
+
+### Seska-Solsa's Rock on Tsey-Loam
+
+Among the tiny fields beneath the cliffs of Tsey-Loam lies a huge boulder that once broke off the mountain and stopped halfway to the abyss, crushing a whole field. Songs were once sung about it, but all that remains is a legend: the great Nart Seska-Solsa hurled this rock down on his enemies in anger. That is why it is called Seska-Solsa's Rock. (Source: Bazorkin's novel; no independent folklore record of this legend has been found yet.)
+
+**Moral:** Even stones keep the memory of heroes.
+
+Источники / Sources: https://www.rulit.me/books/iz-tmy-vekov-read-60548-1.html
+
+---
+
+## 167. Калой-Кант и кабардинский князь
+
+*ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания; ср. циклы о Колой Канте у Х. Цечоева) — героическое предание*
+
+Давно, когда на Цей-Ломе жила вещая птица Симурх, один глаз которой видит прошлое, а другой — будущее, жил в ауле Эги силач и добряк Калой-Кант. Он пас овец на Цей-Ломе, загоняя их на ночь в пещеру под каменную плиту, а сложенных им трёх камней не мог сдвинуть никто. Кабардинский князь, услышав, что есть человек сильнее его, приехал, но не смог ни камней сбросить, ни плиты сдвинуть. Тогда он подбросил на тропу свою сестру-красавицу в изорванной одежде. Калой приютил её, три ночи не спал, и от усталости плита каждый вечер закрывала вход всё хуже; на третий день девушка согласилась стать его женой. Ночью князь со спутниками пролез в щель, связал Калоя сырыми ремнями, съел его говорящего чёрного козла, ослепил героя и угнал овец, забрав сестру. Голова козла велела Калою сделать свирель из её кости; жена брата услышала печальную мелодию, и братья освободили Калоя. По просьбе Симурх курочка богини Тушоли принесла из истоков реки две капли воды, и Калой прозрел. Он нагнал князя у Терека, который по молитве князя разлился; Калой метнул обломок скалы, и князь крикнул: пусть сестра останется Калою женой, а князю — половина отары. На этом они расстались. (В романе слушательница возражает, что Калой-Кант так и остался слепым, — то есть бытовал и иной конец.)
+
+**Мораль:** Сила может пасть от хитрости, но верность близких её возвращает.
+
+### Kaloy-Kant and the Kabardian Prince
+
+Long ago, when the prophetic bird Simurgh — one eye seeing the past, the other the future — lived on Tsey-Loam, there lived in the village of Egi the strong and kind Kaloy-Kant. He grazed sheep on Tsey-Loam, shutting them at night in a cave behind a stone slab, and no one could move the three stones he had stacked. A Kabardian prince, hearing there was a man stronger than he, came but could neither topple the stones nor shift the slab. So he left his beautiful sister on the path in torn clothes. Kaloy sheltered her and went three nights without sleep, and each evening, from tiredness, he closed the cave less well; on the third day the girl agreed to be his wife. That night the prince and his men crept through the gap, bound Kaloy with wet rawhide, ate his talking black goat, blinded the hero, drove off the sheep and took the sister. The goat's head told Kaloy to make a pipe from its bone; his brother's wife heard the sad tune, and the brothers freed him. At Simurgh's bidding the hen of the goddess Tushol brought two drops of water from the river's source, and Kaloy saw again. He overtook the prince at the Terek, which had flooded at the prince's prayer; Kaloy hurled a piece of rock, and the prince shouted: let my sister stay your wife, and let me keep half the flock. So they parted. (In the novel a listener objects that Kaloy-Kant stayed blind — so another ending was also told.)
+
+**Moral:** Strength may fall to cunning, but the loyalty of kin restores it.
+
+Источники / Sources: https://www.rulit.me/books/iz-tmy-vekov-read-60548-1.html
+
+---
+
+## 168. Суд Тантала и башня Ольгетты
+
+*ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания) — предание о башне*
+
+Пастухи двух родов пасли овец; один подкрался к спящему товарищу и ради шутки ударил палкой о землю рядом с ним, и тот умер от испуга. Роды не могли решить, убийство ли это, и позвали мудреца Тантала из ингушей, живших в Грузии. Тантал велел поставить на месте смерти сосуд с нетронутым кислым молоком и ударить палкой о землю, как в первый раз; на сметане появилась трещина. «Такая же трещина была и в мозгу умершего», — объявил он. Виновному роду нечем было заплатить двенадцать коров, и он отдал лучшую пашню и луг, а Тантал получил за свой суд скалу с плоской вершиной и сам выстроил на ней башню Ольгетты. Он был силён и умён, косил чужие луга и запахивал земли слабых. Когда он умер, люди не дали его сыну Бию земли даже для могилы; Бий закопал отца во дворе башни и наутро исчез с семьёй. Говорят, каждую весну, в ночь после первой пахоты, мёртвый Тантал поднимается на башню и зовёт Бия пахать, а из леса ему отвечает лесной дух: «Люди не дали тебе могилы, а сына лишили горы». Тантал проклинает людей до последней звезды, а прошедший мимо в ту ночь, по поверью, сходит с ума.
+
+**Мораль:** Неправедный суд оборачивается проклятием для судьи.
+
+### Tantal's Judgement and the Tower of Olgetta
+
+Shepherds of two clans were grazing sheep; one crept up on his sleeping companion and, as a prank, struck the ground beside him with a stick, and the other died of fright. The clans could not decide whether this was murder and called the sage Tantal, from the Ingush living in Georgia. Tantal had a vessel of untouched sour milk set on the spot and the ground struck as before; a crack appeared in the cream. 'The same crack was in the dead man's brain,' he declared. The guilty clan could not pay twelve cows, so it gave up its best ploughland and meadow, and Tantal received for his judgement a flat-topped rock, on which he built the tower of Olgetta with his own hands. Strong and clever, he mowed others' meadows and ploughed the lands of the weak. When he died, people refused his son Biy even land for a grave; Biy buried his father in the tower yard and vanished with his family the next morning. It is said that every spring, on the night after the first ploughing, dead Tantal climbs the tower and calls Biy to plough, and a forest spirit answers: 'People denied you a grave and took the mountain from your son.' Tantal curses people until the last star fades, and whoever passes that night, it is believed, goes mad.
+
+**Moral:** An unjust judgement becomes a curse upon the judge.
+
+Источники / Sources: https://www.rulit.me/books/iz-tmy-vekov-read-60548-1.html
+
+---
