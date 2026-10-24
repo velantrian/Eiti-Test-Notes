@@ -6,7 +6,7 @@
 - Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 104; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **804** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 115; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **793** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 104; authored from a read PD text, not re-checked (USSR) — 107; not verified — **804** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 115; authored from a read PD text, not re-checked (USSR) — 107; not verified — **793** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -536,7 +536,7 @@
 | 205 | caucasus | Смелая дочь / The Courageous Daughter | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 23 | — |
 | 206 | caucasus | Падчерица / The Stepdaughter | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 24 | — |
 | 207 | caucasus | Волшебные животные и волшебная дубинка / The Magic Animals and the Magic Cudgel | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 25 | — |
-| 208 | caucasus | Прекрасная Елена / The Beautiful Helena | OK | no | — |
+| 208 | caucasus | Прекрасная Елена / The Beautiful Helena | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 26 | — |
 | 209 | caucasus | Одноглазый великан на Эльбрусе / The One-Eyed Giant on Elbrus | OK | no | — |
 | 210 | caucasus | Гадальщица Бабочка / Fortune-teller Butterfly | OK | no | modern edition — copyright may apply (mifoteka) |
 | 211 | caucasus | Муж и жена / Husband and Wife | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -569,15 +569,15 @@
 | 238 | caucasus | Серый волк и барсук / The Grey Wolf and the Badger | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 43 ("The Grey Wolf") | — |
 | 239 | caucasus | Соседи / Neighbouring Camps | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 44 | — |
 | 240 | caucasus | Богач и бедняк / The Rich Man and the Poor Man | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 28 | — |
-| 241 | caucasus | Смерть Хамыца / The Death of Khamyts | OK | no | — |
-| 242 | caucasus | Батрадз мстит за отца / Batradz Avenges His Father | OK | no | — |
-| 243 | caucasus | Батрадз и Бадзанаг / Batradz and Badzanag | OK | no | — |
-| 244 | caucasus | Сослан, Елтаган и Муккара / Soslan, Eltaghan and Mukkara | OK | no | — |
-| 245 | caucasus | Зуб Аркыза / The Tooth of Arqys | OK | no | — |
-| 246 | caucasus | Урызмаг и Сослан / Urysmag and Soslan | OK | no | — |
-| 247 | caucasus | Рождение Сатаны / The Birth of Satana | OK | no | — |
-| 248 | caucasus | Беличья шкурка / The Squirrel Skin | OK | no | — |
-| 249 | caucasus | Охотник у пещеры Амирана / The Hunter at Amiran's Cave | OK | no | — |
+| 241 | caucasus | Смерть Хамыца / The Death of Khamyts | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 47 | — |
+| 242 | caucasus | Батрадз мстит за отца / Batradz Avenges His Father | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 48 | — |
+| 243 | caucasus | Батрадз и Бадзанаг / Batradz and Badzanag | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 50 | — |
+| 244 | caucasus | Сослан, Елтаган и Муккара / Soslan, Eltaghan and Mukkara | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 51 | — |
+| 245 | caucasus | Зуб Аркыза / The Tooth of Arqys | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 52 | — |
+| 246 | caucasus | Урызмаг и Сослан / Urysmag and Soslan | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 53 | — |
+| 247 | caucasus | Рождение Сатаны / The Birth of Satana | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 54 | — |
+| 248 | caucasus | Беличья шкурка / The Squirrel Skin | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 55 | — |
+| 249 | caucasus | Охотник у пещеры Амирана / The Hunter at Amiran's Cave | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 63 (Ossetian variant) | — |
 | 250 | caucasus | Барс, медведь и волк / The Leopard, the Bear and the Wolf | OK | no | modern edition — copyright may apply (mifoteka) |
 | 251 | caucasus | Лиса и лисёнок / The Fox and the Fox Cub | OK | no | modern edition — copyright may apply (mifoteka) |
 | 252 | caucasus | Медведь, волк и лиса: четыре хлеба / The Bear, the Wolf and the Fox: Four Loaves | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -856,7 +856,7 @@
 | 525 | caucasus | Сновидец / The Dreamer | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 5 | — |
 | 526 | caucasus | Райская роза / The Rose of Paradise | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 7 | — |
 | 527 | caucasus | Соловей и соловьиха / The Cock and Hen Nightingale | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 8 | — |
-| 528 | caucasus | Плешивый гусопас / The Bald-Headed Gooseherd | OK | no | — |
+| 528 | caucasus | Плешивый гусопас / The Bald-Headed Gooseherd | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 11 | — |
 | 529 | caucasus | Три брата-вора / The Three Thieving Brothers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 75 | — |
 | 530 | caucasus | Удинская сказка о Рустуме / An Udian Story of Rustum | OK | no | — |
 | 531 | caucasus | Волшебный соловей / The Fairy Nightingale | OK | no | — |
@@ -1092,3 +1092,5 @@
 **Пакет 6 / Batch 6.** Сверены Dirr № 3, 4, 14, 17, 18, 19, 21, 22, 23 (9 записей / records). Исправлено / fixed: «Верный слуга» / The Faithful Servant: слуга убивает собаку ради крови и, ложась в могилу, передаёт кровь и уши дэвов царевичу; что он и есть покойник — лишь подразумевается / he kills the hound for its blood and hands over the remedies as he lies down in the grave; that he is the dead man is only implied.
 
 **Пакет 7 / Batch 7.** Сверены Dirr № 1, 5, 7, 8, 12, 13, 27, 31 (8 записей / records). Исправлено / fixed: «Верный сын» / The Faithful Son: загадки рассказывает не мачеха-джинн, а джинния, уносившая плов; юноша влюбляется в портрет ханской дочери / the riddles are told by the Djinn woman who fetched the pilaf, not the stepmother; he falls for the princess's portrait.
+
+**Пакет 8 / Batch 8.** Сверены без исправлений / checked, no fixes needed: Dirr № 11, 26, 47, 48, 50–55, 63 (11 записей / records).
