@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Вайнахи / Nakh (Vainakh)](tales_nakh.md) — 163
+## [Вайнахи / Nakh (Vainakh)](tales_nakh.md) — 164
 
 - Листья тополя / Poplar Leaves (ингуши)
 - Долг гостеприимства / The Duty of Hospitality (ингуши)
@@ -168,6 +168,7 @@
 - Как родился Сеска Солса / How Seska Solsa Was Born (ингуши (информант Далгата Газбык))
 - Гибель нарт-орстхойцев и голубь Солсы / The Fall of the Nart-Orstkhoi and Solsa's Dove (чеченцы и ингуши)
 - Жербаба и уход Сеска Солсы / Zherbaba and the Departure of Seska Solsa (чеченцы)
+- Ингушские имена звёзд и их мифы / Ingush Star Names and Their Myths (ингуши (Н.Д. Кодзоев по Б. Далгату и др.))
 
 ## [Адыги / Circassians](tales_circassian.md) — 48
 
@@ -605,7 +606,7 @@
 - Хайк и Бел / Hayk and Bel (армяне (Мовсес Хоренаци))
 - Парнаваз и сокровище в пещере / Pharnavaz and the Treasure in the Cave (грузины («Жизнь царей», ок. 800 г.))
 
-## Итого / Total: 581
+## Итого / Total: 582
 
 - абазины: 1
 - абхазы: 21
@@ -633,6 +634,7 @@
 - грузины (мегрелы, Западная Грузия): 1
 - даргинцы: 4
 - ингуши: 98
+- ингуши (Н.Д. Кодзоев по Б. Далгату и др.): 1
 - ингуши (запись Б. Далгата, 1893): 3
 - ингуши (информант Далгата Газбык): 1
 - ингуши, чеченцы: 1
