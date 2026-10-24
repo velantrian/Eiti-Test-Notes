@@ -93,7 +93,7 @@ test('плюс-меню: нейтральный «AI Voice»; провайдер
   assert.equal(items.slice(0, items.indexOf('];')).includes('Grok Voice'), false);
   assert.match(INDEX, /cpi-voice-prov/);
   assert.match(INDEX, /'🗣️ AI Voice остановлен'/);
-  assert.match(INDEX, /label: 'AI Voice'/);
+  assert.match(INDEX, /label: 'Голосовой ассистент', alwaysOn: true/); // v14.10.0: пункт «+» — «Голосовой ассистент», провайдер подписью
   // внутренние id / ключи localStorage прежние
   for (const k of ["'eiti_grok_key'", "'eiti_grok_voice_name'", "id=\"chat-grok-btn\"", "'eiti_grok_voice'"]) assert.ok(INDEX.includes(k), k);
 });

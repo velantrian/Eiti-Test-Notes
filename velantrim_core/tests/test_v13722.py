@@ -33,7 +33,7 @@ def test_no_visible_grok_voice_strings():
     # но пункт плюс-меню остаётся нейтральным «AI Voice».
     items = INDEX[INDEX.index("var EITI_CHAT_PLUS_ITEMS"):]
     items = items[: items.index("];")]
-    assert "label: 'AI Voice'" in items and "Grok Voice" not in items
+    assert "label: 'Голосовой ассистент'" in items and "Grok Voice" not in items  # v14.10.0
 
 
 def test_voice_provider_settings_ui_and_keys():
