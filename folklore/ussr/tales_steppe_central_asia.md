@@ -179,3 +179,39 @@ Mengen Shigshirge challenges Jangar to wrestle, wins, and means to kill him. Men
 Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Jangar
 
 ---
+
+## 11. Коркут и могилы на четырёх концах света
+
+*казахи — легенда*
+
+Мать носит Коркута три года, и до его рождения три дня и три ночи над миром стоит тьма. Отсюда, по преданию, и имя «Коркут» — «страх». Ему снится весть, что он умрёт, и он отправляется на четыре стороны света искать вечную жизнь. Но повсюду он встречает людей, которые роют могилу, и на вопрос «Чья она?» слышит: «Коркута». Он возвращается на Сырдарью и изобретает кобыз. Он расстилает ковёр посреди реки и играет, и пока звучит кобыз, смерть не может подступиться. Когда он устаёт и засыпает, из воды выползает маленькая змея и жалит его.
+
+**Мораль:** От смерти не уйти, но искусство даёт человеку бессмертие в памяти (так толковал Ч. Валиханов).
+
+### Korkut and the graves at the four ends of the world
+
+Korkut's mother carries him for three years, and before his birth darkness lies over the world for three days and nights. Hence, the legend says, his name means 'fear'. A dream warns him that he will die, and he travels to the four corners of the earth seeking eternal life. Everywhere he meets people digging a grave, and when he asks 'Whose is it?' he hears 'Korkut's'. He returns to the Syr Darya and invents the kobyz. He spreads a carpet on the river and plays, and while the kobyz sounds, death cannot come near. When he tires and falls asleep, a small snake rises from the water and bites him.
+
+**Moral:** Death cannot be escaped, but art grants a person immortality in memory (as Ch. Valikhanov read it).
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Коркут
+
+---
+
+## 12. Манас: рождение и возвышение
+
+*киргизы — эпос*
+
+Во время ойратского разорения богатый Джакып долго не имеет наследника. Наконец его молитвы услышаны. В день рождения сына рождается жеребёнок Тору-Чаар, и Джакып посвящает его сыну. Мальчик выделяется силой, озорством и щедростью. Ойраты узнают о нём, но их замысел схватить Манаса проваливается. Манас сплачивает народ, и его провозглашают ханом. С сорока сподвижниками он ведёт походы, роднится браками с побеждёнными правителями, в том числе с правителем Бухары, и возвращает киргизов с Алтая на родные горы. Эпос продолжается сказаниями о его сыне Семетее и внуке Сейтеке.
+
+**Мораль:** Народ возрождается вокруг героя, рождённого в беде.
+
+### Manas: birth and rise
+
+During the Oirat devastation the rich Jakyp long has no heir. At last his prayers are answered. The colt Toruchaar is born on the same day as his son, and Jakyp dedicates it to him. The boy stands out for strength, mischief and generosity. The Oirats learn of him, but their plot to seize Manas fails. Manas rallies his people and is proclaimed khan. With forty companions he campaigns, makes marriage ties with defeated rulers, including the ruler of Bukhara, and leads the Kyrgyz from the Altai back to their ancestral mountains. The epic continues with his son Semetey and grandson Seytek.
+
+**Moral:** A people revives around a hero born in hard times.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Manas
+
+---

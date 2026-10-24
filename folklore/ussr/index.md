@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 11
+## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 12
 
 - Утка, два яйца и сотворение земли / The duck, two eggs and the making of the earth (марийцы)
 - Кугу Юмо, Керемет и собака / Kugu Yumo, Keremet and the dog (марийцы)
@@ -16,8 +16,9 @@
 - Чоткар-патыр / Chotkar the hero (марийцы)
 - Шурале и защемлённый палец / Shurale and the trapped finger (татары)
 - Камыр-батыр / Kamyr-batyr (the Dough Hero) (татары)
+- Урал-батыр и родник жизни / Ural-batyr and the spring of life (башкиры)
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 10
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 12
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -29,10 +30,30 @@
 - Джангар: предки и рождение героя / Jangar: ancestors and birth (калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии))
 - Джангар в дикой степи и первые победы / Jangar in the wild and his first victories (калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии))
 - Джангар, Менген Шигширге и всеведущий Алтан Гээдж / Jangar, Mengen Shigshirge and all-seeing Altan Gheej (калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии))
+- Коркут и могилы на четырёх концах света / Korkut and the graves at the four ends of the world (казахи)
+- Манас: рождение и возвышение / Manas: birth and rise (киргизы)
 
-## Итого / Total: 21
+## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 1
 
+- Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
+
+## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 5
+
+- Калев, Линда и рождение Калевипоэга / Kalev, Linda and the birth of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
+- Проклятый меч / The cursed sword (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
+- Пахарь-король и состязание с Водяным / The ploughman-king and the stone-throw with the Water Sprite (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
+- Сарвик, край земли и смерть Калевипоэга / Sarvik, the world's end and the death of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
+- Эгле — королева ужей / Eglė the Queen of Serpents (литовцы)
+
+## Итого / Total: 30
+
+- башкиры: 1
+- казахи: 1
 - калмыки: 7
 - калмыки/ойраты: 3
+- киргизы: 1
+- литовцы: 1
 - марийцы: 9
 - татары: 2
+- эстонцы: 4
+- якуты: 1
