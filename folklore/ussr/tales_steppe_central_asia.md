@@ -1,0 +1,397 @@
+# Степь и Средняя Азия / Steppe and Central Asia
+
+## 1. Как ханский сын отправился за Сиддхи-Кюром
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — рамочная повесть*
+
+Учитель Нагарджуна велит провинившемуся ханскому сыну принести ему волшебного мертвеца Сиддхи-Кюра. Путь лежит через ущелье мертвецов-великанов, луг мертвецов-карликов и сад мёртвых детей: каждых надо отогнать заклинанием и горстью освящённого ячменя. Сиддхи-Кюр убегает на манговое дерево и спускается, лишь когда герой замахивается топором «Белая луна». Пленника сажают в пёстрый мешок на сотню мест и завязывают шнуром из ста нитей. Есть в дороге можно неубывающую лепёшку. Главный запрет: не раскрывать рта всю дорогу. Мертвец просит кивнуть в знак согласия и начинает рассказывать сказки. Каждая кончается тем, что слушатель невольно восклицает, а Сиддхи-Кюр улетает со словами: «Хорошо вырваться из этого мира!»
+
+**Мораль:** Молчание труднее подвига: оно ломается от одного сочувственного слова.
+
+### How the Khan's son went to fetch the Siddhi-kür
+
+The master Nagarjuna orders the guilty prince to bring him the magic corpse Siddhi-kür. The road passes the giant dead, the dwarf dead and the child dead; each are driven back with a spell and consecrated barley. Siddhi-kür flees up a mango tree and climbs down only when the hero raises the axe 'White Moon'. The prince puts him in a many-coloured sack that holds a hundred and ties it with a hundred-thread cord, eating from a cake that never shrinks. He must not open his mouth on the way. The corpse asks him for a nod and starts telling tales. Each tale ends with the listener exclaiming, and Siddhi-kür flies off crying, 'To escape out of this world is good!'
+
+**Moral:** Silence is harder than heroism: one sympathetic word breaks it.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 2. Жена, искавшая мужа во дворце Эрлик-хана
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+Молодой хан умирает. По ночам он является своей младшей жене, простолюдинке, но видит его только она. Он велит ей родить в слоновнике и отдать старшей жене спрятанный под образом бога камень, и её сын становится наследником. Чтобы вернуть мужа насовсем, она идёт на юг. По пути она умилостивляет всех стражей: железного человека, которого не насытил расплавленный металл, она поит водкой; двум бодающимся козлам даёт лепёшки; вооружённым людям — мясо; двум эрликам у чёрного дворца Эрлик-хана, окружённого рвом крови, — кровь. Из круга восьми колдунов она забирает девятое сердце, которое кричит «Не бери меня!». Задобренные стражи не мешают ей, и хан возвращается навсегда.
+
+**Мораль:** Верность и щедрость к встречным открывают даже дорогу в царство мёртвых.
+
+### The Woman who sought her Husband in the Palace of Erlik-Khan
+
+A young Khan dies. At night he appears to his commoner wife, visible only to her. He tells her to give birth in the elephant stable and to give the chief wife the jewel hidden under a god's image, so her son becomes heir. To bring him back for good she goes south. On the way she wins over every guardian: brandy for the iron man whom molten metal could not satisfy, barm-cakes for two fighting goats, meat for armed men, and blood for the two erliks at Erlik-Khan's black palace with its moat of blood. From a ring of eight sorcerers she takes the ninth heart, which cries 'Take me not!'. The guardians she fed do not stop her, and the Khan returns for good.
+
+**Moral:** Faithfulness and generosity to those met on the road open even the way to the realm of the dead.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 3. Непокорный подданный
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+Буяна, не признающего законов, хан изгоняет. Ночью он прячется на пальме в степи. Под деревом пируют две орды демонов: одни в шапках из бычьей кожи, другие в бумажных. Конская голова, выпавшая у него из-за пояса, разгоняет их. Утром он находит золотую чашу, которая сама наполняется водкой и яствами. Её он поочерёдно выменивает на палку, что сама убивает и приносит вещи, на молот, что девятью ударами воздвигает девятиэтажную железную башню, и на козий мех, который вызывает дождь. Каждый раз он посылает палку убить прежнего хозяина и вернуть чашу. Дома он ставит башню над ханским дворцом. Хан обкладывает её костром и созывает кузнецов с мехами, но буян трясёт мех: ливень гасит огонь и смывает и мехи, и людей. Вокруг башни образуется ров, и хан больше не смеет его трогать.
+
+**Мораль:** Колдовская сила может одолеть власть — но держится она на обмане и убийстве.
+
+### The Turbulent Subject
+
+A lawless man is exiled by the Khan. He spends the night in a palm tree on the steppe while two hosts of demons feast below, one in ox-hide caps and one in paper caps. A horse's head falls from his belt and scatters them. In the morning he finds a gold goblet that fills itself with drink and food. He trades it in turn for a stick that kills and fetches things, a hammer that raises a nine-storey iron tower with nine blows, and a goatskin bag that makes rain. Each time he sends the stick to kill the trader and bring the goblet back. At home he raises the tower over the Khan's palace. The Khan rings it with fire and smiths' bellows, but the man shakes the bag: the flood puts out the fire and washes away the bellows and the people. A moat forms around the tower, and the Khan never dares touch him again.
+
+**Moral:** Magic power may overcome sovereignty, but here it rests on fraud and murder.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 4. Белая птица и её жена
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+У трёх сестёр-пастушек по очереди пропадает коза. За красной, золотой, перламутровой и изумрудной дверями каждая находит дворец с белой птицей в клетке. Птица обещает вернуть козу, если девушка станет её женой. Согласна только младшая. На тринадцатидневном празднике она прекраснее всех женщин, а лучший из мужчин — всадник на серой в яблоках лошади. Старуха открывает ей, что это и есть её муж, и советует сжечь клетку и перья. Но в клетке была его душа. Боги и демоны приходят забрать его, и он обещает удерживать их семь суток, пока она без сна рубит перламутровую дверь. Она подпирает веки травинками, но в последнюю ночь одна выпадает, глаз закрывается, и мужа уносят. Она находит его у обо: он стал водоносом у богов и износил гору сапог. По его совету она строит новую клетку и заманивает туда его душу, и он возвращается к ней навсегда.
+
+**Мораль:** Нетерпение губит счастье, а верность и труд возвращают его.
+
+### The White Bird and his Wife
+
+Three shepherd sisters each lose a goat in turn. Behind red, gold, mother-of-pearl and emerald doors each finds a palace with a white bird in a cage. The bird will return the goat if she marries it. Only the youngest agrees. At a thirteen-day festival she is the fairest woman, and the finest man is a rider on a dapple-grey horse. An old woman reveals that he is her husband and tells her to burn the cage and feathers. But the cage held his soul. Gods and demons come for him, and he promises to hold them off for seven days while she hews the mother-of-pearl door without sleeping. She props her eyelids open with grass, but on the last night one falls out, her eye closes, and he is carried off. She finds him by an obo: he has become the gods' water-carrier and worn out a pile of boots. On his advice she builds a new cage and coaxes his soul back into it, and he comes home to her for good.
+
+**Moral:** Impatience destroys happiness; faithfulness and toil win it back.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 5. Пятеро против одного
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+Шесть друзей — сыновья кузнеца, резчика, художника, лекаря, счётчика и богача — расходятся вверх по шести рекам, посадив каждый по дереву-знаку. Богатый юноша женится на небесной красавице. Хан находит её перстень и забирает её себе, а юношу его люди убивают и придавливают скалой. Его дерево засыхает. Счётчик вычисляет, где он лежит, кузнец разбивает скалу, лекарь оживляет его. Резчик делает механическую птицу-гаруду, художник расписывает её. На ней юноша прилетает во дворец и увозит жену. Но пятеро спасителей влюбляются в неё и спорят, кому она должна достаться. Каждый тянет её к себе, и её разрывают на части.
+
+**Мораль:** Спор о заслугах уничтожает то, ради чего трудились все.
+
+### Five to One
+
+Six friends — the sons of a smith, a carver, a painter, a doctor, an accountant and a rich man — go up six rivers, each planting a tree as a sign. The rich youth marries a heavenly beauty. A Khan finds her ring and takes her, and his men kill the youth and pin him under a rock. His tree withers. The accountant reckons where he lies, the smith breaks the rock, and the doctor revives him. The carver builds a mechanical garuda-bird and the painter paints it. In it the youth flies to the palace and carries his wife away. But the five rescuers all fall in love with her and argue over who deserves her. Each pulls at her, and she is torn to pieces.
+
+**Moral:** A quarrel over merit destroys what everyone laboured for.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 6. Кусающийся мертвец
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — бытовая сказка*
+
+Скупой старший брат три дня пирует и не зовёт младшего. Ночью младший пробирается в кладовую и видит, как жена старшего несёт угощение на кладбище, к иссохшему телу своего прежнего мужа. Мертвец щёлкает челюстями: ломает ей медную ложку, а затем откусывает кончик носа. Дома она обвиняет мужа, будто он откусил ей нос во сне, и хан приговаривает его к костру. Младший брат вступается и рассказывает правду. Сначала хан не верит и наказывает его самого. Тогда младший просит послать людей на кладбище: во рту мертвеца находят кончик носа. Братьев освобождают, а на костёр отправляют жену.
+
+**Мораль:** Добро помнит родство вопреки обиде; правда нуждается в доказательстве.
+
+### The Biting Corpse
+
+A miserly elder brother feasts for three days without inviting the younger. At night the younger sneaks into the storeroom and sees the elder's wife carry food to the graveyard, to the dried body of her former husband. The corpse snaps its jaws, breaking her copper spoon and then biting off the tip of her nose. At home she accuses her husband of biting it off in his sleep, and the Khan sentences him to the stake. The younger brother steps in and tells the truth. At first the Khan disbelieves him and punishes him too. Then he asks the Khan to send to the graveyard: the nose-tip is found in the corpse's mouth. The brothers go free, and the wife goes to the stake.
+
+**Moral:** Kindness honours kinship despite wrongs; truth needs proof.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 7. «Детский ум» и «Светлый ум»
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — новелла о хитреце*
+
+Хан требует от прославленного умника Гэгэн-Ухату украсть его талисман и грозит ослепить его, если тот не справится. Талисман привязан к столбу ханской спальни, вокруг стоит стража. Умник поит стражу рисовой водкой. Спящих конных стражников он пересаживает на развалины стены, одному повару надевает на голову травяную шапку, другому кладёт в рукав камни. На голову хана он натягивает сухой пузырь, а спящим вокруг хана стражникам связывает волосы. Поднимается переполох: повар загорается, второго бьют камни, стражи пришпоривают стену. Утром умник возвращает талисман, но хан всё равно приговаривает его к казни. Тогда тот разбивает талисман о камень, и хан умирает, истекая кровью из носа.
+
+**Мораль:** Правитель, нарушающий слово, губит себя сам.
+
+### 'Child-intellect' and 'Bright-intellect'
+
+A Khan orders the famously clever Gegen-Uchatu to steal his talisman and threatens to blind him if he fails. The talisman is tied to a pillar in the Khan's bedchamber, ringed by guards. The clever man gets the guards drunk on rice brandy. He moves the sleeping mounted guards onto a ruined wall, puts a grass cap on one cook and stones in another's sleeve. He pulls a dried bladder over the Khan's head and ties together the hair of the sleeping guards around him. Chaos follows: the cook catches fire, the stones strike the other, and the guards spur the wall. In the morning the man returns the talisman, but the Khan still sentences him to death. He then smashes the talisman on a stone, and the Khan dies bleeding from the nose.
+
+**Moral:** A ruler who breaks his word destroys himself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 8. Джангар: предки и рождение героя
+
+*калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии) — эпос*
+
+Прадед Джангара Тахил Зул-хан приводит племя в страну Бумба и строит там рай, но гибнет под лавиной. Его сын умирает от трудов в неурожайные годы. Отец Джангара Узюнг Алдар, засмотревшись на пару лебедей, тоскует и женится на Урмаа. Детей у них долго нет, пока совет пастуха с девятнадцатью детьми не помогает. Урмаа рожает красный ком, который кричит изнутри «Задыхаюсь!». Ком удаётся рассечь только мечом, подаренным Нефритовым императором. Пока хан тешится сыном, мангус Голджинг захватывает Бумбу. Отец кладёт младенцу в рот белый нефрит и отсылает его со слугой на коне Аранджагаан с копьём Арам, а сам погибает с женой.
+
+**Мораль:** Дитя судьбы спасают жертва родителей и верность слуги.
+
+### Jangar: ancestors and birth
+
+Jangar's great-grandfather Tahil Zul Khan leads his tribe to Bumba and builds a paradise, but dies in an avalanche. His son dies of overwork in bad years. Jangar's father Ujung Aldar grows lonely watching a pair of swans and marries Urmaa. They have no child until a herdsman with nineteen children gives them advice. Urmaa gives birth to a red mass that cries 'I'm suffocating!' from inside. It can be cut open only with the sword given by the Jade Emperor. While the Khan dotes on his son, the manggus Goljing takes Bumba. The father puts white jade in the baby's mouth and sends him off with a servant on the horse Aranjagaan with the Aram spear, then falls with his wife.
+
+**Moral:** The child of destiny is saved by his parents' sacrifice and a servant's loyalty.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Jangar
+
+---
+
+## 9. Джангар в дикой степи и первые победы
+
+*калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии) — эпос*
+
+Слуга прячет младенца в пещере на Большой Чёрной горе и гибнет, мстя врагам. Младенец сосёт нефрит. Его находит охотник Менген Шигширге и даёт ему имя Джангар. Мальчик сразу заявляет, что станет владыкой мира, и испуганный охотник бросает его. Звери выкармливают ребёнка: волчицы дают молоко, тигр учит рычать, орёл — охотиться, антилопа — бегать. Во сне старец учит его воинскому делу и магии, и, проснувшись, он вырывает деревья с корнем. Трёхлетний Джангар убивает Голджинга копьём, созывает разбежавшийся народ и становится ханом. Затем он усмиряет грабителя Шар Дурдена и обкладывает его данью. К пяти годам он побеждает пятерых мангусов.
+
+**Мораль:** Сила, вскормленная природой, возвращает утраченную родину.
+
+### Jangar in the wild and his first victories
+
+The servant hides the baby in a cave on Big Black Mountain and dies taking revenge. The baby sucks the jade. The hunter Mengen Shigshirge finds him and names him Jangar. The boy at once says he will rule the world, and the frightened hunter abandons him. Animals raise him: she-wolves suckle him, a tiger teaches him to roar, an eagle to hunt, an antelope to run. In a dream an old man teaches him war and magic, and he wakes able to uproot trees. At three Jangar spears Goljing, calls back his scattered people and becomes Khan. He then subdues the raider Shar Durdeng and makes him pay tribute. By five he has beaten five manggus.
+
+**Moral:** Strength nursed by nature wins back a lost homeland.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Jangar
+
+---
+
+## 10. Джангар, Менген Шигширге и всеведущий Алтан Гээдж
+
+*калмыки/ойраты (эпос «Джангар», синьцзянская версия по англ. Википедии) — эпос*
+
+Менген Шигширге вызывает Джангара на борьбу, побеждает его и хочет убить. Сын Менгена Хонгор хватается за Джангара и не отпускает, пока отец не уступает. Условие отца — Джангар должен сразиться с Алтан Гээджем, который видит на 99 лет вперёд и назад. Джангар рассуждает, что провидец заранее знает о нападении, и вместо боя угоняет его восемьдесят тысяч коней. Алтан Гээдж знает, что кони вернутся. Он настигает Джангара лишь на переправе и пускает в него отравленную стрелу. Джангар кладёт в рот нефрит, а верный Аранджагаан уносит его в безопасное место.
+
+**Мораль:** Дружба Хонгора начинается с заступничества; против провидца нужна хитрость.
+
+### Jangar, Mengen Shigshirge and all-seeing Altan Gheej
+
+Mengen Shigshirge challenges Jangar to wrestle, wins, and means to kill him. Mengen's son Hongor clings to Jangar and will not let go until his father relents. The father's condition is that Jangar fight Altan Gheej, who sees 99 years ahead and behind. Jangar reasons that the seer already knows of any attack, so instead of fighting he drives off his 80,000 horses. Altan Gheej knows the horses will come back. He catches Jangar only at a river crossing and shoots him with a poisoned arrow. Jangar puts the jade in his mouth, and the faithful Aranjagaan carries him to safety.
+
+**Moral:** Hongor's friendship begins with protection; against a seer one needs cunning.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Jangar
+
+---
+
+## 11. Коркут и могилы на четырёх концах света
+
+*казахи — легенда*
+
+Мать носит Коркута три года, и до его рождения три дня и три ночи над миром стоит тьма. Отсюда, по преданию, и имя «Коркут» — «страх». Ему снится весть, что он умрёт, и он отправляется на четыре стороны света искать вечную жизнь. Но повсюду он встречает людей, которые роют могилу, и на вопрос «Чья она?» слышит: «Коркута». Он возвращается на Сырдарью и изобретает кобыз. Он расстилает ковёр посреди реки и играет, и пока звучит кобыз, смерть не может подступиться. Когда он устаёт и засыпает, из воды выползает маленькая змея и жалит его.
+
+**Мораль:** От смерти не уйти, но искусство даёт человеку бессмертие в памяти (так толковал Ч. Валиханов).
+
+### Korkut and the graves at the four ends of the world
+
+Korkut's mother carries him for three years, and before his birth darkness lies over the world for three days and nights. Hence, the legend says, his name means 'fear'. A dream warns him that he will die, and he travels to the four corners of the earth seeking eternal life. Everywhere he meets people digging a grave, and when he asks 'Whose is it?' he hears 'Korkut's'. He returns to the Syr Darya and invents the kobyz. He spreads a carpet on the river and plays, and while the kobyz sounds, death cannot come near. When he tires and falls asleep, a small snake rises from the water and bites him.
+
+**Moral:** Death cannot be escaped, but art grants a person immortality in memory (as Ch. Valikhanov read it).
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Коркут
+
+---
+
+## 12. Манас: рождение и возвышение
+
+*киргизы — эпос*
+
+Во время ойратского разорения богатый Джакып долго не имеет наследника. Наконец его молитвы услышаны. В день рождения сына рождается жеребёнок Тору-Чаар, и Джакып посвящает его сыну. Мальчик выделяется силой, озорством и щедростью. Ойраты узнают о нём, но их замысел схватить Манаса проваливается. Манас сплачивает народ, и его провозглашают ханом. С сорока сподвижниками он ведёт походы, роднится браками с побеждёнными правителями, в том числе с правителем Бухары, и возвращает киргизов с Алтая на родные горы. Эпос продолжается сказаниями о его сыне Семетее и внуке Сейтеке.
+
+**Мораль:** Народ возрождается вокруг героя, рождённого в беде.
+
+### Manas: birth and rise
+
+During the Oirat devastation the rich Jakyp long has no heir. At last his prayers are answered. The colt Toruchaar is born on the same day as his son, and Jakyp dedicates it to him. The boy stands out for strength, mischief and generosity. The Oirats learn of him, but their plot to seize Manas fails. Manas rallies his people and is proclaimed khan. With forty companions he campaigns, makes marriage ties with defeated rulers, including the ruler of Bukhara, and leads the Kyrgyz from the Altai back to their ancestral mountains. The epic continues with his son Semetey and grandson Seytek.
+
+**Moral:** A people revives around a hero born in hard times.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Manas
+
+---
+
+## 13. Солнечный и Лунный царевичи и змеиные боги
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+Мачеха притворяется больной и требует сердце царевича, сваренное в кунжутном масле. Её родной сын Лунный предупреждает сводного брата Солнечного, и они бегут вместе. В безводной пустыне Лунный умирает, но отшельник оживляет его, и братья живут у него как сыновья. В соседнем ханстве змеиным богам перед поливом полей ежегодно приносят в жертву юношу, рождённого в год Тигра, — таков Солнечный. Отшельник прячет его в кувшин, но, когда посланцы бьют старика, юноша выдаёт себя. Ханская дочь просит пощадить его или бросить в воду вместе с ним, и их зашивают в одну бычью шкуру. Каждый из двоих жалеет не себя, а другого. Тронутые змеиные боги отпускают их и пускают воду на поля. Братья женятся на дочерях хана и возвращаются домой, а мачеха от стыда падает мёртвой.
+
+**Мораль:** Самоотверженность трогает даже богов; коварство губит само себя.
+
+### Sunshine, Moonshine and the Serpent-gods
+
+A stepmother feigns illness and demands a prince's heart stewed in sesame oil. Her own son Moonshine warns his half-brother Sunshine, and they flee together. In a waterless desert Moonshine dies, but a hermit revives him, and the brothers live with him as his sons. In the neighbouring khanate a youth born in the Tiger year is sacrificed yearly to the serpent-gods before the fields are watered — and Sunshine is one. The hermit hides him in a jar, but when the envoys beat the old man, the youth gives himself away. The Khan's daughter begs them to spare him or throw her in with him, and they are sewn into one ox-hide. Each laments for the other rather than for themselves. Moved, the serpent-gods free them and let the water flow over the fields. The brothers marry the Khan's daughters and return home, and the stepmother drops dead of shame.
+
+**Moral:** Self-sacrifice moves even the gods; treachery destroys itself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 14. Ананда-резчик и Ананда-живописец
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — новелла*
+
+Завистливый живописец подаёт молодому хану поддельное письмо от покойного отца-хана из царства богов. В нём отец просит прислать к нему резчика, чтобы украсить храм: подняться туда можно на дыму костра. Жена резчика роет подземный ход под камнем на месте костра, и резчик уходит по нему домой. Месяц он сидит в тени и моется молоком, потом в белом газовом одеянии является с ответным «письмом»: теперь отцу нужен живописец. Поверив, живописец сам всходит на костёр и сгорает, а его крики заглушает та самая музыка, которую он придумал, чтобы не слышно было резчика.
+
+**Мораль:** Кто роет яму другому, сам в неё попадает.
+
+### Ânanda the Woodcarver and Ânanda the Painter
+
+A jealous painter gives the young Khan a forged letter from the late Khan in the realm of the gods. In it the father asks for the woodcarver to adorn his temple; one gets there on the smoke of a pyre. The carver's wife digs a tunnel under a stone at the pyre site, and he escapes home through it. For a month he keeps to the shade and washes in milk, then appears in white gauze with a reply 'letter': now the father needs the painter. Convinced, the painter mounts the pyre himself and burns, his cries drowned by the very music he devised to drown the carver's.
+
+**Moral:** He who digs a pit for another falls into it himself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 15. Молитва, что делает внезапно богатым
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — новелла*
+
+Бедняк подслушивает, как старики собираются спросить бодхисаттву, за кого отдать дочь. Он залезает в статую и «божьим голосом» велит отдать её тому, кто первым постучит утром. Получив девушку и сокровища, он зарывает их в сундуке в степи и собирает милостыню на «молитву внезапного богатства». Ханский сын на охоте находит сундук. Девушка называет себя дочерью змеиного бога и соглашается выйти, только если в сундук посадят кого-то другого, — и туда сажают ручного тигра. Ночью бедняк, собираясь убить девушку, открывает сундук, и тигр съедает его, а родня смеётся за дверью: «Как усердно молится отец!» Позже придворные упрекают ханшу безродностью. У родителей она находит брата, дворцы и богатый храм, и хан убеждается в её знатности. Наутро всё великолепие исчезает: на месте стоит прежняя бедная хижина.
+
+**Мораль:** Обман оборачивается против обманщика, а добродетель находит заступника.
+
+### The Prayer making suddenly Rich
+
+A poor man overhears an old couple planning to ask the Bodhisattva whom their daughter should marry. He hides inside the image and, in a 'divine voice', tells them to give her to whoever knocks first in the morning. Given the girl and treasure, he buries them in a box on the steppe and begs alms for a 'prayer that makes suddenly rich'. A Khan's son out hunting finds the box. The girl says she is a serpent-god's daughter and will come out only if someone else is put in, so they put in a tame tiger. At night the poor man opens the box to kill the girl, and the tiger devours him while his family laugh outside: 'How diligently father prays!' Later the court sneers at the Khanin's lowly birth. At her parents' she finds a brother, palaces and a splendid temple, and the Khan is convinced of her standing. Next morning the splendour has vanished and the old poor hut stands as before.
+
+**Moral:** Deceit turns on the deceiver, and virtue finds a protector.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 16. Как был убит Шимну-хан (Массанг)
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+У бедняка корова рождает чудище с бычьей головой и человеческим телом — Массанга. Хозяин хочет его застрелить, но щадит, и Массанг обещает отплатить за милость. С тремя товарищами — чёрным, зелёным и белым человеком — он живёт в найденном доме. Крошечная старуха-ведьма каждый день уносит их еду, а товарищи врут о налётчиках. Массанг подменяет её железные орудия деревянными и избивает её. По кровавому следу он находит в расщелине её труп на груде сокровищ. Товарищи забирают добычу, а его оставляют внизу. Из трёх вишнёвых косточек вырастают деревья, и Массанг выбирается, но предателей щадит. Он следует за девой, под шагами которой расцветают цветы, к богу Хурмусте. Там он поражает стрелой во звезду на лбу чёрного быка — Шимну-хана. Затем, назвавшись лекарем, он вгоняет стрелу глубже и поднимается на небо по цепи. Удар молота демоницы по цепи высекает искры — Плеяды. Хан-слушатель восклицает: «Так и не вернулся он отплатить хозяину!» — и Сиддхи-Кюр улетает.
+
+**Мораль:** Обещание благодарности легко дать и трудно исполнить.
+
+### How the Schimnu-Khan was slain (Massang)
+
+A poor man's cow gives birth to a monster with a bull's head and a man's body, Massang. The master is about to shoot him but spares him, and Massang promises to repay the mercy. With three companions, a black, a green and a white man, he lives in a house they find. Each day a tiny witch-woman carries off their food, and the companions lie about raiders. Massang swaps her iron tools for wooden ones and beats her. Following her trail of blood, he finds her body in a cleft on a heap of treasure. His companions take the spoil and leave him below. Three cherry-stones grow into trees and he climbs out, but he spares the traitors. He follows a maiden, beneath whose steps flowers spring up, to the god Churmusta. There he shoots an arrow through the white star on the forehead of a black ox, the Schimnu-Khan. Then, posing as a physician, he drives the arrow deeper in and climbs to heaven on a chain. A she-demon's hammer strikes the chain and sends up sparks that become the Pleiades. The listening Khan exclaims, 'So he never went back to repay his master!' and the Siddhi-kür flies off.
+
+**Moral:** A promise of gratitude is easy to make and hard to keep.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 17. Гадатель со свиной головой
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — бытовая сказка*
+
+Ленивого мужа жена гонит искать удачи. Он находит бурдюк масла, а потом теряет коня, одежду и собаку, гоняясь за лисой, и голым прячется в ханской конюшне. Он видит, как ханская дочь роняет талисман и его заметают в навоз, и выдаёт себя за гадателя. Со свиной головой, пятицветным шёлком и лепёшкой-балином он «вопрошает» голову и находит талисман в куче. В награду он просит только своё потерянное добро, а жена письмом выпрашивает у хана богатства. Позже хана губят оборотни-мангусы — козёл и мнимая красавица-ханша, погубившие его братьев. Перепуганный «гадатель» пытается бежать, прыгает на козла и бьёт его. Так он подслушивает, как демоны, решив, что их разоблачили, сами описывают, как их можно погубить. Он делает всё по их словам, и народ сжигает обоих мангусов. Хан делит с ним царство, а жена становится ханшей. Слушатель-хан замечает: хоть жена презирала ум мужа, богатство приносили его дела.
+
+**Мораль:** Удача порой служит простакам, а смекалка жены её умножает.
+
+### The pig's-head soothsayer
+
+An idle husband is driven out by his wife to seek luck. He finds a paunch of butter, then loses horse, clothes and dog chasing a fox and hides naked in a khan's stable. He sees the khan's daughter drop a talisman and watches it swept onto a dung-heap, and he passes himself off as a soothsayer. With a pig's head, five-coloured silk and a baling-cake he 'questions' the head and finds the talisman in the heap. As reward he asks only for his lost things, and his wife extracts riches from the khan by letter. Later the khan is being consumed by Manggus demons, a he-goat and a seeming beautiful khanin, who destroyed his brothers. The frightened 'soothsayer' tries to flee, leaps on the goat and beats it. So he overhears the demons, who believe they are found out, describe exactly how they will be destroyed. He does as they said, and the people burn both Manggus. The khan shares his kingdom with him, and his wife becomes khanin. The listening Khan remarks that though the wife despised her husband's wits, it was his doings that brought the wealth.
+
+**Moral:** Luck sometimes serves the simple, and a wife's wit multiplies it.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 18. Как Добро и Зло были попутчиками
+
+*киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III) — сказка*
+
+Зло съедает припасы Добра, потом его коня, а затем по одному его уши и глаза и бросает слепого товарища в тёмном лесу. Там Добро подслушивает тигра, волка и лису. Тигр стережёт две осины, возвращающие глаза и уши, волк охотится за костями чёрной собаки, оживляющими мёртвых, а лиса стережёт золото величиной с конскую голову. Добро трётся об осины и прозревает, берёт золото, покупает чёрную собаку и толчёт её кости в порошок. Порошком он оживляет хана и получает трон, дочь и полстада. Зло просит сделать с ним то же самое, и в лесу его пожирают тигр, волк и лиса: «Добро рождает добро, зло — зло».
+
+**Мораль:** Добро рождает добро, а зло — зло.
+
+### How Good and Evil were companions
+
+Evil eats up Good's provisions, then his horse, then one by one his ears and eyes, and abandons the blind companion in a dark forest. There Good overhears a tiger, a wolf and a fox. The tiger guards two aspens that restore eyes and ears, the wolf seeks the bones of a black dog that bring the dead back to life, and the fox guards gold the size of a horse's head. Good rubs himself on the aspens and sees again, takes the gold, buys the black dog and grinds its bones to powder. With it he revives a khan and receives the throne, his daughter and half his herds. Evil asks to be treated the same way, and in the forest the tiger, wolf and fox devour him: 'Good brings good and evil brings evil.'
+
+**Moral:** Good brings good, and evil brings evil.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 19. Сорок рассказов
+
+*туркмены (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912) — сказка-небылица*
+
+Хан обещает дочь тому, кто расскажет сорок историй без единого слова правды; неудачника ждёт казнь. Простой плешивый парень берётся за дело. «Родившись раньше отца, я пас дедово стадо». Он плывёт через море в лодке из ножен с веслом из ножа и ловит зайца, не рождённого матерью, под неросшим растением. Сапоги у него ссорятся из-за жира, и один уходит в обиде. Хан пытается разгадать небылицы — «заяц под неросшим растением — не прыщ ли?» — а парень соглашается и продолжает. Досказав сорок небылиц, он женится на ханской дочери.
+
+**Мораль:** Остроумие открывает путь даже простаку.
+
+### The forty stories
+
+A khan promises his daughter to whoever can tell forty stories without a word of truth; failure means death. A simple bald-headed lad takes up the challenge. 'Born before my father, I herded my grandfather's flock.' He crosses the sea in a boat made of his knife-sheath with the knife as an oar, and catches a hare not born of its mother under a plant that never grew. His boots quarrel over the fat he greased them with, and one goes off offended. The khan tries to decode the fictions ('the hare under the plant that never grew, is that a pimple?'), and the lad agrees and goes on. Having told forty fictions, he marries the khan's daughter.
+
+**Moral:** Wit opens the way even for a simpleton.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 20. Дураки
+
+*уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI) — бытовая сказка*
+
+Невестка, икнув за доением, на коленях умоляет корову никому не говорить. Свекровь и свёкор приносят корове отрубей и тоже молят её. Сын клянётся убить их, если не найдёт сегодня троих таких же глупцов. Он находит людей, которые хотят ломать дверь, потому что несут бревно поперёк. Он находит и толпу, которая связала верблюда, забредшего на хлопковое поле, и тащит его волоком. Он показывает им, как пронести бревно вдоль и вывести верблюда за повод. Решив, что глупцов в городе предостаточно, он возвращается домой и щадит родных.
+
+**Мораль:** Глупость повсюду, так что к своим будь снисходителен.
+
+### The fools
+
+A young wife hiccups while milking and kneels begging the cow to tell no one. Her mother-in-law and father-in-law bring the cow bran and beg it too. The son vows to kill them unless he finds three people as foolish that day. He finds men about to break a door because they carry a beam crosswise. He also finds a crowd that has tied up a camel which wandered into a cotton field and is dragging it out bodily. He shows them how to carry the beam lengthwise and lead the camel out by a halter. Deciding the town has fools enough, he goes home and spares his family.
+
+**Moral:** Folly is everywhere, so be lenient with your own.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 21. Хитрость лисы
+
+*киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III) — сказка о животных*
+
+Волк, тигр и лиса закапывают кадку масла. Лиса трижды уходит «давать имя» новорождённым племянникам и съедает масло, называя их «На палец», «До середины» и «Слизано». Звери покупают в долг верблюда. Лиса натравливает их на примкнувшего к ним лиса-самца, а сама прячет мясо и за ночь съедает его. Волку она говорит, что ела свои задние части, предлагает отведать и его и убивает его. Пойманная тигром, она просит его сказать «магыт» и выскакивает из открытой пасти. Наконец перепёлка уговаривает лису зажмуриться и держаться за её хвост, приносит её к людям, и те лису убивают.
+
+**Мораль:** На всякого хитреца найдётся хитрее.
+
+### The trick of the fox
+
+A wolf, a tiger and a fox bury a pail of butter. Three times the fox goes off to 'name' a newborn nephew and eats butter, calling them 'Finger's-breadth', 'Middle of the Back' and 'Lick-lick'. The animals buy a camel on credit. The fox sets them chasing a dog-fox who has joined them, hides the meat and eats it all in the night. She tells the wolf she ate her own hind-quarters, offers to taste his, and kills him. Caught by the tiger, she asks him to say 'magyt' and escapes from his open mouth. At last a quail persuades the fox to shut her eyes and hold its tail, carries her to some men, and they kill her.
+
+**Moral:** Every trickster meets a better one.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 22. Слепой
+
+*киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1906) — бытовая сказка*
+
+Слепой при всём народе со слезами хватает чужую жену и уверяет, что она сбежала от него с этим зрячим. Судья запирает всех троих в отдельные юрты и ставит слухачей. Женщина молит Бога избавить её от слепого, зрячий корит слепого за неблагодарность, а слепой злорадствует: «Хитрость моя хороша — добуду жену!» Судья отдаёт жену зрячему, а слепого наказывает за клевету, и тот от стыда кусает палец до крови.
+
+**Мораль:** Тайные слова выдают правду.
+
+### The blind man
+
+Before the whole village a blind man tearfully seizes another man's wife and claims she ran off with this sighted man. The judge shuts all three in separate tents and posts listeners. The woman prays to be saved from the blind man, the sighted man reproaches him for ingratitude, and the blind man gloats, 'My scheme is good; I shall get a wife!' The judge gives the woman to the sighted man and punishes the blind man for slander, and he bites his finger till it bleeds for shame.
+
+**Moral:** Words spoken in secret reveal the truth.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

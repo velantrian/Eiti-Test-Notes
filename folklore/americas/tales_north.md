@@ -1,0 +1,829 @@
+# Индейцы Северной Америки и инуиты / Indigenous peoples of North America and the Inuit
+
+## 1. Как был создан мир
+
+*индейцы чероки — миф о сотворении (Дж. Муни, «Мифы чероки», 1902)*
+
+Когда всё было водой, звери жили наверху, за небесным сводом, в Галунлати, и им стало тесно. Маленький водяной жук нырнул на дно и принёс мягкий ил; ил разросся и стал островом-землёй, который потом подвесили к небу на четырёх верёвках. Земля была мягкой; Великий Канюк полетел её осмотреть, устал над страной чероки, и где его крылья ударяли о землю — появлялись долины, где поднимались — горы. Солнце сперва ходило слишком низко и обожгло Красного Рака докрасна, поэтому его подняли на семь ладоней. Растениям и зверям велели не спать семь ночей; выдержали лишь сова, пантера и ещё немногие — им дано видеть в темноте, а из деревьев — кедр, сосна, ель, падуб и лавр, которые теперь вечнозелёные. Когда мир состарится, верёвки оборвутся и земля снова уйдёт в океан.
+
+**Мораль:** Выносливость и бдительность вознаграждаются; мир хрупок и держится на нитях.
+
+### How the World Was Made
+
+When all was water, the animals lived above the sky vault in Galunlati and grew crowded. The little Water-beetle dived to the bottom and brought up soft mud, which spread into the island-earth, later hung from the sky by four cords. The earth was soft; the Great Buzzard flew to inspect it, tired over the Cherokee country, and where his wings struck the ground valleys formed, where they rose, mountains. At first the sun ran too low and scorched the Red Crawfish red, so it was raised seven hand-breadths. Plants and animals were told to keep awake seven nights; only the owl, the panther and a few others managed it, and were given sight in the dark, and of the trees the cedar, pine, spruce, holly and laurel, which are now evergreen. When the world grows old the cords will break and the earth will sink into the ocean again.
+
+**Moral:** Endurance and watchfulness are rewarded; the world is fragile and hangs by threads.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 2. Первый огонь
+
+*индейцы чероки — миф (Дж. Муни, «Мифы чероки», 1902)*
+
+Вначале огня не было и мир был холоден, пока Громы не ударили молнией в дуплистый платан на острове. Звери видели дым, но не могли добраться. Ворон полетел первым, но жар опалил его перья дочерна; Совка едва не выжгла глаза — они до сих пор красные; у Ухающей и Рогатой сов пепел оставил белые круги вокруг глаз; змеи — чёрный полоз и «Лазающий» — обгорели дочерна. Все отговаривались, пока Водяная Паучиха не сказала: «Я справлюсь». Она сплела из своей нити чашу, укрепила на спине, перебежала по воде и принесла уголёк. С тех пор у людей есть огонь, а паучиха до сих пор носит свою чашу.
+
+**Мораль:** Не сила и размер, а смекалка решают трудное дело.
+
+### The First Fire
+
+In the beginning there was no fire and the world was cold, until the Thunders struck a hollow sycamore on an island with lightning. The animals saw the smoke but could not reach it. The Raven went first, but the heat scorched his feathers black; the Screech-owl nearly burnt out his eyes, which are red to this day; the ashes left white rings round the eyes of the Hooting and Horned Owls; the black racer and the Climber snake were scorched black. Everyone made excuses until the Water Spider said, 'I'll manage that.' She spun a thread into a bowl, fastened it on her back, ran across the water and brought back a coal. Since then people have had fire, and the Water Spider still carries her bowl.
+
+**Moral:** Not strength or size but ingenuity solves a hard task.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 3. Канати и Селу
+
+*индейцы чероки — миф о происхождении дичи и кукурузы (Дж. Муни, «Мифы чероки», 1902)*
+
+Удачливый охотник Канати и его жена Селу («Кукуруза») жили у горы Пайлот-Ноб с сыном. Из крови дичи, которую Селу смывала в реке, родился Дикий Мальчик; его поймали и приручили, но он вечно втягивал брата в проказы. Проследив за отцом, братья нашли пещеру под камнем, где тот держал зверей, и выпустили всех — оленей, енотов, кроликов, индюков; разгневанный Канати напустил на них клопов и блох и сказал, что теперь за дичью придётся охотиться по всему лесу. Подглядев, как Селу добывает кукурузу и бобы, потирая живот и подмышки, мальчики решили, что она ведьма, и убили её. Она велела расчистить землю и семь раз протащить её тело; ленивые братья расчистили лишь семь клочков и протащили дважды — поэтому кукуруза растёт не везде и её обрабатывают дважды. Канати ушёл от сыновей, а братья, пройдя через опасности, нашли родителей у края мира, где восходит солнце.
+
+**Мораль:** Нетерпение и подозрительность лишают людей лёгкого изобилия: с тех пор пищу добывают трудом.
+
+### Kanati and Selu
+
+The Lucky Hunter Kanati and his wife Selu ('Corn') lived at Pilot Knob with their son. From the blood of game Selu washed in the river sprang a Wild Boy; he was caught and tamed, but always led his brother into mischief. Following their father, the boys found the cave under a rock where he kept the animals and let them all out — deer, raccoons, rabbits, turkeys; furious, Kanati loosed bedbugs and fleas on them and said that from now on game would have to be hunted all over the woods. Spying on Selu producing corn and beans by rubbing her stomach and armpits, the boys decided she was a witch and killed her. She told them to clear ground and drag her body round it seven times; the lazy brothers cleared only seven patches and dragged her only twice — so corn grows only in places and is worked twice. Kanati left his sons, and the brothers, after passing through dangers, found their parents at the end of the world where the sun rises.
+
+**Moral:** Impatience and suspicion cost people their easy plenty; since then food is won by labour.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 4. Происхождение болезней и лекарств
+
+*индейцы чероки — миф (Дж. Муни, «Мифы чероки», 1902)*
+
+Когда люди размножились и стали убивать зверей оружием и давить мелких тварей, звери собрали советы. Медведи попытались сделать лук, но для этого пришлось бы остричь когти, и старый Белый Медведь отказался. Олени решили насылать ревматизм на охотника, не попросившего прощения за убитого оленя. Рыбы и змеи — дурные сны о змеях и гнилой рыбе. Птицы, насекомые и мелкие звери под началом Личинки придумали людям множество болезней; одна Земляная белка заступилась за человека, и её исполосовали когтями — отсюда полосы на её спине. Тогда дружественные человеку растения решили, что каждое даст лекарство от одной из болезней; так возникла медицина.
+
+**Мораль:** Жестокость к живому возвращается болезнью, но природа же даёт и исцеление.
+
+### The Origin of Disease and Medicine
+
+When people multiplied and began killing animals with weapons and crushing small creatures, the animals held councils. The Bears tried to make a bow, but would have had to cut their claws, and the old White Bear refused. The Deer decided to send rheumatism to any hunter who did not ask pardon for a slain deer. Fishes and reptiles sent bad dreams of snakes and rotten fish. Birds, insects and small animals, led by the Grubworm, invented many diseases; only the Ground-squirrel spoke up for Man and was torn by claws — hence the stripes on its back. Then the plants, friendly to Man, agreed that each would furnish a cure for one disease; thus medicine began.
+
+**Moral:** Cruelty to living things returns as sickness, yet nature also offers healing.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 5. Дочь Солнца
+
+*индейцы чероки — миф о происхождении смерти (Дж. Муни, «Мифы чероки», 1902)*
+
+Солнце ненавидело людей, щурившихся на неё, и насылало смертельный зной. Маленькие Люди превратили людей в змей, чтобы убить Солнце у дома её дочери, но гремучая змея по ошибке укусила саму дочь. Солнце заперлось в горе, и мир погрузился во тьму. Семь мужчин пошли в Страну Духов на западе, ударами прутьев вывели девушку из хоровода мёртвых и понесли в ящике, не открывая. Но она так молила о воздухе, что у самого дома они приподняли крышку — и она улетела красной птицей-кардиналом. Поэтому мёртвых нельзя вернуть. Слёзы Солнца грозили потопом, и лишь пляски и песни молодёжи заставили её улыбнуться.
+
+**Мораль:** Нарушенный запрет делает смерть необратимой; горе утешают песней.
+
+### The Daughter of the Sun
+
+The Sun hated the people who squinted at her and sent deadly heat. The Little Men turned men into snakes to kill the Sun at her daughter's house, but the Rattlesnake bit the daughter by mistake. The grieving Sun shut herself in and the world went dark. Seven men went to the Ghost Country in the west, struck the girl out of the dance of the dead with rods and carried her home in a box they must not open. But she begged so for air that near home they lifted the lid — and she flew away as a redbird. That is why the dead cannot be brought back. The Sun's tears threatened a flood, and only the dancing and songs of the young made her smile.
+
+**Moral:** A broken prohibition makes death irreversible; grief is consoled by song.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 6. Плеяды и сосна
+
+*индейцы чероки — звёздный миф (Дж. Муни, «Мифы чероки», 1902)*
+
+Семеро мальчиков всё время играли в каменное колесо вместо работы в поле. Матери в наказание сварили им к обеду игральные камни. Обиженные мальчики пустились в пляс вокруг дома совета, моля духов о помощи, и с каждым кругом поднимались выше. Одного мать успела стащить шестом, но он ушёл в землю. Шестеро стали Плеядами, а там, где плакала мать седьмого, выросла сосна, хранящая тот же свет, что и звёзды.
+
+**Мораль:** Обида уносит детей далеко; материнские слёзы рождают новую жизнь.
+
+### The Pleiades and the Pine
+
+Seven boys kept playing the stone-wheel game instead of working in the cornfield. As punishment their mothers boiled the game stones for their dinner. Offended, the boys danced around the townhouse praying to the spirits, rising higher each round. One mother pulled her son down with a pole, but he sank into the earth. The six became the Pleiades, and where the seventh boy's mother wept grew the pine, which holds the same light as the stars.
+
+**Moral:** Resentment carries children far away; a mother's tears bring new life.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 7. Млечный Путь — «Где бежал пёс»
+
+*индейцы чероки — звёздный миф (Дж. Муни, «Мифы чероки», 1902)*
+
+Люди на юге заметили, что по ночам из их ступы пропадает кукурузная мука, и по следам поняли, что ворует пёс. Они подстерегли его и отхлестали; пёс с воем убежал на север, рассыпая муку из пасти, и оставил белый след — Млечный Путь, который чероки зовут «Где бежал пёс».
+
+**Мораль:** Даже в небе видны следы проступков.
+
+### The Milky Way: 'Where the Dog Ran'
+
+People in the south noticed meal disappearing from their corn mill at night and found a dog's tracks. They lay in wait and whipped him; the dog ran howling north, spilling meal from his mouth, and left a white trail — the Milky Way, which the Cherokee call 'Where the dog ran'.
+
+**Moral:** Even in the sky, misdeeds leave a trail.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 8. Происхождение земляники
+
+*индейцы чероки — миф (Дж. Муни, «Мифы чероки», 1902)*
+
+Первые муж и жена поссорились, и жена ушла на восток, к Стране Солнца, не оглядываясь. Солнце сжалилось над горюющим мужем и стало выращивать на её пути ягоды — чернику, ежевику, ирги, — но она проходила мимо. Наконец оно вырастило первую в мире землянику. Собирая её, женщина повернулась к западу, вспомнила мужа, не смогла идти дальше, набрала ягод и вернулась к нему.
+
+**Мораль:** Сладость примирения сильнее упрямой обиды.
+
+### The Origin of Strawberries
+
+The first man and woman quarrelled, and the wife set off east toward the Sun Land, never looking back. The Sun pitied the grieving husband and grew berries in her path — huckleberries, blackberries, serviceberries — but she passed them by. At last it made the first strawberries. Picking them, she turned toward the west, remembered her husband, could go no further, gathered berries and went back to him.
+
+**Moral:** The sweetness of reconciliation outweighs stubborn resentment.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 9. Как Черепаха обогнала Кролика
+
+*индейцы чероки — сказка о животных (Дж. Муни, «Мифы чероки», 1902)*
+
+Хвастливый Кролик дал медлительной Черепахе фору в один хребет из четырёх. Ночью Черепаха собрала похожих на неё родичей и расставила по одному у вершины каждого хребта. На каждом гребне Кролик видел «Черепаху» впереди, выбился из сил, упал на последнем, крича «ми, ми», и проиграл. Звери так и не узнали секрета, а знахари с тех пор варят кроличьи жилы, чтобы утомить соперников в игре в мяч.
+
+**Мораль:** Хитрость и сплочённость побеждают самонадеянную быстроту.
+
+### How the Terrapin Beat the Rabbit
+
+The boastful Rabbit gave the slow Terrapin a head start of one ridge out of four. That night the Terrapin posted look-alike kinsmen near the top of each ridge. On every crest the Rabbit saw 'the Terrapin' ahead, wore himself out, collapsed on the last ridge crying 'mi, mi' and lost. The animals never learned the trick, and conjurers since then boil rabbit hamstrings to tire rival ball players.
+
+**Moral:** Cunning and teamwork beat overconfident speed.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 10. Кролик и смоляной волк
+
+*индейцы чероки — сказка о животных (Дж. Муни, «Мифы чероки», 1902)*
+
+В засуху звери вырыли колодец, а ленивый Кролик отказался помогать, уверяя, что ему хватает росы, — и тайком пил по ночам. Звери слепили волка из сосновой смолы и дёгтя. Ночью Кролик потребовал, чтобы тот ушёл с дороги, ударил его лапой, затем ногой — и прилип. Утром звери потешались над ним и собирались убить, но, едва его отлепили, он удрал. По другой записи (1845), зайчиха уговорила врагов бросить её в чащу — «здесь я и живу!»
+
+**Мораль:** Обман раскрывается, но ловкий находит выход и из западни.
+
+### The Rabbit and the Tar Wolf
+
+In a drought the animals dug a well; the lazy Rabbit refused to help, claiming dew was enough, and stole water at night. The animals made a wolf of pine gum and tar. At night the Rabbit ordered it out of his way, struck it with a paw, then a foot, and stuck fast. In the morning the animals mocked him and meant to kill him, but once unstuck he escaped. In another record (1845) the hare persuaded her enemies to throw her into a thicket — 'this is where I live!'
+
+**Moral:** Deceit is found out, but the nimble find a way out even of a trap.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 11. Игра в мяч птиц и зверей
+
+*индейцы чероки — сказка о животных (Дж. Муни, «Мифы чероки», 1902)*
+
+Звери вызвали птиц на игру в мяч; капитаном зверей был хвастливый Медведь, с ним Черепаха и быстрый Олень, а у птиц — Орёл. Двух крошечных зверьков звери прогнали за малый рост, и они попросились к птицам. Из кожи барабана им сделали крылья — так появилась Летучая мышь, а второму растянули кожу между лапами — так появилась Летяга. Летяга и Летучая мышь, ловко уворачиваясь, забили мяч и принесли победу птицам; Медведь и Черепаха даже не коснулись мяча.
+
+**Мораль:** Малых и отвергнутых не стоит презирать: они могут решить исход дела.
+
+### The Ball Game of the Birds and Animals
+
+The animals challenged the birds to a ball game; the boastful Bear captained the animals, with the Terrapin and the swift Deer, and the Eagle led the birds. Two tiny creatures, rejected by the animals for their size, asked to join the birds. Wings were made for one from drumhead leather — the Bat — and the other's skin was stretched between its legs — the Flying Squirrel. Dodging nimbly, they carried the ball through and won for the birds; the Bear and the Terrapin never touched the ball.
+
+**Moral:** Do not despise the small and rejected: they may decide the outcome.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 12. Копьепалая (Утлунта)
+
+*индейцы чероки — легенда о чудовище (Дж. Муни, «Мифы чероки», 1902)*
+
+В горах жила людоедка, питавшаяся человеческой печенью. Она умела принимать любой облик, но в настоящем виде была старухой с каменной кожей, которую не брало оружие, и с длинным костяным пальцем-шилом на правой руке. Она манила детей «расчесать волосы» и, усыпив, пронзала пальцем, принимала облик родни, чтобы войти в дом; жертва не чувствовала укола, а потом чахла и умирала. Охотники слышали её песенку «Печень я ем». Пыталась она и построить каменный мост по воздуху, но молния разметала его. Наконец совет решил поймать её в ловчую яму у костра.
+
+**Мораль:** Опасность может прийти в облике близкого; против общей беды нужен общий совет.
+
+### Spear-finger (U'tlun'ta)
+
+A man-eating ogress lived in the mountains, feeding on human livers. She could take any shape, but in her true form she was an old woman with stone skin no weapon could pierce and a long bony awl-finger on her right hand. She lured children to 'dress their hair', stabbed them asleep, or took the form of a relative to enter a house; the victim felt nothing, then pined away and died. Hunters heard her little song, 'Liver, I eat it'. She tried to build a rock bridge through the air, but lightning scattered it. At last a council resolved to trap her in a pitfall by a fire.
+
+**Moral:** Danger may come in the guise of someone close; a common threat needs a common council.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 13. Великая пиявка Тланусийи
+
+*индейцы чероки — местная легенда (Дж. Муни, «Мифы чероки», 1902)*
+
+Там, где Вэлли-Ривер впадает в Хайвосси (Мерфи, Северная Каролина), люди увидели на скальном уступе посреди реки огромное красное существо размером с дом, в красно-белых полосах, похожее на пиявку; оно уползло в глубокий омут, вода вскипела, и столб брызг обрушился туда, где стояли люди. Тех, кого смывало, находили потом на берегу с объеденными ушами и носом. Хвастливый юноша в лучшем наряде пошёл по уступу с песней, что подвяжет ноги кожей пиявки, — его смыло волной, и больше его не видели. Говорят, пиявка и сейчас живёт в омуте.
+
+**Мораль:** Насмешка над опасностью не делает её меньше.
+
+### The Great Leech of Tlanusi'yi
+
+Where Valley River joins the Hiwassee (Murphy, North Carolina), people saw on a rock ledge in the river a huge red creature as big as a house, striped red and white like a leech; it crawled into the deep pool, the water boiled and a column of spray crashed where the men had stood. Those swept away were later found on the bank with ears and nose eaten off. A boastful young man in his finest buckskin walked out on the ledge singing that he would tie leech skins on his legs for garters — a wave swept him away and he was never seen again. They say the leech still lives in the pool.
+
+**Moral:** Mocking a danger does not make it smaller.
+
+Источники / Sources: https://www.gutenberg.org/cache/epub/45634/pg45634.txt, https://en.wikipedia.org/wiki/Cherokee_mythology
+
+---
+
+## 14. Небесная Женщина и Черепаший остров
+
+*гуроны (вендат) и ирокезы (хауденосауни) — миф о сотворении*
+
+Атаэнсик, Небесная Женщина, жила в Верхнем мире. Когда выкапывали дерево, в земле открылась дыра, а под ней — небо и вода; женщина упала в неё. Птицы подхватили её и опустили на воду, а гигантская черепаха всплыла, чтобы ей было где отдохнуть. По одной версии, она родила близнецов — Саженца (Держателя Неба) и Кремня; злой Кремень убил мать, вырвавшись из её бока. Из её головы добрый брат создал Солнце, из груди — Луну и звёзды, а тело отдал земле и посадил в нём семя, из которого выросла кукуруза. По другой версии Атаэнсик — бабушка близнецов: их мать, Женщина-Земля, умерла в родах, и из её тела выросли кукуруза, бобы и тыква, подсолнечник, земляника и табак.
+
+**Мораль:** Жизнь и пища рождаются из жертвы; добро и зло появляются в мире вместе, как близнецы.
+
+### Sky Woman and Turtle Island
+
+Atahensic, Sky Woman, lived in the Upper World. When a tree was dug up, a hole opened onto a sky and water below, and she fell through. Birds caught her and lowered her to the water, and a giant turtle rose so she could rest on it. In one version she bore twins, Sapling (Skyholder) and Flint; the evil Flint killed her by bursting from her side. From her head the good brother made the Sun, from her breasts the Moon and stars, and he gave her body to the earth and planted a seed in it, from which corn grew. In another version Atahensic is the twins' grandmother: their mother, Earth Woman, died in childbirth, and from her body grew corn, beans and squash, sunflowers, strawberries and tobacco.
+
+**Moral:** Life and food are born of sacrifice; good and evil enter the world together, like twins.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Sky_Woman
+
+---
+
+## 15. Женщина Белого Бизона
+
+*лакота — священное предание*
+
+Во время голода вождь лакота послал двух разведчиков на охоту. Из белого облака к ним вышла прекрасная женщина в белой оленьей коже. Один, охваченный похотью, обнял её — облако окутало их, а когда рассеялось, от него осталась лишь груда костей. Второму она сказала, что видит его сердце и он не пострадает; она святая (вакан), и если он исполнит её наказ, его народ поднимется. Он созвал совет и приготовил пир. Она научила лакота семи священным обрядам — очищению в парной, поиску видения, Пляске Солнца и другим — и дала им священную трубку, каждая часть которой означает связи природы, людей и духов.
+
+**Мораль:** Святыня требует чистого сердца: похоть губит, уважение приносит дар.
+
+### White Buffalo Calf Woman
+
+During a famine the Lakota chief sent two scouts to hunt. From a white cloud a beautiful woman in white buckskin came toward them. One, filled with lust, embraced her — the cloud enveloped them, and when it cleared only a pile of his bones remained. She told the other she could see his heart and he would not be harmed; she was holy (wakȟáŋ), and if he did as she said his people would rise again. He called the council and prepared a feast. She taught the Lakota seven sacred rites — the purification lodge, the vision quest, the Sun Dance and others — and gave them the sacred pipe, each part of which stands for the bonds of nature, people and spirits.
+
+**Moral:** The sacred demands a pure heart: lust destroys, respect receives the gift.
+
+Источники / Sources: https://en.wikipedia.org/wiki/White_Buffalo_Calf_Woman
+
+---
+
+## 16. Седна, хозяйка моря
+
+*инуиты — миф*
+
+Девушка не хотела выходить замуж ни за кого из людей и в итоге стала женой пса или морской птицы (буревестника, глупыша). Когда отец увозил её от мужа-птицы, птицы подняли бурю, и испуганный отец бросил дочь за борт. Она вцепилась в борт, и ей отрубили пальцы, сустав за суставом; обрубки стали тюленями, моржами и китами. Девушка опустилась на дно моря и стала могущественной духиней — Матерью моря и морских зверей. В одной версии её отец от горя утопился и тоже стал духом; в версии, записанной Боасом, отец вытащил её обратно, и она тайно возненавидела его.
+
+**Мораль:** Морское изобилие рождено из страдания и предательства; к хозяйке моря нужно относиться с почтением.
+
+### Sedna, Mistress of the Sea
+
+A young woman would marry none of her human suitors and ended up as wife to a dog or a sea bird (a petrel or fulmar). When her father carried her off from her bird-husband, the birds raised a storm, and the frightened father threw her overboard. She clung to the gunwale, and her fingers were cut off joint by joint; the pieces became seals, walruses and whales. She sank to the sea floor and became a powerful spirit, Mother of the Sea and its beasts. In one version her grieving father drowned himself and became a spirit too; in the version Boas recorded, the father pulled her back and she secretly hated him.
+
+**Moral:** The sea's plenty is born of suffering and betrayal; the Mistress of the Sea must be respected.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Sedna_(mythology)
+
+---
+
+## 17. Глускабе, бабушка Сурок и Ветряная птица
+
+*абенаки (вабанаки) — миф о культурном герое*
+
+Абенаки рассказывают, что из пыли тела творца Табалдака возникли Глускабе и его злой близнец Малсумис. Глускабе испугался, что охотники истребят всю дичь, и бабушка Сурок сплела из волос со своего живота волшебный мешок (поэтому живот сурка голый); Глускабе загнал в него всех зверей и похвалился, что людям больше не придётся охотиться. Но бабушка упрекнула его: без охоты люди ослабеют и умрут, — и он выпустил зверей. Потом он поймал великую птицу на горной вершине, чьи крылья порождали непогоду, и связал её; ветер стих, но стало так душно, что он ослабил путы ровно настолько, чтобы погода была пригодной для жизни.
+
+**Мораль:** Благо — в равновесии: и изобилие, и непогода в меру нужны жизни.
+
+### Glooscap, Grandmother Woodchuck and the Wind Bird
+
+The Abenaki say that from the dust of the creator Tabaldak's body came Glooscap and his evil twin Malsumis. Glooscap feared hunters would kill all the game, so Grandmother Woodchuck wove a magic bag from the hair of her belly (hence the woodchuck's bare belly); he put all the animals in it and boasted that people would never need to hunt again. But she scolded him: without hunting people would weaken and die — and he let the animals go. Later he caught the great bird on a mountain peak whose wings made the bad weather and bound it; the winds stopped, but the air became so heavy that he loosened its wings just enough to make weather fit for life.
+
+**Moral:** Good lies in balance: both plenty and storm, in measure, are needed for life.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Glooscap
+
+---
+
+## 18. Вендиго
+
+*оджибве, кри, инну и др. алгонкинские народы — поверье*
+
+У алгонкинских народов — оджибве, кри, наскапи, инну — вендиго считается злым людоедским духом, связанным с севером, зимой, холодом и голодом. Он может вселяться в людей, вызывая неутолимый голод, жажду человеческой плоти и тягу к убийству. Оджибвейский учёный Бэзил Джонстон описывает его истощённым, как скелет, с пепельной кожей, глубоко запавшими глазами и запахом тления. В ряде преданий вендиго — великаны, которые растут с каждой съеденной жертвой и поэтому никогда не насыщаются. В некоторых общинах «вендиго» называют и неуёмную жадность, разрушающую природу.
+
+**Мораль:** Жадность, не знающая меры, пожирает и других, и самого жадного.
+
+### The Wendigo
+
+Among Algonquian peoples — Ojibwe, Cree, Naskapi, Innu — the wendigo is a malevolent cannibal spirit tied to the north, winter, cold and famine. It can possess people, causing insatiable hunger, a craving for human flesh and an urge to kill. The Ojibwe scholar Basil Johnston describes it as gaunt as a skeleton, ash-grey, with sunken eyes and a stench of decay. In some traditions wendigos are giants that grow with each victim and so can never be full. Some communities also call boundless greed that destroys nature 'wendigo'.
+
+**Moral:** Greed without limit devours others and the greedy one too.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Wendigo
+
+---
+
+## 19. Странствия Кивиука
+
+*инуиты — героический эпос*
+
+Кивиук — вечный странник-инук, которому в пути встречаются духи, великаны, людоеды, медведи и морские чудовища; он путешествует пешком, на собачьей упряжке, на каяке или верхом на огромных рыбах. В самой известной, по Францу Боасу, истории он уплыл на каяке, миновал множество опасностей и пристал к берегу, где старая ведьма убивала гостей острым хвостом, садясь на них; Кивиук спасся, прикрыв грудь плоским камнем. Затем он помог двум жившим одиноко женщинам добывать рыбу, а вернувшись наконец домой, нашёл сына уже взрослым.
+
+**Мораль:** Тот, кто всегда в пути, находит и чудеса, и опасности, но время дома не ждёт.
+
+### The Wanderings of Kiviuq
+
+Kiviuq is the eternal Inuk wanderer, meeting spirits, giants, cannibals, bears and sea monsters; he travels on foot, by dog sled, by kayak or borne by huge fish. In the best-known story, per Franz Boas, he set out in his kayak, passed many dangers and landed where an old witch killed her guests by sitting on them with her sharp tail; Kiviuq escaped by covering his chest with a flat stone. Then he helped two women living alone to catch fish, and when he finally came home he found his son grown up.
+
+**Moral:** One always on the road finds wonders and dangers, but time at home does not wait.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Kiviuq
+
+---
+
+## 20. Калупалик
+
+*инуиты — поверье-предостережение*
+
+Калупалик (каллупиллуит) живут подо льдом у арктических берегов и утаскивают детей, подошедших слишком близко к воде; их приманивают особым гудением. У них зелёная скользкая кожа, длинные волосы и когти, перепончатые руки, а на себе — женская парка-амаутик, в которой уносят детей. Хитрые охотники просили калупалик превратиться в тюленя или кита — и добывали её. В одном рассказе голодная бабушка сама отдала внука калупалик; когда охота наладилась, молодая пара выследила мальчика, привязанного к водоросли, и на рассвете перерезала привязь.
+
+**Мораль:** Предание бережёт детей от опасного льда; хитрость побеждает даже неуязвимое.
+
+### The Qalupalik
+
+The Qalupalik (Qallupilluit) live beneath the ice along Arctic shores and snatch children who come too close to the water, luring them with an eerie hum. They have green slimy skin, long hair and nails, webbed hands, and wear a woman's amautik parka to carry children off. Clever hunters asked a qalupalik to change into a seal or whale — and then caught it. In one tale a starving grandmother gave her grandson to a qalupalik; when hunting improved, a young couple tracked the boy, tethered to seaweed, and cut him loose at sunrise.
+
+**Moral:** The tale keeps children from dangerous ice; cunning beats even the invulnerable.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Qalupalik
+
+---
+
+## 21. Миротворец и Гайавата
+
+*ирокезы (хауденосауни: мохоки, онондага) — предание об основании союза*
+
+Когда Миротворец (Деганавида) пришёл в страну ирокезов, он встретил человека-людоеда. Взобравшись на крышу, он заглянул в дымоход; вернувшийся хозяин увидел в котле отражение лица Миротворца, принял его за своё и, поражённый его красотой, мудростью и силой, устыдился. Миротворец передал ему Великий закон мира и назвал Гайаватой — «тем, кто расчёсывает»: ему предстояло «вычесать змей из волос» жестокого вождя онондага Тадодахо. Тадодахо срывал советы, и, говорят, колдовством погубил жену и трёх дочерей Гайаваты. В горе Гайавата скитался, нанизывая раковины-вампум и ища того, кто снимет его скорбь; у мохоков Миротворец произнёс слова утешения: «Я отираю слёзы с твоего лица…» — и вместе они составили законы Великого мира пяти народов.
+
+**Мораль:** Мир начинается с внутреннего преображения и утешения горюющего.
+
+### The Peacemaker and Hiawatha
+
+When the Peacemaker (Deganawida) came to Iroquoia he met a cannibal. Climbing onto the roof, he looked down the smoke hole; the man came home, saw the Peacemaker's face reflected in his kettle, took it for his own, and, struck by its beauty, wisdom and strength, was ashamed. The Peacemaker gave him the Great Law of Peace and named him Hiawatha, 'he who combs': he was to 'comb the snakes out of the hair' of the cruel Onondaga chief Tadodaho. Tadodaho wrecked the councils and was said to have killed Hiawatha's wife and three daughters by sorcery. Grieving, Hiawatha wandered, stringing wampum and seeking someone to lift his sorrow; among the Mohawk the Peacemaker spoke the words of condolence, 'I wipe away the tears from thy face…', and together they composed the laws of the Great Peace of the five nations.
+
+**Moral:** Peace begins with inner transformation and the consoling of the grieving.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Hiawatha, https://en.wikipedia.org/wiki/Deganawida
+
+---
+
+## 22. Ворон крадёт свет
+
+*индейцы като (атапаски Калифорнии) — миф о трикстере*
+
+Ворон создал мир, но не смог дать ему света и воды. Услышав, что свет спрятан в далёкой стране, он отправился туда. В доме света жила девушка с отцом; Ворон превратился в соринку, попал в её питьё и был проглочен. Девушка родила капризного ребёнка, который непрестанно плакал и требовал связки, висевшие на стенах. Ему дали одну — он отпустил её, она вылетела в дымоход и рассыпала по небу звёзды; вторая стала луной, третья — солнечным светом. Принеся свет всему миру, Ворон тоже вылетел через дымоход.
+
+**Мораль:** Хитрость трикстера, хоть и корыстная, приносит миру благо.
+
+### Raven Steals the Light
+
+Raven made the world but could not give it light or water. Hearing that light was hidden in a far land, he went there. In the house of light lived a young woman and her father; Raven turned into a speck of dirt, slipped into her drinking water and was swallowed. She bore a fussy child who cried constantly and demanded the bundles hanging on the walls. He was given one, let it go, it floated out of the smoke hole and scattered stars across the sky; the second became the moon, the third sunlight. Having brought light to the world, Raven too flew out of the smoke hole.
+
+**Moral:** The trickster's cunning, though selfish, benefits the world.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Raven_Tales
+
+---
+
+## 23. Ворон и люди в раковине
+
+*хайда — миф о сотворении людей*
+
+Для хайда Ворон — Приносящий свет, Творец и Преобразователь. Когда мир был лишь потопом, Ворон, скучая, летал над отступающими водами; проголодавшись, он опустился на появившуюся землю и услышал странные звуки из огромной раковины моллюска. Он запел ей своим прекрасным голосом, и из раковины вылезло маленькое существо — черноволосое, круглоголовое, с гладкой смуглой кожей, на двух ногах, как Ворон, но без перьев: первый из Первых Людей. Заскучав, Ворон хотел вернуть их обратно, но вместо этого нашёл женщин, запертых в хитоне, и освободил их. С тех пор он чувствует ответственность за людей и опекает их.
+
+**Мораль:** Даже из скуки может родиться забота о других.
+
+### Raven and the People in the Clam Shell
+
+To the Haida, Raven is the Bringer of Light, Maker and Transformer. When the world was only flood, the bored Raven flew over the receding waters; hungry, he landed on the new land and heard strange sounds from a giant clam shell. He sang to it in his beautiful voice, and out crept a small creature — black-haired, round-headed, smooth brown skin, two legs like Raven but no feathers: the first of the First People. Bored, Raven considered putting them back, but instead found women trapped in a chiton and freed them. Since then he has felt responsible for people and protects them.
+
+**Moral:** Even boredom can give rise to care for others.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Raven_Tales
+
+---
+
+## 24. Ворон, Чайка и ящик со светом
+
+*тлинкиты — миф о трикстере*
+
+Великий Дух хранил всё сотворённое в кедровых ящиках и раздал их зверям; открывая их, они выпускали в мир горы, огонь, воду, ветер и семена. Ящик со всем светом достался Чайке, которая жадно держала его под крылом. Люди попросили Ворона уговорить её; он умолял, требовал, льстил и хитрил — напрасно. Тогда Ворон вонзил ей в лапу шип и давил, пока от боли Чайка не выронила ящик; оттуда вышли солнце, луна и звёзды, и начался первый день. Так же хитростью Ворон добыл и пресную воду: набрал её в спрятанный тюлений пузырь и улетел.
+
+**Мораль:** Жадность, удерживающая общее благо, рано или поздно его теряет.
+
+### Raven, Seagull and the Box of Light
+
+The Great Spirit kept all created things in cedar boxes and gave them to the animals; opening them, they released mountains, fire, water, wind and seeds. The box with all the light went to Seagull, who greedily clutched it under his wing. The people asked Raven to persuade him; he begged, demanded, flattered and tricked — in vain. So Raven stuck a thorn in Seagull's foot and pressed until, in pain, Seagull dropped the box; out came the sun, moon and stars, and the first day began. By similar trickery Raven also got fresh water, filling a hidden seal bladder and flying off.
+
+**Moral:** Greed that hoards a common good loses it in the end.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Raven_Tales
+
+---
+
+## 25. Медвежья Хижина (Девилс-Тауэр)
+
+*кайова, лакота, шайены — легенда о месте*
+
+По преданию кайова и лакота, девушек, вышедших поиграть, погнали гигантские медведи. Девушки взобрались на камень, упали на колени и взмолились Великому Духу, и камень стал расти к небу. Медведи пытались влезть, оставляя на склонах глубокие следы когтей, — их видно и сегодня, — а девушки, достигнув неба, стали Плеядами. В версии сиу двух мальчиков спас Вакан Танка, подняв скалу, медведь Мато ушёл к Медвежьей Горе, а орёл Ванбли спустил детей вниз. В шайенской версии мальчики стреляли в медведя, которого можно убить только стрелой в подошву, и последняя стрела ушла вверх и не вернулась.
+
+**Мораль:** Молитва в беде поднимает над опасностью; сама земля хранит память о чуде.
+
+### Bear Lodge (Devils Tower)
+
+In Kiowa and Lakota tradition, girls out playing were chased by giant bears. They climbed a rock, knelt and prayed to the Great Spirit, and the rock rose toward the sky. The bears tried to climb it, leaving deep claw marks still visible on its sides, and the girls, reaching the sky, became the Pleiades. In a Sioux version two boys were saved by Wakan Tanka raising the rock; the bear Mato went off to Bear Butte, and the eagle Wanblee brought the boys down. In a Cheyenne version boys shot at the bear, which could be killed only through the sole of its foot, and the last arrow flew upward and never came down.
+
+**Moral:** Prayer in danger lifts one above it; the land itself keeps the memory of the miracle.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Devils_Tower
+
+---
+
+## 26. Дзунуква — Людоедка с корзиной
+
+*квакваках'вакв — поверье*
+
+Дзунуква — чёрная нагая старуха-великанша со спутанными волосами и вытянутыми в трубочку красными губами, издающая зов «Ху!»; детям говорят, что шум ветра в кедрах — это её голос. Она крадёт детей и уносит их в корзине, чтобы съесть, но она же — дарительница богатства, которое отдаёт тому, кто сумеет завладеть её ребёнком, и прародительница клана намгис. Она плохо видит, сонлива и недалёка, умеет оживать и оживлять своих детей. В одном мифе люди заманили её в огненную яму и жгли много дней, пока от неё ничего не осталось; пепел превратился в комаров. Маской Дзунуквы завершают потлач.
+
+**Мораль:** Опасное и щедрое часто живут в одном существе; страх и богатство идут рядом.
+
+### Dzunukwa, the Basket Ogress
+
+Dzunukwa is a black, naked old giantess with tangled hair and pursed red lips, giving the call 'Hu!'; children are told the wind in the cedars is her voice. She steals children and carries them off in her basket to eat, yet she is also a bringer of wealth, giving it to whoever gains control of her child, and an ancestor of the Namgis clan. She is near-sighted, drowsy and dim-witted, and can revive herself and her children. In one myth people tricked her into a fire pit and burned her for days until nothing was left; the ashes became mosquitoes. Her mask ends the potlatch.
+
+**Moral:** The dangerous and the generous often dwell in one being; fear and wealth go together.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Dzunukwa
+
+---
+
+## 27. Мишипешу — подводная рысь
+
+*оджибве, оттава, потаватоми (анишинаабе) — поверье*
+
+Мишипешу, «Великая рысь», — важнейшее из подводных существ анишинаабе: голова и лапы огромной кошки, тело в чешуе, вдоль спины и хвоста — шипы, иногда рога оленя или бизона. Её дом — остров Мичипикотен на озере Верхнем; она владычица всех водных тварей, включая змей. Подводные рыси противостоят Громовым птицам, владыкам воздуха, и находятся с ними в вечной, но взаимодополняющей борьбе.
+
+**Мораль:** Мир держится на равновесии противоборствующих сил неба и вод.
+
+### Mishipeshu, the Underwater Panther
+
+Mishipeshu, the 'Great Lynx', is the most important underwater being of the Anishinaabe: the head and paws of a giant cat, a scaly body, spikes along back and tail, sometimes deer or bison horns. Its home is Michipicoten Island on Lake Superior; it rules all water creatures, including snakes. The underwater panthers oppose the Thunderbirds, masters of the air, in an eternal yet complementary struggle.
+
+**Moral:** The world rests on the balance of opposing powers of sky and water.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Mishipeshu
+
+---
+
+## 28. Бабушка-Паучиха и четыре мира
+
+*хопи — миф о сотворении и выходе*
+
+Бабушка-Паучиха (Кокьянгвути) — мудрая помощница, являющаяся старухой или пауком и живущая в подземной норе, похожей на киву. Бог Солнца Тава послал её к существам первого мира, не понимавшим, как жить. Она вела их через миры, пока они менялись, становясь всё более похожими на людей; в третьем мире научила ткать и лепить горшки. Когда люди стали забывать Таву, она предупредила немногих праведных, что пора оставить остальных, и с помощью братьев Покангхойя и Бурундука вывела их в верхний мир, помогла создать Солнце и Луну и научила обрядам. В другом предании она спасла деревню Ораиби от пожара, насланного колдунами, сплетя над ней волшебную паутину, которую люди облили водой.
+
+**Мораль:** Мудрость старших выводит народ из тьмы, если он сохраняет верность.
+
+### Spider Grandmother and the Four Worlds
+
+Spider Grandmother (Kokyangwuti) is a wise helper who appears as an old woman or a spider and lives in an underground hole like a kiva. The Sun god Tawa sent her to the creatures of the first world, who did not know how to live. She led them through the worlds as they changed and became more human; in the third world she taught them to weave and make pots. When people began to forget Tawa, she warned the few good ones it was time to leave the rest and, with the Pokanghoya brothers and Chipmunk, led them to the upper world, helped create the Sun and Moon and taught them rites. In another tale she saved Oraibi from a fire sent by witches by spinning a magic web over it, which the people soaked with water.
+
+**Moral:** Elders' wisdom leads a people out of darkness if it stays faithful.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Spider_Grandmother
+
+---
+
+## 29. Старик Напи творит мир и людей
+
+*черноногие (сиксика, кайна, пикуни) — миф о сотворении (Дж. Б. Гриннелл, «Сказания черноногих», 1892)*
+
+Старик (Напи) шёл с юга на север, создавая горы, прерии, реки, травы, ягоды и зверей. Толсторога, неуклюжего в прерии, он увёл в горы, а антилопу, разбившуюся о камни, вернул на равнину — каждому своё место. Из глины он вылепил женщину с сыном и на четвёртое утро велел им встать. Женщина спросила, будут ли люди жить вечно. Напи бросил в реку бизонью лепёшку — она поплыла, и смерть длилась бы лишь четыре дня; но женщина бросила камень — он утонул, и люди стали смертны, «чтобы всегда жалеть друг друга». Когда её сын умер, она просила изменить закон, но Напи ответил: что стало законом, то закон. Затем он дал людям лук и стрелы против бизонов, научил добывать огонь, загонять стада с обрыва, искать силу во снах и отвёл черноногим их землю.
+
+**Мораль:** Слово, ставшее законом, не отменяют; смертность учит людей сострадать друг другу.
+
+### Old Man Napi Makes the World and People
+
+Old Man (Napi) travelled from south to north making mountains, prairies, rivers, grass, berries and animals. He led the bighorn, awkward on the prairie, up into the mountains, and took the antelope, which fell on the rocks, back to the plains — each to its place. From clay he made a woman and her son and on the fourth morning told them to rise. The woman asked whether people would live forever. Napi threw a buffalo chip into the river — it floated, and death would last only four days; but the woman threw a stone — it sank, and people became mortal, 'that they may always be sorry for each other'. When her son died she begged him to change it, but Napi said what is made law must be law. He then gave people bow and arrows against the buffalo, taught them fire-making, driving herds over cliffs, seeking power in dreams, and marked off the Blackfoot land.
+
+**Moral:** A word made law is not undone; mortality teaches people to pity one another.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/11547
+
+---
+
+## 30. Старик и Камень
+
+*черноногие (сиксика, кайна, пикуни) — сказка о трикстере (Дж. Б. Гриннелл, «Сказания черноногих», 1892)*
+
+Усталый Старик отдохнул на камне и подарил ему свой плащ. Но когда пошёл дождь, он послал Койота попросить плащ назад, а камень отказался. Разгневанный Старик сорвал плащ сам. Вскоре камень покатился за ним; Койота придавило у барсучьей норы, бизоны, олени и гремучие змеи, пытавшиеся остановить камень, погибли. Спасли Старика козодои: ныряя на камень, они откалывали куски, пока не раскололи его надвое. В благодарность Старик сделал их птенцам широкие рты и короткие клювы — такими они остаются и поныне.
+
+**Мораль:** Отнять подаренное — значит навлечь беду; помощь часто приходит от малых.
+
+### Old Man and the Rock
+
+The tired Old Man rested on a rock and gave it his robe. When rain came, he sent Coyote to borrow it back, and the rock refused. Angry, Old Man snatched it himself. Soon the rock came rolling after him; Coyote was crushed stuck in a badger hole, and the buffalo, deer and rattlesnakes who tried to stop it were killed. The nighthawks saved him: diving at the rock, they chipped it until they split it in two. In thanks he made their young wide-mouthed and short-billed, as they are today.
+
+**Moral:** Taking back a gift brings trouble; help often comes from the small.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/11547
+
+---
+
+## 31. Как Старик украл поножи Солнца
+
+*черноногие (сиксика, кайна, пикуни) — сказка о трикстере (Дж. Б. Гриннелл, «Сказания черноногих», 1892)*
+
+Гостя у Солнца, Старик увидел его волшебные охотничьи поножи: стоит обойти в них кустарник — он загорается и выгоняет оленей. Ночью Старик украл их и бежал, но утром проснулся снова в жилище Солнца: он не знал, что весь мир — дом Солнца и из-под его взгляда не уйти. Во второй раз случилось то же, и Солнце отдало поножи ему. Но когда Старик сам поджёг ими кусты, огонь погнался за ним и обжёг ноги; он прыгнул в реку, а поножи сгорели.
+
+**Мораль:** От всевидящего не скроешься; краденое добро впрок не идёт.
+
+### Old Man Steals the Sun's Leggings
+
+Staying with the Sun, Old Man saw his medicine hunting leggings: walk around a patch of brush in them and it catches fire, driving out the deer. At night Old Man stole them and ran, but woke in the Sun's lodge again: he did not know the whole world is the Sun's lodge and no one escapes his sight. The same happened a second time, and the Sun gave him the leggings. But when Old Man fired brush with them himself, the fire chased him and burned his legs; he leapt into a river and the leggings burned to pieces.
+
+**Moral:** No one hides from the all-seeing; stolen goods bring no good.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/11547
+
+---
+
+## 32. Шрамолицый: происхождение Знахарской хижины
+
+*черноногие (сиксика, кайна, пикуни) — легенда о происхождении обряда (Дж. Б. Гриннелл, «Сказания черноногих», 1892)*
+
+Красавица отказывала всем женихам: Солнце сказало ей, что она принадлежит ему. Бедный сирота со шрамом на щеке, над которым смеялись, попросил её руки; она согласилась, если он дойдёт до Солнца и вернётся без шрама в знак его согласия. После долгого пути с помощью зверей лебеди перенесли его через великую воду. Он не тронул оружия, лежавшего на тропе, и сын Солнца, Утренняя Звезда, привёл его в дом, где жена Солнца, Луна, его укрыла. Шрамолицый спас Утреннюю Звезду, убив страшных длинноклювых птиц, погубивших прежних сыновей Луны. Благодарное Солнце отдало ему девушку, научило строить Знахарскую хижину, сняло шрам и дало два вороньих пера. По Волчьей тропе (Млечному Пути) он вернулся; они поженились, построили первую Хижину и дожили до глубокой старости.
+
+**Мораль:** Честность и мужество бедняка вознаграждаются; чистота угодна Солнцу.
+
+### Scarface: Origin of the Medicine Lodge
+
+A beautiful girl refused all suitors: the Sun had told her she belonged to him. A poor orphan with a scar, whom others mocked, asked for her; she agreed if he would reach the Sun and return without the scar as a sign of consent. After a long journey with animal helpers, swans carried him over the great water. He did not touch weapons lying on the trail, and the Sun's son, Morning Star, brought him home, where the Sun's wife, the Moon, hid him. Scarface saved Morning Star by killing the fierce long-billed birds that had killed the Moon's other sons. The grateful Sun gave him the girl, taught him to build the Medicine Lodge, removed the scar and gave him two raven feathers. By the Wolf Road (Milky Way) he returned; they married, built the first Lodge, and lived to great age.
+
+**Moral:** A poor man's honesty and courage are rewarded; purity pleases the Sun.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/11547
+
+---
+
+## 33. Творец Земли и Койот
+
+*майду (Калифорния) — миф о сотворении*
+
+В начале времён Творец Земли плыл по бескрайним водам, когда его окликнул Койот. Вместе они песней сотворили мир. Но когда Творец создал людей, Койот поклялся испортить мир и принести в него зло. Творец велел людям уничтожить Койота, но тот сверхъестественной хитростью перехитрил их всех, и Творцу пришлось признать, что сила Койота равна его собственной. В других мифах Койот, напротив, благодетель: крадёт для людей огонь или солнце, а у шаста спасает мир от десяти злых лун, наславших вечную зиму.
+
+**Мораль:** Творение и порча идут рука об руку; трикстер одновременно вредит и помогает.
+
+### Earth Maker and Coyote
+
+At the beginning of time Earth Maker floated on the endless waters when Coyote called to him. Together they sang the world into being. But when Earth Maker made people, Coyote vowed to spoil the world and bring evil into it. Earth Maker told the people to destroy Coyote, but he outwitted them all by supernatural trickery, and Earth Maker had to admit Coyote's power equalled his own. In other myths Coyote is a benefactor: he steals fire or the sun for people, and among the Shasta saves the world from ten evil moons that brought endless winter.
+
+**Moral:** Creation and spoiling go together; the trickster both harms and helps.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Coyote_(mythology)
+
+---
+
+## 34. Громовая птица
+
+*алгонкины, ирокезы, народы Северо-Западного побережья — поверье*
+
+Громовая птица — могучий дух в облике хищной птицы или полуптицы-получеловека: взмахи её крыльев рождают гром, а блеск глаз — молнию. Она защищает людей, но ждёт почитания, молитв и даров. У алгонкинов она правит верхним миром и мечет молнии в существ нижнего мира — подводную рысь и Великого рогатого змея. По преданию оджибве, громовых птиц создал Нанабожо для борьбы с подводными духами; они карают нарушителей нравственных законов, живут в четырёх сторонах света и прилетают весной вместе с другими птицами. Народы тихоокеанского побережья рассказывают о борьбе Громовой птицы с Китом.
+
+**Мораль:** Небесная сила охраняет порядок и карает зло.
+
+### The Thunderbird
+
+The Thunderbird is a mighty spirit in the form of a bird of prey or a bird-human: its wingbeats make thunder and the flash of its eyes lightning. It protects people but expects veneration, prayers and gifts. Among Algonquians it rules the upper world and hurls lightning at the beings below — the underwater panther and the Great Horned Serpent. In Ojibwe tradition Nanabozho created the thunderbirds to fight the underwater spirits; they punish those who break moral rules, live in the four directions and arrive in spring with the other birds. Pacific coast peoples tell of the Thunderbird's struggle with Whale.
+
+**Moral:** Heavenly power guards order and punishes evil.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Thunderbird_(mythology)
+
+---
+
+## 35. Дине Баханэ: путь через миры
+
+*навахо (дине) — миф о сотворении и выходе*
+
+Сначала из тьмы поднялся Святой Ветер, светящимися туманами оживив духов Святых Людей. Первый, Тёмный мир был мал — остров среди четырёх морей; там жили Святые Люди, два Койота, правители морей, люди-насекомые и летучие мыши, и там впервые встретились Первая Женщина и Первый Мужчина, увидев костры друг друга. Обитатели начали враждовать и улетели через отверстие на востоке. Во Втором мире они обидели вождя ласточек и снова были изгнаны; Первый Мужчина сотворил жезл из гагата, по которому они поднялись через отверстие на юге. Пройдя нижние миры и усвоив в каждом свой урок, народ вышел в Четвёртый мир, где живут навахо ныне. Во всём повествовании важны стороны света и число четыре.
+
+**Мораль:** Раздор изгоняет из каждого мира; путь к нынешней жизни — череда уроков.
+
+### Diné Bahaneʼ: The Journey Through the Worlds
+
+First the Holy Wind arose from darkness as mists of light, animating the spirits of the Holy People. The First, Dark World was small, an island amid four seas; there lived the Holy People, two Coyotes, the rulers of the seas, insect and bat people, and there First Woman and First Man met after seeing each other's fire. The beings began to fight and flew out through an opening in the east. In the Second World they offended the Swallow Chief and were sent away again; First Man made a wand of jet, by which they climbed through an opening in the south. Passing through the lower worlds and learning a lesson in each, the people emerged into the Fourth World, where the Navajo live now. Cardinal directions and the number four run through the whole story.
+
+**Moral:** Strife drives people out of each world; the road to the present is a series of lessons.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Diné_Bahaneʼ
+
+---
+
+## 36. Близнецы Солнца выводят людей к свету
+
+*зуни — миф о сотворении и выходе*
+
+По записи Ф. Кушинга, вначале был лишь Авонавилона, Творец и Вместилище всего; он стал Отцом-Солнцем. Из туманов возникли Великие Воды, где родились Мать-Земля и Отец-Небо, зачавшие всех людей и существ в четырёхчастном чреве мира. Отец-Солнце и Мать-Земля произвели Близнецов — богов войны, наделённых знанием, луками и щитами. Они спустились в первый подземный мир и сделали лестницу во второй, Мир Мха, затем в третий, Мир Грязи, и в четвёртый, Мир Крыльев, где научили людей жить и искать Отца-Солнце. Выйдя в Мир Дневного Света, люди, вначале покрытые чешуёй и с перепончатыми руками и ногами, привыкли к свету и надели пояса и сандалии.
+
+**Мораль:** Путь к свету требует проводников и постепенного преображения.
+
+### The Sun Twins Lead the People to the Light
+
+In Frank Cushing's account, at first only Awonawilona, Maker and Container of All, existed; he became the Sun Father. From mists came the Great Waters, where Earth Mother and Sky Father formed and conceived all people and creatures in the fourfold womb of the world. The Sun Father and Earth Mother brought forth the Twin War Gods, gifted with knowledge, bows and shields. They went down into the first underworld and made a ladder to the second, the Moss World, then the third, the Mud World, and the fourth, the Wing World, where they taught people how to live and to seek the Sun Father. Emerging into the Daylight World, the people, at first scaly with webbed hands and feet, grew used to the light and put on girdles and sandals.
+
+**Moral:** The way to the light needs guides and gradual transformation.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Zuni_mythology
+
+---
+
+## 37. Утренняя Звезда и Вечерняя Звезда
+
+*пауни (скиди) — звёздный миф*
+
+Творец Тирава («Наш Отец Наверху») научил пауни огню, охоте, земледелию, речи и обрядам; его жена Атира — «Мать-Кукуруза». Первой он создал на востоке мужскую Утреннюю Звезду, бога войны в одежде воина, а затем на западе женскую Вечернюю Звезду. Она противилась божественному замыслу сотворить людей, и Утренней Звезде пришлось огненным шаром одолеть многие силы западного неба, прежде чем соединиться с ней. Первым созданным человеком стала девочка.
+
+**Мораль:** Жизнь рождается из союза противоположностей, добытого борьбой.
+
+### Morning Star and Evening Star
+
+The creator Tirawa ('Our Father Above') taught the Pawnee fire, hunting, farming, speech and rites; his wife Atira is 'Mother Corn'. First he made the male Morning Star in the east, a war god dressed as a warrior, then the female Evening Star in the west. She resisted the divine plan to create people, and Morning Star had to overcome many forces of the western sky with his fireball before he could mate with her. The first human created was a girl.
+
+**Moral:** Life is born from a union of opposites won through struggle.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Pawnee_mythology
+
+---
+
+## 38. Кокопелли — горбатый флейтист
+
+*хопи, зуни (Юго-Запад) — поверье*
+
+Кокопелли — божество плодородия, изображаемое горбатым флейтистом с перьями или «усиками» на голове; он покровительствует деторождению, земледелию и музыке и бывает трикстером. У хопи он носит на спине нерождённых детей и раздаёт их женщинам, потому девушки его побаиваются; его спутница — Кокопелмими. Он ведает и размножением дичи, а игрой на флейте прогоняет зиму и призывает весну; зуни связывают его с дождями. Некоторые племена говорят, что на спине он носит семена и младенцев.
+
+**Мораль:** Музыка и плодородие несут весну и новую жизнь.
+
+### Kokopelli, the Humpbacked Flute Player
+
+Kokopelli is a fertility deity shown as a humpbacked flute player with feathers or antenna-like shapes on his head; he presides over childbirth, agriculture and music, and is also a trickster. Among the Hopi he carries unborn children on his back and gives them to women, so girls fear him; his consort is Kokopelmimi. He also oversees the increase of game, and his flute chases away winter and brings spring; the Zuni link him with rain. Some tribes say he carries seeds and babies on his back.
+
+**Moral:** Music and fertility bring spring and new life.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Kokopelli
+
+---
+
+## 39. Лис и Кролик
+
+*сенека (ирокезы) — сказка о животных (Дж. Кертин, Дж. Н. Б. Хьюитт, «Сказки, легенды и мифы сенека», 1918)*
+
+Зимой одного человека погнал людоед Онгве Иас. Не в силах уйти, беглец велел своим мокасинам бежать дальше, а сам обернулся грязной полусгнившей тушкой кролика. Людоед догнал пустые мокасины, понял обман и вернулся. Тогда беглец притворился человеком, сучащим верёвки из коры, затем — сухим деревом; людоед отломил ветку-«нос», а позже нашёл на том месте кровь. Наконец беглец подкинул на тропу мёртвое тело, и людоед, поклявшись больше не дать себя одурачить, съел гниль, а беглец спасся. Говорят, беглец был кроликом, а людоед — лисом.
+
+**Мораль:** Слабого спасает изворотливость.
+
+### The Fox and the Rabbit
+
+One winter a man was chased by the man-eater Ongwe Ias. Unable to escape, he told his moccasins to run on and turned himself into a dirty half-rotten rabbit carcass. The man-eater caught up with the empty moccasins, saw the trick and turned back. The fugitive then posed as a man rolling bark cords, then as a dry tree; the man-eater broke off a 'nose'-like limb and later found blood there. At last the fugitive pushed a dead body onto the path, and the man-eater, vowing not to be fooled again, ate the putrid carcass while the fugitive escaped. It is said the fugitive was a rabbit and the man-eater a fox.
+
+**Moral:** Cunning saves the weak.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/64176
+
+---
+
+## 40. Гонка Черепахи и Медведя
+
+*сенека (ирокезы) — сказка о животных (Дж. Кертин, Дж. Н. Б. Хьюитт, «Сказки, легенды и мифы сенека», 1918)*
+
+Худой странник позавидовал толстому старику и попробовал по его совету «высосать жир» из спящего зверя — получил копытом. Затем старик посоветовал ловить рыбу хвостом в проруби; хвост примёрз и оторвался, и худой превратился в другое существо. Летом он вызвал старика на гонку: сам по суше, тот — по воде, ставка — голова. Старик расставил вдоль реки своих сородичей, и куда бы ни прибегал бегун, впереди из воды высовывалась голова. Проигравшему отрубили голову, а родичи старика смеялись: «Вот глупец!» Старик был черепахой, бегун — медведем, бывшим лисом, лишившимся хвоста во льду; с тех пор у медведей короткие хвосты.
+
+**Мораль:** Простак, верящий хитрецу, платит дорого.
+
+### The Race Between the Turtle and the Bear
+
+A lean traveller envied a fat old man and, on his advice, tried to 'suck the fat' from a sleeping animal — and got kicked. Next the old man advised fishing with his tail through the ice; it froze and came off, and the lean one was changed into another kind of being. In summer he challenged the old man to a race, he on land, the old man on water, the stake being the loser's head. The old man posted his kin along the river, and wherever the runner came a head popped up ahead of him. The loser was beheaded, and the old man's kin cried, 'What a fool!' The old man was a mud turtle and the runner a bear, once a fox who lost his tail in the ice; so bears are stub-tailed.
+
+**Moral:** The simpleton who trusts a trickster pays dearly.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/64176
+
+---
+
+## 41. Двухголовый змей
+
+*сенека (ирокезы) — легенда (Дж. Кертин, Дж. Н. Б. Хьюитт, «Сказки, легенды и мифы сенека», 1918)*
+
+Мальчик нашёл змейку с головами на обоих концах тела и стал кормить её птицами, потом белками и крупной дичью; змей рос, а мальчик забросил всё ради него и даже скормил ему сестрёнку. Змей окружил деревню кольцом, положив обе головы у ворот, и пожирал всех выходящих; уцелели лишь один мужчина с сестрой. Во сне мужчине было указано, как сделать стрелы, наделённые силой сестры. Стрелы вошли в тело змея, лежавшего на горе; тот изрыгнул останки людей и их оружие, скатился в долину и издох.
+
+**Мораль:** Вскормленное зло растёт и пожирает своих; спасение — в силе семьи.
+
+### The Snake with Two Heads
+
+A boy found a little snake with a head at each end and fed it birds, then squirrels and larger game; the snake grew, and the boy gave up all for it, even feeding it his little sister. The snake circled the village, its two heads at the gate, devouring all who came out; only one man and his sister survived. In a dream the man was shown how to make arrows charged with his sister's power. The arrows worked into the body of the snake lying on a mountain; it vomited the people's remains and their weapons, rolled into the valley and died.
+
+**Moral:** Evil that is fed grows and devours its own; salvation lies in kinship's strength.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/64176
+
+---
+
+## 42. Раки и Енот
+
+*сенека (ирокезы) — сказка о животных (Дж. Кертин, Дж. Н. Б. Хьюитт, «Сказки, легенды и мифы сенека», 1918)*
+
+Вождь раков обходил селение, проверяя, не близко ли людоед Онгве Иас, и нашёл у воды его «мёртвое» тело с почерневшим лицом в мухах. Обрадованные раки собрались, ущипнули его за губу — тот не шелохнулся — и пустились вокруг в победный пляс. Тут враг вскочил и съел почти всё племя; спаслись двое-трое. Он знал, что раки падки на падаль.
+
+**Мораль:** Не празднуй гибель врага, не убедившись в ней.
+
+### The Crawfish and the Raccoon
+
+The Crawfish chief went round checking whether the man-eater Ongwe Ias was near and found his 'dead' body by the water, face black and covered with flies. The delighted crawfish gathered, pinched his lips — he did not move — and began a victory dance around him. Then the enemy sprang up and ate nearly the whole tribe; two or three escaped. He knew the crawfish loved dead meat.
+
+**Moral:** Do not celebrate an enemy's death before you are sure of it.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/64176
+
+---
+
+## 43. Иктоми — паук-обманщик
+
+*лакота — миф о трикстере*
+
+Иктоми — дух-паук, трикстер и культурный герой лакота, первенец Иньяна, Скалы. Прежде он звался Кса, бог мудрости, придумавший язык, истории, имена и игры. Но Кса своей мудростью заставил богиню скрыть лицо от стыда, а бога — склонить голову в горе, и бог движения Скан приговорил его больше не сидеть на пирах богов, жить в мире без друзей, а мудрость его обратил в хитрость, что запутывает его же в собственных затеях. Так он стал Иктоми — проказником, которому в радость выставлять других на смех. Он может принять любой облик, а в человеческом носит красную, жёлтую и белую раскраску с чёрными кругами у глаз.
+
+**Мораль:** Мудрость, употреблённая во зло, вырождается в хитрость, которая ловит самого хитреца.
+
+### Iktomi, the Spider Trickster
+
+Iktomi is the Lakota spider spirit, trickster and culture hero, first son of Inyan, the Rock. He was once Ksa, god of wisdom, inventor of language, stories, names and games. But Ksa used his wisdom to make a goddess hide her face in shame and a god bow his head in grief, so Skan, god of motion, condemned him never again to sit at the feasts of the gods, to live in the world without a friend, his wisdom turned to a cunning that traps him in his own schemes. Thus he became Iktomi, the imp who delights in making others ridiculous. He can take any shape; as a man he wears red, yellow and white paint with black rings around his eyes.
+
+**Moral:** Wisdom used for harm decays into a cunning that catches its own master.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Iktomi
+
+---
+
+## 44. Черепаший остров
+
+*ленапе (делавары) — миф о сотворении и потопе*
+
+Вначале была лишь тьма, где спал творец Кишеламаканк; во сне он увидел мир, людей и их обряды, а проснувшись, создал его с помощью Дедов Севера, Востока и Запада и Бабушки Юга. Из корней особого дерева вышел первый мужчина, а когда дерево склонилось и поцеловало землю, появилась женщина. Люди перессорились из-за волшебного зуба гигантского медведя и разошлись на племена и языки; посланный творцом Нанабуш зажёг Священный огонь, сделал трубку и научил при ссорах курить её и решать сообща. Потом из-за того же зуба злые жаба и змей устроили потоп. Нанабуш спасся на кедре, собрав зверей за пояс, песней остановил воды, а Черепаха вызвалась держать всех на спине. Бобр и гагара ныряли за землёй и всплыли мёртвыми, и лишь ондатра вынесла комок земли на носу; Нанабуш положил его на панцирь, и песней заставил Черепаху расти — так возникла земля.
+
+**Мораль:** Раздор губит мир, а самопожертвование малых возрождает его.
+
+### Turtle Island
+
+At first there was only darkness where the creator Kishelamakank slept; he dreamt of the world, people and their ceremonies, and on waking made it with the Grandfathers of the North, East and West and the Grandmother of the South. The first man came from the roots of a special tree, and when the tree bent and kissed the ground, woman sprang up. People fought over a giant bear's magic tooth and scattered into tribes and languages; Nanabush, sent by the creator, lit the first Sacred Fire, made a pipe and taught them to smoke it and decide together when they quarrelled. Later, over the same tooth, an evil toad and snake caused a flood. Nanabush escaped up a cedar, tucking animals into his sash, sang the waters still, and Turtle offered to carry everyone on his back. Beaver and loon dived for earth and came up dead, and only muskrat brought up earth on his nose; Nanabush put it on the shell and sang until Turtle grew — and so the land arose.
+
+**Moral:** Strife ruins the world, and the self-sacrifice of the small renews it.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Turtle_Island
+
+---
+
+## 45. Нуннехи и Яхула
+
+*индейцы чероки — легенда*
+
+Нуннехи — «Народ, живущий везде», бессмертные духи-люди чероки, живущие в подземных домах на безлесных вершинах Аппалачей. Охотники слышат их песни и барабаны, но звук всё время перемещается. Показываются они лишь по своей воле, выглядя как обычные чероки: однажды четыре женщины-нуннехи протанцевали всю ночь в городе Ноттели и исчезли на берегу реки. Нуннехи помогают заблудившимся зимой. Охотник Яхула, отставший от своих, прожил у них долго и стал бессмертным. Затосковав, он навестил родных, но не смог есть их пищу, отведав еды нуннехи, и, отказавшись выбрать смерть среди своих вместо бессмертия, вернулся к нуннехи, хотя часто навещал людей.
+
+**Мораль:** Иной мир щедр, но тот, кто вкусил его, уже не может вернуться прежним.
+
+### The Nunnehi and Yahula
+
+The Nunnehi, 'the People Who Live Anywhere', are immortal spirit people of the Cherokee, living in underground townhouses on treeless Appalachian peaks. Hunters hear their songs and drums, but the sound keeps shifting. They show themselves only when they wish, looking like ordinary Cherokee: once four Nunnehi women danced all night at Nottely town and vanished at the river. They help those lost in winter. The hunter Yahula, separated from his party, lived long among them and became immortal. Homesick, he visited his kin but could not eat their food after eating that of the Nunnehi, and, refusing to choose death with his people over immortality, returned to the Nunnehi, though he often visited.
+
+**Moral:** The otherworld is generous, but one who has tasted it cannot return unchanged.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Nunnehi
+
+---
+
+## 46. Уктена — рогатый змей
+
+*индейцы чероки, маскоги — поверье*
+
+У многих народов Юго-Востока и Великих озёр есть Рогатый змей. У чероки он зовётся уктена: по описанию Дж. Муни, это огромный змей толщиной со ствол дерева, с рогами и ярким сверкающим гребнем-кристаллом во лбу и с чешуёй, горящей как искры. У маскоги Рогатый змей живёт в воде, покрыт переливчатой кристаллической чешуёй с большим кристаллом во лбу; чешуя и кристаллы ценятся для гадания, а рога — в лечении. Один рассказчик говорил, что это не злой змей: людям он не вредит, но имеет притягательную власть над дичью.
+
+**Мораль:** Великая сила природы двойственна: опасна и целительна.
+
+### The Uktena, the Horned Serpent
+
+Many Southeastern and Great Lakes peoples know a Horned Serpent. The Cherokee call it the uktena: as James Mooney described, a great snake as thick as a tree trunk, horned, with a bright blazing crystal crest on its forehead and scales glowing like sparks. To the Muscogee the Horned Serpent lives in water, covered with iridescent crystalline scales and a large crystal in its forehead; the scales and crystals are prized for divination and the horns for medicine. One narrator said it is not a bad snake: it does not harm people but has a magnetic power over game.
+
+**Moral:** Great natural power is double: dangerous and healing.
+
+Источники / Sources: https://en.wikipedia.org/wiki/Uktena
+
+---

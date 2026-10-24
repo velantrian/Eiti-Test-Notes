@@ -1,0 +1,307 @@
+# Народы Поволжья и Урала / Volga-Ural peoples
+
+## 1. Утка, два яйца и сотворение земли
+
+*марийцы — космогонический миф*
+
+Утка прилетает на первичный океан из своего гнезда — созвездия Плеяд. Она сносит два яйца, и из них выходят братья-селезни Юмо и Йын. По очереди они ныряют и достают со дна землю. Земля Юмо ложится ровно, а Йын поперхнулся и выплюнул землю вместе со слюной — отсюда горы, озёра и болота. Потом Юмо высекает молотом искры из небесного камня, и из них рождаются добрые духи сакчи. Керемет подглядывает и, пока Юмо спит, высекает своих искр — шайтанов.
+
+**Мораль:** Мир двойствен с самого начала: рядом с творцом всегда стоит подражатель.
+
+### The duck, two eggs and the making of the earth
+
+A duck flies onto the primeval ocean from her nest, the Pleiades. She lays two eggs, and the drake-brothers Yumo and Yyn hatch from them. They take turns diving and bringing up earth from the bottom. Yumo's earth lies flat, but Yyn chokes and spits it out with saliva — hence mountains, lakes and swamps. Then Yumo strikes sparks with a hammer from a heavenly stone, and good spirits, the sakchi, come from them. Keremet watches and, while Yumo sleeps, strikes sparks of his own — the shaitans.
+
+**Moral:** The world is twofold from the start: beside the creator stands an imitator.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 2. Кугу Юмо, Керемет и собака
+
+*марийцы — антропогонический миф*
+
+Кугу Юмо лепит человека из глины и одевает его в роговую оболочку, которая защищает от огня, холода, зверей и болезней. Он уходит за душой и оставляет тело сторожить собаке. Керемет напускает холод и подкупает дрожащую собаку шерстью. Затем он оплёвывает человека. Вернувшись, Юмо выворачивает тело наизнанку, так что скверна оказывается внутри. От рогового покрова остаются только ногти, и человек теряет бессмертие. Собаку Юмо проклинает. (Исследователи видят здесь влияние народного христианства.)
+
+**Мораль:** Мелкая сделка сторожа может стоить бессмертия.
+
+### Kugu Yumo, Keremet and the dog
+
+Kugu Yumo shapes man from clay and gives him a horny shell that guards against fire, cold, beasts and sickness. He goes to fetch a soul and leaves a dog to guard the body. Keremet sends cold and bribes the shivering dog with fur. Then he spits on the man. On returning, Yumo turns the body inside out, so the filth ends up within. Only the nails remain of the shell, and man loses immortality. Yumo curses the dog. (Scholars see folk-Christian influence here.)
+
+**Moral:** A guard's small bargain can cost immortality.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 3. Тӱн Юмо, Шочын Ава и первые пары
+
+*марийцы — антропогонический миф*
+
+Прежде чем встретить Шочын Аву, Тӱн Юмо долго идёт днём и ночью, питаясь лишь сырым мясом лосёнка. Встретившись, они ровно в полдень купаются в реке, и сразу появляются шесть мужчин и шесть женщин. Шочын Ава соединяет их в пары, и от них идут семьи и народы. Мифический лось наделяет прародителей рогами с божьим заветом: «людям — размножаться, народам — расти».
+
+**Мораль:** Род людской рождается из испытания и союза.
+
+### Tün Yumo, Shochyn Ava and the first couples
+
+Before meeting Shochyn Ava, Tün Yumo walks day and night, eating only the raw meat of an elk calf. When they meet, they bathe in a river exactly at noon, and six men and six women appear at once. Shochyn Ava pairs them, and families and peoples spring from them. A mythic elk gives the ancestors antlers inscribed with the divine charge: 'people, multiply; nations, grow'.
+
+**Moral:** Humankind is born of trial and union.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 4. Дорога диких гусей (Млечный Путь)
+
+*марийцы — этиологический миф*
+
+В древности наступает сильный холод, и тысячи гусей летят на юг. Уставшие отстают от стаи. Чтобы они не потерялись, сильные гуси оставляют в небе белые перья. Так возникает Дорога диких гусей — Млечный Путь, и отставшие догоняют по ней стаю. По этому пути гуси и сейчас улетают осенью в тёплые края.
+
+**Мораль:** Сильные оставляют путь для слабых.
+
+### The Road of the Wild Geese (the Milky Way)
+
+Long ago a great cold sets in, and thousands of geese fly south. The tired ones fall behind. So that they do not get lost, the strong geese leave white feathers in the sky. This forms the Road of the Wild Geese, the Milky Way, and the stragglers follow it to catch up. Geese still follow it south every autumn.
+
+**Moral:** The strong leave a path for the weak.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 5. Дочь бога и земной жених
+
+*марийцы — миф (зап. С. Нурминский, 1862)*
+
+Красавица дочь бога пасёт отцовский скот на земле. Отец открывает небо и спускает её по качели, и она подзывает лошадей, коров и овец, каждых своим кличем. На небе женихов нет, одни ангелы. На земле она встречает молодца, дарит ему платок и велит похитить её с товарищами. Другой платок она вешает на кол, чтобы отец решил, что она умерла. Через два года пара приходит к богу с повинной. Он мирится с ними, устраивает пир и даёт богатое приданое, и с тех пор бог знаком с людьми. В других вариантах пьяный Керемет на свадьбе сбрасывает зятя с неба, из его тела вырастают берёзы и дубы, а разгневанный Юмо сбрасывает самого Керемета.
+
+**Мораль:** Любовь соединяет небо и землю, а зависть наказывается.
+
+### God's daughter and the earthly groom
+
+God's beautiful daughter herds her father's cattle on earth. He opens the sky and lowers her on a swing, and she calls down the horses, cows and sheep, each with its own cry. In heaven there are no suitors, only angels. On earth she meets a young man, gives him a kerchief and tells him to carry her off with his friends. She hangs another kerchief on a stake so her father will think she has died. Two years later the couple confess to God. He forgives them, holds a feast and gives a rich dowry, and from then on God knows people. In other versions a drunken Keremet throws the groom from heaven at the wedding; birches and oaks grow from his body, and an angry Yumo casts Keremet down.
+
+**Moral:** Love joins heaven and earth; envy is punished.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 6. Кугурак и его жена — учители мари
+
+*марийцы — миф о культурном герое*
+
+Кугурак (Курык кугыза) учит охотников мари ковать железо, растить хлеб и работать молотом и лопатой. Его жена изобретает лук и стрелы и учит женщин ткать, танцевать и играть на инструментах. Уходя в могилу, Кугурак обещает вернуться и защитить свой народ от врагов. Легендарного князя Полтыша хоронят в лодке с его сокровищами.
+
+**Мораль:** Народ хранит память о тех, кто дал ему ремёсла.
+
+### Kugurak and his wife, teachers of the Mari
+
+Kugurak (Kuryk kugyza) teaches Mari hunters to forge iron, grow grain and use the hammer and spade. His wife invents the bow and arrow and teaches women to weave, dance and play music. Going into his grave, Kugurak promises to return and defend his people. The legendary prince Poltysh is buried in a boat with his treasures.
+
+**Moral:** A people remembers those who gave it its crafts.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Марийская_мифология
+
+---
+
+## 7. Онар и пень в глазу
+
+*марийцы — предание о великане*
+
+Мари выкорчёвывает большой еловый пень, буря подхватывает его, и он попадает в глаз великану Онару. Мать вынимает пень и отбрасывает его, а человек колет его на дрова и ползимы топит ими печь. Мать говорит: раз в глаз попал выкорчеванный пень, значит, там живут люди. Онар идёт к Волге и замечает шестиногую букашку, которая взрывает землю, — это мари пашет на сивой лошадке. Великан приносит пахаря вместе с сохой и лошадью матери. Та велит отнести его обратно: людям суждено прийти на смену великанам. Говорят также, что Онар вытряхивал землю из обуви и так появлялись холмы, а там, где он проспал пять суток, от его головы осталась яма — озеро Кугоер.
+
+**Мораль:** Малый пахарь сильнее великана: будущее за людьми.
+
+### Onar and the stump in his eye
+
+A Mari man uproots a big fir stump; a storm carries it into the eye of the giant Onar. His mother pulls it out and flings it away, and the man splits it for firewood that lasts half a winter. She says that if an uprooted stump flew into his eye, people must live there. Onar goes to the Volga and spots a six-legged bug furrowing the ground — a Mari ploughing with a grey horse. The giant carries the ploughman, plough and horse to his mother. She tells him to take the man back: people are destined to succeed the giants. It is also said that hills formed where Onar shook the soil out of his boots, and that where he slept for five days his head left a hollow, the lake Kugoyer.
+
+**Moral:** The small ploughman outweighs the giant: the future belongs to people.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Онар
+
+---
+
+## 8. Онар-рыбак и кобыла Онара
+
+*марийцы — миф*
+
+Девушка рожает урода и прячет его на небо, которое тогда «ходило» низко над землёй. Небо с грохотом поднимается, а девушку поглощает земля — так появились первый гром и провалы. После этого Онар спускается к людям на прекрасной кобыле, и с тех пор она показывается после дождя радугой. В другом мифе Онар видит на Волге широкоплечего незнакомца, который ловит рыбу его корзиной и грозит оторвать ему голову. Незнакомец пытается схватить Онара за волшебный пояс, источник его силы, но Онар побеждает.
+
+**Мораль:** Великаны покровительствуют земле, но и им приходится бороться за своё.
+
+### Onar the fisher and Onar's mare
+
+A girl bears a monster and hides it in the sky, which then 'walked' low over the earth. The sky rises with a roar and the earth swallows the girl — the first thunder and sinkholes. Then Onar comes down to people on a beautiful mare, which since then appears after rain as the rainbow. In another myth Onar finds a broad-shouldered stranger on the Volga fishing with his basket and threatening to tear off his head. The stranger grabs for Onar's magic belt, the source of his strength, but Onar wins.
+
+**Moral:** Giants protect the land, yet they too must fight for their own.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Онар
+
+---
+
+## 9. Чоткар-патыр
+
+*марийцы — историческое предание*
+
+По преданию, в XIII веке богатырь Чоткар освободил лесной марийский край от кочевников, нападавших на селения. Перед смертью он велел положить с собой в могилу меч и щит и обещал прийти на помощь, когда врагов станет одолевать. Его могилу показывают на холме между деревнями Нурмучаш и Усола, и каждый июнь там проходит праздник в его память.
+
+**Мораль:** Герой не умирает, пока его ждут.
+
+### Chotkar the hero
+
+According to legend, in the 13th century the hero Chotkar freed the Mari forest country from nomads raiding its villages. Before dying he asked to be buried with his sword and shield and promised to come back when enemies pressed hard. His grave is shown on a hill between Nurmuchash and Usola villages, and every June a festival honours him.
+
+**Moral:** A hero does not die while he is awaited.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Чоткар
+
+---
+
+## 10. Шурале и защемлённый палец
+
+*татары — сказочный мотив (поверье)*
+
+Шурале — лесной дух с непомерно длинными пальцами. Он сбивает одиноких путников с дороги, заманивает их в чащу и может защекотать до смерти. Он боится воды и огня, поэтому от него можно спастись, перепрыгнув через ручей. Хитрый человек может поймать его: уговорить сунуть палец в щель бревна, расщеплённого клином, и выбить клин. (Этот мотив лёг в основу поэмы Тукая.)
+
+**Мораль:** Хитрость слабого одолевает силу чудовища.
+
+### Shurale and the trapped finger
+
+Shurale is a forest spirit with overlong fingers. He leads lone travellers astray, lures them into the thicket and can tickle them to death. He fears water and fire, so jumping over a stream can save you. A clever man can catch him: coax him to put a finger into a log split by a wedge, then knock the wedge out. (This motif underlies Tukay's poem.)
+
+**Moral:** The weak man's cunning beats the monster's strength.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Шурале
+
+---
+
+## 11. Камыр-батыр
+
+*татары — волшебная сказка*
+
+Бездетные старик со старухой лепят сына из теста и называют его Камыр-батыр. Он быстро растёт и становится очень сильным, но обижает сверстников, и односельчане заставляют его уйти. В пути к нему присоединяются другие богатыри, и с их помощью он побеждает злого джинна «Сам с пядь, борода в пять пядей». После этого Камыр-батыр женится на красавице. (В башкирском варианте у него есть брат: тот оживляет Камыра, убитого ведьмой Мэскэй, а Камыр убивает дива, спасает царевну и разоблачает лживого визиря.)
+
+**Мораль:** Сила обретает смысл, когда служит людям вместе с друзьями.
+
+### Kamyr-batyr (the Dough Hero)
+
+A childless old couple shape a son from dough and call him Kamyr-batyr. He grows fast and becomes very strong, but bullies other children, and the villagers make him leave. On the road other heroes join him, and with their help he defeats the evil jinn 'Himself a span, his beard five spans'. Afterwards Kamyr-batyr marries a beauty. (In a Bashkir version he has a brother who revives him after the witch Meskei kills him; Kamyr then slays a div, saves a princess and exposes a lying vizier.)
+
+**Moral:** Strength gains meaning when it serves people alongside friends.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Камыр-батыр_(сказка)
+
+---
+
+## 12. Урал-батыр и родник жизни
+
+*башкиры — эпос*
+
+Старик Янбирде и старуха Янбика живут охотой на затерянной земле. У них рождаются сыновья Шульген и Урал, и отец открывает им тайну: есть Смерть, которая губит всё живое. Урал спасает белую лебёдушку Хомай, дочь небесного царя птиц Самрау. От неё братья узнают о Роднике жизни и отправляются искать его, чтобы одолеть Смерть. Шульген переходит на сторону дивов и драконов, а Урал побеждает их, и из тел врагов посреди моря встают Уральские горы. Урал погибает, добыв бессмертие не себе, а природе. Его сыновья Яик, Идель, Нугуш и Сакмар заселяют край людьми, зверями и птицами.
+
+**Мораль:** Бессмертие достаётся не тому, кто им владеет, а тому, кто отдаёт его миру.
+
+### Ural-batyr and the spring of life
+
+Old Yanbirde and Yanbika live by hunting in a lost land. Their sons Shulgen and Ural are born, and the father reveals that Death exists and kills all that lives. Ural saves the white swan Homay, daughter of Samrau, king of the birds. From her the brothers learn of the Spring of Life and set out to find it and defeat Death. Shulgen goes over to the divs and dragons, but Ural defeats them, and the Ural Mountains rise in the sea from his enemies' bodies. Ural dies having won immortality not for himself but for nature. His sons Yaik, Idel, Nugush and Sakmar settle the land with people, beasts and birds.
+
+**Moral:** Immortality goes not to the one who keeps it but to the one who gives it to the world.
+
+Источники / Sources: https://ru.wikipedia.org/wiki/Урал-батыр
+
+---
+
+## 13. Происхождение земледелия
+
+*чуваши (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1914) — легенда*
+
+Когда берега Свияги и Суры покрывали леса, жили два брата: злой охотник Якиш и добрый бортник Велюк. Велюк показывает брату дупла с пчёлами. Якиш крадёт мёд и не относит первый сот к священному Киремети, и Тора велит пчёлам закусать вора. Умирают и он, и пчёлы, оставившие в нём жала. Во сне Тора велит Велюку облить телёнка водой, смешать мёртвых пчёл с каплями и закопать их — это первая пашня и первый посев. Вырастают колосья с остями, похожими на жала, и зёрна, висящие, как рой. Часть зерна Велюк кладёт на дерево Киремети, остальное мелет и ест вместо мёда. Из злого сердца Якиша дух преисподней сделал червей, губящих пчёл, а из тела — мышей, ворующих хлеб.
+
+**Мораль:** Святотатство наказывается самой природой, а доброта рождает хлеб.
+
+### The origin of agriculture
+
+When forests covered the banks of the Sviyaga and Sura, there lived two brothers: Yakish, a wicked hunter, and Velyuk, a good honey-gatherer. Velyuk shows his brother the bees' hollows. Yakish steals honey without bringing the first comb to holy Keremet, and Tora orders the bees to sting the thief. Both he and the bees, who leave their stings in him, die. In a dream Tora tells Velyuk to pour water on a calf, mingle the dead bees with the drops and bury them: the first field and the first sowing. Ears grow with awns like stings and grains hanging like a swarm. Velyuk puts part of the grain on Keremet's tree and grinds the rest to eat instead of honey. From Yakish's wicked heart an evil spirit made the worms that kill bees, and from his body the mice that steal bread.
+
+**Moral:** Sacrilege is punished by nature itself, and kindness gives rise to bread.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 14. Колдун и колдунья
+
+*мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову) — волшебная сказка*
+
+Муж-колдун видит в окно, как жена-колдунья пирует с любовником; она выходит и ударом кнута превращает его в жёлтого пса. Пёс стережёт стадо у пастухов, потом у купца, отбивая у жены-воровки его сундук. Затем он спасает новорождённого царевича, которого она пытается украсть, как прежде двух старших. Вернувшись домой, он снова застаёт пир и становится воробьём. Заскучав, жена ловит его в клетку с просом и возвращает ему облик, велев вернуть царю двух царевичей из погреба. Царь щедро награждает мужа. Тогда муж, не забывший мук, обращает жену в гнедую кобылу и возит на ней камни и брёвна для дома, а потом возвращает ей облик. «Жена научила мужа, а муж — жену»: теперь она печёт ему блины, и живут они хорошо.
+
+**Мораль:** Колдовство возвращается к тому, кто его творит.
+
+### Enchanter and enchantress
+
+A magician husband sees through the window his sorceress wife feasting with her lover; she comes out and with a whip turns him into a yellow dog. The dog guards a flock for shepherds, then a merchant's house, snatching the money-chest from his thieving wife. Then he rescues a newborn prince she tries to steal, as she had his two elder brothers. Returning home, he again finds the feast and becomes a sparrow. Missing him, the wife catches him in a cage with millet and restores him, telling him to return the king's two sons from her cellar. The king rewards him richly. Then the husband, remembering his torments, turns her into a chestnut mare and hauls stones and logs for a house with her, then turns her back. 'The woman taught the man and the man taught the woman': now she bakes him pancakes and they live well.
+
+**Moral:** Sorcery comes back on the one who works it.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 15. Дурак и телёнок
+
+*мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову) — бытовая сказка*
+
+Отец делит имущество: себе коня, старшим корову и овцу, а дураку — будущего телёнка. Не дождавшись отёла, дурак бьёт корову оглоблей, и она телится. Он идёт продавать телёнка и «торгуется» с чёрной собакой в лесу: «Гав» — значит «три рубля». Он бросает в неё телёнка, а собака оказывается кладом, и раздаётся звон денег. Отец и сын привозят домой целый воз денег и живут богато.
+
+**Мораль:** Дуракам счастье.
+
+### The fool and the calf
+
+A father divides his goods: the horse for himself, the cow and sheep for the elder sons, and the future calf for the fool. Tired of waiting, the fool hits the cow with a sledge-shaft and she calves. He goes to sell the calf and 'bargains' with a black dog in the forest: 'Bow-wow' means 'three roubles'. He throws the calf at it, but the dog is really a treasure, and money rattles. Father and son bring home a cartload of money and live rich.
+
+**Moral:** Fortune favours fools.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 16. Неудачливый покойник
+
+*удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину) — бытовая сказка*
+
+Вотяк, убивший русского, подвешивает тело под амбаром мельника. Мельник в страхе кладёт мертвеца в лодку с веслом. Рыбак, приняв его за живого, бьёт его веслом и, решив, что убил, сажает мертвеца у бортникова чана с мёдом. Бортник кричит «Не ешь мёд!», бросает нож и тоже думает, что убил, — и сажает тело в поповскую телегу с вожжами в руках. Конь мчится, и голова покойника отлетает о столб ворот. Поп его отпевает и хоронит.
+
+**Мораль:** Каждый спешит избавиться от чужой вины — и вина ходит по кругу.
+
+### The unlucky corpse
+
+A Votyak who has killed a Russian hangs the body under a miller's granary. The frightened miller puts the corpse in a boat with an oar. A fisherman takes it for a living man, strikes it with his oar and, thinking he has killed it, props the corpse by a bee-hunter's tub of honey. The bee-hunter shouts 'Don't eat the honey!', throws his knife, and also thinks he has killed it, so he puts the body in the priest's cart with the reins in its hands. The horse bolts and the dead man's head is knocked off against the gate-post. The priest reads the service and buries him.
+
+**Moral:** Everyone hurries to rid himself of another's guilt, and the guilt goes round in a circle.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 17. Коза и козлята
+
+*мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову) — сказка о животных*
+
+Коза запирает козлят в землянке и, возвращаясь из леса, поёт им тонким голосом про молоко, что течёт из вымени на копытце и в ямку. Волк поёт грубо, и козлята не открывают. Тогда волк точит язык на точиле, поёт тонко, и козлята выбегают. Волк их душит. Коза поёт снова и снова, никто не выходит, и она понимает, что их убил волк. Она уходит из леса в деревню и живёт теперь у хозяина.
+
+**Мораль:** Осторожность нельзя ослаблять; отсюда коза — домашнее животное.
+
+### The goat and the kids
+
+A goat shuts her kids in a mud hut and, coming home from the forest, sings to them in a gentle voice of milk flowing from her udder to her hoof and into a hollow. The wolf sings roughly, and the kids do not open. Then the wolf sharpens his tongue on a whetstone and sings sweetly, and the kids run out. The wolf strangles them. The goat sings again and again, no one comes out, and she knows the wolf has killed them. She leaves the forest for a village and now lives with an owner.
+
+**Moral:** Vigilance must not be relaxed; this is also why the goat is a domestic animal.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
