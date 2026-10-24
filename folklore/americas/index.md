@@ -4,6 +4,6 @@
 - [Мезоамерика (майя, ацтеки и др.) / Mesoamerica (Maya, Aztecs, etc.)](tales_meso.md): 17
 - [Анды и Южная Америка (индейцы) / Andes and South America (Indigenous peoples)](tales_south.md): 17
 - [Карибы (таино) / Caribbean (Taíno)](tales_caribbean.md): 7
-- [Постколумбовый фольклор Америк / Post-contact folklore of the Americas](tales_folk.md): 0
+- [Постколумбовый фольклор Америк / Post-contact folklore of the Americas](tales_folk.md): 9
 
-Всего / Total: 87
+Всего / Total: 96
