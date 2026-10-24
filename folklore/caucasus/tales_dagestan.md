@@ -238,13 +238,13 @@ A widow heard that on the fifteenth night of Ramadan God grants three wishes. Wh
 
 *агулы — сказка*
 
-Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушку похитили джинны, первый увидел её на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.
+Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушка ночью исчезла, первый увидел её пленницей в крепости джиннов на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.
 
 **Мораль:** Общее дело держится на всех участниках; спор о заслугах не имеет простого ответа.
 
 ### To Whom Does the Bride Belong?
 
-A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When djinns carried the girl off, the first saw her on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.
+A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When the girl vanished in the night, the first saw her held prisoner in a djinns' stronghold on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.
 
 **Moral:** A shared deed rests on everyone in it; disputes over merit have no easy answer.
 
