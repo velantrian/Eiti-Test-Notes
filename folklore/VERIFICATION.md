@@ -3,18 +3,18 @@
 Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 554 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 547 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
+- Проверка ссылок: 556 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 549 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 160; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **748** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 201). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 162; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **746** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 199). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 554 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 547 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
+- Link check: 556 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 549 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 160; authored from a read PD text, not re-checked (USSR) — 107; not verified — **748** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 201). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 162; authored from a read PD text, not re-checked (USSR) — 107; not verified — **746** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 199). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -181,7 +181,7 @@
 | 139 | ancient | Исчезновение Телепину / The Vanishing of Telipinu | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 140 | ancient | Песнь об Улликумми / The Song of Ullikummi | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 141 | ancient | Йима и вар / Yima and the Vara | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 142 | ancient | Ману и рыба / Manu and the Fish | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 142 | ancient | Ману и рыба / Manu and the Fish | OK | yes — re-checked 2026-10-24 vs Rewritten from Eggeling's translation of SB I.8.1.1-11 (archive.org scan, pp. 216-219): washing water (not offering), jar/pit/sea (not pond/ocean), jhasha, horn, northern mountain, Manu's descent, pāka offering, Iḍā, race of Manu. | — |
 | 143 | ancient | Пуруравас и Урваши / Pururavas and Urvashi | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 144 | ancient | Таргитай и золотые дары / Targitaus and the Golden Gifts | OK | no | — |
 | 145 | ancient | Гигес и жена Кандавла / Gyges and the Wife of Candaules | OK | no | — |
@@ -199,7 +199,7 @@
 | 157 | ancient | Рустам и Сохраб / Rostam and Sohrab | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 158 | ancient | Начикетас у бога смерти / Nachiketa and the God of Death | OK | yes — re-checked 2026-10-24 vs Katha Upanishad, tr. Paramananda (Gutenberg 3283) | — |
 | 159 | ancient | Шунахшепа у жертвенного столба / Shunahshepa at the Sacrificial Post | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 160 | ancient | Савитри и Сатьяван / Savitri and Satyavan | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 160 | ancient | Савитри и Сатьяван / Savitri and Satyavan | OK | yes — re-checked 2026-10-24 vs Checked against Ganguli, Vana Parva (Pativrata-mahatmya), archive.org/Gutenberg 12333: Narada's one-year warning, bark garments, Triratra fast, woodcutting and lap, Yama's noose, boons (sight; kingdom; 100 sons for Aswapati; 100 sons for Savitri and Satyavan), final plea. Ending reworded: Yama grants it as a boon. | — |
 | 161 | ancient | Геракл и змееногая дева / Heracles and the Snake-Maiden | OK | no | — |
 | 162 | ancient | Гибель Анахарсиса / The Death of Anacharsis | OK | no | — |
 | 163 | ancient | Клеобис и Битон / Cleobis and Biton | OK | no | — |
@@ -1108,3 +1108,4 @@
 - Batch 11: 8 verified (Zhuangzi chs. 17, 18, 32; Liezi "Tang wen" ×3; Han Feizi "He shi"; Gellius V.14), 4 fixed (Jade of Mr He; Foolish Old Man; Kuafu; Androcles).
 - Batch 12: 2 verified (Shanhaijing "Bei shan jing"; Huainanzi "Tian wen"/"Lan ming" + Shanhaijing "Hai wai bei jing"), 1 fixed (Gonggong: rival Zhuanxu; no floods in text).
 - Batch 13: 8 Chinese myths rewritten from the classical texts (Sanwu liji/Shuyi ji; Huainanzi "Ben jing", "Lan ming"; Fengsu tongyi in Taiping yulan 78; Shanhaijing "Hai nei jing"; Mencius; Liezi "Zhou Mu wang"). Each summary names its source; details found only in modern retellings were removed.
+- Batch 14: Manu and the Fish rewritten from Eggeling, SBE 12 (Shatapatha Brahmana I.8.1); Savitri and Satyavan checked against Ganguli, Vana Parva (ending fixed). Both scans are on archive.org.

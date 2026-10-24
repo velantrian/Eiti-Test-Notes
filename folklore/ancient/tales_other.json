@@ -184,14 +184,16 @@
   "people": "ведийские индоарии",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Matsya"
+   "https://en.wikipedia.org/wiki/Matsya",
+   "https://archive.org/details/in.ernet.dli.2015.238711"
   ],
   "title": "Ману и рыба",
-  "summary": "Совершая омовение, Ману нашёл в ладонях маленькую рыбку, которая боялась быть съеденной большими рыбами и обещала в награду спасти его от потопа. Ману держал её в кувшине, затем в пруду и, наконец, отпустил в океан. Рыба предупредила его о дне потопа и велела построить корабль. Когда пришёл потоп, Ману привязал корабль к её рогу, и она отвела его к северным горам. Единственный уцелевший, Ману принёс жертву, из неё явилась Ида, и от них пошёл род людей.",
+  "summary": "(Шатапатха-брахмана I.8.1, пер. Эггелинга, SBE 12.) Утром Ману принесли воду для омовения, и когда он умывался, в руки ему попала рыба. Она сказала: «Вырасти меня — я спасу тебя»: потоп унесёт все существа. Пока рыбы малы, рыба пожирает рыбу, поэтому Ману держал её сперва в кувшине, затем в вырытой яме, а когда она переросла и её, отнёс к морю. Вскоре она стала джхашей, большой рыбой, назвала год потопа и велела приготовить корабль. Когда вода поднялась, Ману вошёл в корабль; рыба приплыла, он привязал канат к её рогу, и она быстро привела его к северной горе, где велела привязать корабль к дереву и спускаться постепенно, по мере спада воды («спуск Ману»). Потоп унёс все существа, остался один Ману. Желая потомства, он молился, предавался подвижничеству и принёс в воды топлёное масло, кислое молоко, сыворотку и творог; через год из них поднялась женщина — Ида, назвавшая себя его дочерью. Через неё он породил этот род — род Ману.",
   "moral": "Защита слабого возвращается спасением.",
   "title_en": "Manu and the Fish",
-  "summary_en": "While making a water offering, Manu found a little fish in his palms, which feared being eaten by bigger fish and promised in return to save him from a flood. Manu kept it in a jar, then a pond, and finally released it into the ocean. The fish warned him of the day of the flood and told him to build a ship. When the flood came, Manu tied the ship to its horn and it led him to the northern mountains. The sole survivor, Manu made a sacrifice, from which Ida appeared, and from them came the human race.",
-  "moral_en": "Protecting the weak is repaid with salvation."
+  "summary_en": "(Shatapatha Brahmana I.8.1, tr. Eggeling, SBE 12.) In the morning water for washing was brought to Manu, and as he washed a fish came into his hands. It said, 'Rear me, I will save thee': a flood would carry away all creatures. Since fish devours fish while they are small, Manu kept it first in a jar, then in a dug pit, and when it outgrew that took it down to the sea. It soon became a jhasha, a large fish, and told him the year of the flood and to prepare a ship. When the flood rose Manu entered the ship; the fish swam up, he tied the ship's rope to its horn, and it carried him swiftly to the northern mountain, where he was told to fasten the ship to a tree and descend gradually as the water sank ('Manu's descent'). The flood swept away all creatures and Manu alone remained. Wishing for offspring, he worshipped, practised austerities and offered clarified butter, sour milk, whey and curds in the waters; in a year a woman arose from them — Ida, who called herself his daughter. Through her he generated this race, the race of Manu.",
+  "moral_en": "Protecting the weak is repaid with salvation.",
+  "verified": true
  },
  {
   "group": "other",
@@ -457,14 +459,16 @@
   "people": "древние индийцы (Махабхарата)",
   "type": "сказание",
   "sources": [
-   "https://en.wikipedia.org/wiki/Savitri_and_Satyavan"
+   "https://en.wikipedia.org/wiki/Savitri_and_Satyavan",
+   "https://archive.org/details/themahabharataof12333gut"
   ],
   "title": "Савитри и Сатьяван",
-  "summary": "Царевна Савитри выбрала в мужья Сатьявана, сына слепого изгнанного царя, хотя мудрец Нарада предупредил, что юноше суждено умереть через год. Она надела одежду отшельницы, служила свёкрам и мужу, а за три дня до срока начала строгий пост. В назначенный день Сатьяван, рубя дрова, уснул у неё на коленях, и Яма пришёл за его душой. Савитри пошла за богом смерти, и её мудрые речи о дхарме так понравились Яме, что он давал ей дары — всё, кроме жизни мужа: зрение и царство свёкру, сто сыновей её отцу и, наконец, сто сыновей ей самой и Сатьявану. Тогда Савитри заметила, что без мужа последний дар невыполним, и связанный своим словом Яма вернул Сатьявану жизнь.",
+  "summary": "Царевна Савитри выбрала в мужья Сатьявана, сына слепого изгнанного царя, хотя мудрец Нарада предупредил, что юноше суждено умереть через год. Она надела одежду отшельницы, служила свёкрам и мужу, а за три дня до срока начала строгий пост. В назначенный день Сатьяван, рубя дрова, уснул у неё на коленях, и Яма пришёл за его душой. Савитри пошла за богом смерти, и её мудрые речи о дхарме так понравились Яме, что он давал ей дары — всё, кроме жизни мужа: зрение и царство свёкру, сто сыновей её отцу и, наконец, сто сыновей ей самой и Сатьявану. Тогда Савитри заметила, что без мужа последний дар невыполним, и Яма, даровав это как ещё один дар, развязал петлю и вернул Сатьявану жизнь.",
   "moral": "Верность и мудрость способны переспорить даже смерть.",
   "title_en": "Savitri and Satyavan",
-  "summary_en": "Princess Savitri chose as husband Satyavan, son of a blind exiled king, though the sage Narada warned that the youth was destined to die in a year. She put on hermit's clothes, served her in-laws and husband, and three days before the appointed time began a strict fast. On the fated day Satyavan, chopping wood, fell asleep in her lap, and Yama came for his soul. Savitri followed the god of death, and her wise words on dharma pleased Yama so much that he granted her boons — anything but her husband's life: sight and kingdom for her father-in-law, a hundred sons for her father and, finally, a hundred sons for herself and Satyavan. Then Savitri pointed out that the last boon was impossible without her husband, and Yama, bound by his word, gave Satyavan back his life.",
-  "moral_en": "Faithfulness and wisdom can out-argue even death."
+  "summary_en": "Princess Savitri chose as husband Satyavan, son of a blind exiled king, though the sage Narada warned that the youth was destined to die in a year. She put on hermit's clothes, served her in-laws and husband, and three days before the appointed time began a strict fast. On the fated day Satyavan, chopping wood, fell asleep in her lap, and Yama came for his soul. Savitri followed the god of death, and her wise words on dharma pleased Yama so much that he granted her boons — anything but her husband's life: sight and kingdom for her father-in-law, a hundred sons for her father and, finally, a hundred sons for herself and Satyavan. Then Savitri pointed out that the last boon was impossible without her husband, and Yama, granting this as a further boon, untied his noose and gave Satyavan back his life.",
+  "moral_en": "Faithfulness and wisdom can out-argue even death.",
+  "verified": true
  },
  {
   "group": "other",
