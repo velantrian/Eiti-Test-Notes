@@ -6,7 +6,7 @@
 - Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 51; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **857** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 76; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **832** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 51; authored from a read PD text, not re-checked (USSR) — 107; not verified — **857** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 76; authored from a read PD text, not re-checked (USSR) — 107; not verified — **832** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -354,10 +354,10 @@
 | 23 | caucasus | Гий и Пховец / Giy and the Pshav | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 24 | caucasus | Князь Солса и бедняк / Prince Solsa and the Poor Man | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 25 | caucasus | Обанхойцы / The Obankhoy | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
-| 26 | caucasus | Лиса и куропатка / The Fox and the Partridge | OK | no | — |
+| 26 | caucasus | Лиса и куропатка / The Fox and the Partridge | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 41 | — |
 | 27 | caucasus | Храбрый Насни / Brave Näsni | OK | no | — |
 | 28 | caucasus | Отцовское наследство / The Father's Bequest | OK | no | — |
-| 29 | caucasus | Хитрые супруги / The Cunning Couple | OK | no | — |
+| 29 | caucasus | Хитрые супруги / The Cunning Couple | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 74 | — |
 | 30 | caucasus | Сын Месяца / The Son of the Moon | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 31 | caucasus | Птичка благодати, звезда ветров и змея / The Bird of Plenty, the Star of the Winds and the Snake | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 32 | caucasus | Птичка, несущая благодать / The Bird That Brings Plenty | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
@@ -384,7 +384,7 @@
 | 53 | caucasus | Первые люди и филин / The First People and the Owl | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 54 | caucasus | Сеска-Солса и великанская кость / Seska-Solsa and the Giant's Bone | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 55 | caucasus | Озеро Кезеной-Ам / Lake Kezenoy-Am | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 56 | caucasus | Глупцы из Ауха / The Stupid People of Aukh | OK | no | — |
+| 56 | caucasus | Глупцы из Ауха / The Stupid People of Aukh | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 83 | — |
 | 57 | caucasus | Ветер и Солнце / The Wind and the Sun | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 58 | caucasus | Горец и Асса / The Highlander and the Assa | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
 | 59 | caucasus | Дедушка зайца / The Hare's Grandfather | OK | no | modern edition — copyright may apply (librebook, mifoteka) |
@@ -566,8 +566,8 @@
 | 235 | caucasus | Барс ищет супротивника / The Leopard Seeks a Rival | OK | no | modern edition — copyright may apply (mifoteka) |
 | 236 | caucasus | Неразумный сын / The Foolish Son | OK | no | modern edition — copyright may apply (mifoteka) |
 | 237 | caucasus | Волшебный баран / The Helpful Ram | OK | no | — |
-| 238 | caucasus | Серый волк и барсук / The Grey Wolf and the Badger | OK | no | — |
-| 239 | caucasus | Соседи / Neighbouring Camps | OK | no | — |
+| 238 | caucasus | Серый волк и барсук / The Grey Wolf and the Badger | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 43 ("The Grey Wolf") | — |
+| 239 | caucasus | Соседи / Neighbouring Camps | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 44 | — |
 | 240 | caucasus | Богач и бедняк / The Rich Man and the Poor Man | OK | no | — |
 | 241 | caucasus | Смерть Хамыца / The Death of Khamyts | OK | no | — |
 | 242 | caucasus | Батрадз мстит за отца / Batradz Avenges His Father | OK | no | — |
@@ -614,7 +614,7 @@
 | 283 | caucasus | Курган / The Barrow | OK | no | modern edition — copyright may apply (mifoteka) |
 | 284 | caucasus | Смелость зависит от случая / Courage Depends on Chance | OK | no | modern edition — copyright may apply (mifoteka) |
 | 285 | caucasus | Дочь Солнца и Луны / The Daughter of the Sun and Moon | OK | no | modern edition — copyright may apply (larec-skazok) |
-| 286 | caucasus | Козлёнок, ягнёнок и телёнок / The Kid, the Lamb and the Calf | OK | no | — |
+| 286 | caucasus | Козлёнок, ягнёнок и телёнок / The Kid, the Lamb and the Calf | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 42 (summary rewritten to follow the text) | — |
 | 287 | caucasus | Куамачама / Kuamachama | OK | no | modern edition — copyright may apply (mifoteka) |
 | 288 | caucasus | Ажвейпшаа и сова / Azhveipshaa and the Owl | OK | no | modern edition — copyright may apply (mifoteka) |
 | 289 | caucasus | Пеструшка и мышь / The Speckled Bird and the Mouse | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -701,17 +701,17 @@
 | 370 | caucasus | Зайцы Музаира / Muzair's Hares | OK | no | modern edition — copyright may apply (kavkaz-uzel) |
 | 371 | caucasus | Три желания / The Three Wishes | OK | no | — |
 | 372 | caucasus | Кому принадлежит невеста? / To Whom Does the Bride Belong? | OK | no | — |
-| 373 | caucasus | Обманутый лис / The Cheated Fox | OK | no | — |
-| 374 | caucasus | Птица, умная для других / The Bird Who Was Clever for Others | OK | no | — |
-| 375 | caucasus | Осёл и верблюд / The Donkey and the Camel | OK | no | — |
-| 376 | caucasus | Лиса и журавль / The Fox and the Crane | OK | no | — |
-| 377 | caucasus | Медведь, волк и лиса / The Bear, the Wolf and the Fox | OK | no | — |
-| 378 | caucasus | Заяц и лев / The Hare and the Lion | OK | no | — |
-| 379 | caucasus | Лиса, волк и мул / The Fox, the Wolf and the Mule | OK | no | — |
-| 380 | caucasus | Волк, медведь, лиса и осёл / The Wolf, the Bear, the Fox and the Donkey | OK | no | — |
+| 373 | caucasus | Обманутый лис / The Cheated Fox | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 33 | — |
+| 374 | caucasus | Птица, умная для других / The Bird Who Was Clever for Others | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 34 | — |
+| 375 | caucasus | Осёл и верблюд / The Donkey and the Camel | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 35 | — |
+| 376 | caucasus | Лиса и журавль / The Fox and the Crane | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 36 | — |
+| 377 | caucasus | Медведь, волк и лиса / The Bear, the Wolf and the Fox | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 37 | — |
+| 378 | caucasus | Заяц и лев / The Hare and the Lion | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 38 | — |
+| 379 | caucasus | Лиса, волк и мул / The Fox, the Wolf and the Mule | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 39 | — |
+| 380 | caucasus | Волк, медведь, лиса и осёл / The Wolf, the Bear, the Fox and the Donkey | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 40 | — |
 | 381 | caucasus | Красная рыба / The Red Fish | OK | no | — |
-| 382 | caucasus | Кто глупее? / Who Is the Most Stupid? | OK | no | — |
-| 383 | caucasus | Глупая жена / The Stupid Wife | OK | no | — |
+| 382 | caucasus | Кто глупее? / Who Is the Most Stupid? | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 76 | — |
+| 383 | caucasus | Глупая жена / The Stupid Wife | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 77 | — |
 | 384 | caucasus | Букучихан / Bukuchikhan | OK | no | — |
 | 385 | caucasus | Царица-дева / The Virgin Queen | OK | no | — |
 | 386 | caucasus | Балай и Боти / Balai and Boti | OK | no | — |
@@ -792,12 +792,12 @@
 | 461 | caucasus | Ложь и Правда / Lie and Truth | OK | no | modern edition — copyright may apply (mifoteka) |
 | 462 | caucasus | Отец и сын / Father and Son | OK | no | modern edition — copyright may apply (mifoteka) |
 | 463 | caucasus | Арсуман / Arsuman | OK | no | — |
-| 464 | caucasus | Жеребёнок, коза и свинья / The Foal, the Goat and the Pig | OK | no | — |
-| 465 | caucasus | Волк, лиса и верблюд / The Wolf, the Fox and the Camel | OK | no | — |
-| 466 | caucasus | Задача / A Problem | OK | no | — |
-| 467 | caucasus | Соляное поле / The Field of Salt | OK | no | — |
-| 468 | caucasus | Мы — должен — три копейки / We — Owe — Three Kreutzers | OK | no | — |
-| 469 | caucasus | Ослиное яйцо / The Donkey's Egg | OK | no | — |
+| 464 | caucasus | Жеребёнок, коза и свинья / The Foal, the Goat and the Pig | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 32 | — |
+| 465 | caucasus | Волк, лиса и верблюд / The Wolf, the Fox and the Camel | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 45 | — |
+| 466 | caucasus | Задача / A Problem | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 78 | — |
+| 467 | caucasus | Соляное поле / The Field of Salt | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 79 | — |
+| 468 | caucasus | Мы — должен — три копейки / We — Owe — Three Kreutzers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 80 | — |
+| 469 | caucasus | Ослиное яйцо / The Donkey's Egg | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 82 | — |
 | 470 | caucasus | Огненный конь / The Fire-Horse | OK | no | — |
 | 471 | caucasus | Сказка о свинье / The Story of the Pig | OK | no | — |
 | 472 | caucasus | Змея и крестьянин / The Serpent and the Peasant | OK | no | — |
@@ -812,7 +812,7 @@
 | 481 | caucasus | Отшельник-философ / The Hermit Philosopher | OK | no | — |
 | 482 | caucasus | Остроумный ответ / A Witty Answer | OK | no | — |
 | 483 | caucasus | Одноглазый великан (мегрельский вариант) / The One-Eyed Giant (Mingrelian Variant) | OK | no | — |
-| 484 | caucasus | Искусный вор / The Skilful Thief | OK | no | — |
+| 484 | caucasus | Искусный вор / The Skilful Thief | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 73 | — |
 | 485 | caucasus | Нахлебник / The Parasite | OK | no | — |
 | 486 | caucasus | Земля своё возьмёт / The Earth Will Have Its Own | OK | no | — |
 | 487 | caucasus | Золотоволосые дети / The Children with the Golden Locks | OK | no | — |
@@ -857,12 +857,12 @@
 | 526 | caucasus | Райская роза / The Rose of Paradise | OK | no | — |
 | 527 | caucasus | Соловей и соловьиха / The Cock and Hen Nightingale | OK | no | — |
 | 528 | caucasus | Плешивый гусопас / The Bald-Headed Gooseherd | OK | no | — |
-| 529 | caucasus | Три брата-вора / The Three Thieving Brothers | OK | no | — |
+| 529 | caucasus | Три брата-вора / The Three Thieving Brothers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 75 | — |
 | 530 | caucasus | Удинская сказка о Рустуме / An Udian Story of Rustum | OK | no | — |
 | 531 | caucasus | Волшебный соловей / The Fairy Nightingale | OK | no | — |
 | 532 | caucasus | Мальчик, не рассказавший сна / The Boy Who Would Not Tell His Dream | OK | no | — |
 | 533 | caucasus | Сиаманто и Гюлизар / Sia-Manto and Guje-Zare | OK | no | — |
-| 534 | caucasus | Как керкенджцы ходили по дрова / How the People of Kerkendj Went to Cut Wood | OK | no | — |
+| 534 | caucasus | Как керкенджцы ходили по дрова / How the People of Kerkendj Went to Cut Wood | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 81 | — |
 | 535 | caucasus | Молла Насреддин: Яйца в платке / Mullah Nasreddin: Eggs in a Cloth | OK | no | — |
 | 536 | caucasus | Молла Насреддин: Скороход / Mullah Nasreddin: Quick-Runner | OK | no | — |
 | 537 | caucasus | Молла Насреддин: Камень и старость / Mullah Nasreddin: The Stone and Old Age | OK | no | — |
@@ -1079,3 +1079,10 @@
 **EN.** Added 11 records retold in my own words from Coxwell, *Siberian and Other Folk-Tales* (1925), opened and read on archive.org (djvu text): Bashkir — The old man and the wood-sprite, The witch (Bibi-Gaysha), Golden Knucklebone, The beginning of the world and the creation of man; Votyak/Udmurt — Aldar the trickster, The magic bird, The grateful animals; Ostyak/Khanty — A hunter and a seven-headed satyr; Tarantchi Uyghur — Schingiltak and Pingiltak, The man who understood animals' conversation; Darvaz (Tajik) — The magic objects. Not taken: Aleyka (a page is missing from the djvu text), The wise maiden (Khanty) and The old woman's trick (Tarantchi) — not read to the end. Status of new records: "authored from read PD text; not re-checked". Rights: Coxwell 1925 translation copyright status not established; retold in own words.
 
 Не найдено в этом проходе / Not done in this pass: Nasyri/Koblov (Tatar), Komi, Mansi, Nanai — open full texts not yet located and read.
+
+
+## Пакет 4 (PR #38): Кавказ по Dirr 1925 / Batch 4 (PR #38): Caucasus against Dirr 1925
+
+**RU.** 25 записей Кавказа сверены с английским текстом Dirr, *Caucasian Folk-tales* (пер. Menzies, 1925; djvu-текст archive.org), прочитанным целиком для каждой сказки: басни № 32–45 и № 73–83. Исправлено: «Козлёнок, ягнёнок и телёнок» (переписано — в тексте козлёнок пугает зверей рассказом о съеденном звере, а распределяет «кому кого ловить» уже на дереве); «Соседние станы» (хищники сами прячутся под скалой); «Кто глупее?» (учителя не «хоронят», а обмывают и заворачивают в саван); «Глупая жена» (не суд, а допрос у хозяина верблюда); «Глупые аухцы» (в пещеру лезет сам один из троих); «Птица, умная для других» (уточнено местоимение). Остальные записи Dirr (волшебные сказки № 1–31, нартовские и прочие саги № 46–72, Насреддин) в этом пакете не сверялись и остаются NOT VERIFIED.
+
+**EN.** 25 Caucasus records checked against the English Dirr, *Caucasian Folk-tales* (tr. Menzies 1925; archive.org djvu text), each tale read in full: fables Nos. 32–45 and Nos. 73–83. Fixed: The Kid, the Lamb and the Calf (rewritten: the kid scares each beast with a tale of an eaten beast; the "who catches whom" shout comes later, on the tree); Neighbouring Camps (the beasts themselves hide under the rock); Who Is the Most Stupid? (the teacher is washed and shrouded, not buried); The Stupid Wife (questioned by the camel's owner, not a court); The Stupid People of Aukh (one of the three crawls in himself); The Bird Who Was Clever for Others (pronoun). Other Dirr records (fairy tales Nos. 1–31, Nart and other sagas Nos. 46–72, Nasreddin) were not checked in this batch and stay NOT VERIFIED.
