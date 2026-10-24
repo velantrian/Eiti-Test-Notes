@@ -341,3 +341,21 @@ A khan promises his daughter to whoever can tell forty stories without a word of
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 20. Дураки
+
+*уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI) — бытовая сказка*
+
+Невестка, икнув за доением, на коленях умоляет корову никому не говорить. Свекровь и свёкор приносят корове отрубей и тоже молят её. Сын клянётся убить их, если не найдёт сегодня троих таких же глупцов. Он находит людей, которые хотят ломать дверь, потому что несут бревно поперёк. Он находит и толпу, которая связала верблюда, забредшего на хлопковое поле, и тащит его волоком. Он показывает им, как пронести бревно вдоль и вывести верблюда за повод. Решив, что глупцов в городе предостаточно, он возвращается домой и щадит родных.
+
+**Мораль:** Глупость повсюду, так что к своим будь снисходителен.
+
+### The fools
+
+A young wife hiccups while milking and kneels begging the cow to tell no one. Her mother-in-law and father-in-law bring the cow bran and beg it too. The son vows to kill them unless he finds three people as foolish that day. He finds men about to break a door because they carry a beam crosswise. He also finds a crowd that has tied up a camel which wandered into a cotton field and is dragging it out bodily. He shows them how to carry the beam lengthwise and lead the camel out by a halter. Deciding the town has fools enough, he goes home and spares his family.
+
+**Moral:** Folly is everywhere, so be lenient with your own.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

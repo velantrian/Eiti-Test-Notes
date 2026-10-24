@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 13
+## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 16
 
 - Утка, два яйца и сотворение земли / The duck, two eggs and the making of the earth (марийцы)
 - Кугу Юмо, Керемет и собака / Kugu Yumo, Keremet and the dog (марийцы)
@@ -18,8 +18,11 @@
 - Камыр-батыр / Kamyr-batyr (the Dough Hero) (татары)
 - Урал-батыр и родник жизни / Ural-batyr and the spring of life (башкиры)
 - Происхождение земледелия / The origin of agriculture (чуваши (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1914))
+- Колдун и колдунья / Enchanter and enchantress (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
+- Дурак и телёнок / The fool and the calf (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
+- Неудачливый покойник / The unlucky corpse (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 19
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 20
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -40,8 +43,9 @@
 - Гадатель со свиной головой / The pig's-head soothsayer (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Как Добро и Зло были попутчиками / How Good and Evil were companions (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III))
 - Сорок рассказов / The forty stories (туркмены (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912))
+- Дураки / The fools (уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI))
 
-## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 14
+## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 18
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
 - Начало творения / The beginning of creation (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
@@ -57,8 +61,12 @@
 - Шаман Халта / A shaman tradition (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1896))
 - Хан Беджитты и сто его жён / Khan Bejitty and his hundred wives (алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому))
 - Люди, ставшие зверями и птицами / Human beings transformed into beasts and birds (алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому))
+- Самоедская сказка № 5 / Samoyed tale no. 5 (самодийцы («самоеды») (Coxwell, Siberian and Other Folk-Tales, 1925; по Кастрену))
+- Три брата и их сестра / Three brothers and their sister (ханты (иртышские остяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Патканову))
+- Перелётные птицы / Flying birds (якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Худякову))
+- Отчего на луне пятна / Why there are spots on the Moon (якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1897))
 
-## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 49
+## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 53
 
 - Калев, Линда и рождение Калевипоэга / Kalev, Linda and the birth of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
 - Проклятый меч / The cursed sword (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
@@ -109,30 +117,41 @@
 - Неблагодарные дети и старик, пошедший в школу / The ungrateful children and the old father who went to school again (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
 - Сказка о Ветре / The story of the Wind (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
 - Голоса под окном / The voices at the window (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
+- Как утопили глупого брата / How the foolish brother was drowned (латыши (Coxwell, Siberian and Other Folk-Tales, 1925; по В. Ф. Миллеру))
+- Царевич, ставший лягушкой / The tsar's son who became a frog (латыши (Coxwell, Siberian and Other Folk-Tales, 1925; по В. Ф. Миллеру))
+- Солнце, Мороз и Ветер / Sun, Frost and Wind (литовцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Афанасьеву (Поэтические воззрения славян)))
+- Сватовство Солнца / The Sun's courtship (гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову))
 
-## Итого / Total: 95
+## Итого / Total: 107
 
 - алтайцы: 2
 - башкиры: 1
 - белорусы: 1
 - буряты: 3
+- гагаузы: 1
 - казахи: 1
 - калмыки: 12
 - калмыки/ойраты: 3
 - карелы/финны: 10
 - киргизы: 2
 - коряки: 1
-- литовцы: 1
+- латыши: 2
+- литовцы: 2
 - марийцы: 9
+- мордва: 2
 - нивхи: 1
 - русские: 10
+- самодийцы: 1
 - татары: 2
 - туркмены: 1
+- удмурты: 1
+- уйгуры-таранчи: 1
 - украинцы: 12
+- ханты: 1
 - чуваши: 1
 - чукчи: 2
 - эвенки: 1
 - эвены: 1
 - эстонцы: 15
 - юкагиры: 2
-- якуты: 1
+- якуты: 3

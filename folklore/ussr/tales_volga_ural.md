@@ -233,3 +233,57 @@ When forests covered the banks of the Sviyaga and Sura, there lived two brothers
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 14. Колдун и колдунья
+
+*мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову) — волшебная сказка*
+
+Муж-колдун видит в окно, как жена-колдунья пирует с любовником; она выходит и ударом кнута превращает его в жёлтого пса. Пёс стережёт стадо у пастухов, потом у купца, отбивая у жены-воровки его сундук. Затем он спасает новорождённого царевича, которого она пытается украсть, как прежде двух старших. Вернувшись домой, он снова застаёт пир и становится воробьём. Заскучав, жена ловит его в клетку с просом и возвращает ему облик, велев вернуть царю двух царевичей из погреба. Царь щедро награждает мужа. Тогда муж, не забывший мук, обращает жену в гнедую кобылу и возит на ней камни и брёвна для дома, а потом возвращает ей облик. «Жена научила мужа, а муж — жену»: теперь она печёт ему блины, и живут они хорошо.
+
+**Мораль:** Колдовство возвращается к тому, кто его творит.
+
+### Enchanter and enchantress
+
+A magician husband sees through the window his sorceress wife feasting with her lover; she comes out and with a whip turns him into a yellow dog. The dog guards a flock for shepherds, then a merchant's house, snatching the money-chest from his thieving wife. Then he rescues a newborn prince she tries to steal, as she had his two elder brothers. Returning home, he again finds the feast and becomes a sparrow. Missing him, the wife catches him in a cage with millet and restores him, telling him to return the king's two sons from her cellar. The king rewards him richly. Then the husband, remembering his torments, turns her into a chestnut mare and hauls stones and logs for a house with her, then turns her back. 'The woman taught the man and the man taught the woman': now she bakes him pancakes and they live well.
+
+**Moral:** Sorcery comes back on the one who works it.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 15. Дурак и телёнок
+
+*мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову) — бытовая сказка*
+
+Отец делит имущество: себе коня, старшим корову и овцу, а дураку — будущего телёнка. Не дождавшись отёла, дурак бьёт корову оглоблей, и она телится. Он идёт продавать телёнка и «торгуется» с чёрной собакой в лесу: «Гав» — значит «три рубля». Он бросает в неё телёнка, а собака оказывается кладом, и раздаётся звон денег. Отец и сын привозят домой целый воз денег и живут богато.
+
+**Мораль:** Дуракам счастье.
+
+### The fool and the calf
+
+A father divides his goods: the horse for himself, the cow and sheep for the elder sons, and the future calf for the fool. Tired of waiting, the fool hits the cow with a sledge-shaft and she calves. He goes to sell the calf and 'bargains' with a black dog in the forest: 'Bow-wow' means 'three roubles'. He throws the calf at it, but the dog is really a treasure, and money rattles. Father and son bring home a cartload of money and live rich.
+
+**Moral:** Fortune favours fools.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 16. Неудачливый покойник
+
+*удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину) — бытовая сказка*
+
+Вотяк, убивший русского, подвешивает тело под амбаром мельника. Мельник в страхе кладёт мертвеца в лодку с веслом. Рыбак, приняв его за живого, бьёт его веслом и, решив, что убил, сажает мертвеца у бортникова чана с мёдом. Бортник кричит «Не ешь мёд!», бросает нож и тоже думает, что убил, — и сажает тело в поповскую телегу с вожжами в руках. Конь мчится, и голова покойника отлетает о столб ворот. Поп его отпевает и хоронит.
+
+**Мораль:** Каждый спешит избавиться от чужой вины — и вина ходит по кругу.
+
+### The unlucky corpse
+
+A Votyak who has killed a Russian hangs the body under a miller's granary. The frightened miller puts the corpse in a boat with an oar. A fisherman takes it for a living man, strikes it with his oar and, thinking he has killed it, props the corpse by a bee-hunter's tub of honey. The bee-hunter shouts 'Don't eat the honey!', throws his knife, and also thinks he has killed it, so he puts the body in the priest's cart with the reins in its hands. The horse bolts and the dead man's head is knocked off against the gate-post. The priest reads the service and buries him.
+
+**Moral:** Everyone hurries to rid himself of another's guilt, and the guilt goes round in a circle.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

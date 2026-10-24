@@ -881,3 +881,75 @@ A nobleman soaked on a hunt wishes for a warm hut, a white bed, soft bread and s
 Источники / Sources: https://www.gutenberg.org/ebooks/29672
 
 ---
+
+## 50. Как утопили глупого брата
+
+*латыши (Coxwell, Siberian and Other Folk-Tales, 1925; по В. Ф. Миллеру) — бытовая сказка*
+
+Двое умных братьев везут дурака в мешке топить и заходят в корчму. Дурак кричит из мешка, что его хотят сделать царём, а он неграмотен. Проезжий барин со стадом меняется с ним местами, и его топят вместо дурака. Дурак возвращается со стадом и говорит, что набрал скот в озере, а глубже было бы больше. Братья просят утопить их, и он бросает обоих в прорубь. «Гонит уже скот», — объясняет он, когда вода булькает. Дурак остаётся единственным хозяином отцовского имения.
+
+**Мораль:** Жадность губит умников.
+
+### How the foolish brother was drowned
+
+Two clever brothers carry the fool off in a sack to drown him and stop at an inn. The fool cries from the sack that they want to make him tsar, though he cannot read or write. A passing lord with a herd changes places with him and is drowned in his stead. The fool comes home with the herd and says he caught the cattle in the lake, and deeper down there were more. The brothers beg to be drowned, and he throws both into an ice-hole. 'He's already driving the cattle,' he explains when the water gurgles. The fool remains sole owner of his father's estate.
+
+**Moral:** Greed undoes the clever.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 51. Царевич, ставший лягушкой
+
+*латыши (Coxwell, Siberian and Other Folk-Tales, 1925; по В. Ф. Миллеру) — волшебная сказка*
+
+Золотой мяч, подаренный царевне богиней счастья, падает в колодец. Лягушка достаёт его за обещание есть с ней из одной тарелки и спать под одним одеялом. Царь велит дочери держать слово. Ночью царевна в сердцах бьёт лягушку об стену, и та становится прекрасным царевичем. Его родители прибывают едва живые от горя: их кучера стянули медными обручами, чтобы он не лопнул с тоски. Играют пышную свадьбу.
+
+**Мораль:** Царевне подобает держать слово.
+
+### The tsar's son who became a frog
+
+A golden ball, given to a princess by the goddess of happiness, falls into a well. A frog fetches it in return for her promise that he may eat from her plate and sleep under her blanket. The tsar orders his daughter to keep her word. At night the princess angrily dashes the frog against the wall, and he becomes a handsome prince. His parents arrive barely alive from grief: their coachman had been bound with copper bands so that he would not burst with woe. A splendid wedding follows.
+
+**Moral:** A princess should keep her word.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 52. Солнце, Мороз и Ветер
+
+*литовцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Афанасьеву (Поэтические воззрения славян)) — притча*
+
+Солнце, Мороз и Ветер встречают крестьянина, и тот кланяется. Каждый считает поклон своим, и они спрашивают самого крестьянина. Он отвечает, что думал о Ветре. Солнце грозит его спалить, но Ветер обещает его охладить. Мороз грозит заморозить, а Ветер возражает: «Когда я стихну, кончится и твоя сила». (Пересказано стихами.)
+
+**Мораль:** Уважение к тому, кто защитит от остальных.
+
+### Sun, Frost and Wind
+
+Sun, Frost and Wind meet a peasant, who bows. Each claims the bow, and they ask the man himself. He says he was thinking of the Wind. The Sun threatens to scorch him, but the Wind promises to cool him. Frost threatens to freeze him, and the Wind replies: 'When I cease, your power will end.' (Told in verse.)
+
+**Moral:** Honour the one who can shield you from the rest.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 53. Сватовство Солнца
+
+*гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову) — волшебная сказка*
+
+Отец, обернувшись медведем, а потом волком, пугает двух старших дочерей, взявшихся пасти табун. Младшая по совету старухи надевает отцовский свадебный кафтан и пистолет и садится на тощую кобылу, съевшую горящие угли. Три года она пасёт коней. Солнце влюбляется в неё, но не знает, юноша это или девушка, и по совету матери испытывает её на базаре. Амулет учит её смотреть только на мужские вещи. Лишь в конце она сама показывает Солнцу косы, и Солнце поднимает её на золотых качелях. Амулет велит ей молчать семь дней, а она молчит семь лет, и Солнце берёт другую невесту. Та посылает её за ситом. Через Мать-Воскресенье, Мать-Пятницу и Мать-Среду она попадает к вампиру. Мышь играет вместо неё на скрипке, а холст, щётка и камень становятся рекой, лесом и каменной грядой. Когда соперница велит ей отрезать язык, Солнце бросается к ним с окровавленными руками. Девушка становится ласточкой, соперница — козой, обе улетают в дымоход, и Солнце до сих пор не женат.
+
+**Мораль:** Нарушенная мера слова и молчания разлучает навеки.
+
+### The Sun's courtship
+
+A father turns into a bear and then a wolf to frighten his two elder daughters, who offer to herd his horses. On an old woman's advice the youngest puts on her father's wedding coat and pistol and mounts a thin mare that has eaten burning embers. For three years she herds the horses. The Sun falls in love with her but cannot tell whether she is a youth or a girl, and on his mother's advice tests her at the bazaar. Her amulet tells her to look only at men's things. Only at the end does she show the Sun her braids, and he draws her up on a golden swing. The amulet tells her to keep silent seven days, but she keeps silent seven years, and the Sun takes another bride. The rival sends her for a sieve. By way of Mother Sunday, Mother Friday and Mother Wednesday she reaches a vampire. A mouse plays the fiddle in her place, and linen, brush and stone become a river, a forest and a stony waste. When the rival tells her to cut out her tongue, the Sun rushes in with bloody hands. The girl becomes a swallow and the rival a goat, both fly up the chimney, and the Sun is unmarried to this day.
+
+**Moral:** A misjudged measure of word and silence parts lovers for ever.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

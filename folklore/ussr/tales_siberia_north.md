@@ -251,3 +251,75 @@ The bear was once a strong but dull, gluttonous man. Offended by his family's re
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 
 ---
+
+## 15. Самоедская сказка № 5
+
+*самодийцы («самоеды») (Coxwell, Siberian and Other Folk-Tales, 1925; по Кастрену) — сказка о хитреце*
+
+Бедный старик-самоед, у которого из имущества один топор, слушается белых куропаток («убей жену — разбогатеешь») и убивает жену, а потом всю ночь плачет. Он сажает мёртвую в нарты, как живую, и оставляет у проруби в селении остяцкого князя. Младшая княжна, бросившись за «замёрзшей старухой», роняет тело в прорубь. В утешение князь отдаёт старику старшую дочь. Спьяну старик выбалтывает младшей правду и толчком лишает её речи. Пришедшей лечить шаманке он вбивает в ухо колышек, а потом сваливает её смерть на двух самоедов, стрелявших в белку. Затем он перекладывает вину на «бешеных собак» перед семью сыновьями шаманки и получает от самоедов откуп мехами. Младшую княжну он «исцеляет» и берёт второй женой. Прежних соседей он уговаривает спрятаться от врагов в ямы, засыпает их, забирает спрятанное добро и живёт в богатстве.
+
+**Мораль:** Сказка без морали: хитрость и злодейство здесь приносят богатство — она показывает мир, где сила ловкача не наказана.
+
+### Samoyed tale no. 5
+
+A poor old Samoyed, who owns nothing but an axe, heeds some white grouse ('kill your wife and you will be rich') and kills his wife, then weeps all night. He sets the body in a sledge as if alive and leaves it at an ice-hole in an Ostyak prince's village. The younger princess, rushing to fetch the 'frozen old woman', tips the body into the hole. In consolation the prince gives the old man his elder daughter. Drunk, the old man blurts the truth to the younger girl and strikes her dumb with a push. He drives a peg through the ear of the shamaness who comes to cure her, then blames her death on two Samoyeds shooting at a squirrel. Next he blames 'wild dogs' before her seven sons, and the Samoyeds pay him off in furs. He 'cures' the younger princess and takes her as a second wife. He talks his old neighbours into hiding from enemies in pits, buries them, takes their hidden goods and lives in wealth.
+
+**Moral:** A tale with no moral: here cunning and villainy bring wealth, showing a world where a trickster's power goes unpunished.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 16. Три брата и их сестра
+
+*ханты (иртышские остяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Патканову) — волшебная сказка*
+
+Младший брат, рассердившись, что сестра не развела огонь, забрасывает её лопатой в лес. Там она находит золотой дом на железной цепи, и её мужем становится юноша, прилетающий гусем с юга. Младший брат, вопреки запрету, прячется у дымового отверстия и отрубает гусю ногу, и муж улетает. Жена идёт искать его с посохом в шесть футов, в башмаках на высоких каблуках. Тётка-старуха даёт ей клубок, землю со своих ног, которая замораживает море, и три волоска из бороды мужа, которые открывают дверь золотого дома. За помощь три девушки вытягивают у неё жилу из ноги. Отвар берёзы её исцеляет, и она, обернувшись паршивым кобольдом, прячется за печью. Дважды на свадьбах мужа — с дочерью Солнца-царя и Луны-царя — она ломает кольцо невесты, и невесты умирают. Муж, тоскуя, поёт о «сестре трёх братьев». Она выходит и закрывает ему глаза руками, и он навсегда оставляет её при себе.
+
+**Мораль:** Верная жена находит мужа на краю света.
+
+### Three brothers and their sister
+
+Angry that his sister has not lit the fire, the youngest brother flings her on a shovel into the forest. There she finds a golden house on an iron chain and is wedded by a youth who flies in from the south as a young goose. Against the ban, the youngest brother hides by the roof-hole and cuts off the goose's leg, and the husband flies away. The wife sets out after him with a staff and high-heeled shoes. An old aunt gives her a skein, earth from her feet, which freezes the sea, and three hairs from her husband's beard, which open the golden house's door. In return for help, three maidens draw a sinew from her foot. Birch broth heals her, and she hides behind the stove disguised as a scab-headed hobgoblin. Twice, at her husband's weddings to the daughters of the Sun-king and the Moon-king, she breaks the bride's ring and the bride dies. The grieving husband sings of 'the three men's sister'. She steps out and covers his eyes with her hands, and he keeps her with him for ever.
+
+**Moral:** A faithful wife finds her husband at the end of the world.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 17. Перелётные птицы
+
+*якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Худякову) — сказка о животных*
+
+Замерзающие птицы Ледовитого океана выбирают царя. Одни прочат аиста, но утка Богоргоно возражает, и по совету лебедя царём становится орёл. Орёл велит свиязи носить утку на спине, а себе в пищу берёт снегиря. Филин, вернувшись из разведки, лжёт, что земли не нашёл, но дома проговаривается жене о тёплом незамерзающем море. Подслушавший чирок приносит весть, и птицы улетают в тёплые края. Филина в наказание за молчание оставляют зимовать между Ледовитым морем и тёплыми странами.
+
+**Мораль:** Кто таит общее благо, остаётся в холоде.
+
+### Flying birds
+
+Freezing birds of the Arctic Ocean choose a king. Some propose the stork, but the duck Bogorgono objects, and on the swan's advice the eagle becomes lord. The eagle has the widgeon carry the duck on its back and takes the bullfinch for his food. The brown owl comes back from scouting and lies that he found no land, but at home tells his wife of a warm unfrozen sea. An eavesdropping teal carries the news, and the birds fly to the warm countries. As punishment for his silence, the owl must winter between the Arctic Sea and the warm lands.
+
+**Moral:** Whoever hides the common good is left in the cold.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 18. Отчего на луне пятна
+
+*якуты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1897) — этиологическая сказка*
+
+Сироту берёт к себе князь-родственник из жадности, и злая княгиня бьёт её. Морозной ночью девушка, споткнувшись о иву, проливает воду, а прорубь уже затянуло. Она молит Луну избавить её от мук. Луна и Солнце оба падают к её ногам. Солнце сильнее как старший брат, но Луна доказывает: «Она просила меня; ночь — моя». Солнце уступает. Луна уносит сироту вместе с ивой, коромыслом и вёдрами. Когда она видит на земле зло, лицо её темнеет — отсюда пятна.
+
+**Мораль:** Сирота находит заступника на небе.
+
+### Why there are spots on the Moon
+
+An orphan girl is taken in out of greed by a princely kinsman, and his wicked wife beats her. On a frosty night she trips over a willow and spills her water, and the ice-hole has already frozen over. She begs the Moon to free her from her torment. Both the Moon and the Sun fall at her feet. The Sun is stronger as the elder brother, but the Moon argues, 'She asked me; the night is mine.' The Sun yields. The Moon carries the orphan off with the willow, yoke and buckets. When she sees evil on earth her face darkens, hence the spots.
+
+**Moral:** The orphan finds a protector in the sky.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
