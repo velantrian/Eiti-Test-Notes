@@ -17,3 +17,237 @@ The hero Er Sogotokh does not know where he comes from. He turns to the spirit-m
 Источники / Sources: https://ru.wikipedia.org/wiki/Олонхо
 
 ---
+
+## 2. Начало творения
+
+*чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу) — миф*
+
+Творец, седобородый старик, и молодой Танген лепят людей из земли. Танген одевает их листьями с глиной и пишет им грамоты, но люди молчат. Творец превращается в ворона, каркает «кря, кря», и люди начинают говорить. Он добывает огонь из ноги и из ногтей. Он дважды поднимается к Верхнему существу за оленями: первые дикие олени убегают во тьме, а вторых — быка и важенку — люди встречают костром. С тех пор на празднике рогов чукчи приносят Творцу рога и костный мозг. Береговые коряки возникли из собачьего помёта на стоянках Тангена. Творец крадёт солнце и прячет его во рту, а когда посланцы обыскивают его, смеётся и выпускает солнце в небо. Его рубят на куски, но под звук бубна куски срастаются. Брошенный в огонь, он улетает вороном.
+
+**Мораль:** Свет, речь и олени достались людям хитростью Ворона-Творца.
+
+### The beginning of creation
+
+The Creator, a grey-bearded old man, and young Tangen make people out of earth. Tangen dresses them in leaves and clay and writes papers for them, but the people stay dumb. The Creator turns into a raven and caws 'krya, krya', and the people begin to speak. He gets fire from his foot and from his finger-nails. Twice he rises to the Divine Being for reindeer: the first wild deer run off in the dark, but the second pair, a stag and a hind, are met by the people with a fire. Ever since, the Chukchi have offered the Creator horns and marrow at the festival of horns. The coast Koryaks sprang from the droppings of Tangen's dogs. The Creator steals the sun and hides it in his mouth, and when the messengers search him he laughs and lets it out into the sky. He is hacked to pieces, but at the sound of a drum the pieces join again. Thrown into a fire, he flies off as a raven.
+
+**Moral:** Light, speech and reindeer came to people through the Raven-Creator's cunning.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 3. Жена Солнца
+
+*чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу) — миф*
+
+Солнце уносит во сне девушку, отвергавшую женихов, по солнечному лучу на небо. У Млечного Пути, пока муж ищет брод, чёрный жук уговаривает её поменяться одеждой «от летучего чёрта» и прячет её под корнем травы. Солнце уезжает с жуком, не слыша слабого голоса жены. Когда у неё рождается сын, ветхая одежда спадает. Она ставит шатёр за Млечным Путём, ловит петлёй из своих волос диких оленей и шьёт мужу прекрасную одежду. Зимой сын пускает стрелу через замёрзшую реку, находит отца и приводит его к матери. Солнце, ища в голове у жены, видит у неё шею жука и бросает её в огонь. Её род он проклинает болезнями. Потом Солнце с женой спускаются по лучу к тестю и меняются дарами — небесными и земными оленями.
+
+**Мораль:** Обман раскрывается, а верность вознаграждается.
+
+### The Sun's wife
+
+The Sun carries a girl who has refused all suitors up a sunbeam into the sky in a dream. At the Milky Way, while her husband looks for a ford, a black beetle persuades her to swap clothes 'because of a flying devil' and hides her under a grass-root. The Sun travels on with the beetle, not hearing his wife's weak voice. When her son is born the worn garment falls apart. She pitches a tent beyond the Milky Way, snares wild deer with a cord of her own hair and sews her husband a splendid dress. In winter the son shoots an arrow across the frozen river, finds his father and leads him to his mother. Searching his wife's head, the Sun sees a beetle's neck and throws her into the fire. He curses her kin with disease. Then the Sun and his wife descend a ray to her father and exchange gifts of sky deer and earth deer.
+
+**Moral:** Deceit is uncovered, and faithfulness rewarded.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 4. Сказочный старик
+
+*юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону) — волшебная сказка*
+
+Рыбак, схваченный за бороду стариком из проруби, откупается своими детьми. Старик уносит детей по реке. Пока он спит, детей уносят ястреб, а потом орёл, но старик гадает, бросая свою челюстную кость, и возвращает их. Третьей их спасает корова. Из её шерсти дети бросают скребок, и встаёт белая гора, гребень, и встаёт болотистый лес, и её «грудное солнце», и разливается море, в котором старик тонет. По просьбе коровы дети съедают её и складывают кости в четыре кучи. Наутро там стоят волки и медведи. Сестра от скуки вылавливает волосяной лесой зуб старика, и он становится юношей. Вдвоём они замышляют убить брата сапогами-оборотнем, но звери брата съедают сапоги и разрывают сестру. Брат возвращается к родителям.
+
+**Мораль:** Предательство родных губит предателя.
+
+### A tale of a fabulous old man
+
+A fisherman, seized by the beard by an old man rising from an ice-hole, buys his freedom with his children. The old man carries the children off downriver. While he sleeps, a hawk and then an eagle fly away with them, but the old man divines with his chin-bone and recovers them. The third time a cow saves them. From her fur the children throw a scraper, which becomes a white mountain, a comb, which becomes a marshy forest, and her 'breast sun', which becomes a sea, where the old man drowns. At the cow's bidding they eat her and lay her bones in four heaps. Next morning wolves and bears stand there. The bored sister fishes up the old man's tooth on a line of her hair, and it becomes a youth. Together they plot to kill her brother with shape-shifted boots, but the brother's beasts eat the boots and tear the sister apart. The brother returns to his parents.
+
+**Moral:** Betraying one's kin destroys the betrayer.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 5. Каменная дева
+
+*юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону) — предание*
+
+Отец-шаман в исступлении бросил старшую дочь в воду, а потом умер вместе с женой. Остались две сестры. Младшая пропадает, хотя её привязали ремнём к столбу. Плач её доносится из скалы. Женщина с каменным носом и ушами отвечает, что не отдаст ребёнка: утопленная сестра стала шаманкой и сама отдала ей девочку. Плачущая девушка идёт вниз по реке и попадает в дом, где бьют в бубен. Растрёпанная хозяйка оказывается той самой старшей сестрой, а её деверь берёт гостью в жёны.
+
+**Мораль:** Сила, рождённая обидой, может отнять, но родство находит путь назад.
+
+### Story of a stone maiden
+
+In a shamanic frenzy a father threw his eldest daughter into the water, then he and his wife died. Two sisters were left. The youngest vanishes, even when tied to a post with a strap. Her crying is heard from a rock. A woman with a stone nose and ears says she will not give the child back: the drowned sister became a shamaness and gave the girl to her. The weeping girl goes downriver and comes to a house where a drum is beating. The dishevelled mistress turns out to be that elder sister, and her brother-in-law takes the newcomer as his wife.
+
+**Moral:** Power born of a wrong can take away, but kinship finds its way back.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 6. Гиляк, взявший в жёны тигрицу
+
+*нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу) — предание*
+
+Младший из двух братьев убивает медведя и оставляет часть туши на мысу. Его сестра, словно одержимая, поёт, что брат полюбил тигрицу и летом на берегу Сахалина принесёт в жертву собак и рыбьи шкуры. Летом всё сбывается: принеся жертву, младший брат уходит в горы, берёт в жёны тигрицу, и они живут.
+
+**Мораль:** Нивхи считали тигра родственным людям, а браки с ним — делом духов.
+
+### The Gilyak who mated with a tigress
+
+The younger of two brothers kills a bear and leaves part of the carcass on a headland. His sister sings as if possessed that her brother loves a tigress and next summer on the Sakhalin coast will sacrifice dogs and fish-skins. In summer it all comes true: after the sacrifice the younger brother goes to the mountain, takes the tigress as his wife, and they live.
+
+**Moral:** The Gilyaks held the tiger to be kin to people, and such a marriage the work of spirits.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 7. Как Тритон-человек похитил жену Эмемкута
+
+*коряки (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону, The Koryak) — миф*
+
+Эмемкут отслужил за невесту и женился на Траве-женщине, дочери Корня-человека, но Тритон-человек похищает её. Трижды Эмемкут отбивает жену и трижды гибнет: его убивают, рубят на куски, сжигают и бросают кости в воду. Каждый раз Ворон-человек оживляет его кровью белых оленей — сначала одного, потом двух, потом четырёх. Женщина-паук открывает, что сердце Тритона хранится в ящике в его шатре. Эмемкут бросает сердце в огонь, Тритон умирает, и жена возвращается. (Пересказ Коксуэлла по Иохельсону — краткое изложение мифа.)
+
+**Мораль:** Тайное сердце злодея — ключ к победе, а кровь белого оленя возвращает жизнь.
+
+### How Triton-Man abducted Ememqut's wife
+
+Ememqut serves for his bride and marries Grass-Woman, daughter of Root-Man, but Triton-Man carries her off. Three times Ememqut wins her back and three times he perishes: he is killed, then cut to pieces, then burned and his bones thrown into the water. Each time Raven-Man revives him with the blood of white reindeer, first one, then two, then four. Spider-Woman reveals that Triton-Man's heart lies in a box in his tent. Ememqut throws the heart into the fire, Triton-Man dies, and the wife is recovered. (Coxwell's outline after Jochelson.)
+
+**Moral:** The villain's hidden heart is the key to victory, and white-reindeer blood restores life.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 8. Девушка, унесённая Луной
+
+*эвенки (тунгусы) (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1892) — легенда*
+
+Вдова посылает дочь к морю за водой, но та засматривается на море. Мать в сердцах кричит её имя и «не чёрт ли тебя взял?». Услышав имя, Водяной царь утаскивает девушку в воду. Ведро остаётся на берегу, а ковш она держит в руке. Восходящая из воды луна проплывает мимо, девушка хватается за куст на луне, и луна поднимает её на небо. С тех пор на луне видны куст и девушка с ковшом. Поэтому тунгусы не окликают девушку по имени, когда она выходит из воды.
+
+**Мораль:** Нельзя в гневе звать по имени того, кто у воды.
+
+### A girl carried off by the Moon
+
+A widow sends her daughter to the sea for water, but the girl gazes at the sea and forgets. The mother angrily calls her name: 'Has the Fiend taken you?' Hearing the name, the Water-king drags the girl into the water. The bucket stays on the shore, but she keeps the scoop in her hand. As the moon rises from the water and floats by, she catches hold of a bush on it, and the moon lifts her into the sky. Since then the bush and the girl with her scoop can be seen on the moon. That is why the Tunguses never call a girl by name when she comes out of the water.
+
+**Moral:** Do not call by name, in anger, one who is by the water.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 9. Ламутская история (I)
+
+*эвены (ламуты) (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону) — быличка*
+
+Заблудившийся ламут встречает на берегу дровосека, и тот, спасая его от морских людей, обращает его в дерево. Трое в белом выходят из моря и к вечеру возвращаются в воду. Дровосек, сам пленник морских чертей, кладёт на воду верхнюю половину своего тела и переносит гостя к горе у берега. Ламут встречает человека с оленем и просит привести белого оленя. Он облачается в его шкуру целиком, с головой и ногами, а на третий день велит собрать вокруг себя родню. Он встаёт человеком, и его узнают брат и жена: он скитался три года. Он прожил долго и умер стариком.
+
+**Мораль:** Возвращение из мира духов требует обряда и помощи родных.
+
+### A Lamut story (I)
+
+A lost Lamut meets a wood-cutter on the shore, who turns him into a tree to hide him from the sea-people. Three men in white come out of the sea and at evening go back into it. The wood-cutter, himself a captive of the sea-devils, lays the upper half of his body on the water and carries the man to a mountain by the shore. The Lamut meets a man with a reindeer and asks for a white deer. He clothes himself in its whole skin, head and legs included, and on the third day has his family gathered round him. He stands up a man and is recognised by his brother and wife: he had wandered three years. He lived long and died old.
+
+**Moral:** Coming back from the spirit world needs a rite and the help of one's kin.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 10. Человек и волк
+
+*буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову) — сказка*
+
+Богатый мудрец, понимающий тайные мысли людей и зверей, узнаёт, что Бог отдал голодному волку его овцу, и прячет её в юрте. Потом он так же укрывает обещанную волку кобылу и трёх пятнистых коров. На четвёртый день он понимает, что Бог отдал волку его самого, и мчится на свадьбу, надеясь, что гости его защитят. По дороге он сажает в повозку девушку, будто бы спешащую на свадьбу к отцу. Когда гости распахивают двери, из повозки выпрыгивает волк, а внутри остаются лишь кости хозяина. (В переводе — стихами.)
+
+**Мораль:** От судьбы не укрыться никакой мудростью.
+
+### The man and the wolf
+
+A rich and clever man who can read the secret thoughts of people and beasts learns that God has granted his sheep to a hungry wolf, and he hides it in his tent. In the same way he shelters the mare and the three spotted cows promised to the wolf. On the fourth day he realises God has granted him to the wolf, and he races to a wedding hoping the guests will guard him. On the way he gives a lift to a maiden who says she is hurrying to her father at the wedding. When the guests throw open the doors, a wolf leaps from the carriage, and inside are only the owner's bones. (Rendered in verse.)
+
+**Moral:** No wisdom can hide one from fate.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 11. Пятна на луне
+
+*буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову) — легенда*
+
+Мачеха посылает падчерицу за водой и в нетерпении проклинает её: «Пусть Солнце и Месяц возьмут тебя!» С коромыслом и вёдрами девушка видит, что Солнце и Месяц спускаются, и прячется за кустом. Месяц уговаривает Солнце уступить её: «Ты днём силён, а я слаб и свечу ночью». Он уносит девушку. С тех пор на луне видны дерево, девушка, коромысло и вёдра.
+
+**Мораль:** Проклятие сбывается, а сирота находит место на небе.
+
+### The spots on the Moon
+
+A stepmother sends her stepdaughter for water and impatiently curses her: 'May the Sun and Moon take you!' Carrying yoke and buckets, the girl sees the Sun and Moon coming down and hides behind a bush. The Moon persuades the Sun to give her up: 'You are strong by day, I am weak and shine at night.' He carries the girl off. Since then the tree, the girl, the yoke and the buckets can be seen on the moon.
+
+**Moral:** A curse comes true, and the orphan finds a place in the sky.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 12. Шаман Халта
+
+*буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1896) — быличка*
+
+Богатый голова Ишигыл тяжело болен и зовёт шамана Халту. Соседи и родня всю ночь не спят: заряжают ружья, готовят луки и дубину, кладут под порог веник, ведь веник становится непроходимым лесом для духа или души шамана. Душа Халты в облике медведя приходит к соседу Дарме, чтобы взять его душу в обмен на душу больного. Медведь проламывает кровлю, но Дарма, вскрикнув: «Что ты делаешь, Халта?», стреляет, и медведь убегает. Ишигыл умирает.
+
+**Мораль:** Чужую душу не выменять на свою — бдительность спасает.
+
+### A shaman tradition
+
+The rich headman Ishygyl is gravely ill and sends for the shaman Khalta. Neighbours and kin stay awake all night: they load guns, ready bows and a cudgel, and lay a besom under the threshold, for a besom becomes an impassable forest to a spirit or a shaman's soul. Khalta's soul, in the form of a bear, comes to the neighbour Darma to take his soul in exchange for the sick man's. The bear breaks through the roof, but Darma cries 'What are you doing, Khalta?' and fires, and the bear flees. Ishygyl dies.
+
+**Moral:** One soul cannot be bartered for another; vigilance saves.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 13. Хан Беджитты и сто его жён
+
+*алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому) — сказка*
+
+У хана Беджитты сто жён, но орёл рассказывает ему о дочери богатыря-царя, прекрасной, как солнце и луна. За ней хан посылает сына. Сын выполняет задачу будущего тестя — приносит золотой песок с озера на краю неба — и привозит невесту. Отец, увидев красавицу, плачет и хочет взять её себе. Сын требует сперва рога чёрного быка из-за семи гор, от истока семи рек, — и сам добывает их копьём. Хан делает из рогов чаши, поит всех вином и кумысом, а затем убивает сына и сто жён и женится на невестке.
+
+**Мораль:** Алчность не знает ни родства, ни меры.
+
+### Khan Bejitty and his hundred wives
+
+Khan Bejitty has a hundred wives, but an eagle tells him of a hero-tsar's daughter, lovely as the sun and moon. The khan sends his son to fetch her. The son performs the future father-in-law's task, golden sand from the lake at the sky's edge, and brings the bride home. Seeing the beauty, the father weeps and wants her for himself. The son demands first the horns of a black bull beyond seven mountains at the source of seven rivers, and fetches them himself with a spear. The khan makes cups of the horns, gets everyone drunk on wine and kumyss, then kills his son and the hundred wives and marries his daughter-in-law.
+
+**Moral:** Greed knows neither kinship nor measure.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 14. Люди, ставшие зверями и птицами
+
+*алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому) — этиологическое предание*
+
+Медведь когда-то был сильным, но глуповатым обжорой-человеком. Обидевшись на попрёки семьи, он ушёл с верёвкой по дрова и стал зверем. Его верёвка до сих пор висит на деревьях хмелем. Девушку по имени «Кук» невестка в сердцах послала к чёрту, когда та попросила пить. Девушка стала птицей и вылетела в дымоход, а в руке хватавшего её осталась лишь туфля. Поэтому у кукушки одна нога красная, а другая чёрная. Гнёзд она вить не умеет, а своё имя твердит до сих пор: «Кук! Кук!»
+
+**Мораль:** Обидное слово может навсегда изменить человека.
+
+### Human beings transformed into beasts and birds
+
+The bear was once a strong but dull, gluttonous man. Offended by his family's reproaches, he went off with a string to fetch firewood and became a beast. His string still hangs on the trees as hops. A maiden named 'Cuck' was sent to the Devil by her sister-in-law when she asked for a drink. She turned into a bird and flew out through the smoke-hole, and the person who grabbed her kept only a shoe. That is why the cuckoo has one red foot and one black. She cannot build nests, and she still repeats her name: 'Cuck! Cuck!'
+
+**Moral:** A hurtful word can change a person for ever.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

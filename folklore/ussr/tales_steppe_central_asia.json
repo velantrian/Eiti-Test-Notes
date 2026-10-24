@@ -236,5 +236,33 @@
    "https://www.gutenberg.org/ebooks/40402"
   ],
   "group": "steppe_central_asia"
+ },
+ {
+  "title": "Как Добро и Зло были попутчиками",
+  "summary": "Зло съедает припасы Добра, потом его коня, а затем по одному его уши и глаза и бросает слепого товарища в тёмном лесу. Там Добро подслушивает тигра, волка и лису. Тигр стережёт две осины, возвращающие глаза и уши, волк охотится за костями чёрной собаки, оживляющими мёртвых, а лиса стережёт золото величиной с конскую голову. Добро трётся об осины и прозревает, берёт золото, покупает чёрную собаку и толчёт её кости в порошок. Порошком он оживляет хана и получает трон, дочь и полстада. Зло просит сделать с ним то же самое, и в лесу его пожирают тигр, волк и лиса: «Добро рождает добро, зло — зло».",
+  "moral": "Добро рождает добро, а зло — зло.",
+  "title_en": "How Good and Evil were companions",
+  "summary_en": "Evil eats up Good's provisions, then his horse, then one by one his ears and eyes, and abandons the blind companion in a dark forest. There Good overhears a tiger, a wolf and a fox. The tiger guards two aspens that restore eyes and ears, the wolf seeks the bones of a black dog that bring the dead back to life, and the fox guards gold the size of a horse's head. Good rubs himself on the aspens and sees again, takes the gold, buys the black dog and grinds its bones to powder. With it he revives a khan and receives the throne, his daughter and half his herds. Evil asks to be treated the same way, and in the forest the tiger, wolf and fox devour him: 'Good brings good and evil brings evil.'",
+  "moral_en": "Good brings good, and evil brings evil.",
+  "people": "киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III)",
+  "type": "сказка",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "steppe_central_asia"
+ },
+ {
+  "title": "Сорок рассказов",
+  "summary": "Хан обещает дочь тому, кто расскажет сорок историй без единого слова правды; неудачника ждёт казнь. Простой плешивый парень берётся за дело. «Родившись раньше отца, я пас дедово стадо». Он плывёт через море в лодке из ножен с веслом из ножа и ловит зайца, не рождённого матерью, под неросшим растением. Сапоги у него ссорятся из-за жира, и один уходит в обиде. Хан пытается разгадать небылицы — «заяц под неросшим растением — не прыщ ли?» — а парень соглашается и продолжает. Досказав сорок небылиц, он женится на ханской дочери.",
+  "moral": "Остроумие открывает путь даже простаку.",
+  "title_en": "The forty stories",
+  "summary_en": "A khan promises his daughter to whoever can tell forty stories without a word of truth; failure means death. A simple bald-headed lad takes up the challenge. 'Born before my father, I herded my grandfather's flock.' He crosses the sea in a boat made of his knife-sheath with the knife as an oar, and catches a hare not born of its mother under a plant that never grew. His boots quarrel over the fat he greased them with, and one goes off offended. The khan tries to decode the fictions ('the hare under the plant that never grew, is that a pimple?'), and the lad agrees and goes on. Having told forty fictions, he marries the khan's daughter.",
+  "moral_en": "Wit opens the way even for a simpleton.",
+  "people": "туркмены (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912)",
+  "type": "сказка-небылица",
+  "sources": [
+   "https://archive.org/details/siberian-and-other-folk-tales"
+  ],
+  "group": "steppe_central_asia"
  }
 ]

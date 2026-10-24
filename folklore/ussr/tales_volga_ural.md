@@ -215,3 +215,21 @@ Old Yanbirde and Yanbika live by hunting in a lost land. Their sons Shulgen and 
 Источники / Sources: https://ru.wikipedia.org/wiki/Урал-батыр
 
 ---
+
+## 13. Происхождение земледелия
+
+*чуваши (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1914) — легенда*
+
+Когда берега Свияги и Суры покрывали леса, жили два брата: злой охотник Якиш и добрый бортник Велюк. Велюк показывает брату дупла с пчёлами. Якиш крадёт мёд и не относит первый сот к священному Киремети, и Тора велит пчёлам закусать вора. Умирают и он, и пчёлы, оставившие в нём жала. Во сне Тора велит Велюку облить телёнка водой, смешать мёртвых пчёл с каплями и закопать их — это первая пашня и первый посев. Вырастают колосья с остями, похожими на жала, и зёрна, висящие, как рой. Часть зерна Велюк кладёт на дерево Киремети, остальное мелет и ест вместо мёда. Из злого сердца Якиша дух преисподней сделал червей, губящих пчёл, а из тела — мышей, ворующих хлеб.
+
+**Мораль:** Святотатство наказывается самой природой, а доброта рождает хлеб.
+
+### The origin of agriculture
+
+When forests covered the banks of the Sviyaga and Sura, there lived two brothers: Yakish, a wicked hunter, and Velyuk, a good honey-gatherer. Velyuk shows his brother the bees' hollows. Yakish steals honey without bringing the first comb to holy Keremet, and Tora orders the bees to sting the thief. Both he and the bees, who leave their stings in him, die. In a dream Tora tells Velyuk to pour water on a calf, mingle the dead bees with the drops and bury them: the first field and the first sowing. Ears grow with awns like stings and grains hanging like a swarm. Velyuk puts part of the grain on Keremet's tree and grinds the rest to eat instead of honey. From Yakish's wicked heart an evil spirit made the worms that kill bees, and from his body the mice that steal bread.
+
+**Moral:** Sacrilege is punished by nature itself, and kindness gives rise to bread.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---

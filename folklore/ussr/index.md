@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 12
+## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 13
 
 - Утка, два яйца и сотворение земли / The duck, two eggs and the making of the earth (марийцы)
 - Кугу Юмо, Керемет и собака / Kugu Yumo, Keremet and the dog (марийцы)
@@ -17,8 +17,9 @@
 - Шурале и защемлённый палец / Shurale and the trapped finger (татары)
 - Камыр-батыр / Kamyr-batyr (the Dough Hero) (татары)
 - Урал-батыр и родник жизни / Ural-batyr and the spring of life (башкиры)
+- Происхождение земледелия / The origin of agriculture (чуваши (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1914))
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 17
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 19
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -37,10 +38,25 @@
 - Молитва, что делает внезапно богатым / The Prayer making suddenly Rich (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Как был убит Шимну-хан (Массанг) / How the Schimnu-Khan was slain (Massang) (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Гадатель со свиной головой / The pig's-head soothsayer (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
+- Как Добро и Зло были попутчиками / How Good and Evil were companions (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III))
+- Сорок рассказов / The forty stories (туркмены (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912))
 
-## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 1
+## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 14
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
+- Начало творения / The beginning of creation (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
+- Жена Солнца / The Sun's wife (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
+- Сказочный старик / A tale of a fabulous old man (юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону))
+- Каменная дева / Story of a stone maiden (юкагиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону))
+- Гиляк, взявший в жёны тигрицу / The Gilyak who mated with a tigress (нивхи (гиляки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Штернбергу))
+- Как Тритон-человек похитил жену Эмемкута / How Triton-Man abducted Ememqut's wife (коряки (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону, The Koryak))
+- Девушка, унесённая Луной / A girl carried off by the Moon (эвенки (тунгусы) (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1892))
+- Ламутская история (I) / A Lamut story (I) (эвены (ламуты) (Coxwell, Siberian and Other Folk-Tales, 1925; по Иохельсону))
+- Человек и волк / The man and the wolf (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову))
+- Пятна на луне / The spots on the Moon (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову))
+- Шаман Халта / A shaman tradition (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1896))
+- Хан Беджитты и сто его жён / Khan Bejitty and his hundred wives (алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому))
+- Люди, ставшие зверями и птицами / Human beings transformed into beasts and birds (алтайцы (Coxwell, Siberian and Other Folk-Tales, 1925; по Вербицкому))
 
 ## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 49
 
@@ -94,19 +110,29 @@
 - Сказка о Ветре / The story of the Wind (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
 - Голоса под окном / The voices at the window (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
 
-## Итого / Total: 79
+## Итого / Total: 95
 
+- алтайцы: 2
 - башкиры: 1
 - белорусы: 1
+- буряты: 3
 - казахи: 1
 - калмыки: 12
 - калмыки/ойраты: 3
 - карелы/финны: 10
-- киргизы: 1
+- киргизы: 2
+- коряки: 1
 - литовцы: 1
 - марийцы: 9
+- нивхи: 1
 - русские: 10
 - татары: 2
+- туркмены: 1
 - украинцы: 12
+- чуваши: 1
+- чукчи: 2
+- эвенки: 1
+- эвены: 1
 - эстонцы: 15
+- юкагиры: 2
 - якуты: 1
