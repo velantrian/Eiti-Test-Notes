@@ -1,18 +1,18 @@
 # Фольклорные коллекции / Folklore collections
 
-**Статус / Status (24.10.2026, PR #37):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 004 записи**, а не подтверждённое количество уникальных исторических произведений. / These are **1,004 records**, not an independently verified count of unique historical works.
+**Статус / Status (24.10.2026, PR #38):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 015 записей**, а не подтверждённое количество уникальных исторических произведений. / These are **1,015 records**, not an independently verified count of unique historical works.
 
 **Структурная проверка / Structural parity:** `python3 folklore/tools/check.py`; тесты регрессии / regression tests: `python3 -m unittest discover -s folklore/tools -p 'test_*.py' -v`. Эти проверки НЕ устанавливают историческую достоверность или авторские права / These checks do NOT establish source fidelity or rights.
 
-**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 526 URL: 524 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 51; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 857 (только Википедия / Wikipedia-only: 219).
+**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. HTTP-прогон / HTTP run 2026-10-24: 537 URL: 530 → 200, 7 → другое / other (см. / see VERIFICATION.md). Пересказы перепроверены по источнику / re-checked against source: 51; USSR, написаны по прочитанному тексту / authored from read text: 107; не проверено / not verified: 857 (только Википедия / Wikipedia-only: 219).
 
 | Раздел / Collection | Записей / Records |
 | --- | ---: |
 | [Кавказ / Caucasus](caucasus/index.md) | 596 |
-| [Народы СССР / Peoples of the USSR](ussr/index.md) | 119 |
+| [Народы СССР / Peoples of the USSR](ussr/index.md) | 130 |
 | [Древние традиции / Ancient traditions and later accounts](ancient/index.md) | 193 |
 | [Америка / Americas](americas/index.md) | 96 |
-| **Всего / Total** | **1 004** |
+| **Всего / Total** | **1 015** |
 
 ## RU — Описание и границы проверки
 

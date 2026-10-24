@@ -3,7 +3,7 @@
 Каждый пункт пересказан своими словами по указанному источнику. / Each item is retold in my own words from the cited source.
 
 
-## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 17
+## [Народы Поволжья и Урала / Volga-Ural peoples](tales_volga_ural.md) — 24
 
 - Утка, два яйца и сотворение земли / The duck, two eggs and the making of the earth (марийцы)
 - Кугу Юмо, Керемет и собака / Kugu Yumo, Keremet and the dog (марийцы)
@@ -22,8 +22,15 @@
 - Дурак и телёнок / The fool and the calf (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
 - Неудачливый покойник / The unlucky corpse (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
 - Коза и козлята / The goat and the kids (мордва (Coxwell, Siberian and Other Folk-Tales, 1925; по Шахматову))
+- Старик и леший / The old man and the wood-sprite (башкиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Ведьма-свекровь и Биби-Гайша / The witch, or sorceress (Bibi-Gaysha) (башкиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Золотой альчик (Золотая бабка) / Golden Knucklebone (башкиры (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Начало мира и сотворение человека / The beginning of the world and the creation of man (башкиры (Coxwell, Siberian and Other Folk-Tales, 1925; по «Этнографическому обозрению», 1900))
+- Алдар-обманщик / Aldar the trickster (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Волшебная птица / The magic bird (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
+- Благодарные звери / The grateful animals (удмурты (вотяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Зеленину))
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 22
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 25
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -47,8 +54,11 @@
 - Дураки / The fools (уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI))
 - Хитрость лисы / The trick of the fox (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. III))
 - Слепой / The blind man (киргизы (Coxwell, Siberian and Other Folk-Tales, 1925; по Этногр. обозрению, 1906))
+- Шингилтаки и Пингилтак / Schingiltak and Pingiltak (уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI))
+- Человек, понимавший язык зверей / The man who understood animals' conversation (уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI))
+- Волшебные вещи / The magic objects (дарвазцы (таджики Дарваза) (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912))
 
-## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 26
+## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 27
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
 - Начало творения / The beginning of creation (чукчи (Coxwell, Siberian and Other Folk-Tales, 1925; по Богоразу))
@@ -76,6 +86,7 @@
 - Лиса и мужик / The fox and the peasant (саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину))
 - Отчего у медведя короткий хвост / Why the bear's tail is short (саамы (русские лопари) (Coxwell, Siberian and Other Folk-Tales, 1925; по Харузину))
 - Происхождение верблюда / Origin of the camel (буряты (Coxwell, Siberian and Other Folk-Tales, 1925; по Хангалову))
+- Охотник и семиглавый сатир / A hunter and a seven-headed satyr (ханты (остяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Патканову))
 
 ## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 54
 
@@ -134,7 +145,7 @@
 - Сватовство Солнца / The Sun's courtship (гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову))
 - Работник у Отца-Солнца / The workman at Father Sun's (гагаузы (Coxwell, Siberian and Other Folk-Tales, 1925; по Мошкову))
 
-## Итого / Total: 119
+## Итого / Total: 130
 
 - алтайцы: 2
 - башкиры: 1
