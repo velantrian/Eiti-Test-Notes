@@ -238,17 +238,17 @@ According to the Videvdad, god warned King Yima of a deadly winter and ordered h
 
 *ведийские индоарии (Ригведа и позднейшие тексты) — миф*
 
-В гимне Ригведы (X.95) небесная нимфа-апсара Урваши четыре осени жила с земным царём Пуруравасом, но, когда он невольно нарушил условия их союза, покинула его, и он тщетно умолял её вернуться. В распространённом позднейшем пересказе условия были такие: царь бережёт её любимых баранов, и они никогда не видят друг друга нагими. Индра, тоскуя по Урваши, подослал гандхарвов украсть баранов; Пуруравас, забыв о наготе, бросился в погоню, Индра сверкнул молнией — и Урваши увидела мужа нагим и вернулась на небо. Позже она родила ему детей, но полностью они так и не соединились.
+(Шатапатха-брахмана XI.5.1, пер. Эггелинга, SBE 44, с цитатами из Ригведы X.95.) Нимфа Урваши полюбила Пурураваса, сына Иды, и, выходя за него, поставила условия: обнимать её трижды в день, не ложиться с ней против её воли и не показываться ей нагим. Она долго жила с ним и понесла от него. Гандхарвы, желая вернуть её, унесли двух ягнят овцы, привязанной к её ложу; на её крик Пурураваса вскочил нагим и бросился за ними, гандхарвы сверкнули молнией, она увидела его нагим и исчезла. С плачем он бродил по Курукшетре и у лотосового озера Аньятахплакша нашёл её, плавающую с другими нимфами в облике водяных птиц. Стихами гимна он молил её остаться; она отвечала, что подобна ветру, которого трудно поймать, что прожила среди смертных четыре осени, и просила его не губить себя. Сжалившись, она велела прийти в последнюю ночь года, когда родится их сын. Наутро гандхарвы даровали ему дар; он попросил стать одним из них и, добыв огонь палочками из дерева ашваттха и принеся в нём жертву, стал гандхарвом.
 
 **Мораль:** Союз смертного с бессмертной хрупок, как данное слово.
 
 ### Pururavas and Urvashi
 
-In a Rigvedic hymn (X.95), the celestial nymph Urvashi lived four autumns with the earthly king Pururavas, but when he unwittingly broke the conditions of their union, she left him, and he begged her in vain to return. In a widespread later retelling, the conditions were that he guard her pet sheep and that they never see each other naked. Indra, missing Urvashi, sent gandharvas to steal the sheep; Pururavas, forgetting he was naked, ran after them, Indra flashed lightning, and Urvashi saw her husband naked and returned to heaven. Later she bore him children, but they were never fully reunited.
+(Shatapatha Brahmana XI.5.1, tr. Eggeling, SBE 44, which quotes Rigveda X.95.) The nymph Urvashi loved Pururavas, son of Ida, and on wedding him set conditions: he should embrace her thrice a day, never lie with her against her will, and never let her see him naked. She lived with him long and was with child. The Gandharvas, wanting her back, carried off the two lambs of a ewe tied to her couch; at her cry Pururavas sprang up naked after them, the Gandharvas made lightning flash, she saw him naked and vanished. Wailing, he wandered over Kurukshetra and at the lotus-lake Anyatahplaksha found her swimming with other nymphs in the shape of water-birds. In the verses of the hymn he begged her to stay; she answered that she was like the wind, hard to catch, that she had lived among mortals four autumns, and told him not to die. Taking pity, she bade him come on the last night of the year, when their son would be born. Next morning the Gandharvas granted him a boon; he asked to become one of them, and by kindling and offering in a fire made with fire-sticks of ashvattha wood he became a Gandharva.
 
 **Moral:** A union of mortal and immortal is as fragile as a promise.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Pururavas
+Источники / Sources: https://en.wikipedia.org/wiki/Pururavas, https://archive.org/details/satapathabrhma05eggeuoft
 
 ---
 
@@ -526,17 +526,17 @@ Nachiketa's father, performing a sacrifice of giving away all his possessions, g
 
 *ведийские индоарии (Айтарея-брахмана) — легенда*
 
-Бездетный царь Харишчандра получил от бога Варуны сына Рохиту, пообещав принести его в жертву, но всё откладывал; повзрослевший Рохита бежал в лес, а Варуна поразил царя болезнью. Через шесть лет Рохита купил за сто коров у нищего брахмана Аджигарты среднего сына, Шунахшепу, чтобы принести его в жертву вместо себя. Жрецы отказались привязать юношу к столбу, и Аджигарта сделал это сам за ещё сто коров, а за третью сотню взялся и за нож. Тогда Шунахшепа стал молиться ведийским богам, и с последним гимном богине зари Ушас путы спали, а царь исцелился. Мудрец Вишвамитра усыновил юношу и дал ему имя Деварата — «данный богами».
+Бездетный царь Харишчандра получил от бога Варуны сына Рохиту, пообещав принести его в жертву, но всё откладывал; повзрослевший Рохита бежал в лес, а Варуна поразил царя водянкой. Через шесть лет Рохита купил за сто коров у нищего брахмана Аджигарты среднего сына, Шунахшепу, чтобы принести его в жертву вместо себя. Жрецы отказались привязать юношу к столбу, и Аджигарта сделал это сам за ещё сто коров, а за третью сотню взялся и за нож. Тогда Шунахшепа стал молиться ведийским богам, и с последним гимном богине зари Ушас путы спали, а царь исцелился. Мудрец Вишвамитра усыновил юношу и дал ему имя Деварата — «данный богами».
 
 **Мораль:** Молитва спасает того, кого предали даже родные; жадность позорит.
 
 ### Shunahshepa at the Sacrificial Post
 
-The childless King Harishchandra obtained a son, Rohita, from the god Varuna by promising to sacrifice him, but kept delaying; the grown Rohita fled to the forest, and Varuna struck the king with illness. After six years Rohita bought the middle son of the starving brahmin Ajigarta, Shunahshepa, for a hundred cows to be sacrificed in his place. The priests refused to bind the youth to the post, so Ajigarta did it for another hundred cows, and for a third hundred took up the knife. Then Shunahshepa prayed to the Vedic gods, and with his last hymn to the dawn goddess Ushas his bonds fell away and the king was healed. The sage Vishvamitra adopted the youth and named him Devarata, 'god-given'.
+The childless King Harishchandra obtained a son, Rohita, from the god Varuna by promising to sacrifice him, but kept delaying; the grown Rohita fled to the forest, and Varuna struck the king with dropsy. After six years Rohita bought the middle son of the starving brahmin Ajigarta, Shunahshepa, for a hundred cows to be sacrificed in his place. The priests refused to bind the youth to the post, so Ajigarta did it for another hundred cows, and for a third hundred took up the knife. Then Shunahshepa prayed to the Vedic gods, and with his last hymn to the dawn goddess Ushas his bonds fell away and the king was healed. The sage Vishvamitra adopted the youth and named him Devarata, 'god-given'.
 
 **Moral:** Prayer saves one betrayed even by his own kin; greed brings disgrace.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Shunahshepa
+Источники / Sources: https://en.wikipedia.org/wiki/Shunahshepa, https://archive.org/details/in.ernet.dli.2015.104262
 
 ---
 
