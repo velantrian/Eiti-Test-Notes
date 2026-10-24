@@ -83,26 +83,24 @@
 - Скупой Марко Богатый / Marko the Rich, the miser (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Дурак и берёза / The fool and the birch-tree (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Лихо одноглазое / One-eyed Likho (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
-- Матушка Пятница / Mother Friday (быличка)
-- Вазуза и Волга / Vazuza and Volga (легенда о реках)
+- Матушка Пятница / Mother Friday (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
+- Вазуза и Волга / Vazuza and Volga (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Морозко / Frost (Morozko) (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
-- Чёрный ручей и Ильмень / The Black Brook and Lake Ilmen (легенда о реках)
+- Чёрный ручей и Ильмень / The Black Brook and Lake Ilmen (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Сож и Днепр / Sozh and Dnieper (белорусы (Ralston, Russian Folk-Tales, 1873: «In White-Russia»))
 
 ## Итого / Total: 74
 
 - башкиры: 1
 - белорусы: 1
-- быличка: 1
 - казахи: 1
 - калмыки: 10
 - калмыки/ойраты: 3
 - карелы/финны: 10
 - киргизы: 1
-- легенда о реках: 2
 - литовцы: 1
 - марийцы: 9
-- русские: 7
+- русские: 10
 - татары: 2
 - украинцы: 9
 - эстонцы: 15
