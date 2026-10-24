@@ -522,25 +522,7 @@ A destitute wife, wearing a borrowed silk dress, promised to marry a shepherd, a
 
 ---
 
-## 30. Глупые аухцы
-
-*чеченцы (ауховцы) — анекдот*
-
-Жители Ауха купили одинаковые новые сапоги и до вечера сидели на базаре, не в силах разобрать, где чьи ноги, пока прохожий не прошёлся по ним хлыстом. Троим аухцам медведь оторвал голову товарищу в пещере, а они не могли вспомнить, была ли у него голова; вдова сказала лишь, что каждый год шила ему новую шапку. Спускаясь цепочкой к мешку у реки, первый отпустил руку, чтобы почесать голову, и все полетели в воду.
-
-**Мораль:** Над глупостью смеются, чтобы её избегать.
-
-### The Stupid People of Aukh
-
-Men of Aukh bought identical new boots and sat in the bazaar till evening unable to tell whose legs were whose, until a passer-by set them straight with his riding switch. When a bear tore off a companion's head in a cave, the other two could not remember whether he had ever had one; his widow only recalled sewing him a new cap every year. Forming a human chain to reach a sack by the river, the top man let go to scratch his head, and all the rest fell into the water.
-
-**Moral:** Folly is laughed at so that it may be avoided.
-
-Источники / Sources: https://archive.org/details/dirr-1925-caucasian-folk-tales, https://archive.org/details/kaukasische-marchen
-
----
-
-## 31. Сын Месяца
+## 30. Сын Месяца
 
 *ингуши — предание*
 
@@ -558,7 +540,7 @@ Seven brothers finally got a sister, but it turned out she was the one stealing 
 
 ---
 
-## 32. Птичка благодати, звезда ветров и змея
+## 31. Птичка благодати, звезда ветров и змея
 
 *ингуши — предание*
 
@@ -576,7 +558,7 @@ A highlander kept an inseparable trio at home: a bird that brought good harvests
 
 ---
 
-## 33. Птичка, несущая благодать
+## 32. Птичка, несущая благодать
 
 *ингуши — предание*
 
@@ -594,7 +576,7 @@ The bird of plenty nested in the Metskhal community, and the lands on both banks
 
 ---
 
-## 34. Пиръон
+## 33. Пиръон
 
 *ингуши — предание*
 
@@ -612,7 +594,7 @@ Pir'on built bronze vaults at the edge of the world, rolled barrels over them an
 
 ---
 
-## 35. Ханой Хинг и Бог
+## 34. Ханой Хинг и Бог
 
 *ингуши — предание*
 
@@ -630,7 +612,7 @@ God liked the master-builder Khanoy Khing and raised him on a golden chain to th
 
 ---
 
-## 36. Две башни Ханой Хинга
+## 35. Две башни Ханой Хинга
 
 *ингуши — предание*
 
@@ -648,7 +630,7 @@ A childless younger brother envied his elder brother's three sons and paid the b
 
 ---
 
-## 37. Арсамак и Гий
+## 36. Арсамак и Гий
 
 *ингуши — предание*
 
@@ -666,7 +648,7 @@ Arsamak of the Lolokhoev clan and Giy of the Tumgoev clan quarrelled over drivin
 
 ---
 
-## 38. Хромой Тимур
+## 37. Хромой Тимур
 
 *ингуши — предание*
 
@@ -684,7 +666,7 @@ Timur's father broke the boy's thigh after seeing him run down a hare as if it w
 
 ---
 
-## 39. Гази, сын Алдама
+## 38. Гази, сын Алдама
 
 *ингуши — предание*
 
@@ -702,7 +684,7 @@ One evening young Gazi received three pieces of news: his father's killer would 
 
 ---
 
-## 40. Богач и Счастье
+## 39. Богач и Счастье
 
 *ингуши — притча*
 
@@ -720,7 +702,7 @@ Fortune left a rich man, and he went to find it. A mangy wolf, a gardener with a
 
 ---
 
-## 41. Мужчина-лицемер
+## 40. Мужчина-лицемер
 
 *ингуши — притча*
 
@@ -738,7 +720,7 @@ A traveller flattered the raging Farta: she was a famous river, knew worthy men 
 
 ---
 
-## 42. И Чолдарг станцевал
+## 41. И Чолдарг станцевал
 
 *ингуши — притча*
 
@@ -756,7 +738,7 @@ Young Choldarg used threats to make everyone he met dance. People grew tired of 
 
 ---
 
-## 43. Возвращение благодати
+## 42. Возвращение благодати
 
 *чеченцы — притча*
 
@@ -774,7 +756,7 @@ A man saw footprints in the snow leading only out of his house, followed them an
 
 ---
 
-## 44. Склон Мажки
+## 43. Склон Мажки
 
 *чеченцы — предание*
 
@@ -792,7 +774,7 @@ Dudur of Geldagan came to a party where his beloved Mazhka was, and her suitor, 
 
 ---
 
-## 45. Проклятие Пиръону
+## 44. Проклятие Пиръону
 
 *чеченцы — предание*
 
@@ -810,7 +792,7 @@ Pir'on built copper vaults of heaven, made women climb them and pour water down 
 
 ---
 
-## 46. Два князя
+## 45. Два князя
 
 *чеченцы — предание*
 
@@ -828,7 +810,7 @@ In the Eg gorge, on slopes above the Farta river, stood the towers of two feudin
 
 ---
 
-## 47. Оки-Аки
+## 46. Оки-Аки
 
 *чеченцы — предание*
 
@@ -846,7 +828,7 @@ Mayst men saw a prince's daughter at a spring and wished her for a husband Oki-A
 
 ---
 
-## 48. Чудовище
+## 47. Чудовище
 
 *чеченцы — притча*
 
@@ -864,7 +846,7 @@ People attacked a monster with nine heads and one body: the heads quarrelled and
 
 ---
 
-## 49. Как Елта стал одноглазым
+## 48. Как Елта стал одноглазым
 
 *ингуши, чеченцы — миф*
 
@@ -882,7 +864,7 @@ The son of a poor widow was turned away from the supreme god Deli, but Deli's so
 
 ---
 
-## 50. Итар Этиев и лесные люди
+## 49. Итар Этиев и лесные люди
 
 *ингуши — предание*
 
@@ -900,7 +882,7 @@ The lucky hunter Itar Etiev overheard forest people arguing about a missing tur 
 
 ---
 
-## 51. Начхо и белый олень
+## 50. Начхо и белый олень
 
 *чеченцы, ингуши — предание*
 
@@ -918,7 +900,7 @@ The hunter Nachkho took aim at a beautiful white deer in a herd and was struck b
 
 ---
 
-## 52. Быки, держащие землю
+## 51. Быки, держащие землю
 
 *чеченцы, ингуши — миф*
 
@@ -936,7 +918,7 @@ When God created the earth, he asked who would hold it up. The oxen volunteered 
 
 ---
 
-## 53. Волк и человек
+## 52. Волк и человек
 
 *чеченцы, ингуши — миф*
 
@@ -954,7 +936,7 @@ God created sheep for the wolves, but a man asked for the flock, promising to he
 
 ---
 
-## 54. Первые люди и филин
+## 53. Первые люди и филин
 
 *чеченцы, ингуши — миф*
 
@@ -972,7 +954,7 @@ Dela squeezed earth in his hands, and a man was born in the east and a woman in 
 
 ---
 
-## 55. Сеска-Солса и великанская кость
+## 54. Сеска-Солса и великанская кость
 
 *чеченцы, ингуши — нартское сказание*
 
@@ -990,7 +972,7 @@ Seska-Solsa found a pelvic bone so huge that he rode through it on horseback, an
 
 ---
 
-## 56. Озеро Кезеной-Ам
+## 55. Озеро Кезеной-Ам
 
 *чеченцы — легенда*
 
@@ -1008,17 +990,17 @@ Where the lake lies there was once the village of Kezenoy, whose people had forg
 
 ---
 
-## 57. Глупцы из Ауха
+## 56. Глупцы из Ауха
 
 *чеченцы (Аух) — анекдот*
 
-Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, а первый отпустил руку почесать голову, и все упали в реку.
+Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.
 
 **Мораль:** Над глупостью смеются, чтобы её не повторять.
 
 ### The Stupid People of Aukh
 
-Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, and the first let go to scratch his head, and all fell into the river.
+Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.
 
 **Moral:** People laugh at folly so as not to repeat it.
 
@@ -1026,7 +1008,7 @@ Some men of Aukh wearing identical new boots could not get up because they could
 
 ---
 
-## 58. Ветер и Солнце
+## 57. Ветер и Солнце
 
 *ингуши — притча*
 
@@ -1044,7 +1026,7 @@ The North Wind and the Sun argued over which was stronger and agreed that the wi
 
 ---
 
-## 59. Горец и Асса
+## 58. Горец и Асса
 
 *ингуши — притча*
 
@@ -1062,7 +1044,7 @@ A highlander forded the Assa, whose water was so cold that the marrow froze in h
 
 ---
 
-## 60. Дедушка зайца
+## 59. Дедушка зайца
 
 *ингуши — анекдот*
 
@@ -1080,7 +1062,7 @@ The descendants of Gada pulled a donkey out of the river and held a council: wha
 
 ---
 
-## 61. Чинхо и чёрт
+## 60. Чинхо и чёрт
 
 *чеченцы — анекдот*
 
@@ -1098,7 +1080,7 @@ Seeing a devil at the hayfield, Chinkho lay down as if dead, with his scythe, a 
 
 ---
 
-## 62. Орстхоец и чёрт
+## 61. Орстхоец и чёрт
 
 *ингуши — анекдот*
 
@@ -1116,7 +1098,7 @@ An Orstkhoi man and a devil agreed to carry each other for as long as the rider 
 
 ---
 
-## 63. Старик и чёрт
+## 62. Старик и чёрт
 
 *ингуши — легенда*
 
@@ -1134,7 +1116,7 @@ A devil kept the old man from mowing by striking his scythe. The old man pretend
 
 ---
 
-## 64. Как старик переспорил чёрта
+## 63. Как старик переспорил чёрта
 
 *ингуши — анекдот*
 
@@ -1152,7 +1134,7 @@ A devil asked the mowing old man whether he was alone, or two, or three, and so 
 
 ---
 
-## 65. Хитрый старик
+## 64. Хитрый старик
 
 *ингуши — сказка*
 
@@ -1170,7 +1152,7 @@ A childless old hunter spared a hare and a she-bear with her cubs. The devils de
 
 ---
 
-## 66. Проклятие чёрта
+## 65. Проклятие чёрта
 
 *ингуши — легенда*
 
@@ -1188,7 +1170,7 @@ A devil mimicked Mata at his mowing with a linden scythe. Mata bound his legs wi
 
 ---
 
-## 67. Чёрт и зурна
+## 66. Чёрт и зурна
 
 *ингуши — анекдот*
 
@@ -1206,7 +1188,7 @@ A man asked an old devil to play his zurna. The devil said he may play only when
 
 ---
 
-## 68. Сам себя
+## 67. Сам себя
 
 *ингуши — быличка*
 
@@ -1224,7 +1206,7 @@ Shaitans were diverting the water from the mill. The teller's grandfather lit a 
 
 ---
 
-## 69. Выбор девушки (камни-кресты у Галашек)
+## 68. Выбор девушки (камни-кресты у Галашек)
 
 *ингуши — легенда*
 
@@ -1242,7 +1224,7 @@ A beautiful girl of the Assa gorge refused every suitor. Once two young men, equ
 
 ---
 
-## 70. Внук Козаша и Германч
+## 69. Внук Козаша и Германч
 
 *ингуши — предание*
 
@@ -1260,7 +1242,7 @@ Near Dolakovo and Kantyshevo stand the mounds of Kozash and Germanch. Germanch w
 
 ---
 
-## 71. Лом-Эдалби
+## 70. Лом-Эдалби
 
 *ингуши — сказание*
 
@@ -1278,7 +1260,7 @@ A padishah of Khamkhoi-shahar, who also ruled Tsoroi, pined so for the beauty Mi
 
 ---
 
-## 72. Ча и Чербаж
+## 71. Ча и Чербаж
 
 *ингуши — предание*
 
@@ -1296,7 +1278,7 @@ The brothers Cha and Cherbazh of Erzi were hunting in the Ortskhoi gorge. As Che
 
 ---
 
-## 73. Воин Шамиля
+## 72. Воин Шамиля
 
 *ингуши — предание*
 
@@ -1314,7 +1296,7 @@ Shamil was told that one of his warriors' wife had died, and he decided to test 
 
 ---
 
-## 74. Шамиль и падчах Николай
+## 73. Шамиль и падчах Николай
 
 *чеченцы — предание*
 
@@ -1332,7 +1314,7 @@ When the captive Shamil was living in Russia, Padishah Nicholas sent a messenger
 
 ---
 
-## 75. Как чеченцы присоединились к России
+## 74. Как чеченцы присоединились к России
 
 *чеченцы — предание*
 
@@ -1350,7 +1332,7 @@ A Russian padishah who came near Vladikavkaz thought the Chechens a wild people.
 
 ---
 
-## 76. Абрек Сулумбек
+## 75. Абрек Сулумбек
 
 *ингуши — предание*
 
@@ -1368,7 +1350,7 @@ The brother of abrek Sulumbek Gorovozhev, a friend of Zelimkhan, was shot by a p
 
 ---
 
-## 77. Князь и Жера-Баба
+## 76. Князь и Жера-Баба
 
 *ингуши — сказка*
 
@@ -1386,7 +1368,7 @@ The widow Zhera-Baba had seven sons so poor they never left the straw. When a sa
 
 ---
 
-## 78. Парчо
+## 77. Парчо
 
 *ингуши — сказка*
 
@@ -1404,7 +1386,7 @@ The one-eyed strongman Parcho let three brothers spend the night in his cave and
 
 ---
 
-## 79. Джантельг
+## 78. Джантельг
 
 *ингуши — сказка*
 
@@ -1422,7 +1404,7 @@ Dzhantelg and two friends spent the night underground with a yeshap (ogress), wh
 
 ---
 
-## 80. Волшебный сноп, котёл и шапка-невидимка
+## 79. Волшебный сноп, котёл и шапка-невидимка
 
 *чеченцы — сказка*
 
@@ -1440,7 +1422,7 @@ A kant (young hero) sent two quarrelling devils racing over a hill and took the 
 
 ---
 
-## 81. Как братья лишились волшебных зеркала и ковра
+## 80. Как братья лишились волшебных зеркала и ковра
 
 *ингуши — анекдот*
 
@@ -1458,7 +1440,7 @@ Two brothers divided their father's wealth equally but could not share a wish-gr
 
 ---
 
-## 82. Отец, мачеха, брат и сестра
+## 81. Отец, мачеха, брат и сестра
 
 *ингуши — сказка*
 
@@ -1476,7 +1458,7 @@ A stepmother feigned illness and demanded a boy's liver and lungs; the father, p
 
 ---
 
-## 83. Бедняк и змея
+## 82. Бедняк и змея
 
 *ингуши — притча*
 
@@ -1494,7 +1476,7 @@ A padishah dreamed three times: of goats bleating from the sky, of foxes howling
 
 ---
 
-## 84. Помощник падчаха
+## 83. Помощник падчаха
 
 *чеченцы — анекдот*
 
@@ -1512,7 +1494,7 @@ The assistant of an amorous padishah kept warning him against women. The women s
 
 ---
 
-## 85. Поступок жены
+## 84. Поступок жены
 
 *чеченцы — анекдот*
 
@@ -1530,7 +1512,7 @@ A rider on a gelding claimed a poor man's foal had been born to his gelding. The
 
 ---
 
-## 86. Моллакар и Панчи
+## 85. Моллакар и Панчи
 
 *ингуши — анекдот*
 
@@ -1548,7 +1530,7 @@ Sent for firewood, Mollakar hacked up a goat he met; his wife said he should hav
 
 ---
 
-## 87. Находчивый кант
+## 86. Находчивый кант
 
 *чеченцы — анекдот*
 
@@ -1566,7 +1548,7 @@ A kant gave a padishah a fish and received a hundred gold coins. The padishah's 
 
 ---
 
-## 88. Знаток языков
+## 87. Знаток языков
 
 *чеченцы — анекдот*
 
@@ -1584,7 +1566,7 @@ A man who knew the speech of all creatures smiled on hearing one bird on drying 
 
 ---
 
-## 89. Сын отважной женщины
+## 88. Сын отважной женщины
 
 *чеченцы — предание*
 
@@ -1602,7 +1584,7 @@ A Chechen let his son go raiding with friends and told him to come back without 
 
 ---
 
-## 90. Выбор девушки (гордый бедняк)
+## 89. Выбор девушки (гордый бедняк)
 
 *ингуши — притча*
 
@@ -1620,7 +1602,7 @@ A girl could not decide between a rich suitor and a poor one. Dressed as a man s
 
 ---
 
-## 91. Умное решение девушки
+## 90. Умное решение девушки
 
 *ингуши — анекдот*
 
@@ -1638,7 +1620,7 @@ A daughter asked her father what to do: what must sooner or later be done, or wh
 
 ---
 
-## 92. Три похитителя
+## 91. Три похитителя
 
 *ингуши — анекдот*
 
@@ -1656,7 +1638,7 @@ In the days when people were carried off, three men seized a widow at the spring
 
 ---
 
-## 93. Бедняк
+## 92. Бедняк
 
 *ингуши — сказка*
 
@@ -1674,7 +1656,7 @@ An eagle carried off a poor man's meat together with the cap holding his money. 
 
 ---
 
-## 94. Гусь-падчах
+## 93. Гусь-падчах
 
 *чеченцы — анекдот*
 
@@ -1692,7 +1674,7 @@ Seeing a guest arrive on a donkey, a host told his wife to hide the goose boilin
 
 ---
 
-## 95. Бедняк и мудрец
+## 94. Бедняк и мудрец
 
 *ингуши — анекдот*
 
@@ -1710,7 +1692,7 @@ Market traders agreed to call a poor man's bull a goat, and a sage confirmed it 
 
 ---
 
-## 96. Судья
+## 95. Судья
 
 *чеченцы — анекдот*
 
@@ -1728,7 +1710,7 @@ A mountain judge heard the plaintiff and said, 'You are right.' He heard the def
 
 ---
 
-## 97. Три брата и сармак
+## 96. Три брата и сармак
 
 *ингуши — сказка*
 
@@ -1746,7 +1728,7 @@ Three brothers inherited a small saddle, a bridle and a little coat. The sarmak 
 
 ---
 
-## 98. Спор о небылице
+## 97. Спор о небылице
 
 *чеченцы — анекдот*
 
@@ -1764,7 +1746,7 @@ A miller kept winning a girda of maize from poor men in tall-tale contests. A po
 
 ---
 
-## 99. Кто больше?
+## 98. Кто больше?
 
 *чеченцы — анекдот*
 
@@ -1782,7 +1764,7 @@ A bull grazed seven versts away; an eagle carried it off, perched on a goat's ho
 
 ---
 
-## 100. Байнал-Бусани
+## 99. Байнал-Бусани
 
 *чеченцы — сказка*
 
@@ -1800,7 +1782,7 @@ Six brothers wooed a girl with the sun and moon on her brow; unable to say what 
 
 ---
 
-## 101. Тинин Висаг и Чёрный хожа
+## 100. Тинин Висаг и Чёрный хожа
 
 *чеченцы — сказка*
 
@@ -1818,7 +1800,7 @@ Tinin Visag, the youngest of three brothers, hung a roast hare on a bush, and th
 
 ---
 
-## 102. Сказка об охотнике и нарте
+## 101. Сказка об охотнике и нарте
 
 *чеченцы — сказка*
 
@@ -1836,7 +1818,7 @@ Every morning a hunter shot an egg off his wife's head and boasted; on a wise wo
 
 ---
 
-## 103. Наказание тому, кто не расскажет сказку
+## 102. Наказание тому, кто не расскажет сказку
 
 *ингуши — сказка*
 
@@ -1854,7 +1836,7 @@ A brother refused to tell a tale to the women spinning, and his sister saw three
 
 ---
 
-## 104. Золотое перо и плётка
+## 103. Золотое перо и плётка
 
 *чеченцы — сказка*
 
@@ -1872,7 +1854,7 @@ As she lay dying, a wife told her husband to marry only a woman whom her golden 
 
 ---
 
-## 105. Гезама Али и Толам-Аго
+## 104. Гезама Али и Толам-Аго
 
 *чеченцы — нартский сказ*
 
@@ -1890,7 +1872,7 @@ The giant nart Tolam-Ago came to the shepherd Gezama Ali meaning to carry him of
 
 ---
 
-## 106. Девочка и гам
+## 105. Девочка и гам
 
 *ингуши — сказка*
 
@@ -1908,7 +1890,7 @@ Children tied a sleeping girl to a tree by her braids; a dove freed her. Her tea
 
 ---
 
-## 107. Альтамар и ешап
+## 106. Альтамар и ешап
 
 *чеченцы — сказка*
 
@@ -1926,7 +1908,7 @@ Altamar came with his seven sons to woo the yeshap's seven daughters. At night h
 
 ---
 
-## 108. Чончилг и ешап
+## 107. Чончилг и ешап
 
 *чеченцы — сказка*
 
@@ -1944,7 +1926,7 @@ The hunter Chonchilg spent the night with a yeshap; to avoid being eaten he comp
 
 ---
 
-## 109. Храбрее сармака
+## 108. Храбрее сармака
 
 *ингуши — анекдот*
 
@@ -1962,7 +1944,7 @@ A man worn out by his shrewish wife said he had found treasure in a pit, and his
 
 ---
 
-## 110. Чудный мальчик, бросавший железный столб
+## 109. Чудный мальчик, бросавший железный столб
 
 *ингуши — сказка*
 
@@ -1980,7 +1962,7 @@ A boy who would not tell his father and mother his dream went to live by a river
 
 ---
 
-## 111. Тамаш-Таштамир
+## 110. Тамаш-Таштамир
 
 *ингуши — сказка*
 
@@ -1998,7 +1980,7 @@ With a blow of a magic whip, an unfaithful wife turned Tamash-Tashtamir into an 
 
 ---
 
-## 112. Мальчик с солнцем во лбу и месяцем между лопаток
+## 111. Мальчик с солнцем во лбу и месяцем между лопаток
 
 *ингуши — сказка*
 
@@ -2016,7 +1998,7 @@ A stepmother forced a father to abandon his three daughters in the forest; a pri
 
 ---
 
-## 113. Двадцать муталимов и двадцать первый мулла
+## 112. Двадцать муталимов и двадцать первый мулла
 
 *чеченцы — сказка*
 
@@ -2034,7 +2016,7 @@ On a dare a mutalim carried a knife to his dead comrade's grave, wrestled a one-
 
 ---
 
-## 114. Охотник
+## 113. Охотник
 
 *чеченцы — сказка*
 
@@ -2052,7 +2034,7 @@ A hunter spared a bear, a kite and a fox and received a hair or feather from eac
 
 ---
 
-## 115. Как сын старика переспорил дочь падчаха
+## 114. Как сын старика переспорил дочь падчаха
 
 *ингуши — сказка*
 
@@ -2070,7 +2052,7 @@ The padishah demanded that a poor man's son catch ninety-nine identical foxes in
 
 ---
 
-## 116. Как победили чёрного ногайца
+## 115. Как победили чёрного ногайца
 
 *ингуши — сказка*
 
@@ -2088,7 +2070,7 @@ The Black Nogai, grown into his saddle and breathing fire, wiped out a village; 
 
 ---
 
-## 117. Ахкепиг
+## 116. Ахкепиг
 
 *ингуши — сказка*
 
@@ -2106,7 +2088,7 @@ The cannibal Akhkepig killed a family, and the surviving brother and sister were
 
 ---
 
-## 118. Гомбот и его жена
+## 117. Гомбот и его жена
 
 *ингуши — сказка*
 
@@ -2124,7 +2106,7 @@ Bibot promised his daughter to the handsome Gombot, and he married her. A servan
 
 ---
 
-## 119. Гам
+## 118. Гам
 
 *ингуши — сказка*
 
@@ -2142,7 +2124,7 @@ A girl born with teeth devoured live hens, and her brother took her into the for
 
 ---
 
-## 120. Нет ничего лучше хорошей жены
+## 119. Нет ничего лучше хорошей жены
 
 *ингуши — сказка*
 
@@ -2160,7 +2142,7 @@ A generous youth gave everything away and handed a traveller his last mattress c
 
 ---
 
-## 121. Нет ничего лучше хорошей жены, нет ничего хуже плохой
+## 120. Нет ничего лучше хорошей жены, нет ничего хуже плохой
 
 *ингуши — сказка*
 
@@ -2178,7 +2160,7 @@ Byatar saw Prince Temarko's wife chasing him with a log, yet still chose his dau
 
 ---
 
-## 122. Умная девушка
+## 121. Умная девушка
 
 *ингуши — сказка*
 
@@ -2196,7 +2178,7 @@ A prince's three sons could not find the pearls their father had left them and w
 
 ---
 
-## 123. Умная невестка
+## 122. Умная невестка
 
 *ингуши — сказка*
 
@@ -2214,7 +2196,7 @@ An old tower-builder on the road asked his son to 'shorten the way' and 'give hi
 
 ---
 
-## 124. Сын бедняка
+## 123. Сын бедняка
 
 *чеченцы — сказка*
 
@@ -2232,7 +2214,7 @@ A poor man's son hired himself to a beardless man on the terms that whoever lost
 
 ---
 
-## 125. Вдовий сын
+## 124. Вдовий сын
 
 *ингуши — сказка*
 
@@ -2250,7 +2232,7 @@ The great padishah, seeking a quarrel, ordered the lesser one to make an astrakh
 
 ---
 
-## 126. Курдюк
+## 125. Курдюк
 
 *ингуши — сказка*
 
@@ -2268,7 +2250,7 @@ The wife of the former thief Shakhsait served his friends Shakhran and Shamran s
 
 ---
 
-## 127. Вор Малсаг и храбрец Малсаг
+## 126. Вор Малсаг и храбрец Малсаг
 
 *ингуши — сказка*
 
@@ -2286,7 +2268,7 @@ Two friends, Malsag the thief and Malsag the brave, robbed a prince's tower. The
 
 ---
 
-## 128. Как обманули сармака
+## 127. Как обманули сармака
 
 *чеченцы — сказка*
 
@@ -2304,7 +2286,7 @@ A father told his three sons never to take the old road. The two elder sons diso
 
 ---
 
-## 129. Небылица
+## 128. Небылица
 
 *ингуши — небылица*
 
@@ -2322,7 +2304,7 @@ Three brothers decided to sell a bottomless bark basket. The elder two were swal
 
 ---
 
-## 130. Три брата
+## 129. Три брата
 
 *чеченцы — сказка*
 
@@ -2340,7 +2322,7 @@ A dying father asked for a gravestone of rock salt. The elder brothers fell asle
 
 ---
 
-## 131. Чёрный хожа
+## 130. Чёрный хожа
 
 *чеченцы — сказка*
 
@@ -2358,7 +2340,7 @@ Following their father's wish, the brothers married their sisters to a dove, a h
 
 ---
 
-## 132. Семеро товарищей
+## 131. Семеро товарищей
 
 *ингуши — сказка*
 
@@ -2376,7 +2358,7 @@ A boy who slept while guarding the wheat refused to tell his dream to his mother
 
 ---
 
-## 133. Сын нарта
+## 132. Сын нарта
 
 *ингуши — сказка*
 
@@ -2394,7 +2376,7 @@ A princess demanded that her princely suitor 'sell' the son of a dead nart. By s
 
 ---
 
-## 134. Князь Тепсырко и вдовий сын Жосарко
+## 133. Князь Тепсырко и вдовий сын Жосарко
 
 *ингуши — сказка*
 
@@ -2412,7 +2394,7 @@ A maiden promised to marry Prince Tepsyrko if he 'sold' the widow's son Zhosarko
 
 ---
 
-## 135. Тимар
+## 134. Тимар
 
 *чеченцы — сказка*
 
@@ -2430,7 +2412,7 @@ The elder sons of the blinded Timar brought him red snow and white grass instead
 
 ---
 
-## 136. Как у Силаймы нос оторвали
+## 135. Как у Силаймы нос оторвали
 
 *ингуши — сказка*
 
@@ -2448,7 +2430,7 @@ A youth was given a horse by a rider and swam to a tower in the sea; the beauty 
 
 ---
 
-## 137. Прославленный лекарь
+## 136. Прославленный лекарь
 
 *ингуши — сказка*
 
@@ -2466,7 +2448,7 @@ The padishah's two physicians bribed a gam, and a man able to cure the princess 
 
 ---
 
-## 138. Мовсур и Магомед
+## 137. Мовсур и Магомед
 
 *чеченцы — сказка*
 
@@ -2484,7 +2466,7 @@ Movsur dreamed that Zhovar, a princess across the sea, had set a wedding day wit
 
 ---
 
-## 139. Князь Бигалди
+## 138. Князь Бигалди
 
 *чеченцы — сказка*
 
@@ -2502,7 +2484,7 @@ Bigaldi had squandered everything and lived naked in the forest, and a fox under
 
 ---
 
-## 140. Золотые листья
+## 139. Золотые листья
 
 *ингуши — сказка*
 
@@ -2520,7 +2502,7 @@ Every night an unknown force carried off the golden leaves of the prince's coppe
 
 ---
 
-## 141. Чайтонг — сын медведя
+## 140. Чайтонг — сын медведя
 
 *ингуши — сказка*
 
@@ -2538,7 +2520,7 @@ A girl was carried off by a bear, and she bore the hero Chaitong. He befriended 
 
 ---
 
-## 142. Храбрый Пахтат
+## 141. Храбрый Пахтат
 
 *ингуши — сказка*
 
@@ -2556,7 +2538,7 @@ To a childless old couple a cow bore Makhtat and a mare bore Pakhtat, with a sun
 
 ---
 
-## 143. Сын вдовы Жатик
+## 142. Сын вдовы Жатик
 
 *ингуши — сказка*
 
@@ -2574,7 +2556,7 @@ The bald calf-herd Zhatik fell in love with the padishah's daughter, and the pad
 
 ---
 
-## 144. Мерий-Тотал
+## 143. Мерий-Тотал
 
 *ингуши — сказка*
 
@@ -2592,7 +2574,7 @@ Seven brothers bought an old man's unruly son as their eighth brother. Opening t
 
 ---
 
-## 145. Тимар с обгоревшим боком
+## 144. Тимар с обгоревшим боком
 
 *чеченцы — сказка*
 
@@ -2610,7 +2592,7 @@ An old hunter cut pieces from the heart and liver of a doe he had shot, but she 
 
 ---
 
-## 146. Храбрый кант
+## 145. Храбрый кант
 
 *чеченцы — сказка*
 
@@ -2628,7 +2610,7 @@ A youth cut down the dogs of seven nart-orstkhoi, and they swore brotherhood wit
 
 ---
 
-## 147. Алхаст и Малх-Азни
+## 146. Алхаст и Малх-Азни
 
 *чеченцы — сказка*
 
@@ -2646,7 +2628,7 @@ Alkhast's six younger brothers won the prince's seven daughters, but against his
 
 ---
 
-## 148. Два друга
+## 147. Два друга
 
 *чеченцы — сказка*
 
@@ -2664,7 +2646,7 @@ The old friends Baibur and Gambur learned each other's state from an arrow shot 
 
 ---
 
-## 149. Дочь князя Айзан и Муса
+## 148. Дочь князя Айзан и Муса
 
 *чеченцы — сказка*
 
@@ -2682,7 +2664,7 @@ The secluded Aizan laughed at a boy who had fallen, and he told her to find the 
 
 ---
 
-## 150. Младший зять падчаха
+## 149. Младший зять падчаха
 
 *ингуши — сказка*
 
@@ -2700,7 +2682,7 @@ A stepmother made the father abandon the boy in a ravine. A garbash took him in;
 
 ---
 
-## 151. Как Уми стал «шейхом»
+## 150. Как Уми стал «шейхом»
 
 *ингуши — сказка*
 
@@ -2718,7 +2700,7 @@ Three luckless thieves decided to make Umi a 'sheikh': his friends stole livesto
 
 ---
 
-## 152. Овдилг
+## 151. Овдилг
 
 *ингуши — сказка*
 
@@ -2736,25 +2718,7 @@ The youngest son, the simpleton Ovdilg, guarded his father's grave for three nig
 
 ---
 
-## 153. Птичка, несущая благодать, звезда ветров и змея
-
-*ингуши — предание*
-
-Горец держал в сакле неразлучных птичку благодати, звезду ветров и змею-хранительницу скота. Мальчик отсёк змее кончик хвоста, змея убила его и уползла, а за ней ушли птичка и звезда — и задули ветры. Горец пришёл мириться, но змея сказала: ты будешь помнить сына, я — хвост, мира не будет.
-
-**Мораль:** «Отец помнит о сыне, змея — о кончике хвоста».
-
-### The Bird of Blessing, the Star of Winds and the Snake
-
-A highlander kept in his house three inseparable beings: the bird of blessing, the star of winds and a snake that guarded the flocks. A boy cut off the tip of the snake's tail; the snake killed him and crawled away, and the bird and the star followed — and the winds began to blow. The man went to make peace, but the snake said: you will remember your son, I my tail; there can be no peace.
-
-**Moral:** 'The father remembers his son, the snake the tip of its tail.'
-
-Источники / Sources: https://1.librebook.me/skazki_i_legendy_ingushei_i_chechencev/vol3/1, https://www.mifoteka.ru/books/skazki_i_legendi_ingushey_i_chechentsev.htm
-
----
-
-## 154. О возникновении озера в Галан-Чоже
+## 152. О возникновении озера в Галан-Чоже
 
 *ингуши — предание*
 
@@ -2772,7 +2736,7 @@ A mother and daughter washed dirty swaddling cloths in the lake at Alka and turn
 
 ---
 
-## 155. Батыга-Шертко и поминки
+## 153. Батыга-Шертко и поминки
 
 *ингуши (запись Б. Далгата, 1893) — легенда*
 
@@ -2790,7 +2754,7 @@ Among the Nart-Orstkhoi was Batyga-Shertko, the people's defender and leader, wh
 
 ---
 
-## 156. Клятва убийцы и пещера на том свете
+## 154. Клятва убийцы и пещера на том свете
 
 *ингуши (запись Б. Далгата, 1893) — легенда о загробном воздаянии*
 
@@ -2808,7 +2772,7 @@ The priest Ganyzh told how the doctor who overcharged people sits in the other w
 
 ---
 
-## 157. Мать вьюг и её семь сыновей
+## 155. Мать вьюг и её семь сыновей
 
 *чеченцы и ингуши (по Далгату) — астральный миф*
 
@@ -2826,7 +2790,7 @@ In Vainakh belief the blizzard goddess Dardza-nanilg, 'mother of blizzards', liv
 
 ---
 
-## 158. Сели-Сата и Млечный Путь
+## 156. Сели-Сата и Млечный Путь
 
 *ингуши (запись Б. Далгата, 1893) — миф*
 
@@ -2844,7 +2808,7 @@ The Nart-Orstkhoi had a maiden of matchless beauty; no one could marry her, sinc
 
 ---
 
-## 159. Озеро Амка и бык
+## 157. Озеро Амка и бык
 
 *чеченцы (запись В. Миллера, по Далгату) — топонимическое предание*
 
@@ -2862,7 +2826,7 @@ Near the village of Yalkharoy, at a place called Amka, there was once a lake. On
 
 ---
 
-## 160. Сеска Солса, Селий Пиръа и мельница
+## 158. Сеска Солса, Селий Пиръа и мельница
 
 *чеченцы — нартское сказание*
 
@@ -2880,7 +2844,7 @@ The brothers Seska Solsa and Seliy Pira were unlike: the elder mighty of body, t
 
 ---
 
-## 161. Как родился Сеска Солса
+## 159. Как родился Сеска Солса
 
 *ингуши (информант Далгата Газбык) — нартское сказание*
 
@@ -2898,7 +2862,7 @@ A girl was milking cows, and a blue stone lay nearby. A youth in love with her s
 
 ---
 
-## 162. Гибель нарт-орстхойцев и голубь Солсы
+## 160. Гибель нарт-орстхойцев и голубь Солсы
 
 *чеченцы и ингуши — нартское сказание (варианты)*
 
@@ -2916,7 +2880,7 @@ The Nart-Orstkhoi were not ashamed of evil deeds: they gathered in gangs, raided
 
 ---
 
-## 163. Жербаба и уход Сеска Солсы
+## 161. Жербаба и уход Сеска Солсы
 
 *чеченцы — нартское сказание*
 
@@ -2934,7 +2898,7 @@ Long ago the world was blessed and no wind blew: a thread with rags hanging from
 
 ---
 
-## 164. Ингушские имена звёзд и их мифы
+## 162. Ингушские имена звёзд и их мифы
 
 *ингуши (Н.Д. Кодзоев по Б. Далгату и др.) — астральные поверья*
 
@@ -2952,7 +2916,7 @@ The Ingush especially revered the Sun — Dyala-Malkh, 'God's Sun': shrines face
 
 ---
 
-## 165. Почему Сеска Солса стал одноглазым
+## 163. Почему Сеска Солса стал одноглазым
 
 *чеченцы и ингуши (У.Б. Далгат 1972, с. 336; по изданию Х. Цечоева) — нартское сказание*
 
@@ -2970,7 +2934,7 @@ Long ago there lived a man called Seska Solsa. He ate a whole sheep at one sitti
 
 ---
 
-## 166. Скала Сеска-Солсы на Цей-Ломе
+## 164. Скала Сеска-Солсы на Цей-Ломе
 
 *ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания) — топонимическое предание*
 
@@ -2988,7 +2952,7 @@ Among the tiny fields beneath the cliffs of Tsey-Loam lies a huge boulder that o
 
 ---
 
-## 167. Калой-Кант и кабардинский князь
+## 165. Калой-Кант и кабардинский князь
 
 *ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания; ср. циклы о Колой Канте у Х. Цечоева) — героическое предание*
 
@@ -3006,7 +2970,7 @@ Long ago, when the prophetic bird Simurgh — one eye seeing the past, the other
 
 ---
 
-## 168. Суд Тантала и башня Ольгетты
+## 166. Суд Тантала и башня Ольгетты
 
 *ингуши (И. Базоркин, «Из тьмы веков» (1968), литературный пересказ народного предания) — предание о башне*
 
@@ -3024,7 +2988,7 @@ Shepherds of two clans were grazing sheep; one crept up on his sleeping companio
 
 ---
 
-## 169. Нахчо — младший сын шамского князя
+## 167. Нахчо — младший сын шамского князя
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — генеалогическое предание*
 
@@ -3042,7 +3006,7 @@ It is said that a prince from Sham (Syria) angered his overlord, fled and settle
 
 ---
 
-## 170. Как калмыки ушли с чеченской плоскости
+## 168. Как калмыки ушли с чеченской плоскости
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — историческое предание*
 
@@ -3060,7 +3024,7 @@ Legend recalls that a mighty Kalmyk khan once lived where the village of Gular s
 
 ---
 
-## 171. Гнездо на копье и молоко через край
+## 169. Гнездо на копье и молоко через край
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — родовое предание*
 
@@ -3078,7 +3042,7 @@ The Chermoev family tells that their ancestor, having lost his parents in Nashak
 
 ---
 
-## 172. Нарты Наур и Гожак
+## 170. Нарты Наур и Гожак
 
 *чеченцы надтеречные (У. Лаудаев, «Чеченское племя», 1872) — нартское предание*
 
@@ -3096,7 +3060,7 @@ Above the Terek lived two Narts, Naur and Gozhak; their caves, Naur-or and Gozha
 
 ---
 
-## 173. Термаол, первый проповедник ислама
+## 171. Термаол, первый проповедник ислама
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — историческое предание*
 
@@ -3114,7 +3078,7 @@ Legend names the eloquent and cruel Termaol as the first preacher of Islam among
 
 ---
 
-## 174. Шейх Берса и тридцать кабаньих грудинок
+## 172. Шейх Берса и тридцать кабаньих грудинок
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — легенда*
 
@@ -3132,7 +3096,7 @@ Sheikh Bersa of Kurchaloy came to convert pagans and did not stop at the house o
 
 ---
 
-## 175. Забытая икона
+## 173. Забытая икона
 
 *чеченцы (У. Лаудаев, «Чеченское племя», 1872) — историческое предание*
 
@@ -3150,7 +3114,7 @@ When the Russians left Chechnya, an icon was found in the ruins of a house. Thin
 
 ---
 
-## 176. Три ауховца и три кумыкских фразы
+## 174. Три ауховца и три кумыкских фразы
 
 *чеченцы (ауховцы) (У. Лаудаев, «Чеченское племя», 1872) — анекдот*
 
@@ -3168,7 +3132,7 @@ Three Aukhovites spent three years learning Kumyk and between them learned three
 
 ---
 
-## 177. Песня о Хамзате
+## 175. Песня о Хамзате
 
 *чеченцы (А. П. Ипполитов, «Этнографические очерки Аргунского округа», ССКГ, вып. I, 1868) — героическая песня*
 
@@ -3186,7 +3150,7 @@ Hamzat, a raider from Gikhi, crossed the Terek with his companions, drove off a 
 
 ---
 
-## 178. Песня об Эль-Мурзе
+## 176. Песня об Эль-Мурзе
 
 *чеченцы (А. П. Ипполитов, «Этнографические очерки Аргунского округа», ССКГ, вып. I, 1868) — героическая песня*
 
@@ -3204,7 +3168,7 @@ El-Murza saddled his horse and called fifteen mutalims and one more brave friend
 
 ---
 
-## 179. Пророк Сулейман, птица Анкаа и филин
+## 177. Пророк Сулейман, птица Анкаа и филин
 
 *чеченцы (А. П. Ипполитов, «Этнографические очерки Аргунского округа», ССКГ, вып. I, 1868) — сказка-легенда*
 
@@ -3222,7 +3186,7 @@ King and prophet Suleiman ruled people, beasts, birds, jinn and winds; his guide
 
 ---
 
-## 180. Медведица и медвежата
+## 178. Медведица и медвежата
 
 *чеченцы (А. П. Ипполитов, «Этнографические очерки Аргунского округа», ССКГ, вып. I, 1868) — басня*
 
@@ -3240,7 +3204,7 @@ A she-bear kept her two cubs in a den on a high mountain. The cubs begged for pe
 
 ---
 
-## 181. Церковь фиренгов у Галанчожского озера
+## 179. Церковь фиренгов у Галанчожского озера
 
 *чеченцы (акинцы) (А. П. Ипполитов, «Этнографические очерки Аргунского округа», ССКГ, вып. I, 1868) — историческое предание*
 

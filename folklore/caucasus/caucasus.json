@@ -435,21 +435,6 @@
   "group": "nakh"
  },
  {
-  "title": "Глупые аухцы",
-  "summary": "Жители Ауха купили одинаковые новые сапоги и до вечера сидели на базаре, не в силах разобрать, где чьи ноги, пока прохожий не прошёлся по ним хлыстом. Троим аухцам медведь оторвал голову товарищу в пещере, а они не могли вспомнить, была ли у него голова; вдова сказала лишь, что каждый год шила ему новую шапку. Спускаясь цепочкой к мешку у реки, первый отпустил руку, чтобы почесать голову, и все полетели в воду.",
-  "moral": "Над глупостью смеются, чтобы её избегать.",
-  "title_en": "The Stupid People of Aukh",
-  "summary_en": "Men of Aukh bought identical new boots and sat in the bazaar till evening unable to tell whose legs were whose, until a passer-by set them straight with his riding switch. When a bear tore off a companion's head in a cave, the other two could not remember whether he had ever had one; his widow only recalled sewing him a new cap every year. Forming a human chain to reach a sack by the river, the top man let go to scratch his head, and all the rest fell into the water.",
-  "moral_en": "Folly is laughed at so that it may be avoided.",
-  "people": "чеченцы (ауховцы)",
-  "type": "анекдот",
-  "sources": [
-   "https://archive.org/details/dirr-1925-caucasian-folk-tales",
-   "https://archive.org/details/kaukasische-marchen"
-  ],
-  "group": "nakh"
- },
- {
   "title": "Сын Месяца",
   "summary": "У семи братьев родилась долгожданная сестра, но вскоре выяснилось, что это она по ночам ворует яблоки: у младенца не хватало мизинца, отстреленного у вора. Младший брат требовал её убить и, когда родители не согласились, ушёл из дома. Вернувшись через годы, он нашёл пустое село: сестра-ведьма съела всех. Мышь, кошка и муравей научили его послать её за водой в решете, оживить коня и бросать за спину гребень, купорос и уголь. Когда ведьма всё же настигла его, он взмолился Месяцу, и тот поднял его к себе; говорят, брат пробудет с Месяцем до конца света. Записано в 1967 г. от Х. Торшхоева (Чермен).",
   "moral": "Зло, которое щадят, губит щадящих; спасение приходит свыше.",
@@ -833,10 +818,10 @@
  },
  {
   "title": "Глупцы из Ауха",
-  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, а первый отпустил руку почесать голову, и все упали в реку.",
+  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.",
   "moral": "Над глупостью смеются, чтобы её не повторять.",
   "title_en": "The Stupid People of Aukh",
-  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, and the first let go to scratch his head, and all fell into the river.",
+  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.",
   "moral_en": "People laugh at folly so as not to repeat it.",
   "people": "чеченцы (Аух)",
   "type": "анекдот",
@@ -2267,21 +2252,6 @@
   "type": "сказка",
   "sources": [
    "https://1.librebook.me/skazki_i_legendy_ingushei_i_chechencev/vol2/8",
-   "https://www.mifoteka.ru/books/skazki_i_legendi_ingushey_i_chechentsev.htm"
-  ],
-  "group": "nakh"
- },
- {
-  "title": "Птичка, несущая благодать, звезда ветров и змея",
-  "summary": "Горец держал в сакле неразлучных птичку благодати, звезду ветров и змею-хранительницу скота. Мальчик отсёк змее кончик хвоста, змея убила его и уползла, а за ней ушли птичка и звезда — и задули ветры. Горец пришёл мириться, но змея сказала: ты будешь помнить сына, я — хвост, мира не будет.",
-  "moral": "«Отец помнит о сыне, змея — о кончике хвоста».",
-  "title_en": "The Bird of Blessing, the Star of Winds and the Snake",
-  "summary_en": "A highlander kept in his house three inseparable beings: the bird of blessing, the star of winds and a snake that guarded the flocks. A boy cut off the tip of the snake's tail; the snake killed him and crawled away, and the bird and the star followed — and the winds began to blow. The man went to make peace, but the snake said: you will remember your son, I my tail; there can be no peace.",
-  "moral_en": "'The father remembers his son, the snake the tip of its tail.'",
-  "people": "ингуши",
-  "type": "предание",
-  "sources": [
-   "https://1.librebook.me/skazki_i_legendy_ingushei_i_chechencev/vol3/1",
    "https://www.mifoteka.ru/books/skazki_i_legendi_ingushey_i_chechentsev.htm"
   ],
   "group": "nakh"
@@ -6782,21 +6752,6 @@
   "group": "transcaucasia"
  },
  {
-  "title": "Как жители Керкенджа ходили за дровами",
-  "summary": "Жители армянского села Керкендж заспорили, чей топор острее, и попросили проезжего рассудить. Тот попробовал все топоры, сложил в перемётную суму и ускакал. Поймав жеребёнка его кобылы, сельчане навьючили на него свою одежду, чтобы не убежал, но жеребёнок весело умчался к матери. Голые, они побили священника за то, что тот не отдал свои штаны.",
-  "moral": "Спор о пустяках и глупые решения оставляют ни с чем.",
-  "title_en": "How the People of Kerkendj Went to Cut Wood",
-  "summary_en": "The villagers of the Armenian village of Kerkendj argued over whose axe was sharpest and asked a passing rider to judge. He tried every axe, packed them into his saddlebag and galloped off. Catching his mare's foal, the villagers loaded it with their clothes so it could not run away, but the foal trotted merrily after its mother. Left naked, they beat the priest for keeping his trousers.",
-  "moral_en": "Quarrels over trifles and foolish schemes leave you with nothing.",
-  "people": "армяне",
-  "type": "анекдот",
-  "sources": [
-   "https://archive.org/details/dirr-1925-caucasian-folk-tales",
-   "https://archive.org/details/kaukasische-marchen"
-  ],
-  "group": "transcaucasia"
- },
- {
   "title": "Ослиное яйцо",
   "summary": "Староста Керкенджа Киракос купил на базаре дыню, поверив, что это ослиное яйцо. По дороге дыня скатилась и разбилась о корень, а из-за дерева выскочил заяц. Киракос долго гнался за «ослёнком». Когда жена пожалела, что не сможет ездить на нём в монастырь, он поколотил её за то, что она сломала бы бедняжке спину.",
   "moral": "Легковерие делает человека посмешищем.",
@@ -8257,7 +8212,7 @@
   "title": "Бедняк и змея с сундуком",
   "summary": "Бедняк, просивший у бога смерти, нашёл сундучок со змеёй, и та обвилась ему вокруг шеи: за добро, мол, платят злом. Подкупленная двумя курами лиса усомнилась, что змея помещалась в сундучке, и захлопнула её там. Змея за свободу дала бедняку камень и ужалила шаха; бедняк вылечил шаха, выговорив руку царевны. Везир бросил его в темницу, но змея снова ужалила шаха, обман раскрылся, и бедняк приехал во дворец верхом на осёдланном и подкованном везире, женился на царевне и стал наследником. Записано В. А. Емельяновым в 1899 г. в Нухе.",
   "moral": "Хитрость выручает, а злоба наказывается.",
-  "title_en": "The Poor Man and the Snake",
+  "title_en": "The Poor Man and the Snake in the Chest",
   "summary_en": "A poor man who had prayed for death found a little chest with a snake inside, and it coiled round his neck: good, it said, is repaid with evil. A fox, bribed with two hens, doubted the snake could fit in the chest and slammed the lid on it. For its freedom the snake gave the poor man a stone and bit the shah; the poor man cured the shah, having stipulated the princess's hand. The vizier threw him into prison, but the snake bit the shah again, the deceit came out, and the poor man rode to the palace on the saddled and shod vizier, married the princess and became heir. Recorded by V. A. Yemelyanov in 1899 in Nukha.",
   "moral_en": "Cunning saves, and malice is punished.",
   "people": "азербайджанцы",

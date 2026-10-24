@@ -342,25 +342,7 @@ Three men of Lahij went to Shemakha to learn Turkic and came back knowing one wo
 
 ---
 
-## 20. Как жители Керкенджа ходили за дровами
-
-*армяне — анекдот*
-
-Жители армянского села Керкендж заспорили, чей топор острее, и попросили проезжего рассудить. Тот попробовал все топоры, сложил в перемётную суму и ускакал. Поймав жеребёнка его кобылы, сельчане навьючили на него свою одежду, чтобы не убежал, но жеребёнок весело умчался к матери. Голые, они побили священника за то, что тот не отдал свои штаны.
-
-**Мораль:** Спор о пустяках и глупые решения оставляют ни с чем.
-
-### How the People of Kerkendj Went to Cut Wood
-
-The villagers of the Armenian village of Kerkendj argued over whose axe was sharpest and asked a passing rider to judge. He tried every axe, packed them into his saddlebag and galloped off. Catching his mare's foal, the villagers loaded it with their clothes so it could not run away, but the foal trotted merrily after its mother. Left naked, they beat the priest for keeping his trousers.
-
-**Moral:** Quarrels over trifles and foolish schemes leave you with nothing.
-
-Источники / Sources: https://archive.org/details/dirr-1925-caucasian-folk-tales, https://archive.org/details/kaukasische-marchen
-
----
-
-## 21. Ослиное яйцо
+## 20. Ослиное яйцо
 
 *армяне — анекдот*
 
@@ -378,7 +360,7 @@ Kirakos, headman of Kerkendj, bought a melon at the bazaar believing it was a do
 
 ---
 
-## 22. Огненный конь
+## 21. Огненный конь
 
 *армяне — сказка*
 
@@ -396,7 +378,7 @@ Something trampled the father's field every night. The elder brothers slept on w
 
 ---
 
-## 23. Сказка о свинье
+## 22. Сказка о свинье
 
 *грузины — сказка*
 
@@ -414,7 +396,7 @@ A poor childless couple had a pig that fetched water and kept house. A prince sa
 
 ---
 
-## 24. Змея и крестьянин
+## 23. Змея и крестьянин
 
 *грузины — сказка*
 
@@ -432,7 +414,7 @@ A king dreamt of a fox hanging by its tail, and no one could interpret it. A ser
 
 ---
 
-## 25. Три наставления
+## 24. Три наставления
 
 *мегрелы — сказка*
 
@@ -450,7 +432,7 @@ A poor orphan served a wise man for three years and received three precepts: thr
 
 ---
 
-## 26. Хитрый старик и деви
+## 25. Хитрый старик и деви
 
 *мегрелы — сказка*
 
@@ -468,7 +450,7 @@ A lazy old man was turned out by his daughters-in-law with a jar of flour, an eg
 
 ---
 
-## 27. Пастух-судья
+## 26. Пастух-судья
 
 *мегрелы — сказка*
 
@@ -486,7 +468,7 @@ A shepherd revised the king's viziers' verdict so wisely that the king made him 
 
 ---
 
-## 28. Царь и мудрец
+## 27. Царь и мудрец
 
 *грузины (гурийцы) — притча*
 
@@ -504,7 +486,7 @@ Shah Ali promised three hundred gold pieces to anyone who could ask a question h
 
 ---
 
-## 29. Царский сын
+## 28. Царский сын
 
 *грузины (гурийцы) — притча*
 
@@ -522,7 +504,7 @@ A smith's wife nursing the king's son swapped him for her own child. Years later
 
 ---
 
-## 30. Зубы и беззубый
+## 29. Зубы и беззубый
 
 *грузины (гурийцы) — притча*
 
@@ -540,7 +522,7 @@ Shah Ali wanted to feed the hungriest man in his realm. An old man and a young m
 
 ---
 
-## 31. Каприз царицы
+## 30. Каприз царицы
 
 *грузины (гурийцы) — притча*
 
@@ -558,7 +540,7 @@ A queen wanted a palace built from the bones of every kind of bird, and the king
 
 ---
 
-## 32. Отцовское пророчество
+## 31. Отцовское пророчество
 
 *грузины (гурийцы) — притча*
 
@@ -576,7 +558,7 @@ A father, beating his son, kept saying he would never come to any good. The son 
 
 ---
 
-## 33. Отшельник-философ
+## 32. Отшельник-философ
 
 *грузины (гурийцы) — притча*
 
@@ -594,7 +576,7 @@ A sage marvelled at nature's lack of symmetry: a huge walnut tree bears tiny nut
 
 ---
 
-## 34. Остроумный ответ
+## 33. Остроумный ответ
 
 *грузины (гурийцы) — притча*
 
@@ -612,7 +594,7 @@ A king imprisoned a lord and promised to free him if he brought a horse that was
 
 ---
 
-## 35. Одноглазый великан (мегрельский вариант)
+## 34. Одноглазый великан (мегрельский вариант)
 
 *мегрелы — сказка*
 
@@ -630,7 +612,7 @@ A traveller saved from wolves between Redut-Kale and Anaklia was consoled by his
 
 ---
 
-## 36. Искусный вор
+## 35. Искусный вор
 
 *грузины (имеретинцы) — сказка*
 
@@ -648,7 +630,7 @@ Peter, a thief's son, outdid his uncle Simon: while Simon plucked a feather from
 
 ---
 
-## 37. Нахлебник
+## 36. Нахлебник
 
 *грузины — сказка*
 
@@ -666,7 +648,7 @@ A lazy man whom his neighbours were tired of feeding went to ask God himself for
 
 ---
 
-## 38. Земля своё возьмёт
+## 37. Земля своё возьмёт
 
 *грузины — сказка*
 
@@ -684,7 +666,7 @@ A widow's son set out to find the land where there is no death. A stag whose ant
 
 ---
 
-## 39. Золотоволосые дети
+## 38. Золотоволосые дети
 
 *грузины — сказка*
 
@@ -702,7 +684,7 @@ At their stepmother's urging, a father threw his three daughters into a pit, but
 
 ---
 
-## 40. Два брата
+## 39. Два брата
 
 *грузины — сказка*
 
@@ -720,7 +702,7 @@ One brother tricked the other into sharing his bread first and then abandoned hi
 
 ---
 
-## 41. Пастух и дитя удачи
+## 40. Пастух и дитя удачи
 
 *грузины — сказка*
 
@@ -738,7 +720,7 @@ A shepherd overheard angels decide to give his childless master a son whose ever
 
 ---
 
-## 42. Две потери
+## 41. Две потери
 
 *грузины (гурийцы) — притча*
 
@@ -756,7 +738,7 @@ During a storm a scholar on board could not understand the skipper's orders and 
 
 ---
 
-## 43. Царский советник
+## 42. Царский советник
 
 *грузины (гурийцы) — притча*
 
@@ -774,7 +756,7 @@ A counsellor decided to test the love of his king, wife and friends: he told his
 
 ---
 
-## 44. Удача дурака
+## 43. Удача дурака
 
 *грузины (гурийцы) — сказка*
 
@@ -792,7 +774,7 @@ His brothers cheated the fool in dividing the inheritance, leaving him a single 
 
 ---
 
-## 45. Верный слуга
+## 44. Верный слуга
 
 *удины — сказка*
 
@@ -810,7 +792,7 @@ The youngest prince spent his money not on merrymaking but on paying off a dead 
 
 ---
 
-## 46. Золотая девушка
+## 45. Золотая девушка
 
 *армяне — сказка*
 
@@ -828,7 +810,7 @@ A wicked stepmother made her husband abandon his daughter and son in the mountai
 
 ---
 
-## 47. Суженые судьбы
+## 46. Суженые судьбы
 
 *армяне — сказка*
 
@@ -846,7 +828,7 @@ On the same night the son of the King of the West and the daughter of the King o
 
 ---
 
-## 48. Невеста родника
+## 47. Невеста родника
 
 *армяне — сказка*
 
@@ -864,7 +846,7 @@ A mother who forgot to buy a dress for her youngest daughter cried "Tush!" at a 
 
 ---
 
-## 49. Трус-богатырь
+## 48. Трус-богатырь
 
 *армяне — сказка*
 
@@ -882,7 +864,7 @@ Poor Dyjhicon ran away from his nagging wife with his cow, killed seven flies wi
 
 ---
 
-## 50. Волшебное кольцо
+## 49. Волшебное кольцо
 
 *армяне — сказка*
 
@@ -900,7 +882,7 @@ A poor youth spent his last pennies ransoming a kitten, a mouse, a puppy and a l
 
 ---
 
-## 51. Глупец
+## 50. Глупец
 
 *армяне — сказка*
 
@@ -918,7 +900,7 @@ A man who had squandered his inheritance went to look for his Luck. On the way a
 
 ---
 
-## 52. Морская дева
+## 51. Морская дева
 
 *армяне — сказка*
 
@@ -936,7 +918,7 @@ Keeping his mother's command, a youth threw a loaf into the sea every morning. A
 
 ---
 
-## 53. Женские хитрости
+## 52. Женские хитрости
 
 *армяне — сказка*
 
@@ -954,7 +936,7 @@ Serkis the ploughman boasted that he did not fear a woman's tricks. His wife sec
 
 ---
 
-## 54. Сальман и Ростом
+## 53. Сальман и Ростом
 
 *армяне — сказка*
 
@@ -972,7 +954,7 @@ The giant tyrant Salman took tribute from the whole world except the land of Cha
 
 ---
 
-## 55. Воробей и двое детей
+## 54. Воробей и двое детей
 
 *армяне — сказка*
 
@@ -990,7 +972,7 @@ A stepmother boiled the seed grain to ruin her husband and planned to drown her 
 
 ---
 
-## 56. Старуха и кошка
+## 55. Старуха и кошка
 
 *армяне — сказка*
 
@@ -1008,7 +990,7 @@ An old woman cut off the tail of a cat that kept licking up her milk. To get the
 
 ---
 
-## 57. Советы Соломона
+## 56. Советы Соломона
 
 *грузины (имеретинцы) — легенда*
 
@@ -1026,7 +1008,7 @@ A servant gave up his wages for Solomon's advice: tell no one your secrets, lend
 
 ---
 
-## 58. Соломон-псарь
+## 57. Соломон-псарь
 
 *грузины (имеретинцы) — легенда*
 
@@ -1044,7 +1026,7 @@ A king seized every foal in the land, claiming each was descended from his mares
 
 ---
 
-## 59. Отшельник и Соломон
+## 58. Отшельник и Соломон
 
 *армяне — легенда*
 
@@ -1062,7 +1044,7 @@ Solomon and a courtier went to ask a hermit's advice. Knowing they were coming, 
 
 ---
 
-## 60. Замок из птичьих перьев
+## 59. Замок из птичьих перьев
 
 *армяне — легенда*
 
@@ -1080,7 +1062,7 @@ To please one of his wives, Solomon set about building a castle of birds' feathe
 
 ---
 
-## 61. Младенец Александр
+## 60. Младенец Александр
 
 *армяне — легенда*
 
@@ -1098,7 +1080,7 @@ The newborn Alexander at once got up and ran round the corners of the room. He r
 
 ---
 
-## 62. Мать Александра и хлеб
+## 61. Мать Александра и хлеб
 
 *армяне — легенда*
 
@@ -1116,7 +1098,7 @@ In her grief Alexander's mother would not allow her son to be buried. The courti
 
 ---
 
-## 63. Александр в стране праведных бедняков
+## 62. Александр в стране праведных бедняков
 
 *грузины — легенда*
 
@@ -1134,7 +1116,7 @@ The last quarter of the world, across the sea, belonged to the Just Poor. Alexan
 
 ---
 
-## 64. Бугач-хан, сын Дирсе-хана
+## 63. Бугач-хан, сын Дирсе-хана
 
 *азербайджанцы — эпос*
 
@@ -1152,7 +1134,7 @@ Childless Dirse Khan, on advice, gave a feast for the poor, and a son was born t
 
 ---
 
-## 65. Разграбление дома Салур-Казана
+## 64. Разграбление дома Салур-Казана
 
 *азербайджанцы — эпос*
 
@@ -1170,7 +1152,7 @@ While Kazan was hunting, the Georgian king Shökli plundered his camp and carrie
 
 ---
 
-## 66. Бамсы Бейрек
+## 65. Бамсы Бейрек
 
 *азербайджанцы — эпос*
 
@@ -1188,7 +1170,7 @@ The son of Bay Büre was named Bamsi Beyrek by Dede Korkut, and with Korkut's he
 
 ---
 
-## 67. Пленение Уруза
+## 66. Пленение Уруза
 
 *азербайджанцы — эпос*
 
@@ -1206,7 +1188,7 @@ Kazan realised that his son Uruz was sixteen and had never seen battle, so he to
 
 ---
 
-## 68. Дели Домрул
+## 67. Дели Домрул
 
 *азербайджанцы — эпос*
 
@@ -1224,7 +1206,7 @@ Wild Dumrul challenged Azrael, the angel of death, and then repented. God agreed
 
 ---
 
-## 69. Кан Турали
+## 68. Кан Турали
 
 *азербайджанцы — эпос*
 
@@ -1242,7 +1224,7 @@ Kan Turali overcame a bull, a lion and a camel with his bare hands and won the h
 
 ---
 
-## 70. Йигенек, сын Газылыг-Коджи
+## 69. Йигенек, сын Газылыг-Коджи
 
 *азербайджанцы — эпос*
 
@@ -1260,7 +1242,7 @@ Kazilik Koja was captured by King Direk of Arshuvan and spent sixteen years in c
 
 ---
 
-## 71. Эмрен, сын Бекиля
+## 70. Эмрен, сын Бекиля
 
 *азербайджанцы — эпос*
 
@@ -1278,7 +1260,7 @@ Begil, warden of the frontier, felt slighted by Bayindir Khan, and then broke hi
 
 ---
 
-## 72. Сегрек, сын Ушун-Коджи
+## 71. Сегрек, сын Ушун-Коджи
 
 *азербайджанцы — эпос*
 
@@ -1296,7 +1278,7 @@ Ushun Koja's elder son Egrek was imprisoned in Alinja Tower. The younger son, Se
 
 ---
 
-## 73. Пленение Салур-Казана
+## 72. Пленение Салур-Казана
 
 *азербайджанцы — эпос*
 
@@ -1314,7 +1296,7 @@ Kazan was captured at Trebizond and in prison refused to praise his captors. His
 
 ---
 
-## 74. Смерть Бейрека
+## 73. Смерть Бейрека
 
 *азербайджанцы — эпос*
 
@@ -1332,7 +1314,7 @@ The Outer Oghuz rebelled against Kazan Khan, feeling he favoured the Inner Oghuz
 
 ---
 
-## 75. Сын рыбака
+## 74. Сын рыбака
 
 *грузины (имеретинцы) — сказка*
 
@@ -1350,7 +1332,7 @@ A fisherman's son took pity on a wondrous red fish and let it go, and his angry 
 
 ---
 
-## 76. Учитель и ученик
+## 75. Учитель и ученик
 
 *грузины — сказка*
 
@@ -1368,7 +1350,7 @@ A poor peasant left his son for a year to be taught by a devil who came out of a
 
 ---
 
-## 77. Сновидец
+## 76. Сновидец
 
 *грузины — сказка*
 
@@ -1386,7 +1368,7 @@ A stepmother beat her stepson and drove him out because he could not give her hi
 
 ---
 
-## 78. Райская роза
+## 77. Райская роза
 
 *грузины — сказка*
 
@@ -1404,7 +1386,7 @@ A peasant's youngest daughter asked for a Rose of Paradise, and her father picke
 
 ---
 
-## 79. Соловей и соловьиха
+## 78. Соловей и соловьиха
 
 *грузины — сказка*
 
@@ -1422,7 +1404,7 @@ Three times the youngest prince built a church, and three times an old man passi
 
 ---
 
-## 80. Плешивый гусопас
+## 79. Плешивый гусопас
 
 *грузины — сказка*
 
@@ -1440,7 +1422,7 @@ A childless peasant reached the White Div and got apples from him on condition o
 
 ---
 
-## 81. Три брата-вора
+## 80. Три брата-вора
 
 *курды — сказка*
 
@@ -1458,7 +1440,7 @@ Three identical brothers, Hadji, Nadr and Badyr, gave their whole inheritance, a
 
 ---
 
-## 82. Удинская сказка о Рустуме
+## 81. Удинская сказка о Рустуме
 
 *удины — сказка*
 
@@ -1476,7 +1458,7 @@ Rustum, a shepherd's son, grew up at the king's court so strong that in games he
 
 ---
 
-## 83. Волшебный соловей
+## 82. Волшебный соловей
 
 *армяне — сказка*
 
@@ -1494,7 +1476,7 @@ A king built a church three times, and each time a monk appeared in a fog and sa
 
 ---
 
-## 84. Мальчик, не рассказавший сна
+## 83. Мальчик, не рассказавший сна
 
 *армяне — сказка*
 
@@ -1512,7 +1494,7 @@ A boy had a dream and refused to tell it to his mother, his father, a traveller 
 
 ---
 
-## 85. Сиаманто и Гюлизар
+## 84. Сиаманто и Гюлизар
 
 *армяне — сказка*
 
@@ -1530,7 +1512,7 @@ The Armenian youth Sia-Manto and the Kurdish maiden Guje-Zare dreamed on the sam
 
 ---
 
-## 86. Как керкенджцы ходили по дрова
+## 85. Как керкенджцы ходили по дрова
 
 *армяне (Керкендж) — анекдот*
 
@@ -1548,7 +1530,7 @@ The people of Kerkendj and their priest argued over whose axe was sharpest and a
 
 ---
 
-## 87. Молла Насреддин: Яйца в платке
+## 86. Молла Насреддин: Яйца в платке
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1566,7 +1548,7 @@ A wag carrying fifteen eggs in a cloth promised them to Nasreddin if he guessed 
 
 ---
 
-## 88. Молла Насреддин: Скороход
+## 87. Молла Насреддин: Скороход
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1584,7 +1566,7 @@ Nasreddin's second wife bore a son three months after the wedding. Nasreddin nam
 
 ---
 
-## 89. Молла Насреддин: Камень и старость
+## 88. Молла Насреддин: Камень и старость
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1602,7 +1584,7 @@ When people said strength fails in old age, Nasreddin objected: there is a stone
 
 ---
 
-## 90. Молла Насреддин: Ветер в огороде
+## 89. Молла Насреддин: Ветер в огороде
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1620,7 +1602,7 @@ Caught by the gardener in someone else's garden, Nasreddin said the wind had blo
 
 ---
 
-## 91. Молла Насреддин: Счёт Насреддина
+## 90. Молла Насреддин: Счёт Насреддина
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1638,7 +1620,7 @@ Nasreddin was asked to share four drachmas equally among three people. He gave t
 
 ---
 
-## 92. Молла Насреддин: Руки были заняты
+## 91. Молла Насреддин: Руки были заняты
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1656,7 +1638,7 @@ The heavily armed Nasreddin was robbed of everything. Asked why he had not defen
 
 ---
 
-## 93. Молла Насреддин: Орехи со скорлупой
+## 92. Молла Насреддин: Орехи со скорлупой
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1674,7 +1656,7 @@ Nasreddin ate nuts shells and all, explaining that he had paid for them; ask the
 
 ---
 
-## 94. Молла Насреддин: Баранья голова
+## 93. Молла Насреддин: Баранья голова
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1692,7 +1674,7 @@ As a boy Nasreddin ate everything off a sheep's head on the way home. He told hi
 
 ---
 
-## 95. Молла Насреддин: Сыр
+## 94. Молла Насреддин: Сыр
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1710,7 +1692,7 @@ Hungry Nasreddin praised cheese, then, hearing there was none, began to run it d
 
 ---
 
-## 96. Молла Насреддин: Подпруга
+## 95. Молла Насреддин: Подпруга
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1728,7 +1710,7 @@ When a neighbour asked to borrow his girth, Nasreddin said his wife was drying g
 
 ---
 
-## 97. Молла Насреддин: Даровые яблоки
+## 96. Молла Насреддин: Даровые яблоки
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1746,7 +1728,7 @@ To get rid of noisy children, Nasreddin shouted that apples were being given awa
 
 ---
 
-## 98. Молла Насреддин: Прыжок через ручей
+## 97. Молла Насреддин: Прыжок через ручей
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1764,7 +1746,7 @@ Nasreddin leapt at a brook and fell in. 'Ah, the years of my youth!' he sighed, 
 
 ---
 
-## 99. Молла Насреддин: Три крика осла
+## 98. Молла Насреддин: Три крика осла
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1782,7 +1764,7 @@ Nasreddin sawed off the branch he sat on and fell, as a passer-by had warned. Th
 
 ---
 
-## 100. Молла Насреддин: Говорящий чинар
+## 99. Молла Насреддин: Говорящий чинар
 
 *народы Кавказа (Насреддин) — анекдот*
 
@@ -1800,7 +1782,7 @@ To punish his unfaithful wife, Nasreddin sent her with pancakes to a 'prophetic'
 
 ---
 
-## 101. Амиран на Эльбрусе (сванский вариант)
+## 100. Амиран на Эльбрусе (сванский вариант)
 
 *сваны — сказание*
 
@@ -1818,7 +1800,7 @@ The smith Daredjiani heard weeping on Elbrus and found below a cliff a beautiful
 
 ---
 
-## 102. Рустамзал, сын Гахрамана
+## 101. Рустамзал, сын Гахрамана
 
 *азербайджанцы (кавказские татары) — сказка*
 
@@ -1836,7 +1818,7 @@ An old woman taunted Rustumsal that he would do better to rescue his aunt, whom 
 
 ---
 
-## 103. Младший из трёх
+## 102. Младший из трёх
 
 *армяне — сказка*
 
@@ -1854,7 +1836,7 @@ Only the Apple of Life from an Indian garden could cure the sick king, and a gia
 
 ---
 
-## 104. Зульвисия
+## 103. Зульвисия
 
 *армяне — сказка*
 
@@ -1872,7 +1854,7 @@ A king who went hunting in an enchanted land never returned. His younger son set
 
 ---
 
-## 105. Сын-Дракон и Сын Солнца
+## 104. Сын-Дракон и Сын Солнца
 
 *армяне — сказка*
 
@@ -1890,7 +1872,7 @@ A childless king envied a snake with its young, and a half-dragon child was born
 
 ---
 
-## 106. Мирза
+## 105. Мирза
 
 *армяне — сказка*
 
@@ -1908,7 +1890,7 @@ An old king who kept his rebel brother chained between heaven and earth told his
 
 ---
 
-## 107. Близнецы
+## 106. Близнецы
 
 *армяне — сказка*
 
@@ -1926,7 +1908,7 @@ Three sisters chatted by a brook: the eldest promised to weave a tent for a whol
 
 ---
 
-## 108. Бедик и Неуязвимый великан
+## 107. Бедик и Неуязвимый великан
 
 *армяне — сказка*
 
@@ -1944,7 +1926,7 @@ Bedik, the youngest of seven princes, lost his servants and wealth in his wander
 
 ---
 
-## 109. Симон, друг змей
+## 108. Симон, друг змей
 
 *армяне — сказка*
 
@@ -1962,7 +1944,7 @@ Simon the shepherd, at the foot of Ararat, used his club to save the Snake King'
 
 ---
 
-## 110. Сын бедной вдовы
+## 109. Сын бедной вдовы
 
 *армяне — сказка*
 
@@ -1980,7 +1962,7 @@ Choosing a husband, a princess threw a golden apple three times, and each time i
 
 ---
 
-## 111. Золотоголовая рыба
+## 110. Золотоголовая рыба
 
 *армяне — сказка*
 
@@ -1998,7 +1980,7 @@ A blind king could be cured only by a tincture of the blood of the Golden-Headed
 
 ---
 
-## 112. Муж или жена — кто?
+## 111. Муж или жена — кто?
 
 *армяне — сказка*
 
@@ -2016,7 +1998,7 @@ A king and queen argued whose virtue kept the harmony of a goldsmith and his wif
 
 ---
 
-## 113. Злая мачеха
+## 112. Злая мачеха
 
 *армяне — сказка*
 
@@ -2034,7 +2016,7 @@ A dying hunter forbade his son to hunt in the Black Mountains. The youth disobey
 
 ---
 
-## 114. Мудрый ткач
+## 113. Мудрый ткач
 
 *армяне — сказка*
 
@@ -2052,7 +2034,7 @@ A foreign envoy silently drew a line around the king's throne and sat down. No o
 
 ---
 
-## 115. Ум или Счастье — кто?
+## 114. Ум или Счастье — кто?
 
 *армяне — сказка*
 
@@ -2070,7 +2052,7 @@ Mind and Luck argued over which makes a man a man and tested a ploughman. Luck g
 
 ---
 
-## 116. Красота Мира
+## 115. Красота Мира
 
 *армяне — сказка*
 
@@ -2088,7 +2070,7 @@ A Baghdad merchant warned his son never to go to Tiflis. The son went and was ru
 
 ---
 
-## 117. Мастер Абдулла
+## 116. Мастер Абдулла
 
 *азербайджанцы — сказка*
 
@@ -2106,7 +2088,7 @@ A padishah of Shirvan executed every builder who failed to finish his palace. Ma
 
 ---
 
-## 118. Ученик портного
+## 117. Ученик портного
 
 *азербайджанцы — сказка*
 
@@ -2124,7 +2106,7 @@ A tailor's apprentice had a dream but refused to tell it, even to the shah, unti
 
 ---
 
-## 119. Сказка о плешивом и кази
+## 118. Сказка о плешивом и кази
 
 *азербайджанцы — сказка*
 
@@ -2142,7 +2124,7 @@ A qadi never kept a servant more than a week, beating them all. The Bald Lad hir
 
 ---
 
-## 120. Пёс шахсевенского хаджи
+## 119. Пёс шахсевенского хаджи
 
 *азербайджанцы — анекдот*
 
@@ -2160,7 +2142,7 @@ A rich hajji buried his faithful dog Bozdar in a shroud, with Koran readings and
 
 ---
 
-## 121. Бедняк и змея с сундуком
+## 120. Бедняк и змея с сундуком
 
 *азербайджанцы — сказка*
 
@@ -2168,7 +2150,7 @@ A rich hajji buried his faithful dog Bozdar in a shroud, with Koran readings and
 
 **Мораль:** Хитрость выручает, а злоба наказывается.
 
-### The Poor Man and the Snake
+### The Poor Man and the Snake in the Chest
 
 A poor man who had prayed for death found a little chest with a snake inside, and it coiled round his neck: good, it said, is repaid with evil. A fox, bribed with two hens, doubted the snake could fit in the chest and slammed the lid on it. For its freedom the snake gave the poor man a stone and bit the shah; the poor man cured the shah, having stipulated the princess's hand. The vizier threw him into prison, but the snake bit the shah again, the deceit came out, and the poor man rode to the palace on the saddled and shod vizier, married the princess and became heir. Recorded by V. A. Yemelyanov in 1899 in Nukha.
 
@@ -2178,7 +2160,7 @@ A poor man who had prayed for death found a little chest with a snake inside, an
 
 ---
 
-## 122. Жёлтая дыня
+## 121. Жёлтая дыня
 
 *азербайджанцы — сказка*
 
@@ -2196,7 +2178,7 @@ A peasant was saving a fragrant yellow melon for the khan. A black-eared hare ni
 
 ---
 
-## 123. Учёная кошка
+## 122. Учёная кошка
 
 *азербайджанцы — сказка*
 
@@ -2214,7 +2196,7 @@ A greedy shah fleeced visiting merchants: his cat held seven lamps on its tail a
 
 ---
 
-## 124. Пастух
+## 123. Пастух
 
 *азербайджанцы — сказка*
 
@@ -2232,7 +2214,7 @@ A shepherd moved with his mother to Ganja. The market warden took his hens and p
 
 ---
 
-## 125. Суд кази
+## 124. Суд кази
 
 *азербайджанцы — анекдот*
 
@@ -2250,7 +2232,7 @@ The poor man Sadyk, dragged to the qadi by a moneylender, on the way pulled off 
 
 ---
 
-## 126. Ильяс и Гулам
+## 125. Ильяс и Гулам
 
 *азербайджанцы — сказка*
 
@@ -2268,7 +2250,7 @@ Ilyas's mother taught him to test a companion: does he split the flatbread in yo
 
 ---
 
-## 127. Жена мельника
+## 126. Жена мельника
 
 *азербайджанцы — сказка*
 
@@ -2286,7 +2268,7 @@ A khan fell in love with Nushaperi, the beautiful wife of a poor miller, seized 
 
 ---
 
-## 128. Сапожник Мамед
+## 127. Сапожник Мамед
 
 *азербайджанцы — сказка*
 
@@ -2304,7 +2286,7 @@ Poor Mamed the cobbler earned a penny a day. Egged on by a rake, his wife demand
 
 ---
 
-## 129. Сказка про Азиза
+## 128. Сказка про Азиза
 
 *азербайджанцы — сказка*
 
@@ -2322,7 +2304,7 @@ Forty rakes posing as relatives fleeced Aziz, an orphaned merchant's son. His mo
 
 ---
 
-## 130. Носильщик Ахмед
+## 129. Носильщик Ахмед
 
 *азербайджанцы — сказка*
 
@@ -2340,7 +2322,7 @@ A merchant brought the strongman porter Ahmed to the padishah, and he was made a
 
 ---
 
-## 131. Ильяс
+## 130. Ильяс
 
 *азербайджанцы — сказка*
 
@@ -2358,7 +2340,7 @@ The slave Ilyas persuaded his ruined master to sell him to the padishah for five
 
 ---
 
-## 132. Сказка про Салеха и Валеха
+## 131. Сказка про Салеха и Валеха
 
 *азербайджанцы — сказка*
 
@@ -2376,7 +2358,7 @@ Two impoverished brothers from Ganja hired on with shopkeepers in India. Honest 
 
 ---
 
-## 133. Мелик-Мамед и Мелик-Ахмед (о названых братьях)
+## 132. Мелик-Мамед и Мелик-Ахмед (о названых братьях)
 
 *азербайджанцы — сказка*
 
@@ -2394,7 +2376,7 @@ On advice from a dream, a shah and a shepherd shared a magic apple, and alike so
 
 ---
 
-## 134. Сказка об Искендере, знающем птичий язык
+## 133. Сказка об Искендере, знающем птичий язык
 
 *азербайджанцы — сказка*
 
@@ -2412,7 +2394,7 @@ A nightingale sang to the boy Iskender that he would become shah and his father 
 
 ---
 
-## 135. Сказка о трёх сёстрах
+## 134. Сказка о трёх сёстрах
 
 *азербайджанцы — сказка*
 
@@ -2430,7 +2412,7 @@ A dervish gave a father a shift made of onion skins for his eldest daughter and 
 
 ---
 
-## 136. Имам-сводня
+## 135. Имам-сводня
 
 *азербайджанцы — сказка*
 
@@ -2448,7 +2430,7 @@ The merchant's son Ahmed fell in love with the wife of the merchant Yusif. An ol
 
 ---
 
-## 137. Сказка о Нушапери-ханум
+## 136. Сказка о Нушапери-ханум
 
 *азербайджанцы — сказка*
 
@@ -2466,7 +2448,7 @@ Nushaperi-Khanum, daughter of a cruel padishah of Kandahar, walked the city at n
 
 ---
 
-## 138. Сирота Ибрагим и жадный лавочник
+## 137. Сирота Ибрагим и жадный лавочник
 
 *азербайджанцы — сказка*
 
@@ -2484,7 +2466,7 @@ Ibrahim, son of a dead bird-catcher, caught with his father's net a marvellous b
 
 ---
 
-## 139. Местан
+## 138. Местан
 
 *азербайджанцы — сказка*
 
@@ -2502,7 +2484,7 @@ The beautiful Nigar-Khanum, daughter of the merchant Mahmud, fell in love with t
 
 ---
 
-## 140. Гарагаш
+## 139. Гарагаш
 
 *азербайджанцы — сказка*
 
@@ -2520,7 +2502,7 @@ The woodcutter's old wife, chasing a fragrant leaf, ended up in a sorcerer-dervi
 
 ---
 
-## 141. Сказка о Кел-Гасане
+## 140. Сказка о Кел-Гасане
 
 *азербайджанцы — сказка*
 
@@ -2538,7 +2520,7 @@ Poor Nisa drank the egg of a wondrous bird in the forest and gave birth to a cha
 
 ---
 
-## 142. Бахтияр
+## 141. Бахтияр
 
 *азербайджанцы — сказка*
 
@@ -2556,7 +2538,7 @@ The poor old man Bakhtiyar dreamed of a sun on his right, a moon on his left and
 
 ---
 
-## 143. Сказка о Хатэме
+## 142. Сказка о Хатэме
 
 *азербайджанцы — сказка*
 
@@ -2574,7 +2556,7 @@ The generous Hatem, who gave every guest forty gold coins, heard of a palace at 
 
 ---
 
-## 144. Мамед
+## 143. Мамед
 
 *азербайджанцы — сказка*
 
@@ -2592,7 +2574,7 @@ His mother sold the scabby little thief Mamed at the bazaar to a band of forty r
 
 ---
 
-## 145. Дали и охотник Бетгил
+## 144. Дали и охотник Бетгил
 
 *сваны — баллада*
 
@@ -2610,7 +2592,7 @@ Dali, goddess of mountain game, chose the hunter Betgil as her lover, gave him a
 
 ---
 
-## 146. Охотник Чорла
+## 145. Охотник Чорла
 
 *сваны — баллада*
 
@@ -2628,7 +2610,7 @@ By Svan hunting law one may kill as many ibex as there are empty-handed hunters 
 
 ---
 
-## 147. Хайк и Бел
+## 146. Хайк и Бел
 
 *армяне (Мовсес Хоренаци) — легендарная история*
 
@@ -2646,7 +2628,7 @@ According to Movses Khorenatsi's History of Armenia, Hayk, son of Torgom, lived 
 
 ---
 
-## 148. Парнаваз и сокровище в пещере
+## 147. Парнаваз и сокровище в пещере
 
 *грузины («Жизнь царей», ок. 800 г.) — хроникальная легенда*
 
