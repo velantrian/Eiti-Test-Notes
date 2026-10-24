@@ -2,7 +2,7 @@
 
 **RU.** Пересказы мифов, легенд, сказок и преданий (сначала по-русски, затем по-английски) с моралью и ссылками на источники.
 - `caucasus/` — народы Кавказа: 599 текстов.
-- `ussr/` — народы СССР (Поволжье, степь, Сибирь, запад): 30 текстов.
+- `ussr/` — народы СССР (Поволжье, степь, Сибирь, запад): 42 текста.
 - `ancient/` — древние народы (шумеры, аккадцы, кельты, друиды, угаритяне и др.): 193 текста.
 - `americas/` — народы Северной и Южной Америки, индейцы (в работе): 96 текстов.
 
@@ -10,7 +10,7 @@
 
 **EN.** Retellings of myths, legends, tales and traditions (Russian first, then English) with a moral and source links.
 - `caucasus/`: peoples of the Caucasus, 599 items.
-- `ussr/`: peoples of the USSR (Volga-Ural, steppe, Siberia, west), 30 items.
+- `ussr/`: peoples of the USSR (Volga-Ural, steppe, Siberia, west), 42 items.
 - `ancient/`: ancient peoples (Sumerians, Akkadians, Celts, druids, Ugarit, and others), 193 items.
 - `americas/`: peoples of North and South America, Indigenous peoples (in progress), 96 items.
 

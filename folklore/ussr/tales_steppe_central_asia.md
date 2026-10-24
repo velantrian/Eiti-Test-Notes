@@ -215,3 +215,57 @@ During the Oirat devastation the rich Jakyp long has no heir. At last his prayer
 Источники / Sources: https://en.wikipedia.org/wiki/Epic_of_Manas
 
 ---
+
+## 13. Солнечный и Лунный царевичи и змеиные боги
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — волшебная сказка*
+
+Мачеха притворяется больной и требует сердце царевича, сваренное в кунжутном масле. Её родной сын Лунный предупреждает сводного брата Солнечного, и они бегут вместе. В безводной пустыне Лунный умирает, но отшельник оживляет его, и братья живут у него как сыновья. В соседнем ханстве змеиным богам перед поливом полей ежегодно приносят в жертву юношу, рождённого в год Тигра, — таков Солнечный. Отшельник прячет его в кувшин, но, когда посланцы бьют старика, юноша выдаёт себя. Ханская дочь просит пощадить его или бросить в воду вместе с ним, и их зашивают в одну бычью шкуру. Каждый из двоих жалеет не себя, а другого. Тронутые змеиные боги отпускают их и пускают воду на поля. Братья женятся на дочерях хана и возвращаются домой, а мачеха от стыда падает мёртвой.
+
+**Мораль:** Самоотверженность трогает даже богов; коварство губит само себя.
+
+### Sunshine, Moonshine and the Serpent-gods
+
+A stepmother feigns illness and demands a prince's heart stewed in sesame oil. Her own son Moonshine warns his half-brother Sunshine, and they flee together. In a waterless desert Moonshine dies, but a hermit revives him, and the brothers live with him as his sons. In the neighbouring khanate a youth born in the Tiger year is sacrificed yearly to the serpent-gods before the fields are watered — and Sunshine is one. The hermit hides him in a jar, but when the envoys beat the old man, the youth gives himself away. The Khan's daughter begs them to spare him or throw her in with him, and they are sewn into one ox-hide. Each laments for the other rather than for themselves. Moved, the serpent-gods free them and let the water flow over the fields. The brothers marry the Khan's daughters and return home, and the stepmother drops dead of shame.
+
+**Moral:** Self-sacrifice moves even the gods; treachery destroys itself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 14. Ананда-резчик и Ананда-живописец
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — новелла*
+
+Завистливый живописец подаёт молодому хану поддельное письмо от покойного отца-хана из царства богов. В нём отец просит прислать к нему резчика, чтобы украсить храм: подняться туда можно на дыму костра. Жена резчика роет подземный ход под камнем на месте костра, и резчик уходит по нему домой. Месяц он сидит в тени и моется молоком, потом в белом газовом одеянии является с ответным «письмом»: теперь отцу нужен живописец. Поверив, живописец сам всходит на костёр и сгорает, а его крики заглушает та самая музыка, которую он придумал, чтобы не слышно было резчика.
+
+**Мораль:** Кто роет яму другому, сам в неё попадает.
+
+### Ânanda the Woodcarver and Ânanda the Painter
+
+A jealous painter gives the young Khan a forged letter from the late Khan in the realm of the gods. In it the father asks for the woodcarver to adorn his temple; one gets there on the smoke of a pyre. The carver's wife digs a tunnel under a stone at the pyre site, and he escapes home through it. For a month he keeps to the shade and washes in milk, then appears in white gauze with a reply 'letter': now the father needs the painter. Convinced, the painter mounts the pyre himself and burns, his cries drowned by the very music he devised to drown the carver's.
+
+**Moral:** He who digs a pit for another falls into it himself.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
+
+## 15. Молитва, что делает внезапно богатым
+
+*калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр) — новелла*
+
+Бедняк подслушивает, как старики собираются спросить бодхисаттву, за кого отдать дочь. Он залезает в статую и «божьим голосом» велит отдать её тому, кто первым постучит утром. Получив девушку и сокровища, он зарывает их в сундуке в степи и собирает милостыню на «молитву внезапного богатства». Ханский сын на охоте находит сундук. Девушка называет себя дочерью змеиного бога и соглашается выйти, только если в сундук посадят кого-то другого, — и туда сажают ручного тигра. Ночью бедняк, собираясь убить девушку, открывает сундук, и тигр съедает его, а родня смеётся за дверью: «Как усердно молится отец!» Позже придворные упрекают ханшу безродностью. У родителей она находит брата, дворцы и богатый храм, и хан убеждается в её знатности. Наутро всё великолепие исчезает: на месте стоит прежняя бедная хижина.
+
+**Мораль:** Обман оборачивается против обманщика, а добродетель находит заступника.
+
+### The Prayer making suddenly Rich
+
+A poor man overhears an old couple planning to ask the Bodhisattva whom their daughter should marry. He hides inside the image and, in a 'divine voice', tells them to give her to whoever knocks first in the morning. Given the girl and treasure, he buries them in a box on the steppe and begs alms for a 'prayer that makes suddenly rich'. A Khan's son out hunting finds the box. The girl says she is a serpent-god's daughter and will come out only if someone else is put in, so they put in a tame tiger. At night the poor man opens the box to kill the girl, and the tiger devours him while his family laugh outside: 'How diligently father prays!' Later the court sneers at the Khanin's lowly birth. At her parents' she finds a brother, palaces and a splendid temple, and the Khan is convinced of her standing. Next morning the splendour has vanished and the old poor hut stands as before.
+
+**Moral:** Deceit turns on the deceiver, and virtue finds a protector.
+
+Источники / Sources: https://www.gutenberg.org/ebooks/40402
+
+---
