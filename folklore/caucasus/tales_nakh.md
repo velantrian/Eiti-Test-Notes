@@ -2771,3 +2771,165 @@ A mother and daughter washed dirty swaddling cloths in the lake at Alka and turn
 Источники / Sources: https://1.librebook.me/skazki_i_legendy_ingushei_i_chechencev/vol3/1, https://www.mifoteka.ru/books/skazki_i_legendi_ingushey_i_chechentsev.htm
 
 ---
+
+## 155. Батыга-Шертко и поминки
+
+*ингуши (запись Б. Далгата, 1893) — легенда*
+
+Среди нарт-орстхойцев был Батыга-Шертко — защитник и вожак народа, умевший уходить на тот свет и возвращаться. У одного орстхойца умерла мать, и он, не зная, куда деться от горя, спросил Батыгу-Шертко, как ей там живётся. Тот ответил: «Если любишь мать, утешь её — зарежь что-нибудь из скота, и это будет принадлежать ей». Не поверив, орстхоец отправил с Батыгой-Шертко на тот свет доверенного человека, а сам зарезал петуха и курицу и вместе с корзиной чуреков раздал бедным. Путники увидели горы: под горой сидела мать, а на вершине — петух, курица и корзина с хлебом. Орстхоец, испытывая их, сказал, что ничего не резал, но, услышав всё вторично, поверил и стал справлять поминки. С тех пор, говорят, все убедились, что поминальное доходит до умерших, и обычай стал всеобщим.
+
+**Мораль:** Забота о близких не кончается с их смертью.
+
+### Batyga-Shertko and the Memorial Feast
+
+Among the Nart-Orstkhoi was Batyga-Shertko, the people's defender and leader, who could go to the other world and come back. One Orstkhoi, grieving for his dead mother, asked him how she fared there. He replied: 'If you love your mother, comfort her — slaughter some of your livestock, and it will be hers.' Doubtful, the man sent a trusted companion to the other world with Batyga-Shertko, while he slaughtered a rooster and a hen and gave them, with a basket of flatbread, to the poor. The travellers saw mountains: under a mountain sat the mother, and on its top were the rooster, the hen and the basket of bread. To test them the son said he had slaughtered nothing, but on hearing it all again he believed and began holding memorial feasts. Since then, it is said, everyone knew such offerings reach the dead, and the custom spread to all.
+
+**Moral:** Care for loved ones does not end with their death.
+
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+
+---
+
+## 156. Клятва убийцы и пещера на том свете
+
+*ингуши (запись Б. Далгата, 1893) — легенда о загробном воздаянии*
+
+Жрец Ганыж рассказывал: лекарь, бравший с людей лишнее, сидит на том свете под скалой и варит одну воду, а ложно поклявшийся сидит по пояс в грязи. Один человек поклялся Богом, что не вернётся домой, пока за день не убьёт своего врага, но к закату так и не нашёл его и сильно испугался. Ангел указал ему на молящегося рядом человека: «Вот он!» — и тот разрубил молящегося пополам; из верхней половины выбежал кабан, из нижней — свинья, и оба умчались в лес. Наутро ангел послал его в пещеру. Там жили муж и жена, а за дверью была привязана чёрная сука. Жена подала баранью голову и грудинку, все наелись — и муж, и гость, и сука, и жена, — а блюдо не убавилось. Хозяин объяснил: кто знает, что жена ему неверна, и молчит, того Бог после смерти обращает в кабана и свинью; баран у них неистощим, потому что жена когда-то без слов одолжила котёл незнакомке; а сука — его мать, бывшая скрягой. Говорили в старину: кто лжёт, пусть станет на том свете сукой на цепи.
+
+**Мораль:** Каждый поступок находит своё воздаяние; щедрость не оскудевает.
+
+### The Killer's Oath and the Cave in the Other World
+
+The priest Ganyzh told how the doctor who overcharged people sits in the other world under a cliff boiling plain water, and the perjurer sits waist-deep in mud. A man swore by God he would not go home until he killed his enemy within a day, but by sunset had not found him and grew very afraid. An angel pointed at a man praying nearby: 'There he is!' — and he cut the praying man in two; from the upper half ran a boar, from the lower a sow, and both fled into the forest. Next day the angel sent him to a cave. There lived a husband and wife, and a black bitch was tied by the door. The wife served a sheep's head and brisket; all ate their fill — husband, guest, bitch and wife — yet the dish never shrank. The host explained: a man who knows his wife is unfaithful and stays silent is turned by God after death into a boar and a sow; their mutton never runs out because his wife once lent her cauldron to a stranger without a word; and the bitch is his mother, who had been a miser. In old times people said: may a liar become a chained bitch in the other world.
+
+**Moral:** Every deed meets its reward; generosity never runs dry.
+
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+
+---
+
+## 157. Мать вьюг и её семь сыновей
+
+*чеченцы и ингуши (по Далгату) — астральный миф*
+
+На вершине Казбека, по вайнахским поверьям, жила богиня вьюг Дардза-нанилг — «мать вьюг». У неё было семь сыновей; они покинули её и ушли на небо — это Большая Медведица, которую называют «вьюгиными сыновьями». Сама богиня сидит на снежной вершине, у неё всегда горят три головни, и у неё неистощимый хлеб и варёная баранья ляжка: съеденное снова восстанавливается. Охотник Цоголь рассказывал, что богиня начертила на снегу Казбека волшебный круг, и никто не смеет переступить его; когда Цоголь поднялся в её владения, чтобы добыть тура, она обрушила на него груду камней и снега, и он спасся лишь чудом. Её никто не видел, но многие слышали её петушиный крик; все казбекские обвалы приписывали ей, а в Девдоракском ущелье ей устраивали жертвенник и летние празднества.
+
+**Мораль:** Есть пределы, за которые человеку заходить нельзя.
+
+### The Mother of Blizzards and Her Seven Sons
+
+In Vainakh belief the blizzard goddess Dardza-nanilg, 'mother of blizzards', lived on the summit of Kazbek. She had seven sons who left her and went up to the sky — they are the Big Dipper, called 'the blizzard's sons'. The goddess sits on the snowy peak with three firebrands always burning, and has inexhaustible bread and a boiled leg of mutton that renews itself as it is eaten. The hunter Tsogol told that she drew a magic circle in the snow of Kazbek that no mortal dares cross; when he climbed into her domain to take a tur, she hurled stones and snow on him, and he escaped only by a miracle. No one has seen her, but many have heard her cock-crow; all Kazbek's avalanches were blamed on her, and in the Devdorak gorge she had an altar and summer festivals.
+
+**Moral:** There are limits a human must not cross.
+
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+
+---
+
+## 158. Сели-Сата и Млечный Путь
+
+*ингуши (запись Б. Далгата, 1893) — миф*
+
+У нарт-орстхойцев была девушка невиданной красоты; никто не мог на ней жениться, ибо никто не уступал её другому, а громовержец Сели хотел её, но боялся Сеска-Солсу. Умирая, она велела три ночи сторожить её могилу. Сеска-Солса две ночи караулил сам, но на третью под утро задремал, и Сели осквернил могилу — тотчас родилась дочь. Проснувшийся Сеска-Солса ранил убегавшего Сели из лука; из этой раны, говорят ингуши, вываливаются кишки Сели, и их урчание — это гром. Девочку Сеска-Солса принёс домой; её назвали Сели-Сатой, и она стала вдвое красивее матери. Позже, выходя замуж за жителя неба, Сели-Сата несла солому для брачной постели — так возник Млечный Путь, «путь, по которому пронесли солому». Уходя, она испекла в золе треугольный хлеб; два угла сгорели, один уцелел — это три звезды треугольника, одна светлая и две тёмные, «треугольный хлеб Саты». Сата — покровительница девушек: невесты говорят, что если на их свадьбе здравицу скажет Сата, у них будут золотые ножницы и серебряная игла.
+
+**Мораль:** Даже на небе видны следы земных дел и забот.
+
+### Seli-Sata and the Milky Way
+
+The Nart-Orstkhoi had a maiden of matchless beauty; no one could marry her, since none would yield her to another, and the thunder god Seli wanted her but feared Seska-Solsa. Dying, she asked that her grave be guarded for three nights. Seska-Solsa kept watch himself for two nights but dozed off before dawn on the third, and Seli defiled the grave — at once a daughter was born. Waking, Seska-Solsa wounded the fleeing Seli with an arrow; from that wound, the Ingush say, Seli's entrails spill out, and their rumbling is thunder. Seska-Solsa took the girl home; she was named Seli-Sata and grew twice as beautiful as her mother. Later, marrying a dweller of the sky, Seli-Sata carried straw for the bridal bed — and so the Milky Way, 'the path where straw was carried', appeared. Before leaving she baked a triangular loaf in the ashes; two corners burned and one survived — the three stars of a triangle, one bright and two dim, 'Sata's triangular bread'. Sata is the patron of girls: brides say that if Sata toasts them at their wedding, they will have golden scissors and a silver needle.
+
+**Moral:** Even the sky bears traces of earthly deeds and cares.
+
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+
+---
+
+## 159. Озеро Амка и бык
+
+*чеченцы (запись В. Миллера, по Далгату) — топонимическое предание*
+
+Близ аула Ялхарой, в местности Амка, когда-то было озеро. Однажды мать с дочерью по неразумию стали стирать в его хрустальной воде грязные пелёнки, и разгневанный дух озера обратил обеих в камни, которые и теперь видны у Амки. Не желая оставаться в осквернённом ложе, озеро превратилось в могучего быка; он перешёл скалистый кряж, оставив огромную выемку, и спустился к пахотным полям. Люди запрягли быка в плуг. В первой борозде выступила грязь, во второй стало мокрее, в третьей проступила вода, а при четвёртой вода хлынула, затопив поле и всех людей; бык скрылся в волнах. Так появилось озеро Галанчож; его считают бездонным и не пьют его воды.
+
+**Мораль:** Не оскверняй чистую воду — её гнев страшен.
+
+### Lake Amka and the Bull
+
+Near the village of Yalkharoy, at a place called Amka, there was once a lake. One day a mother and daughter foolishly washed dirty swaddling cloths in its crystal water, and the angry lake spirit turned them both to stone; the stones can still be seen at Amka. Refusing to stay in its defiled bed, the lake became a mighty bull; it crossed a rocky ridge, leaving a huge hollow, and came down to the ploughlands. People yoked the bull to a plough. In the first furrow mud appeared, in the second it was wetter, in the third water seeped out, and at the fourth water burst forth, flooding the field and all the people; the bull vanished in the waves. So Lake Galanchozh appeared; it is thought bottomless, and no one drinks its water.
+
+**Moral:** Do not defile clean water — its anger is terrible.
+
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+
+---
+
+## 160. Сеска Солса, Селий Пиръа и мельница
+
+*чеченцы — нартское сказание*
+
+Братья Сеска Солса и Селий Пиръа были непохожи: старший могуч телом, младший слаб, но хитёр и умён и умел уходить в подземный мир Эл и возвращаться. Однажды он принёс из Эла водяную мельницу — до того у людей были только ручные. Сеска Солса пришёл посмотреть на чудо, унёс ковш и оба жернова к себе, но по дороге потерял потрясок и теперь должен был сам рукой подавать зерно, не отходя от мельницы. Пиръа предложил сделать потрясок за половину доли, и Солса согласился. Позже Солса решил разделиться с братом, и Пиръа попросил всех белоголовых синих коров и нижние земли, заваленные мусором и навозом всего села. Солса, решив, что это худшее, отдал их охотно, но хитрый Пиръа так получил лучшую долю. А ещё, говорят, Сеска Солса, потеряв на охоте трубку, скрутил табак в липовый луб — и майстинцы с тех пор так и делают.
+
+**Мораль:** Ум и знание дают людям больше, чем грубая сила.
+
+### Seska Solsa, Seliy Pira and the Mill
+
+The brothers Seska Solsa and Seliy Pira were unlike: the elder mighty of body, the younger weak but cunning and clever, able to go to the underworld El and return. Once he brought a water mill from El — until then people had only hand mills. Seska Solsa came to see the wonder, carried the hopper and both millstones home, but lost the shaker on the way and now had to feed the grain by hand, unable to leave the mill. Pira offered to make a shaker for half the share, and Solsa agreed. Later Solsa decided to divide property, and Pira asked for all the white-headed blue cows and the low lands covered with the whole village's refuse and dung. Thinking these the worst, Solsa gave them gladly, but clever Pira thus got the better share. And, it is said, Seska Solsa once lost his pipe while hunting and rolled tobacco in linden bast — and the Maisti people do so to this day.
+
+**Moral:** Wit and knowledge give people more than brute force.
+
+Источники / Sources: https://chechenlaw.ru/?p=1445
+
+---
+
+## 161. Как родился Сеска Солса
+
+*ингуши (информант Далгата Газбык) — нартское сказание*
+
+Одна девушка доила коров, а рядом лежал синий камень. Влюблённый в неё юноша сел на этот камень и, глядя на неё, так возбудился, что в камне зародился младенец — Сеска Солса. Святая женщина Сели-Сата узнала об этом, разбила камень и вынула ребёнка. Рассказчик, однако, добавил, что Сеска Солса помогал лишь своим орстхойцам и близким, а всему народу полезен не был: орстхойцы грабили и обижали других людей.
+
+**Мораль:** Герой одних может быть бедой для других.
+
+### How Seska Solsa Was Born
+
+A girl was milking cows, and a blue stone lay nearby. A youth in love with her sat on the stone and, gazing at her, became so aroused that a child was conceived in the stone — Seska Solsa. The holy woman Seli-Sata learned of it, broke the stone and took the baby out. The storyteller added, however, that Seska Solsa helped only his own Orstkhoi and kin and was of no use to the people as a whole: the Orstkhoi robbed and wronged others.
+
+**Moral:** One people's hero may be another's misfortune.
+
+Источники / Sources: https://chechenlaw.ru/?p=1397
+
+---
+
+## 162. Гибель нарт-орстхойцев и голубь Солсы
+
+*чеченцы и ингуши — нартское сказание (варианты)*
+
+Нарт-орстхойцы не стыдились дурных дел: собирались шайками, нападали, насильничали, угоняли в рабство. За это боги Дяла и Села покарали их: однажды под ними разверзлась земля, и они не смогли выбраться. Съев своих коней, они, по слову Сеска Солсы, решили умереть достойно, а не от голода, — и выпили по чаше расплавленной меди; Солса выпил три. Все умерли, лишь Солса, сгорая изнутри, ещё сидел. Он просил глотка воды у волка — тот ждал его смерти, чтобы съесть сердце; у ворона — тот ждал, чтобы выклевать глаза. Лишь лесной голубь, которому Солса не сделал ничего доброго, сжалился и принёс воды. Солса повязал ему на шею золотистую нить, и с тех пор у голубя золотые пёрышки на шее, а воркует он: «Для Эла жаль тебя, Сеска Солса». По другому варианту, орстхойцы пили медь после семи лет неурожая; а ещё говорят, что они переселились на небо и стали семью яркими звёздами на западе.
+
+**Мораль:** Милосердие ценнее платы за прошлые услуги.
+
+### The Fall of the Nart-Orstkhoi and Solsa's Dove
+
+The Nart-Orstkhoi were not ashamed of evil deeds: they gathered in gangs, raided, raped and took slaves. For this the gods Dyala and Sela punished them: one day the earth opened beneath them and they could not climb out. Having eaten their horses, they agreed with Seska Solsa to die with dignity rather than of hunger, and each drank a cup of molten copper; Solsa drank three. All died but Solsa, who sat burning inside. He asked a wolf for a sip of water — it was waiting to eat his heart; a raven — it was waiting to peck out his eyes. Only the wood pigeon, to whom Solsa had done no kindness, took pity and brought water. Solsa tied a golden thread round its neck, and since then the pigeon has golden feathers there and coos: 'El pities you, Seska Solsa.' In another version the Orstkhoi drank copper after seven years of famine; others say they moved to the sky and became seven bright stars in the west.
+
+**Moral:** Mercy is worth more than repayment for past favours.
+
+Источники / Sources: https://chechenlaw.ru/?p=1395, https://chechenlaw.ru/?p=1387, https://chechenlaw.ru/?p=1403
+
+---
+
+## 163. Жербаба и уход Сеска Солсы
+
+*чеченцы — нартское сказание*
+
+Встарь мир был благодатным, и ветер не дул: свисавшая с неба нитка с лоскутками никогда не шевелилась. Потом пришли нарт-орстхойцы во главе с Сеска Солсой, стали разорять сёла — и с ними в мир пришло зло и задули ветры, уносившие зерно и сено; урожаи оскудели. Однажды, чтобы взять большое село хитростью, орстхойцы разошлись по домам как гости. Солса с тринадцатью товарищами попал к старухе Жербабе. Та взяла муки в медный напёрсток и кусочек бараньего ребра и стала стряпать. Солса удивился: кого она этим накормит? Жербаба ответила: «Все насытитесь, ещё останется — это пища тех времён, когда не было ни ветра, ни Сеска Солсы. Кто его не видел — да не увидит, кто видел — пусть больше не увидит!» Солса сидел, побледнев как воск, и признался: «Я Сеска Солса». Он ушёл со своими людьми не только из села, но и из того края, и с тех пор их никто не видел.
+
+**Мораль:** Слово правды может остановить силу, перед которой бессильно оружие.
+
+### Zherbaba and the Departure of Seska Solsa
+
+Long ago the world was blessed and no wind blew: a thread with rags hanging from the sky never stirred. Then the Nart-Orstkhoi came, led by Seska Solsa, plundering villages — and with them evil came into the world and winds rose, scattering grain and hay; harvests dwindled. Once, to take a large village by cunning, the Orstkhoi went to the houses as guests. Solsa and thirteen companions came to old Zherbaba. She took a copper thimble of flour and a scrap of mutton rib and began to cook. Solsa wondered whom she could feed with that. Zherbaba said: 'You will all be full and there will be food left — this is food from the days before the wind and before Seska Solsa. Whoever has not seen him, may he never see him; whoever has, may he never see him again!' Solsa sat pale as wax and confessed: 'I am Seska Solsa.' He left with his men, not only the village but the whole land, and no one has seen them since.
+
+**Moral:** A word of truth can stop a force that weapons cannot.
+
+Источники / Sources: https://chechenlaw.ru/?p=1393
+
+---
