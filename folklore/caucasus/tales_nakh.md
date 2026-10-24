@@ -2951,3 +2951,21 @@ The Ingush especially revered the Sun — Dyala-Malkh, 'God's Sun': shrines face
 Источники / Sources: http://www.kunstkamera.ru/lib/rubrikator/03/03_05/978-5-88431-298-2/, https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
 
 ---
+
+## 165. Почему Сеска Солса стал одноглазым
+
+*чеченцы и ингуши (У.Б. Далгат 1972, с. 336; по изданию Х. Цечоева) — нартское сказание*
+
+В давние времена жил человек по имени Сеска Солса. Целого барана он съедал за один присест; заснув, спал неделю, а проснувшись, целый месяц был на ногах. Глаз у него был только один. Своего дома он не имел и всё время бродил по долинам, горам и лесам, и не было на свете человека, способного его одолеть. Но однажды, пока он спал, враги предательски выкололи ему единственный глаз. С тех пор Сеска Солса никуда больше не мог пойти и умер. Исследователи видят в этом варианте древнейший, «великанский» облик нарта — сродни циклопу, погибающему от потери глаза.
+
+**Мораль:** Сила, не знающая осторожности, беззащитна во сне.
+
+### Why Seska Solsa Became One-Eyed
+
+Long ago there lived a man called Seska Solsa. He ate a whole sheep at one sitting; when he fell asleep he slept for a week, and when awake he stayed on his feet a whole month. He had only one eye. He had no home of his own and wandered constantly through valleys, mountains and forests, and no one in the world could overcome him. But one day, while he slept, his enemies treacherously put out his only eye. After that Seska Solsa could go nowhere and died. Scholars see in this version the oldest, 'giant' image of the Nart — akin to a cyclops who perishes on losing his eye.
+
+**Moral:** Strength without caution is defenceless in sleep.
+
+Источники / Sources: https://books.yandex.ru/books/vFBsJBa0/read-online
+
+---
