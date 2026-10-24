@@ -1,27 +1,27 @@
 # Проверка записей / Record verification
 
-Дата проверки / Checked: 2026-10-24. Записей / Records: **1004** (ancient 193, americas 96, caucasus 596, ussr 119).
+Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 526 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 524 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org). 404 после исправлений нет.
+- Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 30; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 96; не проверено — **878** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 241). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 51; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **857** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 526 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 524 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records). No 404s remain.
+- Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 30; authored from a read PD text, not re-checked (USSR) — 96; not verified — **878** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 241). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 51; authored from a read PD text, not re-checked (USSR) — 107; not verified — **857** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
 ## Права и статус проекта / Rights and project status
-**RU.** Это личный тестовый проект. Все пересказы написаны своими словами, не являются копиями переводов. Часть записей опирается на издания с ограниченным доступом или под авторским правом (CELT Muirchú — RESTRICTED; Lambert 1960; перевод Popol Vuh Christenson 2007; современные советские и постсоветские сборники). Такие записи помечены в столбце «Права / Rights» (433 записей). Перед любой публичной публикацией или выпуском нативного приложения эти записи будут сокращены до коротких цитат с указанием источника или удалены.
+**RU.** Это личный тестовый проект. Все пересказы написаны своими словами, не являются копиями переводов. Часть записей опирается на издания с ограниченным доступом или под авторским правом (CELT Muirchú — RESTRICTED; Lambert 1960; перевод Popol Vuh Christenson 2007; современные советские и постсоветские сборники). Такие записи помечены в столбце «Права / Rights» (435 записей). Перед любой публичной публикацией или выпуском нативного приложения эти записи будут сокращены до коротких цитат с указанием источника или удалены.
 
-**EN.** This is a personal test project. All retellings are written in my own words and are not copies of translations. Some records rely on restricted or copyrighted editions (CELT Muirchú — RESTRICTED; Lambert 1960; Christenson's 2007 Popol Vuh translation; modern Soviet/post-Soviet collections). They are flagged in the "Права / Rights" column (433 records). Before any public or native-app release, these items will be reduced to short attributed quotes or removed.
+**EN.** This is a personal test project. All retellings are written in my own words and are not copies of translations. Some records rely on restricted or copyrighted editions (CELT Muirchú — RESTRICTED; Lambert 1960; Christenson's 2007 Popol Vuh translation; modern Soviet/post-Soviet collections). They are flagged in the "Права / Rights" column (435 records). Before any public or native-app release, these items will be reduced to short attributed quotes or removed.
 
 ## Сверка записей «только Википедия» / Wikipedia-only upgrades (2026-10-24)
 Открыты и прочитаны первоисточники; к записям добавлены ссылки / primary texts opened and read, links added: Mabinogion tr. Guest (PG 5160) — 7; Irving, Sketch Book (PG 2048) — 2; Ovid tr. Riley (PG 21765, 26073) — 2; Herodotus I.23–24 (PG 2707) — 1; Prose/Poetic Edda (PG 18947, 73533) — 5; Popol Vuh tr. Christenson (Mesoweb) — 5.
@@ -54,11 +54,11 @@
 | 12 | ancient | Энмеркар и Энсухкешданна / Enmerkar and Ensuhkeshdanna | OK | no | — |
 | 13 | ancient | Лугальбанда в горной пещере / Lugalbanda in the Mountain Cave | OK | no | — |
 | 14 | ancient | Лугальбанда и птица Анзуд / Lugalbanda and the Anzud Bird | OK | no | — |
-| 15 | ancient | Потоп и Зиусудра (Эриду-генезис) / The Flood and Ziusudra (Eridu Genesis) | OK | yes — ETCSL translation (source-limited; fragmentary) | — |
+| 15 | ancient | Потоп и Зиусудра (Эриду-генезис) / The Flood and Ziusudra (Eridu Genesis) | OK | yes — re-checked 2026-10-24 vs ETCSL c.1.7.4 translation (source-limited; fragmentary) | — |
 | 16 | ancient | Спор Лета и Зимы / The Debate between Winter and Summer | OK | no | — |
 | 17 | ancient | Подвиги Нинурты (Лугаль-э) / The Exploits of Ninurta (Lugal-e) | OK | no | — |
 | 18 | ancient | Энки и Нинхурсаг / Enki and Ninhursag | OK | no | — |
-| 19 | ancient | Гильгамеш и Небесный Бык (шумерская песнь) / Gilgamesh and the Bull of Heaven (Sumerian poem) | OK | yes — ETCSL translation (source-limited; fragmentary) | — |
+| 19 | ancient | Гильгамеш и Небесный Бык (шумерская песнь) / Gilgamesh and the Bull of Heaven (Sumerian poem) | OK | yes — re-checked 2026-10-24 vs ETCSL c.1.8.1.2 translation (source-limited; fragmentary) | — |
 | 20 | ancient | Инанна и Энки: дар божественных сил «ме» / Inanna and Enki: the Gift of the Me | OK | no | — |
 | 21 | ancient | Гильгамеш и Хувава (шумерская песнь) / Gilgamesh and Huwawa (Sumerian poem) | OK | no | — |
 | 22 | ancient | Поучения Шуруппака / The Instructions of Shuruppak | OK | no | — |
@@ -85,8 +85,8 @@
 | 43 | ancient | Гильгамеш: поход против Хумбабы / Gilgamesh: The Expedition against Humbaba | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 44 | ancient | Гильгамеш, Иштар и Небесный Бык / Gilgamesh, Ishtar and the Bull of Heaven | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 45 | ancient | Гильгамеш: смерть Энкиду / Gilgamesh: The Death of Enkidu | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 46 | ancient | Гильгамеш в поисках бессмертия / Gilgamesh's Quest for Immortality | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 47 | ancient | Гильгамеш: рассказ Утнапишти и трава молодости / Gilgamesh: Utnapishtim's Tale and the Plant of Youth | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 46 | ancient | Гильгамеш в поисках бессмертия / Gilgamesh's Quest for Immortality | OK | yes — re-checked 2026-10-24 vs Thompson 1928 translation (archive.org) | RESTRICTED / copyright may apply: Thompson 1928 translation: copyright status unclear; retold in own words |
+| 47 | ancient | Гильгамеш: рассказ Утнапишти и трава молодости / Gilgamesh: Utnapishtim's Tale and the Plant of Youth | OK | yes — re-checked 2026-10-24 vs Thompson 1928 translation (archive.org) | RESTRICTED / copyright may apply: Thompson 1928 translation: copyright status unclear; retold in own words |
 | 48 | ancient | Нергал и Эрешкигаль / Nergal and Ereshkigal | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 49 | ancient | Нисхождение Иштар в подземный мир / The Descent of Ishtar to the Underworld | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 50 | ancient | Легенда о рождении Саргона / The Birth Legend of Sargon | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -95,12 +95,12 @@
 | 53 | ancient | Диалог человека со своим богом / The Dialogue between a Man and His God | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 54 | ancient | Басня о лисе (фрагменты) / The Fable of the Fox (fragments) | OK | no | RESTRICTED / copyright may apply: Lambert, Babylonian Wisdom Literature (1960) is in copyright; archive.org copy is lending-only |
 | 55 | ancient | Тамариск и Пальма / The Tamarisk and the Palm | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 56 | ancient | Дети Лира / The Children of Lir | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 56 | ancient | Дети Лира / The Children of Lir | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041) | — |
 | 57 | ancient | Лосось мудрости / The Salmon of Knowledge | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 58 | ancient | Ойсин в Тир-на-Ног / Oisín in Tír na nÓg | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 58 | ancient | Ойсин в Тир-на-Ног / Oisín in Tír na nÓg | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041; Oisín's own account to St Patrick) | — |
 | 59 | ancient | Дейрдре и сыновья Уснеха / Deirdre and the Sons of Uisnech | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 60 | ancient | Сватовство к Этайн / The Wooing of Étaín | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 61 | ancient | Гибель сыновей Туиренна / The Fate of the Sons of Tuireann | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 61 | ancient | Гибель сыновей Туиренна / The Fate of the Sons of Tuireann | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041) | — |
 | 62 | ancient | Пуйлл, князь Диведа / Pwyll, Prince of Dyfed | OK | yes — re-checked 2026-10-24 vs Mabinogion, tr. Guest (Gutenberg 5160) | — |
 | 63 | ancient | Бранвен, дочь Ллира / Branwen, Daughter of Llŷr | OK | yes — re-checked 2026-10-24 vs Mabinogion, tr. Guest (Gutenberg 5160) | — |
 | 64 | ancient | Манавидан, сын Ллира / Manawydan, Son of Llŷr | OK | yes — re-checked 2026-10-24 vs Mabinogion, tr. Guest (Gutenberg 5160) | — |
@@ -127,11 +127,11 @@
 | 85 | ancient | Анку — слуга смерти / The Ankou, Servant of Death | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 86 | ancient | Туан мак Кайрилл / Tuan mac Cairill | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 87 | ancient | Плавание Брана / The Voyage of Bran | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 88 | ancient | Плавание Майль-Дуйна / The Voyage of Máel Dúin | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 88 | ancient | Плавание Майль-Дуйна / The Voyage of Máel Dúin | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041; "The Voyage of Maildun") | — |
 | 89 | ancient | Кесайр и Финтан (Книга захватов Ирландии) / Cessair and Fintán (Book of Invasions) | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 90 | ancient | Немедийцы и башня Конанда / The Nemedians and Conand's Tower | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 91 | ancient | Сыновья Миля и три королевы Ирландии / The Sons of Míl and the Three Queens of Ireland | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 92 | ancient | Погоня за Диармайдом и Грайне / The Pursuit of Diarmuid and Gráinne | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 92 | ancient | Погоня за Диармайдом и Грайне / The Pursuit of Diarmuid and Gráinne | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041) | — |
 | 93 | ancient | Остров женщин-самнитов / The Island of the Samnite Women | OK | no | — |
 | 94 | ancient | Гавань «Двух воронов» / The Harbour of the 'Two Crows' | OK | no | — |
 | 95 | ancient | Друиды по Цезарю: судьи и учителя Галлии / The Druids according to Caesar: Judges and Teachers of Gaul | OK | no | — |
@@ -171,11 +171,11 @@
 | 129 | ancient | Бойня Анат и послание Баала / Anat's Slaughter and Baal's Message | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 130 | ancient | Осирис, Исида и Сет / Osiris, Isis and Set | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 131 | ancient | Тяжба Гора и Сета / The Contendings of Horus and Seth | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 132 | ancient | Сказка о двух братьях / The Tale of Two Brothers | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 133 | ancient | Потерпевший кораблекрушение / The Shipwrecked Sailor | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 134 | ancient | Красноречивый крестьянин / The Eloquent Peasant | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 135 | ancient | Повесть о Синухе / The Story of Sinuhe | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 136 | ancient | Истребление людей / The Destruction of Mankind | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 132 | ancient | Сказка о двух братьях / The Tale of Two Brothers | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales II (Gutenberg 7413; "Anpu and Bata") | — |
+| 133 | ancient | Потерпевший кораблекрушение / The Shipwrecked Sailor | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386); differences from modern translations noted in the text | — |
+| 134 | ancient | Красноречивый крестьянин / The Eloquent Peasant | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386; "The Peasant and the Workman", older names Meruitensa/Hemti) | — |
+| 135 | ancient | Повесть о Синухе / The Story of Sinuhe | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386; "Sanehat") | — |
+| 136 | ancient | Истребление людей / The Destruction of Mankind | OK | yes — re-checked 2026-10-24 vs Budge, Legends of the Gods (Gutenberg 9411) | — |
 | 137 | ancient | Рампсинит и ловкий вор / Rhampsinitus and the Master Thief | OK | no | — |
 | 138 | ancient | Бог грозы и змей Иллуянка / The Storm God and the Serpent Illuyanka | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 139 | ancient | Исчезновение Телепину / The Vanishing of Telipinu | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -197,7 +197,7 @@
 | 155 | ancient | Заххак и змеи на плечах / Zahhak and the Serpents on His Shoulders | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 156 | ancient | Кузнец Кава и его знамя / Kaveh the Blacksmith and His Banner | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 157 | ancient | Рустам и Сохраб / Rostam and Sohrab | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 158 | ancient | Начикетас у бога смерти / Nachiketa and the God of Death | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 158 | ancient | Начикетас у бога смерти / Nachiketa and the God of Death | OK | yes — re-checked 2026-10-24 vs Katha Upanishad, tr. Paramananda (Gutenberg 3283) | — |
 | 159 | ancient | Шунахшепа у жертвенного столба / Shunahshepa at the Sacrificial Post | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 160 | ancient | Савитри и Сатьяван / Savitri and Satyavan | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 161 | ancient | Геракл и змееногая дева / Heracles and the Snake-Maiden | OK | no | — |
@@ -208,9 +208,9 @@
 | 166 | ancient | Смерть Бальдра / The Death of Baldr | OK | yes — re-checked 2026-10-24 vs Younger (Prose) Edda, tr. Anderson (Gutenberg 18947) | — |
 | 167 | ancient | Как Тор вернул свой молот / How Thor Got His Hammer Back | OK | yes — re-checked 2026-10-24 vs Poetic Edda (Thrymskvitha), tr. Bellows (Gutenberg 73533) | — |
 | 168 | ancient | Как связали волка Фенрира / The Binding of Fenrir | OK | yes — re-checked 2026-10-24 vs Younger (Prose) Edda, tr. Anderson (Gutenberg 18947) | — |
-| 169 | ancient | Обречённый царевич / The Doomed Prince | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 170 | ancient | Снофру и потерянный амулет / Sneferu and the Lost Amulet | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 171 | ancient | Чудодей Джеди / Djedi the Wonder-Worker | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 169 | ancient | Обречённый царевич / The Doomed Prince | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales II (Gutenberg 7413) | — |
+| 170 | ancient | Снофру и потерянный амулет / Sneferu and the Lost Amulet | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386) | — |
+| 171 | ancient | Чудодей Джеди / Djedi the Wonder-Worker | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386; "Dedi") | — |
 | 172 | ancient | Нюйва чинит небо / Nüwa Mends the Sky | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 173 | ancient | Нюйва лепит людей / Nüwa Shapes Humankind | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 174 | ancient | Гунгун и гора Бучжоу / Gonggong and Mount Buzhou | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -218,8 +218,8 @@
 | 176 | ancient | Великий Юй укрощает воды / Yu the Great Tames the Waters | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 177 | ancient | Чанъэ улетает на Луну / Chang'e Flies to the Moon | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 178 | ancient | Пастух и Ткачиха / The Cowherd and the Weaver Girl | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 179 | ancient | Сон о бабочке / The Butterfly Dream | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 180 | ancient | Смерть Хуньтуня / The Death of Hundun | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 179 | ancient | Сон о бабочке / The Butterfly Dream | OK | yes — re-checked 2026-10-24 vs Zhuangzi ch. 2, tr. Giles (Gutenberg 59709) | — |
+| 180 | ancient | Смерть Хуньтуня / The Death of Hundun | OK | yes — re-checked 2026-10-24 vs Zhuangzi ch. 7, tr. Giles (Gutenberg 59709) | — |
 | 181 | ancient | Радость рыб / The Joy of Fish | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 182 | ancient | Чжуан-цзы бьёт в таз над умершей женой / Zhuangzi Drums on a Tub for His Dead Wife | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 183 | ancient | Похороны Чжуан-цзы / The Funeral of Zhuangzi | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -277,8 +277,8 @@
 | 42 | americas | Раки и Енот / The Crawfish and the Raccoon | OK | no | — |
 | 43 | americas | Иктоми — паук-обманщик / Iktomi, the Spider Trickster | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 44 | americas | Черепаший остров / Turtle Island | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 45 | americas | Нуннехи и Яхула / The Nunnehi and Yahula | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 46 | americas | Уктена — рогатый змей / The Uktena, the Horned Serpent | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 45 | americas | Нуннехи и Яхула / The Nunnehi and Yahula | OK | yes — re-checked 2026-10-24 vs Mooney, Myths of the Cherokee (Gutenberg 45634; nos. 78, 86) | — |
+| 46 | americas | Уктена — рогатый змей / The Uktena, the Horned Serpent | OK | no — partial: Cherokee part checked vs Mooney 1900 (Gutenberg 45634); Muscogee details not verified | — |
 | 47 | americas | Люди из глины, люди из дерева / People of Mud, People of Wood | OK | no | — |
 | 48 | americas | Люди из маиса / The People of Maize | OK | no | — |
 | 49 | americas | Близнецы и Семь Ара / The Twins and Seven Macaw | OK | no | — |
@@ -296,9 +296,9 @@
 | 61 | americas | Штабай / The Xtabay | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 62 | americas | Алушы — хранители полей / The Aluxes, Guardians of the Fields | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 63 | americas | Кинаметцин — великаны прежней эпохи / The Quinametzin, Giants of a Former Age | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 64 | americas | Виракоча творит мир / Viracocha Makes the World | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 64 | americas | Виракоча творит мир / Viracocha Makes the World | OK | yes — re-checked 2026-10-24 vs Sarmiento de Gamboa, History of the Incas, chs. 6-7 (Gutenberg 20218); retelling re-based on Sarmiento, Betanzos not open | — |
 | 65 | americas | Манко Капак, Мама Окльо и золотой жезл / Manco Cápac, Mama Ocllo and the Golden Staff | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 66 | americas | Братья Айяр / The Ayar Brothers | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 66 | americas | Братья Айяр / The Ayar Brothers | OK | yes — re-checked 2026-10-24 vs Sarmiento de Gamboa, History of the Incas, tr. Markham (Gutenberg 20218) | — |
 | 67 | americas | Инкарри — возвращение Инки / Inkarri, the Return of the Inca | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 68 | americas | Мама Килья — Мать-Луна / Mama Killa, Mother Moon | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 69 | americas | Амару — двуглавый змей / Amaru, the Two-Headed Serpent | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -674,18 +674,18 @@
 | 343 | caucasus | Брат-судья / The Brother Who Was a Judge | OK | no | modern edition — copyright may apply (litlife) |
 | 344 | caucasus | Злой язык / The Evil Tongue | OK | no | modern edition — copyright may apply (litlife) |
 | 345 | caucasus | Фатима / Fatima | OK | no | modern edition — copyright may apply (scylax) |
-| 346 | caucasus | Как бедняк делил курицу / How the Poor Man Divided the Hen | OK | no | modern edition — copyright may apply (scylax) |
+| 346 | caucasus | Как бедняк делил курицу / How the Poor Man Divided the Hen | error:SSLError https://scylax.one/narodnye/balkarskie-i-karachaevskie-skazki/kak-bednyak-delil-kuricu/ | no | modern edition — copyright may apply (scylax) |
 | 347 | caucasus | Хитрый гость / The Cunning Guest | OK | no | modern edition — copyright may apply (scylax) |
 | 348 | caucasus | Лиса, перепёлка и пироги / The Fox, the Quail and the Pies | OK | no | modern edition — copyright may apply (scylax) |
 | 349 | caucasus | Медведь и собака / The Bear and the Dog | OK | no | modern edition — copyright may apply (scylax) |
-| 350 | caucasus | Мудрый старик / The Wise Old Man | OK | no | modern edition — copyright may apply (scylax) |
+| 350 | caucasus | Мудрый старик / The Wise Old Man | error:SSLError https://scylax.one/narodnye/balkarskie-i-karachaevskie-skazki/mudryy-starik/ | no | modern edition — copyright may apply (scylax) |
 | 351 | caucasus | Намыс / Namys | OK | no | modern edition — copyright may apply (scylax) |
-| 352 | caucasus | Ненадёжный друг / An Unreliable Friend | OK | no | modern edition — copyright may apply (scylax) |
+| 352 | caucasus | Ненадёжный друг / An Unreliable Friend | error:SSLError https://scylax.one/narodnye/balkarskie-i-karachaevskie-skazki/nenadyozhnyy-drug/ | no | modern edition — copyright may apply (scylax) |
 | 353 | caucasus | Счастье, ум и богатство / Happiness, Wisdom and Wealth | OK | no | modern edition — copyright may apply (scylax) |
-| 354 | caucasus | Смышлёный мальчик / The Clever Boy | OK | no | modern edition — copyright may apply (scylax) |
+| 354 | caucasus | Смышлёный мальчик / The Clever Boy | error:SSLError https://scylax.one/narodnye/balkarskie-i-karachaevskie-skazki/smyshlyonyy-malchik/ | no | modern edition — copyright may apply (scylax) |
 | 355 | caucasus | Суд зверей / The Animals' Court | OK | no | modern edition — copyright may apply (scylax) |
 | 356 | caucasus | Умар сын Умара / Umar Son of Umar | OK | no | modern edition — copyright may apply (scylax) |
-| 357 | caucasus | Алакез / Alakez | OK | no | modern edition — copyright may apply (scylax) |
+| 357 | caucasus | Алакез / Alakez | error:SSLError https://scylax.one/narodnye/balkarskie-i-karachaevskie-skazki/alakez/ | no | modern edition — copyright may apply (scylax) |
 | 358 | caucasus | Темир-Болат / Temir-Bolat | OK | no | modern edition — copyright may apply (scylax) |
 | 359 | caucasus | Как бедняк отказался от богатства / How the Poor Man Refused Riches | OK | no | modern edition — copyright may apply (mifoteka) |
 | 360 | caucasus | Как бедняк аллаха искал / How the Poor Man Went Looking for God | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -1044,6 +1044,17 @@
 | 117 | ussr | Солнце, Мороз и Ветер / Sun, Frost and Wind | OK | authored from read PD text; not re-checked | — |
 | 118 | ussr | Сватовство Солнца / The Sun's courtship | OK | authored from read PD text; not re-checked | — |
 | 119 | ussr | Работник у Отца-Солнца / The workman at Father Sun's | OK | authored from read PD text; not re-checked | — |
+| 120 | ussr | Старик и леший / The old man and the wood-sprite | OK | authored from read PD text; not re-checked | — |
+| 121 | ussr | Ведьма-свекровь и Биби-Гайша / The witch, or sorceress (Bibi-Gaysha) | OK | authored from read PD text; not re-checked | — |
+| 122 | ussr | Золотой альчик (Золотая бабка) / Golden Knucklebone | OK | authored from read PD text; not re-checked | — |
+| 123 | ussr | Начало мира и сотворение человека / The beginning of the world and the creation of man | OK | authored from read PD text; not re-checked | — |
+| 124 | ussr | Алдар-обманщик / Aldar the trickster | OK | authored from read PD text; not re-checked | — |
+| 125 | ussr | Волшебная птица / The magic bird | OK | authored from read PD text; not re-checked | — |
+| 126 | ussr | Благодарные звери / The grateful animals | OK | authored from read PD text; not re-checked | — |
+| 127 | ussr | Охотник и семиглавый сатир / A hunter and a seven-headed satyr | OK | authored from read PD text; not re-checked | — |
+| 128 | ussr | Шингилтаки и Пингилтак / Schingiltak and Pingiltak | OK | authored from read PD text; not re-checked | — |
+| 129 | ussr | Человек, понимавший язык зверей / The man who understood animals' conversation | OK | authored from read PD text; not re-checked | — |
+| 130 | ussr | Волшебные вещи / The magic objects | OK | authored from read PD text; not re-checked | — |
 
 ## Дополнительная проверка ETCSL / ETCSL source comparison (2026-10-24)
 
@@ -1052,3 +1063,19 @@
 - ETCSL is a scholarly composite text and translation, not a direct modern oral record. Its copyright notice means the source is linked, not reproduced in full.
 - **This limited check raises SOURCE-REVIEWED from 28 to 30**; 96 earlier author-reviewed entries remain not rechecked, and 878 are NOT VERIFIED. **241 entries** now have only Wikipedia references (including multiple-Wikipedia-only entries).
 - The previously documented automated HTTP run checked **526 distinct URLs**. These **two added ETCSL URLs** were manually opened, but the entire 528-URL set has NOT been re-run under the prior HTTP workflow.
+
+## Проход 2, партия 1 / Pass 2, batch 1 (2026-10-24): Египет, Ирландия, чероки, инки, Гильгамеш, Чжуан-цзы
+Первоисточники открыты и прочитаны / primary texts opened and read: Petrie, *Egyptian Tales* I–II (PG 7386, 7413); Budge, *Legends of the Gods* (PG 9411); Joyce, *Old Celtic Romances* (PG 38041); Mooney, *Myths of the Cherokee* (PG 45634); *Katha Upanishad*, tr. Paramananda (PG 3283); Zhuangzi, tr. Giles (PG 59709); Sarmiento de Gamboa, tr. Markham (PG 20218); Thompson 1928 *Epic of Gilgamish* (archive.org).
+- **RU.** Исправлено: «Потерпевший кораблекрушение» переписан по Петри с пометками о расхождениях с современными переводами; «Обречённый царевич» (дом в пустыне, «сын военачальника», лезет к окну; крокодил хватает его в реке, пёс не говорит); «Два брата» (акация/кедр, поиски больше трёх лет, семечко); «Снофру» (малахитовое украшение); «Джеди» (110 лет; утка, гусь, бык); «Истребление людей» (красное пиво, у Баджа — кровь и «мандрагоры»); «Ойсин» (Ниам — дочь короля Страны юности, Ойсин не король, плита); «Майль-Дуйн» (слова отшельника); «Нуннехи» (полночи, брод, Яхула — торговец); «Братья Айяр» (Капак-токо, судьба братьев по Сармьенто); «Виракоча» переписан по Сармьенто (Бетансос не открыт); «Гильгамеш» (Ницир/Нимуш, хлеб и отметки на стене, Сабиту).
+- **EN.** Fixed: *Shipwrecked Sailor* rewritten per Petrie with explicit notes where modern translations differ; *Doomed Prince* (desert house, "officer's son", climbing; crocodile seizes him in the river; the dog does not speak); *Two Brothers* (acacia/cedar, 3+ years, seed); *Sneferu* (malachite jewel); *Djedi* (110 years; duck, goose, ox); *Destruction of Mankind* (red beer, Budge's "blood and mandrakes"); *Oisín* (Niamh is daughter of the king of the Land of Youth, Oisín not king, flagstone); *Máel Dúin* (hermit's words); *Nunnehi* (half the night, ford, Yahula a trader); *Ayar Brothers* (Capac-tocco, Sarmiento's fate of the brothers); *Viracocha* re-based on Sarmiento (Betanzos not openly available); *Gilgamesh* (Nisir/Nimush, bread and wall marks, Sabitu).
+- Частично / partial: *Uktena* — Cherokee part matches Mooney; Muscogee part unverified, status stays NOT VERIFIED.
+- Не удалось / not done: *Deirdre*, *Étaín*, Zhuangzi "Joy of Fish", "Drums on a Tub", "Funeral" (no open text reachable from here: ctext.org blocks automated access; the Giles PG edition is a selection); Haida/Tlingit Raven retellings (popular modern versions; no matching text in Swanton) — left NOT VERIFIED.
+
+
+## Пакет 3 (PR #38): расширение СССР / Batch 3 (PR #38): USSR expansion
+
+**RU.** Добавлено 11 записей, пересказанных своими словами по тексту Coxwell, *Siberian and Other Folk-Tales* (1925), открытому и прочитанному на archive.org (djvu-текст): башкиры — «Старик и леший», «Ведьма-свекровь и Биби-Гайша», «Золотой альчик», «Начало мира и сотворение человека»; удмурты — «Алдар-обманщик», «Волшебная птица», «Благодарные звери»; ханты — «Охотник и семиглавый сатир»; уйгуры-таранчи — «Шингилтаки и Пингилтак», «Человек, понимавший язык зверей»; дарвазцы (таджики Дарваза) — «Волшебные вещи». Не взяты: «Алейка» (в djvu-тексте пропущена страница), «Мудрая девица» (ханты) и «Хитрость старухи» (таранчи) — не дочитаны полностью. Статус новых записей: «authored from read PD text; not re-checked». Права: Coxwell 1925 — статус авторских прав перевода не установлен; пересказ своими словами.
+
+**EN.** Added 11 records retold in my own words from Coxwell, *Siberian and Other Folk-Tales* (1925), opened and read on archive.org (djvu text): Bashkir — The old man and the wood-sprite, The witch (Bibi-Gaysha), Golden Knucklebone, The beginning of the world and the creation of man; Votyak/Udmurt — Aldar the trickster, The magic bird, The grateful animals; Ostyak/Khanty — A hunter and a seven-headed satyr; Tarantchi Uyghur — Schingiltak and Pingiltak, The man who understood animals' conversation; Darvaz (Tajik) — The magic objects. Not taken: Aleyka (a page is missing from the djvu text), The wise maiden (Khanty) and The old woman's trick (Tarantchi) — not read to the end. Status of new records: "authored from read PD text; not re-checked". Rights: Coxwell 1925 translation copyright status not established; retold in own words.
+
+Не найдено в этом проходе / Not done in this pass: Nasyri/Koblov (Tatar), Komi, Mansi, Nanai — open full texts not yet located and read.

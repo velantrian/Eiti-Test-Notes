@@ -1,4 +1,3 @@
-# Степь и Средняя Азия / Steppe and Central Asia
 
 ## 1. Как ханский сын отправился за Сиддхи-Кюром
 
@@ -391,6 +390,60 @@ A wolf, a tiger and a fox bury a pail of butter. Three times the fox goes off to
 Before the whole village a blind man tearfully seizes another man's wife and claims she ran off with this sighted man. The judge shuts all three in separate tents and posts listeners. The woman prays to be saved from the blind man, the sighted man reproaches him for ingratitude, and the blind man gloats, 'My scheme is good; I shall get a wife!' The judge gives the woman to the sighted man and punishes the blind man for slander, and he bites his finger till it bleeds for shame.
 
 **Moral:** Words spoken in secret reveal the truth.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 23. Шингилтаки и Пингилтак
+
+*уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI) — бытовая сказка*
+
+У семерых Шингилтаков один амбар кукурузы, у Пингилтака — семь, и он все распродал. Пингилтак смеясь говорит, что сжёг зерно и продал пепел за серебро. Шингилтаки сжигают свой амбар, и в городе их бьют. Придя убить Пингилтака, они видят у него красавицу; он уверяет, что убил прежнюю жену и в городе ему дали живую за мёртвую. Шингилтаки убивают своих жён, и их снова колотят. В третий раз Пингилтак пасёт овец и говорит, что их дали ему родители Шингилтаков, которые разбогатели. Он подводит их к озеру, где в воде отражаются овцы; старший ныряет, бьётся, Пингилтак кричит «Он зовёт вас!», и все семеро тонут.
+
+**Мораль:** Кто слепо подражает чужой удаче, губит себя.
+
+### Schingiltak and Pingiltak
+
+The seven Schingiltaks have one barn of maize, Pingiltak has seven and has sold them all. Pingiltak tells them laughing that he burned his maize and sold the ashes for silver. The Schingiltaks burn their barn and are beaten in town. Coming to kill Pingiltak, they find a beautiful girl with him; he claims he killed his old wife and the town gave him a living one for the dead. The Schingiltaks kill their wives and are cudgelled again. The third time Pingiltak is herding sheep and says the Schingiltaks' parents, grown rich, gave them to him for their sons. He leads them to a lake where sheep are reflected in the water; the eldest dives and struggles, Pingiltak cries 'He's calling you!', and all seven drown.
+
+**Moral:** Those who blindly copy another's luck destroy themselves.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 24. Человек, понимавший язык зверей
+
+*уйгуры-таранчи (Семиречье и Кульджа) (Coxwell, Siberian and Other Folk-Tales, 1925; по Радлову, т. VI) — бытовая сказка*
+
+Друг знающего язык зверей просит научить его; тот соглашается с условием: кто выдаст тайну, хоть жене, умрёт. Ученик слышит, как кошка хочет, чтобы хозяева ослепли, а пёс — чтобы хозяин разбогател; он смеётся и прогоняет кошку, а на расспросы жены отвечает кнутом. Потом осёл учит волов притвориться больными, чтобы не пахать; хозяин запрягает вместо больного вола осла и гоняет его до вечера. Тогда осёл пугает волов, что больного вола продадут мяснику, и советует есть и пить. Хозяин смеётся, жена грозит уйти, если он не скажет причины, и он открывает тайну — и умирает, а жена горько жалеет.
+
+**Мораль:** Иная тайна дороже любопытства близких.
+
+### The man who understood animals' conversation
+
+A friend of a man who knows all animals' languages asks to learn them; he is taught on condition that if he reveals the secret, even to his wife, he will die. He hears the cat wish its masters blind and the dog wish its master rich; he laughs and drives the cat out, and when his wife questions him he answers with the whip. Later the ass advises the oxen to feign illness to escape ploughing; the master yokes the ass in place of the sick ox and works it till evening. Then the ass scares the oxen that the sick one will be sold to the butcher and advises them to eat and drink. The master laughs, his wife threatens to leave unless he tells why, and he reveals the secret and dies, and his wife bitterly regrets it.
+
+**Moral:** Some secrets are worth more than a loved one's curiosity.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 25. Волшебные вещи
+
+*дарвазцы (таджики Дарваза) (Coxwell, Siberian and Other Folk-Tales, 1925; по «Живой старине», 1912) — волшебная сказка*
+
+Сирота, у которого есть только повязка на бёдрах, ловит силками воробьёв и продаёт их на базаре. Трижды он ловит ворону, и трижды её покупает седой старец Хотсы Хызыр. За первую он даёт чашу, дающую еду и одежду, за вторую — ослицу, приносящую десять золотых в день. Обе вещи ночью подменяет знакомый, у которого сирота ночует. За третью ворону старец даёт полено и камень: «Трещи, дерево, бей, камень!» Когда знакомый снова лезет ночью, полено и камень его избивают, и он возвращает чашу и ослицу. Сирота богатеет и кормит царское войско на охоте. Царь требует отдать чашу и посылает слуг отнять её силой, но полено и камень бьют слуг. Сирота отпускает царя, лишь получив в жёны царевну, и возносит хвалу Богу.
+
+**Мораль:** Терпение и честность вознаграждаются, а жадность получает по заслугам.
+
+### The magic objects
+
+An orphan who owns only a waistcloth snares sparrows and sells them at the bazaar. Three times he catches a crow, and three times the grey-haired old man Khotsy Khyzyr buys it. For the first he gives a cup that provides food and clothing, for the second an ass that drops ten gold pieces a day. Both are swapped at night by an acquaintance with whom the orphan lodges. For the third crow the old man gives a billet of wood and a piece of rock: 'Crack, wood; strike, rock!' When the acquaintance steals again, the wood and rock beat him and he returns the cup and the ass. The orphan grows rich and feeds the king's army on a hunt. The king demands the cup and sends servants to seize it, but the wood and rock beat them. The orphan lets the king go only after receiving the princess as his wife, and gives thanks to God.
+
+**Moral:** Patience and honesty are rewarded, and greed gets what it deserves.
 
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 

@@ -40,17 +40,17 @@ After the death of Osiris, his son Horus and his brother Seth came before the tr
 
 *египтяне — сказка*
 
-Жена старшего брата Анупу пыталась соблазнить младшего, Бату, а получив отказ, оклеветала его. Анупу хотел убить брата, но бог Ра-Хорахте создал между ними озеро с крокодилами, и Бата оправдался. Он ушёл в Долину кедра и положил своё сердце на цветок кедра; боги сотворили ему жену, но фараон забрал её, и по её совету кедр срубили — Бата умер. Получив вспенившееся пиво, Анупу понял знак, семь лет искал сердце брата, положил его в воду, и Бата ожил. Пройдя через облики быка и дерева, Бата возродился сыном фараона, стал царём и сделал брата наследником.
+Жена старшего брата Анупу пыталась соблазнить младшего, Бату, а получив отказ, оклеветала его. Анупу хотел убить брата, но бог Ра-Хорахте создал между ними озеро с крокодилами, и Бата оправдался. Он ушёл в Долину акации (в других переводах — кедра или сосны) и положил своё сердце на верхний цветок дерева; боги сотворили ему жену, но фараон забрал её, и по её совету дерево срубили — Бата умер. Получив вспенившееся пиво, Анупу понял знак, больше трёх лет искал сердце брата, нашёл его в виде семечка, положил в воду, и Бата ожил. Пройдя через облики быка и дерева, Бата возродился сыном фараона, стал царём и сделал брата наследником.
 
 **Мораль:** Правда и братская верность побеждают клевету и измену.
 
 ### The Tale of Two Brothers
 
-The wife of the elder brother Anpu tried to seduce the younger, Bata, and when refused, slandered him. Anpu sought to kill his brother, but the god Re-Harakhti set a crocodile-filled lake between them, and Bata cleared himself. He went to the Valley of the Cedar and placed his heart on a cedar blossom; the gods made him a wife, but the pharaoh took her, and on her advice the cedar was cut down — Bata died. Receiving frothing beer, Anpu knew the sign, searched seven years for his brother's heart, put it in water, and Bata revived. Passing through the forms of a bull and a tree, Bata was reborn as the pharaoh's son, became king and made his brother heir.
+The wife of the elder brother Anpu tried to seduce the younger, Bata, and when refused, slandered him. Anpu sought to kill his brother, but the god Re-Harakhti set a crocodile-filled lake between them, and Bata cleared himself. He went to the Valley of the Acacia (other translations: cedar or pine) and placed his heart on the topmost flower of the tree; the gods made him a wife, but the pharaoh took her, and on her advice the tree was cut down — Bata died. Receiving frothing beer, Anpu knew the sign, searched more than three years for his brother's heart, found it as a seed, put it in water, and Bata revived. Passing through the forms of a bull and a tree, Bata was reborn as the pharaoh's son, became king and made his brother heir.
 
 **Moral:** Truth and brotherly loyalty overcome slander and betrayal.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Tale_of_Two_Brothers
+Источники / Sources: https://en.wikipedia.org/wiki/Tale_of_Two_Brothers, https://www.gutenberg.org/ebooks/7413
 
 ---
 
@@ -58,17 +58,17 @@ The wife of the elder brother Anpu tried to seduce the younger, Bata, and when r
 
 *египтяне — повесть*
 
-Чтобы ободрить начальника, вернувшегося из неудачного похода, слуга рассказал, как однажды буря погубила корабль со ста двадцатью моряками, а его одного выбросило на остров изобилия. Явился огромный змей, владыка Пунта, и расспросил его. Змей успокоил его: через четыре месяца за ним придёт корабль; и рассказал, как упавшая звезда сожгла всю его родню. Когда моряк пообещал прислать дары, змей рассмеялся: остров полон благовоний, а после отплытия станет водой. Моряк вернулся с дарами к царю и был награждён. Начальник же ответил: «Не старайся, друг мой».
+Слуга утешал своего господина, благополучно вернувшегося из плавания в Вават, рассказом о том, как однажды плыл к царским рудникам на большом корабле со ста пятьюдесятью лучшими моряками (в современных переводах — сто двадцать); буря потопила корабль, а его одного волна выбросила на остров изобилия. Огромный змей с телом словно в золоте и цветом лазурита отнёс его в своё логово и велел не бояться: через четыре месяца придёт корабль. Змей рассказал, что живёт там с семьюдесятью пятью змеями своей родни, и о небесном огне (у Петри — сжёгшем девушку; в современных переводах — упавшая звезда, погубившая всю семью). Когда моряк пообещал благовония и жертвы, змей улыбнулся: он — владыка Пунта, у него свои благовония, а когда моряк уедет, остров станет волнами. Корабль пришёл, змей одарил его, и через два месяца он был у фараона. Слуга кончает просьбой проводить его к царским вельможам. (В современных переводах есть ещё скептический ответ господина.)
 
 **Мораль:** Мужество и самообладание спасают в беде.
 
 ### The Shipwrecked Sailor
 
-To encourage his master, returning from a failed expedition, a servant told how a storm once wrecked a ship of a hundred and twenty sailors and cast him alone on an island of plenty. A giant serpent, lord of Punt, appeared and questioned him. The serpent reassured him that a ship would come for him in four months, and told how a falling star had burned all its kin. When the sailor promised to send gifts, the serpent laughed: the island was full of incense, and once he left it would become water. The sailor returned to the king with gifts and was rewarded. But his master replied: 'Don't try so hard, my friend.'
+A servant comforted his lord, home safe from a voyage to Wawat, by telling how he once sailed for the king's mines in a great ship with a hundred and fifty picked sailors (modern translations read 120); a storm sank it and a wave cast him alone onto an island of plenty. A huge serpent with a golden body and a lapis-blue colour carried him to its lair, told him not to fear: a ship would come in four months. It said it lived there with seventy-five serpents of its kin, and told how fire from heaven fell (in Petrie's reading it burned a young girl; modern translations: a star that burned the whole family). When the sailor promised incense and offerings, the serpent smiled: it was prince of Punt and had perfumes, and once he left, the island would turn into waves. The ship came, the serpent loaded him with gifts, and he reached Pharaoh in two months. The servant ends by asking to be led to the king's courtiers. (Modern translations add the lord's sceptical reply.)
 
 **Moral:** Courage and self-control save one in disaster.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Tale_of_the_Shipwrecked_Sailor
+Источники / Sources: https://en.wikipedia.org/wiki/Tale_of_the_Shipwrecked_Sailor, https://www.gutenberg.org/ebooks/7386
 
 ---
 
@@ -86,7 +86,7 @@ The peasant Khun-Anup was taking goods to market when Nemtynakht, a servant of t
 
 **Moral:** A persistent word of truth wins justice in the end.
 
-Источники / Sources: https://en.wikipedia.org/wiki/The_Eloquent_Peasant
+Источники / Sources: https://en.wikipedia.org/wiki/The_Eloquent_Peasant, https://www.gutenberg.org/ebooks/7386
 
 ---
 
@@ -104,7 +104,7 @@ Hearing on campaign of King Amenemhat's sudden death, the courtier Sinuhe, afrai
 
 **Moral:** Nothing is dearer than one's native land.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Story_of_Sinuhe
+Источники / Sources: https://en.wikipedia.org/wiki/Story_of_Sinuhe, https://www.gutenberg.org/ebooks/7386
 
 ---
 
@@ -112,17 +112,17 @@ Hearing on campaign of King Amenemhat's sudden death, the courtier Sinuhe, afrai
 
 *египтяне — миф*
 
-Когда люди замыслили мятеж против состарившегося бога солнца Ра, он посоветовался с богами и послал против них Хатхор как своё грозное Око. Богиня принялась истреблять мятежников; чтобы спасти уцелевших, Ра велел разлить пиво, окрашенное под цвет крови, Хатхор выпила его, опьянела и прекратила бойню. Затем Ра удалился на небо на спине небесной коровы Нут, оставив людей.
+Когда люди замыслили мятеж против состарившегося бога солнца Ра, он посоветовался с богами и послал против них Хатхор как своё грозное Око. Богиня принялась истреблять мятежников; чтобы спасти уцелевших, Ра велел разлить по полям пиво, окрашенное в красный цвет (у Баджа — смешанное с человеческой кровью и «мандрагорами»), Хатхор выпила его, опьянела и прекратила бойню. Затем Ра удалился на небо на спине небесной коровы Нут, оставив людей.
 
 **Мораль:** Бунт против порядка приносит страдание и разлучает с богами.
 
 ### The Destruction of Mankind
 
-When people plotted rebellion against the ageing sun god Ra, he consulted the gods and sent Hathor against them as his fierce Eye. The goddess began slaughtering the rebels; to save the survivors, Ra had beer dyed the colour of blood poured out, Hathor drank it, became drunk and stopped the slaughter. Then Ra withdrew to the sky on the back of the heavenly cow Nut, leaving humanity.
+When people plotted rebellion against the ageing sun god Ra, he consulted the gods and sent Hathor against them as his fierce Eye. The goddess began slaughtering the rebels; to save the survivors, Ra had beer, coloured red (Budge reads it as mixed with human blood and 'mandrakes'), poured out over the fields, Hathor drank it, became drunk and stopped the slaughter. Then Ra withdrew to the sky on the back of the heavenly cow Nut, leaving humanity.
 
 **Moral:** Rebellion against order brings suffering and separation from the gods.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Book_of_the_Heavenly_Cow
+Источники / Sources: https://en.wikipedia.org/wiki/Book_of_the_Heavenly_Cow, https://www.gutenberg.org/ebooks/9411
 
 ---
 
@@ -518,7 +518,7 @@ Nachiketa's father, performing a sacrifice of giving away all his possessions, g
 
 **Moral:** True knowledge is worth more than all earthly goods.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Nachiketa
+Источники / Sources: https://en.wikipedia.org/wiki/Nachiketa, https://www.gutenberg.org/ebooks/3283
 
 ---
 
@@ -706,17 +706,17 @@ The gods learned from prophecies that Loki's children would bring them harm; Jö
 
 *египтяне — сказка*
 
-У египетского царя долго не было сына; когда он родился, семь Хатхор предрекли, что он погибнет от крокодила, змеи или собаки. Отец поселил его в уединённом дворце в горах, но уступил и дал ему щенка. Повзрослев, царевич решил встретить судьбу и отправился в Нахарину, где, назвавшись сыном колесничего, допрыгнул до окна башни царевны и добился её руки. Жена велела убить собаку, но он не смог; зато она уберегла его, убив змею, подползшую к спящему. Позже пёс заговорил и сказал, что царевич суждено погибнуть от него; царевич бросился к озеру, где его схватил крокодил. Конец папируса утрачен.
+У египетского царя долго не было сына; когда он родился, семь Хатхор предрекли, что он погибнет от крокодила, змеи или собаки. Отец поселил его в доме, построенном в пустыне, но уступил и дал ему щенка. Повзрослев, царевич решил встретить судьбу и отправился в Нахарину, где, назвавшись сыном египетского военачальника, бежавшим от мачехи, взобрался к окну башни царевны на высоте семидесяти локтей и добился её руки. Жена велела убить собаку, но он не смог; зато она уберегла его, убив змею, подползшую к спящему. Позже, гуляя по своим полям, он побежал за псом, погнавшимся за дичью, и вошёл в реку; там его схватил крокодил и сказал: «Я — твоя судьба, что идёт за тобой». Конец папируса утрачен.
 
 **Мораль:** Судьбу не спрятать за стенами; верная любовь отводит беду.
 
 ### The Doomed Prince
 
-An Egyptian king long had no son; when one was born, the seven Hathors foretold that he would die by a crocodile, a snake or a dog. His father housed him in an isolated palace in the mountains but relented and gave him a puppy. Grown up, the prince resolved to face his fate and went to Naharin, where, calling himself a charioteer's son, he leapt up to the princess's tower window and won her hand. His wife urged him to kill the dog, but he could not; yet she saved him by stopping a snake that crept up to him as he slept. Later the dog spoke, saying the prince was fated to die by it; the prince fled to a lake, where a crocodile seized him. The end of the papyrus is lost.
+An Egyptian king long had no son; when one was born, the seven Hathors foretold that he would die by a crocodile, a snake or a dog. His father housed him in a house built in the desert but relented and gave him a puppy. Grown up, the prince resolved to face his fate and went to Naharin, where, calling himself the son of an Egyptian officer fleeing a stepmother, he climbed to the window of the princess's tower, seventy cubits high, and won her hand. His wife urged him to kill the dog, but he could not; yet she saved him by stopping a snake that crept up to him as he slept. Later, walking in his fields, he followed his dog as it chased game into the river; there a crocodile seized him and said: 'I am your doom, following after you.' The end of the papyrus is lost.
 
 **Moral:** Fate cannot be walled out; faithful love wards off danger.
 
-Источники / Sources: https://en.wikipedia.org/wiki/The_Doomed_Prince
+Источники / Sources: https://en.wikipedia.org/wiki/The_Doomed_Prince, https://www.gutenberg.org/ebooks/7413
 
 ---
 
@@ -724,17 +724,17 @@ An Egyptian king long had no son; when one was born, the seven Hathors foretold 
 
 *египтяне — сказка (папирус Весткар)*
 
-Царю Снофру стало скучно во дворце, и жрец-чтец Джаджаеманх посоветовал покататься по озеру в ладье, которую поведут двадцать красавиц с вёслами из чёрного дерева и золота. Но у одной гребчихи в воду упал бирюзовый амулет-рыбка; она не захотела замены из царской казны и перестала грести, а за ней и все остальные. Тогда Джаджаеманх чарами сложил одну половину вод озера на другую, достал амулет со дна и вернул воду на место, и царь щедро наградил его.
+Царю Снофру стало скучно во дворце, и жрец-чтец Джаджаеманх посоветовал покататься по озеру в ладье, которую поведут двадцать красавиц с вёслами из чёрного дерева и золота. Но у одной гребчихи в воду упало украшение из «новой малахитовой» зелени (его часто читают как подвеску-рыбку); она не захотела замены из царской казны и перестала грести, а за ней и все остальные. Тогда Джаджаеманх чарами сложил одну половину вод озера на другую, достал амулет со дна и вернул воду на место, и царь щедро наградил его.
 
 **Мораль:** Мудрец и малую беду решает с размахом; уважай привязанность к дорогой вещи.
 
 ### Sneferu and the Lost Amulet
 
-King Sneferu grew bored in his palace, and the chief lector-priest Djadjaemankh advised a boating trip on the lake, rowed by twenty beautiful women with oars of ebony and gold. But one rower lost her turquoise fish amulet in the water; she refused a replacement from the royal treasury and stopped rowing, and so did all the others. Then Djadjaemankh by magic folded one half of the lake's water onto the other, retrieved the amulet from the bottom and put the water back, and the king rewarded him richly.
+King Sneferu grew bored in his palace, and the chief lector-priest Djadjaemankh advised a boating trip on the lake, rowed by twenty beautiful women with oars of ebony and gold. But one rower lost her jewel of new malachite (often read as a fish-shaped pendant) in the water; she refused a replacement from the royal treasury and stopped rowing, and so did all the others. Then Djadjaemankh by magic folded one half of the lake's water onto the other, retrieved the amulet from the bottom and put the water back, and the king rewarded him richly.
 
 **Moral:** A sage handles even a small trouble grandly; respect attachment to a treasured thing.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Westcar_Papyrus
+Источники / Sources: https://en.wikipedia.org/wiki/Westcar_Papyrus, https://www.gutenberg.org/ebooks/7386
 
 ---
 
@@ -742,17 +742,17 @@ King Sneferu grew bored in his palace, and the chief lector-priest Djadjaemankh 
 
 *египтяне — сказка (папирус Весткар)*
 
-Царевич Хордедеф рассказал отцу, фараону Хуфу, о старце Джеди, которому больше ста лет: он съедает и выпивает непомерно много, укрощает львов, умеет приставлять отрубленную голову и знает тайные покои святилища Тота. Хуфу послал за ним; при дворе Джеди приставил отрубленные головы гусю, птице и быку, и те ожили. На вопрос о покоях Тота Джеди ответил, что знает, где они, но открыть их царю суждено не ему, а первому из трёх будущих царей, которых носит во чреве женщина Реджедет, — это пророчество о начале новой, Пятой династии.
+Царевич Хордедеф рассказал отцу, фараону Хуфу, о старце Джеди, которому сто десять лет: он съедает и выпивает непомерно много, укрощает львов, умеет приставлять отрубленную голову и знает тайные покои святилища Тота. Хуфу послал за ним; при дворе Джеди приставил отрубленные головы утке, гусю и быку, и те ожили. На вопрос о покоях Тота Джеди ответил, что знает, где они, но открыть их царю суждено не ему, а первому из трёх будущих царей, которых носит во чреве женщина Реджедет, — это пророчество о начале новой, Пятой династии.
 
 **Мораль:** Есть знание, которое не купить властью; у будущего свои избранники.
 
 ### Djedi the Wonder-Worker
 
-Prince Hordjedef told his father, Pharaoh Khufu, about Djedi, a man over a hundred years old who ate and drank enormously, tamed lions, could reattach a severed head and knew the secret chambers of the shrine of Thoth. Khufu sent for him; at court Djedi reattached the heads of a goose, a waterbird and a bull, and they lived. Asked about Thoth's chambers, Djedi said he knew where they were, but it was not he who would give the king access but the first of three future kings in the womb of the woman Rededjet — a prophecy of the start of the new Fifth Dynasty.
+Prince Hordjedef told his father, Pharaoh Khufu, about Djedi, a man of a hundred and ten years who ate and drank enormously, tamed lions, could reattach a severed head and knew the secret chambers of the shrine of Thoth. Khufu sent for him; at court Djedi reattached the severed heads of a duck, a goose and an ox, and they lived. Asked about Thoth's chambers, Djedi said he knew where they were, but it was not he who would give the king access but the first of three future kings in the womb of the woman Rededjet — a prophecy of the start of the new Fifth Dynasty.
 
 **Moral:** Some knowledge cannot be bought with power; the future has its own chosen ones.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Westcar_Papyrus
+Источники / Sources: https://en.wikipedia.org/wiki/Westcar_Papyrus, https://www.gutenberg.org/ebooks/7386
 
 ---
 
@@ -896,7 +896,7 @@ Once Zhuang Zhou dreamt he was a butterfly, fluttering about happily, pleased wi
 
 **Moral:** The line between dream and waking is less firm than it seems.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://www.gutenberg.org/ebooks/59709
 
 ---
 
@@ -914,7 +914,7 @@ The ruler of the South Sea was called Shu, the ruler of the North Sea Hu, and th
 
 **Moral:** An imposed 'good' that goes against a thing's nature destroys it.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://en.wikipedia.org/wiki/Hundun
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://en.wikipedia.org/wiki/Hundun, https://www.gutenberg.org/ebooks/59709
 
 ---
 

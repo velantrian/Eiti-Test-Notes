@@ -1,4 +1,3 @@
-# Сибирь и Север / Siberia and the North
 
 ## 1. Эр Соготох — Одинокий муж
 
@@ -463,6 +462,24 @@ A vixen plays dead on the road, and a Lapp moves her from sleigh to sleigh until
 Long ago, to startle God, a witch cut off her breasts and set them on her back. Angered, God gave her a human voice and made her a camel, dear to no one, as punishment for her evil. (Rendered in verse.)
 
 **Moral:** Blasphemy is punished for ever.
+
+Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
+
+---
+
+## 27. Охотник и семиглавый сатир
+
+*ханты (остяки) (Coxwell, Siberian and Other Folk-Tales, 1925; по Патканову) — волшебная сказка*
+
+Охотник на лося и оленя оставляет дома на цепи двух псов, Медведя и Волка, а сестра зовёт к себе гостя — семиглавое чудовище — и затыкает псам уши свинцом. Чудовище гонится за охотником; тот влезает на лиственницу, и чудище рубит её. Заяц, лиса и выдра по очереди берут топор, пока оно спит, и укрепляют дерево. Воробей не может докричаться до псов, а ворон, которого охотник кормил мясом добычи, будит Медведя, и псы рвут цепи. Три года, три зимы они бьются, пока не убивают чудовище и не сжигают его на костре из сухих и сырых дров. Правитель отдаёт охотнику младшую из семи дочерей. Сестра подкладывает под постель зуб чудовища, и охотник умирает, но звери-помощники приходят, заяц вынимает зуб, и он оживает. Псы по его приказу загрызают сестру.
+
+**Мораль:** Верность зверей и благодарность за добро сильнее предательства близких.
+
+### A hunter and a seven-headed satyr
+
+A hunter of elk and reindeer leaves his two dogs, Bear and Wolf, chained at home, while his sister invites a visitor, a seven-headed satyr, and stops the dogs' ears with lead. The satyr chases the hunter up a larch and hews at it. A hare, a vixen and an otter in turn take the axe while it sleeps and strengthen the tree. A sparrow cannot rouse the dogs, but a raven the hunter had fed with meat from his kills wakes Bear, and the dogs break their chains. They fight for three years and three winters until the satyr is killed and burned on a fire of dry and green wood. The governor gives the hunter the youngest of his seven daughters. The sister puts one of the satyr's teeth under the mattress and the hunter dies, but the helper animals are summoned, the hare pulls out the tooth and he revives. At his order the dogs bite the sister to death.
+
+**Moral:** The loyalty of animals and gratitude for kindness outweigh betrayal by one's own kin.
 
 Источники / Sources: https://archive.org/details/siberian-and-other-folk-tales
 

@@ -4,7 +4,8 @@
   "people": "ирландцы",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/The_Fate_of_the_Children_of_Lir"
+   "https://en.wikipedia.org/wiki/The_Fate_of_the_Children_of_Lir",
+   "https://www.gutenberg.org/ebooks/38041"
   ],
   "title": "Дети Лира",
   "summary": "Лир из племени Туата Де Дананн женился на дочери короля Бодба, и она родила ему дочь Финнуалу и трёх сыновей. Когда жена умерла, Лир взял её сестру Айфе, но та из ревности к пасынкам превратила их у озера в четырёх белых лебедей, оставив им речь и дивный голос, и назначила срок: по триста лет на озере Дарвра, на холодном проливе Мойл и у западных берегов. За злодейство Бодб обратил Айфе в демона воздуха. Лебеди перенесли бури и лёд, а когда в Ирландию пришло христианство, услышали колокол монаха Мохаомхога. Когда король коснулся их, перья спали, и показались трое дряхлых стариков и старуха; их крестили, и они умерли.",
@@ -32,13 +33,14 @@
   "people": "ирландцы",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Oisín"
+   "https://en.wikipedia.org/wiki/Oisín",
+   "https://www.gutenberg.org/ebooks/38041"
   ],
   "title": "Ойсин в Тир-на-Ног",
-  "summary": "К Ойсину, сыну Фионна, явилась золотоволосая Ниам, дочь морского бога Мананнана, и увезла его в Тир-на-Ног, Страну юности, где он стал королём. Ему казалось, что прошло три года, но минуло триста лет, и он захотел навестить фениев. Ниам дала ему белого коня и запретила касаться земли. Ирландия оказалась другой, жилище Фионна — в руинах; помогая людям сдвинуть камень, Ойсин упал с коня и мгновенно стал дряхлым стариком. По некоторым версиям, перед смертью он рассказал святому Патрику сказания о фениях.",
+  "summary": "К Ойсину, сыну Фионна, явилась золотоволосая Ниам, дочь короля Тир-на-Ног (в поздних версиях — дочь Мананнана), и увезла его на белом коне в Страну юности, где он стал её мужем. Ему казалось, что прошло три года, но минуло триста лет, и он захотел навестить фениев. Ниам дала ему белого коня и запретила касаться земли. Ирландия оказалась другой, жилище Фионна — в руинах; помогая людям поднять огромную плиту, Ойсин упал с коня и мгновенно стал дряхлым стариком. В версии Джойса всю историю рассказывает святому Патрику сам старый Ойсин.",
   "moral": "Нельзя вернуться в ушедшее время.",
   "title_en": "Oisín in Tír na nÓg",
-  "summary_en": "Oisín, son of Fionn, was visited by golden-haired Niamh, daughter of the sea god Manannán, who took him to Tír na nÓg, the Land of Youth, where he became king. It seemed to him three years had passed, but it was three hundred, and he longed to see the Fianna again. Niamh lent him a white horse and forbade him to touch the ground. Ireland was changed and Fionn's home lay in ruins; helping men shift a stone, Oisín fell from the horse and at once became a withered old man. In some versions, before dying he told Saint Patrick the tales of the Fianna.",
+  "summary_en": "Oisín, son of Fionn, was visited by golden-haired Niamh, daughter of the king of Tír na nÓg (some later versions make her Manannán's daughter), who took him on her white steed to the Land of Youth, where he married her. It seemed to him three years had passed, but it was three hundred, and he longed to see the Fianna again. Niamh lent him a white horse and forbade him to touch the ground. Ireland was changed and Fionn's home lay in ruins; helping men lift a great flagstone, Oisín fell from the horse and at once became a withered old man. In Joyce's version the whole story is told by the aged Oisín to Saint Patrick.",
   "moral_en": "One cannot return to a time that has passed."
  },
  {
@@ -74,7 +76,8 @@
   "people": "ирландцы",
   "type": "сага",
   "sources": [
-   "https://en.wikipedia.org/wiki/Oidheadh_Chlainne_Tuireann"
+   "https://en.wikipedia.org/wiki/Oidheadh_Chlainne_Tuireann",
+   "https://www.gutenberg.org/ebooks/38041"
   ],
   "title": "Гибель сыновей Туиренна",
   "summary": "Три сына Туиренна убили Киана, отца Луга: тот обернулся свиньёй, а братья — псами, и, позволив ему перед смертью вернуть человеческий облик, они убили его и пытались скрыть преступление. В виру Луг потребовал добыть по всему свету волшебные сокровища для битвы с фоморами. Братья добыли их, но вернулись смертельно раненными и молили Луга исцелить их; он отказал, и они умерли.",
@@ -459,13 +462,14 @@
   "people": "ирландцы",
   "type": "иммрам (сказание о плавании)",
   "sources": [
-   "https://en.wikipedia.org/wiki/The_Voyage_of_Máel_Dúin"
+   "https://en.wikipedia.org/wiki/The_Voyage_of_Máel_Dúin",
+   "https://www.gutenberg.org/ebooks/38041"
   ],
   "title": "Плавание Майль-Дуйна",
-  "summary": "Майль-Дуйн, воспитанный королевой, узнал от завистника, что он сын Айлиля, которого убили, спалив вместе с церковью. Друид Нука научил его, сколько людей взять в плавание, но трое молочных братьев бросились за ним в море, и он принял их, нарушив запрет. У острова с убийцами отца ветер унёс их в безбрежный океан. Они миновали десятки чудесных островов: остров муравьёв, пожирающих лодки, остров Вращающегося Зверя, овец, меняющих цвет, хрустальный мост, плачущих людей и вечный смех. На острове с кошкой один из братьев украл золотое ожерелье, и кошка, пролетев сквозь него огненной стрелой, обратила его в пепел. Отшельник с Тори велел им отказаться от мести: «Встретите врагов, но не убьёте их». Вернувшись к острову убийц, Майль-Дуйн рассказал о чудесах, явленных Богом, и они примирились.",
+  "summary": "Майль-Дуйн, воспитанный королевой, узнал от завистника, что он сын Айлиля, которого убили, спалив вместе с церковью. Друид Нука научил его, сколько людей взять в плавание, но трое молочных братьев бросились за ним в море, и он принял их, нарушив запрет. У острова с убийцами отца ветер унёс их в безбрежный океан. Они миновали десятки чудесных островов: остров муравьёв, пожирающих лодки, остров Вращающегося Зверя, овец, меняющих цвет, хрустальный мост, плачущих людей и вечный смех. На острове с кошкой один из братьев украл золотое ожерелье, и кошка, пролетев сквозь него огненной стрелой, обратила его в пепел. Отшельник, родом с острова Тори, сказал, что он найдёт убийцу отца, но не должен ни убивать его, ни мстить, а простить, как Бог пощадил их самих. Вернувшись к острову убийц, Майль-Дуйн рассказал о чудесах, явленных Богом, и они примирились.",
   "moral": "Путь мести, пройденный до конца, ведёт к прощению.",
   "title_en": "The Voyage of Máel Dúin",
-  "summary_en": "Máel Dúin, raised by a queen, learned from a jealous youth that he was the son of Ailill, who had been killed when raiders burned a church on him. The druid Nuca told him how many men to take on his voyage, but his three foster brothers swam after him and he took them aboard, breaking the rule. Near the island of his father's killers a wind drove them into the endless ocean. They passed dozens of wondrous islands: an island of boat-eating ants, the Revolving Beast, sheep that changed colour, a crystal bridge, lamenting men and endless laughter. On an island with a cat, one foster brother stole a golden necklet, and the cat leapt through him like a fiery arrow and burned him to ashes. A hermit from Tory told them to give up vengeance: 'You will meet your enemies, but you will not slay them.' Returning to the killers' island, Máel Dúin told of the marvels God had shown them, and they made peace.",
+  "summary_en": "Máel Dúin, raised by a queen, learned from a jealous youth that he was the son of Ailill, who had been killed when raiders burned a church on him. The druid Nuca told him how many men to take on his voyage, but his three foster brothers swam after him and he took them aboard, breaking the rule. Near the island of his father's killers a wind drove them into the endless ocean. They passed dozens of wondrous islands: an island of boat-eating ants, the Revolving Beast, sheep that changed colour, a crystal bridge, lamenting men and endless laughter. On an island with a cat, one foster brother stole a golden necklet, and the cat leapt through him like a fiery arrow and burned him to ashes. A hermit born on Tory told him he would find the man who slew his father, but must neither kill him nor take revenge, and forgive him as God had spared them. Returning to the killers' island, Máel Dúin told of the marvels God had shown them, and they made peace.",
   "moral_en": "A path of revenge followed to the end leads to forgiveness."
  },
  {
@@ -515,7 +519,8 @@
   "people": "ирландцы",
   "type": "сказание фенийского цикла",
   "sources": [
-   "https://en.wikipedia.org/wiki/The_Pursuit_of_Diarmuid_and_Gráinne"
+   "https://en.wikipedia.org/wiki/The_Pursuit_of_Diarmuid_and_Gráinne",
+   "https://www.gutenberg.org/ebooks/38041"
   ],
   "title": "Погоня за Диармайдом и Грайне",
   "summary": "Стареющего Финна мак Кумала обручили с Грайне, дочерью верховного короля Кормака, но на пиру она, огорчённая, что жених старше её отца, полюбила воина Диармайда. Она опоила гостей сонным зельем и заклятием-гейсом заставила верного Финну Диармайда бежать с ней. Финн долго преследовал их; им помогали фении и приёмный отец Диармайда Энгус, укрывавший Грайне плащом-невидимкой. Однажды Диармайд победил одноглазого великана Шарвана, стерёгшего рябину, его же железной палицей. Энгус примирил их с Финном, и влюблённые поселились в Кешкорране. Но на охоте у Бен-Балбена вепрь смертельно ранил Диармайда. Финн мог исцелить его, дав напиться воды из своих ладоней, но дважды дал воде утечь; когда внук Финна Оскар пригрозил ему, было уже поздно.",
