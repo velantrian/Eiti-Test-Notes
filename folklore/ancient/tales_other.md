@@ -418,17 +418,17 @@ At first ten suns crossed the sky one at a time, but one day they all came out t
 
 *китайцы — миф*
 
-Великан Куафу решил догнать и поймать солнце и бежал за ним с востока на запад. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный персиковый лес Дэнлинь.
+Великан Куафу решил догнать и поймать солнце и гнался за его тенью до долины Юйгу. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный лес Дэн.
 
 **Мораль:** Отвага без меры сил ведёт к гибели, но оставляет след.
 
 ### Kuafu Chases the Sun
 
-The giant Kuafu resolved to chase and catch the sun and ran after it from east to west. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast peach forest of Denglin.
+The giant Kuafu resolved to chase and catch the sun and pursued its shadow as far as the Yu Valley. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast Deng forest.
 
 **Moral:** Courage beyond one's strength leads to ruin, yet leaves its mark.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Kuafu
+Источники / Sources: https://en.wikipedia.org/wiki/Kuafu, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 
@@ -634,17 +634,17 @@ In Babylon the lovers Pyramus and Thisbe lived in adjoining houses; their parent
 
 *римляне (Авл Геллий по Апиону) — предание*
 
-Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы большую занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Расспросив его, император помиловал раба и отдал ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».
+Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы огромную занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Гай Цезарь расспросил его; рассказ записали и пронесли по цирку, и по требованию народа Андрокла освободили и голосованием отдали ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».
 
 **Мораль:** Добро возвращается, и благодарность бывает даже у зверя.
 
 ### Androcles and the Lion
 
-The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a large thorn from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Having questioned him, the emperor pardoned the slave and gave him the lion; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'
+The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a huge splinter from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Gaius Caesar questioned him; his story was written up and carried round the Circus, and at the people's request Androcles was freed and given the lion by their vote; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'
 
 **Moral:** Kindness returns, and even a beast can be grateful.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Androcles
+Источники / Sources: https://en.wikipedia.org/wiki/Androcles, https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Gellius/5*.html
 
 ---
 
@@ -932,7 +932,7 @@ Zhuangzi and Huizi were strolling on the bridge over the river Hao. Zhuangzi sai
 
 **Moral:** Knowing is also a relationship, not only a logical inference.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E7%A7%8B%E6%B0%B4
 
 ---
 
@@ -950,7 +950,7 @@ When Zhuangzi's wife died, Huizi came to offer condolences and found him sitting
 
 **Moral:** Death is only one more transformation in the cycle of nature.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E8%87%B3%E6%A8%82
 
 ---
 
@@ -968,7 +968,7 @@ When Zhuangzi was dying his disciples wanted to give him a lavish funeral. He an
 
 **Moral:** A sage does not cling to the body, even in death.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E5%88%97%E7%A6%A6%E5%AF%87
 
 ---
 
@@ -976,17 +976,17 @@ When Zhuangzi was dying his disciples wanted to give him a lavish funeral. He an
 
 *китайцы — притча (Ле-цзы, кн. 5)*
 
-Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Небесные боги, тронутые его упорством, велели раздвинуть горы. Притчу пересказал Лю Сян, а в 1945 г. её использовал Мао Цзэдун.
+Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Бог, держащий змей, доложил об этом Небесному владыке, и тот, тронутый его искренностью, велел двум сыновьям Куаэ унести горы. Притча взята из «Ле-цзы» (глава «Тан вэнь»), а в 1945 г. её использовал Мао Цзэдун.
 
 **Мораль:** Упорство поколений превозмогает то, что не под силу одному.
 
 ### The Foolish Old Man Removes the Mountains
 
-A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The gods of Heaven, moved by his perseverance, ordered the mountains moved apart. Liu Xiang retold the fable, and Mao Zedong used it in 1945.
+A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The snake-holding god reported this to the Emperor of Heaven, who, moved by his sincerity, ordered the two sons of Kua'e to carry the mountains away. The fable comes from the Liezi (chapter "Tang wen"), and Mao Zedong used it in 1945.
 
 **Moral:** The persistence of generations overcomes what one person cannot.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Yugong_Yishan
+Источники / Sources: https://en.wikipedia.org/wiki/Yugong_Yishan, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 
@@ -994,17 +994,17 @@ A ninety-year-old man (Yugong) was hindered by two mountains in front of his hou
 
 *китайцы — легенда (Хань Фэй-цзы)*
 
-Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. На вопрос царя он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (Имена царей в версиях различаются.)
+Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. Когда царь послал узнать причину, он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (У Хань Фэя это цари Ли, У и Вэнь; в других версиях имена иные.)
 
 **Мораль:** Правду не всегда признают сразу, но она не перестаёт быть правдой.
 
 ### The Jade of Mr He
 
-A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. Asked by the king, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (The kings' names differ between versions.)
+A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. When the king sent someone to ask why, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (In the Han Feizi the kings are Li, Wu and Wen; other versions name them differently.)
 
 **Moral:** Truth is not always recognised at once, but it does not stop being truth.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Bian_He
+Источники / Sources: https://en.wikipedia.org/wiki/Bian_He, https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%92%8C%E6%B0%8F
 
 ---
 
@@ -1022,7 +1022,7 @@ The artificer Yan Shi presented King Mu of Zhou with a human-shaped figure of hi
 
 **Moral:** A master's craft can rival nature — and unsettle a ruler.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang
+Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 

@@ -3,18 +3,18 @@
 Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
+- Проверка ссылок: 543 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 536 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 142; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **766** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 150; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **758** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 211). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
+- Link check: 543 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 536 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 142; authored from a read PD text, not re-checked (USSR) — 107; not verified — **766** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 150; authored from a read PD text, not re-checked (USSR) — 107; not verified — **758** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 211). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -192,7 +192,7 @@
 | 150 | ancient | Тор у великана Хюмира / Thor at the Giant Hymir's | OK | yes — re-checked 2026-10-24 vs Poetic Edda (Hymiskvitha), tr. Bellows (Gutenberg 73533) | — |
 | 151 | ancient | Паньгу отделяет небо от земли / Pangu Separates Heaven and Earth | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 152 | ancient | Хоу И и десять солнц / Hou Yi and the Ten Suns | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 153 | ancient | Куафу гонится за солнцем / Kuafu Chases the Sun | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 153 | ancient | Куафу гонится за солнцем / Kuafu Chases the Sun | OK | yes — re-checked 2026-10-24 vs Liezi, ch. 5 "Tang wen" (Chinese text, Wikisource); corrected: he pursued the sun's shadow to the Yu Valley; "peach" forest and "east to west" are not in the text | — |
 | 154 | ancient | Цзинвэй засыпает море / Jingwei Fills the Sea | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 155 | ancient | Заххак и змеи на плечах / Zahhak and the Serpents on His Shoulders | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 156 | ancient | Кузнец Кава и его знамя / Kaveh the Blacksmith and His Banner | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -204,7 +204,7 @@
 | 162 | ancient | Гибель Анахарсиса / The Death of Anacharsis | OK | no | — |
 | 163 | ancient | Клеобис и Битон / Cleobis and Biton | OK | no | — |
 | 164 | ancient | Пирам и Фисба / Pyramus and Thisbe | OK | yes — re-checked 2026-10-24 vs Ovid, Met. IV, tr. Riley (Gutenberg 21765) | — |
-| 165 | ancient | Андрокл и лев / Androcles and the Lion | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 165 | ancient | Андрокл и лев / Androcles and the Lion | OK | yes — re-checked 2026-10-24 vs Aulus Gellius, Attic Nights V.14 (tr. Rolfe, Loeb 1927, LacusCurtius); corrected: a splinter, not a thorn; freed and given the lion by vote of the people at their request | — |
 | 166 | ancient | Смерть Бальдра / The Death of Baldr | OK | yes — re-checked 2026-10-24 vs Younger (Prose) Edda, tr. Anderson (Gutenberg 18947) | — |
 | 167 | ancient | Как Тор вернул свой молот / How Thor Got His Hammer Back | OK | yes — re-checked 2026-10-24 vs Poetic Edda (Thrymskvitha), tr. Bellows (Gutenberg 73533) | — |
 | 168 | ancient | Как связали волка Фенрира / The Binding of Fenrir | OK | yes — re-checked 2026-10-24 vs Younger (Prose) Edda, tr. Anderson (Gutenberg 18947) | — |
@@ -220,12 +220,12 @@
 | 178 | ancient | Пастух и Ткачиха / The Cowherd and the Weaver Girl | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 179 | ancient | Сон о бабочке / The Butterfly Dream | OK | yes — re-checked 2026-10-24 vs Zhuangzi ch. 2, tr. Giles (Gutenberg 59709) | — |
 | 180 | ancient | Смерть Хуньтуня / The Death of Hundun | OK | yes — re-checked 2026-10-24 vs Zhuangzi ch. 7, tr. Giles (Gutenberg 59709) | — |
-| 181 | ancient | Радость рыб / The Joy of Fish | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 182 | ancient | Чжуан-цзы бьёт в таз над умершей женой / Zhuangzi Drums on a Tub for His Dead Wife | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 183 | ancient | Похороны Чжуан-цзы / The Funeral of Zhuangzi | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 184 | ancient | Глупый старик передвигает горы / The Foolish Old Man Removes the Mountains | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 185 | ancient | Нефрит господина Хэ / The Jade of Mr He | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 186 | ancient | Механический человек Янь Ши / Yan Shi's Mechanical Man | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 181 | ancient | Радость рыб / The Joy of Fish | OK | yes — re-checked 2026-10-24 vs Zhuangzi, ch. 17 "Qiu shui" (Chinese text, Wikisource) | — |
+| 182 | ancient | Чжуан-цзы бьёт в таз над умершей женой / Zhuangzi Drums on a Tub for His Dead Wife | OK | yes — re-checked 2026-10-24 vs Zhuangzi, ch. 18 "Zhi le" (Chinese text, Wikisource) | — |
+| 183 | ancient | Похороны Чжуан-цзы / The Funeral of Zhuangzi | OK | yes — re-checked 2026-10-24 vs Zhuangzi, ch. 32 "Lie Yukou" (Chinese text, Wikisource) | — |
+| 184 | ancient | Глупый старик передвигает горы / The Foolish Old Man Removes the Mountains | OK | yes — re-checked 2026-10-24 vs Liezi, ch. 5 "Tang wen" (Chinese text, Wikisource); corrected: the snake-holding god told the Emperor of Heaven, who had the two sons of Kua'e carry the mountains off; source is the Liezi, not a retelling by Liu Xiang | — |
+| 185 | ancient | Нефрит господина Хэ / The Jade of Mr He | OK | yes — re-checked 2026-10-24 vs Han Feizi, ch. 13 "He shi" (Chinese text, Wikisource); corrected: the third king asked through a messenger; the kings are Li, Wu and Wen | — |
+| 186 | ancient | Механический человек Янь Ши / Yan Shi's Mechanical Man | OK | yes — re-checked 2026-10-24 vs Liezi, ch. 5 "Tang wen" (Chinese text, Wikisource) | — |
 | 187 | ancient | Царь Му у Царицы-матери Запада / King Mu Visits the Queen Mother of the West | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 188 | ancient | Мастарна и братья Вибенны / Mastarna and the Vibenna Brothers | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 189 | ancient | Вегойя, пророчица границ / Vegoia, Prophetess of Boundaries | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -1102,3 +1102,7 @@
 
 ## Флаг `verified` / The `verified` flag
 Записи со статусом «yes» в таблице имеют в JSON поле `"verified": true`; у остальных этого поля нет. `check.py` проверяет соответствие в обе стороны. / Records marked "yes" in the table carry `"verified": true` in JSON; all other records omit the field. `check.py` enforces this both ways.
+
+
+## Записи «только Википедия», сверенные по первоисточникам / Wikipedia-only records checked against primary texts (2026-10-24, PR #38)
+- Batch 11: 8 verified (Zhuangzi chs. 17, 18, 32; Liezi "Tang wen" ×3; Han Feizi "He shi"; Gellius V.14), 4 fixed (Jade of Mr He; Foolish Old Man; Kuafu; Androcles).
