@@ -54,3 +54,16 @@ jobs:
       - name: Run smoke tests
         working-directory: velantrim_core/e2e
         run: npx playwright test --reporter=line
+
+  folklore-consistency:
+    name: Folklore structural and verification parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate all folklore collections
+        run: python3 folklore/tools/check.py
+      - name: Run checker regression tests
+        run: python3 -m unittest discover -s folklore/tools -p 'test_*.py' -v
