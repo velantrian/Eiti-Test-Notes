@@ -384,7 +384,7 @@ Sources: https://en.wikipedia.org/wiki/Dialogue_between_a_Man_and_His_God
 
 **Moral:** Even from scattered fragments it is clear that animals in Mesopotamian fable argue and suffer almost like humans.
 
-Sources: https://en.wikipedia.org/wiki/Akkadian_literature, https://www.eisenbrauns.org/books/titles/978-0-931464-94-2.html
+Sources: https://en.wikipedia.org/wiki/Akkadian_literature, https://archive.org/details/babylonianwisdom0000lamb_c2i9
 
 ## 26. The Tamarisk and the Palm
 

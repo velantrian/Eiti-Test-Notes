@@ -2822,7 +2822,7 @@ In Vainakh belief the blizzard goddess Dardza-nanilg, 'mother of blizzards', liv
 
 **Moral:** There are limits a human must not cross.
 
-Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/, http://www.kunstkamera.ru/lib/rubrikator/03/03_05/978-5-88431-298-2/
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/, https://verigi.ru/?book=117
 
 ---
 
@@ -2840,7 +2840,7 @@ The Nart-Orstkhoi had a maiden of matchless beauty; no one could marry her, sinc
 
 **Moral:** Even the sky bears traces of earthly deeds and cares.
 
-Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/, http://www.kunstkamera.ru/lib/rubrikator/03/03_05/978-5-88431-298-2/
+Источники / Sources: https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/, https://verigi.ru/?book=117
 
 ---
 
@@ -2948,7 +2948,7 @@ The Ingush especially revered the Sun — Dyala-Malkh, 'God's Sun': shrines face
 
 **Moral:** For the ancestors the sky was a book recording their gods and heroes.
 
-Источники / Sources: http://www.kunstkamera.ru/lib/rubrikator/03/03_05/978-5-88431-298-2/, https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
+Источники / Sources: https://verigi.ru/?book=117, https://azbyka.ru/otechnik/religiovedenie/pervobytnaja-religija-chechentsev/
 
 ---
 
