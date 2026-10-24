@@ -6,7 +6,7 @@
 - Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 141; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **767** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 142; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **766** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 141; authored from a read PD text, not re-checked (USSR) — 107; not verified — **767** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 142; authored from a read PD text, not re-checked (USSR) — 107; not verified — **766** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -878,7 +878,7 @@
 | 547 | caucasus | Молла Насреддин: Три крика осла / Mullah Nasreddin: The Donkey's Three Brays | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (13) | — |
 | 548 | caucasus | Молла Насреддин: Говорящий чинар / Mullah Nasreddin: The Speaking Plane Tree | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (14) | — |
 | 549 | caucasus | Амиран на Эльбрусе (сванский вариант) / Amiran on Elbrus (Svan Variant) | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 60 (Suanetian variant) | — |
-| 550 | caucasus | Рустамзал, сын Гахрамана / Rustumsal, Son of Qahirman | OK | no | — |
+| 550 | caucasus | Рустамзал, сын Гахрамана / Rustumsal, Son of Qahirman | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 58 (Tatar variant); corrected: the king gave the weapons at Qahirman's request after Rustumsal threatened him; the trough was set down on the 38th or 39th day | — |
 | 551 | caucasus | Младший из трёх / The Youngest of the Three | OK | no | — |
 | 552 | caucasus | Зульвисия / Zoolvisia | OK | no | — |
 | 553 | caucasus | Сын-Дракон и Сын Солнца / Dragon-Child and Sun-Child | OK | no | — |
@@ -1096,6 +1096,8 @@
 **Пакет 8 / Batch 8.** Сверены без исправлений / checked, no fixes needed: Dirr № 11, 26, 47, 48, 50–55, 63 (11 записей / records).
 
 - Batch 9 (Dirr): 26 verified (Nos. 56, 57, 60, 61, 64, 66–72, 84 (1)–(14)); 1 fixed (An Udian Story of Rustum: thigh episode, second wife).
+
+- Batch 10 (Dirr): No. 58 Rustumsal verified, 1 fixed (weapons given at Qahirman's request; 38th or 39th day). All Dirr-sourced records are now verified.
 
 
 ## Флаг `verified` / The `verified` flag
