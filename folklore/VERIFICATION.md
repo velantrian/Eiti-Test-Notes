@@ -3,18 +3,18 @@
 Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 558 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 551 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
+- Проверка ссылок: 559 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 552 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 164; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **744** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 197). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 166; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **742** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 195). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 558 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 551 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
+- Link check: 559 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 552 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 164; authored from a read PD text, not re-checked (USSR) — 107; not verified — **744** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 197). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 166; authored from a read PD text, not re-checked (USSR) — 107; not verified — **742** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 195). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -73,7 +73,7 @@
 | 31 | ancient | Энума элиш: Мардук и Тиамат / Enuma Elish: Marduk and Tiamat | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 32 | ancient | Атрахасис: бунт богов и сотворение людей / Atrahasis: The Gods' Revolt and the Making of Mankind | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 33 | ancient | Атрахасис и потоп / Atrahasis and the Flood | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 34 | ancient | Адапа и Южный ветер / Adapa and the South Wind | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 34 | ancient | Адапа и Южный ветер / Adapa and the South Wind | OK | yes — re-checked 2026-10-24 vs Checked against Rogers, Cuneiform Parallels (1912), pp. 67-76 (Amarna tablet): fishing, South Wind's wings, mourning garment for Tammuz and Gishzida, Ea's warning of food/water of death, food and water of life refused, garments and oil accepted, 'thou shalt not live', return to earth. Anu's laughter and the disease ending (from other fragments not in this translation) removed. | — |
 | 35 | ancient | Этана и орёл / Etana and the Eagle | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 36 | ancient | Анзу и Таблицы судеб / Anzu and the Tablet of Destinies | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 37 | ancient | Эрра и Ишум / Erra and Ishum | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -88,7 +88,7 @@
 | 46 | ancient | Гильгамеш в поисках бессмертия / Gilgamesh's Quest for Immortality | OK | yes — re-checked 2026-10-24 vs Thompson 1928 translation (archive.org) | RESTRICTED / copyright may apply: Thompson 1928 translation: copyright status unclear; retold in own words |
 | 47 | ancient | Гильгамеш: рассказ Утнапишти и трава молодости / Gilgamesh: Utnapishtim's Tale and the Plant of Youth | OK | yes — re-checked 2026-10-24 vs Thompson 1928 translation (archive.org) | RESTRICTED / copyright may apply: Thompson 1928 translation: copyright status unclear; retold in own words |
 | 48 | ancient | Нергал и Эрешкигаль / Nergal and Ereshkigal | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 49 | ancient | Нисхождение Иштар в подземный мир / The Descent of Ishtar to the Underworld | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 49 | ancient | Нисхождение Иштар в подземный мир / The Descent of Ishtar to the Underworld | OK | yes — re-checked 2026-10-24 vs Checked against Rogers, Cuneiform Parallels, pp. 121-131: threat to raise the dead to eat the living, ancient custom, seven gates, Namtar's sixty maladies, bull/ass/man cease, Asushunamir (assinu), curse (gutters, sewers, walls), water of life, Tammuz/Belili lines. 'Substitute' claim (not in this text) removed; ending made faithful. | — |
 | 50 | ancient | Легенда о рождении Саргона / The Birth Legend of Sargon | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 51 | ancient | Бедняк из Ниппура / The Poor Man of Nippur | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 52 | ancient | Диалог господина и раба (Диалог пессимизма) / The Dialogue of Pessimism (Master and Slave) | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -1110,3 +1110,4 @@
 - Batch 13: 8 Chinese myths rewritten from the classical texts (Sanwu liji/Shuyi ji; Huainanzi "Ben jing", "Lan ming"; Fengsu tongyi in Taiping yulan 78; Shanhaijing "Hai nei jing"; Mencius; Liezi "Zhou Mu wang"). Each summary names its source; details found only in modern retellings were removed.
 - Batch 14: Manu and the Fish rewritten from Eggeling, SBE 12 (Shatapatha Brahmana I.8.1); Savitri and Satyavan checked against Ganguli, Vana Parva (ending fixed). Both scans are on archive.org.
 - Batch 15: Shunahshepa checked against Haug, Aitareya Brahmana VII.13-18 (dropsy detail fixed). Pururavas and Urvashi rewritten from Eggeling, SBE 44 (Shatapatha Brahmana XI.5.1). Both scans are on archive.org.
+- Batch 16: Adapa and the Descent of Ishtar checked against Rogers, Cuneiform Parallels (1912), on archive.org. Details missing from that translation were removed: in Adapa, Anu's laughter and the disease ending; in Ishtar, the claim that Tammuz is her substitute.

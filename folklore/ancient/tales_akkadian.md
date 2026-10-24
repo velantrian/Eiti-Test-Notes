@@ -76,17 +76,17 @@ Mankind multiplied, and its noise kept Enlil awake. He sent storm, drought and f
 
 *вавилоняне — миф*
 
-Мудрец Адапа, жрец Эа в Эриду, ловил рыбу, когда Южный ветер опрокинул его лодку, и Адапа сломал ветру крылья. Ану призвал его на небо. Эа научил его облечься в траур, чтобы растрогать стражей неба Думузи и Гишзиду, и не есть и не пить там, ведь это может быть пищей смерти. Стражи заступились за него, и Ану предложил Адапе хлеб и воду жизни, но тот отказался. Ану рассмеялся и отправил его на землю — так человек упустил бессмертие, а людям достались болезни.
+Мудрец Адапа, жрец Эа в Эриду, ловил рыбу, когда Южный ветер опрокинул его лодку, и Адапа сломал ветру крылья. Ану призвал его на небо. Эа научил его облечься в траур, чтобы растрогать стражей неба Думузи и Гишзиду, и не есть и не пить там, ведь это может быть пищей смерти. Стражи заступились за него, и Ану предложил Адапе хлеб и воду жизни, но тот не стал ни есть, ни пить, хотя надел поднесённые одежды и умастился маслом. «Теперь ты не будешь жить», — сказал Ану и велел вернуть его на землю — так Адапа, послушавшись Эа, упустил бессмертие.
 
 **Мораль:** Послушание без понимания может лишить величайшего дара.
 
 ### Adapa and the South Wind
 
-The sage Adapa, priest of Ea at Eridu, was fishing when the South Wind overturned his boat, and Adapa broke the wind's wings. Anu summoned him to heaven. Ea taught him to wear mourning to win over the heavenly gatekeepers Dumuzi and Gishzida, and not to eat or drink there, since it might be the food of death. The gatekeepers spoke for him, and Anu offered Adapa the bread and water of life, but he refused. Anu laughed and sent him back to earth — so man missed immortality, and people were left with disease.
+The sage Adapa, priest of Ea at Eridu, was fishing when the South Wind overturned his boat, and Adapa broke the wind's wings. Anu summoned him to heaven. Ea taught him to wear mourning to win over the heavenly gatekeepers Dumuzi (Tammuz) and Gishzida, and not to eat or drink there, since it might be the food of death. The gatekeepers spoke for him, and Anu offered Adapa the bread and water of life, but he would not eat or drink, though he put on the garments and anointed himself with the oil also offered. 'Now thou shalt not live,' said Anu, and had him taken back to his earth — so Adapa, obeying Ea, missed immortality.
 
 **Moral:** Obedience without understanding can cost the greatest gift.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Adapa
+Источники / Sources: https://en.wikipedia.org/wiki/Adapa, https://archive.org/details/cuneiformparalle00rogeuoft
 
 ---
 
@@ -350,17 +350,17 @@ At a feast of the gods Nergal failed to honour Namtar, envoy of the underworld q
 
 *вавилоняне — миф*
 
-Иштар подошла к вратам Страны без возврата и пригрозила привратнику выломать их и поднять мёртвых, чтобы они пожрали живых. Эрешкигаль велела впустить её по древнему закону: у каждых из семи врат с неё снимали одежду, и нагую Намтар поразил шестьюдесятью болезнями. На земле прекратилась любовь — ни зверь, ни человек больше не зачинали. Эа послал прекрасного Асушунамира развеселить Эрешкигаль; Иштар окропили водой жизни, а посланца Эрешкигаль прокляла жить у городских стен и пить из стоков. Заменой Иштар стал Таммуз, о котором плачет его сестра Белили, а в дни его подъёма поднимаются и мёртвые.
+Иштар подошла к вратам Страны без возврата и пригрозила привратнику выломать их и поднять мёртвых, чтобы они пожрали живых. Эрешкигаль велела впустить её по древнему закону: у каждых из семи врат с неё снимали одежду, и нагую Намтар поразил шестьюдесятью болезнями. На земле прекратилась любовь — ни зверь, ни человек больше не зачинали. Эа сотворил Асушунамира («сияющий видом»), ассину, чтобы снискать милость Эрешкигаль; Иштар окропили водой жизни, а посланца Эрешкигаль прокляла есть пищу из городских канав, пить из стоков и жить в тени стен. Тёмные заключительные строки обращаются к Таммузу, возлюбленному её юности: его омывают, умащают, облачают в красное, он играет на флейте из лазурита; его сестра Белили слышит его плач, а в дни Таммуза мёртвые могут вернуться и вдохнуть благовония.
 
 **Мораль:** Без богини любви жизнь на земле замирает.
 
 ### The Descent of Ishtar to the Underworld
 
-Ishtar came to the gates of the Land of No Return and threatened to break them down and raise the dead to devour the living. Ereshkigal had her admitted by the ancient rule: at each of the seven gates a garment was taken, and when she stood naked Namtar struck her with sixty diseases. On earth love ceased — neither beast nor man conceived. Ea sent the beautiful Asushunamir to cheer Ereshkigal; Ishtar was sprinkled with the water of life, and Ereshkigal cursed the envoy to live by city walls and drink from the gutters. Tammuz became Ishtar's substitute, mourned by his sister Belili, and when he rises the dead rise too.
+Ishtar came to the gates of the Land of No Return and threatened to break them down and raise the dead to devour the living. Ereshkigal had her admitted by the ancient rule: at each of the seven gates a garment was taken, and when she stood naked Namtar struck her with sixty diseases. On earth love ceased — neither beast nor man conceived. Ea created Asushunamir ('his appearance is brilliant'), an assinu, to win Ereshkigal's favour; Ishtar was sprinkled with the water of life, and Ereshkigal cursed the envoy to eat the food of the city's gutters, drink from its sewers and dwell in the shadow of the walls. The obscure closing lines turn to Tammuz, beloved of her youth: he is washed, anointed, clothed in red and plays a lapis-lazuli flute; his sister Belili hears his wailing, and in the days of Tammuz the dead may return and smell the incense.
 
 **Moral:** Without the goddess of love, life on earth stands still.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Descent_of_Inanna_into_the_Underworld
+Источники / Sources: https://en.wikipedia.org/wiki/Descent_of_Inanna_into_the_Underworld, https://archive.org/details/cuneiformparalle00rogeuoft
 
 ---
 
