@@ -6,7 +6,7 @@
 - Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 96; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **812** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 104; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **804** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 96; authored from a read PD text, not re-checked (USSR) — 107; not verified — **812** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 104; authored from a read PD text, not re-checked (USSR) — 107; not verified — **804** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -633,7 +633,7 @@
 | 302 | caucasus | Карча / Karcha | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 303 | caucasus | Два хана / Two Khans | OK | no | modern edition — copyright may apply (deti-online) |
 | 304 | caucasus | Старик Женали и два хана / Old Zhenali and the Two Khans | OK | no | modern edition — copyright may apply (kavkaz-uzel) |
-| 305 | caucasus | Верный сын / The Faithful Son | OK | no | — |
+| 305 | caucasus | Верный сын / The Faithful Son | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 31 | — |
 | 306 | caucasus | Эцемей, сын Эцея / Etsemej, Son of Etsej | OK | no | — |
 | 307 | caucasus | Спор орлов и саранчи / The Quarrel of the Eagles and the Locusts | OK | no | modern edition — copyright may apply (litlife) |
 | 308 | caucasus | Змея, ласточка и комар / The Snake, the Swallow and the Mosquito | OK | no | modern edition — copyright may apply (litlife) |
@@ -712,11 +712,11 @@
 | 381 | caucasus | Красная рыба / The Red Fish | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 18 | — |
 | 382 | caucasus | Кто глупее? / Who Is the Most Stupid? | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 76 | — |
 | 383 | caucasus | Глупая жена / The Stupid Wife | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 77 | — |
-| 384 | caucasus | Букучихан / Bukuchikhan | OK | no | — |
+| 384 | caucasus | Букучихан / Bukuchikhan | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 12 | — |
 | 385 | caucasus | Царица-дева / The Virgin Queen | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 14 | — |
-| 386 | caucasus | Балай и Боти / Balai and Boti | OK | no | — |
+| 386 | caucasus | Балай и Боти / Balai and Boti | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 13 | — |
 | 387 | caucasus | Сартанки / Sartanki | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 19 | — |
-| 388 | caucasus | Кичув / Kichuv | OK | no | — |
+| 388 | caucasus | Кичув / Kichuv | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 27 | — |
 | 389 | caucasus | Лиса и змея / The Fox and the Snake | OK | no | modern edition — copyright may apply (mifoteka) |
 | 390 | caucasus | Как волк решил покаяться / How the Wolf Decided to Repent | OK | no | modern edition — copyright may apply (mifoteka) |
 | 391 | caucasus | Шудукай / Shudukai | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -851,11 +851,11 @@
 | 520 | caucasus | Сегрек, сын Ушун-Коджи / Segrek, Son of Ushun Koja | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 521 | caucasus | Пленение Салур-Казана / How Salur Kazan Was Taken Prisoner | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 522 | caucasus | Смерть Бейрека / How Beyrek Died | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 523 | caucasus | Сын рыбака / The Fisherman's Son | OK | no | — |
+| 523 | caucasus | Сын рыбака / The Fisherman's Son | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 1 | — |
 | 524 | caucasus | Учитель и ученик / The Master and His Pupils | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 4 | — |
-| 525 | caucasus | Сновидец / The Dreamer | OK | no | — |
-| 526 | caucasus | Райская роза / The Rose of Paradise | OK | no | — |
-| 527 | caucasus | Соловей и соловьиха / The Cock and Hen Nightingale | OK | no | — |
+| 525 | caucasus | Сновидец / The Dreamer | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 5 | — |
+| 526 | caucasus | Райская роза / The Rose of Paradise | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 7 | — |
+| 527 | caucasus | Соловей и соловьиха / The Cock and Hen Nightingale | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 8 | — |
 | 528 | caucasus | Плешивый гусопас / The Bald-Headed Gooseherd | OK | no | — |
 | 529 | caucasus | Три брата-вора / The Three Thieving Brothers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 75 | — |
 | 530 | caucasus | Удинская сказка о Рустуме / An Udian Story of Rustum | OK | no | — |
@@ -1090,3 +1090,5 @@
 **Пакет 5 / Batch 5.** Ещё 11 записей Dirr сверены по тому же тексту / 11 more Dirr records checked against the same text: № 6, 9, 10, 15, 16, 20, 24, 25, 28, 29, 30. Исправлено / fixed: «Кому достанется невеста?» / To Whom Does the Bride Belong? (девушка исчезает ночью; похищение джиннами в тексте не описано, она найдена в их крепости / she vanishes in the night and is found in the djinns' stronghold); «Земля возьмёт своё» / The Earth Will Have Its Own (в тексте — один век, а не «века» / one century, not centuries).
 
 **Пакет 6 / Batch 6.** Сверены Dirr № 3, 4, 14, 17, 18, 19, 21, 22, 23 (9 записей / records). Исправлено / fixed: «Верный слуга» / The Faithful Servant: слуга убивает собаку ради крови и, ложась в могилу, передаёт кровь и уши дэвов царевичу; что он и есть покойник — лишь подразумевается / he kills the hound for its blood and hands over the remedies as he lies down in the grave; that he is the dead man is only implied.
+
+**Пакет 7 / Batch 7.** Сверены Dirr № 1, 5, 7, 8, 12, 13, 27, 31 (8 записей / records). Исправлено / fixed: «Верный сын» / The Faithful Son: загадки рассказывает не мачеха-джинн, а джинния, уносившая плов; юноша влюбляется в портрет ханской дочери / the riddles are told by the Djinn woman who fetched the pilaf, not the stepmother; he falls for the princess's portrait.
