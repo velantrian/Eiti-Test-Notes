@@ -28,7 +28,7 @@ test('«+» shows one compact AI row; «change» opens a separate sheet with a p
   await expect(sheet.locator('.eas-panel')).toBeVisible();
   const h = await sheet.locator('.eas-panel').evaluate((e) => e.getBoundingClientRect().height);
   expect(h).toBeLessThanOrEqual(844 * 0.6 + 1);
-  await expect(sheet.locator('.eas-group')).toHaveCount(4);
+  await expect(sheet.locator('.eas-group')).toHaveCount(5); // v14.12.0: + Mistral
   await expect(sheet.locator('.eas-none')).toBeVisible();
   // accordion: current provider expanded, others collapsed
   await expect(sheet.locator('.eas-group.eas-open')).toHaveCount(1);
