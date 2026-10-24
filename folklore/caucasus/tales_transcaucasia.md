@@ -652,13 +652,13 @@ A lazy man whom his neighbours were tired of feeding went to ask God himself for
 
 *грузины — сказка*
 
-Сын вдовы отправился искать страну без смерти. Олень, чьи рога растут до неба, и ворон, засыпающий бездну, предлагали ему остаться с ними до их смерти, но он хотел вечной жизни. В стеклянном доме у моря он нашёл деву-Красоту, созданную в первый день творения, и прожил с ней века, будто миг. Затосковав по дому, он увидел мёртвыми оленя и ворона, а на месте дома — руины. Съев три яблока Красоты, он состарился и умер.
+Сын вдовы отправился искать страну без смерти. Олень, чьи рога растут до неба, и ворон, засыпающий бездну, предлагали ему остаться с ними до их смерти, но он хотел вечной жизни. В стеклянном доме у моря он нашёл деву-Красоту, созданную в первый день творения, и прожил с ней целый век, пролетевший как миг. Затосковав по дому, он увидел мёртвыми оленя и ворона, а на месте дома — руины. Съев три яблока Красоты, он состарился и умер.
 
 **Мораль:** От смерти не уйти; земля возьмёт своё.
 
 ### The Earth Will Have Its Own
 
-A widow's son set out to find the land where there is no death. A stag whose antlers grow toward heaven and a raven filling up an abyss offered to keep him until they died, but he wanted eternal life. In a glass house by the sea he found the maiden Beauty, made on the first day of creation, and lived with her for centuries as if for moments. Longing for home, he found the stag and raven dead and his home in ruins. Eating Beauty's three apples, he grew old and died.
+A widow's son set out to find the land where there is no death. A stag whose antlers grow toward heaven and a raven filling up an abyss offered to keep him until they died, but he wanted eternal life. In a glass house by the sea he found the maiden Beauty, made on the first day of creation, and lived with her for a century that passed like moments. Longing for home, he found the stag and raven dead and his home in ruins. Eating Beauty's three apples, he grew old and died.
 
 **Moral:** Death cannot be escaped; the earth will have its own.
 
