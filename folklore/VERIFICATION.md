@@ -3,18 +3,18 @@
 Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 543 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 536 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
+- Проверка ссылок: 547 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 540 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 150; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **758** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 211). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 152; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **756** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 209). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 543 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 536 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
+- Link check: 547 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 540 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 150; authored from a read PD text, not re-checked (USSR) — 107; not verified — **758** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 211). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 152; authored from a read PD text, not re-checked (USSR) — 107; not verified — **756** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 209). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -193,7 +193,7 @@
 | 151 | ancient | Паньгу отделяет небо от земли / Pangu Separates Heaven and Earth | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 152 | ancient | Хоу И и десять солнц / Hou Yi and the Ten Suns | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 153 | ancient | Куафу гонится за солнцем / Kuafu Chases the Sun | OK | yes — re-checked 2026-10-24 vs Liezi, ch. 5 "Tang wen" (Chinese text, Wikisource); corrected: he pursued the sun's shadow to the Yu Valley; "peach" forest and "east to west" are not in the text | — |
-| 154 | ancient | Цзинвэй засыпает море / Jingwei Fills the Sea | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 154 | ancient | Цзинвэй засыпает море / Jingwei Fills the Sea | OK | yes — re-checked 2026-10-24 vs Shanhaijing, "Bei shan jing" (Chinese text, Wikisource) | — |
 | 155 | ancient | Заххак и змеи на плечах / Zahhak and the Serpents on His Shoulders | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 156 | ancient | Кузнец Кава и его знамя / Kaveh the Blacksmith and His Banner | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 157 | ancient | Рустам и Сохраб / Rostam and Sohrab | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -213,7 +213,7 @@
 | 171 | ancient | Чудодей Джеди / Djedi the Wonder-Worker | OK | yes — re-checked 2026-10-24 vs Petrie, Egyptian Tales I (Gutenberg 7386; "Dedi") | — |
 | 172 | ancient | Нюйва чинит небо / Nüwa Mends the Sky | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 173 | ancient | Нюйва лепит людей / Nüwa Shapes Humankind | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 174 | ancient | Гунгун и гора Бучжоу / Gonggong and Mount Buzhou | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 174 | ancient | Гунгун и гора Бучжоу / Gonggong and Mount Buzhou | OK | yes — re-checked 2026-10-24 vs Huainanzi, "Tian wen" and "Lan ming"; Shanhaijing, "Hai wai bei jing" (Chinese text, Wikisource); corrected: in the Huainanzi his rival is Zhuanxu; the "floods" are not in the text; Nüwa's turtle-leg pillars are a separate Huainanzi passage | — |
 | 175 | ancient | Гунь и самовозрастающая земля / Gun and the Self-Growing Soil | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 176 | ancient | Великий Юй укрощает воды / Yu the Great Tames the Waters | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 177 | ancient | Чанъэ улетает на Луну / Chang'e Flies to the Moon | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -1106,3 +1106,4 @@
 
 ## Записи «только Википедия», сверенные по первоисточникам / Wikipedia-only records checked against primary texts (2026-10-24, PR #38)
 - Batch 11: 8 verified (Zhuangzi chs. 17, 18, 32; Liezi "Tang wen" ×3; Han Feizi "He shi"; Gellius V.14), 4 fixed (Jade of Mr He; Foolish Old Man; Kuafu; Androcles).
+- Batch 12: 2 verified (Shanhaijing "Bei shan jing"; Huainanzi "Tian wen"/"Lan ming" + Shanhaijing "Hai wai bei jing"), 1 fixed (Gonggong: rival Zhuanxu; no floods in text).
