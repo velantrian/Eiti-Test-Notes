@@ -2,7 +2,7 @@
 
 **Статус / Status (24.10.2026, PR #37):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 004 записи**, а не подтверждённое количество уникальных исторических произведений. / These are **1,004 records**, not an independently verified count of unique historical works.
 
-**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 526 URL: 524 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 28; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 880 (только Википедия / Wikipedia-only: 243).
+**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 526 URL: 524 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 30; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 878 (только Википедия / Wikipedia-only: 241).
 
 | Раздел / Collection | Записей / Records |
 | --- | ---: |

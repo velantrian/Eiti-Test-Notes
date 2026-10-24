@@ -254,19 +254,19 @@ Alone in the mountains, Lugalbanda found the chick of the giant lion-headed Anzu
 
 ## 15. Потоп и Зиусудра (Эриду-генезис)
 
-*шумеры — миф*
+*шумеры — миф (фрагментарный текст)*
 
-Богиня Нинтур призвала людей оставить бродячую жизнь и строить города и храмы; появились первые города — Эриду, Бад-тибира, Ларак, Сиппар, Шуруппак — и царская власть. Но шум людей лишил Энлиля сна, и боги решили истребить людей потопом. Энки предупредил благочестивого Зиусудру, и тот построил корабль, спасся с семьёй и животными.
+В сохранившихся частях шумерского повествования говорится о первых городах и нисхождении царской власти с неба. Боги принимают решение уничтожить людей потопом. Зиусудра, благочестивый царь и жрец, слышит у стены предупреждение о катастрофе; из-за больших лакун неизвестно, кто и как подготовил судно. Ветры и волны качают огромную лодку семь дней и ночей. Когда появляется бог солнца Уту, Зиусудра открывает отверстие в лодке и приносит жертвы. Ан и Энлиль даруют ему жизнь, подобную жизни богов, и поселяют его в Дильмуне. Текст дошёл фрагментарно.
 
 **Мораль:** Благочестивый человек переживает гнев богов.
 
 ### The Flood and Ziusudra (Eridu Genesis)
 
-The goddess Nintur called people to leave their wandering life and build cities and temples; the first cities — Eridu, Bad-tibira, Larak, Sippar, Shuruppak — arose, and kingship with them. But the noise of humanity kept Enlil awake, and the gods resolved to destroy mankind with a flood. Enki warned the pious Ziusudra, who built a boat, survived with his family and the animals.
+The surviving Sumerian composition describes the first cities and kingship descending from heaven. The gods decide to destroy humankind in a flood. Ziusudra, a pious king and priest, hears a warning beside a wall; major gaps in the text leave unclear how the boat was prepared and who boarded it. Winds and waves rock a huge boat for seven days and nights. When the sun god Utu appears, Ziusudra opens a hole in the boat and offers sacrifices. An and Enlil grant him life like that of the gods and settle him in Dilmun. The text is fragmentary.
 
 **Moral:** The pious man survives the gods' wrath.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Eridu_Genesis
+Источники / Sources: https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.7.4, https://en.wikipedia.org/wiki/Eridu_Genesis
 
 ---
 
@@ -326,19 +326,19 @@ Ninhursag complained that Dilmun had no water, and Enki made the land fertile. T
 
 ## 19. Гильгамеш и Небесный Бык (шумерская песнь)
 
-*шумеры — эпическая песнь*
+*шумеры — эпическая песнь (фрагментарные версии)*
 
-Богиня Инанна по неясной причине выпросила у своего отца Ана Небесного Быка, пригрозив иначе издать крик, который достигнет земли, и наслала его на Урук. Гильгамеш и Энкиду вдвоём убили Быка.
+В дошедших фрагментарных версиях шумерской песни Инанна требует у отца Ана Небесного Быка и угрожает криком, который достигнет неба и земли. Получив Быка, она приводит его к Уруку: он опустошает пастбища и пьёт воду из реки. В версии из Ме-Турана Энкиду обращается к Гильгамешу во время схватки, а Гильгамеш убивает Быка тяжёлым топором. После победы мясо делят между нуждающимися жителями города, а рога превращают в сосуды для масла.
 
 **Мораль:** Даже гнев богини не одолеет дружбы героев.
 
 ### Gilgamesh and the Bull of Heaven (Sumerian poem)
 
-For reasons the text leaves unclear, the goddess Inanna begged her father An for the Bull of Heaven, threatening otherwise to let out a cry that would reach the earth, and sent it against Uruk. Gilgamesh and Enkidu together killed the Bull.
+In surviving fragmentary versions of the Sumerian poem, Inanna demands the Bull of Heaven from her father An and threatens a cry reaching heaven and earth. She brings the Bull to Uruk, where it strips the pastures and drinks from the river. In the version from Me-Turan, Enkidu addresses Gilgamesh during the fight, and Gilgamesh kills the Bull with a heavy axe. Afterwards the meat is distributed to needy citizens and the horns become flasks for oil.
 
 **Moral:** Even a goddess's wrath cannot defeat the heroes' friendship.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Bull_of_Heaven
+Источники / Sources: https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.8.1.2, https://en.wikipedia.org/wiki/Bull_of_Heaven
 
 ---
 

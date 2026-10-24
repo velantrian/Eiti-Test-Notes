@@ -6,7 +6,7 @@
 - Проверка ссылок: 526 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 524 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org). 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 28; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 96; не проверено — **880** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 243). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 30; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 96; не проверено — **878** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 241). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 526 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 524 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records). No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 28; authored from a read PD text, not re-checked (USSR) — 96; not verified — **880** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 243). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 30; authored from a read PD text, not re-checked (USSR) — 96; not verified — **878** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 241). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -54,11 +54,11 @@
 | 12 | ancient | Энмеркар и Энсухкешданна / Enmerkar and Ensuhkeshdanna | OK | no | — |
 | 13 | ancient | Лугальбанда в горной пещере / Lugalbanda in the Mountain Cave | OK | no | — |
 | 14 | ancient | Лугальбанда и птица Анзуд / Lugalbanda and the Anzud Bird | OK | no | — |
-| 15 | ancient | Потоп и Зиусудра (Эриду-генезис) / The Flood and Ziusudra (Eridu Genesis) | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 15 | ancient | Потоп и Зиусудра (Эриду-генезис) / The Flood and Ziusudra (Eridu Genesis) | OK | yes — ETCSL translation (source-limited; fragmentary) | — |
 | 16 | ancient | Спор Лета и Зимы / The Debate between Winter and Summer | OK | no | — |
 | 17 | ancient | Подвиги Нинурты (Лугаль-э) / The Exploits of Ninurta (Lugal-e) | OK | no | — |
 | 18 | ancient | Энки и Нинхурсаг / Enki and Ninhursag | OK | no | — |
-| 19 | ancient | Гильгамеш и Небесный Бык (шумерская песнь) / Gilgamesh and the Bull of Heaven (Sumerian poem) | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 19 | ancient | Гильгамеш и Небесный Бык (шумерская песнь) / Gilgamesh and the Bull of Heaven (Sumerian poem) | OK | yes — ETCSL translation (source-limited; fragmentary) | — |
 | 20 | ancient | Инанна и Энки: дар божественных сил «ме» / Inanna and Enki: the Gift of the Me | OK | no | — |
 | 21 | ancient | Гильгамеш и Хувава (шумерская песнь) / Gilgamesh and Huwawa (Sumerian poem) | OK | no | — |
 | 22 | ancient | Поучения Шуруппака / The Instructions of Shuruppak | OK | no | — |
@@ -1044,3 +1044,11 @@
 | 117 | ussr | Солнце, Мороз и Ветер / Sun, Frost and Wind | OK | authored from read PD text; not re-checked | — |
 | 118 | ussr | Сватовство Солнца / The Sun's courtship | OK | authored from read PD text; not re-checked | — |
 | 119 | ussr | Работник у Отца-Солнца / The workman at Father Sun's | OK | authored from read PD text; not re-checked | — |
+
+## Дополнительная проверка ETCSL / ETCSL source comparison (2026-10-24)
+
+- **«Потоп и Зиусудра»**: [Oxford ETCSL c.1.7.4, The Flood story](https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.7.4). Исправлены RU/EN пересказы: убраны мотив «шум людей не давал Энлилю спать», прямое предупреждение Энки и неподтверждённые детали о семье и подготовке лодки. Отмечены лакуны, семь дней потопа, Уту, жертва и Дильмун. EN: removed details not preserved in this fragmentary text.
+- **«Гильгамеш и Небесный Бык»**: [Oxford ETCSL c.1.8.1.2, Gilgameš and the bull of heaven](https://etcsl.orinst.ox.ac.uk/cgi-bin/etcsl.cgi?text=t.1.8.1.2), including the Me-Turan recension. RU/EN revised to specify the fragmentary versions, the devastating bull, the axe blow and the meat distribution.
+- ETCSL is a scholarly composite text and translation, not a direct modern oral record. Its copyright notice means the source is linked, not reproduced in full.
+- **This limited check raises SOURCE-REVIEWED from 28 to 30**; 96 earlier author-reviewed entries remain not rechecked, and 878 are NOT VERIFIED. **241 entries** now have only Wikipedia references (including multiple-Wikipedia-only entries).
+- The previously documented automated HTTP run checked **526 distinct URLs**. These **two added ETCSL URLs** were manually opened, but the entire 528-URL set has NOT been re-run under the prior HTTP workflow.
