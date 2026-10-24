@@ -3,18 +3,18 @@
 Дата проверки / Checked: 2026-10-24. Записей / Records: **1015** (ancient 193, americas 96, caucasus 596, ussr 130).
 
 ## RU — сводка
-- Проверка ссылок: 559 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 552 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
+- Проверка ссылок: 562 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 555 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 166; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **742** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 195). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 169; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **739** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 192). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
 ## EN — summary
-- Link check: 559 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 552 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
+- Link check: 562 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 555 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 166; authored from a read PD text, not re-checked (USSR) — 107; not verified — **742** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 195). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 169; authored from a read PD text, not re-checked (USSR) — 107; not verified — **739** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 192). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -115,7 +115,7 @@
 | 73 | ancient | Проклятие Махи / The Curse of Macha | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 74 | ancient | Похищение быка из Куальнге / The Cattle Raid of Cooley | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 75 | ancient | Гибель единственного сына Айфе / The Death of Aífe's Only Son | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 76 | ancient | Пир Брикриу / Bricriu's Feast | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 76 | ancient | Пир Брикриу / Bricriu's Feast | OK | yes — re-checked 2026-10-24 vs Checked against Henderson, Fled Bricrend (ITS 2, 1899), ch. XVI 'The Champion's Covenant' §§91-102 and earlier judgments: churl with axe, Muinremur, Loigaire, Conall shirking, Cuchulainn bares his neck, giant revealed as Curoi mac Dairi, Champion's Portion awarded. Added Muinremur, 'shirked' for 'nowhere to be found'. | — |
 | 77 | ancient | Смерть Кухулина / The Death of Cú Chulainn | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 78 | ancient | Первая битва при Маг Туиред / The First Battle of Mag Tuired | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 79 | ancient | Буггане и церковь святого Триниана / The Buggane and St Trinian's Church | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -125,8 +125,8 @@
 | 83 | ancient | Русалка из Зеннора / The Mermaid of Zennor | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 84 | ancient | Ян Трегигл / Jan Tregeagle | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 85 | ancient | Анку — слуга смерти / The Ankou, Servant of Death | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 86 | ancient | Туан мак Кайрилл / Tuan mac Cairill | OK | no — SECONDARY_ONLY (Wikipedia) | — |
-| 87 | ancient | Плавание Брана / The Voyage of Bran | OK | no — SECONDARY_ONLY (Wikipedia) | — |
+| 86 | ancient | Туан мак Кайрилл / Tuan mac Cairill | OK | yes — re-checked 2026-10-24 vs Rewritten from Meyer's translation (Voyage of Bran II, pp. 285ff.): mortality between two Sundays, sole survivor, wolves, stag/boar/hawk/salmon, eaten by Cairell's wife, rebirth, telling to Finnen of Moville. | — |
+| 87 | ancient | Плавание Брана / The Voyage of Bran | OK | yes — re-checked 2026-10-24 vs Checked against Meyer's translation (Voyage of Bran I, 1895, §§1-66): music and sleep, silver branch from Emain, three companies of nine, Manannan in a chariot (sea as flowery plain), Island of Joy (Inis Subai), ball of thread, a seeming year, Nechtan turned to ashes at Srub Brain, quatrains in Ogam, wanderings unknown thereafter. | — |
 | 88 | ancient | Плавание Майль-Дуйна / The Voyage of Máel Dúin | OK | yes — re-checked 2026-10-24 vs Joyce, Old Celtic Romances (Gutenberg 38041; "The Voyage of Maildun") | — |
 | 89 | ancient | Кесайр и Финтан (Книга захватов Ирландии) / Cessair and Fintán (Book of Invasions) | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 90 | ancient | Немедийцы и башня Конанда / The Nemedians and Conand's Tower | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -1111,3 +1111,4 @@
 - Batch 14: Manu and the Fish rewritten from Eggeling, SBE 12 (Shatapatha Brahmana I.8.1); Savitri and Satyavan checked against Ganguli, Vana Parva (ending fixed). Both scans are on archive.org.
 - Batch 15: Shunahshepa checked against Haug, Aitareya Brahmana VII.13-18 (dropsy detail fixed). Pururavas and Urvashi rewritten from Eggeling, SBE 44 (Shatapatha Brahmana XI.5.1). Both scans are on archive.org.
 - Batch 16: Adapa and the Descent of Ishtar checked against Rogers, Cuneiform Parallels (1912), on archive.org. Details missing from that translation were removed: in Adapa, Anu's laughter and the disease ending; in Ishtar, the claim that Tammuz is her substitute.
+- Batch 17 (Celtic): Voyage of Bran and Tuan mac Cairill checked against Meyer (1895, 1897). Tuan was rewritten. Bricriu's Feast checked against Henderson (1899); Muinremur added. All three texts are on archive.org.
