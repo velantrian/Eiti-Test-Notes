@@ -446,7 +446,7 @@ The daughter of Emperor Yandi drowned while playing in the Eastern Sea and turne
 
 **Moral:** Perseverance does not retreat even before the impossible.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Jingwei
+Источники / Sources: https://en.wikipedia.org/wiki/Jingwei, https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E5%8C%97%E5%B1%B1%E7%B6%93
 
 ---
 
@@ -796,17 +796,17 @@ Lonely, Nüwa moulded people from yellow clay. These became the rich nobles, sin
 
 *китайцы — миф*
 
-Водный бог Гунгун сражался с богом огня Чжужуном (в других версиях — с Чжуаньсюем) за престол Неба и проиграл. В ярости он ударился головой о гору Бучжоу — один из столпов, державших небо. Небо накренилось к северо-западу, а земля — к юго-востоку: поэтому солнце, луна и звёзды движутся к северо-западу, а реки Китая текут на юго-восток; хлынули потопы. Нюйва потом подпёрла небо ногами черепахи Ао. Советником Гунгуна называли девятиглавого змея Сянлю.
+Водный бог Гунгун сражался с Чжуаньсюем (в поздних версиях — с богом огня Чжужуном) за престол Неба и проиграл. В ярости он ударился головой о гору Бучжоу — один из столпов, державших небо. Небо накренилось к северо-западу, а земля — к юго-востоку: поэтому солнце, луна и звёзды движутся к северо-западу, а реки Китая текут на юго-восток. В другом месте «Хуайнань-цзы» рассказано, как Нюйва поставила четыре столпа неба на ноги огромной черепахи Ао. Советником Гунгуна называли девятиглавого змея Сянлю.
 
 **Мораль:** Гнев проигравшего может перевернуть весь мир.
 
 ### Gonggong and Mount Buzhou
 
-The water god Gonggong fought the fire god Zhurong (in other versions Zhuanxu) for the throne of Heaven and lost. In rage he smashed his head against Mount Buzhou, one of the pillars holding up the sky. The sky tilted to the northwest and the earth to the southeast: that is why the sun, moon and stars move northwest and China's rivers flow southeast; floods poured out. Nüwa later propped up the sky with the legs of the turtle Ao. Gonggong's minister was said to be the nine-headed serpent Xiangliu.
+The water god Gonggong fought Zhuanxu (in later versions the fire god Zhurong) for the throne of Heaven and lost. In rage he smashed his head against Mount Buzhou, one of the pillars holding up the sky. The sky tilted to the northwest and the earth to the southeast: that is why the sun, moon and stars move northwest and China's rivers flow southeast. Another Huainanzi passage tells how Nüwa set up the four pillars of the sky on the legs of the great turtle Ao. Gonggong's minister was said to be the nine-headed serpent Xiangliu.
 
 **Moral:** A loser's rage can overturn the whole world.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Gonggong, https://en.wikipedia.org/wiki/Nüwa
+Источники / Sources: https://en.wikipedia.org/wiki/Gonggong, https://en.wikipedia.org/wiki/Nüwa, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E5%A4%A9%E6%96%87%E8%A8%93, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93, https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E6%B5%B7%E5%A4%96%E5%8C%97%E7%B6%93
 
 ---
 
