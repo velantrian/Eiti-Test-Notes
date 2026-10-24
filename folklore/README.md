@@ -4,7 +4,7 @@
 
 **Структурная проверка / Structural parity:** `python3 folklore/tools/check.py`; тесты регрессии / regression tests: `python3 -m unittest discover -s folklore/tools -p 'test_*.py' -v`. Эти проверки НЕ устанавливают историческую достоверность или авторские права / These checks do NOT establish source fidelity or rights.
 
-**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. HTTP-прогон / HTTP run 2026-10-24: 537 URL: 530 → 200, 7 → другое / other (см. / see VERIFICATION.md). Пересказы перепроверены по источнику / re-checked against source: 115; USSR, написаны по прочитанному тексту / authored from read text: 107; не проверено / not verified: 793 (только Википедия / Wikipedia-only: 219).
+**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. HTTP-прогон / HTTP run 2026-10-24: 537 URL: 530 → 200, 7 → другое / other (см. / see VERIFICATION.md). Пересказы перепроверены по источнику / re-checked against source: 141; USSR, написаны по прочитанному тексту / authored from read text: 107; не проверено / not verified: 767 (только Википедия / Wikipedia-only: 219).
 
 | Раздел / Collection | Записей / Records |
 | --- | ---: |
