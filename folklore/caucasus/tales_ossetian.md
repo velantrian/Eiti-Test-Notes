@@ -202,13 +202,13 @@ A wolf caught a badger, who explained that the wolf's ancestors always tossed a 
 
 *осетины — басня*
 
-У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, а те испугались и случайно встали на скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.
+У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, испугались и спрятались под нависшей скалой; соседи тоже убежали и случайно встали на эту скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.
 
 **Мораль:** Смелое слово и удача могут победить сильного.
 
 ### Neighbouring Camps
 
-A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, the little ones fled in fright and happened to stand on a rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.
+A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, took fright and hid under an overhanging rock; the little ones also fled and happened to stand on that rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.
 
 **Moral:** A bold word and good luck can beat the strong.
 
