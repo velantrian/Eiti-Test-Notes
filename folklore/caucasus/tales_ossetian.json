@@ -138,7 +138,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Серый волк и барсук",
@@ -153,14 +154,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Соседи",
-  "summary": "У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, а те испугались и случайно встали на скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.",
+  "summary": "У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, испугались и спрятались под нависшей скалой; соседи тоже убежали и случайно встали на эту скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.",
   "moral": "Смелое слово и удача могут победить сильного.",
   "title_en": "Neighbouring Camps",
-  "summary_en": "A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, the little ones fled in fright and happened to stand on a rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.",
+  "summary_en": "A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, took fright and hid under an overhanging rock; the little ones also fled and happened to stand on that rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.",
   "moral_en": "A bold word and good luck can beat the strong.",
   "people": "осетины",
   "type": "басня",
@@ -168,7 +170,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Богач и бедняк",
@@ -183,7 +186,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Смерть Хамыца",
@@ -198,7 +202,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Батрадз мстит за отца",
@@ -213,7 +218,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Батрадз и Бадзанаг",
@@ -228,7 +234,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Сослан, Елтаган и Муккара",
@@ -243,7 +250,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Зуб Аркыза",
@@ -258,7 +266,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Урызмаг и Сослан",
@@ -273,7 +282,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Рождение Сатаны",
@@ -288,7 +298,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Беличья шкурка",
@@ -303,7 +314,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Охотник у пещеры Амирана",
@@ -318,7 +330,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Барс, медведь и волк",

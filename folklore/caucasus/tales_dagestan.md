@@ -238,13 +238,13 @@ A widow heard that on the fifteenth night of Ramadan God grants three wishes. Wh
 
 *агулы — сказка*
 
-Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушку похитили джинны, первый увидел её на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.
+Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушка ночью исчезла, первый увидел её пленницей в крепости джиннов на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.
 
 **Мораль:** Общее дело держится на всех участниках; спор о заслугах не имеет простого ответа.
 
 ### To Whom Does the Bride Belong?
 
-A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When djinns carried the girl off, the first saw her on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.
+A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When the girl vanished in the night, the first saw her held prisoner in a djinns' stronghold on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.
 
 **Moral:** A shared deed rests on everyone in it; disputes over merit have no easy answer.
 
@@ -280,7 +280,7 @@ A hungry fox caught a sheep, but it talked him into running for a kettle and esc
 
 ### The Bird Who Was Clever for Others
 
-Every year a fox demanded one of the dove's chicks, threatening to climb her tree. The bird Malik Ulhazin taught the dove to answer, 'Climb up yourself if you can,' and the fox gave up. Then the fox flattered the adviser and asked where she put her head when the wind blew from both sides. She showed him by tucking it under her wing, and the fox seized her.
+Every year a fox demanded one of the dove's chicks, threatening to climb her tree. The bird Malik Ulhazin taught the dove to answer, 'Climb up yourself if you can,' and the fox gave up. Then the fox flattered the adviser and asked where she put her head when the wind blew from both sides. The bird showed him by tucking its head under its wing, and the fox seized her.
 
 **Moral:** Wisdom for others does not save one who falls for flattery.
 
@@ -418,13 +418,13 @@ A blind king needed the blood of the horned Red Fish, but the prince pitied the 
 
 *арчинцы — анекдот*
 
-Два муллы подрались из-за того, кого из них поприветствовал всадник. Тот сказал, что приветствовал более глупого, и велел каждому рассказать о своей самой большой глупости. Один приказал ученикам хлопать в ладоши вместо «будь здоров» и сорвался в яму, когда чихнул. Другой запретил ученикам лишние слова и молча позволил себя «похоронить» и разрезать себе щеку. «Я приветствовал тебя», — сказал всадник второму и уехал.
+Два муллы подрались из-за того, кого из них поприветствовал всадник. Тот сказал, что приветствовал более глупого, и велел каждому рассказать о своей самой большой глупости. Один приказал ученикам хлопать в ладоши вместо «будь здоров» и сорвался в яму, когда чихнул. Другой запретил ученикам лишние слова и молча позволил объявить себя мёртвым, обмыть, завернуть в саван и разрезать себе щеку. «Я приветствовал тебя», — сказал всадник второму и уехал.
 
 **Мораль:** Гордыня и упрямство доводят до нелепости.
 
 ### Who Is the Most Stupid?
 
-Two mullahs came to blows over which of them a passing rider had greeted. He said he had greeted the more foolish one and asked each to tell his greatest folly. One had ordered his pupils to clap instead of saying 'bless you', and fell back into a pit when he sneezed. The other had forbidden needless words and silently let himself be 'buried' and have his cheek cut open. 'It was you I greeted,' the rider told the second, and rode off.
+Two mullahs came to blows over which of them a passing rider had greeted. He said he had greeted the more foolish one and asked each to tell his greatest folly. One had ordered his pupils to clap instead of saying 'bless you', and fell back into a pit when he sneezed. The other had forbidden needless words and silently let himself be declared dead, washed and shrouded, and have his cheek cut open. 'It was you I greeted,' the rider told the second, and rode off.
 
 **Moral:** Pride and stubbornness lead to absurdity.
 
@@ -436,13 +436,13 @@ Two mullahs came to blows over which of them a passing rider had greeted. He sai
 
 *лезгины — бытовая сказка*
 
-Глупая жена, которой велели «смотреть за дверью», сняла дверь с петель и унесла к соседям. Убежав от побоев на дерево, она привела домой чужого верблюда. Муж с умной женой спрятали её в печь от «дождя, который слепит», зарезали верблюда и забрали деньги, но глупая выдала их посланцу хозяина. Однако на суде она спросила слепого хозяина, не тот ли дождь его ослепил, и её слова сочли бредом.
+Глупая жена, которой велели «смотреть за дверью», сняла дверь с петель и унесла к соседям. Убежав от побоев на дерево, она привела домой чужого верблюда. Муж с умной женой спрятали её в печь от «дождя, который слепит», зарезали верблюда и забрали деньги, но глупая выдала их посланцу хозяина. Однако перед хозяином она спросила слепого хозяина, не тот ли дождь его ослепил, и её слова сочли бредом.
 
 **Мораль:** Буквальное понимание слов ведёт к беде, а нелепость может спасти виноватых.
 
 ### The Stupid Wife
 
-A foolish wife told to 'mind the door' lifted it off its hinges and carried it to the neighbours. Fleeing a beating, she climbed a tree and came home leading a stray camel. Her husband and his clever wife hid her in the oven from 'blinding rain', slaughtered the camel and took its money, but the fool gave them away to the owner's messenger. In court, though, she asked the blind owner whether the rain had blinded him, and her words were dismissed as raving.
+A foolish wife told to 'mind the door' lifted it off its hinges and carried it to the neighbours. Fleeing a beating, she climbed a tree and came home leading a stray camel. Her husband and his clever wife hid her in the oven from 'blinding rain', slaughtered the camel and took its money, but the fool gave them away to the owner's messenger. Questioned by the owner, though, she asked the blind owner whether the rain had blinded him, and her words were dismissed as raving.
 
 **Moral:** Taking words literally brings trouble, and absurdity can save the guilty.
 

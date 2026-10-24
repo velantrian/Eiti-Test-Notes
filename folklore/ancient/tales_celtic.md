@@ -364,17 +364,17 @@ While training in arms overseas, Cú Chulainn left the warrior woman Aífe pregn
 
 *ирландцы — сага*
 
-Смутьян Брикриу устроил пир и подстрекнул трёх героев — Кухулина, Конала и Лоэгайре — спорить за долю героя. Судьи признавали первым Кухулина, но соперники не смирялись. Тогда великан-мужлан предложил каждому отрубить ему голову, с тем чтобы назавтра отрубить голову им. Лоэгайре и Конал рубили, великан поднимал голову и уходил, но назавтра их не было. Лишь Кухулин подставил шею; великан пощадил его и открылся как Куроа, объявив его бесспорным героем.
+Смутьян Брикриу устроил пир и подстрекнул трёх героев — Кухулина, Конала и Лоэгайре — спорить за долю героя. Судьи признавали первым Кухулина, но соперники не смирялись. Тогда великан-мужлан предложил каждому отрубить ему голову, с тем чтобы назавтра отрубить голову им. Муйнремур («Толстошеий»), а затем в следующие ночи Лоэгайре и Конал рубили, великан поднимал голову и уходил, но когда он возвращался, они уклонялись от уговора. Лишь Кухулин подставил шею; великан пощадил его и открылся как Куроа, объявив его бесспорным героем.
 
 **Мораль:** Храбрость измеряется верностью слову.
 
 ### Bricriu's Feast
 
-The troublemaker Bricriu held a feast and incited three heroes — Cú Chulainn, Conall and Lóegaire — to quarrel over the champion's portion. The judges named Cú Chulainn first, but his rivals would not accept it. Then a giant churl invited each to cut off his head, on condition that they let him cut off theirs the next day. Lóegaire and Conall struck, the giant picked up his head and left, but the next day they were nowhere to be found. Only Cú Chulainn bared his neck; the giant spared him and revealed himself as Cú Roí, proclaiming him undisputed champion.
+The troublemaker Bricriu held a feast and incited three heroes — Cú Chulainn, Conall and Lóegaire — to quarrel over the champion's portion. The judges named Cú Chulainn first, but his rivals would not accept it. Then a giant churl invited each to cut off his head, on condition that they let him cut off theirs the next day. Muinremur (Fat-Neck), then Lóegaire and Conall on successive nights each struck, the giant picked up his head and left, but when he returned they shirked the covenant. Only Cú Chulainn bared his neck; the giant spared him and revealed himself as Cú Roí, proclaiming him undisputed champion.
 
 **Moral:** Courage is measured by keeping one's word.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Fled_Bricrenn
+Источники / Sources: https://en.wikipedia.org/wiki/Fled_Bricrenn, https://archive.org/details/fledbricrendfeas02henduoft
 
 ---
 
@@ -544,17 +544,17 @@ In Breton belief the Ankou is a tall figure or skeleton in a black cloak and wid
 
 *ирландцы — предание*
 
-Туан был единственным выжившим из народа Партолона после мора. Через череду превращений в зверей он дожил до христианских времён и, беседуя со святым Финнианом, рассказал историю Ирландии от своего народа до прихода святого Патрика.
+(«Рассказ Туана мак Кайрилла Финнену из Мовилла», пер. К. Мейера, в «Плавании Брана», т. II, 1897.) Туан, сын Старна, брата Партолона, был единственным, кто остался в живых, когда мор между двумя воскресеньями унёс народ Партолона. Годами он жил один, скрываясь от волков, пока не пришёл Немед; затем, состарившись, он поочерёдно принимал облик оленя, вепря, большого ястреба и лосося, переживая народы, один за другим владевшие Ирландией. Лососем его поймал рыбак короля Кайрелла, и его съела жена Кайрелла, от которой он родился как Туан, сын Кайрелла. В христианские времена он рассказал святому Финнену из Мовилла историю Ирландии от Партолона, когда Патрик уже принёс веру.
 
 **Мораль:** Память — живая летопись народа.
 
 ### Tuan mac Cairill
 
-Tuan was the sole survivor of Partholón's people after a plague. Through a series of animal transformations he lived on into Christian times and, talking with St Finnian, told the history of Ireland from his own people to the coming of St Patrick.
+(Tuan mac Cairill's Story to Finnen of Moville, tr. Meyer, in The Voyage of Bran II, 1897.) Tuan, son of Starn, brother of Partholon, was the one man left alive when a mortality swept away Partholon's people between two Sundays. He lived alone for years, hiding from wolves, until Nemed came; then in old age he passed in turn into the shapes of a stag, a wild boar, a great hawk and a salmon, outliving the peoples who took Ireland after one another. As a salmon he was caught by the fisherman of King Cairell and eaten by Cairell's wife, and was born of her as Tuan son of Cairell. In Christian times he told St Finnen of Moville the history of Ireland from Partholon onwards, Patrick having come with the faith.
 
 **Moral:** Memory is a people's living chronicle.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Tuan_mac_Cairill
+Источники / Sources: https://en.wikipedia.org/wiki/Tuan_mac_Cairill, https://archive.org/details/voyageofbransono02meye
 
 ---
 
@@ -572,7 +572,7 @@ Bran mac Febail heard wondrous music, fell asleep and woke to see a blossoming s
 
 **Moral:** Otherworld time is not human time; there may be no way back.
 
-Источники / Sources: https://en.wikipedia.org/wiki/The_Voyage_of_Bran
+Источники / Sources: https://en.wikipedia.org/wiki/The_Voyage_of_Bran, https://archive.org/details/voyageofbransono01meye
 
 ---
 

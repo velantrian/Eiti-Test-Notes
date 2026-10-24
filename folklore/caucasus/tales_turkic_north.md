@@ -58,13 +58,13 @@ The Khan of the East demanded all the foals of the Khan of the West, claiming hi
 
 *кумыки — сказка*
 
-Умирающий купец, живший с женщиной-джинном, велел сыну каждый вечер ставить в углу конюшни плов. Сын исполнял завет, пока не продал всё, а затем проследил, кто уносит плов, и попал в мир джиннов. Мачеха-джинн показала ему груду золота — всё, что он потратил на плов, — и помогла добыть немую дочь хана: спрятавшись за подсвечником и под тахтой, она рассказывала загадочные истории, и красавица, не удержавшись, заговорила, споря с ответами. Хан выдал её за юношу, тот вернулся домой с золотом и стал правителем.
+Умирающий купец, живший с женщиной-джинном, велел сыну каждый вечер ставить в углу конюшни плов. Сын исполнял завет, пока не продал всё, а затем проследил, кто уносит плов, и попал в мир джиннов. Мачеха-джинн показала ему груду золота — всё, что он потратил на плов, — а когда он влюбился в портрет немой ханской дочери, отправила его к ней с той женщиной-джинном, что уносила плов. Спрятавшись за подсвечником, а потом под тахтой, та рассказывала загадочные истории, и красавица, не удержавшись, заговорила, споря с ответами. Хан выдал её за юношу, тот вернулся домой с золотом и стал правителем.
 
 **Мораль:** Верность отцовскому завету возвращается сторицей.
 
 ### The Faithful Son
 
-A dying merchant, who lived with a Djinn woman, told his son to leave a dish of pilaf in a corner of the stable every evening. The son obeyed until he had sold everything, then followed whoever took the pilaf and entered the world of the Djinns. His Djinn stepmother showed him a heap of gold, everything he had spent on pilaf, and helped him win the Khan's silent daughter: hiding behind a candlestick and under a sofa, she told riddle-stories, and the girl could not help speaking up to dispute his answers. The Khan gave her to the youth, who returned home with the gold and became ruler.
+A dying merchant, who lived with a Djinn woman, told his son to leave a dish of pilaf in a corner of the stable every evening. The son obeyed until he had sold everything, then followed whoever took the pilaf and entered the world of the Djinns. His Djinn stepmother showed him a heap of gold, everything he had spent on pilaf, and, when he fell in love with a portrait of the Khan's silent daughter, sent him to her with the Djinn woman who had fetched the pilaf. Hidden behind a candlestick and then under a sofa, that woman told riddle-stories, and the girl could not help speaking up to dispute his answers. The Khan gave her to the youth, who returned home with the gold and became ruler.
 
 **Moral:** Faithfulness to a father's last wish is repaid many times over.
 

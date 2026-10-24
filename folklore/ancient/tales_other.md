@@ -220,17 +220,17 @@ According to the Videvdad, god warned King Yima of a deadly winter and ordered h
 
 *ведийские индоарии — миф*
 
-Совершая омовение, Ману нашёл в ладонях маленькую рыбку, которая боялась быть съеденной большими рыбами и обещала в награду спасти его от потопа. Ману держал её в кувшине, затем в пруду и, наконец, отпустил в океан. Рыба предупредила его о дне потопа и велела построить корабль. Когда пришёл потоп, Ману привязал корабль к её рогу, и она отвела его к северным горам. Единственный уцелевший, Ману принёс жертву, из неё явилась Ида, и от них пошёл род людей.
+(Шатапатха-брахмана I.8.1, пер. Эггелинга, SBE 12.) Утром Ману принесли воду для омовения, и когда он умывался, в руки ему попала рыба. Она сказала: «Вырасти меня — я спасу тебя»: потоп унесёт все существа. Пока рыбы малы, рыба пожирает рыбу, поэтому Ману держал её сперва в кувшине, затем в вырытой яме, а когда она переросла и её, отнёс к морю. Вскоре она стала джхашей, большой рыбой, назвала год потопа и велела приготовить корабль. Когда вода поднялась, Ману вошёл в корабль; рыба приплыла, он привязал канат к её рогу, и она быстро привела его к северной горе, где велела привязать корабль к дереву и спускаться постепенно, по мере спада воды («спуск Ману»). Потоп унёс все существа, остался один Ману. Желая потомства, он молился, предавался подвижничеству и принёс в воды топлёное масло, кислое молоко, сыворотку и творог; через год из них поднялась женщина — Ида, назвавшая себя его дочерью. Через неё он породил этот род — род Ману.
 
 **Мораль:** Защита слабого возвращается спасением.
 
 ### Manu and the Fish
 
-While making a water offering, Manu found a little fish in his palms, which feared being eaten by bigger fish and promised in return to save him from a flood. Manu kept it in a jar, then a pond, and finally released it into the ocean. The fish warned him of the day of the flood and told him to build a ship. When the flood came, Manu tied the ship to its horn and it led him to the northern mountains. The sole survivor, Manu made a sacrifice, from which Ida appeared, and from them came the human race.
+(Shatapatha Brahmana I.8.1, tr. Eggeling, SBE 12.) In the morning water for washing was brought to Manu, and as he washed a fish came into his hands. It said, 'Rear me, I will save thee': a flood would carry away all creatures. Since fish devours fish while they are small, Manu kept it first in a jar, then in a dug pit, and when it outgrew that took it down to the sea. It soon became a jhasha, a large fish, and told him the year of the flood and to prepare a ship. When the flood rose Manu entered the ship; the fish swam up, he tied the ship's rope to its horn, and it carried him swiftly to the northern mountain, where he was told to fasten the ship to a tree and descend gradually as the water sank ('Manu's descent'). The flood swept away all creatures and Manu alone remained. Wishing for offspring, he worshipped, practised austerities and offered clarified butter, sour milk, whey and curds in the waters; in a year a woman arose from them — Ida, who called herself his daughter. Through her he generated this race, the race of Manu.
 
 **Moral:** Protecting the weak is repaid with salvation.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Matsya
+Источники / Sources: https://en.wikipedia.org/wiki/Matsya, https://archive.org/details/in.ernet.dli.2015.238711
 
 ---
 
@@ -238,17 +238,17 @@ While making a water offering, Manu found a little fish in his palms, which fear
 
 *ведийские индоарии (Ригведа и позднейшие тексты) — миф*
 
-В гимне Ригведы (X.95) небесная нимфа-апсара Урваши четыре осени жила с земным царём Пуруравасом, но, когда он невольно нарушил условия их союза, покинула его, и он тщетно умолял её вернуться. В распространённом позднейшем пересказе условия были такие: царь бережёт её любимых баранов, и они никогда не видят друг друга нагими. Индра, тоскуя по Урваши, подослал гандхарвов украсть баранов; Пуруравас, забыв о наготе, бросился в погоню, Индра сверкнул молнией — и Урваши увидела мужа нагим и вернулась на небо. Позже она родила ему детей, но полностью они так и не соединились.
+(Шатапатха-брахмана XI.5.1, пер. Эггелинга, SBE 44, с цитатами из Ригведы X.95.) Нимфа Урваши полюбила Пурураваса, сына Иды, и, выходя за него, поставила условия: обнимать её трижды в день, не ложиться с ней против её воли и не показываться ей нагим. Она долго жила с ним и понесла от него. Гандхарвы, желая вернуть её, унесли двух ягнят овцы, привязанной к её ложу; на её крик Пурураваса вскочил нагим и бросился за ними, гандхарвы сверкнули молнией, она увидела его нагим и исчезла. С плачем он бродил по Курукшетре и у лотосового озера Аньятахплакша нашёл её, плавающую с другими нимфами в облике водяных птиц. Стихами гимна он молил её остаться; она отвечала, что подобна ветру, которого трудно поймать, что прожила среди смертных четыре осени, и просила его не губить себя. Сжалившись, она велела прийти в последнюю ночь года, когда родится их сын. Наутро гандхарвы даровали ему дар; он попросил стать одним из них и, добыв огонь палочками из дерева ашваттха и принеся в нём жертву, стал гандхарвом.
 
 **Мораль:** Союз смертного с бессмертной хрупок, как данное слово.
 
 ### Pururavas and Urvashi
 
-In a Rigvedic hymn (X.95), the celestial nymph Urvashi lived four autumns with the earthly king Pururavas, but when he unwittingly broke the conditions of their union, she left him, and he begged her in vain to return. In a widespread later retelling, the conditions were that he guard her pet sheep and that they never see each other naked. Indra, missing Urvashi, sent gandharvas to steal the sheep; Pururavas, forgetting he was naked, ran after them, Indra flashed lightning, and Urvashi saw her husband naked and returned to heaven. Later she bore him children, but they were never fully reunited.
+(Shatapatha Brahmana XI.5.1, tr. Eggeling, SBE 44, which quotes Rigveda X.95.) The nymph Urvashi loved Pururavas, son of Ida, and on wedding him set conditions: he should embrace her thrice a day, never lie with her against her will, and never let her see him naked. She lived with him long and was with child. The Gandharvas, wanting her back, carried off the two lambs of a ewe tied to her couch; at her cry Pururavas sprang up naked after them, the Gandharvas made lightning flash, she saw him naked and vanished. Wailing, he wandered over Kurukshetra and at the lotus-lake Anyatahplaksha found her swimming with other nymphs in the shape of water-birds. In the verses of the hymn he begged her to stay; she answered that she was like the wind, hard to catch, that she had lived among mortals four autumns, and told him not to die. Taking pity, she bade him come on the last night of the year, when their son would be born. Next morning the Gandharvas granted him a boon; he asked to become one of them, and by kindling and offering in a fire made with fire-sticks of ashvattha wood he became a Gandharva.
 
 **Moral:** A union of mortal and immortal is as fragile as a promise.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Pururavas
+Источники / Sources: https://en.wikipedia.org/wiki/Pururavas, https://archive.org/details/satapathabrhma05eggeuoft
 
 ---
 
@@ -382,17 +382,17 @@ The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle bi
 
 *китайцы — миф*
 
-Вначале был лишь бесформенный хаос, сгустившийся в космическое яйцо; в нём пробудился Паньгу. Взмахом топора он отделил мутное инь — землю — от ясного ян — неба и, чтобы они не сомкнулись, встал между ними; каждый день небо поднималось на десять чи, земля опускалась, а Паньгу рос. Когда он умер, дыхание его стало ветром и облаками, голос — громом, левый глаз — солнцем, правый — луной, голова — горами, кровь — реками, борода — звёздами и Млечным Путём, пот — дождём.
+Согласно «Саньу лицзи» Сюй Чжэна (цитата в «Ивэнь лэйцзюй»), небо и земля были хаосом, похожим на куриное яйцо, и в нём родился Паньгу. Через 18 000 лет они разделились: светлое ян стало небом, мутное инь — землёй. Паньгу, находясь между ними, девять раз в день менялся; каждый день небо поднималось на один чжан, земля утолщалась на один чжан и Паньгу вырастал на один чжан. Так продолжалось ещё 18 000 лет, поэтому небо отстоит от земли на 90 000 ли. «Шуи цзи» собирает предания о его смерти: голова стала четырьмя священными вершинами, глаза — солнцем и луной, жир — реками и морями, волосы — растениями; по словам «прежних учёных», его слёзы стали реками, дыхание — ветром, голос — громом, а зрачки — молнией.
 
 **Мораль:** Мир рождается из труда и самопожертвования.
 
 ### Pangu Separates Heaven and Earth
 
-In the beginning there was only formless chaos, which coalesced into a cosmic egg; within it Pangu awoke. With a swing of his axe he separated murky yin, the earth, from clear yang, the sky, and to keep them apart stood between them; each day the sky rose ten feet, the earth sank and Pangu grew. When he died his breath became wind and clouds, his voice thunder, his left eye the sun, his right eye the moon, his head the mountains, his blood rivers, his facial hair the stars and the Milky Way, his sweat the rain.
+According to Xu Zheng's Sanwu liji (quoted in the Yiwen leiju), heaven and earth were once a chaos like a hen's egg, and Pangu was born inside it. After 18,000 years they opened: the clear yang became heaven and the murky yin became earth. Pangu, between them, changed nine times a day; each day heaven rose by one zhang, the earth grew one zhang thicker and Pangu grew one zhang taller. This went on for another 18,000 years, which is why heaven is 90,000 li from earth. The Shuyi ji collects sayings about his death: his head became the four sacred peaks, his eyes the sun and moon, his fat the rivers and seas, his hair the plants; 'earlier scholars' said his tears became the rivers, his breath the wind, his voice thunder and his pupils lightning.
 
 **Moral:** The world is born of labour and self-sacrifice.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Pangu
+Источники / Sources: https://en.wikipedia.org/wiki/Pangu, https://zh.wikisource.org/wiki/%E8%97%9D%E6%96%87%E9%A1%9E%E8%81%9A/%E5%8D%B7001, https://zh.wikisource.org/wiki/%E8%BF%B0%E7%95%B0%E8%A8%98
 
 ---
 
@@ -400,17 +400,17 @@ In the beginning there was only formless chaos, which coalesced into a cosmic eg
 
 *китайцы — миф*
 
-Сначала десять солнц поочерёдно ходили по небу, но однажды вышли все вместе играть и стали сжигать землю. Император Яо поручил лучнику Хоу И усмирить их. Тот сначала увещевал их, затем пугал луком, а когда они не послушались, стал сбивать одно за другим; падая, солнца превращались в трёхногих воронов. Последнее солнце пощадили ради людей — по одной версии, по просьбе Яо и матери солнц Сихэ.
+Во времена Яо вместе взошли десять солнц: они выжгли посевы и погубили растения, людям нечего было есть, а чудовища Яюй, Цзаочи, Цзюин, Дафэн, Фэнси и Сюшэ губили народ. Яо послал И, и тот убил Цзаочи в пустошах Чоухуа и Цзюина на реке Сюн, сбил стрелой на шнуре Дафэна у болота Цинцю, стрелял в десять солнц вверху и убил Яюя внизу, разрубил Сюшэ у Дунтина и поймал Фэнси в Санлине. Народ возрадовался и сделал Яо Сыном Неба («Хуайнань-цзы», «Бэнь цзин»). Сколько солнц упало, в «Хуайнань-цзы» не сказано; поздние подробности — вороны, пощажённое солнце — в этом тексте отсутствуют.
 
 **Мораль:** Мера во всём: и избыток благого губителен.
 
 ### Hou Yi and the Ten Suns
 
-At first ten suns crossed the sky one at a time, but one day they all came out together to play and began scorching the earth. Emperor Yao charged the archer Hou Yi with subduing them. He first reasoned with them, then threatened them with his bow, and when they did not listen he shot them down one by one; as they fell they turned into three-legged crows. The last sun was spared for humanity's sake — in one version at the request of Yao and of the suns' mother Xihe.
+In the time of Yao ten suns came out together, scorching the crops and killing the plants, so that the people had nothing to eat, and the monsters Yayu, Zaochi, Jiuying, Dafeng, Fengxi and Xiushe preyed on them. Yao sent Yi, who killed Zaochi in the wilds of Chouhua and Jiuying on the Xiong River, brought down Dafeng with a corded arrow at the Qingqiu marsh, shot at the ten suns above and killed Yayu below, cut Xiushe in two at Dongting and captured Fengxi at Sanglin. The people rejoiced and made Yao Son of Heaven (Huainanzi, 'Ben jing'). The Huainanzi does not say how many suns fell; later details such as crows or a spared sun are not in this text.
 
 **Moral:** Moderation in all things: even an excess of good is ruinous.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Hou_Yi
+Источники / Sources: https://en.wikipedia.org/wiki/Hou_Yi, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E6%9C%AC%E7%B6%93%E8%A8%93
 
 ---
 
@@ -418,17 +418,17 @@ At first ten suns crossed the sky one at a time, but one day they all came out t
 
 *китайцы — миф*
 
-Великан Куафу решил догнать и поймать солнце и бежал за ним с востока на запад. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный персиковый лес Дэнлинь.
+Великан Куафу решил догнать и поймать солнце и гнался за его тенью до долины Юйгу. Его мучила жажда, и он осушил Хуанхэ и реку Вэй, но и их не хватило; в поисках воды он умер от жажды. Его посох превратился в огромный лес Дэн.
 
 **Мораль:** Отвага без меры сил ведёт к гибели, но оставляет след.
 
 ### Kuafu Chases the Sun
 
-The giant Kuafu resolved to chase and catch the sun and ran after it from east to west. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast peach forest of Denglin.
+The giant Kuafu resolved to chase and catch the sun and pursued its shadow as far as the Yu Valley. Burning with thirst, he drained the Yellow River and the Wei, but they were not enough; searching for more water, he died of thirst. His staff became the vast Deng forest.
 
 **Moral:** Courage beyond one's strength leads to ruin, yet leaves its mark.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Kuafu
+Источники / Sources: https://en.wikipedia.org/wiki/Kuafu, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 
@@ -446,7 +446,7 @@ The daughter of Emperor Yandi drowned while playing in the Eastern Sea and turne
 
 **Moral:** Perseverance does not retreat even before the impossible.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Jingwei
+Источники / Sources: https://en.wikipedia.org/wiki/Jingwei, https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E5%8C%97%E5%B1%B1%E7%B6%93
 
 ---
 
@@ -526,17 +526,17 @@ Nachiketa's father, performing a sacrifice of giving away all his possessions, g
 
 *ведийские индоарии (Айтарея-брахмана) — легенда*
 
-Бездетный царь Харишчандра получил от бога Варуны сына Рохиту, пообещав принести его в жертву, но всё откладывал; повзрослевший Рохита бежал в лес, а Варуна поразил царя болезнью. Через шесть лет Рохита купил за сто коров у нищего брахмана Аджигарты среднего сына, Шунахшепу, чтобы принести его в жертву вместо себя. Жрецы отказались привязать юношу к столбу, и Аджигарта сделал это сам за ещё сто коров, а за третью сотню взялся и за нож. Тогда Шунахшепа стал молиться ведийским богам, и с последним гимном богине зари Ушас путы спали, а царь исцелился. Мудрец Вишвамитра усыновил юношу и дал ему имя Деварата — «данный богами».
+Бездетный царь Харишчандра получил от бога Варуны сына Рохиту, пообещав принести его в жертву, но всё откладывал; повзрослевший Рохита бежал в лес, а Варуна поразил царя водянкой. Через шесть лет Рохита купил за сто коров у нищего брахмана Аджигарты среднего сына, Шунахшепу, чтобы принести его в жертву вместо себя. Жрецы отказались привязать юношу к столбу, и Аджигарта сделал это сам за ещё сто коров, а за третью сотню взялся и за нож. Тогда Шунахшепа стал молиться ведийским богам, и с последним гимном богине зари Ушас путы спали, а царь исцелился. Мудрец Вишвамитра усыновил юношу и дал ему имя Деварата — «данный богами».
 
 **Мораль:** Молитва спасает того, кого предали даже родные; жадность позорит.
 
 ### Shunahshepa at the Sacrificial Post
 
-The childless King Harishchandra obtained a son, Rohita, from the god Varuna by promising to sacrifice him, but kept delaying; the grown Rohita fled to the forest, and Varuna struck the king with illness. After six years Rohita bought the middle son of the starving brahmin Ajigarta, Shunahshepa, for a hundred cows to be sacrificed in his place. The priests refused to bind the youth to the post, so Ajigarta did it for another hundred cows, and for a third hundred took up the knife. Then Shunahshepa prayed to the Vedic gods, and with his last hymn to the dawn goddess Ushas his bonds fell away and the king was healed. The sage Vishvamitra adopted the youth and named him Devarata, 'god-given'.
+The childless King Harishchandra obtained a son, Rohita, from the god Varuna by promising to sacrifice him, but kept delaying; the grown Rohita fled to the forest, and Varuna struck the king with dropsy. After six years Rohita bought the middle son of the starving brahmin Ajigarta, Shunahshepa, for a hundred cows to be sacrificed in his place. The priests refused to bind the youth to the post, so Ajigarta did it for another hundred cows, and for a third hundred took up the knife. Then Shunahshepa prayed to the Vedic gods, and with his last hymn to the dawn goddess Ushas his bonds fell away and the king was healed. The sage Vishvamitra adopted the youth and named him Devarata, 'god-given'.
 
 **Moral:** Prayer saves one betrayed even by his own kin; greed brings disgrace.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Shunahshepa
+Источники / Sources: https://en.wikipedia.org/wiki/Shunahshepa, https://archive.org/details/in.ernet.dli.2015.104262
 
 ---
 
@@ -544,17 +544,17 @@ The childless King Harishchandra obtained a son, Rohita, from the god Varuna by 
 
 *древние индийцы (Махабхарата) — сказание*
 
-Царевна Савитри выбрала в мужья Сатьявана, сына слепого изгнанного царя, хотя мудрец Нарада предупредил, что юноше суждено умереть через год. Она надела одежду отшельницы, служила свёкрам и мужу, а за три дня до срока начала строгий пост. В назначенный день Сатьяван, рубя дрова, уснул у неё на коленях, и Яма пришёл за его душой. Савитри пошла за богом смерти, и её мудрые речи о дхарме так понравились Яме, что он давал ей дары — всё, кроме жизни мужа: зрение и царство свёкру, сто сыновей её отцу и, наконец, сто сыновей ей самой и Сатьявану. Тогда Савитри заметила, что без мужа последний дар невыполним, и связанный своим словом Яма вернул Сатьявану жизнь.
+Царевна Савитри выбрала в мужья Сатьявана, сына слепого изгнанного царя, хотя мудрец Нарада предупредил, что юноше суждено умереть через год. Она надела одежду отшельницы, служила свёкрам и мужу, а за три дня до срока начала строгий пост. В назначенный день Сатьяван, рубя дрова, уснул у неё на коленях, и Яма пришёл за его душой. Савитри пошла за богом смерти, и её мудрые речи о дхарме так понравились Яме, что он давал ей дары — всё, кроме жизни мужа: зрение и царство свёкру, сто сыновей её отцу и, наконец, сто сыновей ей самой и Сатьявану. Тогда Савитри заметила, что без мужа последний дар невыполним, и Яма, даровав это как ещё один дар, развязал петлю и вернул Сатьявану жизнь.
 
 **Мораль:** Верность и мудрость способны переспорить даже смерть.
 
 ### Savitri and Satyavan
 
-Princess Savitri chose as husband Satyavan, son of a blind exiled king, though the sage Narada warned that the youth was destined to die in a year. She put on hermit's clothes, served her in-laws and husband, and three days before the appointed time began a strict fast. On the fated day Satyavan, chopping wood, fell asleep in her lap, and Yama came for his soul. Savitri followed the god of death, and her wise words on dharma pleased Yama so much that he granted her boons — anything but her husband's life: sight and kingdom for her father-in-law, a hundred sons for her father and, finally, a hundred sons for herself and Satyavan. Then Savitri pointed out that the last boon was impossible without her husband, and Yama, bound by his word, gave Satyavan back his life.
+Princess Savitri chose as husband Satyavan, son of a blind exiled king, though the sage Narada warned that the youth was destined to die in a year. She put on hermit's clothes, served her in-laws and husband, and three days before the appointed time began a strict fast. On the fated day Satyavan, chopping wood, fell asleep in her lap, and Yama came for his soul. Savitri followed the god of death, and her wise words on dharma pleased Yama so much that he granted her boons — anything but her husband's life: sight and kingdom for her father-in-law, a hundred sons for her father and, finally, a hundred sons for herself and Satyavan. Then Savitri pointed out that the last boon was impossible without her husband, and Yama, granting this as a further boon, untied his noose and gave Satyavan back his life.
 
 **Moral:** Faithfulness and wisdom can out-argue even death.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Savitri_and_Satyavan
+Источники / Sources: https://en.wikipedia.org/wiki/Savitri_and_Satyavan, https://archive.org/details/themahabharataof12333gut
 
 ---
 
@@ -634,17 +634,17 @@ In Babylon the lovers Pyramus and Thisbe lived in adjoining houses; their parent
 
 *римляне (Авл Геллий по Апиону) — предание*
 
-Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы большую занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Расспросив его, император помиловал раба и отдал ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».
+Беглый раб Андрокл укрылся в пещере, оказавшейся логовом раненого льва, и вынул из его лапы огромную занозу. Благодарный лев стал ручным и делил с ним добычу. Через три года Андрокла поймали и в Риме приговорили к растерзанию зверями в Большом цирке. Но самым грозным зверем оказался тот же лев, и он ласкался к Андроклу. Гай Цезарь расспросил его; рассказ записали и пронесли по цирку, и по требованию народа Андрокла освободили и голосованием отдали ему льва; по словам Апиона, потом их видели на улицах Рима, и люди говорили: «Вот лев — друг человека, вот человек — врач льва».
 
 **Мораль:** Добро возвращается, и благодарность бывает даже у зверя.
 
 ### Androcles and the Lion
 
-The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a large thorn from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Having questioned him, the emperor pardoned the slave and gave him the lion; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'
+The runaway slave Androcles took shelter in a cave that turned out to be a wounded lion's den, and pulled a huge splinter from its paw. The grateful lion grew tame and shared its prey with him. After three years Androcles was caught and in Rome sentenced to be devoured by beasts in the Circus Maximus. But the most fearsome beast proved to be that same lion, and it fawned on Androcles. Gaius Caesar questioned him; his story was written up and carried round the Circus, and at the people's request Androcles was freed and given the lion by their vote; according to Apion, they were later seen in the streets of Rome, and people said: 'This is the lion, a man's friend; this is the man, a lion's doctor.'
 
 **Moral:** Kindness returns, and even a beast can be grateful.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Androcles
+Источники / Sources: https://en.wikipedia.org/wiki/Androcles, https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Gellius/5*.html
 
 ---
 
@@ -760,17 +760,17 @@ Prince Hordjedef told his father, Pharaoh Khufu, about Djedi, a man of a hundred
 
 *китайцы — миф (Хуайнаньцзы)*
 
-Четыре столпа, державшие небо, рухнули (поздние источники объясняют это тем, что Гунгун в ярости ударился головой о гору Бучжоу). Половина неба обвалилась, земля треснула, леса горели, вода хлестала из трещин, а дикие звери нападали на людей. Нюйва пожалела созданных ею людей: собрала в реке камни пяти цветов, расплавила их и залатала небо — с тех пор облака разноцветны. Она убила гигантскую черепаху (в некоторых версиях — Ао) и поставила её четыре ноги вместо столпов; ноги оказались неравной длины, и небо осталось слегка наклонённым. Затем Нюйва прогнала зверей, потушила огонь и остановила потоп пеплом сожжённого тростника.
+В глубокой древности рухнули четыре полюса и раскололись девять областей; небо перестало всё покрывать, а земля — всё нести; пожары пылали не угасая, воды разливались без конца, свирепые звери пожирали людей, хищные птицы хватали стариков и слабых. Тогда Нюйва расплавила камни пяти цветов и залатала синее небо, отрубила ноги огромной черепахе Ао и поставила на них четыре полюса, убила чёрного дракона, чтобы спасти Цзичжоу, и сложила золу тростника, чтобы остановить потоп. Небо было залатано, полюса выпрямились, воды высохли, Цзичжоу успокоился, и народ выжил («Хуайнань-цзы», «Лань мин»). Связи с Гунгуном в «Хуайнань-цзы» нет; она появляется в поздних источниках, здесь не проверенных.
 
-**Мораль:** Мир можно исправить, даже если починка не будет совершенной.
+**Мораль:** Даже разрушенный мир можно исправить.
 
 ### Nüwa Mends the Sky
 
-The four pillars holding up the sky collapsed (later sources blame Gonggong, who smashed his head against Mount Buzhou in rage). Half the sky fell, the earth cracked, forests burned, water gushed from the cracks and wild beasts attacked people. Nüwa took pity on the humans she had made: she gathered stones of five colours from a riverbed, melted them and patched the sky — which is why clouds are many-coloured. She killed a giant turtle (named Ao in some versions) and set its four legs up as new pillars; the legs were of unequal length, so the sky stayed slightly tilted. Then Nüwa drove off the beasts, put out the fire and stopped the flood with the ashes of burnt reeds.
+In remote antiquity the four poles broke down and the nine provinces split apart; heaven no longer covered everything and earth no longer bore everything; fires blazed unquenched, floods ran without end, fierce beasts devoured the people and birds of prey seized the old and weak. Then Nüwa smelted stones of five colours to patch the azure sky, cut off the legs of the great turtle Ao to set up the four poles, killed the black dragon to save Jizhou and piled up reed ashes to stop the floodwaters. The sky was patched, the poles stood straight, the waters dried up, Jizhou was at peace and the people survived (Huainanzi, 'Lan ming'). The Huainanzi does not blame this on Gonggong; that link is made in later sources not checked here.
 
-**Moral:** The world can be mended even if the repair is not perfect.
+**Moral:** Even a broken world can be mended.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Nüwa
+Источники / Sources: https://en.wikipedia.org/wiki/Nüwa, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93
 
 ---
 
@@ -778,17 +778,17 @@ The four pillars holding up the sky collapsed (later sources blame Gonggong, who
 
 *китайцы — миф*
 
-Нюйва, страдая от одиночества, вылепила людей из жёлтой глины. Так появились знатные и богатые — ведь их она сделала собственными руками. Лепить каждого было слишком долго, поэтому большинство людей она создала, протащив верёвку через грязь, — разлетевшиеся комья стали простыми людьми; этот миф объяснял сословное неравенство древнего Китая. По другой версии, Нюйва и её брат Фуси пережили великий потоп, поженились по велению Неба, и Нюйва родила ком плоти; его разрезали на куски, разбросали по миру, и из кусков вышли люди.
+Народное предание, записанное в «Фэнсу тунъи» Ин Шао (цитата в «Тайпин юйлань», гл. 78): когда небо и земля разделились, а людей ещё не было, Нюйва вылепила людей из жёлтой земли. Работа оказалась ей не по силам, и она протянула верёвку через грязь и, подняв её, сделала из неё людей. Поэтому богатые и знатные — люди из жёлтой земли, а бедные, низкие и простые — люди из верёвки. Рассказ о потопе, Нюйве и Фуси взят из других источников, здесь не проверенных, и опущен.
 
 **Мораль:** Миф часто объясняет, почему общество устроено так, а не иначе.
 
 ### Nüwa Shapes Humankind
 
-Lonely, Nüwa moulded people from yellow clay. These became the rich nobles, since she had made them with her own hands. Making each one was too slow, so she created most people by dragging a rope through mud — the flung clods became commoners; the myth explained ancient China's social hierarchy. In another version Nüwa and her brother Fuxi survived a great flood, married at Heaven's command, and Nüwa bore a ball of flesh; it was cut up and scattered across the world, and the pieces became human beings.
+A popular saying recorded in Ying Shao's Fengsu tongyi (quoted in the Taiping yulan, ch. 78): when heaven and earth had opened and there were no people yet, Nüwa kneaded yellow earth into human beings. The work was too heavy for her strength, so she drew a cord through the mud and lifted it out to make people. That is why the rich and noble are people of yellow earth, while the poor, lowly and common are people of the cord. The flood story of Nüwa and Fuxi comes from other sources not checked here and is left out.
 
 **Moral:** Myth often explains why society is ordered the way it is.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Nüwa
+Источники / Sources: https://en.wikipedia.org/wiki/Nüwa, https://zh.wikisource.org/wiki/%E5%A4%AA%E5%B9%B3%E5%BE%A1%E8%A6%BD/0078
 
 ---
 
@@ -796,17 +796,17 @@ Lonely, Nüwa moulded people from yellow clay. These became the rich nobles, sin
 
 *китайцы — миф*
 
-Водный бог Гунгун сражался с богом огня Чжужуном (в других версиях — с Чжуаньсюем) за престол Неба и проиграл. В ярости он ударился головой о гору Бучжоу — один из столпов, державших небо. Небо накренилось к северо-западу, а земля — к юго-востоку: поэтому солнце, луна и звёзды движутся к северо-западу, а реки Китая текут на юго-восток; хлынули потопы. Нюйва потом подпёрла небо ногами черепахи Ао. Советником Гунгуна называли девятиглавого змея Сянлю.
+Водный бог Гунгун сражался с Чжуаньсюем (в поздних версиях — с богом огня Чжужуном) за престол Неба и проиграл. В ярости он ударился головой о гору Бучжоу — один из столпов, державших небо. Небо накренилось к северо-западу, а земля — к юго-востоку: поэтому солнце, луна и звёзды движутся к северо-западу, а реки Китая текут на юго-восток. В другом месте «Хуайнань-цзы» рассказано, как Нюйва поставила четыре столпа неба на ноги огромной черепахи Ао. Советником Гунгуна называли девятиглавого змея Сянлю.
 
 **Мораль:** Гнев проигравшего может перевернуть весь мир.
 
 ### Gonggong and Mount Buzhou
 
-The water god Gonggong fought the fire god Zhurong (in other versions Zhuanxu) for the throne of Heaven and lost. In rage he smashed his head against Mount Buzhou, one of the pillars holding up the sky. The sky tilted to the northwest and the earth to the southeast: that is why the sun, moon and stars move northwest and China's rivers flow southeast; floods poured out. Nüwa later propped up the sky with the legs of the turtle Ao. Gonggong's minister was said to be the nine-headed serpent Xiangliu.
+The water god Gonggong fought Zhuanxu (in later versions the fire god Zhurong) for the throne of Heaven and lost. In rage he smashed his head against Mount Buzhou, one of the pillars holding up the sky. The sky tilted to the northwest and the earth to the southeast: that is why the sun, moon and stars move northwest and China's rivers flow southeast. Another Huainanzi passage tells how Nüwa set up the four pillars of the sky on the legs of the great turtle Ao. Gonggong's minister was said to be the nine-headed serpent Xiangliu.
 
 **Moral:** A loser's rage can overturn the whole world.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Gonggong, https://en.wikipedia.org/wiki/Nüwa
+Источники / Sources: https://en.wikipedia.org/wiki/Gonggong, https://en.wikipedia.org/wiki/Nüwa, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E5%A4%A9%E6%96%87%E8%A8%93, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93, https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E6%B5%B7%E5%A4%96%E5%8C%97%E7%B6%93
 
 ---
 
@@ -814,17 +814,17 @@ The water god Gonggong fought the fire god Zhurong (in other versions Zhuanxu) f
 
 *китайцы — миф (Шань хай цзин; Ши цзи)*
 
-Во время великого потопа при императоре Яо отцу Юя, Гуню, поручили сдержать воды. Девять лет он строил дамбы, но безуспешно. По «Каталогу гор и морей», он украл у богов сижан — самовозрастающую землю; дамбы из неё росли вместе с водой, но, поднявшись слишком высоко, рухнули, и потоп погубил множество людей; за это Гуня казнил Чжужун. По Сыма Цяню, Гуня казнил (или изгнал на гору Юйшань) император Шунь. Ван Чун пишет, что дух Гуня превратился в жёлтого медведя; по другим версиям, он бросился в бездну и стал её богом.
+Потоп поднялся до неба. Гунь украл у Владыки саморастущую землю (сижан), чтобы запрудить потоп, не дождавшись повеления Владыки. Владыка велел Чжужуну убить Гуня в окрестностях Юй (Пернатой горы). Из Гуня родился Юй, и Владыка наконец повелел Юю разложить землю и устроить девять областей («Шаньхайцзин», «Хай нэй цзин»). Другие подробности — девять лет плотин, казнь по приказу Шуня, дух Гуня в виде жёлтого медведя — взяты из источников, здесь не проверенных, и опущены.
 
 **Мораль:** Сдерживать стихию силой — не значит её победить.
 
 ### Gun and the Self-Growing Soil
 
-During the great flood under Emperor Yao, Yu's father Gun was charged with holding back the waters. For nine years he built dykes, without success. According to the Classic of Mountains and Seas, he stole xirang, self-renewing soil, from the gods; dykes made of it rose with the water, but when they grew too high they collapsed, and the flood killed many people; for this Zhurong executed Gun. According to Sima Qian, Emperor Shun executed (or exiled to Feather Mountain) Gun. Wang Chong writes that Gun's spirit became a yellow bear; in other versions he leapt into an abyss and became its god.
+The flood rose up to the sky. Gun stole the Emperor's self-swelling soil (xirang) to dam the flood, without waiting for the Emperor's command. The Emperor ordered Zhurong to kill Gun on the outskirts of Yu (Feather Mountain). From Gun, Yu was born, and the Emperor at last ordered Yu to spread out the soil and settle the nine provinces (Shanhaijing, 'Hai nei jing'). Other details sometimes told — nine years of dykes, execution by Shun, Gun's spirit becoming a yellow bear — come from sources not checked here and are left out.
 
 **Moral:** Holding back nature by force is not the same as mastering it.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Gun_(Chinese_mythology)
+Источники / Sources: https://en.wikipedia.org/wiki/Gun_(Chinese_mythology), https://zh.wikisource.org/wiki/%E5%B1%B1%E6%B5%B7%E7%B6%93/%E6%B5%B7%E5%85%A7%E7%B6%93
 
 ---
 
@@ -832,17 +832,17 @@ During the great flood under Emperor Yao, Yu's father Gun was charged with holdi
 
 *китайцы — легенда*
 
-Юй продолжил дело отца, Гуня, но сначала изучил реки, чтобы понять причину неудачи. Вместо плотин он вместе с Хоуцзи прорыл каналы, отводившие паводок на поля, и углублял русла. Тринадцать лет Юй ел и спал вместе с рабочими и сам чистил ил; руки и ноги его покрылись мозолями. Он ушёл на работы через четыре дня после свадьбы и трижды проходил мимо своего дома, не заходя: в первый раз жена рожала, во второй сын уже звал отца, в третий сыну было больше десяти лет, — но Юй отвечал, что не может отдыхать, пока люди лишены крова. Он открыл узкий проход у горы Лунмэнь («Врата Юя»). В поздних пересказах ему помогали жёлтый дракон и чёрная черепаха; говорят также, что он убил девятиглавого Сянлю.
+Во времена Яо потоп разлился по земле, травы буйно разрослись, звери расплодились, хлеба не вызревали. Встревоженный Яо возвысил Шуня, чтобы навести порядок. Юй прочистил Девять рек, расчистил Цзи и Та и вывел их в море, открыл Жу и Хань, отвёл Хуай и Сы в Цзян — и лишь тогда Срединные земли смогли прокормиться. Юй восемь лет провёл вне дома и трижды прошёл мимо своих ворот, не войдя («Мэн-цзы», «Тэн Вэнь-гун, I»). По «Хуайнань-цзы» («Бэнь цзин»), при Шуне Гунгун поднял потоп; Лунмэнь и Люйлян ещё не были открыты, люди спасались на холмах и деревьях; Шунь послал Юя прочистить три реки и пять озёр, открыть ущелье И и отвести воды на восток к морю. Жена, сын и драконы-помощники из поздних пересказов в этих текстах отсутствуют.
 
 **Мораль:** Труд для общего блага требует личных жертв.
 
 ### Yu the Great Tames the Waters
 
-Yu continued his father Gun's work, but first studied the rivers to learn why it had failed. Instead of dams he and Hou Ji dug canals that diverted floodwater into fields, and dredged the riverbeds. For thirteen years Yu ate and slept with the workers and cleared silt himself; his hands and feet became thick with calluses. He left for the work four days after his wedding and passed his own door three times without entering: the first time his wife was in labour, the second his son could already call to him, the third his son was over ten — but Yu said he could not rest while people were homeless. He opened the narrow channel at Mount Longmen ('Yu's Gateway'). In later retellings a yellow dragon and a black turtle helped him; he is also said to have killed the nine-headed Xiangliu.
+In Yao's time the flood ran wild over the land, plants ran riot, beasts multiplied and the grain did not ripen. Yao, troubled, raised up Shun to bring order. Yu dredged the Nine Rivers, cleared the Ji and the Ta and led them to the sea, opened the Ru and the Han, drained the Huai and the Si into the Jiang, and only then could the central lands feed themselves. Yu spent eight years away and passed his own door three times without going in (Mencius, 'Teng Wen Gong I'). The Huainanzi ('Ben jing') says that under Shun, Gonggong stirred up the flood; Longmen and Lüliang were not yet opened and the people fled to hills and trees; Shun sent Yu to dredge the three rivers and five lakes, open the Yi gorge and lead the waters east to the sea. The wife, the son and the dragon helpers of later retellings are not in these texts.
 
 **Moral:** Work for the common good demands personal sacrifice.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Yu_the_Great
+Источники / Sources: https://en.wikipedia.org/wiki/Yu_the_Great, https://zh.wikisource.org/wiki/%E5%AD%9F%E5%AD%90/%E6%BB%95%E6%96%87%E5%85%AC%E4%B8%8A, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E6%9C%AC%E7%B6%93%E8%A8%93
 
 ---
 
@@ -850,17 +850,17 @@ Yu continued his father Gun's work, but first studied the rivers to learn why it
 
 *китайцы — миф*
 
-Когда десять солнц разом взошли и сжигали землю, лучник Хоу И сбил девять из них и получил в награду две порции эликсира бессмертия. Не желая бессмертия без жены, он не выпил эликсир и оставил его Чанъэ. Пока Хоу И охотился, его ученик Фэнмэн ворвался в дом и потребовал эликсир; Чанъэ, чтобы не отдать его, выпила обе порции, вознеслась и выбрала своим жилищем Луну, чтобы оставаться ближе к мужу. Хоу И выставил её любимые фрукты и пирожные — отсюда обычай праздника Середины осени — и, по этой версии, покончил с собой. В более древних версиях Чанъэ сама похитила эликсир у мужа и бежала на Луну, чтобы он не смог её догнать.
+«Хуайнань-цзы» («Лань мин») упоминает эту историю лишь как сравнение: И выпросил у Си-ван-му снадобье бессмертия, а Хэн-э (Чанъэ) украла его и бежала на луну. И остался в тоске, не имея способа достать ещё, потому что не знал, откуда берётся снадобье. Поздние версии — ученик Фэнмэн, Чанъэ, выпившая снадобье, чтобы оно не досталось ему, подношения на Праздник середины осени — в этом тексте отсутствуют и опущены.
 
 **Мораль:** Бессмертие в одиночестве может стать разлукой навеки.
 
 ### Chang'e Flies to the Moon
 
-When ten suns rose at once and scorched the earth, the archer Hou Yi shot down nine and was rewarded with two portions of the elixir of immortality. Not wanting immortality without his wife, he did not drink it and left it with Chang'e. While Hou Yi was hunting, his apprentice Fengmeng broke into the house and demanded the elixir; to keep it from him Chang'e drank both portions, rose up and chose the Moon as her home so as to stay near her husband. Hou Yi set out the fruits and cakes she loved — the origin of the Mid-Autumn custom — and, in this version, killed himself. In older versions Chang'e stole the elixir from her husband and fled to the Moon so that he could not follow her.
+The Huainanzi ('Lan ming') tells the story only as a comparison: Yi asked the Queen Mother of the West for the elixir of immortality, and Heng'e (Chang'e) stole it and fled to the moon. Yi was left desolate, with no means of getting more, because he did not know where the elixir came from. Later versions — the apprentice Fengmeng, Chang'e drinking to keep the elixir from him, the Mid-Autumn offerings — are not in this text and are left out.
 
 **Moral:** Immortality alone can become an eternal parting.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Chang'e
+Источники / Sources: https://en.wikipedia.org/wiki/Chang'e, https://zh.wikisource.org/wiki/%E6%B7%AE%E5%8D%97%E5%AD%90/%E8%A6%BD%E5%86%A5%E8%A8%93
 
 ---
 
@@ -932,7 +932,7 @@ Zhuangzi and Huizi were strolling on the bridge over the river Hao. Zhuangzi sai
 
 **Moral:** Knowing is also a relationship, not only a logical inference.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E7%A7%8B%E6%B0%B4
 
 ---
 
@@ -950,7 +950,7 @@ When Zhuangzi's wife died, Huizi came to offer condolences and found him sitting
 
 **Moral:** Death is only one more transformation in the cycle of nature.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E8%87%B3%E6%A8%82
 
 ---
 
@@ -968,7 +968,7 @@ When Zhuangzi was dying his disciples wanted to give him a lavish funeral. He an
 
 **Moral:** A sage does not cling to the body, even in death.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book)
+Источники / Sources: https://en.wikipedia.org/wiki/Zhuangzi_(book), https://zh.wikisource.org/wiki/%E8%8E%8A%E5%AD%90/%E5%88%97%E7%A6%A6%E5%AF%87
 
 ---
 
@@ -976,17 +976,17 @@ When Zhuangzi was dying his disciples wanted to give him a lavish funeral. He an
 
 *китайцы — притча (Ле-цзы, кн. 5)*
 
-Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Небесные боги, тронутые его упорством, велели раздвинуть горы. Притчу пересказал Лю Сян, а в 1945 г. её использовал Мао Цзэдун.
+Девяностолетнему старику (Юйгуну) мешали две горы перед домом — в некоторых пересказах Тайхан и Ванъу. Он начал срывать их мотыгами и носить землю в корзинах, успевая сделать лишь один ход туда и обратно за год. На вопрос, как он надеется завершить невозможное, старик ответил: пусть он сам не закончит, но будут работать его дети, их дети и так без конца, и однажды горы исчезнут. Бог, держащий змей, доложил об этом Небесному владыке, и тот, тронутый его искренностью, велел двум сыновьям Куаэ унести горы. Притча взята из «Ле-цзы» (глава «Тан вэнь»), а в 1945 г. её использовал Мао Цзэдун.
 
 **Мораль:** Упорство поколений превозмогает то, что не под силу одному.
 
 ### The Foolish Old Man Removes the Mountains
 
-A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The gods of Heaven, moved by his perseverance, ordered the mountains moved apart. Liu Xiang retold the fable, and Mao Zedong used it in 1945.
+A ninety-year-old man (Yugong) was hindered by two mountains in front of his house — the Taihang and Wangwu in some tellings. He began digging them away with hoes and carrying the earth in baskets, managing only one round trip a year. Asked how he hoped to finish the impossible, the old man said that even if he did not finish, his children would carry on, and their children, and so on without end, and one day the mountains would be gone. The snake-holding god reported this to the Emperor of Heaven, who, moved by his sincerity, ordered the two sons of Kua'e to carry the mountains away. The fable comes from the Liezi (chapter "Tang wen"), and Mao Zedong used it in 1945.
 
 **Moral:** The persistence of generations overcomes what one person cannot.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Yugong_Yishan
+Источники / Sources: https://en.wikipedia.org/wiki/Yugong_Yishan, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 
@@ -994,17 +994,17 @@ A ninety-year-old man (Yugong) was hindered by two mountains in front of his hou
 
 *китайцы — легенда (Хань Фэй-цзы)*
 
-Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. На вопрос царя он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (Имена царей в версиях различаются.)
+Человек из царства Чу по имени Бянь Хэ нашёл в горах неотёсанный нефрит и поднёс его царю. Ювелир назвал его простым камнем, и царь, сочтя Хэ лжецом, велел отрубить ему левую ногу. При следующем царе всё повторилось, и Хэ лишился правой ноги. Когда на престол взошёл третий царь, Хэ, обнимая камень, три дня и три ночи плакал у подножия гор, пока вместо слёз не потекла кровь. Когда царь послал узнать причину, он ответил, что скорбит не о ногах, а о том, что драгоценность назвали камнем, а честного человека — лжецом. Царь велел обработать камень, и в нём оказался драгоценный нефрит, названный «нефритом господина Хэ». (У Хань Фэя это цари Ли, У и Вэнь; в других версиях имена иные.)
 
 **Мораль:** Правду не всегда признают сразу, но она не перестаёт быть правдой.
 
 ### The Jade of Mr He
 
-A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. Asked by the king, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (The kings' names differ between versions.)
+A man of Chu named Bian He found an uncut jade in the hills and presented it to the king. The jeweller called it an ordinary stone, and the king, judging He a liar, had his left foot cut off. Under the next king the same happened, and He lost his right foot. When a third king took the throne, He, clasping the stone, wept at the foot of the hills for three days and nights until his tears turned to blood. When the king sent someone to ask why, he said he grieved not for his feet but because a gem had been called a stone and an honest man a liar. The king had the stone worked, and it contained a precious jade, named 'the Jade of Mr He'. (In the Han Feizi the kings are Li, Wu and Wen; other versions name them differently.)
 
 **Moral:** Truth is not always recognised at once, but it does not stop being truth.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Bian_He
+Источники / Sources: https://en.wikipedia.org/wiki/Bian_He, https://zh.wikisource.org/wiki/%E9%9F%93%E9%9D%9E%E5%AD%90/%E5%92%8C%E6%B0%8F
 
 ---
 
@@ -1022,7 +1022,7 @@ The artificer Yan Shi presented King Mu of Zhou with a human-shaped figure of hi
 
 **Moral:** A master's craft can rival nature — and unsettle a ruler.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang
+Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E6%B9%AF%E5%95%8F%E7%AF%87
 
 ---
 
@@ -1030,17 +1030,17 @@ The artificer Yan Shi presented King Mu of Zhou with a human-shaped figure of hi
 
 *китайцы — легенда*
 
-Чжоуский царь Му мечтал стать бессмертным и решил посетить божественный рай на горе Куньлунь, чтобы отведать персиков бессмертия. Отважный возничий Цзаофу довёз его туда на колеснице. Роман IV в. до н. э. «Жизнеописание сына Неба Му» рассказывает о визите царя к Царице-матери Запада; позднее его воспевал поэт Ли Шанъинь. Предание наделяет царя восемью знаменитыми скакунами.
+Чародей с крайнего запада увлёк чжоуского царя Му в странствие духа; очнувшись, царь увидел, что не покидал своего места. После этого он перестал заботиться о делах государства и отправился в дальний путь на колеснице, запряжённой восемью знаменитыми конями, с возничим Цзаофу. В стране Цзюйсоу его напоили кровью белого лебедя; он остановился на Куньлуне, посетил дворец Жёлтого императора и был гостем Си-ван-му, пируя у Яшмового пруда; она пела ему, он отвечал ей, и слова были печальны. Затем он поехал посмотреть, где заходит солнце, проезжая по десять тысяч ли в день, и вздохнул, что потомки станут перечислять его проступки за то, что он искал удовольствий, а не добродетели («Ле-цзы», «Чжоу Му-ван»). О персиках бессмертия в «Ле-цзы» ничего нет.
 
-**Мораль:** Даже цари ищут бессмертия у пределов мира.
+**Мораль:** Даже странствия царя могут кончиться сожалением.
 
 ### King Mu Visits the Queen Mother of the West
 
-King Mu of Zhou dreamed of becoming immortal and resolved to visit the divine paradise of Mount Kunlun to taste the peaches of immortality. The brave charioteer Zaofu drove him there. The 4th-century BC romance 'Tale of King Mu, Son of Heaven' tells of the king's visit to the Queen Mother of the West; the poet Li Shangyin later retold it. Tradition gives the king eight famous stallions.
+A conjurer from the far west took King Mu of Zhou on a journey of the spirit; when the king came back to himself he found he had never left his seat. After that he stopped caring for affairs of state and travelled far in a chariot drawn by eight famous steeds, with Zaofu as charioteer. In the land of Jusou he was given white swan's blood to drink; he camped on Kunlun, visited the palace of the Yellow Emperor, and was the guest of the Queen Mother of the West, feasting by the Jasper Pool; she sang for him and he answered her, and the words were sad. He went on to see where the sun sets, covering ten thousand li in a day, and then sighed that later ages would count up his faults for pursuing pleasure instead of virtue (Liezi, 'Zhou Mu wang'). The Liezi says nothing of peaches of immortality.
 
-**Moral:** Even kings seek immortality at the edge of the world.
+**Moral:** Even a king's wanderings may end in regret.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang
+Источники / Sources: https://en.wikipedia.org/wiki/Zhou_Mu_Wang, https://zh.wikisource.org/wiki/%E5%88%97%E5%AD%90/%E5%91%A8%E7%A9%86%E7%8E%8B%E7%AF%87
 
 ---
 

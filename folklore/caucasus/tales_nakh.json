@@ -387,7 +387,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Храбрый Насни",
@@ -402,7 +403,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Отцовское наследство",
@@ -417,7 +419,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Хитрые супруги",
@@ -432,7 +435,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Сын Месяца",
@@ -818,10 +822,10 @@
  },
  {
   "title": "Глупцы из Ауха",
-  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.",
+  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев подошли к пещере, и один полез туда за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.",
   "moral": "Над глупостью смеются, чтобы её не повторять.",
   "title_en": "The Stupid People of Aukh",
-  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.",
+  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh came to a cave, and one crawled in after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.",
   "moral_en": "People laugh at folly so as not to repeat it.",
   "people": "чеченцы (Аух)",
   "type": "анекдот",
@@ -829,7 +833,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Ветер и Солнце",
