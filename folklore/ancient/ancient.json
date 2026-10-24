@@ -213,7 +213,8 @@
   "moral": "Благочестивый человек переживает гнев богов.",
   "title_en": "The Flood and Ziusudra (Eridu Genesis)",
   "summary_en": "The surviving Sumerian composition describes the first cities and kingship descending from heaven. The gods decide to destroy humankind in a flood. Ziusudra, a pious king and priest, hears a warning beside a wall; major gaps in the text leave unclear how the boat was prepared and who boarded it. Winds and waves rock a huge boat for seven days and nights. When the sun god Utu appears, Ziusudra opens a hole in the boat and offers sacrifices. An and Enlil grant him life like that of the gods and settle him in Dilmun. The text is fragmentary.",
-  "moral_en": "The pious man survives the gods' wrath."
+  "moral_en": "The pious man survives the gods' wrath.",
+  "verified": true
  },
  {
   "group": "sumerian",
@@ -273,7 +274,8 @@
   "moral": "Даже гнев богини не одолеет дружбы героев.",
   "title_en": "Gilgamesh and the Bull of Heaven (Sumerian poem)",
   "summary_en": "In surviving fragmentary versions of the Sumerian poem, Inanna demands the Bull of Heaven from her father An and threatens a cry reaching heaven and earth. She brings the Bull to Uruk, where it strips the pastures and drinks from the river. In the version from Me-Turan, Enkidu addresses Gilgamesh during the fight, and Gilgamesh kills the Bull with a heavy axe. Afterwards the meat is distributed to needy citizens and the horns become flasks for oil.",
-  "moral_en": "Even a goddess's wrath cannot defeat the heroes' friendship."
+  "moral_en": "Even a goddess's wrath cannot defeat the heroes' friendship.",
+  "verified": true
  },
  {
   "group": "sumerian",
@@ -655,7 +657,8 @@
   "title_en": "Gilgamesh's Quest for Immortality",
   "summary_en": "Terrified of death, Gilgamesh set out in animal skins to find Utnapishtim, the only man granted immortality. He killed lions in the mountains, passed the scorpion people and went through the sun's tunnel in total darkness, coming out just before sunrise into the garden of the gods with trees of gems. The alewife Siduri (Sabitu in Thompson) tried to dissuade him but sent him to the ferryman Urshanabi. Gilgamesh rashly smashed the ferryman's mysterious 'stone things' and had to cut a hundred and twenty poles to cross the Waters of Death. Utnapishtim rebuked him: fighting the common fate of humanity is futile.",
   "moral_en": "Death cannot be outrun; one can only lose the joy of life.",
-  "rights": "Thompson 1928 translation: copyright status unclear; retold in own words"
+  "rights": "Thompson 1928 translation: copyright status unclear; retold in own words",
+  "verified": true
  },
  {
   "group": "akkadian",
@@ -671,7 +674,8 @@
   "title_en": "Gilgamesh: Utnapishtim's Tale and the Plant of Youth",
   "summary_en": "Utnapishtim told how Ea had him build a boat, how the storm raged six days until all people turned to clay, how the ark grounded on Mount Nisir (read Nimush in later editions) and he released a dove, a swallow and a raven, and how after his sacrifice Enlil granted him and his wife eternal life. He challenged Gilgamesh to stay awake six days and seven nights, but Gilgamesh fell asleep at once, and Utnapishtim's wife baked his bread and marked each day of his sleep on the wall. At parting Utnapishtim revealed the secret of a plant of youth on the sea floor; Gilgamesh got it, but while he bathed a snake stole it and shed its skin. Gilgamesh returned to Uruk and showed Urshanabi its great walls.",
   "moral_en": "Immortality is not given to man; the works of his hands remain.",
-  "rights": "Thompson 1928 translation: copyright status unclear; retold in own words"
+  "rights": "Thompson 1928 translation: copyright status unclear; retold in own words",
+  "verified": true
  },
  {
   "group": "akkadian",
@@ -800,7 +804,8 @@
   "moral": "Зависть губит невинных, но терпение переживает любое проклятие.",
   "title_en": "The Children of Lir",
   "summary_en": "Lir of the Tuatha Dé Danann married a daughter of King Bodb, who bore him a daughter, Fionnuala, and three sons. When she died Lir married her sister Aoife, who out of jealousy turned the children into four white swans at a lake, leaving them speech and wondrous song, and set a term of three hundred years each on Lough Derravaragh, the cold Sea of Moyle and the western coast. For this Bodb turned Aoife into a demon of the air. The swans endured storms and ice, and when Christianity came to Ireland they heard the bell of the monk Mochaomhóg. When a king laid hands on them their feathers fell away, revealing three withered old men and an old woman; they were baptised and died.",
-  "moral_en": "Envy destroys the innocent, but patience outlasts any curse."
+  "moral_en": "Envy destroys the innocent, but patience outlasts any curse.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -829,7 +834,8 @@
   "moral": "Нельзя вернуться в ушедшее время.",
   "title_en": "Oisín in Tír na nÓg",
   "summary_en": "Oisín, son of Fionn, was visited by golden-haired Niamh, daughter of the king of Tír na nÓg (some later versions make her Manannán's daughter), who took him on her white steed to the Land of Youth, where he married her. It seemed to him three years had passed, but it was three hundred, and he longed to see the Fianna again. Niamh lent him a white horse and forbade him to touch the ground. Ireland was changed and Fionn's home lay in ruins; helping men lift a great flagstone, Oisín fell from the horse and at once became a withered old man. In Joyce's version the whole story is told by the aged Oisín to Saint Patrick.",
-  "moral_en": "One cannot return to a time that has passed."
+  "moral_en": "One cannot return to a time that has passed.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -872,7 +878,8 @@
   "moral": "Кровь не смывается подвигами.",
   "title_en": "The Fate of the Sons of Tuireann",
   "summary_en": "The three sons of Tuireann killed Cian, father of Lugh: he turned himself into a pig and they into hounds, and, letting him resume human shape before death, they killed him and tried to hide the crime. As compensation Lugh demanded that they fetch magical treasures from across the world for the battle against the Fomorians. The brothers obtained them but returned mortally wounded and begged Lugh to heal them; he refused, and they died.",
-  "moral_en": "Blood is not washed away by great deeds."
+  "moral_en": "Blood is not washed away by great deeds.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -887,7 +894,8 @@
   "moral": "Честность и учтивость приносят верных друзей.",
   "title_en": "Pwyll, Prince of Dyfed",
   "summary_en": "Hunting, Pwyll drove another's hounds from a stag, offending Arawn, lord of the otherworld Annwn. In amends he took Arawn's shape for a year and ruled in his place, sleeping chastely beside his wife, and killed his rival Hafgan with one blow; so they became friends. Later Pwyll saw Rhiannon on a white horse on a mound, whom no rider could catch until he himself asked her to stop. She chose him over her suitor Gwawl; when Gwawl tricked Pwyll into granting her away at the wedding, Rhiannon gave Pwyll a magic bag, which Gwawl climbed into and was beaten. Later their son vanished on his birth night, the maids falsely accused Rhiannon and she did penance until Teyrnon found the boy and returned him.",
-  "moral_en": "Honesty and courtesy win faithful friends."
+  "moral_en": "Honesty and courtesy win faithful friends.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -902,7 +910,8 @@
   "moral": "Злоба одного человека может погубить два народа.",
   "title_en": "Branwen, Daughter of Llŷr",
   "summary_en": "The Irish king Matholwch sought the hand of Branwen, sister of the giant Bendigeidfran. Her half-brother Efnisien mutilated the guest's horses, and Bran made amends with a cauldron that revived the dead. In Ireland Branwen was sent to the kitchens and beaten; she tamed a starling and sent word to her brother. Bran crossed with an army; Efnisien crushed warriors hidden in 'flour' bags and at the feast threw Branwen's son into the fire, and battle broke out. Seeing the Irish revive their dead, Efnisien lay among the corpses and burst the cauldron at the cost of his life. Seven survived; Branwen died of grief, and the head of the mortally wounded Bran talked with them for years before it was buried in London facing France to guard the island.",
-  "moral_en": "One man's malice can ruin two peoples."
+  "moral_en": "One man's malice can ruin two peoples.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -917,7 +926,8 @@
   "moral": "Терпение и смекалка побеждают колдовство.",
   "title_en": "Manawydan, Son of Llŷr",
   "summary_en": "Manawydan married Rhiannon, but a magic mist emptied Dyfed, leaving only four companions. In England their crafts were so good that jealous tradesmen drove them from town to town. Pryderi and then Rhiannon touched a golden bowl in a mysterious fort, stuck fast and vanished. Manawydan sowed fields, but mice destroyed two of them; he caught one and prepared to hang it. A scholar, a priest and a bishop offered ransoms, and Manawydan demanded the return of Pryderi and Rhiannon and the lifting of the spell: the mouse was the wife of the enchanter Llwyd, avenging the insult to Gwawl.",
-  "moral_en": "Patience and wit defeat sorcery."
+  "moral_en": "Patience and wit defeat sorcery.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -932,7 +942,8 @@
   "moral": "Сотворённое без любви не хранит верности.",
   "title_en": "Blodeuwedd, the Maiden of Flowers",
   "summary_en": "His mother cursed Lleu never to have a human wife, so the magicians Math and Gwydion made him a maiden from the flowers of oak, broom and meadowsweet — Blodeuwedd. She fell in love with Gronw and coaxed from Lleu how he could be killed: at dusk, by a river, one foot on a bath and one on a goat, with a spear forged for a year. Wounded, Lleu became an eagle; Gwydion found him in an oak, sang him back to human form, and Lleu took his revenge. Gwydion turned Blodeuwedd into an owl, hated by all other birds.",
-  "moral_en": "What is made without love keeps no faith."
+  "moral_en": "What is made without love keeps no faith.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -947,7 +958,8 @@
   "moral": "С верными друзьями невозможное становится возможным.",
   "title_en": "Culhwch and Olwen",
   "summary_en": "His stepmother cursed Culhwch that he could marry no one but Olwen, daughter of the giant Ysbaddaden. Culhwch went to his kinsman Arthur for help, and Arthur gave him his best men — Cai, Bedwyr and many more. Olwen was willing, but the giant, fated to die once his daughter wed, set some forty impossible tasks: freeing the prisoner Mabon, winning Gwyddno's hamper, hunting the boar Twrch Trwyth. With the help of Arthur's men the tasks were done, the giant killed, and Olwen married Culhwch.",
-  "moral_en": "With faithful friends the impossible becomes possible."
+  "moral_en": "With faithful friends the impossible becomes possible.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -962,7 +974,8 @@
   "moral": "Дар не выбирает, кому достаться.",
   "title_en": "Gwion Bach and the Birth of Taliesin",
   "summary_en": "The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his finger, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen, at the court of King Maelgwn Gwynedd, he freed Elffin and prophesied a strange creature that would bring destruction on Maelgwn.",
-  "moral_en": "A gift does not choose whom it falls to."
+  "moral_en": "A gift does not choose whom it falls to.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -977,7 +990,8 @@
   "moral": "Мудрый совет сильнее любой напасти.",
   "title_en": "Lludd and Llefelys",
   "summary_en": "Three plagues fell on Britain under King Lludd: the Coraniaid, who heard everything the wind touched; a terrible scream every May Eve that made women miscarry; and provisions vanishing from the stores. Lludd sailed to his brother Llefelys, king of France, who gave him advice through a brass horn so they could not be overheard. Lludd destroyed the Coraniaid with an insect brew harmless to Britons; put the two fighting dragons, red and white, to sleep with mead and buried them in a stone chest at Dinas Emrys; and keeping himself awake with cold water, overcame the magician who plundered the stores.",
-  "moral_en": "Wise counsel is stronger than any plague."
+  "moral_en": "Wise counsel is stronger than any plague.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -1258,7 +1272,8 @@
   "moral": "Путь мести, пройденный до конца, ведёт к прощению.",
   "title_en": "The Voyage of Máel Dúin",
   "summary_en": "Máel Dúin, raised by a queen, learned from a jealous youth that he was the son of Ailill, who had been killed when raiders burned a church on him. The druid Nuca told him how many men to take on his voyage, but his three foster brothers swam after him and he took them aboard, breaking the rule. Near the island of his father's killers a wind drove them into the endless ocean. They passed dozens of wondrous islands: an island of boat-eating ants, the Revolving Beast, sheep that changed colour, a crystal bridge, lamenting men and endless laughter. On an island with a cat, one foster brother stole a golden necklet, and the cat leapt through him like a fiery arrow and burned him to ashes. A hermit born on Tory told him he would find the man who slew his father, but must neither kill him nor take revenge, and forgive him as God had spared them. Returning to the killers' island, Máel Dúin told of the marvels God had shown them, and they made peace.",
-  "moral_en": "A path of revenge followed to the end leads to forgiveness."
+  "moral_en": "A path of revenge followed to the end leads to forgiveness.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -1315,7 +1330,8 @@
   "moral": "Старая обида сильнее примирения; ревность губит и героя.",
   "title_en": "The Pursuit of Diarmuid and Gráinne",
   "summary_en": "The ageing Fionn mac Cumhaill was betrothed to Gráinne, daughter of High King Cormac, but at the feast, dismayed that he was older than her father, she fell for the warrior Diarmuid. She drugged the guests with a sleeping potion and by a geis compelled Diarmuid, loyal to Fionn, to flee with her. Fionn pursued them long; they were helped by members of the Fianna and by Diarmuid's foster father Aengus, who hid Gráinne in his cloak of invisibility. Once Diarmuid defeated the one-eyed giant Searbhán, guardian of a rowan tree, with the giant's own iron club. Aengus made peace with Fionn, and the lovers settled at Keshcorran. But at a hunt by Benbulbin a boar mortally wounded Diarmuid. Fionn could heal him by letting him drink water from his hands, but twice let the water slip through his fingers; when Fionn's grandson Oscar threatened him, it was too late.",
-  "moral_en": "An old grudge outlasts reconciliation; jealousy destroys even a hero."
+  "moral_en": "An old grudge outlasts reconciliation; jealousy destroys even a hero.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -1615,7 +1631,8 @@
   "title_en": "The Druids' Prophecy of the 'Shaven-Head'",
   "summary_en": "[Legend] According to Muirchú's Life of Patrick (7th century), High King Lóegaire at Tara had two favourite druids, Lochru and Lucet Máel. By their art they often foretold that a foreign teaching would come from over the sea, received by few but honoured by many: it would overthrow kingdoms, kill resisting kings and destroy their gods. Especially in the two or three years before Patrick's coming they recited the verse: 'Shaven-head shall come, with his staff bent at the head… he will chant impiety from his table at the front of his house, and all his people will answer, “So be it.”' The hagiographer reads this as a prophecy of Christianity.",
   "moral_en": "In the hagiographer's design, even opponents foresee the new faith's victory.",
-  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only",
+  "verified": true
  },
  {
   "group": "druids",
@@ -1631,7 +1648,8 @@
   "title_en": "The Paschal Fire and the Death of the Druid Lochru",
   "summary_en": "[Legend] On the night of the pagan feast at Tara no one might light a fire before the king's, on pain of death. But Patrick, keeping Easter, lit a fire visible from Tara (later tradition placed it on the Hill of Slane). The druids warned the king: unless this fire were put out that night, it would never be put out and would overpower their kingdom. Lóegaire rode out by chariot with Lochru and Lucet Máel; the druids ordered that no one rise when Patrick came, but only Erc, later bishop of Slane, stood up. Lochru reviled the faith; at Patrick's prayer the druid was lifted into the air, fell on a stone and was dashed to pieces. The king tried to seize Patrick, but darkness fell with tumult and an earthquake, and Patrick and his companions left, appearing to the pagans as eight deer and a fawn.",
   "moral_en": "A fire lit against the ban cannot always be put out.",
-  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only",
+  "verified": true
  },
  {
   "group": "druids",
@@ -1646,7 +1664,8 @@
   "title_en": "Patrick's Contest with the Druid Lucet Máel",
   "summary_en": "[Legend] At the Easter feast at Tara the druid Lucet Máel dropped poison into Patrick's cup; Patrick blessed it, the drink froze like ice, and only the drop of poison fell out. The druid proposed working wonders: by spells he covered the plain in waist-deep snow but could not remove it — Patrick blessed the plain and the snow vanished; the same happened with a fog the druid brought. The druid refused an ordeal of books by water or fire. Then Patrick proposed that the druid, wearing Patrick's chasuble, and the boy Benignus, in the druid's garb, enter a house built half of green and half of dry wood, which would be set alight. The flames consumed the druid with the green half, sparing Patrick's chasuble, while Benignus was unharmed and only the druid's garb burned.",
   "moral_en": "Hagiography depicts the defeat of the old wisdom by the new faith.",
-  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only",
+  "verified": true
  },
  {
   "group": "druids",
@@ -1887,7 +1906,8 @@
   "moral": "Правда и братская верность побеждают клевету и измену.",
   "title_en": "The Tale of Two Brothers",
   "summary_en": "The wife of the elder brother Anpu tried to seduce the younger, Bata, and when refused, slandered him. Anpu sought to kill his brother, but the god Re-Harakhti set a crocodile-filled lake between them, and Bata cleared himself. He went to the Valley of the Acacia (other translations: cedar or pine) and placed his heart on the topmost flower of the tree; the gods made him a wife, but the pharaoh took her, and on her advice the tree was cut down — Bata died. Receiving frothing beer, Anpu knew the sign, searched more than three years for his brother's heart, found it as a seed, put it in water, and Bata revived. Passing through the forms of a bull and a tree, Bata was reborn as the pharaoh's son, became king and made his brother heir.",
-  "moral_en": "Truth and brotherly loyalty overcome slander and betrayal."
+  "moral_en": "Truth and brotherly loyalty overcome slander and betrayal.",
+  "verified": true
  },
  {
   "group": "other",
@@ -1902,7 +1922,8 @@
   "moral": "Мужество и самообладание спасают в беде.",
   "title_en": "The Shipwrecked Sailor",
   "summary_en": "A servant comforted his lord, home safe from a voyage to Wawat, by telling how he once sailed for the king's mines in a great ship with a hundred and fifty picked sailors (modern translations read 120); a storm sank it and a wave cast him alone onto an island of plenty. A huge serpent with a golden body and a lapis-blue colour carried him to its lair, told him not to fear: a ship would come in four months. It said it lived there with seventy-five serpents of its kin, and told how fire from heaven fell (in Petrie's reading it burned a young girl; modern translations: a star that burned the whole family). When the sailor promised incense and offerings, the serpent smiled: it was prince of Punt and had perfumes, and once he left, the island would turn into waves. The ship came, the serpent loaded him with gifts, and he reached Pharaoh in two months. The servant ends by asking to be led to the king's courtiers. (Modern translations add the lord's sceptical reply.)",
-  "moral_en": "Courage and self-control save one in disaster."
+  "moral_en": "Courage and self-control save one in disaster.",
+  "verified": true
  },
  {
   "group": "other",
@@ -1917,7 +1938,8 @@
   "moral": "Настойчивое слово правды в конце концов добивается справедливости.",
   "title_en": "The Eloquent Peasant",
   "summary_en": "The peasant Khun-Anup was taking goods to market when Nemtynakht, a servant of the steward Rensi, spread a cloth across the narrow path, and when the peasant's donkey ate a bite of his barley, seized the donkeys and beat their owner. Khun-Anup appealed to Rensi, who told the king of the peasant's eloquence. The king ordered that he not be answered, so his speeches could be written down, and that his family be secretly fed. The peasant gave nine speeches, despaired and left, but Rensi called him back, gave him justice and awarded him all of Nemtynakht's property.",
-  "moral_en": "A persistent word of truth wins justice in the end."
+  "moral_en": "A persistent word of truth wins justice in the end.",
+  "verified": true
  },
  {
   "group": "other",
@@ -1932,7 +1954,8 @@
   "moral": "Нет ничего дороже родной земли.",
   "title_en": "The Story of Sinuhe",
   "summary_en": "Hearing on campaign of King Amenemhat's sudden death, the courtier Sinuhe, afraid of being suspected of conspiracy, fled Egypt, nearly died of thirst and was rescued by nomads. In Retjenu the ruler Amunenshi gave him command of his army, and Sinuhe defeated a challenger, but he longed for home and prayed to be buried in his native land. The new king Senusret I called him back; Sinuhe was cleansed, received at court and granted a tomb in Egypt.",
-  "moral_en": "Nothing is dearer than one's native land."
+  "moral_en": "Nothing is dearer than one's native land.",
+  "verified": true
  },
  {
   "group": "other",
@@ -1947,7 +1970,8 @@
   "moral": "Бунт против порядка приносит страдание и разлучает с богами.",
   "title_en": "The Destruction of Mankind",
   "summary_en": "When people plotted rebellion against the ageing sun god Ra, he consulted the gods and sent Hathor against them as his fierce Eye. The goddess began slaughtering the rebels; to save the survivors, Ra had beer, coloured red (Budge reads it as mixed with human blood and 'mandrakes'), poured out over the fields, Hathor drank it, became drunk and stopped the slaughter. Then Ra withdrew to the sky on the back of the heavenly cow Nut, leaving humanity.",
-  "moral_en": "Rebellion against order brings suffering and separation from the gods."
+  "moral_en": "Rebellion against order brings suffering and separation from the gods.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2092,7 +2116,8 @@
   "moral": "Искусство спасает, а ложь разоблачается.",
   "title_en": "Arion and the Dolphin",
   "summary_en": "The singer Arion, having made a fortune in Italy and Sicily, was sailing home to Corinth from Taras when the Corinthian sailors decided to kill him for his money. Allowed a last song, he sang the Orthian strain in full minstrel's dress and leapt into the sea, and a dolphin carried him to Cape Taenarum. In Corinth the tyrant Periander questioned the returning sailors; they claimed Arion was safe in Taras in Italy, but he stepped out before them in the same attire, and the villains were exposed.",
-  "moral_en": "Art saves, and lies are exposed."
+  "moral_en": "Art saves, and lies are exposed.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2107,7 +2132,8 @@
   "moral": "Гостеприимство вознаграждается, а верная любовь не разлучается и смертью.",
   "title_en": "Baucis and Philemon",
   "summary_en": "Jupiter and Mercury, disguised as travellers, went through a Phrygian town and were turned away by all except the poor old couple Philemon and Baucis. The hosts fed them, and Baucis noticed that the wine jug never emptied; realising their guests were gods, the old folk tried to kill their goose, but it took refuge with Jupiter. The gods told them to climb the mountain; looking back, they saw the town flooded and their cottage turned into a temple. They asked to be its priests and to die at the same hour, and after death became an oak and a linden with intertwined branches.",
-  "moral_en": "Hospitality is rewarded, and faithful love is not parted even by death."
+  "moral_en": "Hospitality is rewarded, and faithful love is not parted even by death.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2136,7 +2162,8 @@
   "moral": "Вдохновение — драгоценный и трудно добытый дар.",
   "title_en": "The Mead of Poetry",
   "summary_en": "From the spittle of the Æsir and Vanir sealing their truce, the sage Kvasir was made, but the dwarfs Fjalar and Galar killed him and, mixing his blood with honey, brewed a drink that made whoever drank it a poet. After killing the giant Gilling and his wife, the dwarfs bought off their son Suttungr with the mead, and he set his daughter Gunnlöd to guard it. Odin, calling himself Bölverk, worked a summer for Suttungr's brother Baugi, then slipped into the mountain as a snake, spent three nights with Gunnlöd, drained three vessels in three draughts and flew off as an eagle. The mead he brought he gave to the gods and to true poets.",
-  "moral_en": "Inspiration is a precious and hard-won gift."
+  "moral_en": "Inspiration is a precious and hard-won gift.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2151,7 +2178,8 @@
   "moral": "Хитрость и сила вместе одолевают трудную задачу.",
   "title_en": "Thor at the Giant Hymir's",
   "summary_en": "The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle big enough to brew beer for all. Týr remembered the huge kettle of his father, the giant Hymir, and the gods set off. Thor ate so much that they had to go fishing, and Thor hooked the World Serpent Jörmungandr, hauled it up to the boat and struck its head with his hammer before it sank back into the sea. Hymir taunted that Thor was not strong if he could not break his cup; learning it would break only against the giant's head, Thor did just that. Annoyed, Hymir let them take the kettle; Thor then slew hordes of giants, and the Æsir feasted at Ægir's ever after.",
-  "moral_en": "Cunning and strength together overcome a hard task."
+  "moral_en": "Cunning and strength together overcome a hard task.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2264,7 +2292,8 @@
   "moral": "Истинное знание дороже всех земных благ.",
   "title_en": "Nachiketa and the God of Death",
   "summary_en": "Nachiketa's father, performing a sacrifice of giving away all his possessions, gave only old and barren cows. The boy asked, 'To whom will you give me?' — and his father angrily replied, 'I give you to Yama, to Death!' Nachiketa took the words seriously and went to Yama's abode; the god was away, and the boy waited three days without food or water. Ashamed, Yama granted him three boons. Nachiketa asked for peace with his father, knowledge of the sacred fire rite and, finally, the secret of what comes after death. Yama offered instead long life, progeny, wealth, power and celestial maidens, but the boy replied that all these are fleeting. Pleased, Yama taught him of the immortal Atman, one with Brahman.",
-  "moral_en": "True knowledge is worth more than all earthly goods."
+  "moral_en": "True knowledge is worth more than all earthly goods.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2353,7 +2382,8 @@
   "moral": "Поспешность и запреты губят любовь; не делай выводов, не узнав правды.",
   "title_en": "Pyramus and Thisbe",
   "summary_en": "In Babylon the lovers Pyramus and Thisbe lived in adjoining houses; their parents forbade them to marry, and they whispered through a crack in the wall. They agreed to meet at a tomb under a white mulberry tree. Thisbe arrived first, saw a lioness with a bloody mouth and fled, dropping her cloak. Pyramus found the cloak, torn and bloodied, believed Thisbe dead and fell on his sword; his blood stained the mulberry fruits. Returning, Thisbe found him dead and followed him. In their memory the gods made the mulberry's fruit dark.",
-  "moral_en": "Haste and prohibition destroy love; do not jump to conclusions before learning the truth."
+  "moral_en": "Haste and prohibition destroy love; do not jump to conclusions before learning the truth.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2382,7 +2412,8 @@
   "moral": "Пренебрежение малым оборачивается бедой; одна злая воля может перечеркнуть общую любовь.",
   "title_en": "The Death of Baldr",
   "summary_en": "Baldr had dreams foretelling his death, and Frigg made everything on earth swear never to harm him — except the mistletoe, which she thought too insignificant. The gods amused themselves throwing things at Baldr, but nothing hurt him. Loki pulled up the mistletoe and gave it to Baldr's blind brother Höðr, who unwittingly killed his brother with it. Baldr was burned on his ship Hringhorni; his wife Nanna died of grief. The messenger Hermóðr carried Frigg's plea to Hel, and Hel promised to release Baldr if all things living and dead wept for him. All wept except the giantess Þökk (thought to be Loki), and Baldr remained with Hel until Ragnarök.",
-  "moral_en": "Neglecting a small thing brings disaster; one ill will can undo the love of all."
+  "moral_en": "Neglecting a small thing brings disaster; one ill will can undo the love of all.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2397,7 +2428,8 @@
   "moral": "Хитрость и терпение возвращают утраченное; не всё то невеста, что под фатой.",
   "title_en": "How Thor Got His Hammer Back",
   "summary_en": "Waking up, Thor found his hammer Mjölnir missing. Loki flew to Jötunheimr in Freyja's feather cloak, and the giant Þrymr admitted he had hidden the hammer eight leagues underground and would return it only if Freyja were given him as wife. Freyja angrily refused, and at the assembly Heimdallr proposed dressing Thor himself as the bride; Loki went with him as maid. At the feast the 'bride' ate whole animals and drank three casks of mead, and the eyes under the veil burned like fire; Loki explained that Freyja had neither eaten nor slept for eight days in her eagerness. At last Mjölnir was laid in the bride's lap to hallow the marriage. Thor seized it and slew Þrymr and all his kin.",
-  "moral_en": "Cunning and patience recover what was lost; not everything under a veil is a bride."
+  "moral_en": "Cunning and patience recover what was lost; not everything under a veil is a bride.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2412,7 +2444,8 @@
   "moral": "Порядок порой требует жертвы; верность слову стоит дорого.",
   "title_en": "The Binding of Fenrir",
   "summary_en": "The gods learned from prophecies that Loki's children would bring them harm; Jörmungandr was thrown into the sea, Hel into Niflheim, and the wolf Fenrir raised among them, though only Týr dared feed him. The wolf grew daily, and the gods invited him to test his strength on the fetters Leyding and Dromi — he broke both. Then dwarfs made the fetter Gleipnir, soft as a silken ribbon. Fenrir suspected a trick and agreed only if one of the gods placed a hand in his mouth as a pledge of good faith. All refused except Týr. The harder the wolf struggled, the tighter the fetter held; everyone laughed except Týr, who lost his right hand.",
-  "moral_en": "Order sometimes demands sacrifice; keeping faith comes at a cost."
+  "moral_en": "Order sometimes demands sacrifice; keeping faith comes at a cost.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2427,7 +2460,8 @@
   "moral": "Судьбу не спрятать за стенами; верная любовь отводит беду.",
   "title_en": "The Doomed Prince",
   "summary_en": "An Egyptian king long had no son; when one was born, the seven Hathors foretold that he would die by a crocodile, a snake or a dog. His father housed him in a house built in the desert but relented and gave him a puppy. Grown up, the prince resolved to face his fate and went to Naharin, where, calling himself the son of an Egyptian officer fleeing a stepmother, he climbed to the window of the princess's tower, seventy cubits high, and won her hand. His wife urged him to kill the dog, but he could not; yet she saved him by stopping a snake that crept up to him as he slept. Later, walking in his fields, he followed his dog as it chased game into the river; there a crocodile seized him and said: 'I am your doom, following after you.' The end of the papyrus is lost.",
-  "moral_en": "Fate cannot be walled out; faithful love wards off danger."
+  "moral_en": "Fate cannot be walled out; faithful love wards off danger.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2442,7 +2476,8 @@
   "moral": "Мудрец и малую беду решает с размахом; уважай привязанность к дорогой вещи.",
   "title_en": "Sneferu and the Lost Amulet",
   "summary_en": "King Sneferu grew bored in his palace, and the chief lector-priest Djadjaemankh advised a boating trip on the lake, rowed by twenty beautiful women with oars of ebony and gold. But one rower lost her jewel of new malachite (often read as a fish-shaped pendant) in the water; she refused a replacement from the royal treasury and stopped rowing, and so did all the others. Then Djadjaemankh by magic folded one half of the lake's water onto the other, retrieved the amulet from the bottom and put the water back, and the king rewarded him richly.",
-  "moral_en": "A sage handles even a small trouble grandly; respect attachment to a treasured thing."
+  "moral_en": "A sage handles even a small trouble grandly; respect attachment to a treasured thing.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2457,7 +2492,8 @@
   "moral": "Есть знание, которое не купить властью; у будущего свои избранники.",
   "title_en": "Djedi the Wonder-Worker",
   "summary_en": "Prince Hordjedef told his father, Pharaoh Khufu, about Djedi, a man of a hundred and ten years who ate and drank enormously, tamed lions, could reattach a severed head and knew the secret chambers of the shrine of Thoth. Khufu sent for him; at court Djedi reattached the severed heads of a duck, a goose and an ox, and they lived. Asked about Thoth's chambers, Djedi said he knew where they were, but it was not he who would give the king access but the first of three future kings in the womb of the woman Rededjet — a prophecy of the start of the new Fifth Dynasty.",
-  "moral_en": "Some knowledge cannot be bought with power; the future has its own chosen ones."
+  "moral_en": "Some knowledge cannot be bought with power; the future has its own chosen ones.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2572,7 +2608,8 @@
   "moral": "Граница между сном и явью не так прочна, как кажется.",
   "title_en": "The Butterfly Dream",
   "summary_en": "Once Zhuang Zhou dreamt he was a butterfly, fluttering about happily, pleased with himself; he did not know he was Zhuang Zhou. Suddenly he woke, and there he was, unmistakably Zhuang Zhou. But he did not know whether he was Zhou who had dreamt of being a butterfly, or a butterfly dreaming of being Zhou. Between Zhou and the butterfly there must be some distinction, the text concludes — this is called the transformation of things.",
-  "moral_en": "The line between dream and waking is less firm than it seems."
+  "moral_en": "The line between dream and waking is less firm than it seems.",
+  "verified": true
  },
  {
   "group": "other",
@@ -2588,7 +2625,8 @@
   "moral": "Навязанное «благо», идущее против природы вещи, губит её.",
   "title_en": "The Death of Hundun",
   "summary_en": "The ruler of the South Sea was called Shu, the ruler of the North Sea Hu, and the ruler of the Centre Hundun (Chaos). Shu and Hu often met in Hundun's land, and he treated them very generously. Wishing to repay his kindness, they reasoned: all people have seven openings for seeing, hearing, eating and breathing, but Hundun has none — let us bore some for him. Each day they bored one hole, and on the seventh day Hundun died.",
-  "moral_en": "An imposed 'good' that goes against a thing's nature destroys it."
+  "moral_en": "An imposed 'good' that goes against a thing's nature destroys it.",
+  "verified": true
  },
  {
   "group": "other",

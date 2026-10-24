@@ -1096,3 +1096,7 @@
 **Пакет 8 / Batch 8.** Сверены без исправлений / checked, no fixes needed: Dirr № 11, 26, 47, 48, 50–55, 63 (11 записей / records).
 
 - Batch 9 (Dirr): 26 verified (Nos. 56, 57, 60, 61, 64, 66–72, 84 (1)–(14)); 1 fixed (An Udian Story of Rustum: thigh episode, second wife).
+
+
+## Флаг `verified` / The `verified` flag
+Записи со статусом «yes» в таблице имеют в JSON поле `"verified": true`; у остальных этого поля нет. `check.py` проверяет соответствие в обе стороны. / Records marked "yes" in the table carry `"verified": true` in JSON; all other records omit the field. `check.py` enforces this both ways.

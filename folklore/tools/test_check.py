@@ -23,6 +23,8 @@ class CheckerTests(unittest.TestCase):
                         moral="Авторское толкование", title_en=f"Story {category}",
                         summary_en="English summary " + category,
                         moral_en="Editorial moral", sources=["https://example.com/text"])
+            if category in COLLECTIONS[:2]:
+                data["verified"] = True
             self.entries[category] = data
             directory = self.root / category
             directory.mkdir()
@@ -94,6 +96,28 @@ class CheckerTests(unittest.TestCase):
         path = self.root / "VERIFICATION.md"
         self.write(path, path.read_text().replace("Story ancient", "Other ancient"))
         self.assertTrue(any("rows differ from JSON" in e for e in self.validate()[0]))
+
+    def set_flag(self, category, value):
+        for name in ("tales_sample.json", f"{category}.json"):
+            path = self.root / category / name
+            data = json.loads(path.read_text())
+            if value is None:
+                data[0].pop("verified", None)
+            else:
+                data[0]["verified"] = value
+            self.write(path, json.dumps(data, ensure_ascii=False))
+
+    def test_missing_flag_on_verified_row_fails(self):
+        self.set_flag("americas", None)
+        self.assertTrue(any("verified flag False" in e for e in self.validate()[0]))
+
+    def test_flag_on_unverified_row_fails(self):
+        self.set_flag("ussr", True)
+        self.assertTrue(any("verified flag True" in e for e in self.validate()[0]))
+
+    def test_non_true_flag_fails(self):
+        self.set_flag("caucasus", False)
+        self.assertTrue(any("verified must be true" in e for e in self.validate()[0]))
 
     def test_stale_readme_count_fails(self):
         path = self.root / "README.md"
