@@ -18,7 +18,7 @@
 - Камыр-батыр / Kamyr-batyr (the Dough Hero) (татары)
 - Урал-батыр и родник жизни / Ural-batyr and the spring of life (башкиры)
 
-## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 15
+## [Степь и Средняя Азия / Steppe and Central Asia](tales_steppe_central_asia.md) — 17
 
 - Как ханский сын отправился за Сиддхи-Кюром / How the Khan's son went to fetch the Siddhi-kür (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Жена, искавшая мужа во дворце Эрлик-хана / The Woman who sought her Husband in the Palace of Erlik-Khan (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
@@ -35,12 +35,14 @@
 - Солнечный и Лунный царевичи и змеиные боги / Sunshine, Moonshine and the Serpent-gods (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Ананда-резчик и Ананда-живописец / Ânanda the Woodcarver and Ânanda the Painter (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 - Молитва, что делает внезапно богатым / The Prayer making suddenly Rich (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
+- Как был убит Шимну-хан (Массанг) / How the Schimnu-Khan was slain (Massang) (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
+- Гадатель со свиной головой / The pig's-head soothsayer (калмыки (Busk, Sagas from the Far East, 1873 — Сиддхи-Кюр))
 
 ## [Сибирь и Север / Siberia and the North](tales_siberia_north.md) — 1
 
 - Эр Соготох — Одинокий муж / Er Sogotokh, the Lone Man (якуты)
 
-## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 46
+## [Западные народы СССР / Western peoples of the USSR](tales_west.md) — 49
 
 - Калев, Линда и рождение Калевипоэга / Kalev, Linda and the birth of Kalevipoeg (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
 - Проклятый меч / The cursed sword (эстонцы (эпос «Калевипоэг», Ф. Р. Крейцвальд по народным песням))
@@ -88,13 +90,16 @@
 - Морозко / Frost (Morozko) (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Чёрный ручей и Ильмень / The Black Brook and Lake Ilmen (русские (Ralston, Russian Folk-Tales, 1873; по Афанасьеву))
 - Сож и Днепр / Sozh and Dnieper (белорусы (Ralston, Russian Folk-Tales, 1873: «In White-Russia»))
+- Неблагодарные дети и старик, пошедший в школу / The ungrateful children and the old father who went to school again (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
+- Сказка о Ветре / The story of the Wind (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
+- Голоса под окном / The voices at the window (украинцы (Bain, Cossack Fairy Tales, 1894/1916))
 
-## Итого / Total: 74
+## Итого / Total: 79
 
 - башкиры: 1
 - белорусы: 1
 - казахи: 1
-- калмыки: 10
+- калмыки: 12
 - калмыки/ойраты: 3
 - карелы/финны: 10
 - киргизы: 1
@@ -102,6 +107,6 @@
 - марийцы: 9
 - русские: 10
 - татары: 2
-- украинцы: 9
+- украинцы: 12
 - эстонцы: 15
 - якуты: 1
