@@ -6,7 +6,7 @@
 - Проверка ссылок: 537 уникальных URL из `folklore/*/*.json` запрошены автоматически (GET, следование редиректам, тайм-аут 20 с). Итог: 530 → 200; 2 → 401 (pueblosoriginarios.com блокирует автоматические запросы; к записям добавлено открытое издание Bourne 1906 на archive.org); 5 → ошибка SSL в Python requests (scylax.one; через curl сайт отвечает 403 — блокировка ботов, содержимое не проверено). Прогон 24.10.2026. 404 после исправлений нет.
 - Заменены ссылки: kunstkamera.ru (Далгат; таймаут/404) → verigi.ru/?book=117 (страница книги Далгата, 2004); eisenbrauns.org (страница продажи) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; на archive.org только выдача в аренду, полный текст не открыт).
 - CELT T201045 (Muirchú, пер. Bieler): статус **[RESTRICTED]** — «доступно с согласия CELT для академических целей». Текст на странице читается; ссылка оставлена, ограничение отмечено здесь.
-- Сверка пересказов с источником: да (перепроверено) — 115; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **793** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
+- Сверка пересказов с источником: да (перепроверено) — 141; написано по прочитанному PD-тексту при создании, без повторной проверки (СССР) — 107; не проверено — **767** (из них только Википедия, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Проверка запускается: `python3 folklore/tools/check.py`.
 - Исправлено при сверке: «Тыква Яйяэля» (тыкву снимает сам Яйя, а не жена — Pané гл. IX); «Баяманако» (старик не плюёт, а бросает «гуангуайо» с кохобой; касаби было у него, а не «пеклось» — гл. XI).
 - Простой статус 200 не доказывает, что страница содержит пересказанный сюжет.
 
@@ -14,7 +14,7 @@
 - Link check: 537 unique URLs from `folklore/*/*.json` fetched automatically (GET, follow redirects, 20 s timeout). Result: 530 → 200; 2 → 401 (pueblosoriginarios.com blocks automated requests; the open Bourne 1906 edition on archive.org was added to those records); 5 → SSL error in Python requests (scylax.one; via curl the site answers 403, bot-blocked, content not checked). Run 2026-10-24. No 404s remain.
 - Replaced: kunstkamera.ru (Dalgat; timeout/404) → verigi.ru/?book=117 (Dalgat 2004 book page); eisenbrauns.org (sales page) → archive.org/details/babylonianwisdom0000lamb_c2i9 (Lambert 1960; lending-only on archive.org, no open full text).
 - CELT T201045 (Muirchú, tr. Bieler) is marked **[RESTRICTED]** ("available with prior consent of the CELT programme for academic research and teaching only"). The text is readable on the page; the link is kept and the restriction is recorded here.
-- Retelling checked against source: yes (re-checked) — 115; authored from a read PD text, not re-checked (USSR) — 107; not verified — **793** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
+- Retelling checked against source: yes (re-checked) — 141; authored from a read PD text, not re-checked (USSR) — 107; not verified — **767** (of which Wikipedia-only, `SECONDARY_ONLY / CONTENT_NOT_VERIFIED` — 219). Consistency check: `python3 folklore/tools/check.py`.
 - Fixed: "Yayael's Gourd" (Yaya himself takes down the gourd — Pané ch. IX); "Bayamanaco" (he throws a guanguayo full of cohoba, he does not spit; he had cassava — ch. XI).
 - A 200 status does not prove the page contains the retold story.
 
@@ -537,7 +537,7 @@
 | 206 | caucasus | Падчерица / The Stepdaughter | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 24 | — |
 | 207 | caucasus | Волшебные животные и волшебная дубинка / The Magic Animals and the Magic Cudgel | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 25 | — |
 | 208 | caucasus | Прекрасная Елена / The Beautiful Helena | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 26 | — |
-| 209 | caucasus | Одноглазый великан на Эльбрусе / The One-Eyed Giant on Elbrus | OK | no | — |
+| 209 | caucasus | Одноглазый великан на Эльбрусе / The One-Eyed Giant on Elbrus | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 61 (Kabardian variant) | — |
 | 210 | caucasus | Гадальщица Бабочка / Fortune-teller Butterfly | OK | no | modern edition — copyright may apply (mifoteka) |
 | 211 | caucasus | Муж и жена / Husband and Wife | OK | no | modern edition — copyright may apply (mifoteka) |
 | 212 | caucasus | Кто сильнее? / Who Is Strongest? | OK | no | modern edition — copyright may apply (mifoteka) |
@@ -634,7 +634,7 @@
 | 303 | caucasus | Два хана / Two Khans | OK | no | modern edition — copyright may apply (deti-online) |
 | 304 | caucasus | Старик Женали и два хана / Old Zhenali and the Two Khans | OK | no | modern edition — copyright may apply (kavkaz-uzel) |
 | 305 | caucasus | Верный сын / The Faithful Son | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 31 | — |
-| 306 | caucasus | Эцемей, сын Эцея / Etsemej, Son of Etsej | OK | no | — |
+| 306 | caucasus | Эцемей, сын Эцея / Etsemej, Son of Etsej | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 56 | — |
 | 307 | caucasus | Спор орлов и саранчи / The Quarrel of the Eagles and the Locusts | OK | no | modern edition — copyright may apply (litlife) |
 | 308 | caucasus | Змея, ласточка и комар / The Snake, the Swallow and the Mosquito | OK | no | modern edition — copyright may apply (litlife) |
 | 309 | caucasus | Как ёж выдумал серп / How the Hedgehog Invented the Sickle | OK | no | modern edition — copyright may apply (litlife) |
@@ -811,7 +811,7 @@
 | 480 | caucasus | Отцовское пророчество / The Father's Prophecy | OK | no | — |
 | 481 | caucasus | Отшельник-философ / The Hermit Philosopher | OK | no | — |
 | 482 | caucasus | Остроумный ответ / A Witty Answer | OK | no | — |
-| 483 | caucasus | Одноглазый великан (мегрельский вариант) / The One-Eyed Giant (Mingrelian Variant) | OK | no | — |
+| 483 | caucasus | Одноглазый великан (мегрельский вариант) / The One-Eyed Giant (Mingrelian Variant) | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 64 | — |
 | 484 | caucasus | Искусный вор / The Skilful Thief | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 73 | — |
 | 485 | caucasus | Нахлебник / The Parasite | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 3 | — |
 | 486 | caucasus | Земля своё возьмёт / The Earth Will Have Its Own | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 6 | — |
@@ -833,13 +833,13 @@
 | 502 | caucasus | Сальман и Ростом / Salman and Rostom | OK | no | — |
 | 503 | caucasus | Воробей и двое детей / The Sparrow and the Two Children | OK | no | — |
 | 504 | caucasus | Старуха и кошка / The Old Woman and the Cat | OK | no | — |
-| 505 | caucasus | Советы Соломона / Solomon's Counsels | OK | no | — |
-| 506 | caucasus | Соломон-псарь / Solomon the Kennelman | OK | no | — |
-| 507 | caucasus | Отшельник и Соломон / Solomon and the Hermit | OK | no | — |
-| 508 | caucasus | Замок из птичьих перьев / The Castle of Feathers | OK | no | — |
-| 509 | caucasus | Младенец Александр / The Infant Alexander | OK | no | — |
-| 510 | caucasus | Мать Александра и хлеб / Alexander's Mother and the Bread | OK | no | — |
-| 511 | caucasus | Александр в стране праведных бедняков / Alexander and the Land of the Just Poor | OK | no | — |
+| 505 | caucasus | Советы Соломона / Solomon's Counsels | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 66 | — |
+| 506 | caucasus | Соломон-псарь / Solomon the Kennelman | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 67 | — |
+| 507 | caucasus | Отшельник и Соломон / Solomon and the Hermit | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 68 | — |
+| 508 | caucasus | Замок из птичьих перьев / The Castle of Feathers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 69 | — |
+| 509 | caucasus | Младенец Александр / The Infant Alexander | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 70 | — |
+| 510 | caucasus | Мать Александра и хлеб / Alexander's Mother and the Bread | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 71 | — |
+| 511 | caucasus | Александр в стране праведных бедняков / Alexander and the Land of the Just Poor | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 72 | — |
 | 512 | caucasus | Бугач-хан, сын Дирсе-хана / Boghach Khan, Son of Dirse Khan | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 513 | caucasus | Разграбление дома Салур-Казана / How Salur Kazan's House Was Pillaged | OK | no — SECONDARY_ONLY (Wikipedia) | — |
 | 514 | caucasus | Бамсы Бейрек / Bamsi Beyrek of the Grey Horse | OK | no — SECONDARY_ONLY (Wikipedia) | — |
@@ -858,26 +858,26 @@
 | 527 | caucasus | Соловей и соловьиха / The Cock and Hen Nightingale | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 8 | — |
 | 528 | caucasus | Плешивый гусопас / The Bald-Headed Gooseherd | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 11 | — |
 | 529 | caucasus | Три брата-вора / The Three Thieving Brothers | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 75 | — |
-| 530 | caucasus | Удинская сказка о Рустуме / An Udian Story of Rustum | OK | no | — |
+| 530 | caucasus | Удинская сказка о Рустуме / An Udian Story of Rustum | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 57; corrected: thigh piece kept and healed by the bird; the stolen wife is his second wife, the slain Div's widow | — |
 | 531 | caucasus | Волшебный соловей / The Fairy Nightingale | OK | no | — |
 | 532 | caucasus | Мальчик, не рассказавший сна / The Boy Who Would Not Tell His Dream | OK | no | — |
 | 533 | caucasus | Сиаманто и Гюлизар / Sia-Manto and Guje-Zare | OK | no | — |
 | 534 | caucasus | Как керкенджцы ходили по дрова / How the People of Kerkendj Went to Cut Wood | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 81 | — |
-| 535 | caucasus | Молла Насреддин: Яйца в платке / Mullah Nasreddin: Eggs in a Cloth | OK | no | — |
-| 536 | caucasus | Молла Насреддин: Скороход / Mullah Nasreddin: Quick-Runner | OK | no | — |
-| 537 | caucasus | Молла Насреддин: Камень и старость / Mullah Nasreddin: The Stone and Old Age | OK | no | — |
-| 538 | caucasus | Молла Насреддин: Ветер в огороде / Mullah Nasreddin: The Wind in the Garden | OK | no | — |
-| 539 | caucasus | Молла Насреддин: Счёт Насреддина / Mullah Nasreddin: Nasreddin's Arithmetic | OK | no | — |
-| 540 | caucasus | Молла Насреддин: Руки были заняты / Mullah Nasreddin: His Hands Were Full | OK | no | — |
-| 541 | caucasus | Молла Насреддин: Орехи со скорлупой / Mullah Nasreddin: Nuts in Their Shells | OK | no | — |
-| 542 | caucasus | Молла Насреддин: Баранья голова / Mullah Nasreddin: The Sheep's Head | OK | no | — |
-| 543 | caucasus | Молла Насреддин: Сыр / Mullah Nasreddin: Cheese | OK | no | — |
-| 544 | caucasus | Молла Насреддин: Подпруга / Mullah Nasreddin: The Girth | OK | no | — |
-| 545 | caucasus | Молла Насреддин: Даровые яблоки / Mullah Nasreddin: Free Apples | OK | no | — |
-| 546 | caucasus | Молла Насреддин: Прыжок через ручей / Mullah Nasreddin: The Leap over the Brook | OK | no | — |
-| 547 | caucasus | Молла Насреддин: Три крика осла / Mullah Nasreddin: The Donkey's Three Brays | OK | no | — |
-| 548 | caucasus | Молла Насреддин: Говорящий чинар / Mullah Nasreddin: The Speaking Plane Tree | OK | no | — |
-| 549 | caucasus | Амиран на Эльбрусе (сванский вариант) / Amiran on Elbrus (Svan Variant) | OK | no | — |
+| 535 | caucasus | Молла Насреддин: Яйца в платке / Mullah Nasreddin: Eggs in a Cloth | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (1) | — |
+| 536 | caucasus | Молла Насреддин: Скороход / Mullah Nasreddin: Quick-Runner | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (2) | — |
+| 537 | caucasus | Молла Насреддин: Камень и старость / Mullah Nasreddin: The Stone and Old Age | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (3) | — |
+| 538 | caucasus | Молла Насреддин: Ветер в огороде / Mullah Nasreddin: The Wind in the Garden | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (4) | — |
+| 539 | caucasus | Молла Насреддин: Счёт Насреддина / Mullah Nasreddin: Nasreddin's Arithmetic | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (5) | — |
+| 540 | caucasus | Молла Насреддин: Руки были заняты / Mullah Nasreddin: His Hands Were Full | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (6) | — |
+| 541 | caucasus | Молла Насреддин: Орехи со скорлупой / Mullah Nasreddin: Nuts in Their Shells | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (7) | — |
+| 542 | caucasus | Молла Насреддин: Баранья голова / Mullah Nasreddin: The Sheep's Head | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (8) | — |
+| 543 | caucasus | Молла Насреддин: Сыр / Mullah Nasreddin: Cheese | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (9) | — |
+| 544 | caucasus | Молла Насреддин: Подпруга / Mullah Nasreddin: The Girth | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (10) | — |
+| 545 | caucasus | Молла Насреддин: Даровые яблоки / Mullah Nasreddin: Free Apples | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (11) | — |
+| 546 | caucasus | Молла Насреддин: Прыжок через ручей / Mullah Nasreddin: The Leap over the Brook | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (12) | — |
+| 547 | caucasus | Молла Насреддин: Три крика осла / Mullah Nasreddin: The Donkey's Three Brays | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (13) | — |
+| 548 | caucasus | Молла Насреддин: Говорящий чинар / Mullah Nasreddin: The Speaking Plane Tree | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 84 (14) | — |
+| 549 | caucasus | Амиран на Эльбрусе (сванский вариант) / Amiran on Elbrus (Svan Variant) | OK | yes — re-checked 2026-10-24 vs Dirr, Caucasian Folk-tales (tr. Menzies 1925, archive.org djvu text), No. 60 (Suanetian variant) | — |
 | 550 | caucasus | Рустамзал, сын Гахрамана / Rustumsal, Son of Qahirman | OK | no | — |
 | 551 | caucasus | Младший из трёх / The Youngest of the Three | OK | no | — |
 | 552 | caucasus | Зульвисия / Zoolvisia | OK | no | — |
@@ -1094,3 +1094,5 @@
 **Пакет 7 / Batch 7.** Сверены Dirr № 1, 5, 7, 8, 12, 13, 27, 31 (8 записей / records). Исправлено / fixed: «Верный сын» / The Faithful Son: загадки рассказывает не мачеха-джинн, а джинния, уносившая плов; юноша влюбляется в портрет ханской дочери / the riddles are told by the Djinn woman who fetched the pilaf, not the stepmother; he falls for the princess's portrait.
 
 **Пакет 8 / Batch 8.** Сверены без исправлений / checked, no fixes needed: Dirr № 11, 26, 47, 48, 50–55, 63 (11 записей / records).
+
+- Batch 9 (Dirr): 26 verified (Nos. 56, 57, 60, 61, 64, 66–72, 84 (1)–(14)); 1 fixed (An Udian Story of Rustum: thigh episode, second wife).
