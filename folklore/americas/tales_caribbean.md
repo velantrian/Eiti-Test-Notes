@@ -3,23 +3,23 @@
 ## 1. Тыква Яйяэля и рождение моря
 *таино (Большие Антилы), миф о сотворении (по Рамону Пане)*
 
-Верховный бог Яйя изгнал сына Яйяэля, хотевшего его убить; когда тот вернулся, Яйя убил его, а кости положил в тыкву-горлянку и подвесил под крышей. Однажды, пожелав увидеть сына, Яйя велел жене опустить тыкву и вытряхнуть её — и из неё выплеснулось множество больших и малых рыб; кости превратились в рыбу, и супруги решили её съесть. Так установились и похоронные обычаи таино: кости умерших хранили в тыквах или корзинах под крышей, ибо кости считались источником жизни.
+Яйя изгнал сына Яйяэля, который хотел его убить. Через четыре месяца Яйя убил сына, положил его кости в тыкву-горлянку и подвесил её под крышей. Позже Яйя попросил жену снять тыкву, чтобы увидеть останки сына. Когда она перевернула сосуд, из него посыпались большие и маленькие рыбы: по преданию, в них превратились кости Яйяэля. Супруги решили съесть рыбу. История происхождения моря продолжается в следующем эпизоде, когда четверо братьев разбивают эту тыкву.
 
-**Мораль:** Из смерти рождается жизнь; кости предков — источник изобилия.
+**Мораль:** Утрата превращается в источник жизни (редакторское толкование).
 
 ## 2. Деминан Каракаракол и братья: происхождение океана
 *таино (Большие Антилы), миф о сотворении (по Рамону Пане)*
 
-Великая Кровоточащая Мать Итиба Каубаба умерла, родив четверых сыновей; старший, Деминан Каракаракол, повёл братьев по первозданному миру. Голодные, они забрались в дом Яйи красть еду, сняли тыкву с костями Яйяэля и стали есть рыбу. Услышав, что Яйя возвращается, они в спешке вешали тыкву обратно, уронили её, и она разбилась. Из неё вылилось столько воды, что она покрыла землю, и с ней хлынуло множество рыб, — так возник океан. Братьев изгнали из владений Яйи, и, в отличие от Яйяэля, они не пытались вернуться.
+Итиба Каубаба умерла при родах; из её тела извлекли четверых сыновей, первым был Деминан Каракаракол. Пока Яйи не было дома, братья сняли тыкву с останками Яйяэля и наелись рыбы, которая в ней появилась. Услышав, что Яйя возвращается, они поспешили повесить тыкву обратно, но уронили её. Из разбитой тыквы вышло столько воды, что она покрыла землю, вместе с множеством рыб. По преданию, так возникло море. Уйдя оттуда, братья встретили немого человека по имени Конель.
 
-**Мораль:** Даже проступок может стать началом мира; принятое наказание открывает путь.
+**Мораль:** В мифе неосторожность становится объяснением рождения моря (редакторское толкование).
 
-## 3. Братья добывают огонь, касаби и кохобу
+## 3. Деминан Каракаракол и Баяманако: кохоба и черепаха
 *таино (Большие Антилы), миф о культурных героях*
 
-Изгнанные братья начали долгий путь, на котором открыли тайны культуры для людей. Деминан и его братья первыми узнали огонь для приготовления пищи, научились сажать и собирать маниок, чтобы печь лепёшки касаби, и отняли у мудрого старика Баяманако обряды и тайны шаманства, врачевания и магии — табак и кохобу, священный порошок, позволяющий говорить с богами. Так касаби стал основной пищей, огонь дал тепло и свет, а обряд кохобы — важнейшим религиозным и политическим ритуалом таино.
+После истории о разбитой тыкве четверо братьев подошли к дому Баяманако, где пекли касаби. Деминан Каракаракол попросил у старика лепёшку, но тот вместо еды плюнул ему на спину слизью, смешанной с кохобой. На спине возник болезненный нарост. Братья вскрыли его каменным топором, и оттуда вышла живая самка черепахи. Рамон Пане прямо отмечает, что не знает продолжения этой истории. В его записи не сказано, будто братья изобрели огонь, научили людей выращивать маниок или похитили обряды.
 
-**Мораль:** Изгнание может стать путём к знанию, полезному всем.
+**Мораль:** Из отказа в помощи рождается неожиданное превращение (редакторское толкование).
 
 ## 4. Пещера Игуанабоина: Солнце, Луна и камни дождя
 *таино (Большие Антилы), миф*
@@ -55,27 +55,27 @@
 
 ## 1. Yayael's Gourd
 
-The supreme god Yaya banished his son Yayael, who wanted to kill him; when he returned, Yaya killed him and put his bones in a gourd hung from the roof. One day, wishing to see his son, Yaya had his wife take down and empty the gourd — and out gushed many fish, large and small; the bones had turned into fish, and the couple resolved to eat them. This also founded Taíno funeral custom: the bones of the dead were kept in gourds or baskets under the roof, for bones were held to be a source of life.
+Yaya banished his son Yayael for plotting to kill him. Four months later Yaya killed his son, put his bones in a gourd, and hung it from the roof. Later Yaya asked his wife to take down the gourd so he could see his son's remains. When she tipped it, large and small fish fell out: in the account, Yayael's bones had become fish. The couple resolved to eat them. The story of the sea's origin continues in the next episode, when four brothers break the gourd.
 
-**Moral:** Life is born from death; the bones of ancestors are a source of plenty.
+**Moral:** Loss becomes a source of life (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion
+Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html
 
 ## 2. Deminán Caracaracol and His Brothers: Origin of the Ocean
 
-The Great Bleeding Mother Itiba Cahubaba died giving birth to four sons; the eldest, Deminán Caracaracol, led his brothers through the primordial world. Hungry, they crept into Yaya's house to steal food, took down the gourd with Yayael's bones and began eating the fish. Hearing Yaya return, they hurried to hang the gourd back, dropped it, and it broke. So much water poured out that it covered the earth, and many fish with it — and so the ocean began. The brothers were banished from Yaya's land and, unlike Yayael, never tried to return.
+Itiba Cahubaba died in childbirth; four sons were taken from her body, the first being Deminán Caracaracol. While Yaya was away, the brothers took down the gourd with Yayael's remains and ate the fish inside. Hearing that Yaya was coming back, they hurried to hang it up again, but dropped it. So much water and so many fish poured out of the broken gourd that the water covered the land. In the account, this is how the sea began. After leaving, the brothers met a mute man named Conel.
 
-**Moral:** Even a misdeed can begin a world; accepted punishment opens the way.
+**Moral:** In the myth, an accident explains the sea's origin (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion
+Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html, https://pueblosoriginarios.com/textos/pane/3.html
 
-## 3. The Brothers Win Fire, Cassava Bread and Cohoba
+## 3. Deminán Caracaracol and Bayamanaco: Cohoba and the Turtle
 
-The banished brothers began a long journey in which they discovered the secrets of culture for humankind. Deminán and his brothers were the first to learn fire for cooking and how to plant and harvest cassava to make casabe bread, and they wrested from the wise old man Bayamanaco the rites and secrets of shamanism, healing and magic — tobacco and cohoba, the sacred powder for speaking with the gods. So casabe became the staple food, fire gave warmth and light, and the cohoba rite became the Taíno's most important religious and political ritual.
+After the gourd was broken, the four brothers came to Bayamanaco's house, where cassava bread was made. Deminán Caracaracol asked the old man for bread, but instead Bayamanaco spat a substance containing cohoba onto his back. A painful swelling grew there. The brothers opened it with a stone axe, and a living female turtle came out. Ramón Pané explicitly says he does not know the continuation of this account. His text does not say that the brothers invented fire, taught people to grow cassava, or stole sacred rites.
 
-**Moral:** Exile can become a road to knowledge that serves everyone.
+**Moral:** A refusal to help leads to an unexpected transformation (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion
+Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/3.html
 
 ## 4. The Cave of Iguanaboina: Sun, Moon and the Rain Stones
 
