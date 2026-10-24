@@ -593,151 +593,141 @@
  },
  {
   "title": "Сотворение мира из яйца (руны 1–2)",
-  "summary": "Дева воздуха Ильматар спускается в море и веками носится по волнам. Птица вьёт гнездо на её колене и сносит яйца, а когда те падают и разбиваются, из осколков возникают земля, небо, солнце, луна и звёзды. Ильматар формирует берега и острова, а её сын Вяйнямёйнен, рождённый старцем, просит юного Сампсу Пеллервойнена засеять пустую землю лесом.",
-  "moral": "Мир рождается из терпения и заботы, а жизнь на нём — из труда.",
+  "summary": "Дочь воздуха Ильматар веками носится по морю. Утка ищет, где свить гнездо, и Ильматар поднимает колено из воды. Утка сносит на него шесть золотых яиц и седьмое железное. Когда яйца скатываются и разбиваются, из нижней половины скорлупы возникает земля, из верхней — небесный свод, а из прочего — солнце, луна и звёзды. Ильматар творит берега и острова, и у неё рождается Вяйнямёйнен. Он призывает Сампсу Пеллервойнена засеять пустой остров лесом.",
+  "moral": "Мир рождается из терпения, а жизнь на нём — из труда.",
   "title_en": "Creation from the egg (runes 1–2)",
-  "summary_en": "Ilmatar, maiden of the air, descends to the sea and drifts on the waves for ages. A bird nests on her knee and lays eggs; when they fall and break, the earth, sky, sun, moon and stars form from the shards. Ilmatar shapes shores and islands, and her son Väinämöinen, born already old, has young Sampsa Pellervoinen sow the bare land with forest.",
-  "moral_en": "The world is born of patience and care, and life on it of labour.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "summary_en": "Ilmatar, Daughter of the Ether, drifts on the sea for ages. A duck seeks a place to nest, and Ilmatar lifts her knee from the water. The duck lays six golden eggs and a seventh of iron on it. When they roll off and break, the lower half of the shell becomes the earth and the upper half the vault of heaven, while the other parts become the sun, moon and stars. Ilmatar shapes shores and islands, and Wainamoinen is born to her. He calls on Sampsa Pellerwoinen to sow the bare island with forest.",
+  "moral_en": "The world is born of patience, and life on it of labour.",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Песенный поединок и судьба Айно (руны 3–5)",
-  "summary": "Молодой хвастун Йоукахайнен вызывает старого певца Вяйнямёйнена на состязание в песнях. Проиграв, он погружается в болото и, чтобы спастись, обещает старику в жёны свою сестру Айно. Айно не хочет идти за старца. Она уходит к морю и тонет. Вяйнямёйнен горько оплакивает её и потом ловит рыбу, в которой узнаёт Айно, но упускает её снова.",
+  "summary": "Юный Йоукахайнен вызывает старого Вяйнямёйнена на поединок мудрости. Певец загоняет его песнями в топь. Чтобы спастись, тот обещает ему в жёны сестру Айно. Айно горюет и решает уйти к Туони: она погружается на дно моря. Вяйнямёйнен оплакивает её, а потом ловит удочкой чудесную рыбу. Рыба говорит, что она не лосось, а Айно, которую он не узнал, и уходит в волны навсегда.",
   "moral": "Нельзя расплачиваться чужой судьбой за собственную гордыню.",
   "title_en": "The song-duel and the fate of Aino (runes 3–5)",
-  "summary_en": "Young boastful Joukahainen challenges the old singer Väinämöinen to a contest of songs. Losing, he is sung into a swamp and, to save himself, promises the old man his sister Aino. Aino will not marry the old man. She goes to the sea and drowns. Väinämöinen mourns her bitterly and later catches a fish he recognises as Aino, but loses her again.",
+  "summary_en": "Young Youkahainen challenges old Wainamoinen to a contest of wisdom. The singer sings him into a swamp. To save himself, Youkahainen promises him his sister Aino. Aino grieves and resolves to go to Tuoni: she sinks to the bottom of the sea. Wainamoinen mourns her, and later he angles up a magic fish. It tells him it is no salmon but Aino, whom he failed to recognise, and is gone into the waves forever.",
   "moral_en": "One must not pay for one's own pride with another's fate.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Как выковали Сампо (руны 6–10)",
-  "summary": "Мстительный Йоукахайнен подстреливает коня под Вяйнямёйненом, и тот много дней носится по морю, пока орёл не уносит его в северную Похьолу. Хозяйка Похьолы Лоухи обещает вернуть его домой и отдать дочь тому, кто выкует Сампо — волшебную мельницу изобилия. Вяйнямёйнен хитростью отправляет на север кузнеца Ильмаринена. Тот выковывает Сампо, но возвращается без невесты.",
+  "summary": "Мстительный Йоукахайнен подстреливает под Вяйнямёйненом коня, и тот падает в море. Орёл с запада приносит его в Похьолу. Хозяйка севера Лоухи обещает отправить его домой и отдать дочь тому, кто выкует Сампо. Вернувшись, Вяйнямёйнен напевает чудесную пихту с луной и Медведицей в ветвях. Он уговаривает кузнеца Ильмаринена залезть за ними, а затем напевает бурю, и та уносит Ильмаринена в Похьолу. Ильмаринен выковывает Сампо, но дочь Лоухи не идёт за него, и он возвращается без невесты.",
   "moral": "Чудо можно создать, но им не купить любовь.",
   "title_en": "How the Sampo was forged (runes 6–10)",
-  "summary_en": "Vengeful Joukahainen shoots the horse from under Väinämöinen, who drifts at sea for days until an eagle carries him to northern Pohjola. Louhi, mistress of Pohjola, promises to send him home and to give her daughter to whoever forges the Sampo, a magic mill of plenty. Väinämöinen tricks the smith Ilmarinen into going north. He forges the Sampo but returns without a bride.",
+  "summary_en": "Vengeful Youkahainen shoots the steed from under Wainamoinen, who falls into the sea. An eagle from the west carries him to Pohyola. Louhi, hostess of the North, promises to send him home and to give her daughter to whoever forges the Sampo. Back home, Wainamoinen sings up a wondrous fir-tree with the moon and the Bear in its branches. He talks the smith Ilmarinen into climbing up for them, then sings up a storm-wind that carries Ilmarinen to Pohyola. Ilmarinen forges the Sampo, but Louhi's daughter will not go with him, and he returns without a bride.",
   "moral_en": "A wonder can be made, but it cannot buy love.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Смерть и воскрешение Лемминкяйнена (руны 11–15)",
-  "summary": "Ветреный Лемминкяйнен похищает Кюлликки, но клятва верности скоро рушится, и он едет свататься в Похьолу. Матери он оставляет гребень: если гребень закровоточит, значит, он погиб. Лоухи задаёт ему опасные задания. Охотясь на лебедя Туонелы, он гибнет, и его тело разрубают и бросают в реку смерти. Гребень кровоточит, и мать отправляется на поиски. Медными граблями, выкованными Ильмариненом, она собирает куски сына со дна, сращивает их и мазями пчелы возвращает его к жизни.",
+  "summary": "Лемминкяйнен и Кюлликки клянутся друг другу: он не пойдёт на войну, а она не будет ходить на деревенские игры. Кюлликки нарушает клятву, и он уходит свататься в Похьолу. Матери он оставляет щётку для волос: если из неё потечёт кровь, значит, с ним стряслась беда. Лоухи требует от него застрелить лебедя на реке Туони. Там его подстерегает слепой пастух Нассхут и сражает. Сын Туони рубит тело героя на части и бросает в реку. Щётка кровоточит, и мать идёт на поиски. Ильмаринен выковывает ей медные грабли, ими она собирает куски тела, сращивает их и с помощью мёда, принесённого пчелой, возвращает сыну жизнь.",
   "moral": "Материнская любовь сильнее реки смерти.",
-  "title_en": "The death and restoration of Lemminkäinen (runes 11–15)",
-  "summary_en": "Reckless Lemminkäinen carries off Kyllikki, but their vows soon break, and he rides to woo in Pohjola. He leaves his mother a comb: if it bleeds, he has died. Louhi sets him dangerous tasks. Hunting the swan of Tuonela, he is killed, and his body is cut up and thrown into the river of death. The comb bleeds, and his mother goes searching. With a copper rake forged by Ilmarinen she gathers his pieces from the bottom, joins them and revives him with a bee's salves.",
+  "title_en": "The death and restoration of Lemminkainen (runes 11–15)",
+  "summary_en": "Lemminkainen and Kyllikki make vows: he will not go to war, she will not go to the village games. Kyllikki breaks hers, and he sets off to woo in Pohyola. He leaves his mother a hair-brush: if blood flows from it, evil has befallen him. Louhi demands that he shoot the swan on the river of Tuoni. There the blind shepherd Nasshut lies in wait and strikes him down. Tuoni's son hews the hero's body to pieces and throws them into the river. The brush bleeds, and his mother goes searching. Ilmarinen forges her a copper rake, with which she gathers the pieces, joins them and, with honey a bee brings, restores her son to life.",
   "moral_en": "A mother's love is stronger than the river of death.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Випунен и свадьба в Похьоле (руны 16–25)",
-  "summary": "Чтобы достроить лодку, Вяйнямёйнену не хватает трёх слов заклинания. Он ищет их в Туонеле, откуда едва ускользает, а потом у спящего великана Антеро Випунена. Великан проглатывает его, но певец изнутри мучает его, пока тот не выпевает все свои знания. Тем временем Ильмаринен тоже едет в Похьолу, и дочь Лоухи выбирает молодого кузнеца. С помощью невесты он выполняет невозможные задания: вспахивает змеиное поле, ловит медведя Туонелы и щуку. Справляют свадьбу с огромным быком и пивом, а Лемминкяйнена не зовут.",
+  "summary": "Строя лодку, Вяйнямёйнен не может найти недостающих слов заклинания. Он ищет их в царстве Туони и едва оттуда спасается. Тогда он идёт к великану-певцу Випунену, и тот его проглатывает. Изнутри Вяйнямёйнен донимает великана, пока тот не открывает ему древнюю мудрость. Оба героя, Вяйнямёйнен и Ильмаринен, сватаются к деве Севера, договорившись, что она выберет сама. Она выбирает кузнеца. По её советам он вспахивает змеиное поле, ловит медведя и волка Маналы, а щуку Маналы для него ловит выкованный им железный орёл. К свадьбе забивают огромного быка из Карьялы. Лемминкяйнена на пир не зовут.",
   "moral": "Невеста выбирает сердцем, а знание добывается упорством.",
-  "title_en": "Vipunen and the wedding at Pohjola (runes 16–25)",
-  "summary_en": "Väinämöinen lacks three words of a spell to finish his boat. He seeks them in Tuonela, barely escaping, and then from the sleeping giant Antero Vipunen. The giant swallows him, but the singer torments him from inside until he sings out all his lore. Meanwhile Ilmarinen also travels to Pohjola, and Louhi's daughter chooses the young smith. With the bride's help he completes impossible tasks: ploughing a field of snakes, catching the bear of Tuonela and a great pike. The wedding is held with a giant ox and much beer, and Lemminkäinen is not invited.",
+  "title_en": "Vipunen and the wedding at Pohyola (runes 16–25)",
+  "summary_en": "Building his boat, Wainamoinen cannot find the missing words of a spell. He seeks them in Tuoni's realm and barely escapes. Then he goes to the giant singer Wipunen, who swallows him. From inside, Wainamoinen torments the giant until he reveals his ancient wisdom. Both heroes, Wainamoinen and Ilmarinen, woo the Maid of the North, agreeing to let her choose, and she chooses the smith. On her advice he ploughs the serpent-field, muzzles Mana's bear and wolf, and an iron eagle he forges catches Mana's pike. A giant ox from Karjala is slaughtered for the wedding. Lemminkainen is not invited.",
   "moral_en": "A bride chooses with her heart; knowledge is won by persistence.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Куллерво (руны 31–36)",
-  "summary": "Унтамо истребляет род своего брата Калерво и щадит только беременную жену, которая рожает Куллерво. Мальчика не берут ни огонь, ни вода, ни виселица, и Унтамо продаёт его в рабство Ильмаринену. Жена кузнеца запекает ему камень в хлеб. Куллерво ломает о камень отцовский нож и в отместку пригоняет вместо коров волков и медведей, которые растерзывают хозяйку. Узнав, что его семья жива, он возвращается к родным, но по дороге соблазняет девушку, которая оказывается его сестрой, и та бросается в реку. Куллерво разоряет род Унтамо, находит дом опустевшим и бросается на меч там, где погубил сестру.",
+  "summary": "Унтамо губит род брата Калерво, но мальчика Куллерво не берёт даже костёр, и Унтамо продаёт его в рабство Ильмаринену. Жена кузнеца делает его пастухом и запекает ему в хлеб кремень. О камень ломается нож Куллерво — единственная память о его роде. В отместку он загоняет коров в болото, а домой пригоняет волков и медведей, и те губят хозяйку. Позже, возвращаясь после уплаты подати, он соблазняет девушку, которая оказывается его сестрой, и она бросается в бурную реку. Куллерво разоряет род Унтамо. Потом он приходит туда, где погибла сестра, спрашивает свой меч, хочет ли тот испить его крови, и бросается на клинок.",
   "moral": "Насилие, взращённое местью, пожирает и мстителя.",
   "title_en": "Kullervo (runes 31–36)",
-  "summary_en": "Untamo destroys his brother Kalervo's clan, sparing only the pregnant wife, who bears Kullervo. Neither fire, water nor gallows can kill the boy, so Untamo sells him as a slave to Ilmarinen. The smith's wife bakes a stone into his bread. Kullervo breaks his father's knife on it and in revenge drives home wolves and bears instead of cows, and they maul the mistress. Learning that his family lives, he goes back to them, but on the way he seduces a girl who turns out to be his sister, and she throws herself into a river. Kullervo lays waste Untamo's clan, finds his home deserted, and falls on his sword where he ruined his sister.",
+  "summary_en": "Untamo destroys his brother Kalervo's clan, but not even a pyre can kill the boy Kullervo, so Untamo sells him as a slave to Ilmarinen. The smith's wife makes him a herdsman and bakes a flint-stone into his loaf. His knife, the only relic of his people, breaks on it. In revenge he drives the cows into the marsh and brings home wolves and bears, which destroy the mistress. Later, returning after paying the taxes, he seduces a girl who proves to be his sister, and she throws herself into a raging river. Kullervo lays waste Untamo's clan. Then he comes to the place where his sister perished, asks his sword whether it would drink his blood, and falls upon the blade.",
   "moral_en": "Violence bred by revenge devours the avenger too.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Золотая невеста Ильмаринена (руны 37–38)",
-  "summary": "Овдовевший Ильмаринен тоскует и выковывает себе жену из золота и серебра. Но спать рядом с ней холодно, и он отвергает её, а Вяйнямёйнен советует не дарить её никому. Тогда кузнец едет в Похьолу и похищает младшую дочь Лоухи. Она так оскорбляет его по дороге, что он песней превращает её в чайку. Вернувшись, он рассказывает, как богатеет Похьола благодаря Сампо.",
+  "summary": "Ильмаринен, тоскуя по погибшей жене, выковывает себе невесту из золота и серебра. Но бок, которым он лежит рядом с ней, леденеет. Он предлагает её Вяйнямёйнену, а тот велит бросить её в горн и выковать что-нибудь полезное. Тогда кузнец едет в Похьолу и увозит силой младшую дочь Лоухи. Она так поносит его, что он в гневе напевает её в чайку. Вернувшись, он рассказывает, как богатеет Похьола от Сампо.",
   "moral": "Ни золото, ни насилие не заменяют живой любви.",
   "title_en": "Ilmarinen's bride of gold (runes 37–38)",
-  "summary_en": "Widowed Ilmarinen grieves and forges himself a wife of gold and silver. But lying beside her is cold, and he rejects her, and Väinämöinen advises him not to give her to anyone. Then the smith goes to Pohjola and abducts Louhi's youngest daughter. She insults him so badly on the way that he sings her into a seagull. On his return he tells how Pohjola prospers thanks to the Sampo.",
+  "summary_en": "Grieving for his dead wife, Ilmarinen forges a bride of gold and silver. But the side on which he lies beside her turns to ice. He offers her to Wainamoinen, who tells him to throw her into the furnace and forge something useful. Then the smith goes to Pohyola and carries off Louhi's younger daughter by force. She reviles him so that in anger he sings her into a sea-gull. Back home, he tells how Pohyola prospers through the Sampo.",
   "moral_en": "Neither gold nor force can replace living love.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Кантеле и похищение Сампо (руны 39–43)",
-  "summary": "Вяйнямёйнен, Ильмаринен и Лемминкяйнен плывут в Похьолу за Сампо. Их лодка садится на спину огромной щуки, они убивают её, и из её челюсти Вяйнямёйнен делает первое кантеле. Его игре внимают звери, птицы и сами боги. В Похьоле он усыпляет всех музыкой, и герои выносят Сампо из каменной горы. Лоухи насылает туман и бурю, а потом сама обращается в огромного орла с войском на крыльях. В битве Сампо падает в море и разбивается. Обломки, выброшенные на берег, приносят счастье Калевале.",
-  "moral": "Сокровище, за которое бьются, достаётся никому — лишь осколки служат всем.",
+  "summary": "Вяйнямёйнен, Ильмаринен и Лемминкяйнен плывут в Похьолу за Сампо. Их лодка застревает на спине огромной щуки. Убив её, Вяйнямёйнен делает из её костей кантеле, и послушать его игру сбегаются все звери леса. Лоухи отказывается поделиться Сампо, и Вяйнямёйнен игрой усыпляет всю Похьолу. Герои увозят Сампо из медной горы. Лоухи снаряжает погоню, превращает корабль в огромного орла с воинами на крыльях и в битве роняет Сампо в море. Сама она уносит в Похьолу лишь пустую крышку. Вяйнямёйнен собирает на берегу обломки Сампо для счастья Калевалы.",
+  "moral": "Сокровище, за которое бьются, не достаётся никому целиком.",
   "title_en": "The kantele and the theft of the Sampo (runes 39–43)",
-  "summary_en": "Väinämöinen, Ilmarinen and Lemminkäinen sail to Pohjola for the Sampo. Their boat runs aground on a giant pike's back; they kill it, and from its jawbone Väinämöinen makes the first kantele. Beasts, birds and the gods themselves listen to his playing. In Pohjola he lulls everyone to sleep with music, and the heroes carry the Sampo out of the stone mountain. Louhi sends fog and storm, then turns herself into a huge eagle with an army on her wings. In the battle the Sampo falls into the sea and shatters. The fragments washed ashore bring luck to Kalevala.",
-  "moral_en": "A treasure fought over goes to no one; only its fragments serve all.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "summary_en": "Wainamoinen, Ilmarinen and Lemminkainen sail to Pohyola for the Sampo. Their boat sticks fast on the back of a mighty pike. Having killed it, Wainamoinen makes a harp of its bones, and every beast of the forest comes to hear him play. Louhi refuses to share the Sampo, and Wainamoinen plays all Pohyola to sleep. The heroes carry the Sampo off from the copper-bearing mountain. Louhi gives chase, turns her ship into a huge eagle with warriors on its wings, and in the battle the Sampo falls into the sea. She takes only the bare lid back to Pohyola. Wainamoinen gathers the fragments of the Sampo on the shore for Kalevala's good fortune.",
+  "moral_en": "A treasure fought over is won whole by no one.",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
-  "title": "Месть Лоухи: болезни, медведь, похищенные солнце и луна (руны 45–49)",
-  "summary": "Лоухи насылает на Калевалу девять болезней, и Вяйнямёйнен исцеляет людей банными заклинаниями. Тогда она выпускает на стада медведя Отсо, но Вяйнямёйнен убивает его и устраивает медвежий праздник. Лоухи прячет в горе солнце и луну и крадёт огонь. Небесная искра падает в озеро, её проглатывает рыба. Её ловят льняной сетью, и огонь возвращается. Ильмаринен куёт поддельные солнце и луну, и испуганная Лоухи сама отпускает светила на небо.",
+  "title": "Месть Лоухи: болезни, медведь, похищенные огонь, солнце и луна (руны 45–49)",
+  "summary": "Лоухи насылает на Калевалу девять болезней, и Вяйнямёйнен исцеляет людей целебным паром бани, призывая Укко. Тогда Лоухи гонит на стада медведя Отсо. Ильмаринен куёт копьё, медведя убивают и устраивают медвежий пир. Лоухи прячет солнце и луну в медной горе и крадёт огонь. Небесный огонь падает в озеро, где его проглатывает сиг. Рыбу добывают сетью, сплетённой из льна. Вырвавшееся пламя обжигает Ильмаринена, а Вяйнямёйнен находит огонь в дупле вяза и приносит домой. Ильмаринен куёт солнце и луну из серебра и золота, но они не светят. Тогда он куёт ошейник для Лоухи, и испуганная колдунья отпускает светила.",
   "moral": "Тьма и злоба не вечны: мудрость и ремесло возвращают свет.",
-  "title_en": "Louhi's revenge: plagues, the bear, the stolen sun and moon (runes 45–49)",
-  "summary_en": "Louhi sends nine diseases on Kalevala, and Väinämöinen heals the people with sauna charms. Then she looses Otso the bear on the herds, but Väinämöinen kills it and holds a bear feast. Louhi hides the sun and moon in a mountain and steals fire. A heavenly spark falls into a lake and a fish swallows it. It is caught with a flax net, and fire returns. Ilmarinen forges a false sun and moon, and the frightened Louhi releases the true lights into the sky herself.",
+  "title_en": "Louhi's revenge: plagues, the bear, stolen fire, sun and moon (runes 45–49)",
+  "summary_en": "Louhi sends nine diseases on Kalevala, and Wainamoinen heals the people with the healing vapour of the bath, calling on Ukko. Then Louhi drives Otso the bear against the herds. Ilmarinen forges a spear, the bear is killed and a bear feast is held. Louhi hides the sun and moon in the copper-bearing mountain and steals fire. Heavenly fire falls into a lake, where a whiting swallows it. The fish is caught with a net woven of flax. The escaping flame burns Ilmarinen, and Wainamoinen finds the fire in an elm-tree and brings it home. Ilmarinen forges a sun and moon of silver and gold, but they do not shine. Then he forges a collar for Louhi, and the frightened witch releases the true lights.",
   "moral_en": "Darkness and malice are not eternal: wisdom and craft bring back the light.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  },
  {
   "title": "Марьятта и уход Вяйнямёйнена (руна 50)",
-  "summary": "Целомудренная Марьятта беременеет от съеденной брусничины и рожает сына в конюшне. Вяйнямёйнен велит казнить ребёнка, но младенец заговаривает и упрекает старца в неправом суде. Мальчика крестят и нарекают королём Карелии. Пристыжённый Вяйнямёйнен уплывает на медной лодке, оставив народу свои песни и кантеле, и обещает вернуться, когда люди будут в нём нуждаться.",
+  "summary": "Целомудренная пастушка Марьятта беременеет от горной ягоды, которая сама вскочила ей на губы. Рождает она в яслях лесной конюшни. Старец Вирокканас, прежде чем крестить младенца, зовёт Вяйнямёйнена рассудить о нём, и тот велит убить ребёнка. Двухнедельный младенец укоряет его в неправом суде и напоминает о гибели Айно. Вирокканас благословляет мальчика как будущего короля Карьялы. Вяйнямёйнен, чувствуя, что сила его уходит, напевает себе медную лодку и уплывает на запад. Он обещает вернуться, когда Суоми будет нуждаться в нём.",
   "moral": "Старое уступает место новому, но песня остаётся.",
-  "title_en": "Marjatta and Väinämöinen's departure (rune 50)",
-  "summary_en": "Chaste Marjatta becomes pregnant from a lingonberry she ate and bears a son in a stable. Väinämöinen orders the child put to death, but the infant speaks and rebukes the old man for an unjust judgement. The boy is baptised and named King of Karelia. Shamed, Väinämöinen sails away in a copper boat, leaving his songs and kantele to the people, and promises to return when they need him.",
+  "title_en": "Mariatta and Wainamoinen's departure (rune 50)",
+  "summary_en": "Chaste Mariatta, a shepherdess, becomes pregnant from a mountain-berry that leaps to her lips by itself. She gives birth in the manger of a stable in the forest. Before baptising the infant, old Wirokannas calls Wainamoinen to judge him, and Wainamoinen orders the child killed. The two-week-old babe rebukes him for false judgement and reminds him of Aino's death. Wirokannas blesses the boy as the future King of Karyala. Feeling his powers wane, Wainamoinen sings himself a copper boat and sails westward. He promises to return when Suomi needs him.",
   "moral_en": "The old gives way to the new, but the song remains.",
-  "people": "карелы/финны (Калевала, Лённрот; руны записаны в основном в Беломорской Карелии)",
+  "people": "карелы/финны (Калевала, Лённрот, пер. Crawford 1888; руны записаны в основном в Карелии)",
   "type": "эпические руны",
   "sources": [
-   "https://www.gutenberg.org/ebooks/5186",
-   "https://en.wikipedia.org/wiki/Kalevala"
+   "https://www.gutenberg.org/ebooks/5186"
   ],
   "group": "west"
  }
