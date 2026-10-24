@@ -292,17 +292,17 @@ King Candaules of Lydia thought his wife the most beautiful of women and, over h
 
 *греки (по Геродоту) — легенда*
 
-Певец Арион, победив на состязании в Сицилии, плыл домой с богатыми наградами, и моряки решили убить его. Ему позволили спеть последнюю песнь; он воспел Аполлона в полном наряде и бросился в море, а дельфин вынес его к мысу Тенар. В Коринфе тиран Периандр допросил вернувшихся моряков; они клялись, что Арион умер, но тут он вышел к ним в том же наряде, и злодеи были уличены.
+Певец Арион, разбогатев в Италии и Сицилии, плыл из Тарента домой в Коринф, и моряки-коринфяне решили убить его ради денег. Ему позволили спеть последнюю песнь; он исполнил «орфийский» напев в полном наряде певца и бросился в море, а дельфин вынес его к мысу Тенар. В Коринфе тиран Периандр допросил вернувшихся моряков; они уверяли, что Арион жив и остался в Таренте, но тут он вышел к ним в том же наряде, и злодеи были уличены.
 
 **Мораль:** Искусство спасает, а ложь разоблачается.
 
 ### Arion and the Dolphin
 
-The singer Arion, having won a contest in Sicily, was sailing home with rich prizes when the sailors decided to kill him. Allowed a last song, he sang to Apollo in full costume and leapt into the sea, and a dolphin carried him to Cape Taenarum. In Corinth the tyrant Periander questioned the returning sailors; they swore Arion was dead, but he stepped out before them in the same attire, and the villains were exposed.
+The singer Arion, having made a fortune in Italy and Sicily, was sailing home to Corinth from Taras when the Corinthian sailors decided to kill him for his money. Allowed a last song, he sang the Orthian strain in full minstrel's dress and leapt into the sea, and a dolphin carried him to Cape Taenarum. In Corinth the tyrant Periander questioned the returning sailors; they claimed Arion was safe in Taras in Italy, but he stepped out before them in the same attire, and the villains were exposed.
 
 **Moral:** Art saves, and lies are exposed.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Arion
+Источники / Sources: https://en.wikipedia.org/wiki/Arion, https://www.gutenberg.org/ebooks/2707
 
 ---
 
@@ -320,7 +320,7 @@ Jupiter and Mercury, disguised as travellers, went through a Phrygian town and w
 
 **Moral:** Hospitality is rewarded, and faithful love is not parted even by death.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Baucis_and_Philemon
+Источники / Sources: https://en.wikipedia.org/wiki/Baucis_and_Philemon, https://www.gutenberg.org/ebooks/26073
 
 ---
 
@@ -356,7 +356,7 @@ From the spittle of the Æsir and Vanir sealing their truce, the sage Kvasir was
 
 **Moral:** Inspiration is a precious and hard-won gift.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Mead_of_Poetry
+Источники / Sources: https://en.wikipedia.org/wiki/Mead_of_Poetry, https://www.gutenberg.org/ebooks/18947
 
 ---
 
@@ -364,17 +364,17 @@ From the spittle of the Æsir and Vanir sealing their truce, the sage Kvasir was
 
 *скандинавы — миф*
 
-Асы решили пировать у морского великана Эгира, но тот потребовал котёл, в котором хватит пива на всех. Тюр вспомнил об огромном котле своего отца, великана Хюмира, и боги отправились к нему. Тор съел так много, что пришлось идти на рыбалку, и чуть не выудил змея Мирового моря Ёрмунганда. Хюмир насмехался, что Тор не силён, раз не может разбить его чашу; узнав, что чаша разбивается лишь о голову великана, Тор так и сделал. Раздосадованный Хюмир позволил забрать котёл; затем Тор перебил множество великанов, и асы с тех пор пировали у Эгира.
+Асы решили пировать у морского великана Эгира, но тот потребовал котёл, в котором хватит пива на всех. Тюр вспомнил об огромном котле своего отца, великана Хюмира, и боги отправились к нему. Тор съел так много, что пришлось идти на рыбалку, и Тор поймал на крючок змея Мирового моря Ёрмунганда, подтянул к лодке и ударил молотом по голове, после чего тот ушёл в море. Хюмир насмехался, что Тор не силён, раз не может разбить его чашу; узнав, что чаша разбивается лишь о голову великана, Тор так и сделал. Раздосадованный Хюмир позволил забрать котёл; затем Тор перебил множество великанов, и асы с тех пор пировали у Эгира.
 
 **Мораль:** Хитрость и сила вместе одолевают трудную задачу.
 
 ### Thor at the Giant Hymir's
 
-The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle big enough to brew beer for all. Týr remembered the huge kettle of his father, the giant Hymir, and the gods set off. Thor ate so much that they had to go fishing, and he nearly hooked the World Serpent Jörmungandr. Hymir taunted that Thor was not strong if he could not break his cup; learning it would break only against the giant's head, Thor did just that. Annoyed, Hymir let them take the kettle; Thor then slew hordes of giants, and the Æsir feasted at Ægir's ever after.
+The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle big enough to brew beer for all. Týr remembered the huge kettle of his father, the giant Hymir, and the gods set off. Thor ate so much that they had to go fishing, and Thor hooked the World Serpent Jörmungandr, hauled it up to the boat and struck its head with his hammer before it sank back into the sea. Hymir taunted that Thor was not strong if he could not break his cup; learning it would break only against the giant's head, Thor did just that. Annoyed, Hymir let them take the kettle; Thor then slew hordes of giants, and the Æsir feasted at Ægir's ever after.
 
 **Moral:** Cunning and strength together overcome a hard task.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Hymiskviða
+Источники / Sources: https://en.wikipedia.org/wiki/Hymiskviða, https://www.gutenberg.org/ebooks/73533
 
 ---
 
@@ -626,7 +626,7 @@ In Babylon the lovers Pyramus and Thisbe lived in adjoining houses; their parent
 
 **Moral:** Haste and prohibition destroy love; do not jump to conclusions before learning the truth.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Pyramus_and_Thisbe
+Источники / Sources: https://en.wikipedia.org/wiki/Pyramus_and_Thisbe, https://www.gutenberg.org/ebooks/21765
 
 ---
 
@@ -652,17 +652,17 @@ The runaway slave Androcles took shelter in a cave that turned out to be a wound
 
 *скандинавы — миф*
 
-Бальдру и его матери Фригг приснилась его смерть, и Фригг взяла с каждой вещи на земле клятву не вредить ему — кроме омелы, которую сочла слишком ничтожной. Боги забавлялись, бросая в Бальдра чем попало, но ничто его не ранило. Локи сделал из омелы копьё и дал его слепому брату Бальдра Хёду, и тот невольно убил брата. Бальдра сожгли на его корабле Хрингхорни; жена его Нанна умерла от горя. Посланник Хермод передал Хель мольбу Фригг, и Хель обещала отпустить Бальдра, если о нём заплачет всё живое и мёртвое. Заплакали все, кроме великанши Тёкк (считают, что это был Локи), и Бальдр остался у Хель до Рагнарёка.
+Бальдру снились сны, предвещавшие его смерть, и Фригг взяла с каждой вещи на земле клятву не вредить ему — кроме омелы, которую сочла слишком ничтожной. Боги забавлялись, бросая в Бальдра чем попало, но ничто его не ранило. Локи сорвал омелу и дал её слепому брату Бальдра Хёду, и тот невольно убил брата. Бальдра сожгли на его корабле Хрингхорни; жена его Нанна умерла от горя. Посланник Хермод передал Хель мольбу Фригг, и Хель обещала отпустить Бальдра, если о нём заплачет всё живое и мёртвое. Заплакали все, кроме великанши Тёкк (считают, что это был Локи), и Бальдр остался у Хель до Рагнарёка.
 
 **Мораль:** Пренебрежение малым оборачивается бедой; одна злая воля может перечеркнуть общую любовь.
 
 ### The Death of Baldr
 
-Baldr and his mother Frigg dreamed of his death, and Frigg made everything on earth swear never to harm him — except the mistletoe, which she thought too insignificant. The gods amused themselves throwing things at Baldr, but nothing hurt him. Loki made a spear of mistletoe and gave it to Baldr's blind brother Höðr, who unwittingly killed his brother with it. Baldr was burned on his ship Hringhorni; his wife Nanna died of grief. The messenger Hermóðr carried Frigg's plea to Hel, and Hel promised to release Baldr if all things living and dead wept for him. All wept except the giantess Þökk (thought to be Loki), and Baldr remained with Hel until Ragnarök.
+Baldr had dreams foretelling his death, and Frigg made everything on earth swear never to harm him — except the mistletoe, which she thought too insignificant. The gods amused themselves throwing things at Baldr, but nothing hurt him. Loki pulled up the mistletoe and gave it to Baldr's blind brother Höðr, who unwittingly killed his brother with it. Baldr was burned on his ship Hringhorni; his wife Nanna died of grief. The messenger Hermóðr carried Frigg's plea to Hel, and Hel promised to release Baldr if all things living and dead wept for him. All wept except the giantess Þökk (thought to be Loki), and Baldr remained with Hel until Ragnarök.
 
 **Moral:** Neglecting a small thing brings disaster; one ill will can undo the love of all.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Baldr
+Источники / Sources: https://en.wikipedia.org/wiki/Baldr, https://www.gutenberg.org/ebooks/18947
 
 ---
 
@@ -680,7 +680,7 @@ Waking up, Thor found his hammer Mjölnir missing. Loki flew to Jötunheimr in F
 
 **Moral:** Cunning and patience recover what was lost; not everything under a veil is a bride.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Þrymskviða
+Источники / Sources: https://en.wikipedia.org/wiki/Þrymskviða, https://www.gutenberg.org/ebooks/73533
 
 ---
 
@@ -698,7 +698,7 @@ The gods learned from prophecies that Loki's children would bring them harm; Jö
 
 **Moral:** Order sometimes demands sacrifice; keeping faith comes at a cost.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Fenrir
+Источники / Sources: https://en.wikipedia.org/wiki/Fenrir, https://www.gutenberg.org/ebooks/18947
 
 ---
 

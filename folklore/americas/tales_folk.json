@@ -18,7 +18,8 @@
   "people": "США (голландские поселенцы, Вашингтон Ирвинг)",
   "type": "литературная легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Rip_Van_Winkle"
+   "https://en.wikipedia.org/wiki/Rip_Van_Winkle",
+   "https://www.gutenberg.org/ebooks/2048"
   ],
   "title": "Рип ван Винкль",
   "summary": "Добродушный лентяй Рип ван Винкль, спасаясь от ворчливой жены, ушёл с псом Волком охотиться на белок в Катскилльские горы. Вечером его окликнул человек в старинной голландской одежде с бочонком; Рип помог донести его к расселине, откуда раздавался гром, — там бородачи играли в кегли. Рип выпил из бочонка и уснул. Проснулся он с седой бородой в фут длиной, с проржавевшим ружьём, без собаки; деревня выросла, никто его не узнавал, а когда его спросили о выборах, он объявил себя верным подданным Георга III, не зная, что прошла Война за независимость. Минуло двадцать лет; жена умерла, дочь приютила его. Старый житель объяснил, что в горах ему встретились призраки команды «Халве Мане» Гудзона, и с тех пор, когда гремит гром, голландцы говорят: это в горах играют в кегли.",
@@ -32,13 +33,14 @@
   "people": "США (Вашингтон Ирвинг)",
   "type": "литературная легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Legend_of_Sleepy_Hollow"
+   "https://en.wikipedia.org/wiki/Legend_of_Sleepy_Hollow",
+   "https://www.gutenberg.org/ebooks/2048"
   ],
   "title": "Легенда о Сонной Лощине",
-  "summary": "Около 1790 г. в лощине у Тарритауна, полной суеверий, поселился долговязый боязливый учитель Икабод Крейн. Он сватался к Катрине ван Тассель, дочери богатого фермера, больше ради её богатства, а его соперник, силач Бром Бонс, вышучивал и пугал его. На празднике урожая гости рассказывали о Всаднике без головы — призраке солдата, потерявшего голову в Войну за независимость и ищущего её по ночам. Уезжая отвергнутым, Икабод встретил безголового всадника, помчался к мосту, за который призрак не может перейти, но всадник швырнул в него свою «голову» и сбил с коня. Наутро Икабода не нашли — лишь шляпу и разбитую тыкву; Катрина вышла за Брома, который ухмылялся, когда об этом заходила речь. Был ли то призрак или проделка — так и осталось неясным.",
+  "summary": "Лет за тридцать до того, как Ирвинг писал свою новеллу, в лощине у Тарритауна, полной суеверий, поселился долговязый боязливый учитель Икабод Крейн. Он сватался к Катрине ван Тассель, дочери богатого фермера, больше ради её богатства, а его соперник, силач Бром Бонс, вышучивал и пугал его. На празднике урожая гости рассказывали о Всаднике без головы — призраке солдата, потерявшего голову в Войну за независимость и ищущего её по ночам. Уезжая отвергнутым, Икабод встретил безголового всадника, помчался к мосту, за который призрак не может перейти, но всадник швырнул в него свою «голову» и сбил с коня. Наутро Икабода не нашли — лишь шляпу и разбитую тыкву; Катрина вышла за Брома, который ухмылялся, когда об этом заходила речь. Был ли то призрак или проделка — так и осталось неясным.",
   "moral": "Суеверный страх делает человека лёгкой добычей для шутника.",
   "title_en": "The Legend of Sleepy Hollow",
-  "summary_en": "Around 1790, in a superstition-filled hollow near Tarrytown, lived the lanky, timid schoolmaster Ichabod Crane. He courted Katrina Van Tassel, a rich farmer's daughter, more for her wealth, while his rival, the strongman Brom Bones, mocked and frightened him. At a harvest party guests told of the Headless Horseman, ghost of a soldier who lost his head in the Revolutionary War and searches for it at night. Riding home rejected, Ichabod met a headless rider, raced for the bridge the ghost cannot cross, but the rider hurled his 'head' and knocked him down. Next morning Ichabod was gone — only his hat and a smashed pumpkin remained; Katrina married Brom, who smirked whenever the story was told. Ghost or prank remains unresolved.",
+  "summary_en": "Some thirty years before Irving wrote, in a superstition-filled hollow near Tarrytown, lived the lanky, timid schoolmaster Ichabod Crane. He courted Katrina Van Tassel, a rich farmer's daughter, more for her wealth, while his rival, the strongman Brom Bones, mocked and frightened him. At a harvest party guests told of the Headless Horseman, ghost of a soldier who lost his head in the Revolutionary War and searches for it at night. Riding home rejected, Ichabod met a headless rider, raced for the bridge the ghost cannot cross, but the rider hurled his 'head' and knocked him down. Next morning Ichabod was gone — only his hat and a smashed pumpkin remained; Katrina married Brom, who smirked whenever the story was told. Ghost or prank remains unresolved.",
   "moral_en": "Superstitious fear makes one easy prey for a prankster."
  },
  {

@@ -448,6 +448,8 @@ On a single Old Babylonian tablet (signed by one Kalbanum) a man who has lost th
 
 Источники / Sources: https://en.wikipedia.org/wiki/Akkadian_literature, https://archive.org/details/babylonianwisdom0000lamb_c2i9
 
+Права / Rights: Lambert, Babylonian Wisdom Literature (1960) is in copyright; archive.org copy is lending-only
+
 ---
 
 ## 26. Тамариск и Пальма

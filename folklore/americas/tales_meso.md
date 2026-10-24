@@ -58,17 +58,19 @@ Between the former creation and this one lived vain Seven Macaw (Vucub-Caquix), 
 
 *киче (майя) — миф о героях («Пополь-Вух»)*
 
-Сыновья Семи Ара унаследовали его спесь: старший, Сипакна, называл себя творцом гор, младший, Кабракан, — их разрушителем. Сипакну близнецы заманили поддельным крабом и похоронили под горой. Кабракану, по просьбе бога Хуракана, рассказали о горе, которая всё растёт; тот потребовал показать её. По дороге близнецы жарили подстреленных птиц и дали голодному Кабракану птицу, обмазанную известью и гипсом — ядом для него. Ослабевшего, его связали и бросили в яму, навеки погребя в земле.
+Сыновья Семи Ара унаследовали его спесь: старший, Сипакна, называл себя творцом гор, младший, Кабракан, — их разрушителем. Сипакну близнецы заманили поддельным крабом и похоронили под горой. Кабракану, по просьбе бога Хуракана, рассказали о горе, которая всё растёт; тот потребовал показать её. По дороге близнецы жарили подстреленных птиц и дали голодному Кабракану птицу, обмазанную известью и землёй, — и силы оставили его. Ослабевшего, его связали и бросили в яму, навеки погребя в земле.
 
 **Мораль:** Хвастовство силой делает сильного уязвимым для хитрости.
 
 ### Zipacna and Cabrakan
 
-Seven Macaw's sons inherited his arrogance: the elder, Zipacna, called himself maker of mountains, the younger, Cabrakan, their destroyer. The twins lured Zipacna with a fake crab and buried him under a mountain. At Huracan's request they told Cabrakan of a mountain that kept growing; he demanded to see it. On the way the twins roasted birds they shot and gave the hungry Cabrakan one coated with plaster and gypsum, poison to him. Weakened, he was bound and cast into a hole, buried forever.
+Seven Macaw's sons inherited his arrogance: the elder, Zipacna, called himself maker of mountains, the younger, Cabrakan, their destroyer. The twins lured Zipacna with a fake crab and buried him under a mountain. At Huracan's request they told Cabrakan of a mountain that kept growing; he demanded to see it. On the way the twins roasted birds they shot and gave the hungry Cabrakan one coated with quicklime and earth, which sapped his strength. Weakened, he was bound and cast into a hole, buried forever.
 
 **Moral:** Boasting of strength leaves the strong open to cunning.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins
+Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins, https://www.mesoweb.com/publications/Christenson/PopolVuh.pdf
+
+Права / Rights: Christenson 2007 translation (Mesoweb, open access): copyright applies; retold in own words
 
 ---
 
@@ -76,17 +78,19 @@ Seven Macaw's sons inherited his arrogance: the elder, Zipacna, called himself m
 
 *киче (майя) — миф («Пополь-Вух»)*
 
-Братья Хун-Хунахпу и Вукуб-Хунахпу так шумно играли в мяч, что владыки подземного мира Шибальбы — Одна Смерть и Семь Смертей — вызвали их к себе, победили и казнили; голову Хун-Хунахпу повесили на дереве. Мимо проходила Шкик (Кровавая Луна), дочь одного из владык; голова заговорила с ней и плюнула ей на ладонь, и она зачала. Отец приговорил её к смерти, но совы-посланцы пощадили её, отнесли владыкам поддельное сердце из красного сока дерева и вывели наверх. Бабушка Шмукане не поверила ей и велела набрать полную сеть початков, но на огороде был лишь один стебель; Шкик призвала Хранителей Пищи, и стебель дал початков на всю сеть. Так её признали, и она родила близнецов Хунахпу и Шбаланке.
+Братья Хун-Хунахпу и Вукуб-Хунахпу так шумно играли в мяч, что владыки подземного мира Шибальбы — Одна Смерть и Семь Смертей — вызвали их к себе, победили и казнили; голову Хун-Хунахпу повесили на дереве. Мимо проходила Шкик (Госпожа Кровь), дочь одного из владык; голова заговорила с ней и плюнула ей на ладонь, и она зачала. Отец приговорил её к смерти, но совы-посланцы пощадили её, отнесли владыкам поддельное сердце из красного сока дерева и вывели наверх. Бабушка Шмукане не поверила ей и велела набрать полную сеть початков, но на огороде был лишь один стебель; Шкик призвала Хранителей Пищи, и стебель дал початков на всю сеть. Так её признали, и она родила близнецов Хунахпу и Шбаланке.
 
 **Мораль:** Правда, даже невероятная, находит подтверждение; жизнь прорастает из смерти.
 
 ### Hun Hunahpu and the Daughter of Xibalba
 
-The brothers Hun Hunahpu and Vucub Hunahpu played ball so noisily that the underworld lords of Xibalba, One Death and Seven Death, summoned, defeated and killed them; Hun Hunahpu's head was hung in a tree. Xquic (Blood Moon), daughter of one of the lords, passed by; the head spoke to her and spat on her palm, and she conceived. Her father condemned her, but the owl messengers spared her, took the lords a false heart of red tree sap and guided her above. Grandmother Xmucane did not believe her and told her to fill a net with corn, but there was only one stalk in the garden; Xquic called on the Guardians of Food and the stalk filled the net. So she was accepted and bore the twins Hunahpu and Xbalanque.
+The brothers Hun Hunahpu and Vucub Hunahpu played ball so noisily that the underworld lords of Xibalba, One Death and Seven Death, summoned, defeated and killed them; Hun Hunahpu's head was hung in a tree. Xquic (Lady Blood), daughter of one of the lords, passed by; the head spoke to her and spat on her palm, and she conceived. Her father condemned her, but the owl messengers spared her, took the lords a false heart of red tree sap and guided her above. Grandmother Xmucane did not believe her and told her to fill a net with corn, but there was only one stalk in the garden; Xquic called on the Guardians of Food and the stalk filled the net. So she was accepted and bore the twins Hunahpu and Xbalanque.
 
 **Moral:** Truth, even unbelievable, finds its proof; life sprouts from death.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins
+Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins, https://www.mesoweb.com/publications/Christenson/PopolVuh.pdf
+
+Права / Rights: Christenson 2007 translation (Mesoweb, open access): copyright applies; retold in own words
 
 ---
 
@@ -104,7 +108,9 @@ Their half-brothers One Howler Monkey and One Artisan, fine singers and craftsme
 
 **Moral:** Envy turns against the envious.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins
+Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins, https://www.mesoweb.com/publications/Christenson/PopolVuh.pdf
+
+Права / Rights: Christenson 2007 translation (Mesoweb, open access): copyright applies; retold in own words
 
 ---
 
@@ -112,17 +118,19 @@ Their half-brothers One Howler Monkey and One Artisan, fine singers and craftsme
 
 *киче (майя) — миф («Пополь-Вух»)*
 
-Близнецы одним взмахом топора расчищали поле за целый день, но наутро звери возвращали лес на место. Подстерегая их, близнецы схватили кролика и оленя за хвосты, но хвосты оторвались — потому они у них короткие; крысе же опалили хвост на огне. За пощаду крыса открыла, что бабушка в горе спрятала под крышей снаряжение для игры в мяч их отца и дяди. За ужином близнецы попросили острый соус и потребовали воды, подсунув бабушке дырявый кувшин; пока она и мать ходили за водой, крыса перегрызла верёвки, и снаряжение досталось близнецам.
+Близнецы одним взмахом топора расчищали поле за целый день, но наутро звери возвращали лес на место. Подстерегая их, близнецы схватили кролика и оленя за хвосты, но хвосты оторвались — потому они у них короткие; крысе же опалили хвост на огне. За пощаду крыса открыла, что бабушка в горе спрятала под крышей снаряжение для игры в мяч их отца и дяди. За ужином близнецы попросили острый соус и потребовали воды; посланная ими кусачая муха продырявила бабушкин кувшин, и пока она и мать ходили за водой, крыса перегрызла верёвки, и снаряжение досталось близнецам.
 
 **Мораль:** Наследие отцов находит своих наследников.
 
 ### The Rat and the Father's Ballgame Gear
 
-The twins cleared a day's field with one axe stroke, but by morning the animals had restored the forest. Lying in wait, they caught rabbit and deer by the tails, but the tails broke — that is why they are short; the rat's tail they singed in the fire. For mercy the rat revealed that their grandmother, in grief, had hidden their father's and uncle's ballgame gear in the roof. At dinner they asked for hot chili sauce and demanded water, having given grandmother a cracked jar; while she and their mother went for water, the rat gnawed the ropes, and the gear was theirs.
+The twins cleared a day's field with one axe stroke, but by morning the animals had restored the forest. Lying in wait, they caught rabbit and deer by the tails, but the tails broke — that is why they are short; the rat's tail they singed in the fire. For mercy the rat revealed that their grandmother, in grief, had hidden their father's and uncle's ballgame gear in the roof. At dinner they asked for hot chili sauce and demanded water; a biting fly they sent pierced grandmother's jar, and while she and their mother went for water, the rat gnawed the ropes, and the gear was theirs.
 
 **Moral:** The fathers' legacy finds its heirs.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins
+Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins, https://www.mesoweb.com/publications/Christenson/PopolVuh.pdf
+
+Права / Rights: Christenson 2007 translation (Mesoweb, open access): copyright applies; retold in own words
 
 ---
 
@@ -140,7 +148,9 @@ The lords of Xibalba summoned the twins too. Grandmother passed the message by a
 
 **Moral:** Wit and mutual help defeat treachery.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins
+Источники / Sources: https://en.wikipedia.org/wiki/Maya_Hero_Twins, https://www.mesoweb.com/publications/Christenson/PopolVuh.pdf
+
+Права / Rights: Christenson 2007 translation (Mesoweb, open access): copyright applies; retold in own words
 
 ---
 

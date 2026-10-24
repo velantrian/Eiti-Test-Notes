@@ -122,7 +122,7 @@ Hunting, Pwyll drove another's hounds from a stag, offending Arawn, lord of the 
 
 **Moral:** Honesty and courtesy win faithful friends.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Pwyll_Pendefig_Dyfed
+Источники / Sources: https://en.wikipedia.org/wiki/Pwyll_Pendefig_Dyfed, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -140,7 +140,7 @@ The Irish king Matholwch sought the hand of Branwen, sister of the giant Bendige
 
 **Moral:** One man's malice can ruin two peoples.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Branwen_ferch_Llŷr
+Источники / Sources: https://en.wikipedia.org/wiki/Branwen_ferch_Llŷr, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -158,7 +158,7 @@ Manawydan married Rhiannon, but a magic mist emptied Dyfed, leaving only four co
 
 **Moral:** Patience and wit defeat sorcery.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Manawydan_fab_Llŷr
+Источники / Sources: https://en.wikipedia.org/wiki/Manawydan_fab_Llŷr, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -176,7 +176,7 @@ His mother cursed Lleu never to have a human wife, so the magicians Math and Gwy
 
 **Moral:** What is made without love keeps no faith.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Blodeuwedd
+Источники / Sources: https://en.wikipedia.org/wiki/Blodeuwedd, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -194,7 +194,7 @@ His stepmother cursed Culhwch that he could marry no one but Olwen, daughter of 
 
 **Moral:** With faithful friends the impossible becomes possible.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Culhwch_and_Olwen
+Источники / Sources: https://en.wikipedia.org/wiki/Culhwch_and_Olwen, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -202,17 +202,17 @@ His stepmother cursed Culhwch that he could marry no one but Olwen, daughter of 
 
 *валлийцы — легенда*
 
-Колдунья Керидвен варила для своего уродливого сына зелье вдохновения и поручила мальчику Гвиону Баху год мешать котёл. Три капли брызнули ему на палец, он сунул его в рот и обрёл вдохновение. Спасаясь от гнева Керидвен, он менял облики, пока, став зерном, не был ею проглочен; она забеременела, но, родив, не смогла убить младенца и бросила его в море в кожаном мешке. Его нашёл Элфин и назвал Талиесином — «сияющее чело»; в тринадцать лет тот верно предсказал смерть короля Маэлгуна.
+Колдунья Керидвен варила для своего уродливого сына зелье вдохновения и поручила мальчику Гвиону Баху год мешать котёл. Три капли брызнули ему на палец, он сунул его в рот и обрёл вдохновение. Спасаясь от гнева Керидвен, он менял облики, пока, став зерном, не был ею проглочен; она забеременела, но, родив, не смогла убить младенца и бросила его в море в кожаном мешке. Его нашёл Элфин и назвал Талиесином — «сияющее чело»; в тринадцать лет при дворе короля Маэлгуна Гвинедского он освободил Элфина и предрёк странное чудище, которое принесёт Маэлгуну гибель.
 
 **Мораль:** Дар не выбирает, кому достаться.
 
 ### Gwion Bach and the Birth of Taliesin
 
-The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his thumb, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen he correctly foretold the death of King Maelgwn.
+The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his finger, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen, at the court of King Maelgwn Gwynedd, he freed Elffin and prophesied a strange creature that would bring destruction on Maelgwn.
 
 **Moral:** A gift does not choose whom it falls to.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Taliesin
+Источники / Sources: https://en.wikipedia.org/wiki/Taliesin, https://www.gutenberg.org/ebooks/5160
 
 ---
 
@@ -230,7 +230,7 @@ Three plagues fell on Britain under King Lludd: the Coraniaid, who heard everyth
 
 **Moral:** Wise counsel is stronger than any plague.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Lludd_and_Llefelys
+Источники / Sources: https://en.wikipedia.org/wiki/Lludd_and_Llefelys, https://www.gutenberg.org/ebooks/5160
 
 ---
 

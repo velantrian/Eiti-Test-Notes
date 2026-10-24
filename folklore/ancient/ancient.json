@@ -764,7 +764,8 @@
   "moral": "Даже от разрозненных обломков видно: звери в месопотамской басне спорят и страдают почти как люди.",
   "title_en": "The Fable of the Fox (fragments)",
   "summary_en": "[The text survives only in fragments; the plot cannot be fully reconstructed.] The Akkadian 'Fable of the Fox' is known from several tablet fragments from Nineveh and Babylon; W. G. Lambert edited it in Babylonian Wisdom Literature (1960) among the fables and contest texts. According to a study by B. Sax (Anthrozoös, 1998, doi:10.2752/089279398787000652), it is set against a terrible drought, and the surviving parts record exchanges between a fox (or jackal), a wolf, a lion and a dog; the dog's fate in particular seems tragic. A Neo-Assyrian letter quotes a passage in which the Fox, in peril, calls on Enlil for protection while cursing his own ambitions. How the dispute ends, and who settles it, is unknown.",
-  "moral_en": "Even from scattered fragments it is clear that animals in Mesopotamian fable argue and suffer almost like humans."
+  "moral_en": "Even from scattered fragments it is clear that animals in Mesopotamian fable argue and suffer almost like humans.",
+  "rights": "Lambert, Babylonian Wisdom Literature (1960) is in copyright; archive.org copy is lending-only"
  },
  {
   "group": "akkadian",
@@ -869,7 +870,8 @@
   "people": "валлийцы",
   "type": "миф (Мабиноги, 1-я ветвь)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Pwyll_Pendefig_Dyfed"
+   "https://en.wikipedia.org/wiki/Pwyll_Pendefig_Dyfed",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Пуйлл, князь Диведа",
   "summary": "На охоте Пуйлл отогнал чужих собак от оленя, оскорбив Арауна, владыку потустороннего Аннуна. Во искупление он на год принял облик Арауна и правил вместо него, целомудренно разделяя ложе с его женой, и одним ударом сразил его врага Хавгана; так они стали друзьями. Позже Пуйлл увидел на холме Рианнон на белом коне, которую не мог догнать никто, пока он сам не попросил её остановиться. Она предпочла его жениху Гваулу; когда Гваул хитростью выпросил её на свадьбе, Рианнон дала Пуйллу волшебный мешок, в который Гваул залез и был избит. Позднее их сын пропал в ночь рождения, служанки оклеветали Рианнон, и она несла наказание, пока мальчика не нашёл и не вернул Тейрнон.",
@@ -883,7 +885,8 @@
   "people": "валлийцы",
   "type": "миф (Мабиноги, 2-я ветвь)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Branwen_ferch_Llŷr"
+   "https://en.wikipedia.org/wiki/Branwen_ferch_Llŷr",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Бранвен, дочь Ллира",
   "summary": "Ирландский король Матолух посватался к Бранвен, сестре великана Бендигейдврана. Её сводный брат Эвнисиен изувечил коней гостя, и Бран возместил обиду котлом, воскрешающим мёртвых. В Ирландии Бранвен сослали на кухню и били; она приручила скворца и послала весть брату. Бран переправился с войском; Эвнисиен раздавил воинов, спрятанных в мешках «с мукой», а на пиру бросил в огонь сына Бранвен, и началась битва. Увидев, как ирландцы воскрешают павших, Эвнисиен лёг среди трупов и разорвал котёл ценой жизни. Выжили семеро; Бранвен умерла от горя, а голова смертельно раненного Брана годами беседовала с ними, прежде чем её похоронили в Лондоне лицом к Франции, чтобы охранять остров.",
@@ -897,7 +900,8 @@
   "people": "валлийцы",
   "type": "миф (Мабиноги, 3-я ветвь)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Manawydan_fab_Llŷr"
+   "https://en.wikipedia.org/wiki/Manawydan_fab_Llŷr",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Манавидан, сын Ллира",
   "summary": "Манавидан женился на Рианнон, но волшебный туман опустошил Дивед, оставив лишь четырёх героев. В Англии их ремёсла были так хороши, что завистливые мастера изгоняли их из города в город. Пуйллов сын Придери, а за ним Рианнон, коснулись золотой чаши в таинственной крепости, прилипли к ней и исчезли. Манавидан засеял поля, но мыши уничтожили два из них; он поймал одну и собрался повесить. Учёный, священник и епископ предлагали выкуп, и Манавидан потребовал вернуть Придери и Рианнон и снять чары: мышь была женой колдуна Ллуйда, мстившего за обиду Гваула.",
@@ -911,7 +915,8 @@
   "people": "валлийцы",
   "type": "миф (Мабиноги, 4-я ветвь)",
   "sources": [
-   "https://en.wikipedia.org/wiki/Blodeuwedd"
+   "https://en.wikipedia.org/wiki/Blodeuwedd",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Блодейведд, девушка из цветов",
   "summary": "Мать прокляла Ллеу, чтобы у него не было жены из людей, и маги Мат и Гвидион сотворили для него деву из цветов дуба, ракитника и таволги — Блодейведд. Она полюбила Гронуи и выведала у Ллеу, как его можно убить: в сумерках, у реки, одной ногой на чане, другой на козле, копьём, ковавшимся год. Раненный Ллеу обернулся орлом; Гвидион нашёл его на дубе, песней вернул человеческий облик, и Ллеу отомстил. Блодейведд Гвидион обратил в сову, которую ненавидят все птицы.",
@@ -925,7 +930,8 @@
   "people": "валлийцы",
   "type": "сказание",
   "sources": [
-   "https://en.wikipedia.org/wiki/Culhwch_and_Olwen"
+   "https://en.wikipedia.org/wiki/Culhwch_and_Olwen",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Килух и Олвен",
   "summary": "Мачеха прокляла Килуха: он не сможет жениться ни на ком, кроме Олвен, дочери великана Исбаддадена. Килух отправился за помощью к своему родичу Артуру, и тот дал ему лучших воинов — Кая, Бедуира и многих других. Олвен была согласна, но великан, которому суждено было умереть после свадьбы дочери, назначил около сорока невыполнимых заданий: освободить узника Мабона, добыть корзину Гуйддно, загнать вепря Турх Труйта. С помощью людей Артура задачи были решены, великан убит, и Олвен вышла за Килуха.",
@@ -939,13 +945,14 @@
   "people": "валлийцы",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Taliesin"
+   "https://en.wikipedia.org/wiki/Taliesin",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Гвион Бах и рождение Талиесина",
-  "summary": "Колдунья Керидвен варила для своего уродливого сына зелье вдохновения и поручила мальчику Гвиону Баху год мешать котёл. Три капли брызнули ему на палец, он сунул его в рот и обрёл вдохновение. Спасаясь от гнева Керидвен, он менял облики, пока, став зерном, не был ею проглочен; она забеременела, но, родив, не смогла убить младенца и бросила его в море в кожаном мешке. Его нашёл Элфин и назвал Талиесином — «сияющее чело»; в тринадцать лет тот верно предсказал смерть короля Маэлгуна.",
+  "summary": "Колдунья Керидвен варила для своего уродливого сына зелье вдохновения и поручила мальчику Гвиону Баху год мешать котёл. Три капли брызнули ему на палец, он сунул его в рот и обрёл вдохновение. Спасаясь от гнева Керидвен, он менял облики, пока, став зерном, не был ею проглочен; она забеременела, но, родив, не смогла убить младенца и бросила его в море в кожаном мешке. Его нашёл Элфин и назвал Талиесином — «сияющее чело»; в тринадцать лет при дворе короля Маэлгуна Гвинедского он освободил Элфина и предрёк странное чудище, которое принесёт Маэлгуну гибель.",
   "moral": "Дар не выбирает, кому достаться.",
   "title_en": "Gwion Bach and the Birth of Taliesin",
-  "summary_en": "The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his thumb, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen he correctly foretold the death of King Maelgwn.",
+  "summary_en": "The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his finger, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen, at the court of King Maelgwn Gwynedd, he freed Elffin and prophesied a strange creature that would bring destruction on Maelgwn.",
   "moral_en": "A gift does not choose whom it falls to."
  },
  {
@@ -953,7 +960,8 @@
   "people": "валлийцы",
   "type": "сказание",
   "sources": [
-   "https://en.wikipedia.org/wiki/Lludd_and_Llefelys"
+   "https://en.wikipedia.org/wiki/Lludd_and_Llefelys",
+   "https://www.gutenberg.org/ebooks/5160"
   ],
   "title": "Ллудд и Ллевелис",
   "summary": "Три напасти обрушились на Британию при короле Ллудде: народ кораниайд, слышавший всё, что касается ветер; ужасный крик каждый майский день, от которого женщины теряли детей; и исчезновение запасов из кладовых. Ллудд поплыл к брату Ллевелису, королю Франции, и тот через медный рог, чтобы их не подслушали, дал советы. Ллудд извёл кораниайд настоем из насекомых, безвредным для бриттов; усыпил медом двух сражающихся драконов, красного и белого, и закопал их в каменном ларе в Динас-Эмрис; а не давая себе уснуть с помощью холодной воды, одолел чародея, грабившего кладовые.",
@@ -1595,7 +1603,8 @@
   "moral": "Даже противники, по замыслу агиографа, предвидят победу новой веры.",
   "title_en": "The Druids' Prophecy of the 'Shaven-Head'",
   "summary_en": "[Legend] According to Muirchú's Life of Patrick (7th century), High King Lóegaire at Tara had two favourite druids, Lochru and Lucet Máel. By their art they often foretold that a foreign teaching would come from over the sea, received by few but honoured by many: it would overthrow kingdoms, kill resisting kings and destroy their gods. Especially in the two or three years before Patrick's coming they recited the verse: 'Shaven-head shall come, with his staff bent at the head… he will chant impiety from his table at the front of his house, and all his people will answer, “So be it.”' The hagiographer reads this as a prophecy of Christianity.",
-  "moral_en": "In the hagiographer's design, even opponents foresee the new faith's victory."
+  "moral_en": "In the hagiographer's design, even opponents foresee the new faith's victory.",
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
  },
  {
   "group": "druids",
@@ -1610,7 +1619,8 @@
   "moral": "Огонь, зажжённый вопреки запрету, не всегда можно погасить.",
   "title_en": "The Paschal Fire and the Death of the Druid Lochru",
   "summary_en": "[Legend] On the night of the pagan feast at Tara no one might light a fire before the king's, on pain of death. But Patrick, keeping Easter, lit a fire visible from Tara (later tradition placed it on the Hill of Slane). The druids warned the king: unless this fire were put out that night, it would never be put out and would overpower their kingdom. Lóegaire rode out by chariot with Lochru and Lucet Máel; the druids ordered that no one rise when Patrick came, but only Erc, later bishop of Slane, stood up. Lochru reviled the faith; at Patrick's prayer the druid was lifted into the air, fell on a stone and was dashed to pieces. The king tried to seize Patrick, but darkness fell with tumult and an earthquake, and Patrick and his companions left, appearing to the pagans as eight deer and a fawn.",
-  "moral_en": "A fire lit against the ban cannot always be put out."
+  "moral_en": "A fire lit against the ban cannot always be put out.",
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
  },
  {
   "group": "druids",
@@ -1624,7 +1634,8 @@
   "moral": "Агиография изображает поражение старой мудрости перед новой верой.",
   "title_en": "Patrick's Contest with the Druid Lucet Máel",
   "summary_en": "[Legend] At the Easter feast at Tara the druid Lucet Máel dropped poison into Patrick's cup; Patrick blessed it, the drink froze like ice, and only the drop of poison fell out. The druid proposed working wonders: by spells he covered the plain in waist-deep snow but could not remove it — Patrick blessed the plain and the snow vanished; the same happened with a fog the druid brought. The druid refused an ordeal of books by water or fire. Then Patrick proposed that the druid, wearing Patrick's chasuble, and the boy Benignus, in the druid's garb, enter a house built half of green and half of dry wood, which would be set alight. The flames consumed the druid with the green half, sparing Patrick's chasuble, while Benignus was unharmed and only the druid's garb burned.",
-  "moral_en": "Hagiography depicts the defeat of the old wisdom by the new faith."
+  "moral_en": "Hagiography depicts the defeat of the old wisdom by the new faith.",
+  "rights": "CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only"
  },
  {
   "group": "druids",
@@ -2057,13 +2068,14 @@
   "people": "греки (по Геродоту)",
   "type": "легенда",
   "sources": [
-   "https://en.wikipedia.org/wiki/Arion"
+   "https://en.wikipedia.org/wiki/Arion",
+   "https://www.gutenberg.org/ebooks/2707"
   ],
   "title": "Арион и дельфин",
-  "summary": "Певец Арион, победив на состязании в Сицилии, плыл домой с богатыми наградами, и моряки решили убить его. Ему позволили спеть последнюю песнь; он воспел Аполлона в полном наряде и бросился в море, а дельфин вынес его к мысу Тенар. В Коринфе тиран Периандр допросил вернувшихся моряков; они клялись, что Арион умер, но тут он вышел к ним в том же наряде, и злодеи были уличены.",
+  "summary": "Певец Арион, разбогатев в Италии и Сицилии, плыл из Тарента домой в Коринф, и моряки-коринфяне решили убить его ради денег. Ему позволили спеть последнюю песнь; он исполнил «орфийский» напев в полном наряде певца и бросился в море, а дельфин вынес его к мысу Тенар. В Коринфе тиран Периандр допросил вернувшихся моряков; они уверяли, что Арион жив и остался в Таренте, но тут он вышел к ним в том же наряде, и злодеи были уличены.",
   "moral": "Искусство спасает, а ложь разоблачается.",
   "title_en": "Arion and the Dolphin",
-  "summary_en": "The singer Arion, having won a contest in Sicily, was sailing home with rich prizes when the sailors decided to kill him. Allowed a last song, he sang to Apollo in full costume and leapt into the sea, and a dolphin carried him to Cape Taenarum. In Corinth the tyrant Periander questioned the returning sailors; they swore Arion was dead, but he stepped out before them in the same attire, and the villains were exposed.",
+  "summary_en": "The singer Arion, having made a fortune in Italy and Sicily, was sailing home to Corinth from Taras when the Corinthian sailors decided to kill him for his money. Allowed a last song, he sang the Orthian strain in full minstrel's dress and leapt into the sea, and a dolphin carried him to Cape Taenarum. In Corinth the tyrant Periander questioned the returning sailors; they claimed Arion was safe in Taras in Italy, but he stepped out before them in the same attire, and the villains were exposed.",
   "moral_en": "Art saves, and lies are exposed."
  },
  {
@@ -2071,7 +2083,8 @@
   "people": "римляне (Овидий)",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Baucis_and_Philemon"
+   "https://en.wikipedia.org/wiki/Baucis_and_Philemon",
+   "https://www.gutenberg.org/ebooks/26073"
   ],
   "title": "Филемон и Бавкида",
   "summary": "Юпитер и Меркурий в облике путников обошли фригийский город, и все их прогнали, кроме бедных стариков Филемона и Бавкиды. Хозяева угостили их, и Бавкида заметила, что кувшин с вином не пустеет; поняв, что перед ними боги, старики хотели зарезать своего гуся, но тот укрылся у Юпитера. Боги велели им подняться на гору; оглянувшись, старики увидели, что город затоплен, а их хижина стала храмом. Они попросили быть его жрецами и умереть в один час и после смерти превратились в дуб и липу, сплетённые ветвями.",
@@ -2099,7 +2112,8 @@
   "people": "скандинавы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Mead_of_Poetry"
+   "https://en.wikipedia.org/wiki/Mead_of_Poetry",
+   "https://www.gutenberg.org/ebooks/18947"
   ],
   "title": "Мёд поэзии",
   "summary": "Из слюны асов и ванов, скрепивших мир, был создан мудрец Квасир, но карлики Фьялар и Галар убили его и, смешав его кровь с мёдом, сварили напиток, делающий выпившего скальдом. Убив затем великана Гиллинга и его жену, карлики откупились мёдом от их сына Суттунга, и тот поручил стеречь мёд дочери Гуннлёд. Один под именем Бёльверк лето работал за брата Суттунга Бауги, затем змеем проник в гору, провёл три ночи с Гуннлёд, тремя глотками осушил три сосуда и улетел орлом. Принесённый мёд он отдал богам и истинным поэтам.",
@@ -2113,13 +2127,14 @@
   "people": "скандинавы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Hymiskviða"
+   "https://en.wikipedia.org/wiki/Hymiskviða",
+   "https://www.gutenberg.org/ebooks/73533"
   ],
   "title": "Тор у великана Хюмира",
-  "summary": "Асы решили пировать у морского великана Эгира, но тот потребовал котёл, в котором хватит пива на всех. Тюр вспомнил об огромном котле своего отца, великана Хюмира, и боги отправились к нему. Тор съел так много, что пришлось идти на рыбалку, и чуть не выудил змея Мирового моря Ёрмунганда. Хюмир насмехался, что Тор не силён, раз не может разбить его чашу; узнав, что чаша разбивается лишь о голову великана, Тор так и сделал. Раздосадованный Хюмир позволил забрать котёл; затем Тор перебил множество великанов, и асы с тех пор пировали у Эгира.",
+  "summary": "Асы решили пировать у морского великана Эгира, но тот потребовал котёл, в котором хватит пива на всех. Тюр вспомнил об огромном котле своего отца, великана Хюмира, и боги отправились к нему. Тор съел так много, что пришлось идти на рыбалку, и Тор поймал на крючок змея Мирового моря Ёрмунганда, подтянул к лодке и ударил молотом по голове, после чего тот ушёл в море. Хюмир насмехался, что Тор не силён, раз не может разбить его чашу; узнав, что чаша разбивается лишь о голову великана, Тор так и сделал. Раздосадованный Хюмир позволил забрать котёл; затем Тор перебил множество великанов, и асы с тех пор пировали у Эгира.",
   "moral": "Хитрость и сила вместе одолевают трудную задачу.",
   "title_en": "Thor at the Giant Hymir's",
-  "summary_en": "The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle big enough to brew beer for all. Týr remembered the huge kettle of his father, the giant Hymir, and the gods set off. Thor ate so much that they had to go fishing, and he nearly hooked the World Serpent Jörmungandr. Hymir taunted that Thor was not strong if he could not break his cup; learning it would break only against the giant's head, Thor did just that. Annoyed, Hymir let them take the kettle; Thor then slew hordes of giants, and the Æsir feasted at Ægir's ever after.",
+  "summary_en": "The Æsir decided to feast at the sea giant Ægir's, but he demanded a kettle big enough to brew beer for all. Týr remembered the huge kettle of his father, the giant Hymir, and the gods set off. Thor ate so much that they had to go fishing, and Thor hooked the World Serpent Jörmungandr, hauled it up to the boat and struck its head with his hammer before it sank back into the sea. Hymir taunted that Thor was not strong if he could not break his cup; learning it would break only against the giant's head, Thor did just that. Annoyed, Hymir let them take the kettle; Thor then slew hordes of giants, and the Æsir feasted at Ægir's ever after.",
   "moral_en": "Cunning and strength together overcome a hard task."
  },
  {
@@ -2313,7 +2328,8 @@
   "people": "римляне (Овидий)",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Pyramus_and_Thisbe"
+   "https://en.wikipedia.org/wiki/Pyramus_and_Thisbe",
+   "https://www.gutenberg.org/ebooks/21765"
   ],
   "title": "Пирам и Фисба",
   "summary": "В Вавилоне в соседних домах жили влюблённые Пирам и Фисба; родители запретили им пожениться, и они шептались сквозь трещину в стене. Они условились встретиться у гробницы под белой шелковицей. Фисба пришла первой, увидела львицу с окровавленной пастью и бежала, обронив покрывало. Пирам нашёл покрывало, разорванное и в крови, решил, что Фисба погибла, и пронзил себя мечом; его кровь окрасила плоды шелковицы. Вернувшаяся Фисба нашла его мёртвым и последовала за ним. В память о них боги сделали плоды шелковицы тёмными.",
@@ -2341,13 +2357,14 @@
   "people": "скандинавы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Baldr"
+   "https://en.wikipedia.org/wiki/Baldr",
+   "https://www.gutenberg.org/ebooks/18947"
   ],
   "title": "Смерть Бальдра",
-  "summary": "Бальдру и его матери Фригг приснилась его смерть, и Фригг взяла с каждой вещи на земле клятву не вредить ему — кроме омелы, которую сочла слишком ничтожной. Боги забавлялись, бросая в Бальдра чем попало, но ничто его не ранило. Локи сделал из омелы копьё и дал его слепому брату Бальдра Хёду, и тот невольно убил брата. Бальдра сожгли на его корабле Хрингхорни; жена его Нанна умерла от горя. Посланник Хермод передал Хель мольбу Фригг, и Хель обещала отпустить Бальдра, если о нём заплачет всё живое и мёртвое. Заплакали все, кроме великанши Тёкк (считают, что это был Локи), и Бальдр остался у Хель до Рагнарёка.",
+  "summary": "Бальдру снились сны, предвещавшие его смерть, и Фригг взяла с каждой вещи на земле клятву не вредить ему — кроме омелы, которую сочла слишком ничтожной. Боги забавлялись, бросая в Бальдра чем попало, но ничто его не ранило. Локи сорвал омелу и дал её слепому брату Бальдра Хёду, и тот невольно убил брата. Бальдра сожгли на его корабле Хрингхорни; жена его Нанна умерла от горя. Посланник Хермод передал Хель мольбу Фригг, и Хель обещала отпустить Бальдра, если о нём заплачет всё живое и мёртвое. Заплакали все, кроме великанши Тёкк (считают, что это был Локи), и Бальдр остался у Хель до Рагнарёка.",
   "moral": "Пренебрежение малым оборачивается бедой; одна злая воля может перечеркнуть общую любовь.",
   "title_en": "The Death of Baldr",
-  "summary_en": "Baldr and his mother Frigg dreamed of his death, and Frigg made everything on earth swear never to harm him — except the mistletoe, which she thought too insignificant. The gods amused themselves throwing things at Baldr, but nothing hurt him. Loki made a spear of mistletoe and gave it to Baldr's blind brother Höðr, who unwittingly killed his brother with it. Baldr was burned on his ship Hringhorni; his wife Nanna died of grief. The messenger Hermóðr carried Frigg's plea to Hel, and Hel promised to release Baldr if all things living and dead wept for him. All wept except the giantess Þökk (thought to be Loki), and Baldr remained with Hel until Ragnarök.",
+  "summary_en": "Baldr had dreams foretelling his death, and Frigg made everything on earth swear never to harm him — except the mistletoe, which she thought too insignificant. The gods amused themselves throwing things at Baldr, but nothing hurt him. Loki pulled up the mistletoe and gave it to Baldr's blind brother Höðr, who unwittingly killed his brother with it. Baldr was burned on his ship Hringhorni; his wife Nanna died of grief. The messenger Hermóðr carried Frigg's plea to Hel, and Hel promised to release Baldr if all things living and dead wept for him. All wept except the giantess Þökk (thought to be Loki), and Baldr remained with Hel until Ragnarök.",
   "moral_en": "Neglecting a small thing brings disaster; one ill will can undo the love of all."
  },
  {
@@ -2355,7 +2372,8 @@
   "people": "скандинавы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Þrymskviða"
+   "https://en.wikipedia.org/wiki/Þrymskviða",
+   "https://www.gutenberg.org/ebooks/73533"
   ],
   "title": "Как Тор вернул свой молот",
   "summary": "Проснувшись, Тор не нашёл молота Мьёльнира. Локи в соколином оперении Фрейи полетел в Ётунхейм, и великан Трюм признался, что спрятал молот на восемь вёрст под землёй и вернёт его, только если ему отдадут в жёны Фрейю. Фрейя в гневе отказалась, и на тинге Хеймдалль предложил нарядить невестой самого Тора; Локи пошёл с ним служанкой. На пиру «невеста» съела целого быка и выпила три бочки мёда, а глаза её под фатой горели огнём; Локи объяснял, что Фрейя восемь дней не ела и не спала от нетерпения. Наконец, чтобы освятить брак, на колени невесте положили Мьёльнир. Тор схватил его и перебил Трюма и всю его родню.",
@@ -2369,7 +2387,8 @@
   "people": "скандинавы",
   "type": "миф",
   "sources": [
-   "https://en.wikipedia.org/wiki/Fenrir"
+   "https://en.wikipedia.org/wiki/Fenrir",
+   "https://www.gutenberg.org/ebooks/18947"
   ],
   "title": "Как связали волка Фенрира",
   "summary": "Боги узнали из пророчеств, что дети Локи принесут им беду; Ёрмунганда бросили в море, Хель — в Нифльхейм, а волка Фенрира вырастили у себя, и кормить его осмеливался лишь Тюр. Волк рос с каждым днём, и боги предложили ему испытать силу на цепях Лединг и Дроми — он разорвал обе. Тогда карлики сделали путы Глейпнир, мягкие, как шёлковая лента. Фенрир заподозрил обман и согласился, лишь если кто-нибудь из богов положит руку ему в пасть в залог честности. Все отказались, кроме Тюра. Чем сильнее бился волк, тем крепче держали путы; все смеялись, кроме Тюра, лишившегося правой руки.",

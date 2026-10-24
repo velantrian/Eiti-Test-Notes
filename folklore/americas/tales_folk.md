@@ -32,7 +32,7 @@ Easy-going, idle Rip Van Winkle, escaping his nagging wife, went squirrel huntin
 
 **Moral:** Life does not wait: whoever sleeps through change becomes a stranger at home.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Rip_Van_Winkle
+Источники / Sources: https://en.wikipedia.org/wiki/Rip_Van_Winkle, https://www.gutenberg.org/ebooks/2048
 
 ---
 
@@ -40,17 +40,17 @@ Easy-going, idle Rip Van Winkle, escaping his nagging wife, went squirrel huntin
 
 *США (Вашингтон Ирвинг) — литературная легенда*
 
-Около 1790 г. в лощине у Тарритауна, полной суеверий, поселился долговязый боязливый учитель Икабод Крейн. Он сватался к Катрине ван Тассель, дочери богатого фермера, больше ради её богатства, а его соперник, силач Бром Бонс, вышучивал и пугал его. На празднике урожая гости рассказывали о Всаднике без головы — призраке солдата, потерявшего голову в Войну за независимость и ищущего её по ночам. Уезжая отвергнутым, Икабод встретил безголового всадника, помчался к мосту, за который призрак не может перейти, но всадник швырнул в него свою «голову» и сбил с коня. Наутро Икабода не нашли — лишь шляпу и разбитую тыкву; Катрина вышла за Брома, который ухмылялся, когда об этом заходила речь. Был ли то призрак или проделка — так и осталось неясным.
+Лет за тридцать до того, как Ирвинг писал свою новеллу, в лощине у Тарритауна, полной суеверий, поселился долговязый боязливый учитель Икабод Крейн. Он сватался к Катрине ван Тассель, дочери богатого фермера, больше ради её богатства, а его соперник, силач Бром Бонс, вышучивал и пугал его. На празднике урожая гости рассказывали о Всаднике без головы — призраке солдата, потерявшего голову в Войну за независимость и ищущего её по ночам. Уезжая отвергнутым, Икабод встретил безголового всадника, помчался к мосту, за который призрак не может перейти, но всадник швырнул в него свою «голову» и сбил с коня. Наутро Икабода не нашли — лишь шляпу и разбитую тыкву; Катрина вышла за Брома, который ухмылялся, когда об этом заходила речь. Был ли то призрак или проделка — так и осталось неясным.
 
 **Мораль:** Суеверный страх делает человека лёгкой добычей для шутника.
 
 ### The Legend of Sleepy Hollow
 
-Around 1790, in a superstition-filled hollow near Tarrytown, lived the lanky, timid schoolmaster Ichabod Crane. He courted Katrina Van Tassel, a rich farmer's daughter, more for her wealth, while his rival, the strongman Brom Bones, mocked and frightened him. At a harvest party guests told of the Headless Horseman, ghost of a soldier who lost his head in the Revolutionary War and searches for it at night. Riding home rejected, Ichabod met a headless rider, raced for the bridge the ghost cannot cross, but the rider hurled his 'head' and knocked him down. Next morning Ichabod was gone — only his hat and a smashed pumpkin remained; Katrina married Brom, who smirked whenever the story was told. Ghost or prank remains unresolved.
+Some thirty years before Irving wrote, in a superstition-filled hollow near Tarrytown, lived the lanky, timid schoolmaster Ichabod Crane. He courted Katrina Van Tassel, a rich farmer's daughter, more for her wealth, while his rival, the strongman Brom Bones, mocked and frightened him. At a harvest party guests told of the Headless Horseman, ghost of a soldier who lost his head in the Revolutionary War and searches for it at night. Riding home rejected, Ichabod met a headless rider, raced for the bridge the ghost cannot cross, but the rider hurled his 'head' and knocked him down. Next morning Ichabod was gone — only his hat and a smashed pumpkin remained; Katrina married Brom, who smirked whenever the story was told. Ghost or prank remains unresolved.
 
 **Moral:** Superstitious fear makes one easy prey for a prankster.
 
-Источники / Sources: https://en.wikipedia.org/wiki/Legend_of_Sleepy_Hollow
+Источники / Sources: https://en.wikipedia.org/wiki/Legend_of_Sleepy_Hollow, https://www.gutenberg.org/ebooks/2048
 
 ---
 

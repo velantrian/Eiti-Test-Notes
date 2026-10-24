@@ -340,6 +340,8 @@
 
 Источники / Sources: https://celt.ucc.ie/published/T201045.html
 
+Права / Rights: CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only
+
 ---
 
 ## 20. Пасхальный огонь и гибель друида Лохру
@@ -358,6 +360,8 @@
 
 Источники / Sources: https://celt.ucc.ie/published/T201045.html, https://en.wikipedia.org/wiki/Hill_of_Slane
 
+Права / Rights: CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only
+
 ---
 
 ## 21. Состязание Патрика с друидом Лукет Маэлом
@@ -375,6 +379,8 @@
 **Moral:** Hagiography depicts the defeat of the old wisdom by the new faith.
 
 Источники / Sources: https://celt.ucc.ie/published/T201045.html
+
+Права / Rights: CELT T201045 (Muirchú, tr. Bieler) is marked RESTRICTED: available with CELT consent for academic research/teaching only
 
 ---
 

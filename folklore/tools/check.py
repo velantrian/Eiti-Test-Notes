@@ -8,6 +8,7 @@ Checks, per collection directory folklore/<c>/:
   * required RU/EN fields are non-empty and every record has at least one http(s) source;
   * the combined <c>.json holds exactly the union of the group files;
   * group and total counts in <c>/index.md and folklore/README.md match the JSON;
+  * optional 'rights' notes are mirrored in Markdown and the combined file;
   * duplicate titles (RU or EN) and duplicate RU summaries inside a collection.
 Exit status 1 if any ERROR is found; WARN lines are reported but do not fail.
 """
@@ -20,7 +21,7 @@ errors, warns = [], []
 def err(m): errors.append(m)
 def warn(m): warns.append(m)
 def norm(s): return re.sub(r'\s+', ' ', s).strip()
-def key(r): return json.dumps({k: r.get(k) for k in REQ}, ensure_ascii=False, sort_keys=True)
+def key(r): return json.dumps({k: r.get(k) for k in REQ + ['rights']}, ensure_ascii=False, sort_keys=True)
 
 def check_md(jpath, recs):
     mpath = jpath[:-5] + '.md'
@@ -38,6 +39,7 @@ def check_md(jpath, recs):
         if f'### {norm(r["title_en"])}' not in ns: err(f'{where}: EN heading missing')
         for f in ('summary', 'summary_en', 'moral', 'moral_en'):
             if norm(r[f]) not in ns: err(f'{where}: {f} differs from JSON')
+        if r.get('rights') and norm(r['rights']) not in ns: err(f'{where}: rights note missing in Markdown')
         for u in r['sources']:
             if u not in s: err(f'{where}: source {u} missing in Markdown')
 
