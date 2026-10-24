@@ -2,7 +2,7 @@
 
 **Статус / Status (24.10.2026, PR #37):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 004 записи**, а не подтверждённое количество уникальных исторических произведений. / These are **1,004 records**, not an independently verified count of unique historical works.
 
-**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 518 URL: 516 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 6; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 902 (только Википедия / Wikipedia-only: 265).
+**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 526 URL: 524 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 28; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 880 (только Википедия / Wikipedia-only: 243).
 
 | Раздел / Collection | Записей / Records |
 | --- | ---: |
@@ -35,3 +35,8 @@ Russian-first and English-second retellings of myths, legends, folktales, tradit
 - `moral` / `moral_en` are **editorial interpretations**, not automatically the tradition bearers' own words. Myth is not historical proof; `[Testimony]` identifies an author's report, not independent historical verification.
 - `ancient/` includes later written accounts and outsider testimonies; druids are a religious/social role, not a distinct people. `ussr/` is an editorial geo-historical grouping, not a dating claim. Some `people` values mix ethnicity with bibliographic notes.
 - Links may lead to translations, scholarship, encyclopedias, or merely book catalogues. **Public-domain rights are not established for the whole corpus**; each edition and translation needs its own rights check. Some CELT materials have explicit access restrictions.
+
+## Права и статус проекта / Rights and project status
+**RU.** Это личный тестовый проект. Все пересказы написаны своими словами. Часть записей опирается на издания с ограниченным доступом или под авторским правом: CELT Muirchú (RESTRICTED), Lambert 1960, перевод Popol Vuh Christenson 2007, современные сборники. Такие записи помечены полем `rights` в JSON/Markdown и столбцом «Права / Rights» в [VERIFICATION.md](VERIFICATION.md). Перед любой публичной публикацией или выпуском нативного приложения они будут сокращены до коротких цитат с указанием источника или удалены.
+
+**EN.** This is a personal test project. All retellings are written in my own words. Some records rely on restricted or copyrighted editions: CELT Muirchú (RESTRICTED), Lambert 1960, Christenson's 2007 Popol Vuh translation, and modern collections. They are flagged with a `rights` field in JSON/Markdown and in the "Права / Rights" column of [VERIFICATION.md](VERIFICATION.md). Before any public or native-app release, these items will be reduced to short attributed quotes or removed.
