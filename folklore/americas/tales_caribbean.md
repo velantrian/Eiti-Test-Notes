@@ -1,110 +1,127 @@
 # Карибы (таино) / Caribbean (Taíno)
 
 ## 1. Тыква Яйяэля и рождение моря
-*таино (Большие Антилы), миф о сотворении (по Рамону Пане)*
+
+*таино (Большие Антилы) — миф о сотворении (по Рамону Пане)*
 
 Яйя изгнал сына Яйяэля, который хотел его убить. Через четыре месяца Яйя убил сына, положил его кости в тыкву-горлянку и подвесил её под крышей. Однажды Яйя, желая увидеть сына, сказал об этом жене, и она обрадовалась; он снял тыкву и перевернул её, чтобы взглянуть на кости, и из неё посыпались большие и маленькие рыбы: по преданию, в них превратились кости Яйяэля. Супруги решили съесть рыбу. История происхождения моря продолжается в следующем эпизоде, когда четверо братьев разбивают эту тыкву.
 
 **Мораль:** Утрата превращается в источник жизни (редакторское толкование).
 
-## 2. Деминан Каракаракол и братья: происхождение океана
-*таино (Большие Антилы), миф о сотворении (по Рамону Пане)*
-
-Итиба Каубаба умерла при родах; из её тела извлекли четверых сыновей, первым был Деминан Каракаракол. Пока Яйи не было дома, братья сняли тыкву с останками Яйяэля и наелись рыбы, которая в ней появилась. Услышав, что Яйя возвращается, они поспешили повесить тыкву обратно, но уронили её. Из разбитой тыквы вышло столько воды, что она покрыла землю, вместе с множеством рыб. По преданию, так возникло море. Уйдя оттуда, братья встретили немого человека по имени Конель.
-
-**Мораль:** В мифе неосторожность становится объяснением рождения моря (редакторское толкование).
-
-## 3. Деминан Каракаракол и Баяманако: кохоба и черепаха
-*таино (Большие Антилы), миф о культурных героях*
-
-После истории о разбитой тыкве четверо братьев подошли к дому Баяманако, у которого было касаби (лепёшка из маниока). Деминан Каракаракол попросил у старика лепёшку, но тот, приложив руку к носу, швырнул в него вместо хлеба «гуангуайо», полный кохобы, и попал ему в спину. На спине возник болезненный нарост. Братья вскрыли его каменным топором, и оттуда вышла живая самка черепахи. Рамон Пане прямо отмечает, что не знает продолжения этой истории. В его записи не сказано, будто братья изобрели огонь, научили людей выращивать маниок или похитили обряды.
-
-**Мораль:** Из отказа в помощи рождается неожиданное превращение (редакторское толкование).
-
-## 4. Пещера Игуанабоина: Солнце, Луна и камни дождя
-*таино (Большие Антилы), миф*
-
-Солнце и Луна вышли из пещеры Игуанабоина в земле касика Мавтиатиуэля; туда Солнце возвращается, когда восходит Луна. Таино почитали пещеру и расписывали её листвой без фигур. В ней стояли два маленьких каменных земи, в пол-руки высотой, со связанными руками и словно покрытые потом, — Бойнаэль и Мароху. Когда не было дождя, люди ходили их навестить, и дождь начинался сразу. Сами таино верили, что вышли из пещеры Касибахагуа.
-
-**Мораль:** Свет и дождь рождаются в глубине земли, и святые места нужно чтить.
-
-## 5. Гуабансекс и ураган
-*таино (Большие Антилы), поверье*
-
-Гуабансекс — переменчивая богиня бурь, порядка и хаоса; её земи доверили правителю таинственной земли Ауматексу, «Касику Ветра», который должен был постоянно её умилостивлять, а другие касики отдавали ей часть пищи в обряде кохобы. Но из-за её нрава это часто не помогало: в ярости она покидала свои владения и насылала «хуракан». Сначала она нарушала равновесие богов дождя и засухи, Бойнаэля и Мароху; вращая руками по спирали, она собирала воды океана и суши и передавала их Коатрискье, а тот обрушивал их на селения. Перед ней шёл Гуатауба с тучами, молниями и громом. Достигнув горы Эль-Юнке, она сталкивалась с верховным богом Юкаху. От слова «хуракан» происходит «ураган»; говорят, она — проявление гнева Атабей.
-
-**Мораль:** Стихии нужно уважать, но и самая ярая буря разбивается о доброе начало.
-
-## 6. Атабей и Юкаху
-*таино (Большие Антилы), поверье*
-
-Атабей — праматерь таино, богиня луны, пресных вод, приливов и плодородия; к ней молились женщины о благополучных родах. Её проявления — добрая мать, Кагуана, дух любви, и неистовая Гуабансекс. Она зачала без мужа сына Юкаху — верховное божество, «Дарителя маниока» и владыку моря, бога земледелия и добра. Юкаху жил на вершине Эль-Юнке, окутанной облаками; горы, отклоняющие ветер ураганов и смягчающие ущерб низинам, связывали с его защитой; его называли и «Спящим великаном».
-
-**Мораль:** Мать-природа и плодородие хранят людей от разрушения.
-
-## 7. Хупиа — духи умерших
-*таино (Большие Антилы), поверье*
-
-Хупиа — дух умершего, в отличие от гоэйсы, духа живого. Освободившись после смерти, он уходит в далёкий земной рай Коайбай, но может принимать разные облики — безликого человека или умершего близкого. Хупиа в человеческом облике всегда узнают по отсутствию пупка. Они связаны с летучими мышами: днём прячутся, а ночью выходят есть гуаяву. Хупиа являются лишь одиноким, поэтому ночью таино ходили по двое и больше.
-
-**Мораль:** Ночью держись вместе: опасность находит одиноких.
-
----
-
-# Caribbean (Taíno) (English)
-
-## 1. Yayael's Gourd
+### Yayael's Gourd
 
 Yaya banished his son Yayael for plotting to kill him. Four months later Yaya killed his son, put his bones in a gourd, and hung it from the roof. One day Yaya, longing to see his son, told his wife, who was pleased; he took down the gourd and turned it over to see the bones, and large and small fish fell out: in the account, Yayael's bones had become fish. The couple resolved to eat them. The story of the sea's origin continues in the next episode, when four brothers break the gourd.
 
 **Moral:** Loss becomes a source of life (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html, https://archive.org/details/columbusramonpan00bour
+Источники / Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html, https://archive.org/details/columbusramonpan00bour
 
-## 2. Deminán Caracaracol and His Brothers: Origin of the Ocean
+---
+
+## 2. Деминан Каракаракол и братья: происхождение океана
+
+*таино (Большие Антилы) — миф о сотворении (по Рамону Пане)*
+
+Итиба Каубаба умерла при родах; из её тела извлекли четверых сыновей, первым был Деминан Каракаракол. Пока Яйи не было дома, братья сняли тыкву с останками Яйяэля и наелись рыбы, которая в ней появилась. Услышав, что Яйя возвращается, они поспешили повесить тыкву обратно, но уронили её. Из разбитой тыквы вышло столько воды, что она покрыла землю, вместе с множеством рыб. По преданию, так возникло море. Уйдя оттуда, братья встретили немого человека по имени Конель.
+
+**Мораль:** В мифе неосторожность становится объяснением рождения моря (редакторское толкование).
+
+### Deminán Caracaracol and His Brothers: Origin of the Ocean
 
 Itiba Cahubaba died in childbirth; four sons were taken from her body, the first being Deminán Caracaracol. While Yaya was away, the brothers took down the gourd with Yayael's remains and ate the fish inside. Hearing that Yaya was coming back, they hurried to hang it up again, but dropped it. So much water and so many fish poured out of the broken gourd that the water covered the land. In the account, this is how the sea began. After leaving, the brothers met a mute man named Conel.
 
 **Moral:** In the myth, an accident explains the sea's origin (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html, https://pueblosoriginarios.com/textos/pane/3.html, https://archive.org/details/columbusramonpan00bour
+Источники / Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/2.html, https://pueblosoriginarios.com/textos/pane/3.html, https://archive.org/details/columbusramonpan00bour
 
-## 3. Deminán Caracaracol and Bayamanaco: Cohoba and the Turtle
+---
+
+## 3. Деминан Каракаракол и Баяманако: кохоба и черепаха
+
+*таино (Большие Антилы) — миф о культурных героях*
+
+После истории о разбитой тыкве четверо братьев подошли к дому Баяманако, у которого было касаби (лепёшка из маниока). Деминан Каракаракол попросил у старика лепёшку, но тот, приложив руку к носу, швырнул в него вместо хлеба «гуангуайо», полный кохобы, и попал ему в спину. На спине возник болезненный нарост. Братья вскрыли его каменным топором, и оттуда вышла живая самка черепахи. Рамон Пане прямо отмечает, что не знает продолжения этой истории. В его записи не сказано, будто братья изобрели огонь, научили людей выращивать маниок или похитили обряды.
+
+**Мораль:** Из отказа в помощи рождается неожиданное превращение (редакторское толкование).
+
+### Deminán Caracaracol and Bayamanaco: Cohoba and the Turtle
 
 After the gourd was broken, the four brothers came to Bayamanaco's house, who had cassava bread. Deminán Caracaracol asked the old man for bread, but instead Bayamanaco put his hand to his nose and threw a guanguayo full of cohoba at him, hitting him in the back. A painful swelling grew there. The brothers opened it with a stone axe, and a living female turtle came out. Ramón Pané explicitly says he does not know the continuation of this account. His text does not say that the brothers invented fire, taught people to grow cassava, or stole sacred rites.
 
 **Moral:** A refusal to help leads to an unexpected transformation (an editorial interpretation).
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/3.html, https://archive.org/details/columbusramonpan00bour
+Источники / Sources: https://en.wikipedia.org/wiki/Taíno_religion, https://pueblosoriginarios.com/textos/pane/3.html, https://archive.org/details/columbusramonpan00bour
 
-## 4. The Cave of Iguanaboina: Sun, Moon and the Rain Stones
+---
+
+## 4. Пещера Игуанабоина: Солнце, Луна и камни дождя
+
+*таино (Большие Антилы) — миф*
+
+Солнце и Луна вышли из пещеры Игуанабоина в земле касика Мавтиатиуэля; туда Солнце возвращается, когда восходит Луна. Таино почитали пещеру и расписывали её листвой без фигур. В ней стояли два маленьких каменных земи, в пол-руки высотой, со связанными руками и словно покрытые потом, — Бойнаэль и Мароху. Когда не было дождя, люди ходили их навестить, и дождь начинался сразу. Сами таино верили, что вышли из пещеры Касибахагуа.
+
+**Мораль:** Свет и дождь рождаются в глубине земли, и святые места нужно чтить.
+
+### The Cave of Iguanaboina: Sun, Moon and the Rain Stones
 
 The Sun and Moon came out of the cave of Iguanaboina in the land of the cacique Mautiatihuel; the Sun returns there as the Moon rises. The Taíno revered the cave and painted it with foliage, without figures. In it stood two small stone zemis, half an arm long, with hands tied, seeming to sweat — Boinayel and Márohu. When it did not rain, people went to visit them and rain came at once. The Taíno believed they themselves came from the cave Cacibajagua.
 
 **Moral:** Light and rain are born in the depths of the earth; sacred places must be honoured.
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion
+Источники / Sources: https://en.wikipedia.org/wiki/Taíno_religion
 
-## 5. Guabancex and the Hurricane
+---
+
+## 5. Гуабансекс и ураган
+
+*таино (Большие Антилы) — поверье*
+
+Гуабансекс — переменчивая богиня бурь, порядка и хаоса; её земи доверили правителю таинственной земли Ауматексу, «Касику Ветра», который должен был постоянно её умилостивлять, а другие касики отдавали ей часть пищи в обряде кохобы. Но из-за её нрава это часто не помогало: в ярости она покидала свои владения и насылала «хуракан». Сначала она нарушала равновесие богов дождя и засухи, Бойнаэля и Мароху; вращая руками по спирали, она собирала воды океана и суши и передавала их Коатрискье, а тот обрушивал их на селения. Перед ней шёл Гуатауба с тучами, молниями и громом. Достигнув горы Эль-Юнке, она сталкивалась с верховным богом Юкаху. От слова «хуракан» происходит «ураган»; говорят, она — проявление гнева Атабей.
+
+**Мораль:** Стихии нужно уважать, но и самая ярая буря разбивается о доброе начало.
+
+### Guabancex and the Hurricane
 
 Guabancex is the mercurial goddess of storms and chaos; her zemi was entrusted to Aumatex, ruler of a mystic land and 'Cacique of the Wind', who had to appease her constantly, and other caciques offered her food at the cohoba rite. But her temper often defeated these efforts: enraged, she left her domain and unleashed the 'juracán'. First she broke the balance of the rain and drought gods, Boinayel and Márohu; spinning her arms in a spiral, she gathered the waters of sea and land and handed them to Coatrisquie, who hurled them on the villages. Guataubá went before her with clouds, lightning and thunder. Reaching the peak of El Yunque, she clashed with the supreme god Yúcahu. 'Hurricane' comes from 'juracán'; she is also said to be a form of Atabey's anger.
 
 **Moral:** The elements must be respected, yet the fiercest storm breaks against the good.
 
-Sources: https://en.wikipedia.org/wiki/Guabancex
+Источники / Sources: https://en.wikipedia.org/wiki/Guabancex
 
-## 6. Atabey and Yúcahu
+---
+
+## 6. Атабей и Юкаху
+
+*таино (Большие Антилы) — поверье*
+
+Атабей — праматерь таино, богиня луны, пресных вод, приливов и плодородия; к ней молились женщины о благополучных родах. Её проявления — добрая мать, Кагуана, дух любви, и неистовая Гуабансекс. Она зачала без мужа сына Юкаху — верховное божество, «Дарителя маниока» и владыку моря, бога земледелия и добра. Юкаху жил на вершине Эль-Юнке, окутанной облаками; горы, отклоняющие ветер ураганов и смягчающие ущерб низинам, связывали с его защитой; его называли и «Спящим великаном».
+
+**Мораль:** Мать-природа и плодородие хранят людей от разрушения.
+
+### Atabey and Yúcahu
 
 Atabey is the Taíno ancestral mother, goddess of the moon, fresh waters, tides and fertility; women prayed to her for safe childbirth. Her forms are the nurturing mother, Caguana, spirit of love, and the wild Guabancex. Without a husband she conceived a son, Yúcahu, the supreme deity, 'giver of cassava' and master of the sea, god of agriculture and goodness. Yúcahu lived on the cloud-wrapped peak of El Yunque; the mountains that divert hurricane winds and spare the lowlands were tied to his protection; he was also called the 'Sleeping Giant'.
 
 **Moral:** Mother nature and fertility shield people from destruction.
 
-Sources: https://en.wikipedia.org/wiki/Yúcahu, https://en.wikipedia.org/wiki/Atabey_(goddess)
+Источники / Sources: https://en.wikipedia.org/wiki/Yúcahu, https://en.wikipedia.org/wiki/Atabey_(goddess)
 
-## 7. The Hupia, Spirits of the Dead
+---
+
+## 7. Хупиа — духи умерших
+
+*таино (Большие Антилы) — поверье*
+
+Хупиа — дух умершего, в отличие от гоэйсы, духа живого. Освободившись после смерти, он уходит в далёкий земной рай Коайбай, но может принимать разные облики — безликого человека или умершего близкого. Хупиа в человеческом облике всегда узнают по отсутствию пупка. Они связаны с летучими мышами: днём прячутся, а ночью выходят есть гуаяву. Хупиа являются лишь одиноким, поэтому ночью таино ходили по двое и больше.
+
+**Мораль:** Ночью держись вместе: опасность находит одиноких.
+
+### The Hupia, Spirits of the Dead
 
 A hupia is the spirit of a dead person, as opposed to goeiza, the spirit of the living. Released at death, it goes to a distant earthly paradise, Coaybay, but can take many forms — a faceless person or a dead loved one. A hupia in human form can always be known by its lack of a navel. They are linked with bats: hiding by day and coming out at night to eat guava. Hupias appear only to individuals, so at night the Taíno walked in pairs or more.
 
 **Moral:** At night keep together: danger finds those who are alone.
 
-Sources: https://en.wikipedia.org/wiki/Taíno_religion
+Источники / Sources: https://en.wikipedia.org/wiki/Taíno_religion
+
+---

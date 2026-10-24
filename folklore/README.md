@@ -1,16 +1,16 @@
 # Фольклорные коллекции / Folklore collections
 
-**Статус / Status (24.10.2026, PR #37):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 007 записей**, а не подтверждённое количество уникальных исторических произведений. / These are **1,007 records**, not an independently verified count of unique historical works.
+**Статус / Status (24.10.2026, PR #37):** `STRUCTURE VERIFIED`; `SOURCE ACCURACY: NOT VERIFIED`. Это **1 004 записи**, а не подтверждённое количество уникальных исторических произведений. / These are **1,004 records**, not an independently verified count of unique historical works.
 
-**Проверка ссылок и пересказов / Link and retelling check:** [VERIFICATION.md](VERIFICATION.md) — 518 URL: 516 → 200, 2 → 401 (bot-blocked); пересказы перепроверены по источнику / retellings re-checked against source: 6; USSR authored from read text: 119; not verified: 882.
+**Проверка ссылок, пересказов и согласованности / Link, retelling and consistency check:** [VERIFICATION.md](VERIFICATION.md); `python3 folklore/tools/check.py`. 518 URL: 516 → 200, 2 → 401 (bot-blocked). Пересказы перепроверены по источнику / re-checked against source: 6; USSR, написаны по прочитанному тексту / authored from read text: 96; не проверено / not verified: 902 (только Википедия / Wikipedia-only: 265).
 
 | Раздел / Collection | Записей / Records |
 | --- | ---: |
-| [Кавказ / Caucasus](caucasus/index.md) | 599 |
+| [Кавказ / Caucasus](caucasus/index.md) | 596 |
 | [Народы СССР / Peoples of the USSR](ussr/index.md) | 119 |
 | [Древние традиции / Ancient traditions and later accounts](ancient/index.md) | 193 |
 | [Америка / Americas](americas/index.md) | 96 |
-| **Всего / Total** | **1 007** |
+| **Всего / Total** | **1 004** |
 
 ## RU — Описание и границы проверки
 
