@@ -2,8 +2,8 @@
 
 - [Индейцы Северной Америки и инуиты / Indigenous peoples of North America and the Inuit](tales_north.md): 46
 - [Мезоамерика (майя, ацтеки и др.) / Mesoamerica (Maya, Aztecs, etc.)](tales_meso.md): 17
-- [Анды и Южная Америка (индейцы) / Andes and South America (Indigenous peoples)](tales_south.md): 0
+- [Анды и Южная Америка (индейцы) / Andes and South America (Indigenous peoples)](tales_south.md): 17
 - [Карибы (таино) / Caribbean (Taíno)](tales_caribbean.md): 0
 - [Постколумбовый фольклор Америк / Post-contact folklore of the Americas](tales_folk.md): 0
 
-Всего / Total: 63
+Всего / Total: 80
