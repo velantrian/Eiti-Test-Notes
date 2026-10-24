@@ -296,6 +296,67 @@ ORDER = ['space', 'missions', 'minerals', 'dinosaurs', 'diseases', 'anatomy', 'c
          'universities', 'waters', 'deserts', 'games', 'stage', 'myths', 'religions', 'writers', 'composers', 'painters', 'philosophers',
          'scientists', 'nobel', 'athletes', 'sports', 'airports']
 
+# ── content/kb-expansion: natural-science, medicine-reference, tech and history gaps ──
+@sec('compounds')
+def _():
+    run('compounds', 'Химические вещества и соединения', 'Chemical compounds', [
+        S('wd:Q11173', 30, [('f', 'wdt:P274', 'v')], lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Формула: %s.' % one(it['f'])) if one(it['f']) else ''),
+          lambda it, l: [l, 'что такое ' + l] + (['формула ' + l] if one(it['f']) else []), path=PS, limit=2500, dre=r'соединени|вещество|кислот|оксид|соль|газ|спирт|углевод|кислота|амин|эфир|гидроксид|органическ|неорганическ|полимер|алкан|алкен|белок|гормон|витамин|жидкост|минерал', dno=r'фильм|альбом|песн|групп'),
+    ])
+
+@sec('particles')
+def _():
+    f, _ = basic()
+    run('particles', 'Элементарные частицы и физические величины', 'Particles and physical quantities', [
+        S('wd:Q43116 wd:Q173078', 12, [], f, lambda it, l: [l, 'что такое ' + l], path=P, limit=600, dre=r'частиц|бозон|фермион|лептон|кварк|адрон|мезон|барион|нейтрино|квазичастиц'),
+        S('wd:Q107715', 20, [], f, lambda it, l: [l, 'что такое ' + l], path='(wdt:P31|wdt:P279)', limit=1000, dre=r'величин|характеристик|мера|параметр|отношени|скорост|энерги|сила|плотност|давлени|физическ'),
+    ])
+
+@sec('mathematics')
+def _():
+    f, _ = basic()
+    run('mathematics', 'Математические понятия', 'Mathematical concepts', [
+        S('wd:Q1936384 wd:Q173227', 20, [], f, lambda it, l: [l, 'что такое ' + l], path='wdt:P31', limit=1000, dre=r'математ|геометр|алгебр|функци|числ|множеств|фигур|многоугольник|многогранник|операци|матриц|уравнени|кривая|поверхност|пространств|последовательност|теори|интеграл|производн|вектор|топологи', dno=r'фильм|альбом|песн'),
+    ])
+
+@sec('drugs')
+def _():
+    def f(it, l, d): return sent('%s — %s.' % (cap(l), d), 'Справочная информация, не заменяет консультацию врача.')
+    run('drugs', 'Лекарственные вещества (справочно)', 'Medicines (reference only)', [
+        S('wd:Q12140', 40, [], f, lambda it, l: [l, 'что такое ' + l], path=PS, limit=1500, dre=r'лекарств|препарат|средств|антибиотик|анальгетик|гормон|витамин|вакцин|ингибитор|антагонист|агонист|противо|алкалоид|соединени|вещество', dno=r'фильм|альбом|песн|групп|наркотик'),
+    ])
+
+@sec('biomolecules')
+def _():
+    f, _ = basic()
+    run('biomolecules', 'Клетки, ткани и биомолекулы', 'Cells, tissues, biomolecules', [
+        S('wd:Q8054 wd:Q8047 wd:Q11364 wd:Q34956 wd:Q8066 wd:Q7187 wd:Q189094 wd:Q40397 wd:Q11367', 30, [], f, lambda it, l: [l, 'что такое ' + l], path=PS, limit=1500, dre=r'белок|фермент|гормон|витамин|аминокислот|ген\b|клетк|органелл|ткан|молекул|нуклеот|кислот|рецептор|липид|углевод', dno=r'фильм|альбом|песн|групп|болезн|синдром'),
+    ])
+
+@sec('formats')
+def _():
+    f, _ = basic()
+    run('formats', 'Технологии, протоколы и форматы', 'Technologies, protocols, file formats', [
+        S('wd:Q235557 wd:Q15836568 wd:Q1331793 wd:Q192776 wd:Q8366', 25, [], f, lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, dre=r'формат|протокол|стандарт|алгоритм|технологи|интерфейс|спецификаци|кодек|сеть|шифр|кодировк', dno=r'фильм|альбом|песн|групп|компани'),
+    ])
+
+@sec('states')
+def _():
+    run('states', 'Исторические государства и империи', 'Historical states and empires', [
+        S('wd:Q3024240 wd:Q48349 wd:Q1250464', 45, [('s', 'wdt:P571', 'year'), ('e', 'wdt:P576', 'year')],
+          lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Существовало: %s–%s.' % (yr(it['s']), yr(it['e']))) if yr(it['s']) and yr(it['e']) and not re.search(r'\d', d) else ''),
+          lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, dre=r'государств|импери|царств|королевств|княжеств|ханств|султанат|халифат|республик|династи|держав|конфедераци|союз', dno=r'фильм|альбом|песн|групп'),
+    ])
+
+@sec('battles')
+def _():
+    run('battles', 'Сражения и исторические события', 'Battles', [
+        S('wd:Q178561 wd:Q188055', 30, [('y', 'wdt:P585', 'year')], lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Год: %s.' % yr(it['y'])) if yr(it['y']) else ''),
+          lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, maxyear=2019, dre=r'сражени|битв|осад|бой|штурм|операци', dno=r'фильм|альбом|песн|игр'),
+    ])
+
+ORDER += ['compounds', 'particles', 'mathematics', 'drugs', 'biomolecules', 'formats', 'states', 'battles']
+
 if __name__ == '__main__':
     want = sys.argv[1:] or ORDER
     for k in ORDER:
