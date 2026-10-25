@@ -11,7 +11,7 @@ function make(raw) {
   const m = new Map(raw === undefined ? [] : [['eiti_learned_v1', raw]]);
   const ls = { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)), removeItem: (k) => m.delete(k) };
   const indexed = [], toasts = [], errors = [];
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1', localStorage: ls,
     eitiQueueIndexDoc: (id, t) => indexed.push(t), showToast: (t) => toasts.push(t),
     console: { log() {}, info() {}, warn: (...a) => errors.push(a), error: (...a) => errors.push(a) },
@@ -28,22 +28,29 @@ test('KNOWN GAP: corrupted eiti_learned_v1 JSON → eitiLearnFact silently store
 });
 test.todo('desired: corrupted compat store is quarantined (backup key) and the new fact is still persisted + user warned');
 
-test('KNOWN GAP: «не запоминай» is not honoured by eitiLearnFact — the text is stored verbatim', () => {
-  const s = make();
-  s.learn('не запоминай это: пароль от почты лежит в столе');
-  const st = JSON.parse(s.raw());
-  assert.strictEqual(st.length, 1);
-  assert.match(st[0].fact, /пароль от почты/);
-  assert.deepStrictEqual(Object.keys(st[0]).sort().filter((k) => /do_not_store|status|confidence|history/.test(k)), []);
+test('«не запоминай» and variants are honoured by eitiLearnFact — nothing is written', () => {
+  for (const t of ['не запоминай это: пароль от почты лежит в столе', 'Не сохраняй: мой PIN 1234', 'забудь это, я живу на Нёрребро', "Don't remember this: my bank is X", 'forget that I said I smoke', 'не надо запоминать мой адрес']) {
+    const s = make();
+    s.learn(t);
+    assert.strictEqual(s.raw(), undefined, t);
+    assert.strictEqual(s.indexed.length, 0, t);
+    assert.match(s.toasts[0], /Не запоминаю/, t);
+  }
 });
-test.todo('desired: do-not-store intent → record is not written (or written as tombstone with do_not_store=true)');
 
-test('KNOWN GAP: «я ещё не решил» — tentative statement stored as a plain fact (no epistemic status)', () => {
+test('«я ещё не решил» and variants are NOT stored as facts', () => {
+  for (const t of ['я ещё не решил, переезжать ли в Берлин', 'Я еще не решила, где учиться', 'пока не решил насчёт работы', "I haven't decided yet whether to move"]) {
+    const s = make();
+    s.learn(t);
+    assert.strictEqual(s.raw(), undefined, t);
+    assert.match(s.toasts[0], /ещё не решили/, t);
+  }
+});
+
+test('«не забудь …» (= remember!) is still stored', () => {
   const s = make();
-  s.learn('я ещё не решил, переезжать ли в Берлин');
-  const st = JSON.parse(s.raw());
-  assert.strictEqual(st.length, 1);
-  assert.strictEqual(st[0].epistemic_state, undefined);
+  s.learn('не забудь, что я люблю зелёный чай');
+  assert.strictEqual(JSON.parse(s.raw()).length, 1);
 });
 
 test('correction: contradicting fact is ADDED next to the old one — old fact is not superseded', () => {

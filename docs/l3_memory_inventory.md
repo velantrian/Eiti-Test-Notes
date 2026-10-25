@@ -43,8 +43,8 @@ Flagged as too large for localStorage: `eiti_learned_v1` (up to 200 facts), `eit
 
 | Case | Test | Current behaviour |
 |------|------|-------------------|
-| «не запоминай» | e2e `l3_audit_contract.spec.js`, node `l3_memory_contract.test.js` | stored anyway (KNOWN GAP) |
-| «я ещё не решил» | both | stored as plain fact, no status (KNOWN GAP) |
+| «не запоминай» | e2e `l3_audit_contract.spec.js`, node `l3_memory_contract.test.js` | **fixed v14.14.0**: nothing written (L3 + learned facts) |
+| «я ещё не решил» | both | **fixed v14.14.0**: not stored as a fact |
 | Correcting an old fact | both | L3: overwritten, no history; learned: appended next to old |
 | Corrupted compat JSON | node | `eitiLearnFact` silently stores nothing (KNOWN GAP, `test.todo` for desired) |
 | Export byte-identical | e2e | identical after normalising `exported`, once KB is quiescent |

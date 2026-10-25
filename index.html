@@ -21132,6 +21132,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         // Главная функция: сканировать текст пользователя → извлечь → сохранить в IDB
         window.eitiL3AutoExtract = function(userText) {
             if (!userText || userText.length < 5) return;
+            // v14.14.0: «не запоминай» / «я ещё не решил» → в L3 ничего не пишем
+            var _mi = (typeof window.eitiMemIntent === 'function') ? window.eitiMemIntent(userText) : null;
+            if (_mi) {
+                if (typeof showToast === 'function') showToast(_mi === 'skip' ? '🙈 Не запоминаю — как вы просили' : '🤔 Не записываю как факт — вы ещё не решили', 2500);
+                return;
+            }
             var found = [];
             _l3Patterns.forEach(function(p) {
                 var m = userText.match(p.re);
@@ -35322,8 +35328,28 @@ window.eitiLLMClearAll = async function() {
             return Math.min(s, 2.5); // v13.9.0: достижимый cap (максимум произведения 2.73)
         }
 
+        // v14.14.0: уважать инструкции пользователя о памяти («не запоминай», «я ещё не решил»)
+        // → 'skip' (ничего не сохранять), 'tentative' (не сохранять как факт), null.
+        function eitiMemIntent(text) {
+            var t = String(text || '').toLowerCase().replace(/ё/g, 'е').replace(/[’`]/g, "'");
+            if (!t) return null;
+            var B = '(?:^|[^а-яa-z])';
+            var skip = new RegExp(B + '(?:не\\s+(?:надо\\s+|нужно\\s+)?(?:запоминай(?:те)?|запоминать|сохраняй(?:те)?|сохранять|записывай(?:те)?|записывать)|(?:^|[^а-я]\\s*)(?:за|по)будь(?:те)?\\s+(?:это|об\\s+этом|про\\s+это|сказанное)|(?:don\'t|do\\s+not|dont)\\s+(?:remember|save|store|memorize)|forget\\s+(?:this|that|it|what\\s+i\\s+said)|off\\s+the\\s+record)');
+            var neg = new RegExp(B + 'не\\s+(?:за|по)будь');
+            if (skip.test(t) && !(neg.test(t) && !/не\s+(?:надо\s+|нужно\s+)?(?:запомина|сохраня|записыва)/.test(t) && !/(?:don't|do\s+not|dont)\s+(?:remember|save|store|memorize)|forget\s+(?:this|that|it)/.test(t))) return 'skip';
+            var tent = new RegExp(B + '(?:(?:еще|пока)\\s+не\\s+(?:решил[аи]?|решено|определил(?:ся|ась|и?сь)|уверен[аы]?)|не\\s+решил[аи]?\\s+(?:еще|пока))|i\\s+(?:haven\'t|have\\s+not|havent)\\s+(?:decided|made\\s+up\\s+my\\s+mind)|(?:i\'m|i\\s+am)\\s+not\\s+sure\\s+yet|undecided');
+            if (tent.test(t)) return 'tentative';
+            return null;
+        }
+        if (typeof window !== 'undefined') window.eitiMemIntent = eitiMemIntent;
+
         function eitiLearnFact(fact) {
             if (!fact) return;
+            var _intent = (typeof eitiMemIntent === 'function') ? eitiMemIntent(fact) : null;
+            if (_intent) { // v14.14.0: не пишем в память — пользователь попросил не запоминать / ещё не решил
+                if (typeof showToast === 'function') showToast(_intent === 'skip' ? '🙈 Не запоминаю — как вы просили' : '🤔 Не записываю как факт — вы ещё не решили');
+                return;
+            }
             try {
                 var store = JSON.parse(localStorage.getItem(EITI_LEARN_KEY) || '[]');
                 var exists = store.some(function(f){ return f.fact === fact; });

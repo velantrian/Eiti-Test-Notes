@@ -65,22 +65,25 @@ test('localStorage at startup: heavy personal memory (200 learned facts + profil
   expect(r.total).toBeGreaterThan(100 * 1024);
 });
 
-test('L3 auto-extract: «не запоминай» — KNOWN GAP: the fact is still stored', async ({ page }) => {
+test('L3 auto-extract: «не запоминай» / variants — nothing is stored', async ({ page }) => {
   await boot(page);
-  await page.evaluate(() => window.eitiL3AutoExtract('Не запоминай это, пожалуйста: меня зовут Аня'));
+  for (const t of ['Не запоминай это, пожалуйста: меня зовут Аня', 'не сохраняй: я живу в Копенгагене', "Don't remember this: my name is Anna"]) {
+    await page.evaluate((t) => window.eitiL3AutoExtract(t), t);
+  }
   await settle(page);
-  const rows = await l3(page);
-  expect(rows.find((f) => f.id === 'name')?.value).toBe('Аня'); // current behaviour: no do-not-store handling
+  expect(await l3(page)).toEqual([]);
 });
 
-test('L3 auto-extract: «я ещё не решил» — KNOWN GAP: a tentative goal is stored as a fact', async ({ page }) => {
+test('L3 auto-extract: «я ещё не решил» — tentative goal is not stored as a fact', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => window.eitiL3AutoExtract('Я ещё не решил, но моя цель переехать в Берлин'));
+  await page.evaluate(() => window.eitiL3AutoExtract("I haven't decided yet, my goal is to move to Berlin"));
   await settle(page);
-  const g = (await l3(page)).find((f) => f.id === 'goal');
-  expect(g).toBeTruthy();
-  expect(g.value).toMatch(/переехать в Берлин/);
-  expect(Object.keys(g).sort()).toEqual(['id', 'label', 'source', 'ts', 'value']); // no epistemic status / confidence
+  expect((await l3(page)).find((f) => f.id === 'goal')).toBeFalsy();
+  // a normal statement right after is still remembered
+  await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
+  await settle(page);
+  expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
 });
 
 test('L3 correction: a new value overwrites the old one by category — no correction history', async ({ page }) => {
