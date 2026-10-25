@@ -67,3 +67,30 @@ jobs:
         run: python3 folklore/tools/check.py
       - name: Run checker regression tests
         run: python3 -m unittest discover -s folklore/tools -p 'test_*.py' -v
+
+  pages-release-preview:
+    name: Pages release boundary and browser smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify export and runtime manifest
+        run: python3 -m unittest discover -s scripts -p 'test_pages*.py' -v
+      - name: Build the exact allowlisted Pages tree
+        run: python3 scripts/build_pages.py --output "${{ runner.temp }}/eiti-pages"
+      - name: Install Playwright and Chromium
+        working-directory: velantrim_core/e2e
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Smoke the staged Pages release (offline, KB, tales, 404)
+        working-directory: velantrim_core/e2e
+        env:
+          EITI_PAGES_SITE_DIR: ${{ runner.temp }}/eiti-pages
+          CI: "true"
+        run: npx playwright test --config=playwright.pages.config.js --reporter=line
