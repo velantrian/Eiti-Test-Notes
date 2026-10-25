@@ -1,95 +1,98 @@
 # Технологии, протоколы и форматы | Technologies, protocols, file formats
 # @generated from Wikidata (CC0) by kb/gen/gen_more.py — do not edit by hand
-HTML || HTML — стандартизированный язык разметки документов во Всемирной паутине (Интернет).
-HTTP; что такое HTTP || HTTP — Сетевой протокол прикладного уровня.
-Fox Broadcasting Company; что такое Fox Broadcasting Company || Fox Broadcasting Company — американская телевизионная сеть.
-Blu-ray; что такое Blu-ray || Blu-ray — формат цифрового оптического диска.
-FTP; что такое FTP || FTP — протокол для передачи файлов по сети.
-TCP; что такое TCP || TCP — протокол транспортного уровня.
-GIF; что такое GIF || GIF — формат графических изображений.
-BitTorrent; что такое BitTorrent || BitTorrent — сетевой протокол для обмена файлами.
-Решето Эратосфена; что такое Решето Эратосфена || Решето Эратосфена — алгоритм нахождения всех простых чисел до некоторого целого числа n.
-VHS; что такое VHS || VHS — кассетный аналоговый формат наклонно-строчной видеозаписи.
-алгоритм Евклида; что такое алгоритм Евклида || Алгоритм Евклида — алгоритм для нахождения наибольшего общего делителя двух целых чисел.
-HTTPS; что такое HTTPS || HTTPS — Расширение протокола HTTP, поддерживающее шифрование данных.
-SMTP; что такое SMTP || SMTP — протокол для передачи почты.
-PNG; что такое PNG || PNG — растровый графический формат.
-UDP; что такое UDP || UDP — протокол транспортного уровня для передачи датаграмм.
-SSH; что такое SSH || SSH — защищённый сетевой протокол для удалённого выполнения команд и передачи файлов.
-DHCP; что такое DHCP || DHCP — сетевой протокол, позволяющий компьютерам автоматически получать IP-адрес и другие параметры, необходимые для работы в сети TCP/IP.
-сортировка пузырьком; что такое сортировка пузырьком || Сортировка пузырьком — простой алгоритм сортировки.
-алгоритм Дейкстры; что такое алгоритм Дейкстры || Алгоритм Дейкстры — алгоритм на графах, изобретённый нидерландским ученым Э. Дейкстрой в 1959 году.
-IMAP; что такое IMAP || IMAP — протокол прикладного уровня для доступа к электронной почте.
-Advanced Encryption Standard; что такое Advanced Encryption Standard || Advanced Encryption Standard — симметричный алгоритм блочного шифрования.
-ARP; что такое ARP || ARP — телекомуникационный протокол, который используется для преобразования адреса сетевого уровня в адрес канального уровня.
-сортировка слиянием; что такое сортировка слиянием || Сортировка слиянием — алгоритм сортировки засчёт итеративного слияния подсписков.
-HD DVD; что такое HD DVD || HD DVD — формат оптических дисков.
-MD5; что такое MD5 || MD5 — Алгоритм хеширования.
-ICMP; что такое ICMP || ICMP — протокол стека TCP/IP.
-XMPP; что такое XMPP || XMPP — протокол для мгновенного обмена сообщениями.
-Token ring; что такое Token ring || Token ring — протокол передачи данных в локальной вычислительной сети (LAN) с топологией кольца и «маркерным доступом».
-сортировка вставками; что такое сортировка вставками || Сортировка вставками — алгоритм сортировки, в котором каждый следующий входящий элемент помещается в подходящее место среди ранее упорядоченных элементов.
-PageRank; что такое PageRank || PageRank — алгоритм ранжирования веб-страниц.
-Шкала Кардашёва; что такое Шкала Кардашёва || Шкала Кардашёва — Метод измерения технологического развития цивилизации.
-Electronic Publication; что такое Electronic Publication || Electronic Publication — формат электронных книг.
-MPEG-4 Part 14; что такое MPEG-4 Part 14 || MPEG-4 Part 14 — формат медиаконтейнера, являющийся частью стандарта MPEG-4.
-Датское радио; что такое Датское радио || Датское радио — датская радиосеть.
-DALL-E; что такое DALL-E || DALL-E — нейронная сеть, способная генерировать изображения по текстовым описаниям.
-FLAC; что такое FLAC || FLAC — свободный кодек, предназначенный для сжатия аудиоданных без потерь.
-NTP; что такое NTP || NTP — протокол синхронизации времени по сети.
-Border Gateway Protocol; что такое Border Gateway Protocol || Border Gateway Protocol — Протокол маршрутизации.
-Код Хаффмана; что такое Код Хаффмана || Код Хаффмана — Алгоритм сжатия данных методом выдачи коротких кодов частым элементам.
-пирамидальная сортировка; что такое пирамидальная сортировка || Пирамидальная сортировка — алгоритм сортировки.
-PPP; что такое PPP || PPP — двухточечный протокол канального уровня.
-FDDI; что такое FDDI || FDDI — стандарт передачи данных 1980-х годов для локальных сетей с расстояниями до 200 километров.
-Nippon Television; что такое Nippon Television || Nippon Television — японская телевизионная сеть.
-DjVu; что такое DjVu || DjVu — Технология сжатия изображений.
-Gopher; что такое Gopher || Gopher — сетевой протокол распределённого поиска и передачи документов, который был широко распространён в Интернете до 1993 года.
-Ripple; что такое Ripple || Ripple — платёжный протокол и криптовалюта.
-Процесс Грама ― Шмидта; что такое Процесс Грама ― Шмидта || Процесс Грама ― Шмидта — алгоритм ортогонализации векторов.
-WAV; что такое WAV || WAV — формат файла-контейнера для хранения оцифрованного звука.
-Audio Video Interleave; что такое Audio Video Interleave || Audio Video Interleave — формат файла.
-АВЛ-дерево; что такое АВЛ-дерево || АВЛ-дерево — Сбалансированное по высоте двоичное дерево поиска с определенным алгоритмом балансировки.
-шифр Вернама; что такое шифр Вернама || Шифр Вернама — шифр с абсолютной криптографической стойкостью.
-EXIF; что такое EXIF || EXIF — стандарт метаданных.
-OpenID; что такое OpenID || OpenID — открытый стандарт децентрализованной системы аутентификации.
-Kerberos; что такое Kerberos || Kerberos — сетевой протокол аутентификации.
-STP; что такое STP || STP — канальный протокол, устраняющий образование петель в топологии произвольной сети Ethernet.
-Advanced Audio Coding; что такое Advanced Audio Coding || Advanced Audio Coding — проприетарный аудиокодек.
-Алгоритм Шора; что такое Алгоритм Шора || Алгоритм Шора — квантовый алгоритм факторизации.
-CSV; что такое CSV || CSV — формат текстового файла для хранения табличных данных.
-Дублинское ядро; что такое Дублинское ядро || Дублинское ядро — семантическая сеть для описания широкого диапазона ресурсов.
-VRML; что такое VRML || VRML — формат файла для представления интерактивной векторной графики 3D.
-алгоритм поиска A*; что такое алгоритм поиска A* || Алгоритм поиска A* — алгоритм поиска.
-сортировка Шелла; что такое сортировка Шелла || Сортировка Шелла — алгоритм сортировки, являющийся усовершенствованным вариантом сортировки вставками.
-cхема Горнера; что такое cхема Горнера || Cхема Горнера — алгоритм вычисления значения многочлена, записанного в виде суммы одночленов при заданном значении переменной.
-Windows Media Audio; что такое Windows Media Audio || Windows Media Audio — формат файла, для хранения и трансляции аудиоинформации.
-Алгоритм Луна; что такое Алгоритм Луна || Алгоритм Луна — алгоритм вычисления контрольной цифры.
-ZigBee; что такое ZigBee || ZigBee — спецификация сетевых протоколов верхнего уровня.
-алгоритм Крускала; что такое алгоритм Крускала || Алгоритм Крускала — алгоритм нахождения минимального остовного дерева во взвешенном графе.
-DOCSIS; что такое DOCSIS || DOCSIS — семейство стандартов передачи данных по сетям кабельного телевидения по коаксиальному кабелю.
-TFTP; что такое TFTP || TFTP — простой протокол передачи файлов.
-Bogosort; что такое Bogosort || Bogosort — алгоритм случайной сортировки.
-OpenType; что такое OpenType || OpenType — формат файла шрифтов.
-Theora; что такое Theora || Theora — свободный видеокодек.
-метод обратного распространения ошибки; что такое метод обратного распространения ошибки || Метод обратного распространения ошибки — метод работы с нейронной сетью.
-Градиентный спуск; что такое Градиентный спуск || Градиентный спуск — алгоритм оптимизации.
-random forest; что такое random forest || Random forest — алгоритм машинного обучения.
-RTSP; что такое RTSP || RTSP — протокол для передачи видеопотока в прямом эфире.
-Server Message Block; что такое Server Message Block || Server Message Block — сетевой протокол связи для обеспечения общего доступа к ресурсам.
-IPX; что такое IPX || IPX — протокол сетевого уровня.
-TrueType; что такое TrueType || TrueType — формат файлов шрифтов.
-deb; что такое deb || Deb — формат установочных пакетов Debian.
-Opus; что такое Opus || Opus — формат сжатия аудиоданных.
-YAML; что такое YAML || YAML — формат сериализации данных.
-JAR; что такое JAR || JAR — формат архивов Java.
-EIGRP; что такое EIGRP || EIGRP — протокол маршрутизации.
-Атбаш; что такое Атбаш || Атбаш — простой шифр подстановки для алфавитного письма.
-IDEA; что такое IDEA || IDEA — международный алгоритм шифрования данных.
-tar; что такое tar || Tar — формат файла архива, а также архиватор.
-Portable Executable; что такое Portable Executable || Portable Executable — формат файлов.
-алгоритм Гровера; что такое алгоритм Гровера || Алгоритм Гровера — квантовый алгоритм решения задачи перебора.
-SCP; что такое SCP || SCP — утилита и протокол копирования файлов между компьютерами.
-ARCNET; что такое ARCNET || ARCNET — технология локальной вычислительной сети.
-SFTP; что такое SFTP || SFTP — протокол передачи файлов, основанный на ssh.
-муравьиный алгоритм; что такое муравьиный алгоритм || Муравьиный алгоритм — полиномиальный алгоритм для нахождения приближённых решений задачи коммивояжёра.
+HTML || HTML — стандартизированный язык разметки документов во Всемирной паутине (Интернет). Появился: 1989. Расширение файла: html. || HTML — family of markup languages for displaying content in a web browser. Introduced: 1989. File extension: html.
+PDF; что такое PDF || PDF — формат файлов. Разработчик: Adobe, Международная организация по стандартизации. Появился: 1991. Расширение файла: pdf. || PDF — family of file formats used to present documents. Developer: Adobe, International Organization for Standardization. Introduced: 1991. File extension: pdf.
+HTTP; что такое HTTP; Hypertext Transfer Protocol || HTTP — сетевой протокол прикладного уровня. Появился: 1989. || Hypertext Transfer Protocol — application-layer protocol for transferring web resources. Introduced: 1989.
+Fox Broadcasting Company; что такое Fox Broadcasting Company || Fox Broadcasting Company — американская телевизионная сеть. Появился: 1986. || Fox Broadcasting Company — American commercial broadcast television network. Introduced: 1986.
+Blu-ray; что такое Blu-ray; Blu-ray Disc || Blu-ray — формат цифрового оптического диска. Появился: 2006. || Blu-ray Disc — digital optical disc data storage format. Introduced: 2006.
+FTP; что такое FTP; File Transfer Protocol || FTP — протокол для передачи файлов по сети. Появился: 1971. || File Transfer Protocol — standardized protocol for transferring files over TCP/IP networks. Introduced: 1971.
+TCP; что такое TCP; Transmission Control Protocol || TCP — протокол транспортного уровня. || Transmission Control Protocol — transport protocol providing reliable, ordered byte streams over IP.
+GIF; что такое GIF || GIF — формат графических изображений. Разработчик: CompuServe, Стивен Уилхайт. Появился: 1987. Расширение файла: gif. || GIF — bitmap image file format family. Developer: CompuServe, Steve Wilhite. Introduced: 1987. File extension: gif.
+BitTorrent; что такое BitTorrent || BitTorrent — сетевой протокол для обмена файлами. Появился: 2001. || BitTorrent — peer-to-peer file sharing protocol. Introduced: 2001.
+Решето Эратосфена; что такое Решето Эратосфена; sieve of Eratosthenes || Решето Эратосфена — алгоритм нахождения всех простых чисел до некоторого целого числа n. || Sieve of Eratosthenes — ancient algorithm for generating prime numbers.
+VHS; что такое VHS || VHS — кассетный аналоговый формат наклонно-строчной видеозаписи. Появился: 1974. || VHS — consumer-level analog video tape recording and cassette form factor standard. Introduced: 1974.
+алгоритм Евклида; что такое алгоритм Евклида; Euclidean algorithm || Алгоритм Евклида — алгоритм для нахождения наибольшего общего делителя двух целых чисел. || Euclidean algorithm — algorithm for computing greatest common divisors.
+HTTPS; что такое HTTPS; Hypertext Transfer Protocol Secure || HTTPS — расширение протокола HTTP, поддерживающее шифрование данных. Появился: 1994. || Hypertext Transfer Protocol Secure — HTTP over Transport Layer Security (TLS). Introduced: 1994.
+SMTP; что такое SMTP; Simple Mail Transfer Protocol || SMTP — протокол для передачи почты. Появился: 1982. || Simple Mail Transfer Protocol — Internet protocol used for relaying e-mails. Introduced: 1982.
+PNG; что такое PNG; Portable Network Graphics || PNG — растровый графический формат. Расширение файла: png. || Portable Network Graphics — family of lossless compression bitmap image file formats. File extension: png.
+UDP; что такое UDP; User Datagram Protocol || UDP — протокол транспортного уровня для передачи датаграмм. || User Datagram Protocol — connectionless transport protocol for datagrams over IP.
+SSH; что такое SSH; Secure Shell || SSH — защищённый сетевой протокол для удалённого выполнения команд и передачи файлов. Появился: 1995. || Secure Shell — cryptographic network protocol for secure remote access. Introduced: 1995.
+DHCP; что такое DHCP; Dynamic Host Configuration Protocol || DHCP — сетевой протокол, позволяющий компьютерам автоматически получать IP-адрес и другие параметры, необходимые для работы в сети TCP/IP. || Dynamic Host Configuration Protocol — computer network protocol for automatically configuring IPv4 hosts.
+сортировка пузырьком; что такое сортировка пузырьком; bubble sort || Сортировка пузырьком — простой алгоритм сортировки. || Bubble sort — simple sorting algorithm.
+алгоритм Дейкстры; что такое алгоритм Дейкстры; Dijkstra's algorithm || Алгоритм Дейкстры — алгоритм на графах, изобретённый нидерландским ученым Э. Дейкстрой в 1959 году. || Dijkstra's algorithm — graph search algorithm.
+IMAP; что такое IMAP; Internet Message Access Protocol || IMAP — протокол прикладного уровня для доступа к электронной почте. || Internet Message Access Protocol — application layer internet protocol for e-mail retrieval and storage.
+Advanced Encryption Standard; что такое Advanced Encryption Standard || Advanced Encryption Standard — симметричный алгоритм блочного шифрования. Появился: 1998. || Advanced Encryption Standard — block cipher standard. Introduced: 1998.
+ARP; что такое ARP; Address Resolution Protocol || ARP — телекомуникационный протокол, который используется для преобразования адреса сетевого уровня в адрес канального уровня. Появился: 1982. || Address Resolution Protocol — telecommunications protocol mapping network-layer addresses to link-layer addresses. Introduced: 1982.
+сортировка слиянием; что такое сортировка слиянием; merge sort || Сортировка слиянием — алгоритм сортировки засчёт итеративного слияния подсписков. || Merge sort — worst-case optimal stable divide and conquer comparison sorting algorithm.
+HD DVD; что такое HD DVD || HD DVD — формат оптических дисков. Разработчик: Toshiba, DVD Forum. || HD DVD — discontinued optical disc format. Developer: Toshiba, DVD Forum.
+MD5; что такое MD5 || MD5 — алгоритм хеширования. Появился: 1991. || MD5 — message-digest hashing algorithm. Introduced: 1991.
+ICMP; что такое ICMP; Internet Control Message Protocol || ICMP — протокол стека TCP/IP. Появился: 1981. || Internet Control Message Protocol — IPv4 protocol for network error reporting and diagnostics. Introduced: 1981.
+XMPP; что такое XMPP || XMPP — протокол для мгновенного обмена сообщениями. Появился: 1999.
+Token ring; что такое Token ring || Token ring — протокол передачи данных в локальной вычислительной сети (LAN) с топологией кольца и «маркерным доступом». || Token ring — technology developed by IBM for local area networks.
+сортировка вставками; что такое сортировка вставками; insertion sort || Сортировка вставками — алгоритм сортировки, в котором каждый следующий входящий элемент помещается в подходящее место среди ранее упорядоченных элементов. || Insertion sort — sorting algorithm that, at each iteration, inserts the current input element into the suitable position between the already sorted elements.
+PageRank; что такое PageRank || PageRank — алгоритм ранжирования веб-страниц. Разработчик: Ларри Пейдж. Появился: 1998. || PageRank — Algorithm used by Google Search to rank web pages. Developer: Larry Page. Introduced: 1998.
+Шкала Кардашёва; что такое Шкала Кардашёва; Kardashev scale || Шкала Кардашёва — метод измерения технологического развития цивилизации. || Kardashev scale — Proposed scale by which the scope of a civilisation might be measured.
+Electronic Publication; что такое Electronic Publication || Electronic Publication — формат электронных книг. Расширение файла: epub.
+MPEG-4 Part 14; что такое MPEG-4 Part 14 || MPEG-4 Part 14 — формат медиаконтейнера, являющийся частью стандарта MPEG-4. Разработчик: Международная организация по стандартизации. Расширение файла: mp4. || MPEG-4 Part 14 — digital multimedia format most commonly used to store video and audio. Developer: International Organization for Standardization. File extension: mp4.
+Датское радио; что такое Датское радио; DR || Датское радио — датская радиосеть. Появился: 1925. || DR — Danish public service broadcaster. Introduced: 1925.
+DALL-E; что такое DALL-E || DALL-E — нейронная сеть, способная генерировать изображения по текстовым описаниям. Разработчик: OpenAI. Появился: 2021. || DALL-E — image-generating deep-learning model. Developer: OpenAI. Introduced: 2021.
+FLAC; что такое FLAC; Free Lossless Audio Codec || FLAC — свободный кодек, предназначенный для сжатия аудиоданных без потерь. Разработчик: Xiph.Org. || Free Lossless Audio Codec — reference software for the handling of FLAC encoded audio. Developer: Xiph.Org Foundation.
+NTP; что такое NTP; Network Time Protocol || NTP — протокол синхронизации времени по сети. || Network Time Protocol — standard protocol for synchronizing time across devices.
+Border Gateway Protocol; что такое Border Gateway Protocol || Border Gateway Protocol — протокол маршрутизации. || Border Gateway Protocol — protocol for communicating routing information on the Internet.
+Код Хаффмана; что такое Код Хаффмана; Huffman coding || Код Хаффмана — алгоритм сжатия данных методом выдачи коротких кодов частым элементам. Разработчик: Дэвид Хаффман. || Huffman coding — entropy encoding algorithm used for lossless data compression. Developer: David A. Huffman.
+пирамидальная сортировка; что такое пирамидальная сортировка; heapsort || Пирамидальная сортировка — алгоритм сортировки. || Heapsort — worst-case optimal in-place comparison sorting algorithm based on the heap data structure.
+PPP; что такое PPP; Point-to-point protocol || PPP — двухточечный протокол канального уровня. || Point-to-point protocol — a simple data link layer protocol used between two devices.
+FDDI; что такое FDDI; Fiber Distributed Data Interface || FDDI — стандарт передачи данных 1980-х годов для локальных сетей с расстояниями до 200 километров. || Fiber Distributed Data Interface — standard for data transmission in a local area network.
+Nippon Television; что такое Nippon Television || Nippon Television — японская телевизионная сеть. Появился: 1952. || Nippon Television — Japanese television network. Introduced: 1952.
+DjVu; что такое DjVu || DjVu — технология сжатия изображений. Появился: 1998. || DjVu — file format. Introduced: 1998.
+Gopher; что такое Gopher || Gopher — сетевой протокол распределённого поиска и передачи документов, который был широко распространён в Интернете до 1993 года. || Gopher — TCP/IP application layer protocol. Developer: Mark P. McCahill, University of Minnesota.
+Ripple; что такое Ripple || Ripple — платёжный протокол и криптовалюта. Разработчик: Рипл. || Ripple — payment protocol. Developer: Ripple.
+Процесс Грама ― Шмидта; что такое Процесс Грама ― Шмидта; Gram-Schmidt process || Процесс Грама ― Шмидта — алгоритм ортогонализации векторов. || Gram-Schmidt process — method for orthonormalising a set of vectors.
+WAV; что такое WAV; Waveform Audio File Format || WAV — формат файла-контейнера для хранения оцифрованного звука. Расширение файла: wav. || Waveform Audio File Format — file format standard for storing audio on PCs. Developer: Microsoft, IBM. File extension: wav.
+Audio Video Interleave; что такое Audio Video Interleave || Audio Video Interleave — формат файла. Расширение файла: avi. || Audio Video Interleave — file format. Developer: Microsoft. File extension: avi.
+АВЛ-дерево; что такое АВЛ-дерево; AVL tree || АВЛ-дерево — сбалансированное по высоте двоичное дерево поиска с определенным алгоритмом балансировки. || AVL tree — one kind of self-balancing binary search tree.
+шифр Вернама; что такое шифр Вернама; one-time pad || Шифр Вернама — шифр с абсолютной криптографической стойкостью. || One-time pad — encryption technique utilizing a one-time pre-shared key at least as long as the encrypted message.
+EXIF; что такое EXIF; Exchangeable image file format || EXIF — стандарт метаданных. Появился: 1995. || Exchangeable image file format — file format. Developer: Japan Electronic Industries Development Association. Introduced: 1995.
+OpenID; что такое OpenID || OpenID — открытый стандарт децентрализованной системы аутентификации. || OpenID — open and decentralized authentication protocol standard. Developer: OpenID Foundation.
+Kerberos; что такое Kerberos || Kerberos — сетевой протокол аутентификации. Разработчик: Массачусетский технологический институт. || Kerberos — computer authentication protocol. Developer: Massachusetts Institute of Technology.
+STP; что такое STP; Spanning Tree Protocol || STP — канальный протокол, устраняющий образование петель в топологии произвольной сети Ethernet. || Spanning Tree Protocol — network protocol that builds a loop-free logical topology for Ethernet networks.
+Advanced Audio Coding; что такое Advanced Audio Coding || Advanced Audio Coding — проприетарный аудиокодек. || Advanced Audio Coding — Audio compression format from MPEG.
+Алгоритм Шора; что такое Алгоритм Шора; Shor's algorithm || Алгоритм Шора — квантовый алгоритм факторизации. || Shor's algorithm — quantum algorithm for integer factorization.
+CSV; что такое CSV; comma-separated values || CSV — формат текстового файла для хранения табличных данных. Расширение файла: csv. || Comma-separated values — file format used to store data. File extension: csv.
+Дублинское ядро; что такое Дублинское ядро; Dublin Core Metadata Element Set || Дублинское ядро — семантическая сеть для описания широкого диапазона ресурсов. Появился: 1995. || Dublin Core Metadata Element Set — standardized set of metadata elements. Introduced: 1995.
+VRML; что такое VRML; Virtual Reality Modeling Language || VRML — формат файла для представления интерактивной векторной графики 3D. || Virtual Reality Modeling Language — file format for representing 3D interactive vector graphics.
+алгоритм поиска A*; что такое алгоритм поиска A*; A* search algorithm || Алгоритм поиска A* — алгоритм поиска. || A* search algorithm — algorithm used for pathfinding and graph traversal.
+сортировка Шелла; что такое сортировка Шелла; shellsort || Сортировка Шелла — алгоритм сортировки, являющийся усовершенствованным вариантом сортировки вставками. || Shellsort — in-place comparison sorting algorithm invented by D. Shell.
+cхема Горнера; что такое cхема Горнера; Horner's method || Cхема Горнера — алгоритм вычисления значения многочлена, записанного в виде суммы одночленов при заданном значении переменной. || Horner's method — algorithm for polynomial evaluation.
+WebP; что такое WebP || WebP — формат файла. Появился: 2010. Расширение файла: webp. || WebP — compact raster graphics file format designed to replace .gif, .png and .jpeg on the web. Developer: Google. Introduced: 2010. File extension: webp.
+Windows Media Audio; что такое Windows Media Audio || Windows Media Audio — формат файла, для хранения и трансляции аудиоинформации. Расширение файла: wma. || Windows Media Audio — audio data compression technology. Developer: Microsoft. File extension: wma.
+Алгоритм Луна; что такое Алгоритм Луна; Luhn algorithm || Алгоритм Луна — алгоритм вычисления контрольной цифры. || Luhn algorithm — simple checksum formula.
+ZigBee; что такое ZigBee || ZigBee — спецификация сетевых протоколов верхнего уровня. || Zigbee — IEEE 802.15.4-based specification for a suite of high-level communication protocols.
+алгоритм Крускала; что такое алгоритм Крускала; Kruskal's algorithm || Алгоритм Крускала — алгоритм нахождения минимального остовного дерева во взвешенном графе. || Kruskal's algorithm — minimum spanning forest algorithm that greedily adds edges.
+DOCSIS; что такое DOCSIS || DOCSIS — семейство стандартов передачи данных по сетям кабельного телевидения по коаксиальному кабелю. || DOCSIS — standard for computer networking over a cable television system.
+TFTP; что такое TFTP; Trivial File Transfer Protocol || TFTP — простой протокол передачи файлов. || Trivial File Transfer Protocol — simple file-transfer protocol using UDP.
+Bogosort; что такое Bogosort || Bogosort — алгоритм случайной сортировки. || Bogosort — highly ineffective sorting algorithm that successively generates permutations of its input until it finds one that is sorted.
+OpenType; что такое OpenType || OpenType — формат файла шрифтов. Появился: 1997. Расширение файла: ttf.
+Theora; что такое Theora || Theora — свободный видеокодек. Разработчик: Xiph.Org. || Theora — free lossy video compression format. Developer: Xiph.Org Foundation.
+метод обратного распространения ошибки; что такое метод обратного распространения ошибки; backpropagation || Метод обратного распространения ошибки — метод работы с нейронной сетью. || Backpropagation — optimization algorithm for artificial neural networks.
+Градиентный спуск; что такое Градиентный спуск; gradient descent || Градиентный спуск — алгоритм оптимизации. || Gradient descent — optimization algorithm.
+random forest; что такое random forest || Random forest — алгоритм машинного обучения. Появился: 2001. || Random forest — statistical algorithm that is used to cluster points of data in functional groups. Introduced: 2001.
+RTSP; что такое RTSP; Real Time Streaming Protocol || RTSP — протокол для передачи видеопотока в прямом эфире. || Real Time Streaming Protocol — computer network protocol.
+Server Message Block; что такое Server Message Block || Server Message Block — сетевой протокол связи для обеспечения общего доступа к ресурсам. || Server Message Block — network communication protocol for providing shared access to resources. Developer: Microsoft.
+IPX; что такое IPX || IPX — протокол сетевого уровня. || IPX — protocol mainly used for Novell computer networking.
+TrueType; что такое TrueType; TrueType Font || TrueType — формат файлов шрифтов. || TrueType Font — file format.
+deb; что такое deb || Deb — формат установочных пакетов Debian. Разработчик: Проект Debian. || Deb — Debian software package format. Developer: The Debian Project.
+Opus; что такое Opus || Opus — формат сжатия аудиоданных. Расширение файла: opus. || Opus — audio compression format. File extension: opus.
+YAML; что такое YAML || YAML — формат сериализации данных. Разработчик: Кларк Эванс. Появился: 2001. || YAML — human-readable data serialization format. Developer: Clark Evans. Introduced: 2001.
+JAR; что такое JAR; Java archive || JAR — формат архивов Java. Разработчик: Sun Microsystems, Oracle. Расширение файла: jar. || Java archive — archive file format based on the zip format. Developer: Sun Microsystems, Oracle Corporation. File extension: jar.
+EIGRP; что такое EIGRP; Enhanced Interior Gateway Routing Protocol || EIGRP — протокол маршрутизации. || Enhanced Interior Gateway Routing Protocol — Internet protocol.
+Атбаш; что такое Атбаш; Atbash || Атбаш — простой шифр подстановки для алфавитного письма. || Atbash — substitution cipher.
+RC4; что такое RC4 || RC4 — потоковый шифр. Появился: 1987. || RC4 — stream cipher. Introduced: 1987.
+IDEA; что такое IDEA; International Data Encryption Algorithm || IDEA — международный алгоритм шифрования данных. || International Data Encryption Algorithm — symmetric-key block cipher.
+tar; что такое tar || Tar — формат файла архива, а также архиватор. Разработчик: Лаборатории Белла. Расширение файла: tar. || Tar — computer file format that can combine multiple files into a single file called "tarball". Developer: Bell Labs. File extension: tar.
+Portable Executable; что такое Portable Executable || Portable Executable — формат файлов. || Portable Executable — file format.
+алгоритм Гровера; что такое алгоритм Гровера; Grover's algorithm || Алгоритм Гровера — квантовый алгоритм решения задачи перебора. || Grover's algorithm — quantum unstructured search algorithm that finds with high probability the unique input to a black box function that produces a particular output value using 𝑂(𝑁) evaluations.
+SCP; что такое SCP; secure copy protocol || SCP — утилита и протокол копирования файлов между компьютерами. || Secure copy protocol — network protocol and program for copying files between computers.
+ARCNET; что такое ARCNET || ARCNET — технология локальной вычислительной сети. || ARCNET — communications protocol for local area networks.
+SFTP; что такое SFTP; SSH File Transfer Protocol || SFTP — протокол передачи файлов, основанный на ssh. || SSH File Transfer Protocol — network protocol that provides file access, file transfer, and file management functionalities over any reliable data stream, designed as an extension of SSH 2.0.
+муравьиный алгоритм; что такое муравьиный алгоритм; ant colony optimization algorithms || Муравьиный алгоритм — полиномиальный алгоритм для нахождения приближённых решений задачи коммивояжёра. || Ant colony optimization algorithms — probabilistic techniques for solving computational problems that can be reduced to finding good paths through graphs.

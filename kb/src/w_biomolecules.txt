@@ -1,30 +1,32 @@
 # Клетки, ткани и биомолекулы | Cells, tissues, biomolecules
 # @generated from Wikidata (CC0) by kb/gen/gen_more.py — do not edit by hand
-ферменты; что такое ферменты || Ферменты — белковые молекулы или молекулы РНК или их комплексы, ускоряющие химические реакции в живых системах.
-ксилема; что такое ксилема || Ксилема — водопроводящая ткань растений.
-флоэма; что такое флоэма || Флоэма — проводящая ткань сосудистых растений, для танспорта продуктов фотосинтеза.
-рубец; что такое рубец || Рубец — соединительнотканное образование, замещающее кожу после её травмирования (например, пореза).
-пепсин; что такое пепсин || Пепсин — протеолитический фермент класса гидролаз.
-амилаза; что такое амилаза || Амилаза — класс ферментов.
-жировая ткань; что такое жировая ткань || Жировая ткань — разновидность соединительной ткани животных организмов.
-лизоцим; что такое лизоцим || Лизоцим — антибактериальный фермент.
-Онкоген; что такое Онкоген || Онкоген — ген, продукт которого может стимулировать образование злокачественной опухоли.
-РНК-полимераза; что такое РНК-полимераза || РНК-полимераза — фермент, осуществляющий синтез молекул РНК.
-Камбий; что такое Камбий || Камбий — ткань в стеблях и корнях растений.
-анаболические стероиды; что такое анаболические стероиды || Анаболические стероиды — вещества, ускоряющие образование и обновление частей клеток, тканей и мышечных структур.
-Обратная транскриптаза; что такое Обратная транскриптаза || Обратная транскриптаза — фермент, катализирующий обратную транскрипцию, т.е. синтез ДНК на матрице РНК.
-эндосперм; что такое эндосперм || Эндосперм — питательная ткань в семенах цветковых растений.
-GPCR; что такое GPCR || GPCR — Вид трансмембранных клеточных рецепторов у эукариот.
-гидролаза; что такое гидролаза || Гидролаза — класс ферментов.
-проводящая ткань; что такое проводящая ткань || Проводящая ткань — вид тканей растений.
-оксидоредуктазы; что такое оксидоредуктазы || Оксидоредуктазы — класс ферментов, катализирующих лежащие в основе биологического окисления реакции.
-Аденилатциклаза; что такое Аденилатциклаза || Аденилатциклаза — фермент.
-алкогольдегидрогеназа; что такое алкогольдегидрогеназа || Алкогольдегидрогеназа — фермент.
-этинилэстрадиол; что такое этинилэстрадиол || Этинилэстрадиол — искусственный эстроген, производное эстрадиола.
-Церамиды; что такое Церамиды || Церамиды — Подкласс липидных молекул.
-Каспазы; что такое Каспазы || Каспазы — протеолитические ферменты.
-Щелочная фосфатаза; что такое Щелочная фосфатаза || Щелочная фосфатаза — фермент.
-реннин; что такое реннин || Реннин — фермент желудка млекопитающих, гидролизующий и расщепляющий казеиноген до казеина.
-серозная оболочка; что такое серозная оболочка || Серозная оболочка — соединительнотканная мембрана, выстилающая внутреннюю поверхность полостей тела человека и животных.
-Топоизомераза; что такое Топоизомераза || Топоизомераза — ферменты(белки) влияющие на пространственную конфигурацию молекулы ДНК.
-Фитохром; что такое Фитохром || Фитохром — класс фоторецепторов.
+ферменты; что такое ферменты; enzyme || Ферменты — белковые молекулы или молекулы РНК или их комплексы, ускоряющие химические реакции в живых системах. Подкласс: белок, биокатализатор. || Enzyme — large biological molecule that acts as a catalyst. Subclass of: protein, biocatalysts. Part of: enzymatic reaction, Enzyme-linked receptor.
+ксилема; что такое ксилема; xylem || Ксилема — водопроводящая ткань растений. Подкласс: проводящая ткань, проводящий пучок. Часть: проводящая ткань, сосудистые растения. || Xylem — one of the two types of transport tissue in vascular plants. Subclass of: vascular tissue, vascular bundle. Part of: vascular tissue, tracheophyte.
+флоэма; что такое флоэма; phloem || Флоэма — проводящая ткань сосудистых растений, для танспорта продуктов фотосинтеза. Подкласс: проводящая ткань. Часть: проводящая ткань. || Phloem — conducting tissue of a plant, living tissue that transports organic compounds to parts of the plant. Subclass of: vascular tissue. Part of: vascular tissue.
+рубец; что такое рубец; scar || Рубец — соединительнотканное образование, замещающее кожу после её травмирования (например, пореза). Подкласс: ткань. || Scar — area of fibrous tissue that replaces normal skin after an injury. Subclass of: tissue.
+пепсин; что такое пепсин; pepsin || Пепсин — протеолитический фермент класса гидролаз. Открыл(и): Теодор Шванн. || Pepsin — class of enzymes. Subclass of: aspartate protease, digestive enzyme. Discovered by: Theodor Schwann.
+амилаза; что такое амилаза; amylase || Амилаза — класс ферментов. Открыл(и): Ансельм Пайя. || Amylase — class of enzymes. Discovered by: Anselme Payen.
+жировая ткань; что такое жировая ткань; adipose tissue || Жировая ткань — разновидность соединительной ткани животных организмов. || Adipose tissue — loose connective tissue composed mostly of adipocytes.
+лизоцим; что такое лизоцим; lysozyme family || Лизоцим — антибактериальный фермент. || Lysozyme family — antimicrobial enzyme found in animals. Subclass of: Glycoside hydrolase, family 22, lysozyme.
+кашемир; что такое кашемир; cashmere || Кашемир — ткань. Подкласс: шерсть. || Cashmere — fibre obtained from Cashmere goats and other types of goat. Subclass of: wool.
+Онкоген; что такое Онкоген; oncogene || Онкоген — ген, продукт которого может стимулировать образование злокачественной опухоли. Подкласс: ген. || Oncogene — gene that has the potential to cause cancer. Subclass of: gene.
+РНК-полимераза; что такое РНК-полимераза; RNA polymerase || РНК-полимераза — фермент, осуществляющий синтез молекул РНК. Часть: Полимераза. || RNA polymerase — class of enzymes that synthesize RNA from a DNA template. Part of: polymerase. Discovered by: Audrey Stevens Niyogi.
+Камбий; что такое Камбий; vascular cambium || Камбий — ткань в стеблях и корнях растений. || Vascular cambium — part of a plant. Subclass of: secondary meristem.
+анаболические стероиды; что такое анаболические стероиды; anabolic steroid || Анаболические стероиды — вещества, ускоряющие образование и обновление частей клеток, тканей и мышечных структур. Подкласс: анаболик. || Anabolic steroid — steroidal androgen that is structurally related and has similar effects to testosterone. Subclass of: anabolic.
+Обратная транскриптаза; что такое Обратная транскриптаза; reverse transcriptase || Обратная транскриптаза — фермент, катализирующий обратную транскрипцию, т.е. синтез ДНК на матрице РНК. Подкласс: ДНК-полимераза, Трансферазы. || Reverse transcriptase — an enzyme which generates DNA from an RNA template, a process termed reverse transcription. Subclass of: DNA polymerase, transferase.
+эндосперм; что такое эндосперм; endosperm || Эндосперм — питательная ткань в семенах цветковых растений. Подкласс: ткань растительного организма. Часть: семя. || Endosperm — tissue produced inside the seeds of most flowering plants. Subclass of: plant tissue. Part of: seed.
+GPCR; что такое GPCR; G protein-coupled recepteishon || GPCR — вид трансмембранных клеточных рецепторов у эукариот. || G protein-coupled recepteishon — large protein family of receptors that detect molecules outside the cell and activate internal signal transduction pathways and cellular responses.
+гидролаза; что такое гидролаза; hydrolase || Гидролаза — класс ферментов. Подкласс: ферменты. || Hydrolase — enzyme family. Subclass of: enzyme.
+проводящая ткань; что такое проводящая ткань; vascular tissue || Проводящая ткань — вид тканей растений. Подкласс: ткань растительного организма. || Vascular tissue — complex conducting tissue in plants. Subclass of: plant tissue.
+оксидоредуктазы; что такое оксидоредуктазы; oxidoreductase || Оксидоредуктазы — класс ферментов, катализирующих лежащие в основе биологического окисления реакции. Подкласс: ферменты. || Oxidoreductase — class of enzymes involved in redox reactions. Subclass of: enzyme.
+Аденилатциклаза; что такое Аденилатциклаза; adenylate cyclase || Аденилатциклаза — фермент. || Adenylate cyclase — class of enzymes.
+алкогольдегидрогеназа; что такое алкогольдегидрогеназа; alcohol dehydrogenase (NAD) || Алкогольдегидрогеназа — фермент. || Alcohol dehydrogenase (NAD) — class of enzymes. Subclass of: alcohol oxidoreductase, alcohol dehydrogenase [NAD(P)+].
+этинилэстрадиол; что такое этинилэстрадиол; ethinylestradiol || Этинилэстрадиол — искусственный эстроген, производное эстрадиола. Подкласс: стероиды. || Ethinylestradiol — estrogen medication used widely in birth control pills in combination with progestins. Subclass of: steroid. Part of: response to 17alpha-ethynylestradiol, cellular response to 17alpha-ethynylestradiol.
+Церамиды; что такое Церамиды; ceramides || Церамиды — подкласс липидных молекул. Подкласс: амиды карбоновых кислот, Сфинголипиды. || Ceramides — family of lipid compounds. Subclass of: carboxamides, sphingolipids.
+цемент; что такое цемент; cementum || Цемент — костная ткань. Часть: зуб. || Cementum — one of the four main components of the teeth. Part of: tooth.
+Каспазы; что такое Каспазы; caspase || Каспазы — протеолитические ферменты. || Caspase — family of cysteine proteases. Subclass of: cysteine-type endopeptidase, cysteine protease.
+Щелочная фосфатаза; что такое Щелочная фосфатаза; alkaline phosphatase || Щелочная фосфатаза — фермент. Подкласс: Фосфатаза. || Alkaline phosphatase — homodimeric protein enzyme of 86 kilodaltons. Subclass of: phosphatase.
+реннин; что такое реннин; chymosin || Реннин — фермент желудка млекопитающих, гидролизующий и расщепляющий казеиноген до казеина. || Chymosin — class of enzymes. Subclass of: peptidase, aspartate protease.
+серозная оболочка; что такое серозная оболочка; serous membrane || Серозная оболочка — соединительнотканная мембрана, выстилающая внутреннюю поверхность полостей тела человека и животных. || Serous membrane — smooth coating of body cavities (thorax and abdomen), smooth, shiny, translucent and content with a thin layer of liquid.
+Топоизомераза; что такое Топоизомераза; topoisomerase || Топоизомераза — ферменты(белки) влияющие на пространственную конфигурацию молекулы ДНК. Открыл(и): Джеймс Вонг. || Topoisomerase — class of enzymes. Subclass of: isomerase, DNA-modifying enzyme. Discovered by: James C. Wang.
+Фитохром; что такое Фитохром; phytochrome || Фитохром — класс фоторецепторов. Подкласс: белок. || Phytochrome — class of photoreceptor. Subclass of: protein.

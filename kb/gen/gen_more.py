@@ -44,7 +44,8 @@ class Sec:
         if main and known(main) and len(triggers) > 1:
             # омоним уже занятого названия (опера «Кармен», клуб «Барселона») — только с уточняющим префиксом
             triggers = triggers[1:]; main = norm(triggers[0])
-        if not main or known(main) or main in self.own or len(answer) < 25 or NOISE.search(answer): return
+        ra = answer[0] if isinstance(answer, tuple) else answer
+        if not main or known(main) or main in self.own or len(ra) < 25 or NOISE.search(ra): return
         tt, ks = [], set()
         for t in triggers:
             t = clean(t).strip(' ,.'); k = norm(t)
@@ -53,7 +54,10 @@ class Sec:
             if t and k and not known(k) and k not in self.own and k not in ks and len(t) <= 80: ks.add(k); tt.append(t)
         if not tt: return
         self.own |= ks
-        self.lines.append('%s || %s' % ('; '.join(tt), answer[:600]))
+        if isinstance(answer, tuple):
+            ru, en = answer
+            self.lines.append('%s || %s' % ('; '.join(tt), ru[:600]) + (' || %s' % en[:600] if en else ''))
+        else: self.lines.append('%s || %s' % ('; '.join(tt), answer[:600]))
     def write(self):
         p = os.path.join(SRC, 'w_%s.txt' % self.dom)
         with open(p, 'w', encoding='utf-8') as f:
@@ -70,6 +74,7 @@ def run(dom, title, title_en, specs):
     o = Sec(dom, title, title_en)
     for cls, minsl, props, fmt, trig, opts in specs:
         its = q_items(cls, minsl, props, limit=opts.get('limit', 3000), extra=opts.get('extra', ''), cls_path=opts.get('path', 'wdt:P31'))
+        if opts.get('facts'): enrich(its, opts['facts'])
         cnt = {}
         for it in its: cnt[norm(it['l'])] = cnt.get(norm(it['l']), 0) + 1
         for it in its:
@@ -84,7 +89,7 @@ def run(dom, title, title_en, specs):
             if opts.get('maxyear') and any(x.lstrip('-').isdigit() and int(x) > opts['maxyear'] for k in ('y', 's') for x in it.get(k, [])): continue
             if opts.get('maxyear') and re.search(r'20[2-9]\d', l + ' ' + d): continue
             a = fmt(it, l, d)
-            if not a: continue
+            if not a or (isinstance(a, tuple) and not a[0]): continue
             tt = trig(it, l)
             if dom in WORKS and plain_title(l) and len(tt) > 1: tt = tt[1:]
             o.add(tt, a)
@@ -297,62 +302,159 @@ ORDER = ['space', 'missions', 'minerals', 'dinosaurs', 'diseases', 'anatomy', 'c
          'scientists', 'nobel', 'athletes', 'sports', 'airports']
 
 # ── content/kb-expansion: natural-science, medicine-reference, tech and history gaps ──
+# «Rich» sections: RU || EN answers. Second pass per section fetches EN label/description and a few
+# Wikidata facts (ru+en labels of items, unique years, unique quantities in known units). Nothing is
+# composed beyond Wikidata values; a fact with ambiguous/missing values is simply left out.
+from wd import sparql
+WD, WDP = 'http://www.wikidata.org/prop/direct/', 'http://www.wikidata.org/prop/'
+UNITS = {'Q483261': ('Да', 'Da'), 'Q28924753': ('г/моль', 'g/mol'), 'Q25267': ('°C', '°C'), 'Q11579': ('K', 'K'),
+         'Q13147228': ('г/см³', 'g/cm³'), 'Q844211': ('кг/м³', 'kg/m³')}
+def _batches(xs, n=400):
+    for k in range(0, len(xs), n): yield xs[k:k + n]
+def _pv(prop): return '<%s%s>' % (WD, prop)
+def enrich(its, facts):
+    """it['le'], it['de'] — EN label/description; it['F'][key] — list of (ru, en) values."""
+    qids = sorted(it['qid'] for it in its)
+    E, F = {}, {}
+    for b in _batches(qids):
+        vals = ' '.join('wd:' + q for q in b)
+        rows = sparql('SELECT ?x ?le ?de WHERE { VALUES ?x { %s } OPTIONAL { ?x rdfs:label ?le FILTER(LANG(?le)="en") } '
+                      'OPTIONAL { ?x schema:description ?de FILTER(LANG(?de)="en") } }' % vals, 'en_' + __import__('hashlib').sha1(vals.encode()).hexdigest()[:12])
+        for r in rows:
+            q = r['x'].rsplit('/', 1)[1]
+            E.setdefault(q, {}).update({k: clean(r[k]) for k in ('le', 'de') if r.get(k)})
+        for key, prop, kind, *_ in facts:
+            if kind == 'item':
+                q = ('SELECT ?x ?v ?vr ?ve WHERE { VALUES ?x { %s } ?x %s ?v . OPTIONAL { ?v rdfs:label ?vr FILTER(LANG(?vr)="ru") } '
+                     'OPTIONAL { ?v rdfs:label ?ve FILTER(LANG(?ve)="en") } }') % (vals, _pv(prop))
+            elif kind == 'qty':
+                q = ('SELECT ?x ?a ?u WHERE { VALUES ?x { %s } ?x <%s%s> ?st . ?st <%sstatement/value/%s> ?vn . '
+                     '?vn <http://wikiba.se/ontology#quantityAmount> ?a . ?vn <http://wikiba.se/ontology#quantityUnit> ?u . }') % (vals, WDP, prop, WDP, prop)
+            elif kind == 'year':
+                q = 'SELECT ?x ?y WHERE { VALUES ?x { %s } ?x %s ?t . BIND(YEAR(?t) AS ?y) }' % (vals, _pv(prop))
+            else:
+                q = 'SELECT ?x ?v WHERE { VALUES ?x { %s } ?x %s ?v . }' % (vals, _pv(prop))
+            rows = sparql(q, 'f_%s_' % prop + __import__('hashlib').sha1(q.encode()).hexdigest()[:12])
+            for r in rows:
+                x = r['x'].rsplit('/', 1)[1]; d = F.setdefault(x, {}).setdefault(key, [])
+                if kind == 'item':
+                    v = (clean(r.get('vr', '')), clean(r.get('ve', '')), r['v'])
+                elif kind == 'qty':
+                    u = UNITS.get(r['u'].rsplit('/', 1)[1])
+                    if not u: v = ('?', '?', 'bad')
+                    else:
+                        a = float(r['a']); t = ('%.3f' % a).rstrip('0').rstrip('.')
+                        v = (t.replace('.', ',') + ' ' + u[0], t + ' ' + u[1], t + u[1])
+                elif kind == 'year':
+                    y = int(float(r['y'])); v = (yr([str(y)]), ('%d BC' % (-y + 1)) if y <= 0 else str(y), str(y))
+                else:
+                    v = (clean(r['v']), clean(r['v']), r['v'])
+                if v not in d: d.append(v)
+    for it in its:
+        it.update(E.get(it['qid'], {})); it['F'] = F.get(it['qid'], {})
+
+def _lc(d): return d[:1].lower() + d[1:] if d and not (len(d) > 1 and (d[1].isupper() or d[1].isdigit())) else d
+def rich(facts):
+    """fmt → (ru, en); facts: (key, prop, kind, ru_prefix, en_prefix, max_n)."""
+    def f(it, l, d):
+        ru, en = ['%s — %s.' % (cap(l), _lc(d).rstrip('.'))], []
+        le, de = it.get('le', ''), it.get('de', '')
+        if le and de and not re.search(r'wikimedia|disambiguation', de, re.I): en = ['%s — %s.' % (cap(le), de.rstrip('.'))]
+        for key, prop, kind, pr, pe, n in facts:
+            vs = it['F'].get(key, [])
+            if kind in ('year', 'qty', 'str') and len({v[2] for v in vs}) != 1: continue   # only an unambiguous value
+            if kind == 'qty' and vs[0][2] == 'bad': continue
+            if kind == 'year' and re.search(r'\d{3,4}', d + ' ' + de): continue   # description already dates it; avoid conflicting dates
+            if kind == 'item' and not (0 < len(vs) <= n): continue
+            r_ = [v[0] for v in vs if v[0] and not re.match(r'^Q\d+$', v[0])]
+            e_ = [v[1] for v in vs if v[1] and not re.match(r'^Q\d+$', v[1])]
+            if r_ and len(r_) == len(vs) and pr: ru.append('%s: %s.' % (pr, ', '.join(r_)))
+            if e_ and len(e_) == len(vs) and pe and en: en.append('%s: %s.' % (pe, ', '.join(e_)))
+        def fit(parts):
+            out = parts[0]
+            for x in parts[1:]:
+                if len(out) + 1 + len(x) <= 600: out += ' ' + x
+            return out if len(out) <= 600 else ''
+        return fit(ru), (fit(en) if en else '')
+    return f
+def rtrig(extra_ru=None):
+    def t(it, l):
+        tt = [l] + ([extra_ru % l] if extra_ru else [])
+        le = it.get('le', '')
+        if le and re.search(r'[A-Za-z]', le) and norm(le) != norm(l) and len(le) <= 60 and not re.search(r'[;|]', le): tt.append(le)
+        return tt
+    return t
+
+def RS(cls, minsl, facts, trig, props=(), **opts):
+    opts['facts'] = facts   # props: first-pass columns (kept only so the cached first-pass query stays identical)
+    return S(cls, minsl, list(props), rich(facts), trig, **opts)
+
 @sec('compounds')
 def _():
+    fx = [('f', 'P274', 'str', 'Формула', 'Formula', 1), ('m', 'P2067', 'qty', 'Молярная масса', 'Molar mass', 1),
+          ('mp', 'P2101', 'qty', 'Температура плавления', 'Melting point', 1), ('bp', 'P2102', 'qty', 'Температура кипения', 'Boiling point', 1),
+          ('use', 'P366', 'item', 'Применение', 'Use', 3), ('dis', 'P61', 'item', 'Открыл(и)', 'Discovered by', 2)]
     run('compounds', 'Химические вещества и соединения', 'Chemical compounds', [
-        S('wd:Q11173', 30, [('f', 'wdt:P274', 'v')], lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Формула: %s.' % one(it['f'])) if one(it['f']) else ''),
-          lambda it, l: [l, 'что такое ' + l] + (['формула ' + l] if one(it['f']) else []), path=PS, limit=2500, dre=r'соединени|вещество|кислот|оксид|соль|газ|спирт|углевод|кислота|амин|эфир|гидроксид|органическ|неорганическ|полимер|алкан|алкен|белок|гормон|витамин|жидкост|минерал', dno=r'фильм|альбом|песн|групп'),
+        RS('wd:Q11173', 30, fx, rtrig('что такое %s'), props=[('f', 'wdt:P274', 'v')], path=PS, limit=2500, dre=r'соединени|вещество|кислот|оксид|соль|газ|спирт|углевод|кислота|амин|эфир|гидроксид|органическ|неорганическ|полимер|алкан|алкен|белок|гормон|витамин|жидкост|минерал', dno=r'фильм|альбом|песн|групп'),
     ])
 
 @sec('particles')
 def _():
-    f, _ = basic()
+    fx = [('sc', 'P279', 'item', 'Подкласс', 'Subclass of', 2), ('dis', 'P61', 'item', 'Открыл(и)', 'Discovered by', 2), ('y', 'P575', 'year', 'Открыта', 'Discovered', 1),
+          ('sym', 'P416', 'str', 'Обозначение', 'Symbol', 1)]
     run('particles', 'Элементарные частицы и физические величины', 'Particles and physical quantities', [
-        S('wd:Q43116 wd:Q173078', 12, [], f, lambda it, l: [l, 'что такое ' + l], path=P, limit=600, dre=r'частиц|бозон|фермион|лептон|кварк|адрон|мезон|барион|нейтрино|квазичастиц'),
-        S('wd:Q107715', 20, [], f, lambda it, l: [l, 'что такое ' + l], path='(wdt:P31|wdt:P279)', limit=1000, dre=r'величин|характеристик|мера|параметр|отношени|скорост|энерги|сила|плотност|давлени|физическ'),
+        RS('wd:Q43116 wd:Q173078', 12, fx, rtrig('что такое %s'), path=P, limit=600, dre=r'частиц|бозон|фермион|лептон|кварк|адрон|мезон|барион|нейтрино|квазичастиц'),
+        RS('wd:Q107715', 20, fx, rtrig('что такое %s'), path='(wdt:P31|wdt:P279)', limit=1000, dre=r'величин|характеристик|мера|параметр|отношени|скорост|энерги|сила|плотност|давлени|физическ'),
     ])
 
 @sec('mathematics')
 def _():
-    f, _ = basic()
+    fx = [('sc', 'P279', 'item', 'Подкласс', 'Subclass of', 2), ('pt', 'P361', 'item', 'Часть', 'Part of', 2), ('nm', 'P138', 'item', 'Названо в честь', 'Named after', 2),
+          ('dis', 'P61', 'item', 'Открыл(и)', 'Discovered by', 2)]
     run('mathematics', 'Математические понятия', 'Mathematical concepts', [
-        S('wd:Q1936384 wd:Q173227', 20, [], f, lambda it, l: [l, 'что такое ' + l], path='wdt:P31', limit=1000, dre=r'математ|геометр|алгебр|функци|числ|множеств|фигур|многоугольник|многогранник|операци|матриц|уравнени|кривая|поверхност|пространств|последовательност|теори|интеграл|производн|вектор|топологи', dno=r'фильм|альбом|песн'),
+        RS('wd:Q1936384 wd:Q173227', 20, fx, rtrig('что такое %s'), path='wdt:P31', limit=1000, dre=r'математ|геометр|алгебр|функци|числ|множеств|фигур|многоугольник|многогранник|операци|матриц|уравнени|кривая|поверхност|пространств|последовательност|теори|интеграл|производн|вектор|топологи', dno=r'фильм|альбом|песн'),
     ])
 
 @sec('drugs')
 def _():
-    def f(it, l, d): return sent('%s — %s.' % (cap(l), d), 'Справочная информация, не заменяет консультацию врача.')
+    fx = [('tr', 'P2175', 'item', 'Применяется при', 'Used for', 3), ('f', 'P274', 'str', 'Формула', 'Formula', 1), ('dis', 'P61', 'item', 'Открыл(и)', 'Discovered by', 2),
+          ('y', 'P575', 'year', 'Год открытия', 'Discovered', 1)]
+    f = rich(fx)
+    def g(it, l, d):
+        ru, en = f(it, l, d)
+        return (sent(ru, 'Справочная информация, не заменяет консультацию врача.') if ru else '', sent(en, 'Reference only, not medical advice.') if en else '')
     run('drugs', 'Лекарственные вещества (справочно)', 'Medicines (reference only)', [
-        S('wd:Q12140', 40, [], f, lambda it, l: [l, 'что такое ' + l], path=PS, limit=1500, dre=r'лекарств|препарат|средств|антибиотик|анальгетик|гормон|витамин|вакцин|ингибитор|антагонист|агонист|противо|алкалоид|соединени|вещество', dno=r'фильм|альбом|песн|групп|наркотик'),
+        S('wd:Q12140', 40, [], g, rtrig('что такое %s'), facts=fx, path=PS, limit=1500, dre=r'лекарств|препарат|средств|антибиотик|анальгетик|гормон|витамин|вакцин|ингибитор|антагонист|агонист|противо|алкалоид|соединени|вещество', dno=r'фильм|альбом|песн|групп|наркотик'),
     ])
 
 @sec('biomolecules')
 def _():
-    f, _ = basic()
+    fx = [('sc', 'P279', 'item', 'Подкласс', 'Subclass of', 2), ('pt', 'P361', 'item', 'Часть', 'Part of', 2), ('dis', 'P61', 'item', 'Открыл(и)', 'Discovered by', 2)]
     run('biomolecules', 'Клетки, ткани и биомолекулы', 'Cells, tissues, biomolecules', [
-        S('wd:Q8054 wd:Q8047 wd:Q11364 wd:Q34956 wd:Q8066 wd:Q7187 wd:Q189094 wd:Q40397 wd:Q11367', 30, [], f, lambda it, l: [l, 'что такое ' + l], path=PS, limit=1500, dre=r'белок|фермент|гормон|витамин|аминокислот|ген\b|клетк|органелл|ткан|молекул|нуклеот|кислот|рецептор|липид|углевод', dno=r'фильм|альбом|песн|групп|болезн|синдром'),
+        RS('wd:Q8054 wd:Q8047 wd:Q11364 wd:Q34956 wd:Q8066 wd:Q7187 wd:Q189094 wd:Q40397 wd:Q11367', 30, fx, rtrig('что такое %s'), path=PS, limit=1500, dre=r'белок|фермент|гормон|витамин|аминокислот|ген\b|клетк|органелл|ткан|молекул|нуклеот|кислот|рецептор|липид|углевод', dno=r'фильм|альбом|песн|групп|болезн|синдром'),
     ])
 
 @sec('formats')
 def _():
-    f, _ = basic()
+    fx = [('dev', 'P178', 'item', 'Разработчик', 'Developer', 2), ('y', 'P571', 'year', 'Появился', 'Introduced', 1), ('ext', 'P1195', 'str', 'Расширение файла', 'File extension', 1)]
     run('formats', 'Технологии, протоколы и форматы', 'Technologies, protocols, file formats', [
-        S('wd:Q235557 wd:Q15836568 wd:Q1331793 wd:Q192776 wd:Q8366', 25, [], f, lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, dre=r'формат|протокол|стандарт|алгоритм|технологи|интерфейс|спецификаци|кодек|сеть|шифр|кодировк', dno=r'фильм|альбом|песн|групп|компани'),
+        RS('wd:Q235557 wd:Q15836568 wd:Q1331793 wd:Q192776 wd:Q8366', 25, fx, rtrig('что такое %s'), path=P, limit=1500, dre=r'формат|протокол|стандарт|алгоритм|технологи|интерфейс|спецификаци|кодек|сеть|шифр|кодировк', dno=r'фильм|альбом|песн|групп|компани'),
     ])
 
 @sec('states')
 def _():
+    fx = [('cap', 'P36', 'item', 'Столица', 'Capital', 2), ('s', 'P571', 'year', 'Основано', 'Founded', 1), ('e', 'P576', 'year', 'Прекратило существование', 'Dissolved', 1),
+          ('lang', 'P37', 'item', 'Официальный язык', 'Official language', 2)]
     run('states', 'Исторические государства и империи', 'Historical states and empires', [
-        S('wd:Q3024240 wd:Q48349 wd:Q1250464', 45, [('s', 'wdt:P571', 'year'), ('e', 'wdt:P576', 'year')],
-          lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Существовало: %s–%s.' % (yr(it['s']), yr(it['e']))) if yr(it['s']) and yr(it['e']) and not re.search(r'\d', d) else ''),
-          lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, dre=r'государств|импери|царств|королевств|княжеств|ханств|султанат|халифат|республик|династи|держав|конфедераци|союз', dno=r'фильм|альбом|песн|групп'),
+        RS('wd:Q3024240 wd:Q48349 wd:Q1250464', 45, fx, rtrig('что такое %s'), props=[('s', 'wdt:P571', 'year'), ('e', 'wdt:P576', 'year')], path=P, limit=1500, dre=r'государств|импери|царств|королевств|княжеств|ханств|султанат|халифат|республик|династи|держав|конфедераци|союз', dno=r'фильм|альбом|песн|групп'),
     ])
 
 @sec('battles')
 def _():
+    fx = [('y', 'P585', 'year', 'Год', 'Year', 1), ('pt', 'P361', 'item', 'Часть', 'Part of', 1), ('loc', 'P276', 'item', 'Место', 'Location', 1),
+          ('par', 'P710', 'item', 'Участники', 'Participants', 3)]
     run('battles', 'Сражения и исторические события', 'Battles', [
-        S('wd:Q178561 wd:Q188055', 30, [('y', 'wdt:P585', 'year')], lambda it, l, d: sent('%s — %s.' % (cap(l), d), ('Год: %s.' % yr(it['y'])) if yr(it['y']) else ''),
-          lambda it, l: [l, 'что такое ' + l], path=P, limit=1500, maxyear=2019, dre=r'сражени|битв|осад|бой|штурм|операци', dno=r'фильм|альбом|песн|игр'),
+        RS('wd:Q178561 wd:Q188055', 30, fx, rtrig('что такое %s'), props=[('y', 'wdt:P585', 'year')], path=P, limit=1500, maxyear=2019, dre=r'сражени|битв|осад|бой|штурм|операци', dno=r'фильм|альбом|песн|игр'),
     ])
 
 ORDER += ['compounds', 'particles', 'mathematics', 'drugs', 'biomolecules', 'formats', 'states', 'battles']
