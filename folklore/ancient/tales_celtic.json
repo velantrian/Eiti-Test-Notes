@@ -12,7 +12,8 @@
   "moral": "Зависть губит невинных, но терпение переживает любое проклятие.",
   "title_en": "The Children of Lir",
   "summary_en": "Lir of the Tuatha Dé Danann married a daughter of King Bodb, who bore him a daughter, Fionnuala, and three sons. When she died Lir married her sister Aoife, who out of jealousy turned the children into four white swans at a lake, leaving them speech and wondrous song, and set a term of three hundred years each on Lough Derravaragh, the cold Sea of Moyle and the western coast. For this Bodb turned Aoife into a demon of the air. The swans endured storms and ice, and when Christianity came to Ireland they heard the bell of the monk Mochaomhóg. When a king laid hands on them their feathers fell away, revealing three withered old men and an old woman; they were baptised and died.",
-  "moral_en": "Envy destroys the innocent, but patience outlasts any curse."
+  "moral_en": "Envy destroys the innocent, but patience outlasts any curse.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -41,7 +42,8 @@
   "moral": "Нельзя вернуться в ушедшее время.",
   "title_en": "Oisín in Tír na nÓg",
   "summary_en": "Oisín, son of Fionn, was visited by golden-haired Niamh, daughter of the king of Tír na nÓg (some later versions make her Manannán's daughter), who took him on her white steed to the Land of Youth, where he married her. It seemed to him three years had passed, but it was three hundred, and he longed to see the Fianna again. Niamh lent him a white horse and forbade him to touch the ground. Ireland was changed and Fionn's home lay in ruins; helping men lift a great flagstone, Oisín fell from the horse and at once became a withered old man. In Joyce's version the whole story is told by the aged Oisín to Saint Patrick.",
-  "moral_en": "One cannot return to a time that has passed."
+  "moral_en": "One cannot return to a time that has passed.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -84,7 +86,8 @@
   "moral": "Кровь не смывается подвигами.",
   "title_en": "The Fate of the Sons of Tuireann",
   "summary_en": "The three sons of Tuireann killed Cian, father of Lugh: he turned himself into a pig and they into hounds, and, letting him resume human shape before death, they killed him and tried to hide the crime. As compensation Lugh demanded that they fetch magical treasures from across the world for the battle against the Fomorians. The brothers obtained them but returned mortally wounded and begged Lugh to heal them; he refused, and they died.",
-  "moral_en": "Blood is not washed away by great deeds."
+  "moral_en": "Blood is not washed away by great deeds.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -99,7 +102,8 @@
   "moral": "Честность и учтивость приносят верных друзей.",
   "title_en": "Pwyll, Prince of Dyfed",
   "summary_en": "Hunting, Pwyll drove another's hounds from a stag, offending Arawn, lord of the otherworld Annwn. In amends he took Arawn's shape for a year and ruled in his place, sleeping chastely beside his wife, and killed his rival Hafgan with one blow; so they became friends. Later Pwyll saw Rhiannon on a white horse on a mound, whom no rider could catch until he himself asked her to stop. She chose him over her suitor Gwawl; when Gwawl tricked Pwyll into granting her away at the wedding, Rhiannon gave Pwyll a magic bag, which Gwawl climbed into and was beaten. Later their son vanished on his birth night, the maids falsely accused Rhiannon and she did penance until Teyrnon found the boy and returned him.",
-  "moral_en": "Honesty and courtesy win faithful friends."
+  "moral_en": "Honesty and courtesy win faithful friends.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -114,7 +118,8 @@
   "moral": "Злоба одного человека может погубить два народа.",
   "title_en": "Branwen, Daughter of Llŷr",
   "summary_en": "The Irish king Matholwch sought the hand of Branwen, sister of the giant Bendigeidfran. Her half-brother Efnisien mutilated the guest's horses, and Bran made amends with a cauldron that revived the dead. In Ireland Branwen was sent to the kitchens and beaten; she tamed a starling and sent word to her brother. Bran crossed with an army; Efnisien crushed warriors hidden in 'flour' bags and at the feast threw Branwen's son into the fire, and battle broke out. Seeing the Irish revive their dead, Efnisien lay among the corpses and burst the cauldron at the cost of his life. Seven survived; Branwen died of grief, and the head of the mortally wounded Bran talked with them for years before it was buried in London facing France to guard the island.",
-  "moral_en": "One man's malice can ruin two peoples."
+  "moral_en": "One man's malice can ruin two peoples.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -129,7 +134,8 @@
   "moral": "Терпение и смекалка побеждают колдовство.",
   "title_en": "Manawydan, Son of Llŷr",
   "summary_en": "Manawydan married Rhiannon, but a magic mist emptied Dyfed, leaving only four companions. In England their crafts were so good that jealous tradesmen drove them from town to town. Pryderi and then Rhiannon touched a golden bowl in a mysterious fort, stuck fast and vanished. Manawydan sowed fields, but mice destroyed two of them; he caught one and prepared to hang it. A scholar, a priest and a bishop offered ransoms, and Manawydan demanded the return of Pryderi and Rhiannon and the lifting of the spell: the mouse was the wife of the enchanter Llwyd, avenging the insult to Gwawl.",
-  "moral_en": "Patience and wit defeat sorcery."
+  "moral_en": "Patience and wit defeat sorcery.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -144,7 +150,8 @@
   "moral": "Сотворённое без любви не хранит верности.",
   "title_en": "Blodeuwedd, the Maiden of Flowers",
   "summary_en": "His mother cursed Lleu never to have a human wife, so the magicians Math and Gwydion made him a maiden from the flowers of oak, broom and meadowsweet — Blodeuwedd. She fell in love with Gronw and coaxed from Lleu how he could be killed: at dusk, by a river, one foot on a bath and one on a goat, with a spear forged for a year. Wounded, Lleu became an eagle; Gwydion found him in an oak, sang him back to human form, and Lleu took his revenge. Gwydion turned Blodeuwedd into an owl, hated by all other birds.",
-  "moral_en": "What is made without love keeps no faith."
+  "moral_en": "What is made without love keeps no faith.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -159,7 +166,8 @@
   "moral": "С верными друзьями невозможное становится возможным.",
   "title_en": "Culhwch and Olwen",
   "summary_en": "His stepmother cursed Culhwch that he could marry no one but Olwen, daughter of the giant Ysbaddaden. Culhwch went to his kinsman Arthur for help, and Arthur gave him his best men — Cai, Bedwyr and many more. Olwen was willing, but the giant, fated to die once his daughter wed, set some forty impossible tasks: freeing the prisoner Mabon, winning Gwyddno's hamper, hunting the boar Twrch Trwyth. With the help of Arthur's men the tasks were done, the giant killed, and Olwen married Culhwch.",
-  "moral_en": "With faithful friends the impossible becomes possible."
+  "moral_en": "With faithful friends the impossible becomes possible.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -174,7 +182,8 @@
   "moral": "Дар не выбирает, кому достаться.",
   "title_en": "Gwion Bach and the Birth of Taliesin",
   "summary_en": "The sorceress Ceridwen brewed a potion of inspiration for her ugly son and set the boy Gwion Bach to stir the cauldron for a year. Three drops splashed on his finger, he put it in his mouth and gained inspiration. Fleeing Ceridwen's wrath he changed shapes until, as a grain, he was swallowed by her; she became pregnant but, after the birth, could not kill the child and cast him into the sea in a leather bag. Elffin found him and named him Taliesin, 'radiant brow'; at thirteen, at the court of King Maelgwn Gwynedd, he freed Elffin and prophesied a strange creature that would bring destruction on Maelgwn.",
-  "moral_en": "A gift does not choose whom it falls to."
+  "moral_en": "A gift does not choose whom it falls to.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -189,7 +198,8 @@
   "moral": "Мудрый совет сильнее любой напасти.",
   "title_en": "Lludd and Llefelys",
   "summary_en": "Three plagues fell on Britain under King Lludd: the Coraniaid, who heard everything the wind touched; a terrible scream every May Eve that made women miscarry; and provisions vanishing from the stores. Lludd sailed to his brother Llefelys, king of France, who gave him advice through a brass horn so they could not be overheard. Lludd destroyed the Coraniaid with an insect brew harmless to Britons; put the two fighting dragons, red and white, to sleep with mead and buried them in a stone chest at Dinas Emrys; and keeping himself awake with cold water, overcame the magician who plundered the stores.",
-  "moral_en": "Wise counsel is stronger than any plague."
+  "moral_en": "Wise counsel is stronger than any plague.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -294,14 +304,16 @@
   "people": "ирландцы",
   "type": "сага",
   "sources": [
-   "https://en.wikipedia.org/wiki/Fled_Bricrenn"
+   "https://en.wikipedia.org/wiki/Fled_Bricrenn",
+   "https://archive.org/details/fledbricrendfeas02henduoft"
   ],
   "title": "Пир Брикриу",
-  "summary": "Смутьян Брикриу устроил пир и подстрекнул трёх героев — Кухулина, Конала и Лоэгайре — спорить за долю героя. Судьи признавали первым Кухулина, но соперники не смирялись. Тогда великан-мужлан предложил каждому отрубить ему голову, с тем чтобы назавтра отрубить голову им. Лоэгайре и Конал рубили, великан поднимал голову и уходил, но назавтра их не было. Лишь Кухулин подставил шею; великан пощадил его и открылся как Куроа, объявив его бесспорным героем.",
+  "summary": "Смутьян Брикриу устроил пир и подстрекнул трёх героев — Кухулина, Конала и Лоэгайре — спорить за долю героя. Судьи признавали первым Кухулина, но соперники не смирялись. Тогда великан-мужлан предложил каждому отрубить ему голову, с тем чтобы назавтра отрубить голову им. Муйнремур («Толстошеий»), а затем в следующие ночи Лоэгайре и Конал рубили, великан поднимал голову и уходил, но когда он возвращался, они уклонялись от уговора. Лишь Кухулин подставил шею; великан пощадил его и открылся как Куроа, объявив его бесспорным героем.",
   "moral": "Храбрость измеряется верностью слову.",
   "title_en": "Bricriu's Feast",
-  "summary_en": "The troublemaker Bricriu held a feast and incited three heroes — Cú Chulainn, Conall and Lóegaire — to quarrel over the champion's portion. The judges named Cú Chulainn first, but his rivals would not accept it. Then a giant churl invited each to cut off his head, on condition that they let him cut off theirs the next day. Lóegaire and Conall struck, the giant picked up his head and left, but the next day they were nowhere to be found. Only Cú Chulainn bared his neck; the giant spared him and revealed himself as Cú Roí, proclaiming him undisputed champion.",
-  "moral_en": "Courage is measured by keeping one's word."
+  "summary_en": "The troublemaker Bricriu held a feast and incited three heroes — Cú Chulainn, Conall and Lóegaire — to quarrel over the champion's portion. The judges named Cú Chulainn first, but his rivals would not accept it. Then a giant churl invited each to cut off his head, on condition that they let him cut off theirs the next day. Muinremur (Fat-Neck), then Lóegaire and Conall on successive nights each struck, the giant picked up his head and left, but when he returned they shirked the covenant. Only Cú Chulainn bared his neck; the giant spared him and revealed himself as Cú Roí, proclaiming him undisputed champion.",
+  "moral_en": "Courage is measured by keeping one's word.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -434,28 +446,32 @@
   "people": "ирландцы",
   "type": "предание",
   "sources": [
-   "https://en.wikipedia.org/wiki/Tuan_mac_Cairill"
+   "https://en.wikipedia.org/wiki/Tuan_mac_Cairill",
+   "https://archive.org/details/voyageofbransono02meye"
   ],
   "title": "Туан мак Кайрилл",
-  "summary": "Туан был единственным выжившим из народа Партолона после мора. Через череду превращений в зверей он дожил до христианских времён и, беседуя со святым Финнианом, рассказал историю Ирландии от своего народа до прихода святого Патрика.",
+  "summary": "(«Рассказ Туана мак Кайрилла Финнену из Мовилла», пер. К. Мейера, в «Плавании Брана», т. II, 1897.) Туан, сын Старна, брата Партолона, был единственным, кто остался в живых, когда мор между двумя воскресеньями унёс народ Партолона. Годами он жил один, скрываясь от волков, пока не пришёл Немед; затем, состарившись, он поочерёдно принимал облик оленя, вепря, большого ястреба и лосося, переживая народы, один за другим владевшие Ирландией. Лососем его поймал рыбак короля Кайрелла, и его съела жена Кайрелла, от которой он родился как Туан, сын Кайрелла. В христианские времена он рассказал святому Финнену из Мовилла историю Ирландии от Партолона, когда Патрик уже принёс веру.",
   "moral": "Память — живая летопись народа.",
   "title_en": "Tuan mac Cairill",
-  "summary_en": "Tuan was the sole survivor of Partholón's people after a plague. Through a series of animal transformations he lived on into Christian times and, talking with St Finnian, told the history of Ireland from his own people to the coming of St Patrick.",
-  "moral_en": "Memory is a people's living chronicle."
+  "summary_en": "(Tuan mac Cairill's Story to Finnen of Moville, tr. Meyer, in The Voyage of Bran II, 1897.) Tuan, son of Starn, brother of Partholon, was the one man left alive when a mortality swept away Partholon's people between two Sundays. He lived alone for years, hiding from wolves, until Nemed came; then in old age he passed in turn into the shapes of a stag, a wild boar, a great hawk and a salmon, outliving the peoples who took Ireland after one another. As a salmon he was caught by the fisherman of King Cairell and eaten by Cairell's wife, and was born of her as Tuan son of Cairell. In Christian times he told St Finnen of Moville the history of Ireland from Partholon onwards, Patrick having come with the faith.",
+  "moral_en": "Memory is a people's living chronicle.",
+  "verified": true
  },
  {
   "group": "celtic",
   "people": "ирландцы",
   "type": "иммрам (сказание о плавании)",
   "sources": [
-   "https://en.wikipedia.org/wiki/The_Voyage_of_Bran"
+   "https://en.wikipedia.org/wiki/The_Voyage_of_Bran",
+   "https://archive.org/details/voyageofbransono01meye"
   ],
   "title": "Плавание Брана",
   "summary": "Бран, сын Фебала, услышал дивную музыку, уснул и, проснувшись, увидел цветущую серебряную ветвь. Явившаяся в его чертоге женщина из Иного мира воспела Эмайн — страну вечной весны без нужды и болезней, Страну Женщин, позвала его в плавание и исчезла вместе с ветвью. Бран отплыл с тремя отрядами по девять человек. В море им навстречу на колеснице выехал Мананнан мак Лир: для него море было цветущей равниной. На Острове Радости обитатели лишь смеялись, и посланный туда спутник остался с ними. В Стране Женщин владычица притянула лодку клубком нити, и путники пировали, как им казалось, год, но прошли многие годы. Когда Нехтан затосковал по дому, их предостерегли не ступать на берег Ирландии. У берега имя Брана знали лишь как древнее предание; Нехтан спрыгнул на землю и тут же обратился в прах. Бран рассказал свою историю, оставил запись огамом и уплыл навсегда.",
   "moral": "Время Иного мира не совпадает с человеческим; пути назад может уже не быть.",
   "title_en": "The Voyage of Bran",
   "summary_en": "Bran mac Febail heard wondrous music, fell asleep and woke to see a blossoming silver branch. An Otherworld woman appeared in his hall, sang of Emain — a land of endless spring without want or sickness, the Land of Women — summoned him to sail there and vanished with the branch. Bran set out with three companies of nine. At sea Manannán mac Lir came riding towards them in a chariot: to him the sea was a flowering plain. On the Isle of Joy the inhabitants only laughed, and the man sent ashore stayed with them. In the Land of Women the queen drew the boat ashore with a magic ball of thread, and they feasted for what seemed a year, but many years passed. When Nechtán grew homesick, they were warned not to set foot on Ireland. Off the coast Bran's name was known only as an ancient legend; Nechtán leapt ashore and at once turned to ashes. Bran told his story, left a record in ogam and sailed away forever.",
-  "moral_en": "Otherworld time is not human time; there may be no way back."
+  "moral_en": "Otherworld time is not human time; there may be no way back.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -470,7 +486,8 @@
   "moral": "Путь мести, пройденный до конца, ведёт к прощению.",
   "title_en": "The Voyage of Máel Dúin",
   "summary_en": "Máel Dúin, raised by a queen, learned from a jealous youth that he was the son of Ailill, who had been killed when raiders burned a church on him. The druid Nuca told him how many men to take on his voyage, but his three foster brothers swam after him and he took them aboard, breaking the rule. Near the island of his father's killers a wind drove them into the endless ocean. They passed dozens of wondrous islands: an island of boat-eating ants, the Revolving Beast, sheep that changed colour, a crystal bridge, lamenting men and endless laughter. On an island with a cat, one foster brother stole a golden necklet, and the cat leapt through him like a fiery arrow and burned him to ashes. A hermit born on Tory told him he would find the man who slew his father, but must neither kill him nor take revenge, and forgive him as God had spared them. Returning to the killers' island, Máel Dúin told of the marvels God had shown them, and they made peace.",
-  "moral_en": "A path of revenge followed to the end leads to forgiveness."
+  "moral_en": "A path of revenge followed to the end leads to forgiveness.",
+  "verified": true
  },
  {
   "group": "celtic",
@@ -527,7 +544,8 @@
   "moral": "Старая обида сильнее примирения; ревность губит и героя.",
   "title_en": "The Pursuit of Diarmuid and Gráinne",
   "summary_en": "The ageing Fionn mac Cumhaill was betrothed to Gráinne, daughter of High King Cormac, but at the feast, dismayed that he was older than her father, she fell for the warrior Diarmuid. She drugged the guests with a sleeping potion and by a geis compelled Diarmuid, loyal to Fionn, to flee with her. Fionn pursued them long; they were helped by members of the Fianna and by Diarmuid's foster father Aengus, who hid Gráinne in his cloak of invisibility. Once Diarmuid defeated the one-eyed giant Searbhán, guardian of a rowan tree, with the giant's own iron club. Aengus made peace with Fionn, and the lovers settled at Keshcorran. But at a hunt by Benbulbin a boar mortally wounded Diarmuid. Fionn could heal him by letting him drink water from his hands, but twice let the water slip through his fingers; when Fionn's grandson Oscar threatened him, it was too late.",
-  "moral_en": "An old grudge outlasts reconciliation; jealousy destroys even a hero."
+  "moral_en": "An old grudge outlasts reconciliation; jealousy destroys even a hero.",
+  "verified": true
  },
  {
   "group": "celtic",

@@ -387,7 +387,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Храбрый Насни",
@@ -402,7 +403,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Отцовское наследство",
@@ -417,7 +419,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Хитрые супруги",
@@ -432,7 +435,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Сын Месяца",
@@ -818,10 +822,10 @@
  },
  {
   "title": "Глупцы из Ауха",
-  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев сунули товарища в пещеру за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.",
+  "summary": "Жители Ауха в одинаковых новых сапогах не могли встать, потому что не знали, где чьи ноги, пока прохожий не прошёлся хлыстом по их спинам. Трое аухцев подошли к пещере, и один полез туда за лисой, но медведь оторвал ему голову; вытащив его, они не могли вспомнить, была ли у него голова, а жена помнила лишь, что каждый год шила ему новую шапку. Другие спускались цепочкой к мешку на круче, первый держался за дерево и, чтобы почесать голову, попросил второго отпустить его руку; тот отпустил, и все, кроме первого, упали в реку.",
   "moral": "Над глупостью смеются, чтобы её не повторять.",
   "title_en": "The Stupid People of Aukh",
-  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh sent a comrade into a cave after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.",
+  "summary_en": "Some men of Aukh wearing identical new boots could not get up because they could not tell whose legs were whose, until a passer-by laid his whip across their backs. Three men of Aukh came to a cave, and one crawled in after a fox, but a bear tore off his head; when they pulled him out they could not remember whether he had ever had a head, and his wife only recalled making him a new cap every year. Others made a chain to reach a sack below a steep bank, the first held on to a tree and, wanting to scratch his head, asked the second to let go of his hand; the second did, and all but the first fell into the river.",
   "moral_en": "People laugh at folly so as not to repeat it.",
   "people": "чеченцы (Аух)",
   "type": "анекдот",
@@ -829,7 +833,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "nakh"
+  "group": "nakh",
+  "verified": true
  },
  {
   "title": "Ветер и Солнце",
@@ -3018,7 +3023,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "circassian"
+  "group": "circassian",
+  "verified": true
  },
  {
   "title": "Падчерица",
@@ -3033,7 +3039,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "circassian"
+  "group": "circassian",
+  "verified": true
  },
  {
   "title": "Волшебные животные и волшебная дубинка",
@@ -3048,7 +3055,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "circassian"
+  "group": "circassian",
+  "verified": true
  },
  {
   "title": "Прекрасная Елена",
@@ -3063,7 +3071,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "circassian"
+  "group": "circassian",
+  "verified": true
  },
  {
   "title": "Одноглазый великан на Эльбрусе",
@@ -3078,7 +3087,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "circassian"
+  "group": "circassian",
+  "verified": true
  },
  {
   "title": "Гадальщица Бабочка",
@@ -3471,7 +3481,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Серый волк и барсук",
@@ -3486,14 +3497,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Соседи",
-  "summary": "У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, а те испугались и случайно встали на скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.",
+  "summary": "У медведя, волка и свиньи погас огонь, и они по очереди ходили за ним к ягнёнку, козлёнку и курице. Ягнёнок каждый раз угощал гостя «мясом его родичей», которое будто бы добывает рогатый козлёнок. Хищники пошли подслушать соседей, испугались и спрятались под нависшей скалой; соседи тоже убежали и случайно встали на эту скалу прямо над ними. Козлёнок поскользнулся и упал вниз, ягнёнок крикнул: «Хватай одного!», и хищники в ужасе бросились с обрыва.",
   "moral": "Смелое слово и удача могут победить сильного.",
   "title_en": "Neighbouring Camps",
-  "summary_en": "A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, the little ones fled in fright and happened to stand on a rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.",
+  "summary_en": "A bear, a wolf and a pig let their fire go out and took turns going for fire to a lamb, a kid and a hen. Each time the lamb offered the guest 'the flesh of his kin', supposedly caught by the horned kid. The beasts went to spy, took fright and hid under an overhanging rock; the little ones also fled and happened to stand on that rock right above them. The kid slipped and fell among them, the lamb cried 'Grab one!', and the beasts leapt off the precipice in terror.",
   "moral_en": "A bold word and good luck can beat the strong.",
   "people": "осетины",
   "type": "басня",
@@ -3501,7 +3513,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Богач и бедняк",
@@ -3516,7 +3529,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Смерть Хамыца",
@@ -3531,7 +3545,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Батрадз мстит за отца",
@@ -3546,7 +3561,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Батрадз и Бадзанаг",
@@ -3561,7 +3577,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Сослан, Елтаган и Муккара",
@@ -3576,7 +3593,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Зуб Аркыза",
@@ -3591,7 +3609,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Урызмаг и Сослан",
@@ -3606,7 +3625,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Рождение Сатаны",
@@ -3621,7 +3641,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Беличья шкурка",
@@ -3636,7 +3657,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Охотник у пещеры Амирана",
@@ -3651,7 +3673,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "ossetian"
+  "group": "ossetian",
+  "verified": true
  },
  {
   "title": "Барс, медведь и волк",
@@ -4159,10 +4182,10 @@
  },
  {
   "title": "Козлёнок, ягнёнок и телёнок",
-  "summary": "Отставшие от стада козлёнок, ягнёнок и телёнок ночевали под деревом рядом с медведем, волком и лисой. Когда лиса пришла попросить для хищников мяса, козлёнок смело заявил, что сами они ищут медвежатины и волчатины, и распределил, кто кого поймает. Звери поверили, что малыши обладают чудесной силой, и убежали в лес, а утром пастух нашёл пропажу.",
+  "summary": "Пастух теряет козлёнка, ягнёнка и телёнка, и они ложатся ночевать рядом с медведем, волком и лисой. Лиса приходит просить мяса, но козлёнок говорит, что они сами хотели просить еды: к ним подошёл лис (а может, волк), они его разорвали, осталась одна нога. Лиса убегает в лес; затем по очереди приходят волк и медведь, слышат то же самое и тоже убегают. Боясь, что звери сговорятся, малыши забираются на кривое дерево, телёнка сажают на нижнюю ветку. Когда звери приходят, козлёнок кричит: «Телёнок, бери самого большого, я разорву волка, а ты, ягнёнок, лови лису!» Звери решают, что у малышей чудесная сила, и убегают, а утром пастух находит пропажу.",
   "moral": "Смелость и находчивость защищают слабых лучше силы.",
   "title_en": "The Kid, the Lamb and the Calf",
-  "summary_en": "A kid, a lamb and a calf strayed from the flock and spent the night under a tree near a bear, a wolf and a fox. When the fox came to beg meat for the beasts, the kid boldly said they themselves were hunting bear and wolf meat and assigned who would catch whom. The beasts believed the little ones had uncanny powers and fled into the forest, and in the morning the shepherd found his strays.",
+  "summary_en": "A shepherd loses a kid, a lamb and a calf, and they lie down for the night near a bear, a wolf and a fox. The fox comes to beg meat, but the kid says they were about to ask him for food: a fox (or was it a wolf?) came up, they tore him apart and only a leg was left. The fox flees into the wood, then the wolf and the bear come in turn, hear the same story and flee too. Fearing the beasts will compare notes, the three climb a crooked tree, the calf on the lowest branch. When the beasts arrive, the kid shouts: 'Calf, take the biggest; I'll tear the wolf; lamb, catch the fox!' The beasts think the little ones have supernatural powers and run off, and in the morning the shepherd finds his strays.",
   "moral_en": "Courage and wit protect the weak better than strength.",
   "people": "абхазы",
   "type": "басня",
@@ -4170,7 +4193,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "abkhaz_abaza"
+  "group": "abkhaz_abaza",
+  "verified": true
  },
  {
   "title": "Куамачама",
@@ -4426,10 +4450,10 @@
  },
  {
   "title": "Верный сын",
-  "summary": "Умирающий купец, живший с женщиной-джинном, велел сыну каждый вечер ставить в углу конюшни плов. Сын исполнял завет, пока не продал всё, а затем проследил, кто уносит плов, и попал в мир джиннов. Мачеха-джинн показала ему груду золота — всё, что он потратил на плов, — и помогла добыть немую дочь хана: спрятавшись за подсвечником и под тахтой, она рассказывала загадочные истории, и красавица, не удержавшись, заговорила, споря с ответами. Хан выдал её за юношу, тот вернулся домой с золотом и стал правителем.",
+  "summary": "Умирающий купец, живший с женщиной-джинном, велел сыну каждый вечер ставить в углу конюшни плов. Сын исполнял завет, пока не продал всё, а затем проследил, кто уносит плов, и попал в мир джиннов. Мачеха-джинн показала ему груду золота — всё, что он потратил на плов, — а когда он влюбился в портрет немой ханской дочери, отправила его к ней с той женщиной-джинном, что уносила плов. Спрятавшись за подсвечником, а потом под тахтой, та рассказывала загадочные истории, и красавица, не удержавшись, заговорила, споря с ответами. Хан выдал её за юношу, тот вернулся домой с золотом и стал правителем.",
   "moral": "Верность отцовскому завету возвращается сторицей.",
   "title_en": "The Faithful Son",
-  "summary_en": "A dying merchant, who lived with a Djinn woman, told his son to leave a dish of pilaf in a corner of the stable every evening. The son obeyed until he had sold everything, then followed whoever took the pilaf and entered the world of the Djinns. His Djinn stepmother showed him a heap of gold, everything he had spent on pilaf, and helped him win the Khan's silent daughter: hiding behind a candlestick and under a sofa, she told riddle-stories, and the girl could not help speaking up to dispute his answers. The Khan gave her to the youth, who returned home with the gold and became ruler.",
+  "summary_en": "A dying merchant, who lived with a Djinn woman, told his son to leave a dish of pilaf in a corner of the stable every evening. The son obeyed until he had sold everything, then followed whoever took the pilaf and entered the world of the Djinns. His Djinn stepmother showed him a heap of gold, everything he had spent on pilaf, and, when he fell in love with a portrait of the Khan's silent daughter, sent him to her with the Djinn woman who had fetched the pilaf. Hidden behind a candlestick and then under a sofa, that woman told riddle-stories, and the girl could not help speaking up to dispute his answers. The Khan gave her to the youth, who returned home with the gold and became ruler.",
   "moral_en": "Faithfulness to a father's last wish is repaid many times over.",
   "people": "кумыки",
   "type": "сказка",
@@ -4437,7 +4461,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "turkic_north"
+  "group": "turkic_north",
+  "verified": true
  },
  {
   "title": "Эцемей, сын Эцея",
@@ -4452,7 +4477,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "turkic_north"
+  "group": "turkic_north",
+  "verified": true
  },
  {
   "title": "Спор орлов и саранчи",
@@ -5363,14 +5389,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Кому принадлежит невеста?",
-  "summary": "Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушку похитили джинны, первый увидел её на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.",
+  "summary": "Тифлисский купец обещал свою учёную красавицу-дочь Мариат тому, кто покажет чудесное умение. Свататься пришли трое: человек из Эрзурума, видящий весь мир, бухарец с ружьём, не знающим промаха, и афганец, мастерящий деревянную повозку, что за час проходит месячный путь. Когда девушка ночью исчезла, первый увидел её пленницей в крепости джиннов на острове в Чёрном море, третий доставил туда товарища, второй перестрелял джиннов. Вернув невесту, они заспорили, кому она достанется, и сказка оставляет вопрос слушателю.",
   "moral": "Общее дело держится на всех участниках; спор о заслугах не имеет простого ответа.",
   "title_en": "To Whom Does the Bride Belong?",
-  "summary_en": "A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When djinns carried the girl off, the first saw her on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.",
+  "summary_en": "A Tiflis merchant promised his learned, beautiful daughter Mariat to whoever showed a marvellous skill. Three suitors came: a man from Erzurum who could see the whole world, a man from Bukhara with a gun that never missed, and an Afghan who carved a wooden carriage covering a month's journey in an hour. When the girl vanished in the night, the first saw her held prisoner in a djinns' stronghold on an island in the Black Sea, the third flew there with the marksman, and the marksman shot the djinns. Back home, the three quarrelled over who had won her, and the tale leaves the question to the listener.",
   "moral_en": "A shared deed rests on everyone in it; disputes over merit have no easy answer.",
   "people": "агулы",
   "type": "сказка",
@@ -5378,7 +5405,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Обманутый лис",
@@ -5393,14 +5421,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Птица, умная для других",
   "summary": "Каждый год лис требовал у голубки птенца, грозя залезть на дерево. Птица Малик-Ульхазин научила голубку ответить: «Залезай сам, если можешь», и лис отстал. Тогда лис пришёл к советчице и с лестью спросил, куда она прячет голову, если ветер дует со всех сторон. Птица показала, сунув голову под крыло, и лис её схватил.",
   "moral": "Умный совет другим не спасает того, кто сам поддаётся на лесть.",
   "title_en": "The Bird Who Was Clever for Others",
-  "summary_en": "Every year a fox demanded one of the dove's chicks, threatening to climb her tree. The bird Malik Ulhazin taught the dove to answer, 'Climb up yourself if you can,' and the fox gave up. Then the fox flattered the adviser and asked where she put her head when the wind blew from both sides. She showed him by tucking it under her wing, and the fox seized her.",
+  "summary_en": "Every year a fox demanded one of the dove's chicks, threatening to climb her tree. The bird Malik Ulhazin taught the dove to answer, 'Climb up yourself if you can,' and the fox gave up. Then the fox flattered the adviser and asked where she put her head when the wind blew from both sides. The bird showed him by tucking its head under its wing, and the fox seized her.",
   "moral_en": "Wisdom for others does not save one who falls for flattery.",
   "people": "арчинцы",
   "type": "басня",
@@ -5408,7 +5437,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Осёл и верблюд",
@@ -5423,7 +5453,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Лиса и журавль",
@@ -5438,7 +5469,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Медведь, волк и лиса",
@@ -5453,7 +5485,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Заяц и лев",
@@ -5468,7 +5501,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Лиса, волк и мул",
@@ -5483,7 +5517,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Волк, медведь, лиса и осёл",
@@ -5498,7 +5533,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Красная рыба",
@@ -5513,14 +5549,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Кто глупее?",
-  "summary": "Два муллы подрались из-за того, кого из них поприветствовал всадник. Тот сказал, что приветствовал более глупого, и велел каждому рассказать о своей самой большой глупости. Один приказал ученикам хлопать в ладоши вместо «будь здоров» и сорвался в яму, когда чихнул. Другой запретил ученикам лишние слова и молча позволил себя «похоронить» и разрезать себе щеку. «Я приветствовал тебя», — сказал всадник второму и уехал.",
+  "summary": "Два муллы подрались из-за того, кого из них поприветствовал всадник. Тот сказал, что приветствовал более глупого, и велел каждому рассказать о своей самой большой глупости. Один приказал ученикам хлопать в ладоши вместо «будь здоров» и сорвался в яму, когда чихнул. Другой запретил ученикам лишние слова и молча позволил объявить себя мёртвым, обмыть, завернуть в саван и разрезать себе щеку. «Я приветствовал тебя», — сказал всадник второму и уехал.",
   "moral": "Гордыня и упрямство доводят до нелепости.",
   "title_en": "Who Is the Most Stupid?",
-  "summary_en": "Two mullahs came to blows over which of them a passing rider had greeted. He said he had greeted the more foolish one and asked each to tell his greatest folly. One had ordered his pupils to clap instead of saying 'bless you', and fell back into a pit when he sneezed. The other had forbidden needless words and silently let himself be 'buried' and have his cheek cut open. 'It was you I greeted,' the rider told the second, and rode off.",
+  "summary_en": "Two mullahs came to blows over which of them a passing rider had greeted. He said he had greeted the more foolish one and asked each to tell his greatest folly. One had ordered his pupils to clap instead of saying 'bless you', and fell back into a pit when he sneezed. The other had forbidden needless words and silently let himself be declared dead, washed and shrouded, and have his cheek cut open. 'It was you I greeted,' the rider told the second, and rode off.",
   "moral_en": "Pride and stubbornness lead to absurdity.",
   "people": "арчинцы",
   "type": "анекдот",
@@ -5528,14 +5565,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Глупая жена",
-  "summary": "Глупая жена, которой велели «смотреть за дверью», сняла дверь с петель и унесла к соседям. Убежав от побоев на дерево, она привела домой чужого верблюда. Муж с умной женой спрятали её в печь от «дождя, который слепит», зарезали верблюда и забрали деньги, но глупая выдала их посланцу хозяина. Однако на суде она спросила слепого хозяина, не тот ли дождь его ослепил, и её слова сочли бредом.",
+  "summary": "Глупая жена, которой велели «смотреть за дверью», сняла дверь с петель и унесла к соседям. Убежав от побоев на дерево, она привела домой чужого верблюда. Муж с умной женой спрятали её в печь от «дождя, который слепит», зарезали верблюда и забрали деньги, но глупая выдала их посланцу хозяина. Однако перед хозяином она спросила слепого хозяина, не тот ли дождь его ослепил, и её слова сочли бредом.",
   "moral": "Буквальное понимание слов ведёт к беде, а нелепость может спасти виноватых.",
   "title_en": "The Stupid Wife",
-  "summary_en": "A foolish wife told to 'mind the door' lifted it off its hinges and carried it to the neighbours. Fleeing a beating, she climbed a tree and came home leading a stray camel. Her husband and his clever wife hid her in the oven from 'blinding rain', slaughtered the camel and took its money, but the fool gave them away to the owner's messenger. In court, though, she asked the blind owner whether the rain had blinded him, and her words were dismissed as raving.",
+  "summary_en": "A foolish wife told to 'mind the door' lifted it off its hinges and carried it to the neighbours. Fleeing a beating, she climbed a tree and came home leading a stray camel. Her husband and his clever wife hid her in the oven from 'blinding rain', slaughtered the camel and took its money, but the fool gave them away to the owner's messenger. Questioned by the owner, though, she asked the blind owner whether the rain had blinded him, and her words were dismissed as raving.",
   "moral_en": "Taking words literally brings trouble, and absurdity can save the guilty.",
   "people": "лезгины",
   "type": "бытовая сказка",
@@ -5543,7 +5581,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Букучихан",
@@ -5558,7 +5597,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Царица-дева",
@@ -5573,7 +5613,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Балай и Боти",
@@ -5588,7 +5629,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Сартанки",
@@ -5603,7 +5645,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Кичув",
@@ -5618,7 +5661,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "dagestan"
+  "group": "dagestan",
+  "verified": true
  },
  {
   "title": "Лиса и змея",
@@ -6674,7 +6718,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Жеребёнок, коза и свинья",
@@ -6689,7 +6734,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Волк, лиса и верблюд",
@@ -6704,7 +6750,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Задача",
@@ -6719,7 +6766,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Соляное поле",
@@ -6734,7 +6782,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Мы — должен — три копейки",
@@ -6749,7 +6798,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Ослиное яйцо",
@@ -6764,7 +6814,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Огненный конь",
@@ -6779,7 +6830,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Сказка о свинье",
@@ -6794,7 +6846,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Змея и крестьянин",
@@ -6974,7 +7027,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Искусный вор",
@@ -6989,7 +7043,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Нахлебник",
@@ -7004,14 +7059,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Земля своё возьмёт",
-  "summary": "Сын вдовы отправился искать страну без смерти. Олень, чьи рога растут до неба, и ворон, засыпающий бездну, предлагали ему остаться с ними до их смерти, но он хотел вечной жизни. В стеклянном доме у моря он нашёл деву-Красоту, созданную в первый день творения, и прожил с ней века, будто миг. Затосковав по дому, он увидел мёртвыми оленя и ворона, а на месте дома — руины. Съев три яблока Красоты, он состарился и умер.",
+  "summary": "Сын вдовы отправился искать страну без смерти. Олень, чьи рога растут до неба, и ворон, засыпающий бездну, предлагали ему остаться с ними до их смерти, но он хотел вечной жизни. В стеклянном доме у моря он нашёл деву-Красоту, созданную в первый день творения, и прожил с ней целый век, пролетевший как миг. Затосковав по дому, он увидел мёртвыми оленя и ворона, а на месте дома — руины. Съев три яблока Красоты, он состарился и умер.",
   "moral": "От смерти не уйти; земля возьмёт своё.",
   "title_en": "The Earth Will Have Its Own",
-  "summary_en": "A widow's son set out to find the land where there is no death. A stag whose antlers grow toward heaven and a raven filling up an abyss offered to keep him until they died, but he wanted eternal life. In a glass house by the sea he found the maiden Beauty, made on the first day of creation, and lived with her for centuries as if for moments. Longing for home, he found the stag and raven dead and his home in ruins. Eating Beauty's three apples, he grew old and died.",
+  "summary_en": "A widow's son set out to find the land where there is no death. A stag whose antlers grow toward heaven and a raven filling up an abyss offered to keep him until they died, but he wanted eternal life. In a glass house by the sea he found the maiden Beauty, made on the first day of creation, and lived with her for a century that passed like moments. Longing for home, he found the stag and raven dead and his home in ruins. Eating Beauty's three apples, he grew old and died.",
   "moral_en": "Death cannot be escaped; the earth will have its own.",
   "people": "грузины",
   "type": "сказка",
@@ -7019,7 +7075,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Золотоволосые дети",
@@ -7034,7 +7091,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Два брата",
@@ -7113,10 +7171,10 @@
  },
  {
   "title": "Верный слуга",
-  "summary": "Младший царевич потратил деньги не на гулянья, а на то, чтобы выкупить долг покойника, чью могилу оскорблял заимодавец. По совету отца он нанял слугу, отказавшегося сесть за стол с хозяином. Слуга повёл караван опасной дорогой, перебил семерых дэвов, освободил трёх девушек и забрал сокровища. Дома он дал кровь собаки, чтобы вернуть зрение царю, и уши дэвов, чтобы исцелить сестру царевича, а потом лёг в ту самую могилу, вернув свою плату. Он был тем самым покойником.",
+  "summary": "Младший царевич потратил деньги не на гулянья, а на то, чтобы выкупить долг покойника, чью могилу оскорблял заимодавец. По совету отца он нанял слугу, отказавшегося сесть за стол с хозяином. Слуга повёл караван опасной дорогой, перебил семерых дэвов, освободил трёх девушек и забрал сокровища. Дома он убил собаку царевича ради её крови. Когда год службы истёк, он лёг в свежую могилу на том же кладбище, пришедшуюся ему впору. Он вернул плату, а с ней кровь — для глаз царя — и уши дэвов — от безумия сестры, и могила сомкнулась над ним. Сказка даёт понять, что это был тот самый покойник, чей долг заплатил царевич.",
   "moral": "Доброе дело к мёртвому возвращается благодарностью.",
   "title_en": "The Faithful Servant",
-  "summary_en": "The youngest prince spent his money not on merrymaking but on paying off a dead man's debt, whose grave a creditor was insulting. On his father's advice he hired a servant who refused to sit at table with his master. The servant led the caravan by a dangerous road, killed seven devs, freed three maidens and took the treasure. At home he gave dog's blood to restore the king's sight and the devs' ears to cure the prince's sister, then lay down in the same grave, returning his wages. He was that very dead man.",
+  "summary_en": "The youngest prince spent his money not on merrymaking but on paying off a dead man's debt, whose grave a creditor was insulting. On his father's advice he hired a servant who refused to sit at table with his master. The servant led the caravan by a dangerous road, killed seven devs, freed three maidens and took the treasure. Back home, he killed the prince's hound for its blood. When his year was up, he lay down in a fresh grave in that same graveyard, which fitted him exactly. He handed back his wages with the blood for the king's eyes and the devs' ears for the sister's madness, and the grave closed over him. The tale implies he was the dead man whose debt the prince had paid.",
   "moral_en": "A kindness to the dead is repaid with gratitude.",
   "people": "удины",
   "type": "сказка",
@@ -7124,7 +7182,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Золотая девушка",
@@ -7293,7 +7352,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Соломон-псарь",
@@ -7308,7 +7368,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Отшельник и Соломон",
@@ -7323,7 +7384,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Замок из птичьих перьев",
@@ -7338,7 +7400,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Младенец Александр",
@@ -7353,7 +7416,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Мать Александра и хлеб",
@@ -7368,7 +7432,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Александр в стране праведных бедняков",
@@ -7383,7 +7448,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Бугач-хан, сын Дирсе-хана",
@@ -7552,7 +7618,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Учитель и ученик",
@@ -7567,7 +7634,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Сновидец",
@@ -7582,7 +7650,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Райская роза",
@@ -7597,7 +7666,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Соловей и соловьиха",
@@ -7612,7 +7682,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Плешивый гусопас",
@@ -7627,7 +7698,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Три брата-вора",
@@ -7642,14 +7714,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Удинская сказка о Рустуме",
-  "summary": "Сын пастуха Рустум рос при царском дворе таким силачом, что в играх отрывал товарищам руки и головы. По совету старухи царь посылал его на гибель: за дровами в лес к трём дивам и на бой с белым дивом, но Рустум убил их всех. Уйдя от двора, он взял в товарищи человека с ореховым деревом, человека с жерновами на ногах и человека, выпивавшего реку. Аждаха связывал каждого волоском из усов и съедал обед, пока Рустум не оторвал ему голову. В глубокой яме Рустум освободил четырёх дев от дивов, но товарищи бросили его внизу. Чёрная коза унесла его в нижний мир; там он убил змея у колодца, спас птенцов птицы-великанши, и она вынесла его наверх, получив даже кусок его бедра. Он простил товарищей и поделил дев. Позже старуха выведала, что сила Рустума в кольце, украла кольцо и увезла его жену царю, но друзья по почерневшим камням колец пришли на помощь, водопийца осушил колодец, и Рустум вернул силу и жену.",
+  "summary": "Сын пастуха Рустум рос при царском дворе таким силачом, что в играх отрывал товарищам руки и головы. По совету старухи царь посылал его на гибель: за дровами в лес к трём дивам и на бой с белым дивом, но Рустум убил их всех. Уйдя от двора, он взял в товарищи человека с ореховым деревом, человека с жерновами на ногах и человека, выпивавшего реку. Аждаха связывал каждого волоском из усов и съедал обед, пока Рустум не оторвал ему голову. В глубокой яме Рустум освободил четырёх дев от дивов, но товарищи бросили его внизу. Чёрная коза унесла его в нижний мир; там он убил змея у колодца, спас птенцов птицы-великанши, и она вынесла его наверх, а когда кончилось мясо, Рустум отдал ей кусок своего бедра, который птица сберегла и приживила обратно. Он простил товарищей и поделил дев. Позже старуха выведала, что сила Рустума в кольце, украла кольцо и увезла его вторую жену (вдову убитого дива) к царю, но друзья по почерневшим камням колец пришли на помощь, водопийца осушил колодец, и Рустум вернул силу и жену.",
   "moral": "Верная дружба спасает даже сильнейшего.",
   "title_en": "An Udian Story of Rustum",
-  "summary_en": "Rustum, a shepherd's son, grew up at the king's court so strong that in games he tore off his playmates' arms and heads. On an old woman's advice the king sent him to his death: to fetch wood from a forest of three Divs, and to fight the White Div, but Rustum killed them all. Leaving the court, he took as companions a man with a nut tree, a man with millstones on his feet and a man who drank up a river. An Ajdaha tied each of them up with a hair from his moustache and ate their dinner, until Rustum tore off its head. In a deep pit Rustum freed four maidens from Divs, but his companions left him below. A black goat carried him to the underworld; there he killed a serpent at a well and saved the chicks of a giant bird, who carried him up to the upper world, even taking a piece of his thigh as food. He forgave his companions and shared out the maidens. Later an old witch learned that Rustum's strength lay in his ring, stole it and carried his wife off to a king; but his friends, warned by the blackened stones of their rings, came to help, the water-drinker drained the well, and Rustum regained his strength and his wife.",
+  "summary_en": "Rustum, a shepherd's son, grew up at the king's court so strong that in games he tore off his playmates' arms and heads. On an old woman's advice the king sent him to his death: to fetch wood from a forest of three Divs, and to fight the White Div, but Rustum killed them all. Leaving the court, he took as companions a man with a nut tree, a man with millstones on his feet and a man who drank up a river. An Ajdaha tied each of them up with a hair from his moustache and ate their dinner, until Rustum tore off its head. In a deep pit Rustum freed four maidens from Divs, but his companions left him below. A black goat carried him to the underworld; there he killed a serpent at a well and saved the chicks of a giant bird, who carried him up to the upper world, and when the meat ran out Rustum fed it a piece of his own thigh, which the bird kept and healed back on. He forgave his companions and shared out the maidens. Later an old witch learned that Rustum's strength lay in his ring, stole it and carried his second wife (a slain Div's widow) off to the king; but his friends, warned by the blackened stones of their rings, came to help, the water-drinker drained the well, and Rustum regained his strength and his wife.",
   "moral_en": "Faithful friendship saves even the strongest.",
   "people": "удины",
   "type": "сказка",
@@ -7657,7 +7730,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Волшебный соловей",
@@ -7714,7 +7788,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Яйца в платке",
@@ -7729,7 +7804,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Скороход",
@@ -7744,7 +7820,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Камень и старость",
@@ -7759,7 +7836,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Ветер в огороде",
@@ -7774,7 +7852,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Счёт Насреддина",
@@ -7789,7 +7868,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Руки были заняты",
@@ -7804,7 +7884,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Орехи со скорлупой",
@@ -7819,7 +7900,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Баранья голова",
@@ -7834,7 +7916,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Сыр",
@@ -7849,7 +7932,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Подпруга",
@@ -7864,7 +7948,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Даровые яблоки",
@@ -7879,7 +7964,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Прыжок через ручей",
@@ -7894,7 +7980,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Три крика осла",
@@ -7909,7 +7996,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Молла Насреддин: Говорящий чинар",
@@ -7924,7 +8012,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Амиран на Эльбрусе (сванский вариант)",
@@ -7939,14 +8028,15 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Рустамзал, сын Гахрамана",
-  "summary": "Старуха упрекнула Рустамзала: лучше бы он вызволил тётку, которую держит в жёнах сорокаголовый белый див. Родители и мудрецы уверяли, что тётки нет, но Рустамзал ушёл из дому и силой добыл у чужого царя оружие семи предков. Старец, сорок лет читавший Коран, предостерёг его от трёх чар: коровьего молока, даров из кувшина и девы в саду. Две первые он миновал, а в сад вошёл и оказался в замкнутом замке, где освободил семь царей; по удару в барабан Искандера старец открыл стену. Отец прилетел к нему на птице Смарагд, семь царей привели войска, и вместе они разбили дивов, а Рустамзал вывел тётку. Позже он, не узнав, смертельно ранил в борьбе своего сына Джамбахыша; голос с неба велел носить тело сорок дней, но на тридцать девятый чародей, моющий чёрную шерсть добела, заставил его опустить корыто, и сын умер. Затем с сыновьями Джанаббасом и Сохрабом и женой Джанаббаса, побеждённой в поединке воительницей с колдовской книгой, он одолел страну джиннов. Царство он передал сыну убитого Джамбахыша.",
+  "summary": "Старуха упрекнула Рустамзала: лучше бы он вызволил тётку, которую держит в жёнах сорокаголовый белый див. Родители и мудрецы уверяли, что тётки нет, но Рустамзал ушёл из дому и пригрозил чужому царю, и тот по просьбе его отца отдал ему оружие семи предков. Старец, сорок лет читавший Коран, предостерёг его от трёх чар: коровьего молока, даров из кувшина и девы в саду. Две первые он миновал, а в сад вошёл и оказался в замкнутом замке, где освободил семь царей; по удару в барабан Искандера старец открыл стену. Отец прилетел к нему на птице Смарагд, семь царей привели войска, и вместе они разбили дивов, а Рустамзал вывел тётку. Позже он, не узнав, смертельно ранил в борьбе своего сына Джамбахыша; голос с неба велел носить тело сорок дней, но на тридцать восьмой или тридцать девятый день чародей, моющий чёрную шерсть добела, заставил его опустить корыто, и сын умер. Затем с сыновьями Джанаббасом и Сохрабом и женой Джанаббаса, побеждённой в поединке воительницей с колдовской книгой, он одолел страну джиннов. Царство он передал сыну убитого Джамбахыша.",
   "moral": "Сомнение в последний миг губит почти сделанное дело.",
   "title_en": "Rustumsal, Son of Qahirman",
-  "summary_en": "An old woman taunted Rustumsal that he would do better to rescue his aunt, whom the forty-headed White Div kept as his wife. His parents and the wise men swore he had no aunt, but Rustumsal left home and forced a foreign king to give him the weapons of seven of his ancestors. An old man who had read the Koran for forty years warned him of three spells: a cow's milk, gifts from a pitcher and a maiden in a garden. He passed the first two, but entered the garden and found himself shut in a walled castle, where he freed seven kings; when he beat Iskender's drum, the old man came and opened the wall. His father flew to him on the bird Smaragd, the seven kings brought their armies, and together they routed the Divs, and Rustumsal led out his aunt. Later, without knowing him, he mortally wounded his son Djambachysch in a wrestling match; a voice from heaven told him to carry the body forty days, but on the thirty-ninth a sorcerer washing black wool white made him set the trough down, and the son died. Then with his sons Djanabbas and Sohrab and Djanabbas's wife, a warrior maiden defeated in single combat who had a book of spells, he conquered the land of the Djinns. He passed his kingdom to the son of the slain Djambachysch.",
+  "summary_en": "An old woman taunted Rustumsal that he would do better to rescue his aunt, whom the forty-headed White Div kept as his wife. His parents and the wise men swore he had no aunt, but Rustumsal left home and threatened a foreign king, who at his father's request gave him the weapons of seven of his ancestors. An old man who had read the Koran for forty years warned him of three spells: a cow's milk, gifts from a pitcher and a maiden in a garden. He passed the first two, but entered the garden and found himself shut in a walled castle, where he freed seven kings; when he beat Iskender's drum, the old man came and opened the wall. His father flew to him on the bird Smaragd, the seven kings brought their armies, and together they routed the Divs, and Rustumsal led out his aunt. Later, without knowing him, he mortally wounded his son Djambachysch in a wrestling match; a voice from heaven told him to carry the body forty days, but on the thirty-eighth or thirty-ninth day a sorcerer washing black wool white made him set the trough down, and the son died. Then with his sons Djanabbas and Sohrab and Djanabbas's wife, a warrior maiden defeated in single combat who had a book of spells, he conquered the land of the Djinns. He passed his kingdom to the son of the slain Djambachysch.",
   "moral_en": "Doubt at the last moment ruins a deed nearly done.",
   "people": "азербайджанцы (кавказские татары)",
   "type": "сказка",
@@ -7954,7 +8044,8 @@
    "https://archive.org/details/dirr-1925-caucasian-folk-tales",
    "https://archive.org/details/kaukasische-marchen"
   ],
-  "group": "transcaucasia"
+  "group": "transcaucasia",
+  "verified": true
  },
  {
   "title": "Младший из трёх",

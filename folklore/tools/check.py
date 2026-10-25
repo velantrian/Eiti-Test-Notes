@@ -4,7 +4,8 @@
 Usage: python3 folklore/tools/check.py [--root folklore/]
 
 Fails on JSON/Markdown/index/verification inconsistencies, invalid field
-shapes, and identical full summaries. Repeated titles are warnings because
+shapes, and identical full summaries. A record's optional "verified": true must
+match a "yes" row in VERIFICATION.md, and vice versa. Repeated titles are warnings because
 different cultures may have different stories with the same title.
 Does NOT establish HTTP reachability, fidelity, translation accuracy, rights,
 or historical authenticity.
@@ -92,6 +93,9 @@ def validate_record(record, where, expected_group, errors):
     if "rights" in record and (not isinstance(record["rights"], str) or
                                 not record["rights"].strip()):
         errors.append(f"{where}: rights must be a nonempty string if present")
+        good = False
+    if "verified" in record and record["verified"] is not True:
+        errors.append(f"{where}: verified must be true if present (omit it otherwise)")
         good = False
     return good
 
@@ -190,6 +194,7 @@ def check_verification(path, records, errors):
     actual = Counter((collection, r.get("title"), r.get("title_en"))
                      for collection, r in records if isinstance(r, dict))
     listed = Counter()
+    rows = {}
     statuses = Counter()
     rights_flags = 0
     invalid_rows = 0
@@ -202,7 +207,9 @@ def check_verification(path, records, errors):
             invalid_rows += 1
             continue
         collection, title, status = cells[1], cells[2], cells[4]
-        listed[(collection, *title.split(" / ", 1))] += 1
+        key = (collection, *title.split(" / ", 1))
+        listed[key] += 1
+        rows[key] = status.startswith("yes")
         if status.startswith("yes"):
             statuses["reviewed"] += 1
         elif status.startswith("authored from read PD text"):
@@ -217,6 +224,13 @@ def check_verification(path, records, errors):
             rights_flags += 1
     if actual != listed:
         errors.append(f"{path}: rows differ from JSON (missing {sum((actual-listed).values())}, extra {sum((listed-actual).values())})")
+    for collection, r in records:
+        if not isinstance(r, dict):
+            continue
+        key = (collection, r.get("title"), r.get("title_en"))
+        if key in rows and rows[key] != (r.get("verified") is True):
+            errors.append(f"{path}: verified flag {r.get('verified') is True} in JSON but ledger says "
+                          f"{'yes' if rows[key] else 'not yes'} for {r.get('title_en')!r}")
     if statuses["reviewed"] + statuses["prior_read"] + statuses["not_verified"] != len(records) or invalid_rows:
         errors.append(f"{path}: verification statuses do not cover all {len(records)} records")
     wikipedia = sum(bool(r.get("sources")) and all(is_wikipedia_url(u) for u in r["sources"])
