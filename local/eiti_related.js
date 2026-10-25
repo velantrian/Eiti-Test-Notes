@@ -3,7 +3,7 @@
 //   • настройки (localStorage): показывать похожие, подробное рассуждение, режим рассуждения offline|ai;
 //   • похожие заметки — TF-IDF (косинус) по заметкам пользователя, только на устройстве;
 //   • карточки рассуждения (KB-запись, сказка, заметка) — только из данных самой записи, ничего не выдумывается;
-//   • промпт для ИИ с опорой на проверенные факты и сборка ответа: «Проверенные факты» отдельно от «Текст ИИ».
+//   • промпт для ИИ с опорой на факты из источника и сборка ответа: «Факты из источника» (источник ≠ доказательство истины) отдельно от «Текст ИИ».
 // Похожие для KB и сказок вычисляются при сборке (kb/related.py → «r» в пакетах; offline/build_tale_related.py → «rel»).
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -48,7 +48,7 @@
     kbSrcHand: { ru: 'Библиотека знаний EITI', en: 'EITI knowledge library', de: 'EITI-Wissensbibliothek' },
     talesSrc:  { ru: 'Офлайн-сказки EITI', en: 'EITI offline tales', de: 'EITI-Offline-Märchen' },
     noteSrc:   { ru: 'Ваша заметка (на устройстве)', en: 'Your note (on this device)', de: 'Ihre Notiz (auf diesem Gerät)' },
-    verified:  { ru: '✅ Проверенные факты', en: '✅ Verified facts', de: '✅ Geprüfte Fakten' },
+    verified:  { ru: '📚 Факты из источника', en: '📚 Facts from source', de: '📚 Fakten aus der Quelle' },
     aiText:    { ru: '🤖 Объяснение ИИ — не проверено, сверяйте с фактами выше', en: '🤖 AI explanation — unverified, check against the facts above', de: '🤖 KI-Erklärung — ungeprüft, mit den Fakten oben abgleichen' },
     aiFail:    { ru: 'ИИ недоступен — показана офлайн-карточка.', en: 'AI unavailable — showing the offline card.', de: 'KI nicht verfügbar — Offline-Karte wird angezeigt.' },
     toNote:    { ru: 'В заметку', en: 'To note', de: 'In Notiz' },
@@ -181,9 +181,9 @@
     lang = L(lang);
     var langName = { ru: 'русском', en: 'English', de: 'Deutsch' }[lang];
     var system = lang === 'ru'
-      ? 'Ты помогаешь понять запись. Опирайся только на ПРОВЕРЕННЫЕ ДАННЫЕ ниже. Не добавляй новых дат, имён, чисел и фактов, которых нет в данных; если без этого нельзя — прямо скажи «в данных этого нет». Ответ на ' + langName + ' языке, Markdown: 2–4 коротких абзаца — суть, почему это важно, как связаны факты.'
-      : 'You help the user understand an item. Use ONLY the VERIFIED DATA below. Do not add dates, names, numbers or facts that are not in the data; if something is missing say so. Answer in ' + langName + ', Markdown, 2–4 short paragraphs: the gist, why it matters, how the facts connect.';
-    return { system: system, user: (lang === 'ru' ? 'ПРОВЕРЕННЫЕ ДАННЫЕ:\n' : 'VERIFIED DATA:\n') + card };
+      ? 'Ты помогаешь понять запись. Опирайся только на ДАННЫЕ ИЗ ИСТОЧНИКА ниже (источник — не доказательство истины). Не добавляй новых дат, имён, чисел и фактов, которых нет в данных; если без этого нельзя — прямо скажи «в данных этого нет». Ответ на ' + langName + ' языке, Markdown: 2–4 коротких абзаца — суть, почему это важно, как связаны факты.'
+      : 'You help the user understand an item. Use ONLY the DATA FROM THE SOURCE below (a source is not proof of truth). Do not add dates, names, numbers or facts that are not in the data; if something is missing say so. Answer in ' + langName + ', Markdown, 2–4 short paragraphs: the gist, why it matters, how the facts connect.';
+    return { system: system, user: (lang === 'ru' ? 'ДАННЫЕ ИЗ ИСТОЧНИКА:\n' : 'DATA FROM SOURCE:\n') + card };
   }
   // combine(card, aiText, lang) — проверенные факты и текст ИИ визуально разделены
   function combine(card, aiText, lang) {

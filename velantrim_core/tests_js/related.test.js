@@ -86,13 +86,13 @@ test('taleCard and noteCard', () => {
   assert.match(c, /Your note \(on this device\)/);
 });
 
-test('AI: grounded prompt, verified facts kept apart from AI text', () => {
+test('AI: grounded prompt, facts from source kept apart from AI text', () => {
   const p = R.aiPrompt('### X\n- **Год:** 1900', 'ru');
   assert.match(p.system, /Не добавляй новых дат/);
-  assert.match(p.user, /^ПРОВЕРЕННЫЕ ДАННЫЕ:\n### X/);
+  assert.match(p.user, /^ДАННЫЕ ИЗ ИСТОЧНИКА:\n### X/);
   assert.match(R.aiPrompt('c', 'de').system, /Deutsch/);
   const out = R.combine('CARD', 'AI TEXT', 'en');
-  assert.ok(out.indexOf('✅ Verified facts') < out.indexOf('CARD'));
+  assert.ok(out.indexOf('📚 Facts from source') < out.indexOf('CARD'));
   assert.ok(out.indexOf('CARD') < out.indexOf('---') && out.indexOf('---') < out.indexOf('🤖') && out.indexOf('🤖') < out.indexOf('AI TEXT'));
   assert.doesNotMatch(R.combine('CARD', '', 'ru'), /🤖/);
 });
@@ -149,7 +149,7 @@ test('reasoning card: tidyHtml removes stray <br> around blocks; plainCard → c
   const card = R.kbCard({ q: ['ночной дозор'], a: '«Ночной дозор» — картина. Автор: Рембрандт. Создана: 1642.', title: 'Живопись', gen: 1 }, 'ru');
   const p = R.plainCard(R.combine(card, 'Объяснение *модели*', 'ru'));
   assert.ok(!/[#*\\]|\n{3}/.test(p.replace('*модели*', '')), p);
-  assert.ok(p.startsWith('✅ Проверенные факты'));
+  assert.ok(p.startsWith('📚 Факты из источника'));
   assert.ok(p.includes('🧠 «Ночной дозор»') && p.includes('Раздел: Живопись') && p.includes('———') && p.includes('🤖 Объяснение ИИ'));
   assert.strictEqual(R.plainCard('a\n\n⟦EITIREL:kb:x⟧'), 'a');
   assert.deepStrictEqual(['ru', 'en', 'de'].map((l) => R.S('copy', l)), ['Скопировать', 'Copy', 'Kopieren']);
