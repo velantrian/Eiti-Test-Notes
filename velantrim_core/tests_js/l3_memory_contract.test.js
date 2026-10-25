@@ -131,3 +131,53 @@ test('ids are unique even within the same millisecond (v14.15.0)', () => {
   try { const s = make(); s.learn('любит чай'); s.learn('работает инженером в порту'); const st = JSON.parse(s.raw());
     assert.strictEqual(st.length, 2); assert.notStrictEqual(st[0].id, st[1].id); assert.match(st[0].id, /^fact_1700000000000_/); } finally { Date.now = realNow; }
 });
+
+
+test('REGRESSION: corrupt learned JSON + failed backup must not overwrite original or index new fact', () => {
+  const s = make('{not json');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k.startsWith('eiti_learned_v1.corrupt.')) {
+      const e = new Error('backup quota exceeded'); e.name = 'QuotaExceededError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('Пользователь любит зелёный чай');
+  assert.strictEqual(s.raw(), '{not json', 'original corrupt bytes must remain intact');
+  assert.strictEqual(s.indexed.length, 0, 'unpersisted fact cannot be indexed');
+  assert.ok(s.toasts.some((t) => /не удалось|не сохран/i.test(t)), 'user must see the failure');
+});
+
+test('REGRESSION: corrupt archive + rejected quarantine may not overwrite archived bytes', () => {
+  const full = Array.from({ length: 200 }, (_, i) =>
+    ({ fact: 'уникальный факт номер ' + i, ts: 1000 + i, salience: 1, id: 'f' + i }));
+  const s = make(JSON.stringify(full));
+  s.map.set('eiti_learned_archive_v1', '{broken archive');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k.startsWith('eiti_learned_archive_v1.corrupt.')) {
+      const e = new Error('blocked'); e.name = 'SecurityError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('совершенно новый факт про морских черепах');
+  assert.strictEqual(s.map.get('eiti_learned_archive_v1'), '{broken archive');
+  assert.strictEqual(JSON.parse(s.raw()).length, 200, 'nothing may be evicted without a safe archive');
+});
+
+test('REGRESSION: backup succeeds but primary write fails, corrupt bytes remain recoverable', () => {
+  const s = make('{broken original');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k === 'eiti_learned_v1') {
+      const e = new Error('storage full'); e.name = 'QuotaExceededError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('пользователь любит зелёный чай');
+  assert.strictEqual(s.raw(), '{broken original');
+  assert.strictEqual(s.indexed.length, 0);
+  const keys = [...s.map.keys()].filter((k) => k.startsWith('eiti_learned_v1.corrupt.'));
+  assert.strictEqual(keys.length, 1);
+  assert.strictEqual(s.map.get(keys[0]), '{broken original');
+});
