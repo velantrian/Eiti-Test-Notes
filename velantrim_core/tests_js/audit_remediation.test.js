@@ -261,9 +261,9 @@ test('Grok Voice searches the current transcript before creating its response', 
   assert.doesNotMatch(block, /_fts5Available/);
 });
 
-test('Qwen and Vision both pass through the shared memory-context gate', () => {
+test('Qwen, Vision and Mistral all pass through the shared memory-context gate', () => {
   const calls = INDEX.match(/eitiPrepareContextPromise\(userText, history\)/g) || [];
-  assert.equal(calls.length, 2);
+  assert.equal(calls.length, 3); // v14.12.0: + Mistral
   assert.match(INDEX, /var _qContextPromise = typeof eitiPrepareContextPromise/);
   assert.match(INDEX, /var _visionContextPromise = typeof eitiPrepareContextPromise/);
 });
