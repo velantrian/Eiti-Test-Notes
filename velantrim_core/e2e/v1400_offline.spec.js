@@ -75,7 +75,7 @@ test('нет сети: ИИ не вызывается, отвечает офла
   await page.evaluate(() => { const s = document.getElementById('eiti-offline-style'); s.value = 'pro'; s.dispatchEvent(new Event('change')); });
   const t = await page.evaluate(() => eitiAskDeepSeek('мне грустно'));
   expect(t).toBeTruthy();
-  expect(/[\u{1F300}-\u{1FAFF}]/u.test(t.replace(/<sub>[\s\S]*<\/sub>/, ''))).toBe(false);
+  expect(/[\u{1F300}-\u{1FAFF}]/u.test(t.replace(/⟦EITIFOOT⟧[\s\S]*?⟦\/EITIFOOT⟧/, ''))).toBe(false);
   expect(aiCalls).toBe(0);
   expect(await page.evaluate(() => localStorage.getItem('eiti_offline_style'))).toBe('pro');
   await context.setOffline(false);

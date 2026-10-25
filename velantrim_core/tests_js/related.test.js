@@ -11,18 +11,18 @@ function store(init) {
 
 test('settings: defaults on/on/offline, set and persist', () => {
   const ls = store();
-  assert.deepStrictEqual(R.settings(ls), { related: true, reasoning: true, mode: 'offline' });
-  assert.deepStrictEqual(R.settings(null), { related: true, reasoning: true, mode: 'offline' });
+  assert.deepStrictEqual(R.settings(ls), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
+  assert.deepStrictEqual(R.settings(null), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
   R.setSetting(ls, 'related', false);
   R.setSetting(ls, 'mode', 'ai');
-  assert.deepStrictEqual(R.settings(ls), { related: false, reasoning: true, mode: 'ai' });
+  assert.deepStrictEqual(R.settings(ls), { related: false, reasoning: true, mode: 'ai', save: true, target: '' });
   assert.strictEqual(ls._m.eiti_related_show, '0');
   R.setSetting(ls, 'mode', 'garbage');
   assert.strictEqual(R.settings(ls).mode, 'offline');
   R.setSetting(ls, 'nope', true);
   assert.strictEqual(Object.keys(ls._m).length, 2);
   const broken = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } };
-  assert.deepStrictEqual(R.setSetting(broken, 'related', false), { related: true, reasoning: true, mode: 'offline' });
+  assert.deepStrictEqual(R.setSetting(broken, 'related', false), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
 });
 
 test('relatedNotes: TF-IDF ranks topical neighbours, excludes self/deleted/unrelated', () => {
@@ -109,7 +109,33 @@ test('ids, markers, strip', () => {
   R.MARK_RE.lastIndex = 0;
   assert.deepStrictEqual([...m.matchAll(R.MARK_RE)][0].slice(1), ['tale', 'slavic.sl_kolobok', 'de']);
   assert.strictEqual(R.strip('Ответ' + m), 'Ответ');
+  assert.strictEqual(R.strip('Ответ\n\n⟦EITIFOOT⟧🌙 Офлайн-ответ (x).⟦/EITIFOOT⟧' + m), 'Ответ');
   assert.strictEqual(R.S('related', 'de'), 'Ähnliche');
   assert.strictEqual(R.S('reasoning', 'en'), 'Reasoning');
   assert.strictEqual(R.S('related', 'xx'), 'Похожие');
+});
+
+test('save to note: default on, sticky target, clean entry, append, deleted target → null', () => {
+  const ls = store();
+  assert.strictEqual(R.settings(ls).save, true);
+  assert.strictEqual(R.settings(ls).target, '');
+  assert.strictEqual(R.setSetting(ls, 'target', 'note_1').target, 'note_1');
+  assert.strictEqual(R.setSetting(ls, 'save', false).save, false);
+  assert.strictEqual(ls._m.eiti_save_to_note, '0');
+  assert.strictEqual(R.setSetting(ls, 'target', '').target, '');
+  // маркер выводится и когда включено только «В заметку» (не для заметок)
+  assert.strictEqual(R.marker('kb', 'kbl_people_aa', { related: false, reasoning: false, save: true }), '\n\n⟦EITIREL:kb:kbl_people_aa⟧');
+  assert.strictEqual(R.marker('note', 'n1', { related: false, reasoning: false, save: true }), '');
+  const e = R.noteEntry('Ночной дозор', 'Картина <b>Рембрандта</b>.\n\n⟦EITIFOOT⟧🌙 Офлайн⟦/EITIFOOT⟧\n\n⟦EITIREL:kb:k_1⟧', 'Wikidata (CC0)', 'ru', Date.UTC(2026, 9, 25, 12));
+  assert.strictEqual(e, '📌 Ночной дозор\n\nКартина Рембрандта.\n\n— Источник: Wikidata (CC0) · 2026-10-25');
+  assert.ok(!/[⟦<]/.test(e));
+  assert.ok(R.noteEntry('T', 'x', 'S', 'de').includes('— Quelle: S'));
+  assert.strictEqual(R.appendBody('Старое\n\n', e), 'Старое\n\n' + e);
+  assert.strictEqual(R.appendBody('', 'x'), 'x');
+  assert.strictEqual(R.targetNote([{ id: 'a' }, { id: 'b' }], 'b').id, 'b');
+  assert.strictEqual(R.targetNote([{ id: 'a' }], 'gone'), null);
+  assert.strictEqual(R.fmt('toNoteIn', 'ru', 'История'), 'В «История»');
+  assert.strictEqual(R.fmt('savedTo', 'en', 'X'), '📌 Added to “X”');
+  for (const k of ['toNote', 'toNoteIn', 'change', 'pickNote', 'newNote', 'savedTo', 'cancel']) for (const l of ['ru', 'en', 'de']) assert.ok(R.S(k, l) && (l === 'ru' || R.S(k, l) !== R.S(k, 'ru')), k + l);
+  assert.strictEqual(R.S('toNote', 'de'), 'In Notiz');
 });

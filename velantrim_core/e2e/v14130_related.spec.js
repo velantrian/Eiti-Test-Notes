@@ -34,7 +34,8 @@ test('KB-ответ: кнопки, похожие из пакета, офлай�
   const t = await mount(page, 'ночной дозор рембрандт');
   expect(t).toMatch(/⟦EITIREL:kb:kbl_paintings_[0-9a-f]+⟧/);
   const bar = page.locator('#relTest .eiti-rel-bar').first();
-  await expect(bar.locator('.eiti-rel-btn')).toHaveCount(2);
+  await expect(bar.locator('.eiti-rel-btn')).toHaveCount(3);
+  await expect(bar.locator('[data-w="save"]')).toHaveText('📌 В заметку');
   await bar.locator('[data-w="rel"]').first().click();
   const chips = bar.locator('.eiti-rel-panel').first().locator('.eiti-rel-chip');
   await expect(chips.first()).toBeVisible();
@@ -68,7 +69,7 @@ test('настройки: выключение скрывает кнопки, р
   await boot(page);
   await expect(page.locator('#eiti-rel-show')).toBeChecked();
   await expect(page.locator('#eiti-rel-mode')).toHaveValue('offline');
-  await page.evaluate(() => { eitiRelSet('related', false); eitiRelSet('reasoning', false); eitiRelSet('mode', 'ai'); });
+  await page.evaluate(() => { eitiRelSet('related', false); eitiRelSet('reasoning', false); eitiRelSet('save', false); eitiRelSet('mode', 'ai'); });
   const t = await mount(page, 'ночной дозор рембрандт');
   expect(t).not.toContain('⟦EITIREL');
   expect(await page.evaluate(() => [localStorage.getItem('eiti_related_show'), localStorage.getItem('eiti_reasoning_mode')])).toEqual(['0', 'ai']);

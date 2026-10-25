@@ -11,15 +11,15 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var KEYS = { related: 'eiti_related_show', reasoning: 'eiti_reasoning_show', mode: 'eiti_reasoning_mode' };
+  var KEYS = { related: 'eiti_related_show', reasoning: 'eiti_reasoning_show', mode: 'eiti_reasoning_mode', save: 'eiti_save_to_note', target: 'eiti_save_target' };
   // по умолчанию: обе кнопки включены, рассуждение — офлайн
   function settings(ls) {
     var g = function (k) { try { return ls ? ls.getItem(k) : null; } catch (e) { return null; } };
-    return { related: g(KEYS.related) !== '0', reasoning: g(KEYS.reasoning) !== '0', mode: g(KEYS.mode) === 'ai' ? 'ai' : 'offline' };
+    return { related: g(KEYS.related) !== '0', reasoning: g(KEYS.reasoning) !== '0', mode: g(KEYS.mode) === 'ai' ? 'ai' : 'offline', save: g(KEYS.save) !== '0', target: g(KEYS.target) || '' };
   }
   function setSetting(ls, name, value) {
     var k = KEYS[name]; if (!k || !ls) return settings(ls);
-    var v = name === 'mode' ? (value === 'ai' ? 'ai' : 'offline') : (value ? '1' : '0');
+    var v = name === 'mode' ? (value === 'ai' ? 'ai' : 'offline') : name === 'target' ? String(value || '') : (value ? '1' : '0');
     try { ls.setItem(k, v); } catch (e) {}
     return settings(ls);
   }
@@ -51,6 +51,15 @@
     verified:  { ru: '✅ Проверенные факты', en: '✅ Verified facts', de: '✅ Geprüfte Fakten' },
     aiText:    { ru: '🤖 Объяснение ИИ — не проверено, сверяйте с фактами выше', en: '🤖 AI explanation — unverified, check against the facts above', de: '🤖 KI-Erklärung — ungeprüft, mit den Fakten oben abgleichen' },
     aiFail:    { ru: 'ИИ недоступен — показана офлайн-карточка.', en: 'AI unavailable — showing the offline card.', de: 'KI nicht verfügbar — Offline-Karte wird angezeigt.' },
+    toNote:    { ru: 'В заметку', en: 'To note', de: 'In Notiz' },
+    toNoteIn:  { ru: 'В «%s»', en: 'To “%s”', de: 'In „%s“' },
+    change:    { ru: 'сменить', en: 'change', de: 'ändern' },
+    pickNote:  { ru: 'Куда сохранить ответ?', en: 'Save the answer to…', de: 'Antwort speichern in…' },
+    newNote:   { ru: 'Новая заметка', en: 'New note', de: 'Neue Notiz' },
+    untitled:  { ru: 'Без названия', en: 'Untitled', de: 'Ohne Titel' },
+    savedTo:   { ru: '📌 Добавлено в «%s»', en: '📌 Added to “%s”', de: '📌 Zu „%s“ hinzugefügt' },
+    cancel:    { ru: 'Отмена', en: 'Cancel', de: 'Abbrechen' },
+    savedAt:   { ru: 'Сохранено', en: 'Saved', de: 'Gespeichert' },
     offlineOnly:{ ru: 'Офлайн-рассуждение: только данные записи, без догадок.', en: 'Offline reasoning: only the item\'s own data, no guesses.', de: 'Offline-Begründung: nur die Daten des Eintrags, keine Vermutungen.' }
   };
   function L(lang) { return lang === 'en' || lang === 'de' ? lang : 'ru'; }
@@ -186,16 +195,30 @@
     var s = splitKbId(id, domains); if (!s || !entry || !entry.r) return [];
     return entry.r.map(function (h) { return 'kbl_' + s.domain + '_' + h; });
   }
+  // v14.13.0: «📌 В заметку» — чистый фрагмент для дописывания в заметку (без маркеров, кнопок и тегов)
+  function cleanText(t) {
+    return strip(t).replace(/⟦[^⟧]*⟧/g, '').replace(/<[^>]{0,200}>/g, '').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+  function noteEntry(title, text, src, lang, date) {
+    var head = cleanText(title), body = cleanText(text), d = date ? new Date(date) : null;
+    var day = d && !isNaN(d) ? d.toISOString().slice(0, 10) : '';
+    var foot = '— ' + S('source', lang) + ': ' + cleanText(src || '') + (day ? ' · ' + day : '');
+    return (head ? '📌 ' + head + '\n\n' : '') + body + '\n\n' + foot;
+  }
+  function appendBody(body, entry) { var b = String(body || '').replace(/\s+$/, ''); return b ? b + '\n\n' + entry : entry; }
+  // targetNote(notes, id) — заметка-цель или null (удалена → снова выбор)
+  function targetNote(notes, id) { if (!id) return null; for (var i = 0; i < (notes || []).length; i++) if (notes[i] && notes[i].id === id) return notes[i]; return null; }
+  function fmt(key, lang, x) { return S(key, lang).replace('%s', String(x == null ? '' : x)); }
   // marker(kind, id) — маркер под ответом в чате; рендерер заменяет его на кнопки
   function marker(kind, id, st, lang) {
     st = st || { related: true, reasoning: true };
-    if (!(st.related || st.reasoning) || !id || !/^(kb|tale|note)$/.test(kind)) return '';
+    if (!(st.related || st.reasoning || (st.save && kind !== 'note')) || !id || !/^(kb|tale|note)$/.test(kind)) return '';
     return '\n\n⟦EITIREL:' + kind + ':' + String(id).replace(/[^\w.-]/g, '') + (lang === 'en' || lang === 'de' ? '@' + lang : '') + '⟧';
   }
   var MARK_RE = /⟦EITIREL:(kb|tale|note):([\w.-]+)(?:@(ru|en|de))?⟧/g;
-  function strip(text) { return String(text || '').replace(/\n*⟦EITIREL:[^⟧]*⟧/g, ''); }
+  function strip(text) { return String(text || "").replace(/\n*⟦EITIFOOT⟧[\s\S]*?⟦\/EITIFOOT⟧/g, "").replace(/\n*⟦EITIREL:[^⟧]*⟧/g, ""); }
 
   return { KEYS: KEYS, settings: settings, setSetting: setSetting, S: S, tokens: tokens, relatedNotes: relatedNotes, parseFacts: parseFacts,
            kbCard: kbCard, taleCard: taleCard, noteCard: noteCard, aiPrompt: aiPrompt, combine: combine, splitKbId: splitKbId,
-           kbRelatedIds: kbRelatedIds, marker: marker, MARK_RE: MARK_RE, strip: strip, version: 1 };
+           kbRelatedIds: kbRelatedIds, marker: marker, cleanText: cleanText, noteEntry: noteEntry, appendBody: appendBody, targetNote: targetNote, fmt: fmt, MARK_RE: MARK_RE, strip: strip, version: 1 };
 });

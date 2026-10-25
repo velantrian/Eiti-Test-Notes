@@ -115,7 +115,7 @@ def test_markers_and_host_wiring():
     assert "⟦EITIREL:(kb|tale|note)" in HTML and "EitiRelHost.bar(k, id, l || 'ru')" in HTML
     assert "function entry(id)" in HTML and "LOC[rows[ri].i]" in HTML
     assert 'id="noteRelRow"' in HTML and "EitiRelHost.noteRow()" in HTML
-    assert "eitiNotesAIRelBar(live)" in HTML and "EitiRelated.strip(text)" in HTML
+    assert "eitiNotesAIRelBar(live)" in HTML and "text = eitiStripMarkers(text); // v14.13.0" in HTML
     # notes go to the AI only with Notes AI consent
     assert "kind === 'note' && !(typeof eitiNotesAIIsEnabled === 'function' && eitiNotesAIIsEnabled())" in HTML
 
@@ -132,3 +132,36 @@ def test_settings_ui_defaults_and_i18n():
         d = json.loads(m.group(1))
         for k in keys:
             assert k in d and d[k] and d[k] != k
+
+
+def test_offline_foot_is_marker_not_raw_html():
+    # Подпись офлайн-ответа — маркер ⟦EITIFOOT⟧…⟦/EITIFOOT⟧, рендерер делает из него тонкую серую строку.
+    assert "<sub>" not in HTML and "</sub>" not in HTML
+    for key in ("foot", "kbFoot", "notesFoot"):
+        m = re.search(r"\n\s*%s: \{ ru: '([^']*)', en: '([^']*)', de: '([^']*)' \}" % key, HTML)
+        assert m, key
+        for s in m.groups():
+            assert s.startswith("\\n\\n⟦EITIFOOT⟧🌙"), (key, s)
+    assert "kbEnNote: { de: '\\n\\n⟦EITIFOOT⟧🇬🇧" in HTML
+    assert "slice(0, 80) + ').⟦/EITIFOOT⟧'" in HTML
+    assert 'class="eiti-foot"' in HTML and "border-top:1px solid" in HTML
+    # копирование, озвучка и вставка в заметку убирают маркеры
+    assert "text = eitiStripMarkers(text);\n            // ловим" in HTML
+    assert "function _eitiSpeakClean(t) { return eitiStripMarkers(t || '')" in HTML
+    assert "text = eitiStripMarkers(text); // v14.13.0" in HTML
+
+
+def test_save_to_note_wiring():
+    assert 'id="eiti-rel-save" checked onchange="eitiRelSet(\'save\', this.checked)"' in HTML
+    assert 'data-i18n="📌 Сохранять ответы в заметку"' in HTML
+    for lang, word in (("en", "Save answers to a note"), ("de", "Antworten in Notiz speichern")):
+        assert '"📌 Сохранять ответы в заметку": "📌 %s"' % word in HTML, lang
+    assert "if (sv) h += saveBtn(lang);" in HTML and "onclick=\"EitiRelHost.save(this)\"" in HTML
+    assert "(window.notesSave || notesSave)(notes);" in HTML   # тот же путь сохранения, что и редактор (IDB + Drive)
+    assert "r.setSetting(localStorage, 'target', n.id)" in HTML
+    assert "if (!notesAll().length) return done(writeTo('', entry, lang, info.title));" in HTML
+    # 🔊/📋 у ответа в чате читают текст без кнопок и подписи
+    assert "var plain = eitiPlainOf(d.querySelector('#' + msgId + '-text'));" in HTML
+    assert "var plain2 = eitiPlainOf(d.querySelector('#'+rId+'-text'));" in HTML
+    assert "c.querySelectorAll('.eiti-rel-bar,.eiti-foot').forEach" in HTML
+    assert ".eiti-rel-panel[hidden] { display: none !important; }" in HTML
