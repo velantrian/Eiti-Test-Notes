@@ -130,3 +130,10 @@ test('archive export is byte-identical when nothing changed (except the `exporte
   // KNOWN GAP: `kb` reads the legacy localStorage key eiti_kb_v3 (KB lives in IndexedDB `kb` → exported separately as idbKB)
   expect(d.kb).toBe('[]');
 });
+
+test('L3 facts said before the DB is open are queued and written once it opens (v14.15.0)', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => { window.__db = window.eitiDb; window.eitiDb = null; window.eitiL3AutoExtract('меня зовут Аня'); window.eitiDb = window.__db; window.eitiL3FlushPending(); });
+  await settle(page);
+  expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
+});
