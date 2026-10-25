@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.12.0"; // v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.13.0"; // v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4163,6 +4163,9 @@
         window.EITI_I18N.addDict('de', {"Закрыть": "Schließen", "Настройки": "Einstellungen", "🤖 Модель чата": "🤖 Chat-Modell", "нужен ключ": "Schlüssel nötig", "🎤 Офлайн-распознавание недоступно — включите офлайн-ввод голосом в Gboard (клавиатура → 🎤)": "🎤 Offline-Erkennung nicht verfügbar – aktiviere die Offline-Spracheingabe in Gboard (Tastatur → 🎤)", "🎤 Загружаю языковой пакет для офлайн-распознавания…": "🎤 Sprachpaket für die Offline-Erkennung wird geladen…", "Голосовой ввод": "Spracheingabe", "Остановить запись": "Aufnahme stoppen", "изменить": "ändern", "🗣️ Голосовой ассистент…": "🗣️ Sprachassistent…", "🎤 Голосовой ввод не поддерживается в этом браузере": "🎤 Spracheingabe wird in diesem Browser nicht unterstützt", "🎤 Нет доступа к микрофону — разрешите его в настройках браузера": "🎤 Kein Mikrofonzugriff – bitte in den Browser-Einstellungen erlauben", "🎤 Речь не распознана — попробуйте ещё раз": "🎤 Keine Sprache erkannt – bitte erneut versuchen", "🎤 Голосовой ввод требует интернет": "🎤 Spracheingabe braucht eine Internetverbindung", "🎤 Микрофон не найден": "🎤 Kein Mikrofon gefunden", "🎤 Этот язык не поддерживается для голосового ввода": "🎤 Diese Sprache wird für die Spracheingabe nicht unterstützt", "🎤 Не удалось начать запись": "🎤 Aufnahme konnte nicht gestartet werden", "Голосовой ассистент": "Sprachassistent", "Добавить на главный экран": "Zum Home-Bildschirm", "Хороший ответ": "Gute Antwort", "Плохой ответ": "Schlechte Antwort", "Озвучить / Пауза / Продолжить": "Vorlesen / Pause / Fortsetzen", "Скопировать": "Kopieren", "Функции чата": "Chat-Funktionen", "Добавить музыку": "Musik hinzufügen", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Zufällige Reihenfolge", "Повтор": "Wiederholen", "🌐 Язык / Language": "🌐 Sprache", "Лёгкий reasoning": "Leichtes Reasoning", "Макс. reasoning": "Max. Reasoning", "актуальный Flash": "aktuelles Flash", "флагман · reasoning": "Flaggschiff · Reasoning", "баланс · замена 3.5": "ausgewogen · ersetzt 3.5", "быстро · дёшево": "schnell · günstig", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: aktuelles Flash · schnell und stark", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "An — denkend · Aus — schneller Modus für alle Gemini", "✓ Подтвердить ключ Qwen": "✓ Qwen-Schlüssel bestätigen", "🔌 Проверить статус": "🔌 Status prüfen", "DashScope · ключ выше · 235B": "DashScope · Schlüssel oben · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "An — Standardmodus des Modells · Aus — Reasoning wird per Anfrage abgeschaltet", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Eigene Live-Liste kostenloser OpenRouter-Endpunkte. Erfordert einen OpenRouter-API-Schlüssel; kostenlose Endpunkte kosten $0 pro Token, es gelten aber Limits und Verfügbarkeit von OpenRouter.", "Выбрать бесплатную модель…": "Kostenloses Modell wählen…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Aus — Schaltfläche ausgeblendet, keine Anfragen. Standardmäßig aus: Notizen gehen nie ohne ausdrückliche Zustimmung an ein LLM.", "Подсветка правок ИИ": "KI-Änderungen hervorheben", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "Nach Ask AI Einfügungen und durchgestrichene Löschungen zeigen. Wird mit der Taste «Аб» oder beim manuellen Tippen ausgeschaltet.", "Цвета подсветки": "Hervorhebungsfarben", "AI Docs в файлах": "AI Docs in Dateien", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "Unten in einer geöffneten Datei: 🔍 Suche, ✨ Ask AI, ✎ Bearbeiten. Die KI sieht die ganze Datei und merkt sich die Fragen des Fensters; Änderungen werden hervorgehoben, ↶↷ macht sie rückgängig.", "🔗 Проактивные рекомендации": "🔗 Proaktive Empfehlungen", "При сохранении файла подсказывать связь с заметками и памятью": "Beim Speichern einer Datei Verbindungen zu Notizen und Gedächtnis vorschlagen", "🌙 Стиль офлайн-ответов": "🌙 Stil der Offline-Antworten", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Ohne Netz, ohne Schlüssel oder bei KI-Ausfall antwortet EITI offline: Dialoge, Witze, Sprichwörter, Rätsel, Märchen und Sagen («Gute-Nacht-Geschichte», «weiter», «wer ist Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:Status|Titel|...]", "🎓 Обучение EITI": "🎓 EITI-Lernen", "👍 Что я понял о твоих предпочтениях": "👍 Was ich über deine Vorlieben gelernt habe", "Оценок:": "Bewertungen:", "· доля 👍:": "· 👍-Anteil:", "Любимая модель:": "Lieblingsmodell:", "нужно ≥3 оценок": "mind. 3 Bewertungen nötig", "Длина ответа:": "Antwortlänge:", "пока неясно": "noch unklar", "🎰 Адаптивный поиск памяти": "🎰 Adaptive Gedächtnissuche", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Passt Schwelle und Anzahl der Fakten an deine 👍/👎 an (Thompson Sampling).", "Пресет": "Voreinstellung", "порог/факты": "Schwelle/Fakten", "оценка": "Wertung", "Широко": "Breit", "Фокус": "Fokus", "Строго": "Streng", "↺ Сбросить обучение": "↺ Lernen zurücksetzen", "🧠 MOSC: уточнять намерение": "🧠 MOSC: Absicht klären", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "Eine Karte «Du möchtest wohl…» unter der Nachricht. Blockiert das Senden nicht.", "🗂 Память фактов": "🗂 Faktengedächtnis", "Активных:": "Aktiv:", "/ 200 · в архиве:": "/ 200 · archiviert:", "🧹 Сжать память сейчас": "🧹 Gedächtnis jetzt verdichten", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Änderungen durch KI (MOSC / FL / PKG)", "Пока нет изменений.": "Noch keine Änderungen.", "📈 Метрики (только на устройстве)": "📈 Metriken (nur auf dem Gerät)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Bewerte Antworten mit 👍/👎 — hier erscheint dann die Statistik.", "🎙️ Голос:": "🎙️ Stimme:", "🔊 Голос:": "🔊 Stimme:", "🚫 Grok поиск отключён": "🚫 Grok-Suche deaktiviert", "Провайдер AI Voice": "AI-Voice-Anbieter", "Модель Grok": "Grok-Modell", "Голос Grok": "Grok-Stimme", "Цвет добавленного текста": "Farbe des eingefügten Texts", "Цвет удалённого текста": "Farbe des gelöschten Texts", "Удалить": "Löschen", "Редактировать": "Bearbeiten", "Озвучить": "Vorlesen", "Копировать": "Kopieren"});
         window.EITI_I18N.addDict('en', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice is the default; the others need their own key or proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — key below", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Needs your own proxy: it adds the Api-Key header (Yandex Cloud key) and forwards the Realtime protocol.", "Адрес прокси Qwen": "Qwen proxy URL", "Адрес прокси Яндекс": "Yandex proxy URL", "Активен: 🌀 Mistral AI": "Active: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI Realtime voice", "Голос браузера": "Browser voice", "Ключ Mistral AI": "Mistral AI key", "Ключ OpenAI для голосового ассистента": "OpenAI key for the voice assistant", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Uses the Mistral chat key (below). Phrase → Voxtral → Mistral chat model → speech. Not instant like a live call: the reply comes after a pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Key: platform.openai.com · WebRTC straight from the browser, the key goes only to OpenAI", "Модель Mistral": "Mistral model", "Модель OpenAI Realtime": "OpenAI Realtime model", "Модель Qwen Omni": "Qwen Omni model", "Нет Mistral API ключа": "No Mistral API key", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Needs your own proxy: a browser cannot pass the DashScope key to a WebSocket. The proxy adds the Authorization header and forwards the Realtime protocol.", "Озвучка Mistral": "Mistral speech", "готово": "ready", "ключ отклонён": "key rejected", "нет временного ключа": "no ephemeral key", "нет прокси": "no proxy set", "нужен ключ": "key needed", "нужен прокси": "proxy needed", "прокси недоступен": "proxy unreachable", "слушаю…": "listening…", "соединение закрыто": "connection closed", "соединение прервано": "connection lost", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "set the proxy URL (wss://) in Settings → AI → Voice assistant", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ The proxy URL must start with wss://", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Set a Mistral API key in Settings → 🌀 Mistral AI", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ No Mistral key — Settings → AI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ No OpenAI key — Settings → AI → Voice assistant", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC is not available in this browser", "❌ Запись звука недоступна в этом браузере": "❌ Audio recording is not available in this browser", "🌀 Mistral AI активирован": "🌀 Mistral AI activated"}); // v14.12.0
         window.EITI_I18N.addDict('de', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice ist Standard; die anderen brauchen eigenen Schlüssel oder Proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — Schlüssel unten", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Eigener Proxy nötig: er setzt den Api-Key-Header (Yandex-Cloud-Schlüssel) und leitet das Realtime-Protokoll weiter.", "Адрес прокси Qwen": "Qwen-Proxy-URL", "Адрес прокси Яндекс": "Yandex-Proxy-URL", "Активен: 🌀 Mistral AI": "Aktiv: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI-Realtime-Stimme", "Голос браузера": "Browser-Stimme", "Ключ Mistral AI": "Mistral-AI-Schlüssel", "Ключ OpenAI для голосового ассистента": "OpenAI-Schlüssel für den Sprachassistenten", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Nutzt den Mistral-Chat-Schlüssel (unten). Satz → Voxtral → Mistral-Chatmodell → Sprachausgabe. Nicht sofort wie ein Live-Gespräch: Antwort nach einer Pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Schlüssel: platform.openai.com · WebRTC direkt im Browser, der Schlüssel geht nur an OpenAI", "Модель Mistral": "Mistral-Modell", "Модель OpenAI Realtime": "OpenAI-Realtime-Modell", "Модель Qwen Omni": "Qwen-Omni-Modell", "Нет Mistral API ключа": "Kein Mistral-API-Schlüssel", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Eigener Proxy nötig: Ein Browser kann den DashScope-Schlüssel nicht an einen WebSocket übergeben. Der Proxy setzt den Authorization-Header und leitet das Realtime-Protokoll weiter.", "Озвучка Mistral": "Mistral-Sprachausgabe", "готово": "bereit", "ключ отклонён": "Schlüssel abgelehnt", "нет временного ключа": "kein temporärer Schlüssel", "нет прокси": "kein Proxy", "нужен ключ": "Schlüssel nötig", "нужен прокси": "Proxy nötig", "прокси недоступен": "Proxy nicht erreichbar", "слушаю…": "höre zu…", "соединение закрыто": "Verbindung geschlossen", "соединение прервано": "Verbindung unterbrochen", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "Proxy-URL (wss://) in Einstellungen → KI → Sprachassistent eintragen", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ Die Proxy-URL muss mit wss:// beginnen", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Mistral-API-Schlüssel in Einstellungen → 🌀 Mistral AI eintragen", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ Kein Mistral-Schlüssel — Einstellungen → KI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ Kein OpenAI-Schlüssel — Einstellungen → KI → Sprachassistent", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC ist in diesem Browser nicht verfügbar", "❌ Запись звука недоступна в этом браузере": "❌ Audioaufnahme ist in diesem Browser nicht verfügbar", "🌀 Mistral AI активирован": "🌀 Mistral AI aktiviert"}); // v14.12.0
+        // v14.13.0: Похожие / Рассуждение
+        window.EITI_I18N.addDict('en', {"🔗 Похожие и рассуждение": "🔗 Related and reasoning", "Показывать похожие": "Show related", "Подробное рассуждение": "Detailed reasoning", "Режим рассуждения": "Reasoning mode", "Только офлайн": "Offline only", "С ИИ (если включён и есть сеть)": "With AI (if enabled and online)", "Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, проверенные факты — отдельно. Заметки уходят ИИ только при включённом Notes AI.": "“Related” and “Reasoning” buttons appear under knowledge-base answers, tales and notes. Offline, only the item's own data is shown. With AI, the explanation comes in a separate block, apart from the verified facts. Notes are sent to the AI only when Notes AI is on."});
+        window.EITI_I18N.addDict('de', {"🔗 Похожие и рассуждение": "🔗 Ähnliche und Begründung", "Показывать похожие": "Ähnliche anzeigen", "Подробное рассуждение": "Ausführliche Begründung", "Режим рассуждения": "Begründungsmodus", "Только офлайн": "Nur offline", "С ИИ (если включён и есть сеть)": "Mit KI (wenn aktiviert und online)", "Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, проверенные факты — отдельно. Заметки уходят ИИ только при включённом Notes AI.": "Die Schaltflächen „Ähnliche“ und „Begründung“ erscheinen unter Antworten der Wissensdatenbank, Märchen und Notizen. Offline werden nur die Daten des Eintrags selbst gezeigt. Mit KI steht die Erklärung in einem eigenen Block, getrennt von den geprüften Fakten. Notizen gehen nur bei aktiviertem Notes AI an die KI."});
 
         // ─────────────────────────────────────────────────────────────────
         // AI reply language — независимо от UI-локали.
@@ -4321,6 +4324,7 @@
     <script src="./local/eiti_dstate.js" defer></script>
     <script src="./local/eiti_typo.js" defer></script>
     <script src="./local/eiti_journal.js" defer></script>
+    <script src="./local/eiti_related.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -9161,6 +9165,20 @@
                             <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;">Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).</div>
                         </div>
                     </div>
+                    <!-- v14.13.0: ПОХОЖИЕ И РАССУЖДЕНИЕ (local/eiti_related.js) -->
+                    <div class="settings-group" id="eiti-rel-settings">
+                        <div class="settings-title" data-i18n="🔗 Похожие и рассуждение">🔗 Похожие и рассуждение</div>
+                        <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
+                            <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-rel-show" checked onchange="eitiRelSet('related', this.checked)"><span data-i18n="Показывать похожие">Показывать похожие</span></label>
+                            <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-rel-why" checked onchange="eitiRelSet('reasoning', this.checked)"><span data-i18n="Подробное рассуждение">Подробное рассуждение</span></label>
+                            <label for="eiti-rel-mode" style="font-size:13px;font-weight:600;" data-i18n="Режим рассуждения">Режим рассуждения</label>
+                            <select id="eiti-rel-mode" onchange="eitiRelSet('mode', this.value)" style="padding:10px;border-radius:12px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;">
+                                <option value="offline" data-i18n="Только офлайн">Только офлайн</option>
+                                <option value="ai" data-i18n="С ИИ (если включён и есть сеть)">С ИИ (если включён и есть сеть)</option>
+                            </select>
+                            <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;" data-i18n="Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, проверенные факты — отдельно. Заметки уходят ИИ только при включённом Notes AI.">Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, проверенные факты — отдельно. Заметки уходят ИИ только при включённом Notes AI.</div>
+                        </div>
+                    </div>
                     <!-- v9: KB — БАЗА ЗНАНИЙ -->
                     <div class="settings-group">
                         <div class="settings-title" data-i18n="🧠 База знаний KB">🧠 База знаний KB</div>
@@ -11478,6 +11496,7 @@
                             <span id="noteEditorDateBadge" class="note-date-badge"></span>
                         </div>
                         <!-- noteEditorInfo убран — дата показывается в строке тегов (noteEditorDateBadge) -->
+                        <div id="noteRelRow" class="eiti-rel-note-row" style="padding:0 14px;"></div><!-- v14.13.0: Похожие / Рассуждение -->
                         <div class="notes-ai-find" id="notesAiFindRow">
                             <input id="notesAiFindInput" data-i18n-placeholder="Найти в заметке…" placeholder="Найти в заметке…" autocomplete="off">
                             <button type="button" id="notesAiFindGo" style="padding:6px 10px;border-radius:10px;border:1px solid var(--border-color);background:var(--panel-bg);color:var(--text-color);font-size:12px;cursor:pointer;">Найти</button>
@@ -18098,6 +18117,8 @@
             t = t.replace(/⟦EITIFILE:([^⟧]+)⟧/g, function(_m, name){ return '\n' + _stashAiFile(name) + '\n'; });
             // v14.2.0: ссылки «открыть заметку / файл» из локальных ответов EITI Local
             if (/⟦EITI(NOTE|UFILE):/.test(t)) { var _tl = t.replace(/⟦[^⟧]*⟧/g, ''); window._eitiLocalChipLang = /[а-яё]/i.test(_tl) ? 'ru' : (typeof window.eitiOfflineLang === 'function' ? window.eitiOfflineLang(_tl) : 'en'); }
+            // v14.13.0: «Похожие / Рассуждение» под ответом (KB, сказка, заметка) — кнопки EitiRelHost
+            t = t.replace(/⟦EITIREL:(kb|tale|note):([\w.-]+)(?:@(ru|en|de))?⟧/g, function(_m, k, id, l){ var ph = '\n\uE000' + _aiFileChips.length + '\uE000\n'; _aiFileChips.push(window.EitiRelHost ? EitiRelHost.bar(k, id, l || 'ru') : ''); return ph; });
             t = t.replace(/⟦EITINOTE:([\w.:-]+)⟧/g, function(_m, id){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalNoteChip(id)); return ph; });
             t = t.replace(/⟦EITIUFILE:([^⟧]+)⟧/g, function(_m, nm){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalFileChip(nm)); return ph; });
             // Escape HTML first
@@ -32193,6 +32214,9 @@ window.eitiLLMClearAll = async function() {
                     if (!r) return null;
                     if (opts.minScore && !(r.score >= opts.minScore || r.fu)) return null;
                     var t = r.text;
+                    // v14.13.0: ответ-сказка → кнопки «Похожие / Рассуждение» (id = группа.id из состояния движка)
+                    var _tl = eng && eng.state && eng.state.tale;
+                    if (window.EitiRelHost && _tl && _tl.x && _tl.x.g && (r.sets === 'tale' || String(t).indexOf(_tl.x.t) >= 0)) t += EitiRelHost.marker('tale', _tl.x.g + '.' + _tl.x.id, lang);
                     if (opts.foot && !_footShown) { _footShown = true; t += window.eitiOfflineStr('foot', /[а-яё]/i.test(t) ? 'ru' : lang); }
                     return t;
                 }).catch(function(e) { console.warn('[EITI offline]', e && e.message); return null; });
@@ -32216,7 +32240,7 @@ window.eitiLLMClearAll = async function() {
         var EitiKBHost = (function() {
             // v14.2.0: шардированная библиотека. index.json — маленький манифест; kb/idx/<раздел>.json — поисковые шарды
             // (грузятся по очереди и индексируются порциями в простое); kb/packs/… — полные ответы, по требованию.
-            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, stats = { init: 0, shards: 0, entries: 0, packs: {}, last: null };
+            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, LOC = {}, stats = { init: 0, shards: 0, entries: 0, packs: {}, last: null };
             function getJson(f) { return fetch(BASE + f).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + f); return r.json(); }); }
             function loadScript() {
                 if (window.EitiKBLib) return Promise.resolve();
@@ -32235,6 +32259,7 @@ window.eitiLLMClearAll = async function() {
                             var dom = order[i++];
                             getJson(d.domains[dom].shard).then(function(sh) {
                                 var rows = window.EitiKBLib.shardRows(sh);
+                                for (var ri = 0; ri < rows.length; ri++) LOC[rows[ri].i] = [rows[ri].d, rows[ri].p]; // v14.13.0: id → пакет (для «Похожих»)
                                 return window.EitiKBLib.addAsync(e, rows, { step: 150, yieldFn: idle });
                             }).then(function() { stats.shards++; stats.entries = e.size; idle(next); }, rej);
                         })();
@@ -32260,7 +32285,7 @@ window.eitiLLMClearAll = async function() {
                     return hits.map(function(h) {
                         var p = PK[h.d + '#' + (h.p || 0)], e = p && p.entries[h.id]; if (!e) return null;
                         var m = idx.domains[h.d] || {};
-                        return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', score: h.score, cov: h.cov, prec: h.prec };
+                        return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', r: e.r || null, gen: !!m.gen, score: h.score, cov: h.cov, prec: h.prec };
                     }).filter(Boolean);
                 });
             }
@@ -32281,6 +32306,11 @@ window.eitiLLMClearAll = async function() {
                     return hydrate(h);
                 }).catch(function() { return []; });
             }
+            // v14.13.0: entry(id) → запись по id (для «Похожих» и «Рассуждения»), null — если нет
+            function entry(id) {
+                return init().then(function() { var l = LOC[id]; if (!l) return null; return hydrate([{ id: id, d: l[0], p: l[1] }]).then(function(r) { return r[0] || null; }); })
+                    .catch(function() { return null; });
+            }
             function format(f, lang) {
                 var en = lang === 'en' && f.en;
                 return '<span style="font-size:11px;opacity:0.5;">🧠 KB · ' + (en ? f.title_en : f.title) + '</span><br>' + (en ? f.en : f.a);
@@ -32289,7 +32319,7 @@ window.eitiLLMClearAll = async function() {
                 var go = function() { init().catch(function() {}); };
                 if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 10000 }); else setTimeout(go, 3000);
             }
-            return { init: init, answer: answer, facts: facts, format: format, prewarm: prewarm, stats: stats, pack: pack,
+            return { init: init, answer: answer, facts: facts, entry: entry, format: format, prewarm: prewarm, stats: stats, pack: pack,
                      ready: function() { return !!eng; }, count: function() { return idx ? idx.count : 0; }, index: function() { return idx; }, engine: function() { return eng; } };
         })();
         window.EitiKBHost = EitiKBHost;
@@ -32311,12 +32341,155 @@ window.eitiLLMClearAll = async function() {
                     var t = '🧠 **KB · ' + (en ? f.title_en : f.title) + '**\n\n' + (en ? f.en : f.a);
                     if (lang === 'de') t += window.eitiOfflineStr('kbEnNote', 'de');
                     if (opts.foot && !footShown) { footShown = true; t += window.eitiOfflineStr('kbFoot', lang); }
+                    if (window.EitiRelHost) t += EitiRelHost.marker('kb', f.id, lang); // v14.13.0: «Похожие / Рассуждение»
                     return t;
                 }, function() { return orig(text, opts); });
             };
             EitiOffline._kbWrapped = true;
         })();
         window.addEventListener('load', function() { setTimeout(function() { EitiKBHost.prewarm(); }, 6000); });
+        // ── v14.13.0: «Похожие / Related / Ähnliche» + «Рассуждение / Reasoning / Begründung» (local/eiti_related.js) ──
+        // Кнопки под ответами KB, офлайн-сказками и заметками (в т.ч. Notes Ask AI). Похожие KB/сказок — предвычислены при сборке
+        // (поле «r» в kb/packs, «rel» в offline/packs/tales_*), похожие заметки — TF-IDF на устройстве, без сети.
+        // Рассуждение: офлайн-карточка только из данных записи; режим «с ИИ» — тот же AI-провайдер (_eitiUniversalAICall),
+        // ответ ИИ опирается на карточку и показывается ОТДЕЛЬНО от проверенных фактов. Для заметок ИИ — только при включённом Notes AI.
+        var EitiRelHost = (function() {
+            var TALES = {}, TALEP = {};
+            function R() { return window.EitiRelated || null; }
+            function st() { return R() ? R().settings(localStorage) : { related: false, reasoning: false, mode: 'offline' }; }
+            function uiLang() { var l = typeof window.eitiGetLocale === 'function' ? window.eitiGetLocale() : 'ru'; return l === 'en' || l === 'de' ? l : 'ru'; }
+            function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+            function md(t) { return typeof eitiRenderMarkdown === 'function' ? eitiRenderMarkdown(t) : esc(t).replace(/\n/g, '<br>'); }
+            function marker(kind, id, lang) { return R() ? R().marker(kind, id, st(), lang) : ''; }
+            var BTN = 'display:inline-flex;align-items:center;gap:4px;padding:3px 10px;margin:2px 4px 2px 0;border-radius:12px;font-size:12px;cursor:pointer;border:1px solid var(--border-color);background:rgba(127,127,127,0.12);color:inherit;';
+            var CHIP = 'display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 4px 2px 0;border-radius:10px;font-size:12px;cursor:pointer;background:rgba(127,127,127,0.15);';
+            // bar(kind, id, lang) → HTML: две кнопки + скрытая панель (span-блоки: бар живёт внутри <p> из markdown)
+            function bar(kind, id, lang) {
+                var s = st(), r = R(); if (!r || !(s.related || s.reasoning)) return '';
+                lang = lang || uiLang();
+                var h = '<span class="eiti-rel-bar" data-k="' + esc(kind) + '" data-id="' + esc(id) + '" data-l="' + esc(lang) + '" style="display:block;margin-top:8px;">';
+                if (s.related) h += '<span class="eiti-rel-btn" role="button" tabindex="0" data-w="rel" onclick="EitiRelHost.toggle(this,\'rel\')" style="' + BTN + '">🔗 ' + esc(r.S('related', lang)) + '</span>';
+                if (s.reasoning) h += '<span class="eiti-rel-btn" role="button" tabindex="0" data-w="why" onclick="EitiRelHost.toggle(this,\'why\')" style="' + BTN + '">🧠 ' + esc(r.S('reasoning', lang)) + '</span>';
+                return h + '<span class="eiti-rel-panel" hidden style="display:block;margin-top:6px;padding:8px 10px;border-radius:12px;background:rgba(127,127,127,0.08);font-size:13px;line-height:1.5;"></span></span>';
+            }
+            // ── данные ──
+            function talePack(g) {
+                if (TALES[g]) return Promise.resolve(TALES[g]);
+                if (!TALEP[g]) TALEP[g] = fetch('offline/packs/tales_' + g + '.json').then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                    .then(function(p) { var m = {}; (p.tales || []).forEach(function(x) { m[x.id] = x; }); TALES[g] = m; return m; }, function(e) { delete TALEP[g]; throw e; });
+                return TALEP[g];
+            }
+            function tale(gid) { var i = String(gid).indexOf('.'); if (i < 0) return Promise.resolve(null); var g = gid.slice(0, i), id = gid.slice(i + 1); return talePack(g).then(function(m) { return m[id] || null; }, function() { return null; }); }
+            function curNote(id) {
+                var n = null; try { n = (typeof notesLoad === 'function' ? notesLoad() : []).find(function(x) { return x && x.id === id; }) || null; } catch (e) {}
+                if (typeof notesCurrentId !== 'undefined' && id === notesCurrentId) {   // открытая заметка — с несохранённым текстом
+                    var t = document.getElementById('noteEditorTitle'), b = document.getElementById('noteEditorBody'), g = document.getElementById('noteEditorTags');
+                    n = Object.assign({}, n || { id: id }, { title: t ? t.value : (n && n.title), body: b ? b.value : (n && n.body), tags: g ? String(g.value || '').split(',').map(function(s) { return s.trim(); }).filter(Boolean) : (n && n.tags) });
+                }
+                return n;
+            }
+            function item(kind, id) {
+                if (kind === 'kb') return window.EitiKBHost && EitiKBHost.entry ? EitiKBHost.entry(id) : Promise.resolve(null);
+                if (kind === 'tale') return tale(id);
+                return Promise.resolve(curNote(id));
+            }
+            function kbHead(e, lang) { var t = lang !== 'ru' && e.en ? e.en : e.a; return String(t || '').split(' — ')[0].split('. ')[0].slice(0, 60) || (e.q && e.q[0]) || e.id; }
+            function chip(kind, id, lang, label, icon) {
+                return '<span class="msg-file-chip eiti-rel-chip" role="button" tabindex="0" data-k="' + esc(kind) + '" data-id="' + esc(id) + '" data-l="' + esc(lang) + '"'
+                    + ' onclick="EitiRelHost.open(this)" style="' + CHIP + '">' + icon + ' ' + esc(String(label).length > 48 ? String(label).slice(0, 47) + '…' : label) + '</span>';
+            }
+            // related(kind, id, lang) → Promise<HTML с чипами>
+            function related(kind, id, lang) {
+                var r = R();
+                return item(kind, id).then(function(x) {
+                    if (!x) return [];
+                    if (kind === 'kb') {
+                        var ids = r.kbRelatedIds(id, x, (EitiKBHost.index() || {}).domains);
+                        return Promise.all(ids.map(function(i) { return EitiKBHost.entry(i); })).then(function(es) {
+                            return es.filter(Boolean).map(function(e) { return chip('kb', e.id, lang, kbHead(e, lang), '🧠'); });
+                        });
+                    }
+                    if (kind === 'tale') {
+                        return Promise.all((x.rel || []).map(function(s) { return tale(s.replace(':', '.')).then(function(t) { return t ? chip('tale', s.replace(':', '.'), lang, lang !== 'ru' && t.en && t.en.t ? t.en.t : t.t, '📖') : ''; }); }));
+                    }
+                    var out = r.relatedNotes(x, typeof notesLoad === 'function' ? notesLoad() : [], 6).map(function(n) { return chip('note', n.id, lang, n.title || '…', '📝'); });
+                    if (!window.EitiKBHost) return out;
+                    var q = String((x.title || '') + ' ' + (x.body || '').slice(0, 200));
+                    return EitiKBHost.facts(q, 3).then(function(fs) { return out.concat((fs || []).map(function(f) { return chip('kb', f.id, lang, kbHead(f, lang), '🧠'); })); }, function() { return out; });
+                }).then(function(chips) {
+                    chips = (chips || []).filter(Boolean);
+                    return chips.length ? '<span style="display:block;">' + chips.join('') + '</span>' : '<span style="opacity:0.6;">' + esc(r.S('none', lang)) + '</span>';
+                });
+            }
+            function card(kind, x, lang) {
+                var r = R();
+                if (kind === 'kb') return Promise.resolve(r.kbCard(x, lang));
+                if (kind === 'tale') return Promise.resolve(r.taleCard(x, lang));
+                if (!window.EitiKBHost) return Promise.resolve(r.noteCard(x, lang, []));
+                return EitiKBHost.facts(String((x.title || '') + ' ' + (x.body || '').slice(0, 200)), 3).then(function(fs) { return r.noteCard(x, lang, fs); }, function() { return r.noteCard(x, lang, []); });
+            }
+            function aiAllowed(kind) {
+                if (st().mode !== 'ai' || typeof _eitiUniversalAICall !== 'function') return false;
+                if (typeof navigator !== 'undefined' && navigator.onLine === false) return false;
+                if (kind === 'note' && !(typeof eitiNotesAIIsEnabled === 'function' && eitiNotesAIIsEnabled())) return false;   // заметки — только с согласия (Notes AI)
+                return true;
+            }
+            // reasoning(kind, id, lang, panel) — офлайн-карточка; режим «с ИИ» дописывает отдельный блок объяснения
+            function reasoning(kind, id, lang, panel) {
+                var r = R();
+                return item(kind, id).then(function(x) {
+                    if (!x) return '<span style="opacity:0.6;">' + esc(r.S('none', lang)) + '</span>';
+                    return card(kind, x, lang).then(function(c) {
+                        if (!aiAllowed(kind)) return md(c) + '<span style="display:block;font-size:11px;opacity:0.5;margin-top:4px;">' + esc(r.S('offlineOnly', lang)) + '</span>';
+                        if (panel) panel.innerHTML = md(r.combine(c, '…', lang));
+                        var p = r.aiPrompt(c, lang);
+                        return Promise.race([_eitiUniversalAICall(p.user, p.system, 900, false, {}), new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 45000); })])
+                            .then(function(t) { return md(r.combine(c, String(t || '').trim(), lang)); },
+                                  function() { return md(c) + '<span style="display:block;font-size:11px;opacity:0.6;margin-top:4px;">' + esc(r.S('aiFail', lang)) + '</span>'; });
+                    });
+                }).catch(function() { return '<span style="opacity:0.6;">' + esc(r.S('none', lang)) + '</span>'; });
+            }
+            function toggle(btn, what) {
+                var b = btn && btn.closest ? btn.closest('.eiti-rel-bar') : null; if (!b || !R()) return;
+                var panel = b.querySelector('.eiti-rel-panel'), kind = b.getAttribute('data-k'), id = b.getAttribute('data-id'), lang = b.getAttribute('data-l') || uiLang();
+                if (!panel) return;
+                if (!panel.hidden && panel.getAttribute('data-w') === what) { panel.hidden = true; panel.removeAttribute('data-w'); return; }
+                panel.hidden = false; panel.setAttribute('data-w', what); panel.innerHTML = '…';
+                (what === 'rel' ? related(kind, id, lang) : reasoning(kind, id, lang, panel)).then(function(h) { if (panel.getAttribute('data-w') === what) panel.innerHTML = h; });
+            }
+            // open(chip): заметка — открыть в редакторе; KB/сказка — карточка + свои «похожие» прямо в панели
+            function open(el) {
+                var kind = el.getAttribute('data-k'), id = el.getAttribute('data-id'), lang = el.getAttribute('data-l') || uiLang();
+                if (kind === 'note') { if (typeof eitiOpenNoteById === 'function') eitiOpenNoteById(id); return; }
+                var panel = el.closest ? el.closest('.eiti-rel-panel') : null; if (!panel) return;
+                panel.innerHTML = '…';
+                item(kind, id).then(function(x) {
+                    if (!x) { panel.innerHTML = esc(R().S('none', lang)); return; }
+                    return card(kind, x, lang).then(function(c) { panel.innerHTML = md(c) + bar(kind, id, lang); });
+                });
+            }
+            // строка кнопок в редакторе заметки (без ИИ работает офлайн-карточка и локальные похожие)
+            function noteRow() {
+                var row = document.getElementById('noteRelRow'); if (!row) return;
+                var id = typeof notesCurrentId !== 'undefined' ? notesCurrentId : null;
+                row.innerHTML = id ? bar('note', id, uiLang()) : '';
+            }
+            return { marker: marker, bar: bar, toggle: toggle, open: open, related: related, reasoning: reasoning, noteRow: noteRow, settings: st, item: item };
+        })();
+        window.EitiRelHost = EitiRelHost;
+        // v14.13.0: настройки «Похожие / Рассуждение»
+        window.eitiRelSet = function(name, value) {
+            if (!window.EitiRelated) return null;
+            var r = EitiRelated.setSetting(localStorage, name, value);
+            if (window.EitiRelHost) EitiRelHost.noteRow();
+            return r;
+        };
+        window.eitiRelSyncSettings = function() {
+            if (!window.EitiRelated) return;
+            var s = EitiRelated.settings(localStorage), a = document.getElementById('eiti-rel-show'), b = document.getElementById('eiti-rel-why'), m = document.getElementById('eiti-rel-mode');
+            if (a) a.checked = s.related; if (b) b.checked = s.reasoning; if (m) m.value = s.mode;
+        };
+        window.addEventListener('load', function() { try { window.eitiRelSyncSettings(); } catch (e) {} });
 
         // ── v14.2.0: EITI LOCAL — «простой интеллект» по своим данным + калькулятор (local/eiti_local.js) ──
         // Синхронно и без сети: снимок заметок (notesLoad) и пользовательских файлов (getAiTextStore) → готовый ответ или null.
@@ -39440,6 +39613,7 @@ window.eitiLLMClearAll = async function() {
             var panel = document.getElementById('notesAiPanel');
             if (panel) panel.classList.remove('open');
             eitiNotesAIRenderThread();
+            if (window.EitiRelHost) EitiRelHost.noteRow(); // v14.13.0
         }
         function eitiNotesAIOnEditorClose() {
             var panel = document.getElementById('notesAiPanel');
@@ -39504,15 +39678,24 @@ window.eitiLLMClearAll = async function() {
                     ins.style.cssText = 'display:block;margin-top:6px;padding:4px 8px;border-radius:8px;border:1px solid var(--border-color);background:transparent;color:inherit;font-size:11px;cursor:pointer;';
                     ins.onclick = function() { eitiNotesAIInsertIntoNote(text); };
                     wrap.appendChild(ins);
+                    eitiNotesAIRelBar(wrap);
                 }
             }
             box.appendChild(wrap);
             box.scrollTop = box.scrollHeight;
             return wrap;
         }
+        // v14.13.0: под ответом Ask AI — «Похожие / Рассуждение» для открытой заметки
+        function eitiNotesAIRelBar(wrap) {
+            if (!wrap || !window.EitiRelHost || typeof notesCurrentId === 'undefined' || !notesCurrentId) return;
+            var h = EitiRelHost.bar('note', notesCurrentId);
+            if (!h) return;
+            var d = document.createElement('div'); d.innerHTML = h; if (d.firstChild) wrap.appendChild(d.firstChild);
+        }
         function eitiNotesAIInsertIntoNote(text) {
             var bodyEl = document.getElementById('noteEditorBody');
             if (!bodyEl) return;
+            if (window.EitiRelated) text = EitiRelated.strip(text); // v14.13.0: маркеры кнопок не попадают в заметку
             var cur = bodyEl.value || '';
             var next = cur ? (cur.replace(/\s+$/, '') + '\n\n' + text) : text;
             var undoExtra = (typeof eitiNotesAiRememberUndo === 'function') ? eitiNotesAiRememberUndo(cur, next) : null;
@@ -39582,6 +39765,7 @@ window.eitiLLMClearAll = async function() {
                     ins.style.cssText = 'display:block;margin-top:6px;padding:4px 8px;border-radius:8px;border:1px solid var(--border-color);background:transparent;color:inherit;font-size:11px;cursor:pointer;';
                     ins.onclick = function() { eitiNotesAIInsertIntoNote(out); };
                     live.appendChild(ins);
+                    eitiNotesAIRelBar(live);
                 }
                 var input = document.getElementById('notesAiInput');
                 if (input && document.activeElement === input) input.blur();
@@ -39592,7 +39776,7 @@ window.eitiLLMClearAll = async function() {
                     if (!t) throw err;
                     var out = t + window.eitiOfflineStr('notesFoot', window.eitiOfflineLang(msg)) + String(err && err.message || err).slice(0, 80) + ').</sub>';
                     _eitiNotesAIChats[key].push({ role: 'assistant', text: out });
-                    if (live) { live.innerHTML = (typeof eitiRenderMarkdown === 'function') ? eitiRenderMarkdown(out) : out; live.setAttribute('data-offline', '1'); }
+                    if (live) { live.innerHTML = (typeof eitiRenderMarkdown === 'function') ? eitiRenderMarkdown(out) : out; live.setAttribute('data-offline', '1'); eitiNotesAIRelBar(live); }
                 });
             }).catch(function(err) {
                 var errText = (err && err.message) ? String(err.message) : String(err);
