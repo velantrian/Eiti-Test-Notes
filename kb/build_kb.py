@@ -16,6 +16,7 @@ import glob, gzip, hashlib, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 PART = 400
+PACK_GZ_SOFT = 38000   # a domain whose packs would exceed this gets smaller parts (pp in the v3 shard)
 
 def norm(s):
     return re.sub(r'\s+', ' ', re.sub(r'[^a-zа-я0-9+#²³ ]+', ' ', s.lower().replace('ё', 'е'))).strip()
@@ -84,10 +85,14 @@ def build():
             if len(parts) > 2 and parts[2]: rec['en'] = parts[2]
             recs.append((eid, h[:n], rec))
         if not recs: continue
-        nparts = (len(recs) + PART - 1) // PART
+        part = PART
+        while part > 100 and any(gz(json.dumps({'v': 2, 'domain': dom, 'part': 0, 'entries': {e: r for e, _, r in recs[k:k + part]}}, ensure_ascii=False, separators=(',', ':')).encode()) > PACK_GZ_SOFT
+                                 for k in range(0, len(recs), part)):
+            part -= 50
+        nparts = (len(recs) + part - 1) // part
         pfiles, pgz, pbytes, shard, px = [], [], 0, [], {}
         for pi in range(nparts):
-            chunk = recs[pi * PART:(pi + 1) * PART]
+            chunk = recs[pi * part:(pi + 1) * part]
             f = 'packs/kb_%s.json' % dom if nparts == 1 else 'packs/kb_%s_%d.json' % (dom, pi)
             b = dump(os.path.join(HERE, f), {'v': 2, 'domain': dom, 'part': pi, 'entries': {e: r for e, _, r in chunk}})
             pfiles.append(f); pgz.append(gz(b)); pbytes += len(b)
@@ -97,7 +102,7 @@ def build():
                 else: shard.append([hh, '|'.join(r['q']), keys(r['a'], kn), pi])
         sf = 'idx/%s.json' % dom
         if gen:   # v3 compact: prefix table «кто такой », part implied by position (PART), keys without trigger words
-            sb = dump(os.path.join(HERE, sf), {'v': 3, 'd': dom, 'g': 1, 'pp': PART, 'px': [k for k, _ in sorted(px.items(), key=lambda x: x[1])], 'e': shard})
+            sb = dump(os.path.join(HERE, sf), {'v': 3, 'd': dom, 'g': 1, 'pp': part, 'px': [k for k, _ in sorted(px.items(), key=lambda x: x[1])], 'e': shard})
         else:
             sb = dump(os.path.join(HERE, sf), {'v': 2, 'd': dom, 'e': shard})
         domains[dom] = {'title': title[0].strip(), 'title_en': (title[1].strip() if len(title) > 1 else dom), 'gen': gen,
