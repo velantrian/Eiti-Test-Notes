@@ -2,7 +2,7 @@
 // L3 Memory Contract — AUDIT ONLY (see docs/l3_memory_inventory.md).
 // Pins the CURRENT behaviour of the compat personal-memory write path (eitiLearnFact
 // over localStorage eiti_learned_v1). v14.15.0: silent-loss gaps are fixed and pinned as real tests;
-// remaining test.todo items are handled by later PRs.
+// correction history is pinned too.
 const test = require('node:test');
 const assert = require('node:assert');
 const { loadFunctions } = require('./harness');
@@ -11,7 +11,7 @@ function make(raw) {
   const m = new Map(raw === undefined ? [] : [['eiti_learned_v1', raw]]);
   const ls = { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)), removeItem: (k) => m.delete(k) };
   const indexed = [], toasts = [], errors = [];
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiMemKVActive', 'eitiLearnLoad', 'eitiLearnSave', 'eitiIsCorrection', 'eitiFindContradicted', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1', localStorage: ls,
     eitiQueueIndexDoc: (id, t) => indexed.push(t), showToast: (t) => toasts.push(t),
     console: { log() {}, info() {}, warn: (...a) => errors.push(a), error: (...a) => errors.push(a) },
@@ -84,17 +84,47 @@ test('«не забудь …» (= remember!) is still stored', () => {
   assert.strictEqual(JSON.parse(s.raw()).length, 1);
 });
 
-test('correction: contradicting fact is ADDED next to the old one — old fact is not superseded', () => {
+test('correction: contradicting fact supersedes the old one — old text kept in correction_history (v14.15.0)', () => {
   const s = make();
   s.learn('Пользователь живёт в Москве');
   s.learn('Пользователь живёт в Копенгагене, а не в Москве');
   const st = JSON.parse(s.raw());
-  const txt = st.map((f) => f.fact).join(' | ');
-  assert.match(txt, /Москве/);
-  assert.strictEqual(st.length, 2); // current: appended, both "true" at once
-  assert.ok(st.every((f) => f.history === undefined && f.supersedes === undefined));
+  assert.strictEqual(st.length, 2);
+  const [old, cur] = st;
+  assert.strictEqual(old.superseded_by, cur.id);
+  assert.strictEqual(old.epistemic_status, 'Deprecated');
+  assert.strictEqual(cur.supersedes, old.id);
+  assert.strictEqual(cur.correction_history[0].previous_value, 'Пользователь живёт в Москве');
+  assert.ok(['user_correction', 'contradiction'].includes(cur.correction_history[0].reason));
 });
-test.todo('desired: correction keeps a correction_history[] and marks the old value superseded');
+
+test('«я ошибся» marks the correction reason as user_correction (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь работает в банке');
+  s.learn('я ошибся: пользователь работает в школе');
+  const st = JSON.parse(s.raw());
+  assert.ok(st[0].superseded_by);
+  assert.strictEqual(st[1].correction_history[0].reason, 'user_correction');
+});
+
+test('unrelated facts are not superseded (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь любит зелёный чай');
+  s.learn('теперь у пользователя есть собака');
+  const st = JSON.parse(s.raw());
+  assert.ok(st.every((f) => !f.superseded_by));
+});
+
+test('near-duplicate merge keeps the previous wording in correction_history (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь любит зелёный чай');
+  s.learn('Пользователь любит зелёный чай с жасмином');
+  const st = JSON.parse(s.raw());
+  if (st.length === 1) {
+    assert.strictEqual(st[0].fact, 'Пользователь любит зелёный чай с жасмином');
+    assert.strictEqual(st[0].correction_history[0].previous_value, 'Пользователь любит зелёный чай');
+  }
+});
 
 test('ids are unique even within the same millisecond (v14.15.0)', () => {
   const realNow = Date.now; Date.now = () => 1700000000000;

@@ -46,7 +46,7 @@ test('дневник: миграция старого блоба → запис�
       sol: out.items.find((r) => r.kind === 'solution'), goal: out.items.find((r) => r.kind === 'goal'), migrated: out.meta && out.meta.migrated,
       bak: !!(out.bak && out.bak.data), ls: localStorage.getItem('eiti_rne_v1'), v: eitiDb.version });
   }));
-  expect(st.v).toBe(17);
+  expect(st.v).toBe(18); // v14.15.0: + memkv
   expect(st.n).toBe(4); // дубль «Живу в Берлине» слит
   expect(st.ctx).toContain('Общее');
   expect(st.sol.parentId).toBe(st.goal.id);

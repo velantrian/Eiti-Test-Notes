@@ -52,17 +52,29 @@ test('localStorage at startup: clean profile — documented size and synchronous
   expect(r.startupReads.length).toBeGreaterThan(10);
 });
 
-test('localStorage at startup: heavy personal memory (200 learned facts + profile) — KNOWN GAP: lives in localStorage', async ({ page }, info) => {
+test('heavy personal memory (200 learned facts + 500 archived) migrates from localStorage to IndexedDB memkv (v14.15.0)', async ({ page }, info) => {
   const facts = Array.from({ length: 200 }, (_, i) => ({ fact: 'Факт о пользователе №' + i + ' — ' + 'x'.repeat(180), ts: 1700000000000 + i, salience: 1, id: 'fact_' + i }));
   const arch = Array.from({ length: 500 }, (_, i) => ({ fact: 'Архив ' + i + ' ' + 'y'.repeat(180), ts: i, salience: 1, id: 'a_' + i }));
   await boot(page, { eiti_learned_v1: JSON.stringify(facts), eiti_learned_archive_v1: JSON.stringify(arch), eiti_user_profile_v1: JSON.stringify({ name: 'Аня', city: 'Копенгаген', about: 'z'.repeat(4000) }) });
+  await page.waitForFunction(() => window._eitiMemKV && window._eitiMemKV.ready && !!localStorage.getItem('eiti_mem_migrated_v1'), null, { timeout: 30000 });
+  expect(await page.evaluate(() => eitiLearnGet().length)).toBe(200);
+  // first boot after migration: old keys are still kept as a safety net, and a backup exists in IDB `backups`
+  expect(await page.evaluate(() => !!localStorage.getItem('eiti_learned_v1'))).toBe(true);
+  const bk = await page.evaluate(() => new Promise((r) => { const q = window.eitiDb.transaction('backups').objectStore('backups').get('mem_ls_migration_v1'); q.onsuccess = () => r(q.result ? [q.result.learned.length, q.result.archive.length] : null); }));
+  expect(bk).toEqual([200, 500]);
+  // next successful boot: legacy keys removed, data served from IDB
+  await page.reload();
+  await page.waitForFunction(() => window._eitiMemKV && window._eitiMemKV.ready, null, { timeout: 30000 });
+  await page.waitForFunction(() => localStorage.getItem('eiti_learned_v1') === null && localStorage.getItem('eiti_learned_archive_v1') === null, null, { timeout: 10000 });
+  expect(await page.evaluate(() => eitiLearnGet().length)).toBe(200);
+  await page.evaluate(() => eitiLearnFact('совершенно новый факт про морских черепах'));
+  await page.waitForTimeout(300);
+  const after = await page.evaluate(() => new Promise((r) => { const q = window.eitiDb.transaction('memkv').objectStore('memkv').getAll(); q.onsuccess = () => r(q.result.map((x) => [x.k, x.v.length])); }));
+  expect(Object.fromEntries(after)).toEqual({ learned: 200, archive: 500 });
+  expect(await page.evaluate(() => localStorage.getItem('eiti_learned_v1'))).toBeNull();
   const r = await lsReport(page);
   await info.attach('ls_heavy.json', { body: JSON.stringify(r, null, 2), contentType: 'application/json' });
-  console.log('[L3-AUDIT] ls heavy', JSON.stringify({ total: r.total, top: r.top.slice(0, 5) }));
-  const big = r.top.filter((x) => x.bytes > 50 * 1024).map((x) => x.k);
-  // KNOWN GAP: learned facts + their archive are stored (and parsed) from localStorage, > 50 KB each
-  expect(big).toEqual(expect.arrayContaining(['eiti_learned_v1', 'eiti_learned_archive_v1']));
-  expect(r.total).toBeGreaterThan(100 * 1024);
+  expect(r.top.filter((x) => x.bytes > 50 * 1024).map((x) => x.k)).toEqual([]);
 });
 
 test('L3 auto-extract: «не запоминай» / variants — nothing is stored', async ({ page }) => {
@@ -86,16 +98,42 @@ test('L3 auto-extract: «я ещё не решил» — tentative goal is not s
   expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
 });
 
-test('L3 correction: a new value overwrites the old one by category — no correction history', async ({ page }) => {
+test('L3 correction: «меня зовут Аня» → «я ошибся, Оля» — Оля active, Аня in correction_history (v14.15.0)', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
+  await settle(page);
+  await page.evaluate(() => window.eitiL3AutoExtract('я ошибся, Оля'));
+  await settle(page);
+  const names = (await l3(page)).filter((f) => f.id === 'name');
+  expect(names).toHaveLength(1);
+  expect(names[0].value).toBe('Оля');
+  expect(names[0].correction_history).toHaveLength(1);
+  expect(names[0].correction_history[0]).toMatchObject({ previous_value: 'Аня', reason: 'user_correction' });
+  // AI context shows only the active value
+  const ctx = await page.evaluate(() => new Promise((r) => window.eitiL3BuildContext(r)));
+  expect(ctx).toContain('Оля');
+  expect(ctx).not.toContain('Аня');
+});
+
+test('L3 correction with category: «я ошибся, меня зовут Оля» keeps history too (v14.15.0)', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
   await settle(page);
   await page.evaluate(() => window.eitiL3AutoExtract('я ошибся, меня зовут Оля'));
   await settle(page);
-  const names = (await l3(page)).filter((f) => f.id === 'name');
-  expect(names).toHaveLength(1);
-  expect(names[0].value).toBe('Оля');
-  expect(JSON.stringify(names[0])).not.toContain('Аня'); // old value is gone (only `source` keeps the new sentence)
+  const n = (await l3(page)).find((f) => f.id === 'name');
+  expect(n.value).toBe('Оля');
+  expect(n.correction_history.map((h) => h.previous_value)).toEqual(['Аня']);
+});
+
+test('learned facts: superseded fact is kept but not given to the AI (v14.15.0)', async ({ page }) => {
+  await boot(page);
+  await page.waitForFunction(() => window._eitiMemKV && window._eitiMemKV.ready, null, { timeout: 30000 });
+  await page.evaluate(() => { eitiLearnFact('Пользователь живёт в Москве'); eitiLearnFact('Пользователь живёт в Копенгагене, а не в Москве'); });
+  await settle(page);
+  const r = await page.evaluate(() => ({ all: eitiLearnLoad('learned').map((f) => [f.fact, !!f.superseded_by]), active: eitiLearnGet().map((f) => f.fact) }));
+  expect(r.all).toEqual([['Пользователь живёт в Москве', true], ['Пользователь живёт в Копенгагене, а не в Москве', false]]);
+  expect(r.active).toEqual(['Пользователь живёт в Копенгагене, а не в Москве']);
 });
 
 test('archive export is byte-identical when nothing changed (except the `exported` timestamp)', async ({ page }) => {
