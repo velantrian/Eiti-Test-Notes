@@ -71,6 +71,50 @@ class PagesBoundaryTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'outside'):
             stage_site(self.root, self.root / 'dist')
 
+    def test_real_checkout_asset_inventory_and_runtime_references(self):
+        """Stage the real repo and verify PWA, KB, and legacy tale paths."""
+        import json
+        import re
+
+        repo = Path(__file__).resolve().parents[1]
+        staged = Path(self.tmp.name) / 'real-pages'
+        included = {p.as_posix() for p in stage_site(repo, staged)}
+        actual = {p.relative_to(staged).as_posix()
+                  for p in staged.rglob('*') if p.is_file()}
+        self.assertEqual(included, actual)
+        self.assertIn('index.html', actual)
+        self.assertIn('offline/core.json', actual)
+        self.assertIn('kb/index.json', actual)
+        self.assertFalse(any('folklore' in Path(p).parts for p in actual))
+        self.assertFalse(any(p.startswith(('.github/', 'scripts/', 'docs/'))
+                             for p in actual))
+        self.assertNotIn('folklore/ancient/ancient.json', actual)
+        self.assertTrue(any(p.startswith('offline/packs/tales_') for p in actual))
+
+        sw = (staged / 'sw.js').read_text(encoding='utf-8')
+        for heading in ('var CORE = [', 'var HEAVY = ['):
+            block = sw.split(heading, 1)[1].split('];', 1)[0]
+            for asset in re.findall(r"BASE\s*\+\s*'([^']+)'", block):
+                self.assertIn(asset, actual, 'SW precache asset: ' + asset)
+
+        manifest = json.loads((staged / 'manifest.json').read_text(encoding='utf-8'))
+        for icon in manifest['icons']:
+            self.assertIn(icon['src'], actual, 'PWA manifest icon')
+
+        kb = json.loads((staged / 'kb/index.json').read_text(encoding='utf-8'))
+        self.assertGreater(len(kb['domains']), 0)
+        for domain in kb['domains'].values():
+            self.assertIn('kb/' + domain['shard'], actual, 'KB index shard')
+            for pack in domain.get('packs', []):
+                self.assertIn('kb/' + pack, actual, 'KB answer pack')
+
+        offline = json.loads((staged / 'offline/core.json').read_text(encoding='utf-8'))
+        for section in ('packs', 'intentPacks'):
+            for pack in offline.get(section, {}).values():
+                self.assertIn('offline/' + pack['file'], actual, 'Offline ' + section)
+        for tale_group in offline['tales']['groups'].values():
+            self.assertIn('offline/' + tale_group['file'], actual, 'Existing tale pack')
+
 
 if __name__ == '__main__':
     unittest.main()
