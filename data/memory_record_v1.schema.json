@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://velantrian.github.io/eiti/memory_record_v1.schema.json",
+  "title": "EITI MemoryRecord v1 (proposal — audit-only, not used at runtime yet)",
+  "description": "Unified record contract for personal memory (L3, IDB store `l3`) and the knowledge base (IDB store `kb`). Both stores stay PHYSICALLY SEPARATE; they share this interface and the same rules. Storage rule: IndexedDB is the primary store for all memory/data; localStorage holds only small essentials (flags, last-selected IDs, tiny pointers) with a total budget of < 100 KB (target < 50 KB). No MemoryRecord may be persisted in localStorage.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema", "id", "store", "kind", "value", "source", "epistemic_status", "confidence", "salience", "created_at", "updated_at", "do_not_store", "correction_history"],
+  "properties": {
+    "schema": { "const": "eiti.memory_record.v1" },
+    "id": { "type": "string", "minLength": 1, "description": "Stable unique id (uuid or category key for L3 slots, e.g. `name`). Must not be derived from Date.now() alone." },
+    "store": { "enum": ["personal", "kb"], "description": "personal → IDB `l3`; kb → IDB `kb`. Never mixed in one object store." },
+    "kind": { "type": "string", "description": "personal: name|age|city|work|project|family|hobby|goal|language|health|learned|custom; kb: fact|concept|rule|…" },
+    "label": { "type": "string" },
+    "value": { "type": "string", "maxLength": 4000 },
+    "source": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["user_message", "user_manual", "ai_learn_tag", "l3_auto_extract", "import", "drive_sync", "kb_pack", "migration"] },
+        "ref": { "type": "string", "description": "message/chat/note id, file or pack name" },
+        "excerpt": { "type": "string", "maxLength": 500 }
+      }
+    },
+    "epistemic_status": { "enum": ["Observed", "Hypothesized", "Supported", "Validated", "ImmutableCore", "Deprecated", "Tentative"], "description": "Same ESM states as KB. `Tentative` = user said they have not decided yet; never enters prompts as a fact." },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "salience": { "type": "number", "minimum": 0 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "freshness": {
+      "type": "object",
+      "properties": {
+        "last_confirmed_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": ["string", "null"], "format": "date-time" },
+        "ttl_days": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "do_not_store": { "type": "boolean", "description": "true → tombstone: value MUST be empty, record is never injected into prompts, never synced, and blocks re-extraction of the same kind/value." },
+    "correction_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["at", "previous_value", "reason"],
+        "properties": {
+          "at": { "type": "string", "format": "date-time" },
+          "previous_value": { "type": "string" },
+          "previous_status": { "type": "string" },
+          "reason": { "enum": ["user_correction", "contradiction", "promotion", "demotion", "decay", "import_merge"] },
+          "source_ref": { "type": "string" }
+        }
+      }
+    },
+    "memory_layer": { "enum": ["L1", "L2", "L3"] },
+    "sync": { "type": "object", "properties": { "drive": { "type": "boolean" } } }
+  },
+  "allOf": [
+    { "if": { "properties": { "do_not_store": { "const": true } } }, "then": { "properties": { "value": { "maxLength": 0 } } } }
+  ]
+}
