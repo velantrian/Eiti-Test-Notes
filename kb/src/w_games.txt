@@ -1,113 +1,113 @@
 # Видеоигры | Video games
 # @generated from Wikidata (CC0) by kb/gen/gen_more.py — do not edit by hand
-Super Mario Bros; игра Super Mario Bros || Super Mario Bros. — компьютерная игра 1985 года, разработанная и изданная Nintendo. Разработчик: Nintendo Entertainment Analysis and Development.
-Pokémon GO; игра Pokémon GO || Pokémon GO — массовая многопользовательская онлайн-игра для мобильных устройств с элементами дополненной реальности.
+Super Mario Bros; игра Super Mario Bros || Super Mario Bros. — компьютерная игра 1985 года, разработанная и изданная Nintendo. Разработчик: Nintendo Entertainment Analysis and Development. || Super Mario Bros. — 1985 platform video game. Developer: Nintendo Entertainment Analysis & Development.
+Pokémon GO; игра Pokémon GO || Pokémon GO — массовая многопользовательская онлайн-игра для мобильных устройств с элементами дополненной реальности. || Pokémon Go — augmented reality mobile game based on the Pokémon franchise. Developer: Niantic Games Team, Scopely.
 Pac-Man; игра Pac-Man || Pac-Man — компьютерная игра 1980 года. Разработчик: Namco.
-Clash of Clans; игра Clash of Clans || Clash of Clans — мобильная игра 2012 года, разработанная компанией Supercell. Разработчик: Supercell.
-Half-Life 2; игра Half-Life 2 || Half-Life 2 — компьютерная игра 2004 года в жанре шутера от первого лица.
-Portal; игра Portal || Portal — компьютерная игра в жанре головоломки, выпущенная в 2007 году.
-Assassin’s Creed; игра Assassin’s Creed || Assassin’s Creed — компьютерная игра 2007 года.
-Pong; игра Pong || Pong — компьютерная игра. Год выхода: 1972. Разработчик: Atari, Inc.
-The Sims; игра The Sims || The Sims — компьютерная игра 2000 года. Разработчик: Maxis.
-Second Life; игра Second Life || Second Life — компьютерная игра 2003 года. Год выхода: 2003. Разработчик: Linden Lab.
-The Sims 2; игра The Sims 2 || The Sims 2 — компьютерная игра 2004 года. Год выхода: 2004. Разработчик: Maxis.
-Травиан; игра Травиан || Травиан — компьютерная игра. Год выхода: 2004. Разработчик: Travian Games.
-Far Cry 3; игра Far Cry 3 || Far Cry 3 — компьютерная игра 2012 года. Год выхода: 2012. Разработчик: Ubisoft Shanghai, Ubisoft Red Storm.
-Space Invaders; игра Space Invaders || Space Invaders — компьютерная игра 1978 года. Разработчик: Taito Corporation.
+Clash of Clans; игра Clash of Clans || Clash of Clans — мобильная игра 2012 года, разработанная компанией Supercell. Разработчик: Supercell. || Clash of Clans — 2012 mobile strategy game. Developer: Supercell.
+Half-Life 2; игра Half-Life 2 || Half-Life 2 — компьютерная игра 2004 года в жанре шутера от первого лица. || Half-Life 2 — 2004 first-person shooter video game. Developer: Valve Corporation.
+Portal; игра Portal || Portal — компьютерная игра в жанре головоломки, выпущенная в 2007 году. || Portal — 2007 first-person puzzle video game. Developer: Valve Corporation.
+Assassin’s Creed; игра Assassin’s Creed || Assassin’s Creed — компьютерная игра 2007 года. || Assassin's Creed — 2007 video game.
+Pong; игра Pong || Pong — компьютерная игра. Год выхода: 1972. Разработчик: Atari, Inc. || Pong — 1972 video game. Released: 1972. Developer: Atari, Inc..
+The Sims; игра The Sims || The Sims — компьютерная игра 2000 года. Разработчик: Maxis. || The Sims — 2000 video game. Developer: Maxis.
+Second Life; игра Second Life || Second Life — компьютерная игра 2003 года. Год выхода: 2003. Разработчик: Linden Lab. || Second Life — virtual online world. Released: 2003. Developer: Linden Lab.
+The Sims 2; игра The Sims 2 || The Sims 2 — компьютерная игра 2004 года. Год выхода: 2004. Разработчик: Maxis. || The Sims 2 — 2004 video game. Released: 2004. Developer: Maxis.
+Травиан; игра Травиан || Травиан — компьютерная игра. Год выхода: 2004. Разработчик: Travian Games. || Travian — browser game. Released: 2004. Developer: Travian Games.
+Far Cry 3; игра Far Cry 3 || Far Cry 3 — компьютерная игра 2012 года. Год выхода: 2012. Разработчик: Ubisoft Shanghai, Ubisoft Red Storm. || Far Cry 3 — 2012 open world, action-adventure first-person shooter video game. Released: 2012.
+Space Invaders; игра Space Invaders || Space Invaders — компьютерная игра 1978 года. Разработчик: Taito Corporation. || Space Invaders — 1978 fixed shooter video game. Developer: Taito.
 Donkey Kong; игра Donkey Kong || Donkey Kong — компьютерная игра 1981 года. Разработчик: Nintendo Research & Development 1, Ikegami.
-Spore; игра Spore || Spore — компьютерная игра 2008 года. Год выхода: 2008. Разработчик: Maxis.
-Max Payne; игра Max Payne || Max Payne — компьютерная игра 2001 года.
-Resident Evil 4; игра Resident Evil 4 || Resident Evil 4 — компьютерная игра 2005 года. Разработчик: Capcom.
-Subway Surfers; игра Subway Surfers || Subway Surfers — мобильная игра 2012 года. Год выхода: 2012.
-Metal Gear Solid; игра Metal Gear Solid || Metal Gear Solid — компьютерная игра 1998 года. Год выхода: 1998. Разработчик: Konami.
-Agar.io; игра Agar.io || Agar.io — массово-многопользовательская онлайн-игра в жанре экшн. Год выхода: 2015. Разработчик: Матеус Валадарес.
-World of Tanks; игра World of Tanks || World of Tanks — клиентская массовая многопользовательская онлайн-игра в жанре аркадного танкового симулятора. Разработчик: Wargaming.net.
-Candy Crush Saga; игра Candy Crush Saga || Candy Crush Saga — компьютерная игра 2012 года. Год выхода: 2012.
-Far Cry; игра Far Cry || Far Cry — компьютерная игра 2004 года. Год выхода: 2004.
-War Thunder; игра War Thunder || War Thunder — компьютерная игра 2012 года. Разработчик: Gaijin Entertainment.
-Super Mario Bros. 3; игра Super Mario Bros. 3 || Super Mario Bros. 3 — компьютерная игра 1988 года. Разработчик: Nintendo Entertainment Analysis and Development.
-Тамагочи; игра Тамагочи || Тамагочи — игрушка (серия портативных игр), виртуальный домашний питомец. Год выхода: 1996.
-Assassin’s Creed II; игра Assassin’s Creed II || Assassin’s Creed II — компьютерная игра 2009 года.
-Far Cry 4; игра Far Cry 4 || Far Cry 4 — компьютерная игра 2014 года. Год выхода: 2014.
-Wii Sports; игра Wii Sports || Wii Sports — компьютерная игра 2006 года. Год выхода: 2006. Разработчик: Nintendo Entertainment Analysis and Development.
-Far Cry 5; игра Far Cry 5 || Far Cry 5 — компьютерная игра 2018 года. Год выхода: 2018.
-God of War; игра God of War || God of War — компьютерная игра 2005 года. Год выхода: 2005. Разработчик: Santa Monica Studio.
-Call of Duty 2; игра Call of Duty 2 || Call of Duty 2 — компьютерная игра 2005 года. Разработчик: Infinity Ward, Aspyr Media.
-Age of Mythology; игра Age of Mythology || Age of Mythology — компьютерная игра 2002 года. Год выхода: 2002. Разработчик: SkyBox Labs.
-Resident Evil; игра Resident Evil || Resident Evil — компьютерная игра 1996 года. Разработчик: Capcom.
-Call of Duty 3; игра Call of Duty 3 || Call of Duty 3 — компьютерная игра 2006 года. Разработчик: Treyarch.
-Final Fantasy X; игра Final Fantasy X || Final Fantasy X — компьютерная игра 2001 года. Год выхода: 2001. Разработчик: Square.
-Battlefield 3; игра Battlefield 3 || Battlefield 3 — компьютерная игра 2011 года. Год выхода: 2011. Разработчик: EA Digital Illusions CE.
-Silent Hill 2; игра Silent Hill 2 || Silent Hill 2 — компьютерная игра 2001 года. Разработчик: Team Silent.
-Ведьмак; игра Ведьмак || Ведьмак — компьютерная ролевая игра 2007 года. Год выхода: 2007. Разработчик: CD Projekt RED.
-Civilization; игра Civilization || Civilization — компьютерная игра 1991 года. Разработчик: MicroProse.
-Final Fantasy VIII; игра Final Fantasy VIII || Final Fantasy VIII — компьютерная игра 1999 года. Год выхода: 1999. Разработчик: Square.
-Crysis; игра Crysis || Crysis — компьютерная игра 2007 года. Год выхода: 2007.
-Bully; игра Bully || Bully — компьютерная игра 2006 года. Разработчик: Rockstar New England, Rockstar Vancouver.
-Spacewar!; игра Spacewar! || Spacewar! — компьютерная игра 1962 года. Год выхода: 1962. Разработчик: Стив Расселл.
-Cuphead; игра Cuphead || Cuphead — компьютерная игра 2017 года. Разработчик: Studio MDHR.
+Spore; игра Spore || Spore — компьютерная игра 2008 года. Год выхода: 2008. Разработчик: Maxis. || Spore — 2008 video game. Released: 2008. Developer: Maxis.
+Max Payne; игра Max Payne || Max Payne — компьютерная игра 2001 года. || Max Payne — 2001 third-person shooter video game.
+Resident Evil 4; игра Resident Evil 4 || Resident Evil 4 — компьютерная игра 2005 года. Разработчик: Capcom. || Resident Evil 4 — 2005 survival horror video game. Developer: Capcom.
+Subway Surfers; игра Subway Surfers || Subway Surfers — мобильная игра 2012 года. Год выхода: 2012. || Subway Surfers — 2012 mobile game. Released: 2012. Developer: Kiloo, SYBO Games.
+Metal Gear Solid; игра Metal Gear Solid || Metal Gear Solid — компьютерная игра 1998 года. Год выхода: 1998. Разработчик: Konami. || Metal Gear Solid — 1998 adventure video game. Released: 1998. Developer: Konami.
+Agar.io; игра Agar.io || Agar.io — массово-многопользовательская онлайн-игра в жанре экшн. Год выхода: 2015. Разработчик: Матеус Валадарес. || Agar.io — 2015 video game. Released: 2015. Developer: Matheus Valadares.
+World of Tanks; игра World of Tanks || World of Tanks — клиентская массовая многопользовательская онлайн-игра в жанре аркадного танкового симулятора. Разработчик: Wargaming.net. || World of Tanks — 2010 massively multiplayer online game. Developer: Wargaming.
+Candy Crush Saga; игра Candy Crush Saga || Candy Crush Saga — компьютерная игра 2012 года. Год выхода: 2012. || Candy Crush Saga — 2012 puzzle video game by King. Released: 2012. Developer: King.
+Far Cry; игра Far Cry || Far Cry — компьютерная игра 2004 года. Год выхода: 2004. || Far Cry — 2004 video game. Released: 2004.
+War Thunder; игра War Thunder || War Thunder — компьютерная игра 2012 года. Разработчик: Gaijin Entertainment. || War Thunder — 2012 vehicular combat multiplayer video game developed by Gaijin Entertainment. Developer: Gaijin Entertainment.
+Super Mario Bros. 3; игра Super Mario Bros. 3 || Super Mario Bros. 3 — компьютерная игра 1988 года. Разработчик: Nintendo Entertainment Analysis and Development. || Super Mario Bros. 3 — 1988 platform video game developed by Nintendo. Developer: Nintendo Entertainment Analysis & Development.
+Тамагочи; игра Тамагочи || Тамагочи — игрушка (серия портативных игр), виртуальный домашний питомец. Год выхода: 1996. || Tamagotchi — handheld digital pet. Released: 1996.
+Assassin’s Creed II; игра Assassin’s Creed II || Assassin’s Creed II — компьютерная игра 2009 года. || Assassin's Creed II — 2009 historical fiction action-adventure open world stealth video game.
+Far Cry 4; игра Far Cry 4 || Far Cry 4 — компьютерная игра 2014 года. Год выхода: 2014. || Far Cry 4 — 2014 video game. Released: 2014.
+Wii Sports; игра Wii Sports || Wii Sports — компьютерная игра 2006 года. Год выхода: 2006. Разработчик: Nintendo Entertainment Analysis and Development. || Wii Sports — 2006 sports video game. Released: 2006. Developer: Nintendo Entertainment Analysis & Development.
+Far Cry 5; игра Far Cry 5 || Far Cry 5 — компьютерная игра 2018 года. Год выхода: 2018. || Far Cry 5 — 2018 video game. Released: 2018.
+God of War; игра God of War || God of War — компьютерная игра 2005 года. Год выхода: 2005. Разработчик: Santa Monica Studio. || God of War — 2005 video game. Released: 2005. Developer: Santa Monica Studio.
+Call of Duty 2; игра Call of Duty 2 || Call of Duty 2 — компьютерная игра 2005 года. Разработчик: Infinity Ward, Aspyr Media. || Call of Duty 2 — 2005 video game developed by Infinity Ward. Developer: Aspyr, Infinity Ward.
+Age of Mythology; игра Age of Mythology || Age of Mythology — компьютерная игра 2002 года. Год выхода: 2002. Разработчик: SkyBox Labs. || Age of Mythology — 2002 video game. Released: 2002.
+Resident Evil; игра Resident Evil || Resident Evil — компьютерная игра 1996 года. Разработчик: Capcom. || Resident Evil — 1996 survival horror video game. Developer: Capcom.
+Call of Duty 3; игра Call of Duty 3 || Call of Duty 3 — компьютерная игра 2006 года. Разработчик: Treyarch. || Call of Duty 3 — 2006 video game developed by Treyarch. Developer: Exakt Entertainment, Treyarch.
+Final Fantasy X; игра Final Fantasy X || Final Fantasy X — компьютерная игра 2001 года. Год выхода: 2001. Разработчик: Square. || Final Fantasy X — 2001 video game. Released: 2001. Developer: Square.
+Battlefield 3; игра Battlefield 3 || Battlefield 3 — компьютерная игра 2011 года. Год выхода: 2011. Разработчик: EA Digital Illusions CE. || Battlefield 3 — 2011 video game. Released: 2011. Developer: DICE.
+Silent Hill 2; игра Silent Hill 2 || Silent Hill 2 — компьютерная игра 2001 года. Разработчик: Team Silent. || Silent Hill 2 — 2001 survival horror video game developed by Konami. Developer: Team Silent.
+Ведьмак; игра Ведьмак || Ведьмак — компьютерная ролевая игра 2007 года. Год выхода: 2007. Разработчик: CD Projekt RED. || The Witcher — 2007 video game. Released: 2007. Developer: CD Projekt RED.
+Civilization; игра Civilization || Civilization — компьютерная игра 1991 года. Разработчик: MicroProse. || Civilization — 1991 strategy video game. Developer: MicroProse.
+Final Fantasy VIII; игра Final Fantasy VIII || Final Fantasy VIII — компьютерная игра 1999 года. Год выхода: 1999. Разработчик: Square. || Final Fantasy VIII — 1999 role-playing video game. Released: 1999. Developer: Square.
+Crysis; игра Crysis || Crysis — компьютерная игра 2007 года. Год выхода: 2007. || Crysis — 2007 first-person shooter video game. Released: 2007.
+Bully; игра Bully || Bully — компьютерная игра 2006 года. Разработчик: Rockstar New England, Rockstar Vancouver. || Bully — 2007 video game.
+Spacewar!; игра Spacewar! || Spacewar! — компьютерная игра 1962 года. Год выхода: 1962. Разработчик: Стив Расселл. || Spacewar! — 1962 space combat video game. Released: 1962. Developer: Steve Russell.
+Cuphead; игра Cuphead || Cuphead — компьютерная игра 2017 года. Разработчик: Studio MDHR. || Cuphead — 2017 video game. Developer: Studio MDHR.
 Sonic the Hedgehog; игра Sonic the Hedgehog || Sonic the Hedgehog — компьютерная игра 1991 года. Разработчик: Konami, Sonic Team.
-Five Nights at Freddy’s; игра Five Nights at Freddy’s || Five Nights at Freddy’s — компьютерная хоррор-игра 2014 года. Год выхода: 2014. Разработчик: Скотт Коутон.
-Tomb Raider; игра Tomb Raider || Tomb Raider — компьютерная игра 2013 года. Год выхода: 2013. Разработчик: Nixxes Software, Eidos Montreal.
-Super Mario Bros. 2; игра Super Mario Bros. 2 || Super Mario Bros. 2 — компьютерная игра 1988 года. Разработчик: Nintendo Entertainment Analysis and Development.
-Final Fantasy; игра Final Fantasy || Final Fantasy — компьютерная игра 1987 года. Разработчик: Square.
-Battlefield 4; игра Battlefield 4 || Battlefield 4 — компьютерная игра 2013 года. Год выхода: 2013. Разработчик: EA Digital Illusions CE.
-Сапёр; игра Сапёр || Сапёр — компьютерная игра-головоломка. Год выхода: 1989.
-Far Cry 2; игра Far Cry 2 || Far Cry 2 — компьютерная игра 2008 года. Год выхода: 2008.
-Outlast; игра Outlast || Outlast — компьютерная игра 2013 года. Разработчик: Red Barrels.
-Life Is Strange; игра Life Is Strange || Life Is Strange — компьютерная игра 2015 года. Год выхода: 2015. Разработчик: Don’t Nod.
-Mass Effect 2; игра Mass Effect 2 || Mass Effect 2 — компьютерная игра 2010 года. Год выхода: 2010.
-Final Fantasy XII; игра Final Fantasy XII || Final Fantasy XII — компьютерная игра 2006 года. Год выхода: 2006. Разработчик: Square Enix.
-Sid Meier’s Civilization VI; игра Sid Meier’s Civilization VI || Sid Meier’s Civilization VI — компьютерная игра 2016 года. Разработчик: Firaxis Games.
+Five Nights at Freddy’s; игра Five Nights at Freddy’s || Five Nights at Freddy’s — компьютерная хоррор-игра 2014 года. Год выхода: 2014. Разработчик: Скотт Коутон. || Five Nights at Freddy's — 2014 horror video game. Released: 2014. Developer: Scott Cawthon.
+Tomb Raider; игра Tomb Raider || Tomb Raider — компьютерная игра 2013 года. Год выхода: 2013. Разработчик: Nixxes Software, Eidos Montreal. || Tomb Raider — 2013 action-adventure video game. Released: 2013.
+Super Mario Bros. 2; игра Super Mario Bros. 2 || Super Mario Bros. 2 — компьютерная игра 1988 года. Разработчик: Nintendo Entertainment Analysis and Development. || Super Mario Bros. 2 — 1988 platform video game developed by Nintendo. Developer: Nintendo Entertainment Analysis & Development.
+Final Fantasy; игра Final Fantasy || Final Fantasy — компьютерная игра 1987 года. Разработчик: Square. || Final Fantasy — 1987 role-playing video game originally for the NES. Developer: Square.
+Battlefield 4; игра Battlefield 4 || Battlefield 4 — компьютерная игра 2013 года. Год выхода: 2013. Разработчик: EA Digital Illusions CE. || Battlefield 4 — 2013 first-person shooter video game. Released: 2013. Developer: DICE.
+Сапёр; игра Сапёр || Сапёр — компьютерная игра-головоломка. Год выхода: 1989. || Minesweeper — logic puzzle video game genre. Released: 1989.
+Far Cry 2; игра Far Cry 2 || Far Cry 2 — компьютерная игра 2008 года. Год выхода: 2008. || Far Cry 2 — 2008 video game. Released: 2008.
+Outlast; игра Outlast || Outlast — компьютерная игра 2013 года. Разработчик: Red Barrels. || Outlast — 2013 first-person survival horror video game developed by Red Barrels. Developer: Red Barrels.
+Life Is Strange; игра Life Is Strange || Life Is Strange — компьютерная игра 2015 года. Год выхода: 2015. Разработчик: Don’t Nod. || Life Is Strange — 2015 episodic interactive drama graphic adventure video game. Released: 2015. Developer: Don’t Nod.
+Mass Effect 2; игра Mass Effect 2 || Mass Effect 2 — компьютерная игра 2010 года. Год выхода: 2010. || Mass Effect 2 — 2010 video game. Released: 2010. Developer: Bioware.
+Final Fantasy XII; игра Final Fantasy XII || Final Fantasy XII — компьютерная игра 2006 года. Год выхода: 2006. Разработчик: Square Enix. || Final Fantasy XII — 2006 video game. Released: 2006. Developer: Square Enix.
+Sid Meier’s Civilization VI; игра Sid Meier’s Civilization VI || Sid Meier’s Civilization VI — компьютерная игра 2016 года. Разработчик: Firaxis Games. || Civilization VI — 2016 turn-based strategy video game. Developer: Firaxis Games.
 Resident Evil 5; игра Resident Evil 5 || Resident Evil 5 — компьютерная игра 2009 года. Год выхода: 2009. Разработчик: Capcom.
-Halo 3; игра Halo 3 || Halo 3 — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: Bungie.
-Geometry Dash; игра Geometry Dash || Geometry Dash — компьютерная игра в комбинации жанров платформера и ритм-игры, выпущенная в 2013 году Робертом Топалой.
-Super Mario Galaxy; игра Super Mario Galaxy || Super Mario Galaxy — компьютерная игра 2007 года. Разработчик: Nintendo Entertainment Analysis and Development.
-Assassin’s Creed III; игра Assassin’s Creed III || Assassin’s Creed III — компьютерная игра 2012 года. Год выхода: 2012.
-игра Limbo || Limbo — компьютерная игра 2010 года. Разработчик: Playdead.
-Battlefield 1; игра Battlefield 1 || Battlefield 1 — компьютерная игра 2016 года. Год выхода: 2016. Разработчик: EA Digital Illusions CE.
-Silent Hill; игра Silent Hill || Silent Hill — компьютерная игра 1999 года. Год выхода: 1999. Разработчик: Team Silent, Konami.
-FIFA 18; игра FIFA 18 || FIFA 18 — компьютерная игра 2017 года. Год выхода: 2017. Разработчик: EA Vancouver.
-Rocket League; игра Rocket League || Rocket League — компьютерная игра 2015 года. Разработчик: Psyonix.
-Papers, Please; игра Papers, Please || Papers, Please — компьютерная инди-игра Лукаса Поупа. Разработчик: Лукас Поуп.
-Watch Dogs; игра Watch Dogs || Watch Dogs — компьютерная игра 2014 года. Год выхода: 2014.
-Hay Day; игра Hay Day || Hay Day — мобильная игра 2012 года. Год выхода: 2012. Разработчик: Supercell.
-Mount & Blade; игра Mount & Blade || Mount & Blade — компьютерная игра 2008 года. Год выхода: 2008. Разработчик: TaleWorlds.
-Flappy Bird; игра Flappy Bird || Flappy Bird — компьютерная игра 2013 года. Год выхода: 2013.
-God of War II; игра God of War II || God of War II — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: Santa Monica Studio.
-Crusader Kings 2; игра Crusader Kings 2 || Crusader Kings 2 — мульти-платформерная компьютерная игра 2012 года в жанре стратегия. Год выхода: 2012.
-Final Fantasy XIII; игра Final Fantasy XIII || Final Fantasy XIII — компьютерная игра 2009 года. Разработчик: Square Enix.
-Final Fantasy IV; игра Final Fantasy IV || Final Fantasy IV — компьютерная игра 1991 года. Год выхода: 1991. Разработчик: Square.
-Max Payne 3; игра Max Payne 3 || Max Payne 3 — компьютерная игра 2012 года. Разработчик: Rockstar Vancouver.
-GeoGuessr; игра GeoGuessr || GeoGuessr — компьютерная игра 2013 года. Год выхода: 2013.
-Pokémon Yellow; игра Pokémon Yellow || Pokémon Yellow — компьютерная игра 1998 года. Год выхода: 1998. Разработчик: Game Freak.
-Super Smash Bros. Ultimate; игра Super Smash Bros. Ultimate || Super Smash Bros. Ultimate — компьютерная игра 2018 года. Год выхода: 2018.
-Dead by Daylight; игра Dead by Daylight || Dead by Daylight — компьютерная игра 2016 года в жанре survival horror с видом от первого и третьего лица, разработанная Behaviour Interactive. Год выхода: 2016.
-Death Stranding; игра Death Stranding || Death Stranding — компьютерная игра 2019 года в жанре action, разработанная Kojima Productions. Разработчик: Guerrilla Games.
-God of War III; игра God of War III || God of War III — компьютерная игра 2010 года. Год выхода: 2010. Разработчик: Santa Monica Studio.
+Halo 3; игра Halo 3 || Halo 3 — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: Bungie. || Halo 3 — 2007 video game for Xbox 360. Released: 2007. Developer: Bungie.
+Geometry Dash; игра Geometry Dash || Geometry Dash — компьютерная игра в комбинации жанров платформера и ритм-игры, выпущенная в 2013 году Робертом Топалой. || Geometry Dash — 2013 music-based platform video game and video game series. Developer: RobTop Games.
+Super Mario Galaxy; игра Super Mario Galaxy || Super Mario Galaxy — компьютерная игра 2007 года. Разработчик: Nintendo Entertainment Analysis and Development. || Super Mario Galaxy — 2007 video game. Developer: Nintendo Entertainment Analysis & Development.
+Assassin’s Creed III; игра Assassin’s Creed III || Assassin’s Creed III — компьютерная игра 2012 года. Год выхода: 2012. || Assassin's Creed III — 2012 historical action-adventure video game. Released: 2012.
+игра Limbo || Limbo — компьютерная игра 2010 года. Разработчик: Playdead. || Limbo — 2010 video game. Developer: Playdead.
+Battlefield 1; игра Battlefield 1 || Battlefield 1 — компьютерная игра 2016 года. Год выхода: 2016. Разработчик: EA Digital Illusions CE. || Battlefield 1 — 2016 first-person shooter video game. Released: 2016. Developer: DICE.
+Silent Hill; игра Silent Hill || Silent Hill — компьютерная игра 1999 года. Год выхода: 1999. Разработчик: Team Silent, Konami. || Silent Hill — 1999 horror video game. Released: 1999. Developer: Konami, Team Silent.
+FIFA 18; игра FIFA 18 || FIFA 18 — компьютерная игра 2017 года. Год выхода: 2017. Разработчик: EA Vancouver. || FIFA 18 — FIFA series football simulation video game. Released: 2017. Developer: EA Romania, EA Vancouver.
+Rocket League; игра Rocket League || Rocket League — компьютерная игра 2015 года. Разработчик: Psyonix. || Rocket League — 2015 video game. Developer: Psyonix.
+Papers, Please; игра Papers, Please || Papers, Please — компьютерная инди-игра Лукаса Поупа. Разработчик: Лукас Поуп. || Papers, Please — 2013 border inspector simulation adventure game. Developer: Lucas Pope.
+Watch Dogs; игра Watch Dogs || Watch Dogs — компьютерная игра 2014 года. Год выхода: 2014. || Watch Dogs — 2014 action-adventure video game developed by Ubisoft Montreal and published by Ubisoft. Released: 2014.
+Hay Day; игра Hay Day || Hay Day — мобильная игра 2012 года. Год выхода: 2012. Разработчик: Supercell. || Hay Day — 2012 freemium mobile game developed by Supercell. Released: 2012. Developer: Supercell.
+Mount & Blade; игра Mount & Blade || Mount & Blade — компьютерная игра 2008 года. Год выхода: 2008. Разработчик: TaleWorlds. || Mount & Blade — 2008 video game. Released: 2008. Developer: TaleWorlds.
+Flappy Bird; игра Flappy Bird || Flappy Bird — компьютерная игра 2013 года. Год выхода: 2013. || Flappy Bird — 2013 mobile video game by Dong Nguyen. Released: 2013. Developer: DotGEARS.
+God of War II; игра God of War II || God of War II — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: Santa Monica Studio. || God of War II — 2007 action-adventure video game. Released: 2007. Developer: Santa Monica Studio.
+Crusader Kings 2; игра Crusader Kings 2 || Crusader Kings 2 — мульти-платформерная компьютерная игра 2012 года в жанре стратегия. Год выхода: 2012. || Crusader Kings II — 2012 video game. Released: 2012. Developer: Development Studio.
+Final Fantasy XIII; игра Final Fantasy XIII || Final Fantasy XIII — компьютерная игра 2009 года. Разработчик: Square Enix. || Final Fantasy XIII — 2010 role-playing video game. Developer: Square Enix.
+Final Fantasy IV; игра Final Fantasy IV || Final Fantasy IV — компьютерная игра 1991 года. Год выхода: 1991. Разработчик: Square. || Final Fantasy IV — 1991 video game. Released: 1991. Developer: Square.
+Max Payne 3; игра Max Payne 3 || Max Payne 3 — компьютерная игра 2012 года. Разработчик: Rockstar Vancouver. || Max Payne 3 — 2012 video game. Developer: Rockstar Studios, Rockstar Vancouver.
+GeoGuessr; игра GeoGuessr || GeoGuessr — компьютерная игра 2013 года. Год выхода: 2013. || GeoGuessr — 2013 geographic discovery video game. Released: 2013.
+Pokémon Yellow; игра Pokémon Yellow || Pokémon Yellow — компьютерная игра 1998 года. Год выхода: 1998. Разработчик: Game Freak. || Pokémon Yellow — 1998 video game by Nintendo. Released: 1998. Developer: Game Freak.
+Super Smash Bros. Ultimate; игра Super Smash Bros. Ultimate || Super Smash Bros. Ultimate — компьютерная игра 2018 года. Год выхода: 2018. || Super Smash Bros. Ultimate — 2018 fighting video game. Released: 2018. Developer: Bandai Namco Studios, Sora Ltd..
+Dead by Daylight; игра Dead by Daylight || Dead by Daylight — компьютерная игра 2016 года в жанре survival horror с видом от первого и третьего лица, разработанная Behaviour Interactive. Год выхода: 2016. || Dead by Daylight — 2016 asymmetric survival horror video game developed by Behaviour Interactive. Released: 2016.
+Death Stranding; игра Death Stranding || Death Stranding — компьютерная игра 2019 года в жанре action, разработанная Kojima Productions. Разработчик: Guerrilla Games. || Death Stranding — 2019 open world action video game developed by Kojima Productions.
+God of War III; игра God of War III || God of War III — компьютерная игра 2010 года. Год выхода: 2010. Разработчик: Santa Monica Studio. || God of War III — 2010 action-adventure game. Released: 2010. Developer: Santa Monica Studio.
 Assassin’s Creed Origins; игра Assassin’s Creed Origins || Assassin’s Creed Origins — компьютерная игра 2017 года. Год выхода: 2017.
 Assassin’s Creed Odyssey; игра Assassin’s Creed Odyssey || Assassin’s Creed Odyssey — мультиплатформенная компьютерная игра 2018 года в жанре Action/RPG, разработанная студией Ubisoft Quebec. Год выхода: 2018. Разработчик: Ubisoft Quebec.
-Mario Bros; игра Mario Bros || Mario Bros. — компьютерная игра 1983 года.
-Crash Bandicoot; игра Crash Bandicoot || Crash Bandicoot — компьютерная игра 1996 года. Год выхода: 1996. Разработчик: Naughty Dog.
-Gran Turismo 4; игра Gran Turismo 4 || Gran Turismo 4 — компьютерная игра 2004 года. Разработчик: Polyphony Digital.
-Final Fantasy II; игра Final Fantasy II || Final Fantasy II — компьютерная игра 1988 года. Год выхода: 1988. Разработчик: Square.
-Gears of War; игра Gears of War || Gears of War — компьютерная игра 2006 года. Год выхода: 2006.
-Super Mario 3D World; игра Super Mario 3D World || Super Mario 3D World — компьютерная игра 2013 года. Год выхода: 2013.
-Mortal Kombat 11; игра Mortal Kombat 11 || Mortal Kombat 11 — компьютерная игра 2019 года в жанре файтинг, разработанная NetherRealm Studios. Год выхода: 2019. Разработчик: NetherRealm Studios.
-Heavy Rain; игра Heavy Rain || Heavy Rain — компьютерная игра 2010 года, разработанная компанией Quantic Dream. Год выхода: 2010. Разработчик: Virtuos, Quantic Dream.
-Super Mario Land; игра Super Mario Land || Super Mario Land — компьютерная игра 1989 года. Год выхода: 1989. Разработчик: Nintendo Entertainment Analysis and Development.
-Super Smash Bros. Brawl; игра Super Smash Bros. Brawl || Super Smash Bros. Brawl — компьютерная игра 2008 года. Год выхода: 2008.
-BioShock Infinite; игра BioShock Infinite || BioShock Infinite — компьютерная игра 2013 года в жанре шутера от первого лица.
-Клуб Пингвинов; игра Клуб Пингвинов || Клуб Пингвинов — компьютерная игра 2005 года.
-Kingdom Hearts II; игра Kingdom Hearts II || Kingdom Hearts II — компьютерная игра 2005 года. Год выхода: 2005. Разработчик: Square Enix.
-Deus Ex; игра Deus Ex || Deus Ex — компьютерная игра 2000 года. Разработчик: Ion Storm.
-Baldur’s Gate; игра Baldur’s Gate || Baldur’s Gate — компьютерная ролевая игра для ПК 1998 года. Год выхода: 1998.
-Celeste; игра Celeste || Celeste — компьютерная игра 2018 года. Год выхода: 2018. Разработчик: Matt Makes Games.
-Fate/stay night; игра Fate/stay night || Fate/stay night — компьютерная игра 2004 года. Год выхода: 2004. Разработчик: Type-Moon.
-Mass Effect 3; игра Mass Effect 3 || Mass Effect 3 — компьютерная игра 2012 года. Год выхода: 2012.
-Mario Kart 7; игра Mario Kart 7 || Mario Kart 7 — компьютерная игра 2011 года. Год выхода: 2011. Разработчик: Nintendo Entertainment Analysis and Development.
-Empire Earth; игра Empire Earth || Empire Earth — компьютерная игра 2001 года. Год выхода: 2001.
-Mortal Kombat X; игра Mortal Kombat X || Mortal Kombat X — мультиплатформенная компьютерная игра в жанре файтинг. Год выхода: 2015. Разработчик: NetherRealm Studios.
-Kingdom Hearts; игра Kingdom Hearts || Kingdom Hearts — компьютерная игра 2002 года. Год выхода: 2002. Разработчик: Square.
-Bloodborne; игра Bloodborne || Bloodborne — компьютерная игра 2015 года в жанре Action/RPG и survival horror. Год выхода: 2015. Разработчик: FromSoftware, Japan Studio.
-FIFA 08; игра FIFA 08 || FIFA 08 — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: EA Vancouver.
+Mario Bros; игра Mario Bros || Mario Bros. — компьютерная игра 1983 года. || Mario Bros. — 1983 Japanese arcade game. Developer: Nintendo.
+Crash Bandicoot; игра Crash Bandicoot || Crash Bandicoot — компьютерная игра 1996 года. Год выхода: 1996. Разработчик: Naughty Dog. || Crash Bandicoot — 1996 platform video game. Released: 1996. Developer: Naughty Dog.
+Gran Turismo 4; игра Gran Turismo 4 || Gran Turismo 4 — компьютерная игра 2004 года. Разработчик: Polyphony Digital. || Gran Turismo 4 — 2004 video game. Developer: Polyphony Digital.
+Final Fantasy II; игра Final Fantasy II || Final Fantasy II — компьютерная игра 1988 года. Год выхода: 1988. Разработчик: Square. || Final Fantasy II — 1988 role-playing video game, originally released on Famicom. Released: 1988. Developer: Square.
+Gears of War; игра Gears of War || Gears of War — компьютерная игра 2006 года. Год выхода: 2006. || Gears of War — 2006 video game. Released: 2006.
+Super Mario 3D World; игра Super Mario 3D World || Super Mario 3D World — компьютерная игра 2013 года. Год выхода: 2013. || Super Mario 3D World — 2013 platform video game developed by Nintendo. Released: 2013. Developer: EAD Tokyo Group No. 2.
+Mortal Kombat 11; игра Mortal Kombat 11 || Mortal Kombat 11 — компьютерная игра 2019 года в жанре файтинг, разработанная NetherRealm Studios. Год выхода: 2019. Разработчик: NetherRealm Studios. || Mortal Kombat 11 — 2019 fighting video game developed by NetherRealm Studios. Released: 2019. Developer: NetherRealm Studios.
+Heavy Rain; игра Heavy Rain || Heavy Rain — компьютерная игра 2010 года, разработанная компанией Quantic Dream. Год выхода: 2010. Разработчик: Virtuos, Quantic Dream. || Heavy Rain — 2010 video game developed by Quantic Dream. Released: 2010. Developer: Quantic Dream, Virtuos.
+Super Mario Land; игра Super Mario Land || Super Mario Land — компьютерная игра 1989 года. Год выхода: 1989. Разработчик: Nintendo Entertainment Analysis and Development. || Super Mario Land — 1989 video game for the Game Boy. Released: 1989. Developer: Nintendo Entertainment Analysis & Development.
+Super Smash Bros. Brawl; игра Super Smash Bros. Brawl || Super Smash Bros. Brawl — компьютерная игра 2008 года. Год выхода: 2008. || Super Smash Bros. Brawl — 2008 crossover fighting video game by Nintendo. Released: 2008. Developer: Sora Ltd..
+BioShock Infinite; игра BioShock Infinite || BioShock Infinite — компьютерная игра 2013 года в жанре шутера от первого лица. || BioShock Infinite — 2013 first-person shooter video game and the third installment in the BioShock series.
+Клуб Пингвинов; игра Клуб Пингвинов || Клуб Пингвинов — компьютерная игра 2005 года. || Club Penguin — massively multiplayer online game. Developer: Disney Online Studios Canada.
+Kingdom Hearts II; игра Kingdom Hearts II || Kingdom Hearts II — компьютерная игра 2005 года. Год выхода: 2005. Разработчик: Square Enix. || Kingdom Hearts II — 2005 video game. Released: 2005. Developer: Square Enix.
+Deus Ex; игра Deus Ex || Deus Ex — компьютерная игра 2000 года. Разработчик: Ion Storm. || Deus Ex — 2000 video game. Developer: Ion Storm.
+Baldur’s Gate; игра Baldur’s Gate || Baldur’s Gate — компьютерная ролевая игра для ПК 1998 года. Год выхода: 1998. || Baldur's Gate — 1998 fantasy role-playing video game. Released: 1998. Developer: Bioware.
+Celeste; игра Celeste || Celeste — компьютерная игра 2018 года. Год выхода: 2018. Разработчик: Matt Makes Games. || Celeste — 2018 video game. Released: 2018.
+Fate/stay night; игра Fate/stay night || Fate/stay night — компьютерная игра 2004 года. Год выхода: 2004. Разработчик: Type-Moon. || Fate/stay night — 2004 video game. Released: 2004. Developer: Type‐Moon.
+Mass Effect 3; игра Mass Effect 3 || Mass Effect 3 — компьютерная игра 2012 года. Год выхода: 2012. || Mass Effect 3 — 2012 video game. Released: 2012. Developer: Bioware.
+Mario Kart 7; игра Mario Kart 7 || Mario Kart 7 — компьютерная игра 2011 года. Год выхода: 2011. Разработчик: Nintendo Entertainment Analysis and Development. || Mario Kart 7 — 2011 racing video game. Released: 2011. Developer: Nintendo Entertainment Analysis & Development, Retro Studios.
+Empire Earth; игра Empire Earth || Empire Earth — компьютерная игра 2001 года. Год выхода: 2001. || Empire Earth — 2001 video game. Released: 2001. Developer: Stainless Steel Studios.
+Mortal Kombat X; игра Mortal Kombat X || Mortal Kombat X — мультиплатформенная компьютерная игра в жанре файтинг. Год выхода: 2015. Разработчик: NetherRealm Studios. || Mortal Kombat X — 2015 video game. Released: 2015. Developer: NetherRealm Studios.
+Kingdom Hearts; игра Kingdom Hearts || Kingdom Hearts — компьютерная игра 2002 года. Год выхода: 2002. Разработчик: Square. || Kingdom Hearts — 2002 video game. Released: 2002. Developer: Square.
+Bloodborne; игра Bloodborne || Bloodborne — компьютерная игра 2015 года в жанре Action/RPG и survival horror. Год выхода: 2015. Разработчик: FromSoftware, Japan Studio. || Bloodborne — 2015 action role-playing video game developed by FromSoftware. Released: 2015. Developer: FromSoftware, Japan Studio.
+FIFA 08; игра FIFA 08 || FIFA 08 — компьютерная игра 2007 года. Год выхода: 2007. Разработчик: EA Vancouver. || FIFA 08 — 2007 video game. Released: 2007. Developer: EA Vancouver.
