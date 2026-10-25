@@ -21141,15 +21141,16 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     if (idx >= 0) { window._l3Cache[idx] = fact; }
                     else { (window._l3Cache = window._l3Cache || []).push(fact); }
                     if (window.EITI_DEBUG) console.log('[L3] Сохранён факт:', label, '=', value.trim());
+                    if (_l3Pending.length && typeof window.eitiL3FlushPending === 'function') window.eitiL3FlushPending();
                 };
                 tx.onerror = tx.onabort = function(ev) {
-                    if (ev && ev.preventDefault) ev.preventDefault();
                     if (tx._eitiReported) return; tx._eitiReported = true;
+                    _l3Pending.push([key, value, label, source, reason]);
                     var er = tx.error || (ev && ev.target && ev.target.error);
-                    console.warn('[L3] Ошибка сохранения:', er);
-                    if (typeof showToast === 'function') showToast((typeof eitiIsQuotaError === 'function' && eitiIsQuotaError(er)) ? '⚠️ Память браузера заполнена — факт «' + label + '» не сохранён' : '⚠️ Не удалось сохранить факт «' + label + '»', 4000);
+                    console.warn('[L3] Ошибка сохранения, факт возвращён в очередь:', er);
+                    if (typeof showToast === 'function') showToast((typeof eitiIsQuotaError === 'function' && eitiIsQuotaError(er)) ? '⚠️ Память браузера заполнена — факт «' + label + '» ждёт повтора, не закрывайте вкладку' : '⚠️ Факт «' + label + '» ждёт повтора, не закрывайте вкладку', 7000);
                 };
-            } catch(e) { console.warn('[L3] Ошибка сохранения:', e); if (typeof showToast === 'function') showToast('⚠️ Не удалось сохранить факт «' + label + '»', 4000); }
+            } catch(e) { _l3Pending.push([key, value, label, source, reason]); console.warn('[L3] Факт возвращён в очередь:', e); if (typeof showToast === 'function') showToast('⚠️ Факт «' + label + '» ждёт повтора, не закрывайте вкладку', 7000); }
         }
 
         // Прочитать все L3 факты из IDB
@@ -35407,7 +35408,8 @@ window.eitiLLMClearAll = async function() {
             var bk = key + '.corrupt.' + Date.now();
             var ok = false; try { localStorage.setItem(bk, raw); ok = true; } catch (e) {}
             try { console.warn('[EITI] повреждённые данные', key, '→', ok ? bk : '(резерв не записан)'); } catch (_) {}
-            if (typeof showToast === 'function') showToast('⚠️ Память была повреждена — сохранил копию (' + (ok ? bk : 'не удалось') + ') и начал новый список', 5000);
+            if (!ok) { if (typeof showToast === 'function') showToast('⚠️ Не удалось сохранить резервную копию — исходные данные не перезаписаны', 7000); throw new Error('EITI_CORRUPT_BACKUP_FAILED: ' + key); }
+            if (typeof showToast === 'function') showToast('⚠️ Память была повреждена — исходные данные зарезервированы (' + bk + ')', 5000);
             return [];
         }
         // v14.15.0: выученные факты (eiti_learned_v1) и их архив (eiti_learned_archive_v1) живут в IDB store 'memkv'.
@@ -35462,7 +35464,9 @@ window.eitiLLMClearAll = async function() {
                             try { if (got.learned || got.archive) { localStorage.removeItem('eiti_learned_v1'); localStorage.removeItem('eiti_learned_archive_v1'); } } catch (e) {}
                             finish(); return;
                         }
-                        var L = eitiReadListSafe('eiti_learned_v1'), A = eitiReadListSafe('eiti_learned_archive_v1'), now = Date.now();
+                        var L, A, now = Date.now();
+                        try { L = eitiReadListSafe('eiti_learned_v1'); A = eitiReadListSafe('eiti_learned_archive_v1'); }
+                        catch (e) { console.warn('[EITI] миграция памяти заблокирована: резерв не создан', e); resolve(false); return; }
                         try {
                             var wtx = db.transaction(['memkv', 'backups'], 'readwrite'), ws = wtx.objectStore('memkv');
                             ws.put({ k: 'learned', v: L, updatedAt: now });
@@ -35603,7 +35607,7 @@ window.eitiLLMClearAll = async function() {
         }
         function eitiLearnGet() {
             // v14.15.0: только активные факты (superseded — в истории, в контекст ИИ не идут). Полный список — eitiLearnLoad('learned').
-            if (typeof eitiLearnLoad === 'function') return eitiLearnLoad('learned').filter(function(f){ return f && !f.superseded_by; }); // IDB memkv
+            if (typeof eitiLearnLoad === 'function') { try { return eitiLearnLoad('learned').filter(function(f){ return f && !f.superseded_by; }); } catch (e) { console.warn('[EITI] чтение памяти заблокировано:', e); return []; } } // IDB memkv
             try { return JSON.parse(localStorage.getItem(EITI_LEARN_KEY) || '[]'); } catch(e) { return []; }
         }
 
