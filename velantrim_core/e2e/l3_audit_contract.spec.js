@@ -98,16 +98,42 @@ test('L3 auto-extract: «я ещё не решил» — tentative goal is not s
   expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
 });
 
-test('L3 correction: a new value overwrites the old one by category — no correction history', async ({ page }) => {
+test('L3 correction: «меня зовут Аня» → «я ошибся, Оля» — Оля active, Аня in correction_history (v14.15.0)', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
+  await settle(page);
+  await page.evaluate(() => window.eitiL3AutoExtract('я ошибся, Оля'));
+  await settle(page);
+  const names = (await l3(page)).filter((f) => f.id === 'name');
+  expect(names).toHaveLength(1);
+  expect(names[0].value).toBe('Оля');
+  expect(names[0].correction_history).toHaveLength(1);
+  expect(names[0].correction_history[0]).toMatchObject({ previous_value: 'Аня', reason: 'user_correction' });
+  // AI context shows only the active value
+  const ctx = await page.evaluate(() => new Promise((r) => window.eitiL3BuildContext(r)));
+  expect(ctx).toContain('Оля');
+  expect(ctx).not.toContain('Аня');
+});
+
+test('L3 correction with category: «я ошибся, меня зовут Оля» keeps history too (v14.15.0)', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
   await settle(page);
   await page.evaluate(() => window.eitiL3AutoExtract('я ошибся, меня зовут Оля'));
   await settle(page);
-  const names = (await l3(page)).filter((f) => f.id === 'name');
-  expect(names).toHaveLength(1);
-  expect(names[0].value).toBe('Оля');
-  expect(JSON.stringify(names[0])).not.toContain('Аня'); // old value is gone (only `source` keeps the new sentence)
+  const n = (await l3(page)).find((f) => f.id === 'name');
+  expect(n.value).toBe('Оля');
+  expect(n.correction_history.map((h) => h.previous_value)).toEqual(['Аня']);
+});
+
+test('learned facts: superseded fact is kept but not given to the AI (v14.15.0)', async ({ page }) => {
+  await boot(page);
+  await page.waitForFunction(() => window._eitiMemKV && window._eitiMemKV.ready, null, { timeout: 30000 });
+  await page.evaluate(() => { eitiLearnFact('Пользователь живёт в Москве'); eitiLearnFact('Пользователь живёт в Копенгагене, а не в Москве'); });
+  await settle(page);
+  const r = await page.evaluate(() => ({ all: eitiLearnLoad('learned').map((f) => [f.fact, !!f.superseded_by]), active: eitiLearnGet().map((f) => f.fact) }));
+  expect(r.all).toEqual([['Пользователь живёт в Москве', true], ['Пользователь живёт в Копенгагене, а не в Москве', false]]);
+  expect(r.active).toEqual(['Пользователь живёт в Копенгагене, а не в Москве']);
 });
 
 test('archive export is byte-identical when nothing changed (except the `exported` timestamp)', async ({ page }) => {

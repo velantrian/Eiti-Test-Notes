@@ -21103,16 +21103,38 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         window.eitiL3FlushPending = function() {
             if (!window.eitiDb || !_l3Pending.length) return;
             var q = _l3Pending; _l3Pending = [];
-            q.forEach(function(a) { _l3Save(a[0], a[1], a[2], a[3]); });
+            q.forEach(function(a) { _l3Save(a[0], a[1], a[2], a[3], a[4]); });
         };
-        function _l3Save(key, value, label, source) {
+        // v14.15.0: признак исправления («я ошибся», «на самом деле», «точнее», «поправка», «не X, а Y»)
+        function eitiIsCorrection(text) {
+            return /(?:^|[^а-яёa-z])(?:я\s+ошиб(?:ся|лась)|ошибочка|на\s+самом\s+деле|точнее|поправка|исправлю|не\s+[\wа-яё-]+\s*,\s*а\s+|i\s+was\s+wrong|actually|correction)/i.test(String(text || ''));
+        }
+        // v14.15.0: история значения L3 (correction_history, как в data/memory_record_v1.schema.json), не более 20 записей
+        function eitiL3WithHistory(old, fact, reason) {
+            var h = (old && Array.isArray(old.correction_history)) ? old.correction_history.slice() : [];
+            if (old && old.value != null && String(old.value) !== String(fact.value)) {
+                h.push({ at: new Date(old.ts || Date.now()).toISOString(), previous_value: String(old.value), reason: reason || 'user_correction', source_ref: String(old.source || '').slice(0, 100) });
+            }
+            if (h.length) fact.correction_history = h.slice(-20);
+            return fact;
+        }
+        function _l3Save(key, value, label, source, reason) {
             if (!value || value.trim().length < 2) return;
-            if (!window.eitiDb) { _l3Pending.push([key, value, label, source]); return; }
+            if (!window.eitiDb) { _l3Pending.push([key, value, label, source, reason]); return; }
             try {
                 var tx = window.eitiDb.transaction(['l3'], 'readwrite');
                 var store = tx.objectStore('l3');
                 var fact = { id: key, label: label, value: value.trim(), source: (source||'').slice(0, 100), ts: Date.now() };
-                store.put(fact);
+                // v14.15.0: старое значение не затирается — уходит в correction_history (в той же транзакции)
+                var gr = store.get(key);
+                gr.onsuccess = function() {
+                    var old = gr.result;
+                    if (old && String(old.value) === fact.value) { fact.correction_history = old.correction_history; }
+                    else eitiL3WithHistory(old, fact, reason || (eitiIsCorrection(source) ? 'user_correction' : 'contradiction'));
+                    if (!fact.correction_history) delete fact.correction_history;
+                    store.put(fact);
+                };
+                window._l3Last = { key: key, label: label, ts: fact.ts };
                 tx.oncomplete = function() {
                     // Обновить кэш в памяти
                     var idx = (window._l3Cache || []).findIndex(function(f){ return f.id === key; });
@@ -21169,6 +21191,15 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     found.push(p.label + ': ' + m[1].trim());
                 }
             });
+            // v14.15.0: «я ошибся, Оля» — без категории: исправляем последний сохранённый факт (≤ 10 мин)
+            if (!found.length && eitiIsCorrection(userText) && window._l3Last && Date.now() - window._l3Last.ts < 600000) {
+                var cm = userText.match(/(?:я\s+ошиб(?:ся|лась)|ошибочка|на\s+самом\s+деле|точнее|поправка)\s*[,:—–-]?\s*(?:не\s+[\wА-Яа-яЁё-]+\s*,\s*а\s+)?([\wА-Яа-яЁё-]{2,})/i);
+                if (cm && cm[1]) {
+                    _l3Save(window._l3Last.key, cm[1], window._l3Last.label, userText.slice(0, 80), 'user_correction');
+                    if (typeof showToast === 'function') showToast('✏️ L3 исправил: ' + window._l3Last.label + ': ' + cm[1] + ' (старое — в истории)', 2500);
+                    return;
+                }
+            }
             if (found.length > 0 && typeof showToast === 'function') {
                 showToast('🧠 L3 запомнил: ' + found.join(', '), 2500);
             }
@@ -35461,6 +35492,25 @@ window.eitiLLMClearAll = async function() {
                 } catch (e) {}
             };
         }
+        // v14.15.0: найти активный факт, который новый факт исправляет/опровергает.
+        // Признаки: «X, а не Y» / «больше не» / «уже не» / «я ошибся» / «на самом деле» + тот же предмет (общие слова ≥ 0.3,
+        // а для «а не Y» — старый факт содержит Y). Возвращает индекс или -1.
+        function eitiFindContradicted(store, fact) {
+            var t = String(fact || '').toLowerCase().replace(/ё/g, 'е');
+            var neg = t.match(/,?\s*а\s+не\s+(?:в\s+|на\s+)?([а-яa-z0-9-]{3,})/);
+            var marker = neg || /(?:больше\s+не|уже\s+не|теперь|я\s+ошиб(?:ся|лась)|на\s+самом\s+деле|поправка|точнее|actually|no\s+longer)/.test(t);
+            if (!marker) return -1;
+            var best = -1, bestSim = 0;
+            for (var i = 0; i < store.length; i++) {
+                var f = store[i]; if (!f || f.superseded_by) continue;
+                var o = String(f.fact || '').toLowerCase().replace(/ё/g, 'е');
+                if (o === t) continue;
+                var sim = (typeof eitiMemTextSim === 'function') ? eitiMemTextSim(o, t) : 0;
+                var hit = neg ? (o.indexOf(neg[1].slice(0, Math.max(3, neg[1].length - 2))) !== -1 && sim >= 0.15) : sim >= 0.3;
+                if (hit && sim > bestSim) { best = i; bestSim = sim; }
+            }
+            return best;
+        }
         function eitiNewFactId(now) {
             eitiNewFactId._n = ((eitiNewFactId._n || 0) + 1) % 1e6;
             return 'fact_' + (now || Date.now()) + '_' + eitiNewFactId._n.toString(36) + Math.random().toString(36).slice(2, 6);
@@ -35499,9 +35549,16 @@ window.eitiLLMClearAll = async function() {
                 // v13.9.0: near-duplicate merge (cosine if vectors cached, else text similarity)
                 var dupIdx = (typeof eitiMemFindNearDup === 'function')
                     ? eitiMemFindNearDup(store, fact, (typeof window !== 'undefined' && window._eitiFactVecs) || null, null) : -1;
+                // v14.15.0: противоречие/исправление того же факта → старый помечается superseded (не два «верных» рядом)
+                var supIdx = (typeof eitiFindContradicted === 'function') ? eitiFindContradicted(store, fact) : -1;
+                if (supIdx >= 0) dupIdx = -1;
                 if (dupIdx >= 0) {
                     var d = store[dupIdx];
-                    if (String(fact).length > String(d.fact).length) d.fact = fact;
+                    if (String(fact).length > String(d.fact).length) {
+                        // v14.15.0: прежний текст не теряется
+                        d.correction_history = (d.correction_history || []).concat([{ at: new Date(d.lastSeen || d.ts || now).toISOString(), previous_value: String(d.fact), reason: 'import_merge' }]).slice(-20);
+                        d.fact = fact;
+                    }
                     d.salience = Math.max(d.salience || 1, sal);
                     d.lastSeen = now; d.merged = (d.merged || 0) + 1;
                     if (!eitiLearnSave('learned', store)) return;
@@ -35510,6 +35567,12 @@ window.eitiLLMClearAll = async function() {
                     return;
                 }
                 var item = { fact: fact, ts: now, salience: sal, id: eitiNewFactId(now) }; // v14.15.0: уникальный id
+                if (supIdx >= 0) {
+                    var old = store[supIdx], reason = (typeof eitiIsCorrection === 'function' && eitiIsCorrection(fact)) ? 'user_correction' : 'contradiction';
+                    old.superseded_by = item.id; old.superseded_at = now; old.epistemic_status = 'Deprecated';
+                    item.supersedes = old.id;
+                    item.correction_history = (old.correction_history || []).concat([{ at: new Date(old.ts || now).toISOString(), previous_value: String(old.fact), previous_status: 'active', reason: reason, source_ref: String(old.id) }]).slice(-20);
+                }
                 store.push(item);
                 if (store.length > 200) {
                     // v13.9.0: no silent hard drop — evict the lowest recency×salience facts
@@ -35539,7 +35602,8 @@ window.eitiLLMClearAll = async function() {
             }
         }
         function eitiLearnGet() {
-            if (typeof eitiLearnLoad === 'function') return eitiLearnLoad('learned'); // v14.15.0: IDB memkv
+            // v14.15.0: только активные факты (superseded — в истории, в контекст ИИ не идут). Полный список — eitiLearnLoad('learned').
+            if (typeof eitiLearnLoad === 'function') return eitiLearnLoad('learned').filter(function(f){ return f && !f.superseded_by; }); // IDB memkv
             try { return JSON.parse(localStorage.getItem(EITI_LEARN_KEY) || '[]'); } catch(e) { return []; }
         }
 
@@ -35786,7 +35850,7 @@ window.eitiLLMClearAll = async function() {
                 version: 'eiti.archive.v1',
                 exported: new Date().toISOString(),
                 profile:    localStorage.getItem('eiti_user_profile_v1') || null,
-                learned:    JSON.stringify(eitiLearnGet()), // v14.15.0: из IDB memkv; формат прежний (JSON-строка)
+                learned:    JSON.stringify(eitiLearnLoad('learned')), // v14.15.0: из IDB memkv (вместе с историей/superseded); формат прежний (JSON-строка)
                 l2digests:  JSON.stringify(_eitiL2Cache),
                 notes:      JSON.stringify(_idbNotesCache),
                 aiFiles:    JSON.stringify({ files: _idbFilesCache }) || '{"files":[]}',
@@ -54729,7 +54793,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
 
             // ── 4) consolidation near the cap (user-visible, undoable) ───────
             window.eitiMemMaybeConsolidate = function (force) {
-                var store = (typeof eitiLearnGet === 'function') ? eitiLearnGet() : [];
+                var store = (typeof eitiLearnLoad === 'function') ? eitiLearnLoad('learned') : ((typeof eitiLearnGet === 'function') ? eitiLearnGet() : []); // v14.15.0: с историей
                 var st = eitiV139Get(K.cons, { lastRun: 0, history: [] });
                 if (!force && (store.length < 180 || Date.now() - (st.lastRun || 0) < 86400000)) return Promise.resolve(null);
                 if (typeof _eitiUniversalAICall !== 'function' && typeof window._eitiConsolidateLLM !== 'function') return Promise.resolve(null);
@@ -54742,7 +54806,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                     var ops; try { var s = String(txt || ''); ops = JSON.parse(s.slice(s.indexOf('['), s.lastIndexOf(']') + 1)); } catch (e) { ops = null; }
                     if (!Array.isArray(ops) || !ops.length) return null;
                     ops = ops.slice(0, 40);
-                    var before = eitiLearnGet();
+                    var before = (typeof eitiLearnLoad === 'function') ? eitiLearnLoad('learned') : eitiLearnGet(); // v14.15.0
                     var r = eitiMemApplyOps(before, ops);
                     if (!r.applied) return null;
                     if (!eitiLearnSave('learned', r.store)) return null; // v14.15.0
