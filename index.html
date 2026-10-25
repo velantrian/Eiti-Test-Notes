@@ -32392,7 +32392,7 @@ window.eitiLLMClearAll = async function() {
             function bar(kind, id, lang) {
                 var s = st(), r = R(), sv = s.save && kind !== 'note'; if (!r || !(s.related || s.reasoning || sv)) return '';
                 lang = lang || uiLang();
-                var h = '<span class="eiti-rel-bar" data-k="' + esc(kind) + '" data-id="' + esc(id) + '" data-l="' + esc(lang) + '" style="display:block;margin-top:8px;">';
+                var h = '<span class="eiti-rel-bar" data-k="' + esc(kind) + '" data-id="' + esc(id) + '" data-l="' + esc(lang) + '" data-i18n-skip="1" style="display:block;margin-top:8px;">'; // v14.13.0: cards are rendered in data-l — keep the UI DOM translator out (no mixed «Facts»/«Раздел»)
                 if (s.related) h += '<span class="eiti-rel-btn" role="button" tabindex="0" data-w="rel" onclick="EitiRelHost.toggle(this,\'rel\')" style="' + BTN + '">🔗 ' + esc(r.S('related', lang)) + '</span>';
                 if (s.reasoning) h += '<span class="eiti-rel-btn" role="button" tabindex="0" data-w="why" onclick="EitiRelHost.toggle(this,\'why\')" style="' + BTN + '">🧠 ' + esc(r.S('reasoning', lang)) + '</span>';
                 if (sv) h += saveBtn(lang);

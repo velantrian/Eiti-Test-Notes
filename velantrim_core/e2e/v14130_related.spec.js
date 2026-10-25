@@ -54,6 +54,24 @@ test('KB-ответ: кнопки, похожие из пакета, офлай�
   await expect(panel).toContainText('Офлайн-рассуждение');
 });
 
+// CI regression (PR #44): with an English UI (en-US browser, no eiti_locale) the DOM translator turned the
+// «Факты» heading of a Russian card into «Facts» while «Раздел/Источник» stayed Russian. Cards follow data-l only.
+for (const ui of ['en', 'ru', 'de']) {
+  test('карточка «Рассуждение» на одном языке при UI=' + ui, async ({ page }) => {
+    await boot(page, { eiti_locale: ui });
+    await mount(page, 'ночной дозор рембрандт');
+    const bar = page.locator('#relTest .eiti-rel-bar').first();
+    await bar.locator('[data-w="why"]').first().click();
+    const panel = bar.locator('.eiti-rel-panel').first();
+    await expect(panel).toContainText('Раздел');
+    await page.waitForTimeout(400); // the UI translator's MutationObserver flushes after 80 ms — let it run, then assert
+    await expect(panel).toContainText('Факты');
+    await expect(panel).toContainText('📋 Скопировать');
+    await expect(panel).not.toContainText(/\bFacts\b|\bFakten\b|Section|Source:/);
+    await expect(bar.locator('[data-w="save"]')).toHaveText('📌 В заметку');
+  });
+}
+
 test('сказка: похожие по традиции/персонажам и карточка', async ({ page }) => {
   await boot(page);
   // пакеты сказок грузятся лениво: первый ответ может прийти до загрузки («Такой сказки…») — повторяем
