@@ -59,6 +59,8 @@
     untitled:  { ru: 'Без названия', en: 'Untitled', de: 'Ohne Titel' },
     savedTo:   { ru: '📌 Добавлено в «%s»', en: '📌 Added to “%s”', de: '📌 Zu „%s“ hinzugefügt' },
     cancel:    { ru: 'Отмена', en: 'Cancel', de: 'Abbrechen' },
+    copy:      { ru: 'Скопировать', en: 'Copy', de: 'Kopieren' },
+    copied:    { ru: '📋 Скопировано', en: '📋 Copied', de: '📋 Kopiert' },
     savedAt:   { ru: 'Сохранено', en: 'Saved', de: 'Gespeichert' },
     offlineOnly:{ ru: 'Офлайн-рассуждение: только данные записи, без догадок.', en: 'Offline reasoning: only the item\'s own data, no guesses.', de: 'Offline-Begründung: nur die Daten des Eintrags, keine Vermutungen.' }
   };
@@ -209,6 +211,22 @@
   // targetNote(notes, id) — заметка-цель или null (удалена → снова выбор)
   function targetNote(notes, id) { if (!id) return null; for (var i = 0; i < (notes || []).length; i++) if (notes[i] && notes[i].id === id) return notes[i]; return null; }
   function fmt(key, lang, x) { return S(key, lang).replace('%s', String(x == null ? '' : x)); }
+  // v14.13.0: карточка «Рассуждение» — компактный HTML (markdown-рендерер ставит <br> вокруг блоков и пустых строк)
+  function tidyHtml(h) {
+    var GAP = '<span class="eiti-rel-gap" style="display:block;height:6px;"></span>';
+    return String(h || '')
+      .replace(/(<br\s*\/?>\s*)+(<(?:div|hr|h[1-6]|ul|ol|p|blockquote|span class="eiti-rel-gap")[\s>])/gi, '$2')
+      .replace(/(<\/(?:div|h[1-6]|ul|ol|p|blockquote)>|<hr[^>]*>)(\s*<br\s*\/?>)+/gi, '$1')
+      .replace(/(<br\s*\/?>\s*){2,}/gi, GAP)
+      .replace(/^(\s*<br\s*\/?>)+|(<br\s*\/?>\s*)+$/gi, '');
+  }
+  // plainCard(markdown) — чистый текст карточки для «📋 Скопировать» (без разметки и экранирования)
+  function plainCard(t) {
+    return strip(t).split('\n').map(function (l) {
+      l = l.replace(/^#{1,6}\s+/, '').replace(/^\s*-{3,}\s*$/, '———').replace(/^\s*[-*]\s+/, '· ').replace(/\*\*/g, '').replace(/\\([\\`*_\[\]<>|])/g, '$1');
+      return l.replace(/\s+$/, '');
+    }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
   // marker(kind, id) — маркер под ответом в чате; рендерер заменяет его на кнопки
   function marker(kind, id, st, lang) {
     st = st || { related: true, reasoning: true };
@@ -220,5 +238,5 @@
 
   return { KEYS: KEYS, settings: settings, setSetting: setSetting, S: S, tokens: tokens, relatedNotes: relatedNotes, parseFacts: parseFacts,
            kbCard: kbCard, taleCard: taleCard, noteCard: noteCard, aiPrompt: aiPrompt, combine: combine, splitKbId: splitKbId,
-           kbRelatedIds: kbRelatedIds, marker: marker, cleanText: cleanText, noteEntry: noteEntry, appendBody: appendBody, targetNote: targetNote, fmt: fmt, MARK_RE: MARK_RE, strip: strip, version: 1 };
+           kbRelatedIds: kbRelatedIds, marker: marker, cleanText: cleanText, noteEntry: noteEntry, appendBody: appendBody, targetNote: targetNote, fmt: fmt, tidyHtml: tidyHtml, plainCard: plainCard, MARK_RE: MARK_RE, strip: strip, version: 1 };
 });

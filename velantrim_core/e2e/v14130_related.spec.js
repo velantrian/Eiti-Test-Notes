@@ -120,3 +120,33 @@ test('заметки: строка кнопок в редакторе, похо�
   });
   expect(r).toContain('data-id="nrel2"');
 });
+
+test('«Рассуждение»: компактная карточка и «📋 Скопировать» (офлайн, ИИ, без clipboard API)', async ({ page }) => {
+  await boot(page, { eiti_reasoning_mode: 'ai', deepseek_api_key: 'sk-test' });
+  await page.route('https://api.deepseek.com/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ choices: [{ message: { content: 'ОБЪЯСНЕНИЕ ИИ' } }] }) }));
+  await page.evaluate(() => { window._copied = []; const f = (t) => { window._copied.push(t); return Promise.resolve(); }; try { Object.defineProperty(navigator, 'clipboard', { value: { writeText: f }, configurable: true }); } catch (e) {} });
+  await mount(page, 'ночной дозор рембрандт');
+  const bar = page.locator('#relTest .eiti-rel-bar').first();
+  await bar.locator('[data-w="why"]').first().click();
+  const panel = bar.locator('.eiti-rel-panel');
+  await expect(panel).toContainText('ОБЪЯСНЕНИЕ ИИ');
+  const html = await panel.innerHTML();
+  expect(html).not.toMatch(/<br>\s*<br>|<\/div>\s*<br>|<br>\s*<div|<hr[^>]*>\s*<br>/);
+  await panel.locator('[data-w="copy"]').click();
+  await expect(page.locator('.toast').last()).toHaveText(/📋 (Скопировано|Copied)/); // showToast переводит по локали UI
+  const c = await page.evaluate(() => window._copied[0]);
+  expect(c).toContain('✅ Проверенные факты');
+  expect(c).toContain('Автор: Рембрандт');
+  expect(c).toContain('🤖 Объяснение ИИ');
+  expect(c).toContain('ОБЪЯСНЕНИЕ ИИ');
+  expect(c).not.toMatch(/[*#<⟦\\]/);
+  // офлайн + нет navigator.clipboard → fallback execCommand
+  await page.evaluate(() => { eitiRelSet('mode', 'offline'); Object.defineProperty(navigator, 'clipboard', { value: undefined, configurable: true }); window._exec = 0; const o = document.execCommand.bind(document); document.execCommand = (k) => { if (k === 'copy') window._exec++; return o(k); }; document.getElementById('relTest').remove(); });
+  await mount(page, 'ночной дозор рембрандт');
+  await page.locator('#relTest [data-w="why"]').first().click();
+  const p2 = page.locator('#relTest .eiti-rel-panel').first();
+  await expect(p2).toContainText('Офлайн-рассуждение');
+  expect(await p2.innerHTML()).not.toMatch(/<br>\s*<br>|<\/div>\s*<br>|<br>\s*<div/);
+  await p2.locator('[data-w="copy"]').click();
+  await expect.poll(() => page.evaluate(() => window._exec)).toBe(1);
+});

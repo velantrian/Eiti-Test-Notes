@@ -139,3 +139,19 @@ test('save to note: default on, sticky target, clean entry, append, deleted targ
   for (const k of ['toNote', 'toNoteIn', 'change', 'pickNote', 'newNote', 'savedTo', 'cancel']) for (const l of ['ru', 'en', 'de']) assert.ok(R.S(k, l) && (l === 'ru' || R.S(k, l) !== R.S(k, 'ru')), k + l);
   assert.strictEqual(R.S('toNote', 'de'), 'In Notiz');
 });
+
+test('reasoning card: tidyHtml removes stray <br> around blocks; plainCard → clean text; copy strings', () => {
+  const h = '<div>T</div><br><br>Lead<br><br><b>F</b><br><div>· a</div><br><div>· b</div><br><br><b>S:</b> x<br><b>Src:</b> y<hr><br><br>AI';
+  const t = R.tidyHtml(h);
+  assert.ok(!/<\/div>\s*<br/.test(t) && !/<br>\s*<div/.test(t) && !/<br>\s*<br>/.test(t), t);
+  assert.ok(t.includes('<b>S:</b> x<br><b>Src:</b> y'));
+  assert.ok(t.includes('eiti-rel-gap'));
+  const card = R.kbCard({ q: ['ночной дозор'], a: '«Ночной дозор» — картина. Автор: Рембрандт. Создана: 1642.', title: 'Живопись', gen: 1 }, 'ru');
+  const p = R.plainCard(R.combine(card, 'Объяснение *модели*', 'ru'));
+  assert.ok(!/[#*\\]|\n{3}/.test(p.replace('*модели*', '')), p);
+  assert.ok(p.startsWith('✅ Проверенные факты'));
+  assert.ok(p.includes('🧠 «Ночной дозор»') && p.includes('Раздел: Живопись') && p.includes('———') && p.includes('🤖 Объяснение ИИ'));
+  assert.strictEqual(R.plainCard('a\n\n⟦EITIREL:kb:x⟧'), 'a');
+  assert.deepStrictEqual(['ru', 'en', 'de'].map((l) => R.S('copy', l)), ['Скопировать', 'Copy', 'Kopieren']);
+  assert.strictEqual(R.S('copied', 'ru'), '📋 Скопировано');
+});

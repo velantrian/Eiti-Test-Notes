@@ -32555,14 +32555,25 @@ window.eitiLLMClearAll = async function() {
                 return item(kind, id).then(function(x) {
                     if (!x) return '<span style="opacity:0.6;">' + esc(r.S('none', lang)) + '</span>';
                     return card(kind, x, lang).then(function(c) {
-                        if (!aiAllowed(kind)) return md(c) + '<span style="display:block;font-size:11px;opacity:0.5;margin-top:4px;">' + esc(r.S('offlineOnly', lang)) + '</span>';
-                        if (panel) panel.innerHTML = md(r.combine(c, '…', lang));
+                        if (!aiAllowed(kind)) return cardHtml(c, lang) + '<span style="display:block;font-size:11px;opacity:0.5;margin-top:4px;">' + esc(r.S('offlineOnly', lang)) + '</span>';
+                        if (panel) panel.innerHTML = cardHtml(r.combine(c, '…', lang), lang, true);
                         var p = r.aiPrompt(c, lang);
                         return Promise.race([_eitiUniversalAICall(p.user, p.system, 900, false, {}), new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 45000); })])
-                            .then(function(t) { return md(r.combine(c, String(t || '').trim(), lang)); },
-                                  function() { return md(c) + '<span style="display:block;font-size:11px;opacity:0.6;margin-top:4px;">' + esc(r.S('aiFail', lang)) + '</span>'; });
+                            .then(function(t) { return cardHtml(r.combine(c, String(t || '').trim(), lang), lang); },
+                                  function() { return cardHtml(c, lang) + '<span style="display:block;font-size:11px;opacity:0.6;margin-top:4px;">' + esc(r.S('aiFail', lang)) + '</span>'; });
                     });
                 }).catch(function() { return '<span style="opacity:0.6;">' + esc(r.S('none', lang)) + '</span>'; });
+            }
+            // v14.13.0: компактная карточка + «📋 Скопировать» (чистый текст: факты и, в режиме ИИ, объяснение)
+            function cardHtml(mdText, lang, pending) {
+                var r = R(), h = '<span class="eiti-rel-card" style="display:block;">' + r.tidyHtml(md(mdText)) + '</span>';
+                if (pending) return h;
+                return h + '<span class="eiti-rel-btn eiti-rel-copy" role="button" tabindex="0" data-w="copy" data-t="' + esc(r.plainCard(mdText)) + '" onclick="EitiRelHost.copy(this)" style="' + BTN + 'margin-top:6px;">📋 ' + esc(r.S('copy', lang)) + '</span>';
+            }
+            function copy(el) {
+                var t = el ? el.getAttribute('data-t') || '' : '', lang = (el && el.closest && el.closest('.eiti-rel-bar') || { getAttribute: function() { return null; } }).getAttribute('data-l') || uiLang();
+                var go = typeof copyText === 'function' ? copyText(t) : (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(t) : Promise.resolve());
+                return Promise.resolve(go).catch(function() {}).then(function() { if (typeof showToast === 'function') showToast(R().S('copied', lang)); return t; });
             }
             function toggle(btn, what) {
                 var b = btn && btn.closest ? btn.closest('.eiti-rel-bar') : null; if (!b || !R()) return;
@@ -32589,7 +32600,7 @@ window.eitiLLMClearAll = async function() {
                 var id = typeof notesCurrentId !== 'undefined' ? notesCurrentId : null;
                 row.innerHTML = id ? bar('note', id, uiLang()) : '';
             }
-            return { marker: marker, bar: bar, toggle: toggle, open: open, related: related, reasoning: reasoning, noteRow: noteRow, settings: st, item: item, save: save, refreshSave: refreshSave };
+            return { marker: marker, bar: bar, toggle: toggle, open: open, related: related, reasoning: reasoning, noteRow: noteRow, settings: st, item: item, save: save, refreshSave: refreshSave, copy: copy };
         })();
         window.EitiRelHost = EitiRelHost;
         // v14.13.0: настройки «Похожие / Рассуждение»
