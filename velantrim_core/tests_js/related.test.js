@@ -1,0 +1,115 @@
+// v14.13.0: local/eiti_related.js — settings, on-device related notes, offline reasoning cards (no invented facts), AI split.
+const test = require('node:test');
+const assert = require('node:assert');
+const path = require('path');
+const R = require(path.join(__dirname, '../../local/eiti_related.js'));
+
+function store(init) {
+  const m = Object.assign({}, init || {});
+  return { getItem: (k) => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); }, _m: m };
+}
+
+test('settings: defaults on/on/offline, set and persist', () => {
+  const ls = store();
+  assert.deepStrictEqual(R.settings(ls), { related: true, reasoning: true, mode: 'offline' });
+  assert.deepStrictEqual(R.settings(null), { related: true, reasoning: true, mode: 'offline' });
+  R.setSetting(ls, 'related', false);
+  R.setSetting(ls, 'mode', 'ai');
+  assert.deepStrictEqual(R.settings(ls), { related: false, reasoning: true, mode: 'ai' });
+  assert.strictEqual(ls._m.eiti_related_show, '0');
+  R.setSetting(ls, 'mode', 'garbage');
+  assert.strictEqual(R.settings(ls).mode, 'offline');
+  R.setSetting(ls, 'nope', true);
+  assert.strictEqual(Object.keys(ls._m).length, 2);
+  const broken = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } };
+  assert.deepStrictEqual(R.setSetting(broken, 'related', false), { related: true, reasoning: true, mode: 'offline' });
+});
+
+test('relatedNotes: TF-IDF ranks topical neighbours, excludes self/deleted/unrelated', () => {
+  const notes = [
+    { id: 'a', title: 'Рецепт борща', body: 'свекла капуста картофель борщ варить два часа' },
+    { id: 'b', title: 'Зелёный борщ', body: 'щавель картофель борщ яйцо' },
+    { id: 'c', title: 'Python', body: 'списки словари функции классы' },
+    { id: 'd', title: 'Борщ старый', body: 'борщ картофель свекла', deleted: true },
+    { id: 'e', title: 'Капуста квашеная', body: 'капуста соль морковь' },
+  ];
+  const r = R.relatedNotes(notes[0], notes, 5);
+  assert.deepStrictEqual(r.map((x) => x.id), ['b', 'e']);
+  assert.ok(r[0].score >= r[1].score && r[0].shared.includes('борщ'));
+  assert.deepStrictEqual(R.relatedNotes(notes[0], notes), R.relatedNotes(notes[0], notes.slice()));
+  assert.deepStrictEqual(R.relatedNotes(null, notes), []);
+  assert.deepStrictEqual(R.relatedNotes(notes[2], notes), []);
+});
+
+test('parseFacts: «Метка: значение.» segments', () => {
+  const p = R.parseFacts('«Ночной дозор» — картина Рембрандта. Автор: Рембрандт. Создана: 1642.');
+  assert.strictEqual(p.lead, '«Ночной дозор» — картина Рембрандта.');
+  assert.deepStrictEqual(p.facts, [['Автор', 'Рембрандт'], ['Создана', '1642']]);
+  assert.deepStrictEqual(R.parseFacts('Просто текст без фактов.').facts, []);
+});
+
+test('kbCard: only data from the entry, localized labels, source', () => {
+  const e = { title: 'Картины', title_en: 'Paintings', gen: true, q: ['ночной дозор'],
+    a: '«Ночной дозор» — картина Рембрандта. Автор: Рембрандт. Создана: 1642.',
+    en: 'The Night Watch is a painting by Rembrandt. Author: Rembrandt. Created: 1642.' };
+  const ru = R.kbCard(e, 'ru');
+  assert.match(ru, /\*\*Факты\*\*/);
+  assert.match(ru, /- \*\*Автор:\*\* Рембрандт/);
+  assert.match(ru, /\*\*Раздел:\*\* Картины/);
+  assert.match(ru, /Wikidata \(CC0\)/);
+  const de = R.kbCard(e, 'de');
+  assert.match(de, /\*\*Fakten\*\*/);
+  assert.match(de, /Bereich:\*\* Paintings/);
+  assert.match(de, /- \*\*Created:\*\* 1642/);
+  // nothing beyond the input: every digit sequence in the card comes from the entry
+  (ru.match(/\d{3,}/g) || []).forEach((n) => assert.ok(e.a.includes(n), n));
+  assert.match(R.kbCard(Object.assign({}, e, { gen: false }), 'en'), /EITI knowledge library/);
+});
+
+test('taleCard and noteCard', () => {
+  const x = { t: 'Колобок', cu: 'русская', ty: 'сказка', tg: ['животные'], s: 'Колобок убежал.', m: 'Не хвастай.', p: ['Испекли.', 'Съела лиса.'], src: 'Афанасьев', en: { t: 'The Bun', s: 'The bun ran away.' } };
+  const ru = R.taleCard(x, 'ru');
+  assert.match(ru, /### 📖 Колобок/);
+  assert.match(ru, /\*\*Мораль:\*\* Не хвастай\./);
+  assert.match(ru, /1\. Испекли\./);
+  assert.match(ru, /Афанасьев/);
+  const en = R.taleCard(x, 'en');
+  assert.match(en, /### 📖 The Bun/);
+  assert.doesNotMatch(en, /Не хвастай/);
+  const n = { id: 'n1', title: 'Поездка', body: '# План\nЕдем в Берлин. Берлин зимой.\n## Бюджет', tags: ['путешествия'], created: Date.UTC(2026, 0, 2), updated: Date.UTC(2026, 0, 3) };
+  const c = R.noteCard(n, 'en', [{ a: 'Берлин — столица Германии.', en: 'Berlin is the capital of Germany.' }]);
+  assert.match(c, /### 📝 Поездка/);
+  assert.match(c, /Key terms:\*\* берлин/);
+  assert.match(c, /- План\n- Бюджет/);
+  assert.match(c, /Created:\*\* 2026-01-02/);
+  assert.match(c, /Berlin is the capital of Germany/);
+  assert.match(c, /Your note \(on this device\)/);
+});
+
+test('AI: grounded prompt, verified facts kept apart from AI text', () => {
+  const p = R.aiPrompt('### X\n- **Год:** 1900', 'ru');
+  assert.match(p.system, /Не добавляй новых дат/);
+  assert.match(p.user, /^ПРОВЕРЕННЫЕ ДАННЫЕ:\n### X/);
+  assert.match(R.aiPrompt('c', 'de').system, /Deutsch/);
+  const out = R.combine('CARD', 'AI TEXT', 'en');
+  assert.ok(out.indexOf('✅ Verified facts') < out.indexOf('CARD'));
+  assert.ok(out.indexOf('CARD') < out.indexOf('---') && out.indexOf('---') < out.indexOf('🤖') && out.indexOf('🤖') < out.indexOf('AI TEXT'));
+  assert.doesNotMatch(R.combine('CARD', '', 'ru'), /🤖/);
+});
+
+test('ids, markers, strip', () => {
+  const doms = { people: {}, space: {}, space_objects: {} };
+  assert.deepStrictEqual(R.splitKbId('kbl_space_objects_ab12', doms), { domain: 'space_objects', hash: 'ab12' });
+  assert.deepStrictEqual(R.kbRelatedIds('kbl_people_aa', { r: ['bb', 'cc'] }, doms), ['kbl_people_bb', 'kbl_people_cc']);
+  assert.deepStrictEqual(R.kbRelatedIds('kbl_people_aa', {}, doms), []);
+  assert.strictEqual(R.marker('kb', 'kbl_people_aa', { related: false, reasoning: false }), '');
+  assert.strictEqual(R.marker('bad', 'x'), '');
+  const m = R.marker('tale', 'slavic.sl_kolobok', { related: true, reasoning: false }, 'de');
+  assert.strictEqual(m, '\n\n⟦EITIREL:tale:slavic.sl_kolobok@de⟧');
+  R.MARK_RE.lastIndex = 0;
+  assert.deepStrictEqual([...m.matchAll(R.MARK_RE)][0].slice(1), ['tale', 'slavic.sl_kolobok', 'de']);
+  assert.strictEqual(R.strip('Ответ' + m), 'Ответ');
+  assert.strictEqual(R.S('related', 'de'), 'Ähnliche');
+  assert.strictEqual(R.S('reasoning', 'en'), 'Reasoning');
+  assert.strictEqual(R.S('related', 'xx'), 'Похожие');
+});
