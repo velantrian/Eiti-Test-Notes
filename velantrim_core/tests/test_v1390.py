@@ -58,7 +58,7 @@ def test_ui_label_renamed_and_i18n_compatible():
 def test_memory_no_hard_drop_and_reachable_cap():
     learn = _fn("function eitiLearnFact(fact) {", 3500)
     assert "slice(-200)" not in learn
-    assert "eiti_learned_archive_v1" in learn and "eitiMemFindNearDup" in learn
+    assert ("eiti_learned_archive_v1" in learn or "eitiLearnSave('archive'" in learn) and "eitiMemFindNearDup" in learn  # v14.15.0: архив в IDB memkv
     assert "Math.min(s, 2.5)" in INDEX
     assert "eitiMemRank(learnedFacts" in INDEX
 

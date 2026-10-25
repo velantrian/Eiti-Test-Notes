@@ -28,7 +28,7 @@ function makeLearner(initialStore) {
   const ls = fakeLocalStorage(
     initialStore ? { eiti_learned_v1: JSON.stringify(initialStore) } : {}
   );
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiMemKVActive', 'eitiLearnLoad', 'eitiLearnSave', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1',
     localStorage: ls,
     eitiQueueIndexDoc: (id, text, meta) => indexed.push({ id, text, meta }),

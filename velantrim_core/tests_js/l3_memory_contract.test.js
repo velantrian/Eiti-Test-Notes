@@ -11,7 +11,7 @@ function make(raw) {
   const m = new Map(raw === undefined ? [] : [['eiti_learned_v1', raw]]);
   const ls = { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)), removeItem: (k) => m.delete(k) };
   const indexed = [], toasts = [], errors = [];
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiMemKVActive', 'eitiLearnLoad', 'eitiLearnSave', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1', localStorage: ls,
     eitiQueueIndexDoc: (id, t) => indexed.push(t), showToast: (t) => toasts.push(t),
     console: { log() {}, info() {}, warn: (...a) => errors.push(a), error: (...a) => errors.push(a) },

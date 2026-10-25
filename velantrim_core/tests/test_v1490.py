@@ -26,7 +26,7 @@ def test_journal_engine_wired():
     assert "14.9.0" in (ROOT / "local" / "eiti_journal.js").read_text(encoding="utf-8")
     assert 'src="./local/eiti_journal.js" defer' in HTML
     assert "BASE + 'local/eiti_journal.js'" in SW
-    assert "indexedDB.open('eiti_v4', 17)" in HTML
+    assert "indexedDB.open('eiti_v4', 18)" in HTML  # v14.15.0: + memkv
     assert "createObjectStore('journal'" in HTML and "createObjectStore('contexts'" in HTML
     assert "journal: 'id'" in HTML and "contexts: 'id'" in HTML  # Drive SYNC_STORES
     assert "window.eitiRNEGet" in HTML and "eitiJournalDetachChat" in HTML
