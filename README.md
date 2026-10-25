@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.12.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.13.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -47,6 +47,12 @@ python3 -m http.server 8080
 Откройте `http://localhost:8080/index.html`. Для полного функционала нужны companion-файлы `sw.js`, `manifest.json`, иконки, `sql-wasm.js/.wasm` и `data/`. Один `index.html`, открытый через `file://`, может показать базовый UI, но Service Worker, SQLite-поиск и часть импорта документов не гарантируются.
 
 ---
+
+## 🆕 Что нового в v14.13.0
+
+- 🔗 **«Похожие / Related / Ähnliche»** под ответами библиотеки знаний KB, офлайн-сказками и заметками (в т.ч. Notes Ask AI): чипы, по нажатию открывается запись. Для KB похожие вычисляются при сборке (`kb/related.py`: общие факты Wikidata — автор, страна, война, класс — плюс лексическая близость в разделе; поле `r` в пакетах, не в поисковом индексе), для сказок — `offline/build_tale_related.py` (традиция, персонажи, темы, мотив; поле `rel`), для заметок — TF-IDF на устройстве без сети + записи KB.
+- 🧠 **«Рассуждение / Reasoning / Begründung»**: офлайн — карточка (заголовок, описание, блок фактов, раздел, источник) только из данных записи; в режиме «С ИИ» — объяснение тем же ИИ-провайдером, с опорой на карточку и отдельным блоком от проверенных фактов (заметки — только при включённом Notes AI).
+- ⚙️ Настройки → «🔗 Похожие и рассуждение»: «Показывать похожие», «Подробное рассуждение», режим (только офлайн / с ИИ). По умолчанию: всё включено, офлайн. RU/EN/DE.
 
 ## 🆕 Что нового в v14.12.0
 

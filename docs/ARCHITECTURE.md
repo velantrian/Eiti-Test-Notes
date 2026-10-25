@@ -57,6 +57,7 @@ flowchart LR
 │   ├── eiti_typo.js        #   опечатки и раскладка (+ eiti_typo_vocab.json)
 │   ├── eiti_dstate.js      #   память диалога: слоты, стек тем, отсылки
 │   ├── eiti_journal.js     #   дневник: записи, дедуп, миграция
+│   ├── eiti_related.js     #   «Похожие / Рассуждение»: похожие заметки (TF-IDF), карточки, настройки
 │   └── eiti_drive_sync.js  #   слияние для синхронизации с Drive
 ├── kb/                     # библиотека знаний (~29 тыс. статей)
 │   ├── eiti_kb.js          #   движок поиска (BM25 + алиасы + леммы + транслит)
@@ -234,7 +235,7 @@ flowchart TD
 
 | Кеш | Имя | Стратегия |
 |---|---|---|
-| CORE | `eiti-v14.11.0` | precache `index.html`, `local/*`, офлайн-модули, иконки; лимит 24 записи (`swTrimCache`) |
+| CORE | `eiti-v14.13.0` | precache `index.html`, `local/*`, офлайн-модули, иконки; лимит 24 записи (`swTrimCache`) |
 | Офлайн-пакеты | `eiti-offline-v14.11.0` | `offline/**`, `kb/**`: cache-first + фоновое обновление, без лимита |
 | `data/*.json` | — | stale-while-revalidate |
 

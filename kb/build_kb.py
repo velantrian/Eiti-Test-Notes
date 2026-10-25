@@ -13,9 +13,12 @@ Output (v2, sharded — nothing of it loads at app start):
   kb/packs/kb_<domain>[_<part>].json   full answers, ≤ PART entries per file
 """
 import glob, gzip, hashlib, json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from related import related as related_of
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 PART = 400
+PART_MIN, PACK_GZ_SOFT = 100, 38000
 
 def norm(s):
     return re.sub(r'\s+', ' ', re.sub(r'[^a-zа-я0-9+#²³ ]+', ' ', s.lower().replace('ё', 'е'))).strip()
@@ -84,10 +87,19 @@ def build():
             if len(parts) > 2 and parts[2]: rec['en'] = parts[2]
             recs.append((eid, h[:n], rec))
         if not recs: continue
-        nparts = (len(recs) + PART - 1) // PART
+        rel = related_of(recs)   # «Похожие»: same-section neighbours, stored in packs only (not in the search shards)
+        for _, hh, r in recs:
+            if hh in rel: r['r'] = rel[hh]
+        part = PART
+        while True:   # adaptive part size: packs carry «r» (related) and must stay under the 40 KB gzip cap
+            nparts = (len(recs) + part - 1) // part
+            chunks = [recs[pi * part:(pi + 1) * part] for pi in range(nparts)]
+            payloads = [json.dumps({'v': 2, 'domain': dom, 'part': pi, 'entries': {e: r for e, _, r in c}}, ensure_ascii=False, separators=(',', ':')) for pi, c in enumerate(chunks)]
+            if part <= PART_MIN or max(len(gzip.compress(p.encode(), 9)) for p in payloads) <= PACK_GZ_SOFT: break
+            part -= 50
         pfiles, pgz, pbytes, shard, px = [], [], 0, [], {}
         for pi in range(nparts):
-            chunk = recs[pi * PART:(pi + 1) * PART]
+            chunk = chunks[pi]
             f = 'packs/kb_%s.json' % dom if nparts == 1 else 'packs/kb_%s_%d.json' % (dom, pi)
             b = dump(os.path.join(HERE, f), {'v': 2, 'domain': dom, 'part': pi, 'entries': {e: r for e, _, r in chunk}})
             pfiles.append(f); pgz.append(gz(b)); pbytes += len(b)
@@ -97,7 +109,7 @@ def build():
                 else: shard.append([hh, '|'.join(r['q']), keys(r['a'], kn), pi])
         sf = 'idx/%s.json' % dom
         if gen:   # v3 compact: prefix table «кто такой », part implied by position (PART), keys without trigger words
-            sb = dump(os.path.join(HERE, sf), {'v': 3, 'd': dom, 'g': 1, 'pp': PART, 'px': [k for k, _ in sorted(px.items(), key=lambda x: x[1])], 'e': shard})
+            sb = dump(os.path.join(HERE, sf), {'v': 3, 'd': dom, 'g': 1, 'pp': part, 'px': [k for k, _ in sorted(px.items(), key=lambda x: x[1])], 'e': shard})
         else:
             sb = dump(os.path.join(HERE, sf), {'v': 2, 'd': dom, 'e': shard})
         domains[dom] = {'title': title[0].strip(), 'title_en': (title[1].strip() if len(title) > 1 else dom), 'gen': gen,
