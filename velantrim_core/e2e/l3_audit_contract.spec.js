@@ -175,3 +175,41 @@ test('L3 facts said before the DB is open are queued and written once it opens (
   await settle(page);
   expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
 });
+
+
+test('REGRESSION: L3 pending fact survives synchronous IndexedDB failure and persists on retry', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => {
+    const db = window.eitiDb;
+    window.eitiDb = null;
+    window.eitiL3AutoExtract('меня зовут Аня');
+    window.eitiDb = { transaction: () => { throw new Error('simulated IndexedDB failure'); } };
+    window.eitiL3FlushPending();
+    window.eitiDb = db;
+    window.eitiL3FlushPending();
+  });
+  await settle(page);
+  expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Аня');
+});
+
+test('REGRESSION: L3 pending fact survives an asynchronous IndexedDB abort and persists on retry', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => {
+    const db = window.eitiDb;
+    window.eitiDb = null;
+    window.eitiL3AutoExtract('меня зовут Оля');
+    let rejected;
+    window.eitiDb = {
+      transaction: () => {
+        rejected = { error: new Error('simulated IndexedDB abort'), objectStore: () => ({ get: () => ({}) }) };
+        return rejected;
+      },
+    };
+    window.eitiL3FlushPending();
+    rejected.onabort({ preventDefault() {}, target: { error: rejected.error } });
+    window.eitiDb = db;
+    window.eitiL3FlushPending();
+  });
+  await settle(page);
+  expect((await l3(page)).find((f) => f.id === 'name')?.value).toBe('Оля');
+});
