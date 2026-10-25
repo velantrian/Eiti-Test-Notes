@@ -9174,6 +9174,7 @@
                             <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-rel-show" checked onchange="eitiRelSet('related', this.checked)"><span data-i18n="Показывать похожие">Показывать похожие</span></label>
                             <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-rel-why" checked onchange="eitiRelSet('reasoning', this.checked)"><span data-i18n="Подробное рассуждение">Подробное рассуждение</span></label>
                             <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-rel-save" checked onchange="eitiRelSet('save', this.checked)"><span data-i18n="📌 Сохранять ответы в заметку">📌 Сохранять ответы в заметку</span></label>
+                            <div id="eiti-rel-btn-toggles" style="display:flex;flex-direction:column;gap:8px;"></div><!-- v14.13.0: 📋/🔊 — как переключатели табов -->
                             <label for="eiti-rel-mode" style="font-size:13px;font-weight:600;" data-i18n="Режим рассуждения">Режим рассуждения</label>
                             <select id="eiti-rel-mode" onchange="eitiRelSet('mode', this.value)" style="padding:10px;border-radius:12px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:16px;">
                                 <option value="offline" data-i18n="Только офлайн">Только офлайн</option>
@@ -32568,17 +32569,51 @@ window.eitiLLMClearAll = async function() {
             function cardHtml(mdText, lang, pending) {
                 var r = R(), h = '<span class="eiti-rel-card" style="display:block;">' + r.tidyHtml(md(mdText)) + '</span>';
                 if (pending) return h;
-                return h + '<span class="eiti-rel-btn eiti-rel-copy" role="button" tabindex="0" data-w="copy" data-t="' + esc(r.plainCard(mdText)) + '" onclick="EitiRelHost.copy(this)" style="' + BTN + 'margin-top:6px;">📋 ' + esc(r.S('copy', lang)) + '</span>';
+                var s = st(), pt = esc(r.plainCard(mdText)), out = '';
+                if (s.copy) out += '<span class="eiti-rel-btn eiti-rel-copy" role="button" tabindex="0" data-w="copy" data-t="' + pt + '" onclick="EitiRelHost.copy(this)" style="' + BTN + 'margin-top:6px;">📋 ' + esc(r.S('copy', lang)) + '</span>';
+                if (s.speak && speechOk()) out += '<span class="eiti-rel-btn eiti-rel-speak" role="button" tabindex="0" data-w="speak" data-t="' + pt + '" data-l="' + esc(lang) + '" onclick="EitiRelHost.speak(this)" style="' + BTN + 'margin-top:6px;">🔊 ' + esc(r.S('speak', lang)) + '</span>';
+                return h + out;
+            }
+            // v14.13.0: «🔊 Произнести» — speechSynthesis голосом языка карточки; другие озвучки останавливаются (_eitiTTSStopAll), повторное нажатие — «⏹ Стоп»
+            function speechOk() { return typeof window !== 'undefined' && 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function'; }
+            var _spk = null;
+            function speakLabel(el, on) { var l = el.getAttribute('data-l') || uiLang(); el.textContent = on ? '⏹ ' + R().S('stop', l) : '🔊 ' + R().S('speak', l); el.setAttribute('data-on', on ? '1' : '0'); }
+            function speakStop() { var el = _spk; _spk = null; try { window.speechSynthesis.cancel(); } catch (e) {} if (el) speakLabel(el, false); }
+            function speak(el) {
+                if (!el || !speechOk()) return false;
+                if (_spk === el) { speakStop(); return false; }
+                if (_spk) speakStop();
+                if (typeof _eitiTTSStopAll === 'function') { try { _eitiTTSStopAll(); } catch (e) {} }
+                var lang = el.getAttribute('data-l') || uiLang(), text = el.getAttribute('data-t') || '';
+                if (typeof _eitiCleanForTTS === 'function') { try { text = _eitiCleanForTTS(text); } catch (e) {} }
+                var u = new SpeechSynthesisUtterance(text.replace(/———/g, '.'));
+                u.lang = { ru: 'ru-RU', en: 'en-US', de: 'de-DE' }[lang] || 'ru-RU';
+                try { var v = (window.speechSynthesis.getVoices() || []).filter(function(x) { return String(x.lang || '').toLowerCase().indexOf(lang) === 0; })[0]; if (v) u.voice = v; } catch (e) {}
+                u.onend = u.onerror = function() { if (_spk === el) { _spk = null; speakLabel(el, false); } };
+                _spk = el; speakLabel(el, true);
+                try { window.speechSynthesis.speak(u); } catch (e) { _spk = null; speakLabel(el, false); return false; }
+                return true;
             }
             function copy(el) {
                 var t = el ? el.getAttribute('data-t') || '' : '', lang = (el && el.closest && el.closest('.eiti-rel-bar') || { getAttribute: function() { return null; } }).getAttribute('data-l') || uiLang();
                 var go = typeof copyText === 'function' ? copyText(t) : (navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(t) : Promise.resolve());
                 return Promise.resolve(go).catch(function() {}).then(function() { if (typeof showToast === 'function') showToast(R().S('copied', lang)); return t; });
             }
+            // переключатели «📋 Скопировать» / «🔊 Произнести» — тот же вид, что у переключателей табов (_renderTabsToggleList)
+            function renderBtnToggles() {
+                var list = document.getElementById('eiti-rel-btn-toggles'), r = R(); if (!list || !r) return;
+                var s = st(), lang = uiLang();
+                list.innerHTML = [['copy', 'copyBtn'], ['speak', 'speakBtn']].map(function(x) {
+                    var on = s[x[0]];
+                    return '<div class="eiti-rel-toggle-row" style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--secondary-color);border-radius:12px;"><div><span style="font-size:14px;font-weight:600;">' + esc(r.S(x[1], lang)) + '</span></div>'
+                        + '<button data-relopt="' + x[0] + '" onclick="eitiRelSet(\'' + x[0] + '\',' + (on ? 'false' : 'true') + ')" style="padding:7px 16px;border-radius:18px;border:none;font-size:13px;font-weight:700;cursor:pointer;background:' + (on ? 'var(--accent-color)' : 'rgba(255,255,255,0.1)') + ';color:' + (on ? '#000' : 'var(--text-color)') + ';">' + esc(r.S(on ? 'on' : 'off', lang)) + '</button></div>';
+                }).join('');
+            }
             function toggle(btn, what) {
                 var b = btn && btn.closest ? btn.closest('.eiti-rel-bar') : null; if (!b || !R()) return;
                 var panel = b.querySelector('.eiti-rel-panel'), kind = b.getAttribute('data-k'), id = b.getAttribute('data-id'), lang = b.getAttribute('data-l') || uiLang();
                 if (!panel) return;
+                if (_spk && panel.contains(_spk)) speakStop();
                 if (!panel.hidden && panel.getAttribute('data-w') === what) { panel.hidden = true; panel.removeAttribute('data-w'); return; }
                 panel.hidden = false; panel.setAttribute('data-w', what); panel.innerHTML = '…';
                 (what === 'rel' ? related(kind, id, lang) : reasoning(kind, id, lang, panel)).then(function(h) { if (panel.getAttribute('data-w') === what) panel.innerHTML = h; });
@@ -32600,20 +32635,20 @@ window.eitiLLMClearAll = async function() {
                 var id = typeof notesCurrentId !== 'undefined' ? notesCurrentId : null;
                 row.innerHTML = id ? bar('note', id, uiLang()) : '';
             }
-            return { marker: marker, bar: bar, toggle: toggle, open: open, related: related, reasoning: reasoning, noteRow: noteRow, settings: st, item: item, save: save, refreshSave: refreshSave, copy: copy };
+            return { marker: marker, bar: bar, toggle: toggle, open: open, related: related, reasoning: reasoning, noteRow: noteRow, settings: st, item: item, save: save, refreshSave: refreshSave, copy: copy, speak: speak, speakStop: speakStop, renderBtnToggles: renderBtnToggles };
         })();
         window.EitiRelHost = EitiRelHost;
         // v14.13.0: настройки «Похожие / Рассуждение»
         window.eitiRelSet = function(name, value) {
             if (!window.EitiRelated) return null;
             var r = EitiRelated.setSetting(localStorage, name, value);
-            if (window.EitiRelHost) { EitiRelHost.noteRow(); if (name === 'save' && !value) document.querySelectorAll('.eiti-save-btn,.eiti-save-change').forEach(function(x) { x.style.display = 'none'; }); else if (name === 'save') document.querySelectorAll('.eiti-save-btn,.eiti-save-change').forEach(function(x) { x.style.display = ''; }); }
+            if (window.EitiRelHost) { EitiRelHost.noteRow(); if (name === 'copy' || name === 'speak') { EitiRelHost.renderBtnToggles(); if (name === 'speak' && !value) EitiRelHost.speakStop(); document.querySelectorAll('.eiti-rel-' + name).forEach(function(x) { x.style.display = value ? '' : 'none'; }); } if (name === 'save' && !value) document.querySelectorAll('.eiti-save-btn,.eiti-save-change').forEach(function(x) { x.style.display = 'none'; }); else if (name === 'save') document.querySelectorAll('.eiti-save-btn,.eiti-save-change').forEach(function(x) { x.style.display = ''; }); }
             return r;
         };
         window.eitiRelSyncSettings = function() {
             if (!window.EitiRelated) return;
             var s = EitiRelated.settings(localStorage), a = document.getElementById('eiti-rel-show'), b = document.getElementById('eiti-rel-why'), m = document.getElementById('eiti-rel-mode'), c = document.getElementById('eiti-rel-save');
-            if (c) c.checked = s.save;
+            if (c) c.checked = s.save; if (window.EitiRelHost) EitiRelHost.renderBtnToggles();
             if (a) a.checked = s.related; if (b) b.checked = s.reasoning; if (m) m.value = s.mode;
         };
         window.addEventListener('load', function() { try { window.eitiRelSyncSettings(); } catch (e) {} });

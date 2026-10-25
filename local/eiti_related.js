@@ -11,11 +11,11 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
 
-  var KEYS = { related: 'eiti_related_show', reasoning: 'eiti_reasoning_show', mode: 'eiti_reasoning_mode', save: 'eiti_save_to_note', target: 'eiti_save_target' };
+  var KEYS = { related: 'eiti_related_show', reasoning: 'eiti_reasoning_show', mode: 'eiti_reasoning_mode', save: 'eiti_save_to_note', target: 'eiti_save_target', copy: 'eiti_rel_copy', speak: 'eiti_rel_speak' };
   // по умолчанию: обе кнопки включены, рассуждение — офлайн
   function settings(ls) {
     var g = function (k) { try { return ls ? ls.getItem(k) : null; } catch (e) { return null; } };
-    return { related: g(KEYS.related) !== '0', reasoning: g(KEYS.reasoning) !== '0', mode: g(KEYS.mode) === 'ai' ? 'ai' : 'offline', save: g(KEYS.save) !== '0', target: g(KEYS.target) || '' };
+    return { related: g(KEYS.related) !== '0', reasoning: g(KEYS.reasoning) !== '0', mode: g(KEYS.mode) === 'ai' ? 'ai' : 'offline', save: g(KEYS.save) !== '0', target: g(KEYS.target) || '', copy: g(KEYS.copy) !== '0', speak: g(KEYS.speak) !== '0' };
   }
   function setSetting(ls, name, value) {
     var k = KEYS[name]; if (!k || !ls) return settings(ls);
@@ -60,6 +60,12 @@
     savedTo:   { ru: '📌 Добавлено в «%s»', en: '📌 Added to “%s”', de: '📌 Zu „%s“ hinzugefügt' },
     cancel:    { ru: 'Отмена', en: 'Cancel', de: 'Abbrechen' },
     copy:      { ru: 'Скопировать', en: 'Copy', de: 'Kopieren' },
+    speak:     { ru: 'Произнести', en: 'Speak', de: 'Vorlesen' },
+    stop:      { ru: 'Стоп', en: 'Stop', de: 'Stopp' },
+    copyBtn:   { ru: '📋 Кнопка «Скопировать»', en: '📋 “Copy” button', de: '📋 Schaltfläche „Kopieren“' },
+    speakBtn:  { ru: '🔊 Кнопка «Произнести»', en: '🔊 “Speak” button', de: '🔊 Schaltfläche „Vorlesen“' },
+    on:        { ru: 'ВКЛ', en: 'ON', de: 'AN' },
+    off:       { ru: 'ВЫКЛ', en: 'OFF', de: 'AUS' },
     copied:    { ru: '📋 Скопировано', en: '📋 Copied', de: '📋 Kopiert' },
     savedAt:   { ru: 'Сохранено', en: 'Saved', de: 'Gespeichert' },
     offlineOnly:{ ru: 'Офлайн-рассуждение: только данные записи, без догадок.', en: 'Offline reasoning: only the item\'s own data, no guesses.', de: 'Offline-Begründung: nur die Daten des Eintrags, keine Vermutungen.' }

@@ -150,3 +150,52 @@ test('«Рассуждение»: компактная карточка и «�
   await p2.locator('[data-w="copy"]').click();
   await expect.poll(() => page.evaluate(() => window._exec)).toBe(1);
 });
+
+test('«🔊 Произнести»: озвучка карточки, «⏹ Стоп», настройки-переключатели 📋/🔊 (как у табов)', async ({ page }) => {
+  await page.addInitScript(() => {
+    // мок speechSynthesis (в headless нет голосов): запоминаем текст, окончание — по cancel()
+    window._spoken = []; let cur = null;
+    window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: { speak(u) { cur = u; window._spoken.push(u); }, cancel() { const u = cur; cur = null; if (u && u.onend) u.onend(); }, getVoices() { return []; }, pause() {}, resume() {}, speaking: false } });
+  });
+  await boot(page, { eiti_locale: 'ru' });
+  await mount(page, 'ночной дозор рембрандт');
+  await page.locator('#relTest [data-w="why"]').first().click();
+  const sp = page.locator('#relTest [data-w="speak"]');
+  await expect(sp).toHaveText('🔊 Произнести');
+  await expect(page.locator('#relTest [data-w="copy"]')).toBeVisible();
+  await sp.click();
+  await expect(sp).toHaveText('⏹ Стоп');
+  const u = await page.evaluate(() => ({ t: window._spoken[0].text, l: window._spoken[0].lang }));
+  expect(u.l).toBe('ru-RU');
+  expect(u.t).toContain('Рембрандт');
+  expect(u.t).not.toMatch(/[*#<]/);
+  await sp.click();
+  await expect(sp).toHaveText('🔊 Произнести');
+  // переключатели в настройках: тот же вид, что у табов; ВЫКЛ прячет кнопки
+  const rows = page.locator('#eiti-rel-btn-toggles .eiti-rel-toggle-row');
+  await expect(rows).toHaveCount(2);
+  await expect(rows.nth(0)).toContainText('Скопировать');
+  await expect(rows.nth(1)).toContainText('Произнести');
+  await expect(page.locator('[data-relopt="copy"]')).toHaveText('ВКЛ');
+  await page.evaluate(() => { document.querySelector('[data-relopt="copy"]').click(); document.querySelector('[data-relopt="speak"]').click(); });
+  await expect(page.locator('[data-relopt="copy"]')).toHaveText('ВЫКЛ');
+  await expect(page.locator('[data-relopt="speak"]')).toHaveText('ВЫКЛ');
+  expect(await page.evaluate(() => [localStorage.getItem('eiti_rel_copy'), localStorage.getItem('eiti_rel_speak')])).toEqual(['0', '0']);
+  await expect(page.locator('#relTest [data-w="copy"]')).toBeHidden();
+  await expect(sp).toBeHidden();
+  await page.evaluate(() => document.getElementById('relTest').remove());
+  await mount(page, 'ночной дозор рембрандт');
+  await page.locator('#relTest [data-w="why"]').first().click();
+  await expect(page.locator('#relTest .eiti-rel-panel')).toContainText('Офлайн-рассуждение');
+  await expect(page.locator('#relTest [data-w="copy"], #relTest [data-w="speak"]')).toHaveCount(0);
+});
+
+test('«🔊 Произнести» скрыта, если озвучки нет', async ({ page }) => {
+  await page.addInitScript(() => { try { delete window.speechSynthesis; } catch (e) {} Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: undefined }); });
+  await boot(page);
+  await mount(page, 'ночной дозор рембрандт');
+  await page.locator('#relTest [data-w="why"]').first().click();
+  await expect(page.locator('#relTest [data-w="copy"]')).toBeVisible();
+  await expect(page.locator('#relTest [data-w="speak"]')).toHaveCount(0);
+});

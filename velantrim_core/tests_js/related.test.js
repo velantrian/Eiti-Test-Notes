@@ -11,18 +11,18 @@ function store(init) {
 
 test('settings: defaults on/on/offline, set and persist', () => {
   const ls = store();
-  assert.deepStrictEqual(R.settings(ls), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
-  assert.deepStrictEqual(R.settings(null), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
+  assert.deepStrictEqual(R.settings(ls), { related: true, reasoning: true, mode: 'offline', save: true, target: '', copy: true, speak: true });
+  assert.deepStrictEqual(R.settings(null), { related: true, reasoning: true, mode: 'offline', save: true, target: '', copy: true, speak: true });
   R.setSetting(ls, 'related', false);
   R.setSetting(ls, 'mode', 'ai');
-  assert.deepStrictEqual(R.settings(ls), { related: false, reasoning: true, mode: 'ai', save: true, target: '' });
+  assert.deepStrictEqual(R.settings(ls), { related: false, reasoning: true, mode: 'ai', save: true, target: '', copy: true, speak: true });
   assert.strictEqual(ls._m.eiti_related_show, '0');
   R.setSetting(ls, 'mode', 'garbage');
   assert.strictEqual(R.settings(ls).mode, 'offline');
   R.setSetting(ls, 'nope', true);
   assert.strictEqual(Object.keys(ls._m).length, 2);
   const broken = { getItem() { throw new Error('denied'); }, setItem() { throw new Error('denied'); } };
-  assert.deepStrictEqual(R.setSetting(broken, 'related', false), { related: true, reasoning: true, mode: 'offline', save: true, target: '' });
+  assert.deepStrictEqual(R.setSetting(broken, 'related', false), { related: true, reasoning: true, mode: 'offline', save: true, target: '', copy: true, speak: true });
 });
 
 test('relatedNotes: TF-IDF ranks topical neighbours, excludes self/deleted/unrelated', () => {
@@ -154,4 +154,15 @@ test('reasoning card: tidyHtml removes stray <br> around blocks; plainCard → c
   assert.strictEqual(R.plainCard('a\n\n⟦EITIREL:kb:x⟧'), 'a');
   assert.deepStrictEqual(['ru', 'en', 'de'].map((l) => R.S('copy', l)), ['Скопировать', 'Copy', 'Kopieren']);
   assert.strictEqual(R.S('copied', 'ru'), '📋 Скопировано');
+});
+
+test('copy/speak button settings: default on, can be turned off; RU/EN/DE labels', () => {
+  const ls = store();
+  assert.strictEqual(R.settings(ls).copy, true); assert.strictEqual(R.settings(ls).speak, true);
+  R.setSetting(ls, 'copy', false); R.setSetting(ls, 'speak', false);
+  assert.strictEqual(ls._m.eiti_rel_copy, '0'); assert.strictEqual(ls._m.eiti_rel_speak, '0');
+  assert.strictEqual(R.settings(ls).copy, false); assert.strictEqual(R.settings(ls).speak, false);
+  assert.deepStrictEqual(['ru', 'en', 'de'].map((l) => R.S('speak', l)), ['Произнести', 'Speak', 'Vorlesen']);
+  assert.deepStrictEqual(['ru', 'en', 'de'].map((l) => R.S('stop', l)), ['Стоп', 'Stop', 'Stopp']);
+  for (const k of ['copyBtn', 'speakBtn', 'on', 'off']) for (const l of ['en', 'de']) assert.notStrictEqual(R.S(k, l), R.S(k, 'ru'));
 });
