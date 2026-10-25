@@ -54,9 +54,29 @@ test('KB-ответ: кнопки, похожие из пакета, офлай�
   await expect(panel).toContainText('Офлайн-рассуждение');
 });
 
+// CI regression (PR #44): with an English UI (en-US browser, no eiti_locale) the DOM translator turned the
+// «Факты» heading of a Russian card into «Facts» while «Раздел/Источник» stayed Russian. Cards follow data-l only.
+for (const ui of ['en', 'ru', 'de']) {
+  test('карточка «Рассуждение» на одном языке при UI=' + ui, async ({ page }) => {
+    await boot(page, { eiti_locale: ui });
+    await mount(page, 'ночной дозор рембрандт');
+    const bar = page.locator('#relTest .eiti-rel-bar').first();
+    await bar.locator('[data-w="why"]').first().click();
+    const panel = bar.locator('.eiti-rel-panel').first();
+    await expect(panel).toContainText('Раздел');
+    await page.waitForTimeout(400); // the UI translator's MutationObserver flushes after 80 ms — let it run, then assert
+    await expect(panel).toContainText('Факты');
+    await expect(panel).toContainText('📋 Скопировать');
+    await expect(panel).not.toContainText(/\bFacts\b|\bFakten\b|Section|Source:/);
+    await expect(bar.locator('[data-w="save"]')).toHaveText('📌 В заметку');
+  });
+}
+
 test('сказка: похожие по традиции/персонажам и карточка', async ({ page }) => {
   await boot(page);
-  const t = await mount(page, 'расскажи сказку про колобка');
+  // пакеты сказок грузятся лениво: первый ответ может прийти до загрузки («Такой сказки…») — повторяем
+  let t = '';
+  for (let i = 0; i < 4 && !/⟦EITIREL:tale:/.test(t); i++) { await page.evaluate(() => { const o = document.getElementById('relTest'); if (o) o.remove(); }); t = await mount(page, 'расскажи сказку про колобка'); if (!/⟦EITIREL:tale:/.test(t)) await page.waitForTimeout(500); }
   expect(t).toMatch(/⟦EITIREL:tale:[a-z]+\.[\w-]+⟧/);
   const bar = page.locator('#relTest .eiti-rel-bar').first();
   await bar.locator('[data-w="rel"]').first().click();
@@ -88,7 +108,7 @@ test('режим «С ИИ»: проверенные факты отдельно
   const panel = bar.locator('.eiti-rel-panel');
   await expect(panel).toContainText('ОБЪЯСНЕНИЕ ИИ');
   const txt = await panel.innerText();
-  expect(txt.indexOf('Проверенные факты')).toBeLessThan(txt.indexOf('Автор'));
+  expect(txt.indexOf('Факты из источника')).toBeLessThan(txt.indexOf('Автор'));
   expect(txt.indexOf('Автор')).toBeLessThan(txt.indexOf('Объяснение ИИ'));
   expect(txt.indexOf('Объяснение ИИ')).toBeLessThan(txt.indexOf('ОБЪЯСНЕНИЕ ИИ'));
   // a note without Notes AI consent never reaches the AI
@@ -135,7 +155,7 @@ test('«Рассуждение»: компактная карточка и «�
   await panel.locator('[data-w="copy"]').click();
   await expect(page.locator('.toast').last()).toHaveText(/📋 (Скопировано|Copied)/); // showToast переводит по локали UI
   const c = await page.evaluate(() => window._copied[0]);
-  expect(c).toContain('✅ Проверенные факты');
+  expect(c).toContain('📚 Факты из источника');
   expect(c).toContain('Автор: Рембрандт');
   expect(c).toContain('🤖 Объяснение ИИ');
   expect(c).toContain('ОБЪЯСНЕНИЕ ИИ');
