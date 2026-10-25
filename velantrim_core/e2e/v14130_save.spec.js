@@ -39,6 +39,7 @@ test('нет заметок → сразу новая; дальше липкая
   expect(ns[0].body).toContain('— Источник:');
   expect(ns[0].body).not.toMatch(/[⟦<]|Похожие|Рассуждение|Офлайн-ответ/);
   await expect(page.locator('#a1 [data-w="save"]')).toContainText('📌 В «');
+  await expect(page.locator('#a1 [data-w="save"]')).not.toContainText('««'); // заголовок KB уже в кавычках
   await expect(page.locator('#a1 [data-w="pick"]')).toHaveText('сменить');
   await mount(page, 'расскажи сказку про колобка', 'a2');
   await page.locator('#a2 [data-w="save"]').click();

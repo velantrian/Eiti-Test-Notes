@@ -32399,7 +32399,8 @@ window.eitiLLMClearAll = async function() {
             }
             // ── v14.13.0: «📌 В заметку» — липкая заметка-цель (eiti_save_target), выбор при первом нажатии ──
             function notesAll() { try { return typeof notesLoad === 'function' ? notesLoad() : []; } catch (e) { return []; } }
-            function noteName(n, lang) { var t = String((n && n.title) || '').trim(); return t ? (t.length > 28 ? t.slice(0, 27) + '…' : t) : R().S('untitled', lang); }
+            function noteName(n, lang) { var t = String((n && n.title) || '').trim().replace(/^[«“„"](.*)[»”“"]$/, '$1').trim(); // v14.13.0: без двойных «« »»
+                return t ? (t.length > 28 ? t.slice(0, 27) + '…' : t) : R().S('untitled', lang); }
             function saveLabel(lang) { var r = R(), n = r.targetNote(notesAll(), st().target); return '📌 ' + esc(n ? r.fmt('toNoteIn', lang, noteName(n, lang)) : r.S('toNote', lang)); }
             function saveBtn(lang) {
                 var r = R(), n = r.targetNote(notesAll(), st().target);
