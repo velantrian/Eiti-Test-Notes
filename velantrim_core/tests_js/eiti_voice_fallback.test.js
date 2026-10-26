@@ -165,3 +165,17 @@ test('index.html: offerSwitch берёт готового провайдера �
   // мост деградирует к прежнему offerSwitch без модуля
   assert.match(HTML, /if \(!C \|\| typeof C\.handleDrop !== 'function'\) \{ if \(window\.EitiVoice\) EitiVoice\.offerSwitch\(prov, 'socket'\); return null; \}/);
 });
+test('_eitiVoiceCloseCode: 4401/4403 → auth, 4429 → quota (без повтора), 1006 → socket', () => {
+  const m = HTML.match(/function _eitiVoiceCloseCode\(code, reason\) \{[\s\S]*?\n        \}/);
+  assert.ok(m, '_eitiVoiceCloseCode найдена в index.html');
+  const f = new Function(m[0] + '; return _eitiVoiceCloseCode;')();
+  assert.strictEqual(f(4401, ''), 'auth');
+  assert.strictEqual(f(4403, ''), 'auth');
+  assert.strictEqual(f(4429, ''), 'quota');
+  assert.strictEqual(f(1006, ''), 'socket');
+  for (const code of [4401, 4403, 4429]) {
+    const { api, clock } = setup({ gemini: true });
+    assert.notStrictEqual(api.handleDrop('gemini', f(code, '')).action, 'reconnect');
+    assert.strictEqual(clock.pending(), 0);
+  }
+});
