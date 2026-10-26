@@ -27,10 +27,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Verify release boundary
+        run: python3 -m unittest discover -s scripts -p 'test_pages*.py' -v
+
+      - name: Stage reviewed PWA assets
+        run: python3 scripts/build_pages.py --output "${{ runner.temp }}/eiti-pages"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ${{ runner.temp }}/eiti-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
