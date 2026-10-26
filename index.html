@@ -29495,7 +29495,10 @@ window.eitiLLMClearAll = async function() {
                     MOSC_DEFAULT_GRAPH = g;
                     window._moscDefaultNodeCount = Object.keys(g).length;
                     window._moscDefaultEdgeCount = Object.values(g).reduce(function(a,e){ return a+Object.keys(e).length; }, 0);
-                    if (!window._moscGraph || Object.keys(window._moscGraph).length < 10) {
+                    // Заменяем только встроенный fallback или устаревший крошечный граф из хранилища,
+                    // но не граф, выставленный/обученный уже после старта (поздний fetch не должен его затирать).
+                    var _cur = window._moscGraph;
+                    if (!_cur || _cur === MOSC_INLINE_FALLBACK || (_cur === window._moscGraphFromStore && Object.keys(_cur).length < 10)) {
                         window._moscGraph = g;
                     }
                     return g;
@@ -29721,8 +29724,11 @@ window.eitiLLMClearAll = async function() {
             }
 
             // ── Инициализация: грузим граф в память ───────────────────
+            var _moscBootGraph = window._moscGraph;
             moscLoadGraph().then(function(g) {
-                window._moscGraph = g;
+                // Не затираем граф, который успели изменить, пока шло чтение из IndexedDB.
+                if (window._moscGraph && window._moscGraph !== _moscBootGraph && window._moscGraph !== MOSC_INLINE_FALLBACK && window._moscGraph !== MOSC_DEFAULT_GRAPH) return;
+                window._moscGraph = g; window._moscGraphFromStore = g;
             });
 
             // ── MOSC главная точка входа (вызывается из doSend) ───────
