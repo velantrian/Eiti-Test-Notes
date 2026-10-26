@@ -4325,6 +4325,7 @@
     <script src="./local/eiti_typo.js" defer></script>
     <script src="./local/eiti_journal.js" defer></script>
     <script src="./local/eiti_related.js" defer></script>
+    <script src="./local/eiti_voice.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -19533,8 +19534,9 @@
             window._grokVoiceActive = true;
             _grokVoiceSetBtn('⏳');
             _eitiSyncChatPanelBtns();
+            _eitiVoiceEmit('connecting', 'grok');
 
-            navigator.mediaDevices.getUserMedia({ audio: { sampleRate: 24000, channelCount: 1, echoCancellation: true, noiseSuppression: true } })
+            eitiVoiceMic({ audio: { sampleRate: 24000, channelCount: 1, echoCancellation: true, noiseSuppression: true } })
             .then(function(stream) {
                 _grokStream = stream;
                 _grokMicCtx  = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
@@ -19634,7 +19636,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var _grokWireUpHandlers = function() {
                 _grokWS.onopen = function() {
                     _grokVoiceSetBtn('');
-                    showToast('🎤 Grok слушает…');
+                    _eitiVoiceEmit('listening', 'grok'); showToast('🎤 Grok слушает…');
                     // v12.9: голос из настроек
                     var _grokVoiceName = (localStorage.getItem('eiti_grok_voice_name') || 'Rex').toLowerCase();
 
@@ -20250,13 +20252,22 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 }; // end _grokWireUpHandlers
             })
             .catch(function(e) {
-                showToast('❌ Микрофон: ' + (e.message || e));
+                showToast(_eitiVoiceMicErr(e), 4500);
                 window._grokVoiceActive = false;
                 _grokVoiceSetBtn('');
                 _eitiSyncChatPanelBtns();
             });
         }
 
+        // EitiVoice P0: мост к единому контроллеру local/eiti_voice.js (если модуль не загрузился — работаем по-старому)
+        function _eitiVoiceEmit(s, prov) { try { if (window.EitiVoiceCore) window.EitiVoiceCore.setState(s, prov); } catch (e) {} }
+        function eitiVoiceMic(c, prov) {
+            if (window.EitiVoiceCore) return window.EitiVoiceCore.requestMic(c, prov || window._eitiVoiceProv || '');
+            return navigator.mediaDevices.getUserMedia(c);
+        }
+        window.eitiVoiceMic = eitiVoiceMic;
+        // Единый текст ошибки микрофона: локализованный код из контроллера или прежний формат
+        function _eitiVoiceMicErr(e) { return (e && e.eitiCode) ? e.message : '❌ ' + _eitiT('Микрофон') + ': ' + ((e && e.message) || e); }
         function eitiGrokVoiceStop() {
             window._grokVoiceActive   = false;
             window._grokVoiceSpeaking = false;
@@ -20271,6 +20282,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             window._eitiVoiceProv = '';
             _grokVoiceSetBtn('');
             _eitiSyncChatPanelBtns();
+            if (!(window.EitiVoiceCore && window.EitiVoiceCore.state() === 'error')) _eitiVoiceEmit('idle'); // ошибка остаётся видимой до следующего старта
             showToast('🗣️ AI Voice остановлен');
         }
 
@@ -20466,7 +20478,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (msg.setupComplete) {
                 window._geminiLiveReady = true;
                 _grokVoiceSetBtn('');
-                showToast('🎤 AI Voice (Gemini) слушает…');
+                _eitiVoiceEmit('listening', 'gemini'); showToast('🎤 AI Voice (Gemini) слушает…');
                 return;
             }
             if (msg.goAway) { showToast('⏳ Gemini Live: сессия скоро завершится (лимит ~15 мин)'); }
@@ -20559,7 +20571,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (!_grokMicCtx && AC) { try { _grokMicCtx = new AC({ sampleRate: 16000 }); } catch (e) { try { _grokMicCtx = new AC(); } catch (e2) {} } }
             try { if (_grokMicCtx && _grokMicCtx.resume) _grokMicCtx.resume(); } catch (e) {}
             if (!_grokPlayCtx && AC) { try { _grokPlayCtx = new AC({ sampleRate: 24000 }); _grokPlayAt = _grokPlayCtx.currentTime; if (_grokPlayCtx.resume) _grokPlayCtx.resume(); } catch (e) { _grokPlayCtx = null; } }
-            navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } })
+            eitiVoiceMic({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } })
             .then(function(stream) {
                 if (!window._grokVoiceActive || _grokWS !== ws) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
                 _grokStream = stream;
@@ -20594,7 +20606,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 });
             })
             .catch(function(e) {
-                showToast('❌ Микрофон: ' + (e.message || e));
+                showToast(_eitiVoiceMicErr(e), 4500);
                 eitiGrokVoiceStop();
             });
         }
@@ -20675,11 +20687,13 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             window._grokTranscriptAccum = '';
             _grokVoiceSetBtn('⏳');
             _eitiSyncChatPanelBtns();
+            _eitiVoiceEmit('connecting', prov);
         }
         function _eitiVoiceFail(prov, shim, msg) {
             if (shim && _grokWS !== shim) return; // уже остановлен / заменён
             _grokWS = null;
             eitiGrokVoiceStop();
+            if (window.EitiVoiceCore) { var _vc = window.EitiVoiceCore.classify(msg); window.EitiVoiceCore.fail(_vc === 'unknown' ? 'socket' : _vc, prov, msg); }
             showToast('❌ ' + (window.EitiVoice ? EitiVoice.label(prov) : prov) + ': ' + msg, 4500);
             if (window.EitiVoice) EitiVoice.offerSwitch(prov, 'socket');
         }
@@ -20687,7 +20701,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         function _eitiRtHandle(prov, msg, playAudio) {
             var t = (msg && msg.type) || '';
             if (t === 'session.updated' || (t === 'session.created' && prov === 'openai')) {
-                if (!window._geminiLiveReady) { window._geminiLiveReady = true; _grokVoiceSetBtn(''); showToast('🎤 ' + EitiVoice.label(prov) + ' — ' + _eitiT('слушаю…')); }
+                if (!window._geminiLiveReady) { window._geminiLiveReady = true; _grokVoiceSetBtn(''); _eitiVoiceEmit('listening', prov); showToast('🎤 ' + EitiVoice.label(prov) + ' — ' + _eitiT('слушаю…')); }
                 return;
             }
             if ((t === 'response.audio.delta' || t === 'response.output_audio.delta') && msg.delta) {
@@ -20725,7 +20739,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (!_grokMicCtx && AC) { try { _grokMicCtx = new AC({ sampleRate: rate }); } catch (e) { try { _grokMicCtx = new AC(); } catch (e2) {} } }
             try { if (_grokMicCtx && _grokMicCtx.resume) _grokMicCtx.resume(); } catch (e) {}
             if (!_grokPlayCtx && AC) { try { _grokPlayCtx = new AC({ sampleRate: 24000 }); _grokPlayAt = _grokPlayCtx.currentTime; if (_grokPlayCtx.resume) _grokPlayCtx.resume(); } catch (e) { _grokPlayCtx = null; } }
-            return navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+            return eitiVoiceMic({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
                 if (!guard(true)) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
                 _grokStream = stream;
                 var ctx = _grokMicCtx;
@@ -20768,7 +20782,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var ek = j && (j.value || (j.client_secret && j.client_secret.value));
                 if (!ek) throw new Error(_eitiT('нет временного ключа'));
                 if (_grokWS !== shim) throw new Error('aborted');
-                return navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+                return eitiVoiceMic({ audio: { echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
                     if (_grokWS !== shim) { stream.getTracks().forEach(function(t) { t.stop(); }); throw new Error('aborted'); }
                     _grokStream = stream;
                     pc.addTrack(stream.getAudioTracks()[0], stream);
@@ -20809,7 +20823,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 ws.send(JSON.stringify({ type: 'session.update', session: s }));
                 _eitiMicPump(rate, function(first) { return _grokWS === ws && ws.readyState === 1 && (first || !!window._geminiLiveReady); }, function(b64) {
                     ws.send(JSON.stringify({ type: 'input_audio_buffer.append', audio: b64 }));
-                }).catch(function(e) { showToast('❌ ' + _eitiT('Микрофон') + ': ' + (e.message || e)); eitiGrokVoiceStop(); });
+                }).catch(function(e) { eitiGrokVoiceStop(); showToast(_eitiVoiceMicErr(e), 4500); });
             };
             ws.onmessage = function(evt) { var m; try { m = JSON.parse(typeof evt.data === 'string' ? evt.data : new TextDecoder().decode(evt.data)); } catch (e) { return; } _eitiRtHandle(prov, m, true); };
             ws.onerror = function() { _eitiVoiceFail(prov, ws, _eitiT('прокси недоступен')); };
@@ -20889,7 +20903,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 close: function() { shim.readyState = 3; clearInterval(st.timer); try { if (st.rec && st.rec.state !== 'inactive') st.rec.stop(); } catch (e) {} try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {} try { if (window._eitiMistralAudio) window._eitiMistralAudio.pause(); } catch (e) {} } };
             _grokWS = shim;
             window._eitiMistralShim = shim;
-            navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
+            eitiVoiceMic({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }).then(function(stream) {
                 if (_grokWS !== shim) { stream.getTracks().forEach(function(t) { t.stop(); }); return; }
                 _grokStream = stream;
                 var AC = window.AudioContext || window.webkitAudioContext;
@@ -20898,7 +20912,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 var an = _grokMicCtx.createAnalyser(); an.fftSize = 1024; _grokMicSrc.connect(an);
                 var buf = new Float32Array(an.fftSize);
                 window._geminiLiveReady = true; _grokVoiceSetBtn('');
-                showToast('🎤 Mistral Voxtral — ' + _eitiT('слушаю…'));
+                _eitiVoiceEmit('listening', 'mistral'); showToast('🎤 Mistral Voxtral — ' + _eitiT('слушаю…'));
                 st.timer = setInterval(function() {
                     if (_grokWS !== shim) { clearInterval(st.timer); return; }
                     if (shim.busy || window._grokMuted) return;
@@ -20928,7 +20942,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                         try { st.rec.stop(); } catch (e) {}
                     }
                 }, 100);
-            }).catch(function(e) { showToast('❌ ' + _eitiT('Микрофон') + ': ' + (e.message || e)); eitiGrokVoiceStop(); });
+            }).catch(function(e) { eitiGrokVoiceStop(); showToast(_eitiVoiceMicErr(e), 4500); });
         }
         window.eitiMistralVoiceStart = eitiMistralVoiceStart;
 
@@ -21178,7 +21192,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         // Главная функция: сканировать текст пользователя → извлечь → сохранить в IDB
         window.eitiL3AutoExtract = function(userText) {
             if (!userText || userText.length < 5) return;
-            // v14.14.0: «не запоминай» / «я ещё не решил» → в L3 ничего не пишем
+            // EitiVoice P0: «не запоминай» / «я ещё не решил» → в L3 ничего не пишем
             var _mi = (typeof window.eitiMemIntent === 'function') ? window.eitiMemIntent(userText) : null;
             if (_mi) {
                 if (typeof showToast === 'function') showToast(_mi === 'skip' ? '🙈 Не запоминаю — как вы просили' : '🤔 Не записываю как факт — вы ещё не решили', 2500);
@@ -35526,7 +35540,7 @@ window.eitiLLMClearAll = async function() {
             return 'fact_' + (now || Date.now()) + '_' + eitiNewFactId._n.toString(36) + Math.random().toString(36).slice(2, 6);
         }
 
-        // v14.14.0: уважать инструкции пользователя о памяти («не запоминай», «я ещё не решил»)
+        // EitiVoice P0: уважать инструкции пользователя о памяти («не запоминай», «я ещё не решил»)
         // → 'skip' (ничего не сохранять), 'tentative' (не сохранять как факт), null.
         function eitiMemIntent(text) {
             var t = String(text || '').toLowerCase().replace(/ё/g, 'е').replace(/[’`]/g, "'");
@@ -35544,7 +35558,7 @@ window.eitiLLMClearAll = async function() {
         function eitiLearnFact(fact) {
             if (!fact) return;
             var _intent = (typeof eitiMemIntent === 'function') ? eitiMemIntent(fact) : null;
-            if (_intent) { // v14.14.0: не пишем в память — пользователь попросил не запоминать / ещё не решил
+            if (_intent) { // EitiVoice P0: не пишем в память — пользователь попросил не запоминать / ещё не решил
                 if (typeof showToast === 'function') showToast(_intent === 'skip' ? '🙈 Не запоминаю — как вы просили' : '🤔 Не записываю как факт — вы ещё не решили');
                 return;
             }

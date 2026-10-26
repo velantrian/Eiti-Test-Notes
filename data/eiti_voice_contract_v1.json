@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "description": "EitiVoice: контракт голосового контроллера (docs/EITI_VOICE_PLAN.md, P0-1). Без DOM: пригоден для PWA, нативного и серверного клиента.",
+  "states": [
+    "idle",
+    "requesting_mic",
+    "connecting",
+    "listening",
+    "speaking",
+    "reconnecting",
+    "stopped",
+    "error"
+  ],
+  "transitions": {
+    "idle": [
+      "requesting_mic",
+      "connecting",
+      "error"
+    ],
+    "requesting_mic": [
+      "connecting",
+      "error",
+      "idle"
+    ],
+    "connecting": [
+      "listening",
+      "error",
+      "idle",
+      "reconnecting"
+    ],
+    "listening": [
+      "speaking",
+      "error",
+      "idle",
+      "reconnecting"
+    ],
+    "speaking": [
+      "listening",
+      "error",
+      "idle"
+    ],
+    "reconnecting": [
+      "connecting",
+      "listening",
+      "error",
+      "idle"
+    ],
+    "stopped": [
+      "idle"
+    ],
+    "error": [
+      "idle",
+      "requesting_mic",
+      "connecting",
+      "reconnecting"
+    ]
+  },
+  "errors": [
+    "mic_denied",
+    "mic_absent",
+    "mic_busy",
+    "no_key",
+    "no_proxy",
+    "offline",
+    "socket",
+    "auth",
+    "quota",
+    "timeout",
+    "unsupported",
+    "unknown"
+  ],
+  "retriable": [
+    "socket",
+    "timeout",
+    "offline"
+  ],
+  "providers": [
+    "grok",
+    "gemini",
+    "openai",
+    "qwen",
+    "yandex",
+    "mistral"
+  ],
+  "aliases": {
+    "alisa": "yandex",
+    "alice": "yandex"
+  },
+  "caps": {
+    "grok": {
+      "stt": true,
+      "tts": true,
+      "duplex": true,
+      "offline": false,
+      "needsKey": true,
+      "needsProxy": false,
+      "transport": "websocket"
+    },
+    "gemini": {
+      "stt": true,
+      "tts": true,
+      "duplex": true,
+      "offline": false,
+      "needsKey": true,
+      "needsProxy": false,
+      "transport": "websocket"
+    },
+    "openai": {
+      "stt": true,
+      "tts": true,
+      "duplex": true,
+      "offline": false,
+      "needsKey": true,
+      "needsProxy": false,
+      "transport": "webrtc"
+    },
+    "qwen": {
+      "stt": true,
+      "tts": true,
+      "duplex": true,
+      "offline": false,
+      "needsKey": false,
+      "needsProxy": true,
+      "transport": "websocket-proxy"
+    },
+    "yandex": {
+      "stt": true,
+      "tts": true,
+      "duplex": true,
+      "offline": false,
+      "needsKey": false,
+      "needsProxy": true,
+      "transport": "websocket-proxy"
+    },
+    "mistral": {
+      "stt": true,
+      "tts": true,
+      "duplex": false,
+      "offline": false,
+      "needsKey": true,
+      "needsProxy": false,
+      "transport": "http"
+    }
+  },
+  "adapter": [
+    "id",
+    "label",
+    "caps",
+    "ready",
+    "start",
+    "stop",
+    "mute",
+    "isActive"
+  ],
+  "legacyApi": [
+    "providers",
+    "current",
+    "active",
+    "start",
+    "stop",
+    "mute",
+    "isActive",
+    "offerSwitch",
+    "label",
+    "tr",
+    "needs",
+    "ids"
+  ],
+  "controllerApi": [
+    "state",
+    "on",
+    "off",
+    "caps",
+    "lastError",
+    "requestMic",
+    "message",
+    "fallbackOrder",
+    "fallback",
+    "reconnect",
+    "adapters",
+    "core"
+  ],
+  "locales": [
+    "ru",
+    "en",
+    "de"
+  ]
+}
