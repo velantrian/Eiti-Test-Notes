@@ -238,6 +238,18 @@ flowchart TD
 | Ошибки | `not-allowed`, `no-speech`, `network`, `audio-capture`, `language-not-supported` → переведённые тосты |
 | Тест | `velantrim_core/e2e/v14100_dictation.spec.js` (SpeechRecognition замокан, оба пути — онлайн и на устройстве) |
 
+### 7.1 Единый контроллер `local/eiti_voice.js` (EitiVoice P0)
+
+Модуль без DOM дополняет `window.EitiVoice`, ничего не заменяя (старые `providers, current, active, start, stop, mute, isActive, offerSwitch, label, tr, needs, ids` — без изменений). Контракт — `data/eiti_voice_contract_v1.json`.
+
+- **Состояния:** `idle → requesting_mic → connecting → listening ⇄ speaking → reconnecting → stopped | error`. Новые методы: `EitiVoice.state()`, `on('state'|'error', fn)`, `off()`, `lastError()`, `caps(id)`, `fallbackOrder(from)`, `fallback(from)`, `reconnect(id, max)` (по умолчанию 2 попытки), `adapters`, `core`. Ядро также доступно как `window.EitiVoiceCore`, контроллер — `window.EitiVoiceController`.
+- **Адаптеры:** `grok`, `gemini`, `openai`, `qwen`, `yandex` (алиас `alisa`), `mistral` — обёртки над `_eitiGrokVoiceStartCore`, `eitiGeminiVoiceStart`, `eitiOpenAIVoiceStart`, `eitiRtProxyVoiceStart`, `eitiMistralVoiceStart`; общий контракт `{ id, label, caps, ready, start, stop, mute, isActive }`.
+- **Мост в `index.html`:** `_eitiVoiceEmit(state, prov)` вызывается из `_eitiVoiceBegin`, `_eitiGrokVoiceStartCore`, точек «слушаю…» и `eitiGrokVoiceStop`; `_eitiVoiceFail` сообщает код ошибки (`socket`/`auth`/…).
+- **Микрофон:** все 5 провайдеров запрашивают его через `eitiVoiceMic()` → `EitiVoiceCore.requestMic()`. Ошибки `getUserMedia` получают коды `mic_denied | mic_absent | mic_busy | unsupported` и одинаковый текст на RU/EN/DE (`_eitiVoiceMicErr`).
+- **Коды ошибок:** `mic_denied, mic_absent, mic_busy, no_key, no_proxy, offline, socket, auth, quota, timeout, unsupported, unknown`; повторяемые — `socket, timeout, offline`.
+- **Хранение:** модуль не пишет в localStorage; выбор провайдера по-прежнему `eiti_voice_provider`. Модуль в precache `sw.js`. Если модуль не загрузился, `eitiVoiceMic` падает обратно на `navigator.mediaDevices.getUserMedia`.
+- **Тесты:** unit `voice_contract`, `eiti_voice_core`, `eiti_voice_compat`, `eiti_voice_errors`; e2e `v14140_voice_controller.spec.js`, `v14140_voice_mic.spec.js`.
+
 ## 8. Service Worker и кеширование
 
 | Кеш | Имя | Стратегия |
