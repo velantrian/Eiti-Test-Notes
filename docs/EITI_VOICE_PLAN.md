@@ -1,10 +1,12 @@
 # 🎙️ План работ: единый голосовой модуль EitiVoice
 
-> Статус: **P0 реализован** (P0-1, P0-2, P0-3) — см. `local/eiti_voice.js`, `docs/ARCHITECTURE.md` §7.1. **P1-1 — черновик PR** (fallback по `ready()`, переподключение 2×(1с/3с), текстовый режим). P1-2, P1-3, P2 — впереди.
-> Основа: `main` @ `77b1608` (после #45–#50), v14.13.0.
+> Статус на **26.10.2026**: **P0 и P1-1 реализованы и интегрированы в `main`** (`local/eiti_voice.js`; [PR #52](https://github.com/velantrian/Eiti-Test-Notes/pull/52), [PR #54](https://github.com/velantrian/Eiti-Test-Notes/pull/54)). **P1-2, P1-3 и P2 не реализованы.**
+> Срез проверенного `main`: `4b28f8d` (после #54), версия **v14.13.1**. Историческая основа первоначального плана: `77b1608`, v14.13.0.
 > Источник идеи: предложение ChatGPT «один модуль голосового ассистента для разных ИИ». Принцип: **не второй движок, а развитие существующего `window.EitiVoice`**.
 
-## 🔎 1. Что есть сейчас (по коду)
+## 🔎 1. Исходная инвентаризация (до P0/P1-1)
+
+Этот раздел сохранён как **исходный анализ**, а не описание текущих пробелов. Фактическое состояние после #52/#54 отражено в разделе P1-1 и в `docs/ARCHITECTURE.md` §7.1.
 
 | Что | Где | Комментарий |
 |---|---|---|
@@ -18,7 +20,7 @@
 | Модули `local/` | `eiti_local.js`, `eiti_dstate.js`, `eiti_typo.js`, `eiti_journal.js`, `eiti_related.js`, `eiti_drive_sync.js` | подключены `<script defer>`, кешируются в `sw.js`, публикуются через `local/eiti_*.js` в `scripts/build_pages.py` |
 | Тесты | `e2e/chat_save_voice.spec.js` (mock WS Gemini/Grok), `e2e/v14120_voice_mistral.spec.js`, `e2e/v1490_journal_voice.spec.js`, `tests_js/v14120_voice.test.js`, `tests_js/chat_save_voice.test.js` | |
 
-**Найденные пробелы:**
+**Пробелы исходной инвентаризации (в P0/P1-1 часть устранена):**
 - `offerSwitch` → `other(id)` предлагает только `grok ↔ gemini`, остальные 4 провайдера в fallback не участвуют.
 - Нет явных состояний (`idle/connecting/listening/…`) и единого кода ошибок — каждый провайдер шлёт свой тост.
 - Нет переподключения при обрыве: `_eitiVoiceFail` сразу останавливает сессию.
@@ -63,31 +65,37 @@ ContextProvider (getContext) ← память EITI (IndexedDB: l3, kb, memkv, jo
 
 ## 🗺️ 4. Этапы
 
-### 🟥 P0-1. Контракт и инвентаризация (без изменения поведения)
+### ✅ P0-1. Контракт и инвентаризация (реализовано)
 - **Что:** описать контракт, состояния, коды ошибок; карта всех путей голоса (функции выше); раздел в `docs/ARCHITECTURE.md` §7 обновить (сейчас там только Grok/Gemini).
 - **Файлы:** `docs/ARCHITECTURE.md`, `AGENTS.md` (исключение для `local/`), `data/eiti_voice_contract_v1.json` (схема состояний/ошибок).
 - **Тесты (unit):** `tests_js/voice_contract.test.js` — схема валидна; каждый id из `EitiVoice.ids()` есть в контракте; публичный API `EitiVoice` содержит все 12 текущих методов.
 - **Приёмка:** CI зелёный, поведение 1:1, `index.html` не менялся по логике.
 
-### 🟥 P0-2. `local/eiti_voice.js`: контроллер + адаптеры-обёртки
+### ✅ P0-2. `local/eiti_voice.js`: контроллер + адаптеры-обёртки (реализовано)
 - **Что:** `EitiVoiceCore` с машиной состояний; 6 адаптеров, оборачивающих `_eitiGrokVoiceStartCore`, `eitiGeminiVoiceStart`, `eitiOpenAIVoiceStart`, `eitiRtProxyVoiceStart`, `eitiMistralVoiceStart`, `eitiGrokVoiceStop`, `eitiGrokMuteToggle`; `_eitiVoiceBegin/_eitiVoiceFail/_eitiRtHandle` дёргают `hooks.onState/onError`. `window.EitiVoice` остаётся фасадом с тем же API + новые `state()`, `on(event, fn)`, `caps(id)`.
 - **Файлы:** `local/eiti_voice.js` (новый), `index.html` (`<script src="./local/eiti_voice.js" defer>`, тонкие вызовы хуков), `sw.js` (в список кеша + bump `CACHE`), `scripts/build_pages.py` уже покрывает `local/eiti_*.js` — проверить тестом.
 - **Тесты:** unit `tests_js/eiti_voice_core.test.js` (переходы состояний, запрет двойного старта, stop из любого состояния → `idle`); unit `tests_js/eiti_voice_compat.test.js` (старый API: `start/stop/mute/isActive/label/needs/offerSwitch` работают, и без модуля — фолбэк на IIFE); Playwright `e2e/v14140_voice_controller.spec.js` (mock WS: Gemini и Grok проходят `connecting → listening → stopped`, события `voice:state` видны UI); существующие `chat_save_voice.spec.js`, `v14120_voice_mistral.spec.js` — без правок.
 - **Приёмка:** все старые голосовые тесты зелёные без изменений; модуль в SW-кеше и в Pages allowlist (`test_pages_export.py`).
 
-### 🟥 P0-3. Микрофон, разрешения и единые ошибки
+### ✅ P0-3. Микрофон, разрешения и единые ошибки (реализовано)
 - **Что:** один `getUserMedia` в контроллере (`requesting_mic`), понятные тосты по кодам (`mic_denied` → как разрешить; `no_key`/`no_proxy` → `eitiVoiceNeedFix`), i18n RU/EN/DE через `EitiVoice.tr`. Убрать разнобой тостов в провайдерах.
 - **Файлы:** `local/eiti_voice.js`, `index.html` (тосты/стили).
 - **Тесты:** unit `tests_js/eiti_voice_errors.test.js` (маппинг ошибок → код → текст на 3 языках); Playwright `e2e/v14140_voice_mic.spec.js` (отказ в разрешении микрофона через `context.grantPermissions([])`/мок → тост `mic_denied`, состояние `error → idle`, не висит ⏳).
 - **Приёмка:** для каждого провайдера при отказе мика — одно понятное сообщение, кнопка голоса возвращается в исходное состояние.
 
-### 🟧 P1-1. Fallback и переподключение
+### ✅ P1-1. Fallback и переподключение (интегрировано в main)
 - **Что:** заменить `other(id)` (grok↔gemini) на цепочку: следующий **готовый** провайдер по `ready()`, затем текст. Переподключение при `socket/timeout` (до 2 попыток, backoff 1с/3с, состояние `reconnecting`), без повторов при `auth/quota/no_key`.
 - **Файлы:** `local/eiti_voice.js`, `index.html` (`offerSwitch` UI).
 - **Тесты:** unit `tests_js/eiti_voice_fallback.test.js` (выбор следующего провайдера, пропуск неготовых, лимит попыток); Playwright `e2e/v14140_voice_reconnect.spec.js` (mock WS закрывается → `reconnecting` → `listening`; второй обрыв → предложение переключиться на готового провайдера, например OpenAI с ключом).
-- **Приёмка:** fallback предлагает только реально готовых провайдеров; нет бесконечных реконнектов.
-- **Реализация (черновик PR):** `EitiVoice.handleDrop(id, code)` → `reconnect` | `fallback` | `text`; `fallbackOrder(from, order?)`, `pickFallback`, `cancelReconnect`, `reconnectInfo`, `textMode`; события `reconnect`, `fallback`, `text_mode`. Повтор только для `socket/timeout` при наличии сети; `auth/quota/no_key/no_proxy/mic_*/unknown` — без повторов. Счётчик сбрасывается успешным `listening` или новым стартом пользователем. Провайдер **не** переключается автоматически — только кнопка в `offerSwitch` (выбор пользователя). Нет готовых → тост «других готовых голосовых провайдеров нет» + кнопка «✍️ Написать текстом» (фокус в поле ввода); прежняя кнопка «Переключить на Grok» сохранена для совместимости. Тесты: `tests_js/eiti_voice_fallback.test.js`, `e2e/v14140_voice_reconnect.spec.js` (mock WS, без реальных провайдеров).
-- **Ограничения:** проверено только на моках; Mistral (HTTP, пофразовый) не сообщает об обрыве в `handleDrop` (переподключение подключено для Grok, Gemini, OpenAI, Qwen, Алисы; OpenAI и прокси — через `_eitiVoiceFail`, тестами браузера покрыт путь Gemini); переподключение без жеста пользователя на iOS может оставить AudioContext в suspended — не проверено на устройстве; `CACHE` в `sw.js` не менялся (при старом закешированном модуле `index.html` деградирует к прежнему поведению).
+- **Приёмка:** fallback предлагает только провайдеров, прошедших локальную проверку `ready()` (это preflight, **не** гарантия доступности внешнего API); нет бесконечных переподключений.
+- **Реализация (`main`, PR #52):** `EitiVoice.handleDrop(id, code)` → `reconnect` | `fallback` | `text`; `fallbackOrder(from, order?)`, `pickFallback`, `cancelReconnect`, `reconnectInfo`, `textMode`; события `reconnect`, `fallback`, `text_mode`. Повтор только для `socket/timeout` при наличии сети; `auth/quota/no_key/no_proxy/mic_*/unknown` — без повторов. Счётчик сбрасывается успешным `listening` или новым стартом пользователем. Провайдер **не** переключается автоматически — только кнопка в `offerSwitch` (выбор пользователя). Нет готовых → тост «других готовых голосовых провайдеров нет» + кнопка «✍️ Написать текстом» (фокус в поле ввода); прежняя кнопка «Переключить на Grok» сохранена для совместимости. Тесты: `tests_js/eiti_voice_fallback.test.js`, `e2e/v14140_voice_reconnect.spec.js` (mock WS, без реальных провайдеров).
+- **Ограничения:** автоматический `handleDrop` не подключён к пофразовому HTTP-пути Mistral; для Grok и Gemini используется обработка обрывов WebSocket, для OpenAI/Qwen/Алисы — путь `_eitiVoiceFail` (браузерный reconnect e2e проверял путь Gemini). На iOS после переподключения без нового жеста AudioContext может остаться `suspended`; **WebKit на iPhone не проверен**. Реальные голосовые API не тестировались. Версия SW **обновлена**: `CACHE = 'eiti-v14.13.1'`, `OFFLINE_CACHE = 'eiti-offline-v14.13.1'`, `SW_UPDATED.version = '14.13.1'`; `local/eiti_voice.js` есть в `CORE` precache. Это не доказывает, что каждая установленная PWA уже активировала новый Service Worker; обновление клиента требует проверки отдельно.
+
+**Подтверждённое состояние и границы проверки (26.10.2026):**
+- [PR #52](https://github.com/velantrian/Eiti-Test-Notes/pull/52) — **MERGED 06:59:56 UTC**: fallback по `ready()`, не более двух попыток того же провайдера с задержками 1 и 3 с, отмена таймера, предложение другого провайдера **только после явного выбора пользователя**, переход в текстовый ввод при отсутствии вариантов.
+- [PR #54](https://github.com/velantrian/Eiti-Test-Notes/pull/54) — **MERGED 08:21:39 UTC**: тест остановки во время ожидающей второй попытки (не появляется новый WebSocket и не происходит скрытого fallback); дополнительно устранён флак офлайн-сказок в `index.html`. [PR #53](https://github.com/velantrian/Eiti-Test-Notes/pull/53) — **CLOSED без merge**, альтернативная реализация не входит в `main`.
+- **Результаты, заявленные авторами PR, локально, с моками (в этом обновлении документации тесты повторно не запускались):** #52 — JS unit **433/433 PASS** (22 новых), Playwright Chromium **154/154 PASS** (5 новых reconnect), Playwright Pages **16/16 PASS**, Python **141 PASS**, folklore checks PASS. #54 — JS unit **434/434 PASS**; повторные адресные Playwright `v14130_save` + `v14140_voice_reconnect` **45/45 PASS**, стресс флака **0/24 падений**; Python **111 PASS**, 4 файла **NOT_RUN** из-за отсутствия `jsonschema` в той среде.
+- **NOT_RUN:** реальные Grok/Gemini/OpenAI/Qwen/Яндекс/Алиса/Mistral; Safari/WebKit на iPhone. Проверки на mock WebSocket/сетевых заглушках и блокировке внешних запросов **не равны** испытаниям реальных провайдеров или устройств. Платные вызовы для этих проверок не использовались. P1-1 — реализован **в коде**, но не подтверждён end-to-end в production-среде.
 
 ### 🟧 P1-2. Честный офлайн
 - **Что:** различать две возможности: **офлайн-распознавание речи** (Web Speech on-device, `eitiDictationSupported`) и **офлайн-ответ** (существующий офлайн-конвейер §6). Нет сети: если on-device STT есть → голосовой набор → офлайн-ответ текстом (озвучка `speechSynthesis`, если доступна); если нет → честное сообщение «распознавание без сети недоступно» + фокус в текстовое поле. Состояние `offline`, слушаем `online/offline`.
@@ -117,15 +125,14 @@ ContextProvider (getContext) ← память EITI (IndexedDB: l3, kb, memkv, jo
 - **SW-кеш**: забыть `local/eiti_voice.js` в `sw.js` → голос сломается офлайн/после обновления. Bump `CACHE`.
 - **Разные протоколы** (Gemini Live, OpenAI Realtime/WebRTC, прокси, Mistral STT+TTS) → в контракт только общее, особенности внутри адаптера.
 - **Ключи**: не логировать, не класть в события/контекст; модель угроз секретов — отдельная задача.
-- **Мигающие e2e** (`v14130_save.spec.js:31`) могут маскировать регрессии → ретраи только для известных.
+- **Мигающие e2e:** известный флак `v14130_save.spec.js` исправлен в #54 (догрузка пакетов до ограниченного потолка, без ослабления assertions; локально 0/24 падений при CPU×3). Это не гарантия отсутствия будущих флаков.
 - **Приватность**: в голосовой контекст не должны утекать факты «не запоминай» и черновики.
 
 ## ✅ 6. Definition of Done
-- [ ] `window.EitiVoice` сохраняет все текущие методы; старые голосовые тесты зелёные без правок.
-- [ ] `local/eiti_voice.js`: машина состояний, коды ошибок, 6 адаптеров + офлайн.
-- [ ] Fallback по готовности для всех провайдеров, реконнект с лимитом.
-- [ ] Офлайн: STT и генерация ответа — отдельные возможности, честное сообщение + текстовый ввод.
-- [ ] Один `getContext` для текста и голоса; память IndexedDB-first, localStorage не растёт.
-- [ ] Ядро без DOM, контракт описан для нативного/серверного клиента.
-- [ ] `AGENTS.md` и `docs/ARCHITECTURE.md` (§7, §18) обновлены; `sw.js` и Pages allowlist включают модуль.
-- [ ] Все 4 проверки CI зелёные; ручная проверка Grok/Gemini на телефоне.
+- [x] P0: `window.EitiVoice` сохранил публичные методы; `local/eiti_voice.js` содержит машину состояний, ошибки и шесть адаптеров (тесты P0/P1-1 локально заявлены как PASS в #52).
+- [x] P1-1: preflight fallback по `ready()`, ограниченный reconnect (2 попытки), отмена и текстовый путь; PR #52 и #54 слиты.
+- [x] P0/P1-1: `sw.js` включает контроллер в `CORE`, версии основного и offline-кеша обновлены до v14.13.1; документация актуализирована в рамках этого docs-only PR.
+- [ ] P1-2: полный офлайн-сценарий STT/TTS/текстового ответа — отдельно от уже существующего текстового fallback P1-1.
+- [ ] P1-3: общий `getContext` и единый доказанный маршрут памяти текста/голоса.
+- [ ] P2: описание и независимые адаптеры для серверного/нативного клиента и постепенный перенос низкоуровневого кода провайдеров.
+- [ ] Подтвердить работу с реальными голосовыми провайдерами, Safari/WebKit на iPhone и фактическое обновление установленных PWA; пока **NOT_RUN**.
