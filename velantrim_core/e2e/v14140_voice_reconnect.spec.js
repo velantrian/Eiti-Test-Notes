@@ -139,3 +139,35 @@ test('нет сети: обрыв → без переподключения, ч�
   expect(await page.evaluate(() => ({ n: window.__ws.length, p: EitiVoice.reconnectInfo().pending }))).toEqual({ n: 1, p: '' });
   await context.setOffline(false);
 });
+
+test('«⏹ Отменить» в тосте во время второй ожидающей попытки (3с) → переподключения нет, UI в покое, без перехода к другому провайдеру', async ({ page }) => {
+  await boot(page, { eiti_voice_provider: 'gemini' });
+  await page.evaluate(() => {
+    localStorage.setItem('eiti_gemini_key', _obfKey('AIza-mock')); localStorage.removeItem('eiti_grok_key');
+    localStorage.setItem('eiti_openai_voice_key', _obfKey('sk-mock-not-real')); // готовый запасной провайдер есть — но переключаться нельзя
+    window.__rc = []; EitiVoice.on('reconnect', (e) => window.__rc.push(e.attempt + '@' + e.delay));
+    window.__fb = []; EitiVoice.on('fallback', (e) => window.__fb.push(e.to));
+    window.__tm = []; EitiVoice.on('text_mode', (e) => window.__tm.push(e.reason));
+    openView('chat'); eitiChatGrokToggle();
+  });
+  await page.waitForFunction(() => window.__ws.length === 1 && window.__ws[0].readyState === 1);
+  await page.evaluate(() => window.__ws[0].drop(1006));
+  await page.waitForFunction(() => window.__ws.length === 2 && window.__ws[1].readyState === 1, null, { timeout: 5000 });
+  await page.evaluate(() => window.__ws[1].drop(1006));
+  // вторая попытка запланирована (3 с) — ждём это состояние явно, а не по таймеру
+  await page.waitForFunction(() => EitiVoice.state() === 'reconnecting' && EitiVoice.reconnectInfo().pending === 'gemini');
+  expect(await page.evaluate(() => window.__rc)).toEqual(['1@1000', '2@3000']);
+  // настоящая кнопка «⏹ Отменить» в тосте переподключения (2/2)
+  const cancel = page.locator('.toast', { hasText: 'переподключение (2/2)' }).locator('.eiti-voice-rc-cancel');
+  await expect(cancel).toBeVisible();
+  await expect(cancel).toHaveText('⏹ Отменить');
+  await cancel.click();
+  await page.waitForFunction(() => EitiVoice.state() === 'idle');
+  await expect(page.locator('.eiti-voice-rc-toast')).toHaveCount(0);
+  await page.waitForTimeout(4000); // дольше любой задержки (3 с): запланированный старт не должен сработать
+  const r = await page.evaluate(() => ({ n: window.__ws.length, st: EitiVoice.state(), p: EitiVoice.reconnectInfo().pending,
+    a: EitiVoice.reconnectInfo().attempts, rc: window.__rc, fb: window.__fb, tm: window.__tm, act: !!window._grokVoiceActive,
+    btn: document.getElementById('chat-grok-btn').textContent }));
+  expect(r).toEqual({ n: 2, st: 'idle', p: '', a: 0, rc: ['1@1000', '2@3000'], fb: [], tm: [], act: false, btn: '🗣️' });
+  await expect(page.locator('.eiti-voice-switch-toast')).toHaveCount(0);
+});

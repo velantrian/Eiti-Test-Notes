@@ -26,12 +26,19 @@ async function mount(page, q, id) {
     return t;
   }, { q, id });
 }
+// Явное ожидание состояния вместо гонки: ответ должен нести маркер «Похожие / 📌», и кнопка должна быть видна.
+async function mountWithBar(page, q, id) {
+  const t = await mount(page, q, id);
+  expect(t, 'offline reply for «' + q + '»').toMatch(/⟦EITIREL:(kb|tale):/);
+  await expect(page.locator('#' + id + ' [data-w="save"]')).toBeVisible();
+  return t;
+}
 const notes = (page) => page.evaluate(() => notesLoad().map((n) => ({ id: n.id, title: n.title, body: n.body })));
 
 test('нет заметок → сразу новая; дальше липкая цель без вопросов', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => notesSave([]));
-  await mount(page, 'ночной дозор рембрандт', 'a1');
+  await mountWithBar(page, 'ночной дозор рембрандт', 'a1');
   await page.locator('#a1 [data-w="save"]').click();
   await expect.poll(async () => (await notes(page)).length).toBe(1);
   let ns = await notes(page);
@@ -41,7 +48,7 @@ test('нет заметок → сразу новая; дальше липкая
   await expect(page.locator('#a1 [data-w="save"]')).toContainText('📌 В «');
   await expect(page.locator('#a1 [data-w="save"]')).not.toContainText('««'); // заголовок KB уже в кавычках
   await expect(page.locator('#a1 [data-w="pick"]')).toHaveText('сменить');
-  await mount(page, 'расскажи сказку про колобка', 'a2');
+  await mountWithBar(page, 'расскажи сказку про колобка', 'a2');
   await page.locator('#a2 [data-w="save"]').click();
   await expect(page.locator('#eiti-save-picker')).toHaveCount(0);
   await expect.poll(async () => ((await notes(page))[0].body.match(/📌 /g) || []).length).toBe(2);
@@ -52,7 +59,7 @@ test('нет заметок → сразу новая; дальше липкая
 test('первое нажатие → выбор заметки; «сменить»; удалённая цель → снова выбор', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => { localStorage.removeItem('eiti_save_target'); notesSave([{ id: 'n1', title: 'История', body: 'Старое', created: 1, updated: 1, tags: [] }, { id: 'n2', title: 'Сказки', body: '', created: 2, updated: 2, tags: [] }]); });
-  await mount(page, 'ночной дозор рембрандт', 'b1');
+  await mountWithBar(page, 'ночной дозор рембрандт', 'b1');
   await page.locator('#b1 [data-w="save"]').click();
   const pk = page.locator('#eiti-save-picker');
   await expect(pk).toBeVisible();
