@@ -202,16 +202,21 @@ flowchart TD
 - `confident()` решает, достаточно ли хорош первый результат, чтобы ответить напрямую.
 - Сборка: `python3 kb/build_kb.py --strict`. Файлы `kb/src/w_*.txt` генерируются, руками их не правят; ручной триггер побеждает сгенерированный дубликат.
 
-## 7. Голос: Grok Voice и Gemini Live
+## 7. Голос: единый EitiVoice (P0 + P1-1)
 
-| | Grok Voice | Gemini Live |
-|---|---|---|
-| Статус | **по умолчанию** | по выбору |
-| Где выбрать | Настройки → «Голосовой ассистент» | то же |
-| Ключ | xAI | Google AI Studio |
-| Микрофон | PCM 16 кГц (на iPhone пересэмплирование, AudioContext создаётся в обработчике нажатия) | то же |
+Существующий интерфейс `window.EitiVoice` и модуль `local/eiti_voice.js` объединяют **шесть сетевых голосовых провайдеров**. Выбор — Настройки → AI → «Голосовой ассистент»; запуск — меню «+» (ссылка «изменить» открывает настройки через `eitiOpenVoiceSettings()`). Реестр и адаптер **не означают**, что внешний провайдер проверен с реальным API.
 
-Ассистент запускается из меню **«+»** (пункт «🗣️ Голосовой ассистент» с подписью провайдера и ссылкой «изменить» → `eitiOpenVoiceSettings()`, открывает и подсвечивает Настройки → AI → «Голосовой ассистент»; та же ссылка — в меню типа дневника). Провайдеры зарегистрированы в `window.EitiVoice` (`grok` | `gemini`), кнопка голоса подписана выбранным. Без ключа или при обрыве — тост с кнопкой «Переключить на …».
+| Провайдер | Низкоуровневый транспорт / особенность |
+|---|---|
+| Grok Voice (`grok`) | WebSocket, ключ xAI; провайдер по умолчанию |
+| Gemini Live (`gemini`) | WebSocket, ключ Google AI Studio |
+| OpenAI Realtime (`openai`) | WebRTC, ключ OpenAI |
+| Qwen Omni Realtime (`qwen`) | WebSocket через пользовательский прокси |
+| Алиса / Yandex (`yandex`, alias `alisa`) | WebSocket через пользовательский прокси |
+| Mistral Voxtral (`mistral`) | HTTP-пофразовая цепочка STT → чат → TTS; не duplex |
+
+Для Grok/Gemini предусмотрен PCM 16 кГц (в том числе ресэмплирование для iPhone); поведение Safari/WebKit на реальном iPhone после reconnect **не подтверждено**. При обрыве P1-1 пытается восстановить **того же** провайдера, затем может предложить другого, прошедшего `ready()`, или кнопку «✍️ Написать текстом». Переход на другого провайдера требует нажатия пользователя, не автоматический. Подробнее: [EITI_VOICE_PLAN.md](EITI_VOICE_PLAN.md).
+
 
 ### Голосовой ввод (🎤 в поле сообщения)
 
@@ -238,7 +243,7 @@ flowchart TD
 | Ошибки | `not-allowed`, `no-speech`, `network`, `audio-capture`, `language-not-supported` → переведённые тосты |
 | Тест | `velantrim_core/e2e/v14100_dictation.spec.js` (SpeechRecognition замокан, оба пути — онлайн и на устройстве) |
 
-### 7.1 Единый контроллер `local/eiti_voice.js` (EitiVoice P0)
+### 7.1 Единый контроллер `local/eiti_voice.js` (EitiVoice P0 + P1-1)
 
 Модуль без DOM дополняет `window.EitiVoice`, ничего не заменяя (старые `providers, current, active, start, stop, mute, isActive, offerSwitch, label, tr, needs, ids` — без изменений). Контракт — `data/eiti_voice_contract_v1.json`.
 
@@ -246,19 +251,21 @@ flowchart TD
 - **Адаптеры:** `grok`, `gemini`, `openai`, `qwen`, `yandex` (алиас `alisa`), `mistral` — обёртки над `_eitiGrokVoiceStartCore`, `eitiGeminiVoiceStart`, `eitiOpenAIVoiceStart`, `eitiRtProxyVoiceStart`, `eitiMistralVoiceStart`; общий контракт `{ id, label, caps, ready, start, stop, mute, isActive }`.
 - **Мост в `index.html`:** `_eitiVoiceEmit(state, prov)` вызывается из `_eitiVoiceBegin`, `_eitiGrokVoiceStartCore`, точек «слушаю…» и `eitiGrokVoiceStop`; `_eitiVoiceFail` сообщает код ошибки (`socket`/`auth`/…).
 - **Микрофон:** все 5 провайдеров запрашивают его через `eitiVoiceMic()` → `EitiVoiceCore.requestMic()`. Ошибки `getUserMedia` получают коды `mic_denied | mic_absent | mic_busy | unsupported` и одинаковый текст на RU/EN/DE (`_eitiVoiceMicErr`).
-- **Коды ошибок:** `mic_denied, mic_absent, mic_busy, no_key, no_proxy, offline, socket, auth, quota, timeout, unsupported, unknown`; повторяемые — `socket, timeout, offline`.
+- **Коды ошибок:** `mic_denied, mic_absent, mic_busy, no_key, no_proxy, offline, socket, auth, quota, timeout, unsupported, unknown`; базовая классификация помечает `socket, timeout, offline` как потенциально повторяемые, но **P1-1 не запускает reconnect без сети**.
 - **Хранение:** модуль не пишет в localStorage; выбор провайдера по-прежнему `eiti_voice_provider`. Модуль в precache `sw.js`. Если модуль не загрузился, `eitiVoiceMic` падает обратно на `navigator.mediaDevices.getUserMedia`.
-- **Тесты:** unit `voice_contract`, `eiti_voice_core`, `eiti_voice_compat`, `eiti_voice_errors`; e2e `v14140_voice_controller.spec.js`, `v14140_voice_mic.spec.js`.
+- **Тесты P0:** unit `voice_contract`, `eiti_voice_core`, `eiti_voice_compat`, `eiti_voice_errors`; e2e `v14140_voice_controller.spec.js`, `v14140_voice_mic.spec.js`.
+- **P1-1 (`main` после [#52](https://github.com/velantrian/Eiti-Test-Notes/pull/52), [#54](https://github.com/velantrian/Eiti-Test-Notes/pull/54)):** `handleDrop(id, code)`, `pickFallback`, `fallbackOrder(from, order?)`, `cancelReconnect`, `reconnectInfo`, `textMode`; события `reconnect`, `fallback`, `text_mode`. `ready()` проверяет наличие локальной конфигурации/возможностей, но **не доступность реального API**. Только `socket/timeout` при наличии сети → максимум 2 попытки (1 с и 3 с), успешное `listening/speaking` сбрасывает счётчик. При `auth/quota/no_key/no_proxy/mic_*` повторов нет. При отсутствии готового fallback → текстовый ввод. `stop()`/отмена не должны запускать ожидающий таймер; сценарий отмены второй попытки включён в #54. Низкоуровневый путь Mistral не подключён к `handleDrop`.
+- **Граница тестирования:** #52 сообщает JS 433/433, Chromium Playwright 154/154, Pages 16/16, Python 141 PASS; #54 — JS 434/434, адресные Playwright 45/45 PASS, Python 111 PASS (4 файла NOT_RUN без `jsonschema`). Это локальные прогоны авторов на заглушках; реальные API всех шести провайдеров и WebKit iPhone **NOT_RUN**. P1-2/P1-3/P2 остаются планом. См. [план и детали проверок](EITI_VOICE_PLAN.md).
 
 ## 8. Service Worker и кеширование
 
 | Кеш | Имя | Стратегия |
 |---|---|---|
-| CORE | `eiti-v14.13.0` | precache `index.html`, `local/*`, офлайн-модули, иконки; лимит 24 записи (`swTrimCache`) |
-| Офлайн-пакеты | `eiti-offline-v14.11.0` | `offline/**`, `kb/**`: cache-first + фоновое обновление, без лимита |
-| `data/*.json` | — | stale-while-revalidate |
+| Основной | `eiti-v14.13.1` | `CORE` precache содержит `index.html`, `local/eiti_voice.js`, другие перечисленные локальные модули и иконки; `CACHE_MAX_ENTRIES = 24` применяется при trim |
+| Офлайн-пакеты | `eiti-offline-v14.13.1` | `offline/**`, `kb/**`: stale-while-revalidate (закешированное отдаётся сразу, фоновая сетевая попытка), без лимита 24 записей |
+| `data/*.json` | основной | stale-while-revalidate |
 
-При активации старые кеши удаляются, клиентам отправляется `SW_UPDATED` с версией — приложение предлагает перезагрузку.
+`sw.js` для v14.13.1 также отправляет `SW_UPDATED` с `version: '14.13.1'` после обновления и удаляет старые кеши при активации. Важно: **precache ≠ cache-first для каждого ресурса**. HTML обслуживается network-first; `local/eiti_voice.js` находится в `CORE`, но его запрос проходит через network-only с fallback на `caches.match()` при сетевой ошибке (он не входит в `swIsAllowlisted()`). После слияния кода установленной PWA всё ещё может потребоваться обновление и активация нового SW; это отдельно не проверялось.
 
 ## 9. Интерфейс и языки (RU / EN / DE)
 
