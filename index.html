@@ -20239,15 +20239,18 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     eitiGrokVoiceStop();
                 };
 
-                _grokWS.onclose = function() {
+                _grokWS.onclose = function(ev) {
                     // v13.3.5 FIX Bug #7: onclose must release mic — same as onerror
                     // Previously only onerror called eitiGrokVoiceStop(); server-side close
                     // (session timeout, expired key) left microphone + AudioContext open
+                    // P1-1: неожиданный обрыв (сокет ещё текущий, не код 1000) → ограниченное переподключение
+                    var _drop = (this === _grokWS) && !!window._grokVoiceActive && !(ev && ev.code === 1000);
                     window._grokVoiceActive   = false;
                     window._grokVoiceSpeaking = false;
                     _grokVoiceSetBtn('');
                     _eitiSyncChatPanelBtns();
                     if (typeof eitiGrokVoiceStop === 'function') eitiGrokVoiceStop();
+                    if (_drop) _eitiVoiceDrop('grok', _eitiVoiceCloseCode(ev && ev.code, ev && ev.reason));
                 };
                 }; // end _grokWireUpHandlers
             })
@@ -20556,14 +20559,15 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             ws.onerror = function() {
                 if (ws !== _grokWS) return;
                 showToast('❌ Gemini Live: ошибка соединения — проверьте ключ и сеть');
-                if (window.EitiVoice) EitiVoice.offerSwitch('gemini', 'socket');
+                // P1-1: с контроллером решение принимает onclose (переподключение или запасной вариант)
+                if (window.EitiVoice && !(window.EitiVoiceController && window.EitiVoiceController.handleDrop)) EitiVoice.offerSwitch('gemini', 'socket');
             };
             ws.onclose = function(ev) {
                 if (ws !== _grokWS) return; // уже остановлен вручную
                 var m = eitiGeminiLiveCloseMessage(ev && ev.code, ev && ev.reason);
                 _grokWS = null;
                 eitiGrokVoiceStop();
-                if (m) { showToast(m, 4000); if (window.EitiVoice) EitiVoice.offerSwitch('gemini', 'socket'); }
+                if (m) { showToast(m, 4000); _eitiVoiceDrop('gemini', _eitiVoiceCloseCode(ev && ev.code, ev && ev.reason)); }
             };
             // v14.9.0 iPhone: AudioContext создаём синхронно в обработчике нажатия (иначе Safari держит его suspended),
             // частоту берём фактическую (iOS часто игнорирует 16000 → 44.1/48 кГц) и пересэмплируем в 16 кГц.
@@ -20695,7 +20699,26 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             eitiGrokVoiceStop();
             if (window.EitiVoiceCore) { var _vc = window.EitiVoiceCore.classify(msg); window.EitiVoiceCore.fail(_vc === 'unknown' ? 'socket' : _vc, prov, msg); }
             showToast('❌ ' + (window.EitiVoice ? EitiVoice.label(prov) : prov) + ': ' + msg, 4500);
-            if (window.EitiVoice) EitiVoice.offerSwitch(prov, 'socket');
+            _eitiVoiceDrop(prov, window.EitiVoiceCore ? window.EitiVoiceCore.lastError() && window.EitiVoiceCore.lastError().code : 'socket');
+        }
+        // EitiVoice P1-1: обрыв → ограниченное переподключение (socket/timeout, 2 попытки, 1с/3с) или предложение
+        // готового провайдера / текста. Без модуля — прежнее поведение (offerSwitch).
+        function _eitiVoiceDrop(prov, code) {
+            var C = window.EitiVoiceController;
+            if (!C || typeof C.handleDrop !== 'function') { if (window.EitiVoice) EitiVoice.offerSwitch(prov, 'socket'); return null; }
+            var r = C.handleDrop(prov, code || 'socket');
+            if (r.action === 'reconnect') showToast('🔄 ' + EitiVoice.label(prov) + ': ' + EitiVoice.tr('reconnect') + ' (' + r.attempt + '/' + r.max + ')…', Math.max(1500, r.delay));
+            else EitiVoice.offerSwitch(prov, { no_key: 'nokey', no_proxy: 'noproxy', auth: 'auth', quota: 'quota', offline: 'offline' }[r.code] || 'socket');
+            return r;
+        }
+        // Код ошибки по закрытию WebSocket (Gemini Live / Grok): ключ и лимит — без повторов
+        function _eitiVoiceCloseCode(code, reason) {
+            var r = String(reason || '');
+            if (code === 1008 || code === 4001 || code === 4003 || /api key|API_KEY|permission|unauth|401|403|key not valid/i.test(r)) return 'auth';
+            if (/quota|exhaust|429|rate limit/i.test(r)) return 'quota';
+            if (/model|not found|404/i.test(r)) return 'unknown';
+            if (code === 1007 && /key/i.test(r)) return 'auth';
+            return 'socket';
         }
         // Общий обработчик событий протокола OpenAI Realtime (OpenAI WebRTC, Qwen/Yandex через прокси)
         function _eitiRtHandle(prov, msg, playAudio) {
@@ -20968,9 +20991,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         };
         window.EitiVoice = (function() {
             var L = {
-                ru: { sw: 'Переключить на', nokey: 'нет ключа', noproxy: 'нет прокси', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию', alice: 'Алиса (Яндекс)' },
-                en: { sw: 'Switch to', nokey: 'no API key', noproxy: 'no proxy set', socket: 'connection failed', switched: 'Voice: ', def: 'default', alice: 'Alice (Yandex)' },
-                de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', noproxy: 'kein Proxy', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard', alice: 'Alice (Yandex)' }
+                ru: { sw: 'Переключить на', nokey: 'нет ключа', noproxy: 'нет прокси', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию', alice: 'Алиса (Яндекс)',
+                      auth: 'ключ отклонён', quota: 'лимит запросов исчерпан', offline: 'нет сети', reconnect: 'переподключение', text: '✍️ Написать текстом', novoice: 'других готовых голосовых провайдеров нет' },
+                en: { sw: 'Switch to', nokey: 'no API key', noproxy: 'no proxy set', socket: 'connection failed', switched: 'Voice: ', def: 'default', alice: 'Alice (Yandex)',
+                      auth: 'key rejected', quota: 'rate limit reached', offline: 'no network', reconnect: 'reconnecting', text: '✍️ Type instead', novoice: 'no other voice provider is ready' },
+                de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', noproxy: 'kein Proxy', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard', alice: 'Alice (Yandex)',
+                      auth: 'Schlüssel abgelehnt', quota: 'Anfragelimit erreicht', offline: 'kein Netz', reconnect: 'neue Verbindung', text: '✍️ Stattdessen tippen', novoice: 'kein anderer Sprachanbieter bereit' }
             };
             function tr(k) { var l = 'ru'; try { l = (window.eitiGetLocale && window.eitiGetLocale()) || 'ru'; } catch (e) {} return (L[l] || L.ru)[k]; }
             var reg = {
@@ -20997,7 +21023,9 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             function other(id) { return id === 'grok' ? 'gemini' : 'grok'; }
             function needs(id) { var r = reg[id || current()]; if (!r || r.hasKey()) return ''; return r.proxy ? 'proxy' : 'key'; }
             function active() { return Object.keys(reg).filter(function(k) { return reg[k].isActive(); })[0] || ''; }
+            function _cancelRc() { try { if (window.EitiVoiceController && window.EitiVoiceController.cancelReconnect) window.EitiVoiceController.cancelReconnect(); } catch (e) {} }
             function start(id) {
+                _cancelRc(); // P1-1: новый старт пользователем отменяет ожидающее переподключение и сбрасывает счётчик
                 id = reg[id] ? id : current();
                 var a = active();
                 if (a && a !== id) reg[a].stop();
@@ -21008,11 +21036,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             function offerSwitch(from, reason) {
                 if (Date.now() - _lastOffer < 1500) return;
                 _lastOffer = Date.now();
-                var to = other(from), t = document.createElement('div');
+                // P1-1: следующий ГОТОВЫЙ провайдер по ready(); нет готовых → текстовый режим (+ прежняя кнопка настройки)
+                var C = window.EitiVoiceController, ready = C && C.pickFallback ? C.pickFallback(from) : '';
+                var to = ready || other(from), t = document.createElement('div');
+                var noVoice = !!(C && C.pickFallback && !ready);
                 t.className = 'toast eiti-voice-switch-toast';
                 t.style.pointerEvents = 'auto';
                 t.style.top = '30%';
-                t.appendChild(document.createTextNode('🗣️ ' + label(from) + ': ' + tr(reason) + ' '));
+                t.appendChild(document.createTextNode('🗣️ ' + label(from) + ': ' + (tr(reason) || tr('socket')) + (noVoice ? ' — ' + tr('novoice') : '') + ' '));
                 var b = document.createElement('button');
                 b.type = 'button';
                 b.className = 'eiti-voice-switch-btn';
@@ -21020,11 +21051,21 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 b.style.cssText = 'margin-left:6px;padding:6px 10px;border-radius:8px;border:1px solid var(--accent-color,#ffd700);background:transparent;color:inherit;font-weight:700;cursor:pointer;';
                 b.onclick = function() { if (t.parentNode) t.remove(); window.eitiSetVoiceProvider(to); start(to); };
                 t.appendChild(b);
+                if (noVoice) {
+                    var tb = document.createElement('button');
+                    tb.type = 'button';
+                    tb.className = 'eiti-voice-text-btn';
+                    tb.textContent = tr('text');
+                    tb.style.cssText = b.style.cssText;
+                    tb.onclick = function() { if (t.parentNode) t.remove(); try { if (typeof openView === 'function') openView('chat'); var inp = document.getElementById('input'); if (inp) inp.focus(); } catch (e) {} };
+                    t.appendChild(tb);
+                    t.setAttribute('data-eiti-text-mode', '1');
+                }
                 document.body.appendChild(t);
                 setTimeout(function() { if (t.parentNode) t.remove(); }, 7000);
             }
             function label(id) { var r = reg[id || current()] || reg.grok; return r.id === 'yandex' ? tr('alice') : r.label; }
-            return { providers: reg, current: current, active: active, start: start, stop: function() { var a = active(); if (a) reg[a].stop(); },
+            return { providers: reg, current: current, active: active, start: start, stop: function() { _cancelRc(); var a = active(); if (a) reg[a].stop(); },
                      mute: function() { var a = active(); if (a) reg[a].mute(); }, isActive: function() { return !!active(); }, offerSwitch: offerSwitch, label: label, tr: tr, needs: needs, ids: function() { return Object.keys(reg); } };
         })();
         // Подписи кнопок голоса = выбранный провайдер

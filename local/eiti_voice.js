@@ -115,6 +115,38 @@
         };
     }
 
+    // P1-1: ограниченное переподключение без DOM. Только для retriable-кодов (socket/timeout/offline),
+    // не больше delays.length попыток (по умолчанию 2: 1с и 3с), отменяемо, счётчик сбрасывается
+    // только успешным подключением (reset) или явным новым стартом пользователя (cancel(true)).
+    function createReconnect(env) {
+        env = env || {};
+        var delays = (env.delays || [1000, 3000]).slice();
+        var setT = env.setTimeout || (typeof setTimeout === 'function' ? setTimeout : null);
+        var clearT = env.clearTimeout || (typeof clearTimeout === 'function' ? clearTimeout : null);
+        var attempts = 0, timer = null, pendingId = '';
+        function cancel(resetCount) {
+            if (timer !== null && clearT) clearT(timer);
+            timer = null; pendingId = '';
+            if (resetCount) attempts = 0;
+        }
+        // run(id) вызывается по таймеру; guard() → false отменяет запуск (например, пользователь уже сменил состояние)
+        function schedule(id, run, guard) {
+            if (attempts >= delays.length || !setT) return null;
+            cancel(false);
+            var delay = delays[attempts]; attempts++;
+            var n = attempts; pendingId = id;
+            timer = setT(function () {
+                timer = null; pendingId = '';
+                if (guard && !guard(id)) return;
+                run(id);
+            }, delay);
+            return { attempt: n, delay: delay, max: delays.length };
+        }
+        return { schedule: schedule, cancel: cancel, reset: function () { cancel(true); },
+                 attempts: function () { return attempts; }, max: function () { return delays.length; },
+                 pending: function () { return pendingId; }, left: function () { return Math.max(0, delays.length - attempts); } };
+    }
+
     function install(win) {
         var legacy = win.EitiVoice;
         var core = createCore({
@@ -126,13 +158,56 @@
         PROVIDERS.forEach(function (id) { adapters[id] = makeAdapter(id, getLegacy); });
         function norm(id) { id = ALIASES[id] || id; return adapters[id] ? id : ''; }
         var reconnectLeft = 0;
+        var rc = createReconnect({ setTimeout: win.setTimeout ? function (f, d) { return win.setTimeout(f, d); } : undefined,
+                                   clearTimeout: win.clearTimeout ? function (t) { return win.clearTimeout(t); } : undefined});
+        // Успешное подключение сбрасывает счётчик попыток
+        core.on('state', function (e) { if (e.state === 'listening' || e.state === 'speaking') rc.reset(); });
         var api = {
             core: core, adapters: adapters, STATES: core.STATES, ERRORS: core.ERRORS,
             state: core.state, on: core.on, off: core.off, lastError: core.lastError, requestMic: core.requestMic,
             message: core.message,
             caps: function (id) { id = norm(id || (legacy && legacy.current && legacy.current())); var c = CAPS[id]; return c ? JSON.parse(JSON.stringify(c)) : null; },
             // Готовые провайдеры для запасного варианта (порядок реестра, без текущего)
-            fallbackOrder: function (from) { from = norm(from); return PROVIDERS.filter(function (id) { return id !== from && adapters[id].ready() === ''; }); },
+            // P1-1: order — необязательный пользовательский порядок; неизвестные id отбрасываются, остальные добавляются в порядке реестра.
+            // Без сети голосового запасного варианта нет (все 6 провайдеров сетевые) → пустой список.
+            fallbackOrder: function (from, order) {
+                from = norm(from);
+                if (win.navigator && win.navigator.onLine === false) return [];
+                var seq = [];
+                (Array.isArray(order) ? order : []).concat(PROVIDERS).forEach(function (id) { id = norm(id); if (id && seq.indexOf(id) < 0) seq.push(id); });
+                return seq.filter(function (id) { if (id === from) return false; try { return adapters[id].ready() === ''; } catch (e) { return false; } });
+            },
+            pickFallback: function (from, order) { return api.fallbackOrder(from, order)[0] || ''; },
+            reconnectInfo: function () { return { attempts: rc.attempts(), max: rc.max(), left: rc.left(), pending: rc.pending() }; },
+            cancelReconnect: function () { var was = rc.pending(); rc.cancel(true); if (was && core.state() === 'reconnecting') core.setState('idle'); return !!was; },
+            // Переход к тексту: событие 'text_mode' с понятной причиной (UI в index.html показывает тост и кнопку «Написать»)
+            textMode: function (code, from) {
+                code = ERRORS.indexOf(code) >= 0 ? code : 'unknown';
+                var info = { reason: code, provider: norm(from) || '', message: core.message(code) };
+                core.emit('text_mode', info); return info;
+            },
+            // P1-1: обрыв/ошибка сессии → решение: reconnect (retriable, лимит), fallback (готовый провайдер) или text.
+            // Сам НЕ переключает провайдера: смена провайдера = выбор пользователя (UI offerSwitch).
+            handleDrop: function (id, err) {
+                id = norm(id || core.provider() || (legacy && legacy.current && legacy.current()));
+                var code = (typeof err === 'string' && ERRORS.indexOf(err) >= 0) ? err : core.classify(err);
+                var offline = !!(win.navigator && win.navigator.onLine === false);
+                if (offline) code = 'offline';
+                if (id && RETRIABLE[code] && !offline) {
+                    var plan = rc.schedule(id, function (pid) { core.setState('connecting', pid); try { adapters[pid].start(); } catch (e) { core.fail(core.classify(e), pid, e); } },
+                        function (pid) { return core.state() === 'reconnecting' && core.provider() === pid && !adapters[pid].isActive(); });
+                    if (plan) {
+                        core.setState('reconnecting', id);
+                        var r = { action: 'reconnect', provider: id, code: code, attempt: plan.attempt, delay: plan.delay, max: plan.max };
+                        core.emit('reconnect', r); return r;
+                    }
+                }
+                rc.cancel(true);
+                var to = api.pickFallback(id);
+                var out = { action: to ? 'fallback' : 'text', provider: id, code: code, to: to, retriable: !!RETRIABLE[code] };
+                if (to) core.emit('fallback', out); else out.text = api.textMode(code, id);
+                return out;
+            },
             fallback: function (from) {
                 var next = api.fallbackOrder(from)[0];
                 if (!next) { core.fail('socket', from); return ''; }
@@ -152,14 +227,14 @@
         };
         if (legacy && typeof legacy === 'object') {
             Object.keys(api).forEach(function (k) { if (!(k in legacy)) legacy[k] = api[k]; });
-            legacy.version = 1;
+            legacy.version = 1; // P1-1 только добавляет методы
         }
         win.EitiVoiceCore = core;
         win.EitiVoiceController = api;
         return api;
     }
 
-    var exp = { createCore: createCore, makeAdapter: makeAdapter, install: install, STATES: STATES, ERRORS: ERRORS, PROVIDERS: PROVIDERS, ALIASES: ALIASES, CAPS: CAPS, MSG: MSG };
+    var exp = { createCore: createCore, createReconnect: createReconnect, RETRIABLE: RETRIABLE, makeAdapter: makeAdapter, install: install, STATES: STATES, ERRORS: ERRORS, PROVIDERS: PROVIDERS, ALIASES: ALIASES, CAPS: CAPS, MSG: MSG };
     if (typeof module !== 'undefined' && module.exports) module.exports = exp;
     if (root && root.document) { root.EitiVoiceModule = exp; install(root); }
 })(typeof window !== 'undefined' ? window : this);
