@@ -174,14 +174,15 @@ test('settings: «🎓 Обучение EITI» shows preferences, bandit, self-e
 
 test('memory consolidation near the cap is visible and undoable (mock LLM)', async ({ page }) => {
   await boot(page, () => 'ок');
+  await page.waitForFunction(() => window._eitiMemKV && window._eitiMemKV.ready, null, { timeout: 30000 }); // v14.15.0: факты в IDB memkv
   const res = await page.evaluate(async () => {
     const store = Array.from({ length: 185 }, (_, i) => ({ id: 'fact_' + i, fact: 'факт номер ' + i, ts: Date.now() - i * 1000, salience: 1 }));
-    localStorage.setItem('eiti_learned_v1', JSON.stringify(store));
+    eitiLearnSave('learned', store);
     window._eitiConsolidateLLM = async () => JSON.stringify([{ op: 'DELETE', id: 'fact_1' }, { op: 'UPDATE', id: 'fact_2', fact: 'факт 2 (объединён)' }]);
     const item = await window.eitiMemMaybeConsolidate(false);
-    const afterN = JSON.parse(localStorage.getItem('eiti_learned_v1')).length;
+    const afterN = eitiLearnGet().length;
     const undone = window.eitiMemUndoConsolidation(item.id);
-    return { applied: item.applied, afterN, undone, restoredN: JSON.parse(localStorage.getItem('eiti_learned_v1')).length };
+    return { applied: item.applied, afterN, undone, restoredN: eitiLearnGet().length };
   });
   expect(res).toEqual({ applied: 2, afterN: 184, undone: true, restoredN: 185 });
 });

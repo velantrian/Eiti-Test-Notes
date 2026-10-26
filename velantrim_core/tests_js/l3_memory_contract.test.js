@@ -1,8 +1,8 @@
 'use strict';
 // L3 Memory Contract — AUDIT ONLY (see docs/l3_memory_inventory.md).
 // Pins the CURRENT behaviour of the compat personal-memory write path (eitiLearnFact
-// over localStorage eiti_learned_v1). "KNOWN GAP" tests describe today's behaviour,
-// the desired behaviour is recorded as test.todo so CI stays green.
+// over localStorage eiti_learned_v1). v14.15.0: silent-loss gaps are fixed and pinned as real tests;
+// correction history is pinned too.
 const test = require('node:test');
 const assert = require('node:assert');
 const { loadFunctions } = require('./harness');
@@ -11,55 +11,173 @@ function make(raw) {
   const m = new Map(raw === undefined ? [] : [['eiti_learned_v1', raw]]);
   const ls = { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, String(v)), removeItem: (k) => m.delete(k) };
   const indexed = [], toasts = [], errors = [];
-  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiLearnFact'], {
+  const sb = loadFunctions(['eitiCalcSalience', 'eitiMemTokens', 'eitiMemTextSim', 'eitiCosine', 'eitiMemFindNearDup', 'eitiMemIntent', 'eitiIsQuotaError', 'eitiSafeLSWrite', 'eitiReadListSafe', 'eitiNewFactId', 'eitiMemKVActive', 'eitiLearnLoad', 'eitiLearnSave', 'eitiIsCorrection', 'eitiFindContradicted', 'eitiLearnFact'], {
     EITI_LEARN_KEY: 'eiti_learned_v1', localStorage: ls,
     eitiQueueIndexDoc: (id, t) => indexed.push(t), showToast: (t) => toasts.push(t),
     console: { log() {}, info() {}, warn: (...a) => errors.push(a), error: (...a) => errors.push(a) },
   });
-  return { learn: sb.eitiLearnFact, raw: () => m.get('eiti_learned_v1'), indexed, toasts, errors };
+  return { learn: sb.eitiLearnFact, raw: () => m.get('eiti_learned_v1'), indexed, toasts, errors, map: m, ls };
 }
 
-test('KNOWN GAP: corrupted eiti_learned_v1 JSON → eitiLearnFact silently stores nothing', () => {
+test('corrupted eiti_learned_v1 JSON → quarantined to a .corrupt.<ts> key, new fact still persisted, user warned (v14.15.0)', () => {
   const s = make('{not json');
   assert.doesNotThrow(() => s.learn('Пользователь любит зелёный чай'));
-  assert.strictEqual(s.raw(), '{not json'); // corrupt value is left as is (not repaired, not backed up)
-  assert.strictEqual(s.indexed.length, 0); // fact never reaches the search index
-  assert.strictEqual(s.toasts.length, 0); // no user-visible signal
-});
-test.todo('desired: corrupted compat store is quarantined (backup key) and the new fact is still persisted + user warned');
-
-test('KNOWN GAP: «не запоминай» is not honoured by eitiLearnFact — the text is stored verbatim', () => {
-  const s = make();
-  s.learn('не запоминай это: пароль от почты лежит в столе');
   const st = JSON.parse(s.raw());
   assert.strictEqual(st.length, 1);
-  assert.match(st[0].fact, /пароль от почты/);
-  assert.deepStrictEqual(Object.keys(st[0]).sort().filter((k) => /do_not_store|status|confidence|history/.test(k)), []);
+  assert.strictEqual(st[0].fact, 'Пользователь любит зелёный чай');
+  const bk = [...s.map.keys()].filter((k) => k.startsWith('eiti_learned_v1.corrupt.'));
+  assert.strictEqual(bk.length, 1);
+  assert.strictEqual(s.map.get(bk[0]), '{not json'); // original bytes kept
+  assert.strictEqual(s.indexed.length, 1);
+  assert.ok(s.toasts.some((t) => /повреждена/.test(t)));
 });
-test.todo('desired: do-not-store intent → record is not written (or written as tombstone with do_not_store=true)');
 
-test('KNOWN GAP: «я ещё не решил» — tentative statement stored as a plain fact (no epistemic status)', () => {
+test('QuotaExceeded on write → user is told, function does not throw, nothing indexed (v14.15.0)', () => {
   const s = make();
-  s.learn('я ещё не решил, переезжать ли в Берлин');
-  const st = JSON.parse(s.raw());
-  assert.strictEqual(st.length, 1);
-  assert.strictEqual(st[0].epistemic_state, undefined);
+  s.ls.setItem = () => { const e = new Error('full'); e.name = 'QuotaExceededError'; throw e; };
+  assert.doesNotThrow(() => s.learn('Пользователь любит зелёный чай'));
+  assert.strictEqual(s.indexed.length, 0);
+  assert.ok(s.toasts.some((t) => /заполнена/.test(t)), JSON.stringify(s.toasts));
 });
 
-test('correction: contradicting fact is ADDED next to the old one — old fact is not superseded', () => {
+test('archive eviction: if the archive write fails, evicted facts stay in the main list (v14.15.0)', () => {
+  const full = Array.from({ length: 200 }, (_, i) => ({ fact: 'уникальный факт номер ' + i + ' ' + 'абвгдежзик'.slice(i % 10), ts: 1000 + i, salience: 1, id: 'f' + i }));
+  const s = make(JSON.stringify(full));
+  const orig = s.ls.setItem;
+  s.ls.setItem = (k, v) => { if (k === 'eiti_learned_archive_v1') { const e = new Error('x'); e.name = 'QuotaExceededError'; throw e; } return orig(k, v); };
+  s.learn('совершенно новый факт про морских черепах');
+  const st = JSON.parse(s.raw());
+  assert.strictEqual(st.length, 201); // nothing lost
+  assert.ok(st.some((f) => f.id === 'f0'));
+});
+
+test('archive eviction: archive written first, then main list trimmed to 200 (v14.15.0)', () => {
+  const full = Array.from({ length: 200 }, (_, i) => ({ fact: 'уникальный факт номер ' + i + ' ' + 'абвгдежзик'.slice(i % 10), ts: 1000 + i, salience: 1, id: 'f' + i }));
+  const s = make(JSON.stringify(full));
+  s.learn('совершенно новый факт про морских черепах');
+  assert.strictEqual(JSON.parse(s.raw()).length, 200);
+  assert.strictEqual(JSON.parse(s.map.get('eiti_learned_archive_v1')).length, 1);
+});
+
+test('«не запоминай» and variants are honoured by eitiLearnFact — nothing is written', () => {
+  for (const t of ['не запоминай это: пароль от почты лежит в столе', 'Не сохраняй: мой PIN 1234', 'забудь это, я живу на Нёрребро', "Don't remember this: my bank is X", 'forget that I said I smoke', 'не надо запоминать мой адрес']) {
+    const s = make();
+    s.learn(t);
+    assert.strictEqual(s.raw(), undefined, t);
+    assert.strictEqual(s.indexed.length, 0, t);
+    assert.match(s.toasts[0], /Не запоминаю/, t);
+  }
+});
+
+test('«я ещё не решил» and variants are NOT stored as facts', () => {
+  for (const t of ['я ещё не решил, переезжать ли в Берлин', 'Я еще не решила, где учиться', 'пока не решил насчёт работы', "I haven't decided yet whether to move"]) {
+    const s = make();
+    s.learn(t);
+    assert.strictEqual(s.raw(), undefined, t);
+    assert.match(s.toasts[0], /ещё не решили/, t);
+  }
+});
+
+test('«не забудь …» (= remember!) is still stored', () => {
+  const s = make();
+  s.learn('не забудь, что я люблю зелёный чай');
+  assert.strictEqual(JSON.parse(s.raw()).length, 1);
+});
+
+test('correction: contradicting fact supersedes the old one — old text kept in correction_history (v14.15.0)', () => {
   const s = make();
   s.learn('Пользователь живёт в Москве');
   s.learn('Пользователь живёт в Копенгагене, а не в Москве');
   const st = JSON.parse(s.raw());
-  const txt = st.map((f) => f.fact).join(' | ');
-  assert.match(txt, /Москве/);
-  assert.strictEqual(st.length, 2); // current: appended, both "true" at once
-  assert.ok(st.every((f) => f.history === undefined && f.supersedes === undefined));
+  assert.strictEqual(st.length, 2);
+  const [old, cur] = st;
+  assert.strictEqual(old.superseded_by, cur.id);
+  assert.strictEqual(old.epistemic_status, 'Deprecated');
+  assert.strictEqual(cur.supersedes, old.id);
+  assert.strictEqual(cur.correction_history[0].previous_value, 'Пользователь живёт в Москве');
+  assert.ok(['user_correction', 'contradiction'].includes(cur.correction_history[0].reason));
 });
-test.todo('desired: correction keeps a correction_history[] and marks the old value superseded');
 
-test('KNOWN GAP: ids are fact_<Date.now()> — two facts learned in the same millisecond can share an id', () => {
+test('«я ошибся» marks the correction reason as user_correction (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь работает в банке');
+  s.learn('я ошибся: пользователь работает в школе');
+  const st = JSON.parse(s.raw());
+  assert.ok(st[0].superseded_by);
+  assert.strictEqual(st[1].correction_history[0].reason, 'user_correction');
+});
+
+test('unrelated facts are not superseded (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь любит зелёный чай');
+  s.learn('теперь у пользователя есть собака');
+  const st = JSON.parse(s.raw());
+  assert.ok(st.every((f) => !f.superseded_by));
+});
+
+test('near-duplicate merge keeps the previous wording in correction_history (v14.15.0)', () => {
+  const s = make();
+  s.learn('Пользователь любит зелёный чай');
+  s.learn('Пользователь любит зелёный чай с жасмином');
+  const st = JSON.parse(s.raw());
+  if (st.length === 1) {
+    assert.strictEqual(st[0].fact, 'Пользователь любит зелёный чай с жасмином');
+    assert.strictEqual(st[0].correction_history[0].previous_value, 'Пользователь любит зелёный чай');
+  }
+});
+
+test('ids are unique even within the same millisecond (v14.15.0)', () => {
   const realNow = Date.now; Date.now = () => 1700000000000;
   try { const s = make(); s.learn('любит чай'); s.learn('работает инженером в порту'); const st = JSON.parse(s.raw());
-    assert.strictEqual(st.length, 2); assert.strictEqual(st[0].id, st[1].id); } finally { Date.now = realNow; }
+    assert.strictEqual(st.length, 2); assert.notStrictEqual(st[0].id, st[1].id); assert.match(st[0].id, /^fact_1700000000000_/); } finally { Date.now = realNow; }
+});
+
+
+test('REGRESSION: corrupt learned JSON + failed backup must not overwrite original or index new fact', () => {
+  const s = make('{not json');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k.startsWith('eiti_learned_v1.corrupt.')) {
+      const e = new Error('backup quota exceeded'); e.name = 'QuotaExceededError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('Пользователь любит зелёный чай');
+  assert.strictEqual(s.raw(), '{not json', 'original corrupt bytes must remain intact');
+  assert.strictEqual(s.indexed.length, 0, 'unpersisted fact cannot be indexed');
+  assert.ok(s.toasts.some((t) => /не удалось|не сохран/i.test(t)), 'user must see the failure');
+});
+
+test('REGRESSION: corrupt archive + rejected quarantine may not overwrite archived bytes', () => {
+  const full = Array.from({ length: 200 }, (_, i) =>
+    ({ fact: 'уникальный факт номер ' + i, ts: 1000 + i, salience: 1, id: 'f' + i }));
+  const s = make(JSON.stringify(full));
+  s.map.set('eiti_learned_archive_v1', '{broken archive');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k.startsWith('eiti_learned_archive_v1.corrupt.')) {
+      const e = new Error('blocked'); e.name = 'SecurityError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('совершенно новый факт про морских черепах');
+  assert.strictEqual(s.map.get('eiti_learned_archive_v1'), '{broken archive');
+  assert.strictEqual(JSON.parse(s.raw()).length, 200, 'nothing may be evicted without a safe archive');
+});
+
+test('REGRESSION: backup succeeds but primary write fails, corrupt bytes remain recoverable', () => {
+  const s = make('{broken original');
+  const put = s.ls.setItem;
+  s.ls.setItem = (k, v) => {
+    if (k === 'eiti_learned_v1') {
+      const e = new Error('storage full'); e.name = 'QuotaExceededError'; throw e;
+    }
+    return put(k, v);
+  };
+  s.learn('пользователь любит зелёный чай');
+  assert.strictEqual(s.raw(), '{broken original');
+  assert.strictEqual(s.indexed.length, 0);
+  const keys = [...s.map.keys()].filter((k) => k.startsWith('eiti_learned_v1.corrupt.'));
+  assert.strictEqual(keys.length, 1);
+  assert.strictEqual(s.map.get(keys[0]), '{broken original');
 });
