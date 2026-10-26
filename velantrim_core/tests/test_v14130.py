@@ -16,14 +16,14 @@ import build_tale_related  # noqa: E402
 
 
 def test_version_sync():
-    assert 'var EITI_VERSION = "14.13.0"' in HTML
-    assert "var CACHE = 'eiti-v14.13.0'" in SW
-    assert "var OFFLINE_CACHE = 'eiti-offline-v14.13.0'" in SW
-    assert "version: '14.13.0'" in SW
-    assert "v14.13.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
+    assert 'var EITI_VERSION = "14.13.1"' in HTML
+    assert "var CACHE = 'eiti-v14.13.1'" in SW
+    assert "var OFFLINE_CACHE = 'eiti-offline-v14.13.1'" in SW
+    assert "version: '14.13.1'" in SW
+    assert "v14.13.1" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "version-14.13.0" in readme and "Что нового в v14.13.0" in readme
-    assert "v14.13.0" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    assert "version-14.13.1" in readme and "Что нового в v14.13.1" in readme
+    assert "v14.13.1" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
 
 
 def test_module_loaded_and_cached():

@@ -1,6 +1,6 @@
 # 🎙️ План работ: единый голосовой модуль EitiVoice
 
-> Статус: **P0 реализован** (P0-1, P0-2, P0-3) — см. `local/eiti_voice.js`, `docs/ARCHITECTURE.md` §7.1. P1/P2 — впереди.
+> Статус: **P0 реализован** (P0-1, P0-2, P0-3) — см. `local/eiti_voice.js`, `docs/ARCHITECTURE.md` §7.1. **P1-1 — черновик PR** (fallback по `ready()`, переподключение 2×(1с/3с), текстовый режим). P1-2, P1-3, P2 — впереди.
 > Основа: `main` @ `77b1608` (после #45–#50), v14.13.0.
 > Источник идеи: предложение ChatGPT «один модуль голосового ассистента для разных ИИ». Принцип: **не второй движок, а развитие существующего `window.EitiVoice`**.
 
@@ -86,6 +86,8 @@ ContextProvider (getContext) ← память EITI (IndexedDB: l3, kb, memkv, jo
 - **Файлы:** `local/eiti_voice.js`, `index.html` (`offerSwitch` UI).
 - **Тесты:** unit `tests_js/eiti_voice_fallback.test.js` (выбор следующего провайдера, пропуск неготовых, лимит попыток); Playwright `e2e/v14140_voice_reconnect.spec.js` (mock WS закрывается → `reconnecting` → `listening`; второй обрыв → предложение переключиться на готового провайдера, например OpenAI с ключом).
 - **Приёмка:** fallback предлагает только реально готовых провайдеров; нет бесконечных реконнектов.
+- **Реализация (черновик PR):** `EitiVoice.handleDrop(id, code)` → `reconnect` | `fallback` | `text`; `fallbackOrder(from, order?)`, `pickFallback`, `cancelReconnect`, `reconnectInfo`, `textMode`; события `reconnect`, `fallback`, `text_mode`. Повтор только для `socket/timeout` при наличии сети; `auth/quota/no_key/no_proxy/mic_*/unknown` — без повторов. Счётчик сбрасывается успешным `listening` или новым стартом пользователем. Провайдер **не** переключается автоматически — только кнопка в `offerSwitch` (выбор пользователя). Нет готовых → тост «других готовых голосовых провайдеров нет» + кнопка «✍️ Написать текстом» (фокус в поле ввода); прежняя кнопка «Переключить на Grok» сохранена для совместимости. Тесты: `tests_js/eiti_voice_fallback.test.js`, `e2e/v14140_voice_reconnect.spec.js` (mock WS, без реальных провайдеров).
+- **Ограничения:** проверено только на моках; Mistral (HTTP, пофразовый) не сообщает об обрыве в `handleDrop` (переподключение подключено для Grok, Gemini, OpenAI, Qwen, Алисы; OpenAI и прокси — через `_eitiVoiceFail`, тестами браузера покрыт путь Gemini); переподключение без жеста пользователя на iOS может оставить AudioContext в suspended — не проверено на устройстве; `CACHE` в `sw.js` не менялся (при старом закешированном модуле `index.html` деградирует к прежнему поведению).
 
 ### 🟧 P1-2. Честный офлайн
 - **Что:** различать две возможности: **офлайн-распознавание речи** (Web Speech on-device, `eitiDictationSupported`) и **офлайн-ответ** (существующий офлайн-конвейер §6). Нет сети: если on-device STT есть → голосовой набор → офлайн-ответ текстом (озвучка `speechSynthesis`, если доступна); если нет → честное сообщение «распознавание без сети недоступно» + фокус в текстовое поле. Состояние `offline`, слушаем `online/offline`.
