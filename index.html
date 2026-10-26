@@ -32341,7 +32341,10 @@ window.eitiLLMClearAll = async function() {
                         var before = snap(); missing = [];
                         var r = eng.reply(inp);
                         var need = missing.slice(); missing = null;
-                        if (!need.length || n >= 3) return r;
+                        // Каждая попытка может обнаружить новый ленивый пакет (ipack_* намерений + tales_* случайной группы):
+                        // 3 попыток иногда не хватало → «Такой сказки у меня пока нет» на обычную просьбу (флак v14130_save).
+                        // Повторяем, пока появляются новые пакеты; потолок 8 — защита от зацикливания.
+                        if (!need.length || n >= 8 || need.every(function(k) { return PK[k]; })) return r;
                         if (before) restore(before);
                         return fetchPacks(need).then(function() { return attempt(n + 1); }, function() { return r; });
                     }
