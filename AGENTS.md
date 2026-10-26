@@ -4,7 +4,7 @@
 
 ### Overview
 
-VELANTRIM EITI is a fully client-side PWA (Progressive Web App) whose application UI/runtime is a single monolithic `index.html` file (~3.8 MB, v14.13.0). There is **no application build step, backend, or external database**. The app uses browser-native storage (IndexedDB, localStorage), companion SQLite WASM assets (`sql-wasm.js` / `sql-wasm.wasm`), and CDN libraries for optional document/sanitization features.
+VELANTRIM EITI is a fully client-side PWA (Progressive Web App) whose application UI/runtime is a single monolithic `index.html` file (~3.8 MB, v14.13.1). There is **no application build step, backend, or external database**. The app uses browser-native storage (IndexedDB, localStorage), companion SQLite WASM assets (`sql-wasm.js` / `sql-wasm.wasm`), and CDN libraries for optional document/sanitization features.
 
 ### Running the app
 
