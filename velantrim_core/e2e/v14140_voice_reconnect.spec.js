@@ -140,7 +140,7 @@ test('нет сети: обрыв → без переподключения, ч�
   await context.setOffline(false);
 });
 
-test('стоп во время второй ожидающей попытки (3с) → переподключения нет, UI в покое, без перехода к другому провайдеру', async ({ page }) => {
+test('«⏹ Отменить» в тосте во время второй ожидающей попытки (3с) → переподключения нет, UI в покое, без перехода к другому провайдеру', async ({ page }) => {
   await boot(page, { eiti_voice_provider: 'gemini' });
   await page.evaluate(() => {
     localStorage.setItem('eiti_gemini_key', _obfKey('AIza-mock')); localStorage.removeItem('eiti_grok_key');
@@ -157,8 +157,13 @@ test('стоп во время второй ожидающей попытки (3
   // вторая попытка запланирована (3 с) — ждём это состояние явно, а не по таймеру
   await page.waitForFunction(() => EitiVoice.state() === 'reconnecting' && EitiVoice.reconnectInfo().pending === 'gemini');
   expect(await page.evaluate(() => window.__rc)).toEqual(['1@1000', '2@3000']);
-  await page.evaluate(() => EitiVoice.stop());
+  // настоящая кнопка «⏹ Отменить» в тосте переподключения (2/2)
+  const cancel = page.locator('.toast', { hasText: 'переподключение (2/2)' }).locator('.eiti-voice-rc-cancel');
+  await expect(cancel).toBeVisible();
+  await expect(cancel).toHaveText('⏹ Отменить');
+  await cancel.click();
   await page.waitForFunction(() => EitiVoice.state() === 'idle');
+  await expect(page.locator('.eiti-voice-rc-toast')).toHaveCount(0);
   await page.waitForTimeout(4000); // дольше любой задержки (3 с): запланированный старт не должен сработать
   const r = await page.evaluate(() => ({ n: window.__ws.length, st: EitiVoice.state(), p: EitiVoice.reconnectInfo().pending,
     a: EitiVoice.reconnectInfo().attempts, rc: window.__rc, fb: window.__fb, tm: window.__tm, act: !!window._grokVoiceActive,

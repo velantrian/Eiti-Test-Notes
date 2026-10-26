@@ -20707,9 +20707,24 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var C = window.EitiVoiceController;
             if (!C || typeof C.handleDrop !== 'function') { if (window.EitiVoice) EitiVoice.offerSwitch(prov, 'socket'); return null; }
             var r = C.handleDrop(prov, code || 'socket');
-            if (r.action === 'reconnect') showToast('🔄 ' + EitiVoice.label(prov) + ': ' + EitiVoice.tr('reconnect') + ' (' + r.attempt + '/' + r.max + ')…', Math.max(1500, r.delay));
+            if (r.action === 'reconnect') { showToast('🔄 ' + EitiVoice.label(prov) + ': ' + EitiVoice.tr('reconnect') + ' (' + r.attempt + '/' + r.max + ')…', Math.max(1500, r.delay)); _eitiVoiceRcCancelBtn(); }
             else EitiVoice.offerSwitch(prov, { no_key: 'nokey', no_proxy: 'noproxy', auth: 'auth', quota: 'quota', offline: 'offline' }[r.code] || 'socket');
             return r;
+        }
+        // P1-1: «⏹ Отменить» в тосте переподключения — снимает ожидающую попытку и возвращает idle, голос НЕ перезапускается
+        function _eitiVoiceRcCancelBtn() {
+            var ts = document.querySelectorAll('.toast'), t = ts[ts.length - 1];
+            if (!t || t.querySelector('.eiti-voice-rc-cancel')) return;
+            t.classList.add('eiti-voice-rc-toast'); t.style.pointerEvents = 'auto'; t.style.animation = 'none';
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'eiti-voice-rc-cancel'; b.textContent = '⏹ ' + EitiVoice.tr('cancel');
+            b.style.cssText = 'margin-left:10px;padding:3px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.5);background:transparent;color:inherit;font-size:13px;cursor:pointer;';
+            b.onclick = function(ev) {
+                if (ev && ev.stopPropagation) ev.stopPropagation();
+                try { EitiVoice.stop(); } catch (e) {}
+                document.querySelectorAll('.eiti-voice-rc-toast').forEach(function(x) { x.remove(); });
+            };
+            t.appendChild(b);
         }
         // Код ошибки по закрытию WebSocket (Gemini Live / Grok): ключ и лимит — без повторов
         function _eitiVoiceCloseCode(code, reason) {
@@ -20992,11 +21007,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         window.EitiVoice = (function() {
             var L = {
                 ru: { sw: 'Переключить на', nokey: 'нет ключа', noproxy: 'нет прокси', socket: 'не удалось подключиться', switched: 'Голос: ', def: 'по умолчанию', alice: 'Алиса (Яндекс)',
-                      auth: 'ключ отклонён', quota: 'лимит запросов исчерпан', offline: 'нет сети', reconnect: 'переподключение', text: '✍️ Написать текстом', novoice: 'других готовых голосовых провайдеров нет' },
+                      auth: 'ключ отклонён', quota: 'лимит запросов исчерпан', offline: 'нет сети', reconnect: 'переподключение', cancel: 'Отменить', text: '✍️ Написать текстом', novoice: 'других готовых голосовых провайдеров нет' },
                 en: { sw: 'Switch to', nokey: 'no API key', noproxy: 'no proxy set', socket: 'connection failed', switched: 'Voice: ', def: 'default', alice: 'Alice (Yandex)',
-                      auth: 'key rejected', quota: 'rate limit reached', offline: 'no network', reconnect: 'reconnecting', text: '✍️ Type instead', novoice: 'no other voice provider is ready' },
+                      auth: 'key rejected', quota: 'rate limit reached', offline: 'no network', reconnect: 'reconnecting', cancel: 'Cancel', text: '✍️ Type instead', novoice: 'no other voice provider is ready' },
                 de: { sw: 'Wechseln zu', nokey: 'kein API-Schlüssel', noproxy: 'kein Proxy', socket: 'Verbindung fehlgeschlagen', switched: 'Stimme: ', def: 'Standard', alice: 'Alice (Yandex)',
-                      auth: 'Schlüssel abgelehnt', quota: 'Anfragelimit erreicht', offline: 'kein Netz', reconnect: 'neue Verbindung', text: '✍️ Stattdessen tippen', novoice: 'kein anderer Sprachanbieter bereit' }
+                      auth: 'Schlüssel abgelehnt', quota: 'Anfragelimit erreicht', offline: 'kein Netz', reconnect: 'neue Verbindung', cancel: 'Abbrechen', text: '✍️ Stattdessen tippen', novoice: 'kein anderer Sprachanbieter bereit' }
             };
             function tr(k) { var l = 'ru'; try { l = (window.eitiGetLocale && window.eitiGetLocale()) || 'ru'; } catch (e) {} return (L[l] || L.ru)[k]; }
             var reg = {
