@@ -1,0 +1,31 @@
+name: Apply L3 latest-message batch revocation (one-shot)
+
+on:
+  push:
+    branches: [claude/l3-delete-revocation-20261027]
+    paths:
+      - ".github/workflows/l3-batch-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Confirm original blob, patch in isolation and clean temporary tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "claude/l3-delete-revocation-20261027"
+          test "$(git hash-object index.html)" = "50f2b47291cbbcdd7fd140a020c75b8ea9dccbe7"
+          python3 scripts/patch_l3_batch_once.py
+          git diff --check
+          git add index.html
+          git rm -- scripts/patch_l3_batch_once.py .github/workflows/l3-batch-once.yml
+          git diff --cached --check
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "fix(l3): revoke all pending facts from latest user message"
+          git push origin HEAD:refs/heads/claude/l3-delete-revocation-20261027
