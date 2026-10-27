@@ -233,3 +233,14 @@ test('category-free do-not-remember revokes every fact from the latest multi-key
   expect(await readFact(page, 'name')).toBeNull();
   expect(await readFact(page, 'city')).toBeNull();
 });
+
+test('category-free do-not-remember aborts every in-flight fact from one message', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => {
+    window.eitiL3AutoExtract('меня зовут Аня, живу в Берлине');
+    window.eitiL3AutoExtract('Не запоминай это');
+    window.eitiL3FlushPending();
+  });
+  expect(await readFact(page, 'name')).toBeNull();
+  expect(await readFact(page, 'city')).toBeNull();
+});
