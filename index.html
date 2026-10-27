@@ -21173,6 +21173,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
         var _l3Revision = Object.create(null);
         var _l3Active = [];
         var _l3LastAttempt = null; // latest correction target, not a commit receipt
+        var _l3LastBatch = null; // keys extracted from one message, RAM only
         function _l3NextRevision(key) {
             return (_l3Revision[key] = (_l3Revision[key] || 0) + 1);
         }
@@ -21192,12 +21193,19 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 try { a.tx.abort(); } catch (_) { /* already committed/aborted */ }
             });
             if (_l3LastAttempt && _l3LastAttempt.key === key) _l3LastAttempt = null;
+            if (_l3LastBatch) {
+                _l3LastBatch.keys = _l3LastBatch.keys.filter(function(k) { return k !== key; });
+                if (!_l3LastBatch.keys.length) _l3LastBatch = null;
+            }
             if (window._l3Last && window._l3Last.key === key) window._l3Last = null;
         }
         function _l3CancelFromSkip(text) {
             var keys = [];
             _l3Patterns.forEach(function(p) { if (p.re.test(text)) keys.push(p.key); });
-            // A category-free "don't remember that" refers only to the last attempt.
+            // Category-free revocation applies to ALL facts extracted from the
+            // latest user message, never just its last matching category.
+            if (!keys.length && _l3LastBatch && Date.now() - _l3LastBatch.ts < 600000)
+                keys = _l3LastBatch.keys.slice();
             if (!keys.length && _l3LastAttempt && Date.now() - _l3LastAttempt.ts < 600000)
                 keys.push(_l3LastAttempt.key);
             keys.forEach(_l3Cancel);
@@ -21278,6 +21286,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             var op = { key: key, value: String(value).trim(), label: label, source: source, reason: reason, revision: _l3NextRevision(key) };
             _l3Pending = _l3Pending.filter(function(a) { return a.key !== key; });
             _l3LastAttempt = { key: key, label: label, ts: Date.now() };
+            _l3LastBatch = { keys: [key], ts: Date.now() };
             _l3Attempt(op);
         }
 
@@ -21337,14 +21346,16 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                 if (typeof showToast === 'function') showToast(_mi === 'skip' ? '🙈 Не запоминаю — как вы просили' : '🤔 Не записываю как факт — вы ещё не решили', 2500);
                 return;
             }
-            var found = [];
+            var found = [], foundKeys = [];
             _l3Patterns.forEach(function(p) {
                 var m = userText.match(p.re);
                 if (m && m[1] && m[1].trim().length >= 2) {
                     _l3Save(p.key, m[1].trim(), p.label, userText.slice(0, 80));
                     found.push(p.label + ': ' + m[1].trim());
+                    foundKeys.push(p.key);
                 }
             });
+            if (foundKeys.length) _l3LastBatch = { keys: foundKeys, ts: Date.now() };
             // v14.15.0: «я ошибся, Оля» — без категории: исправляем последний сохранённый факт (≤ 10 мин)
             var last = _l3LastAttempt || window._l3Last;
             if (!found.length && eitiIsCorrection(userText) && last && Date.now() - last.ts < 600000) {
