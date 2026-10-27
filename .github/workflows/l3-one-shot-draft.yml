@@ -1,0 +1,32 @@
+name: Apply isolated L3 patch to Draft branch
+
+on:
+  push:
+    branches: [claude/l3-delete-revocation-20261027]
+    paths:
+      - ".github/workflows/l3-one-shot-draft.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify, patch, and commit only to isolated Draft branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "claude/l3-delete-revocation-20261027"
+          test "$(git hash-object index.html)" = "4b64fd275835669a72e78bad22436db7686160fb"
+          python3 scripts/patch_l3_revocation_once.py
+          git diff --check
+          git diff --stat
+          git add index.html
+          git rm -- scripts/patch_l3_revocation_once.py .github/workflows/l3-one-shot-draft.yml
+          git diff --cached --check
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "fix(l3): cancel stale writes and acknowledge after IDB commit"
+          git push origin HEAD:refs/heads/claude/l3-delete-revocation-20261027
