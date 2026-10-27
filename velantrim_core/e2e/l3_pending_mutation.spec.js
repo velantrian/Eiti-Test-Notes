@@ -218,3 +218,18 @@ test('failed deletion is visibly unconfirmed and never reports completed deletio
   expect(ok).toBe(false);
   expect((await readFact(page, 'name'))?.value).toBe('Аня');
 });
+
+test('category-free do-not-remember revokes every fact from the latest multi-key message', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => {
+    const db = window.eitiDb;
+    window.eitiDb = null;
+    try {
+      window.eitiL3AutoExtract('меня зовут Аня, живу в Берлине');
+      window.eitiL3AutoExtract('Не запоминай это');
+    } finally { window.eitiDb = db; }
+    window.eitiL3FlushPending();
+  });
+  expect(await readFact(page, 'name')).toBeNull();
+  expect(await readFact(page, 'city')).toBeNull();
+});
