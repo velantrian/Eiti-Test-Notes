@@ -188,3 +188,33 @@ test('a deliberate new fact after confirmed deletion is allowed', async ({ page 
   await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Оля'));
   await expect.poll(async () => (await readFact(page, 'name'))?.value).toBe('Оля');
 });
+
+test('write, correction, and delete interleaved on one key: deletion wins', async ({ page }) => {
+  await boot(page);
+  const deleted = await page.evaluate(() => {
+    window.eitiL3AutoExtract('меня зовут Аня');
+    window.eitiL3AutoExtract('я ошибся, меня зовут Оля');
+    return window.eitiL3Delete('name');
+  });
+  expect(deleted).toBe(true);
+  await page.evaluate(() => window.eitiL3FlushPending());
+  expect(await readFact(page, 'name')).toBeNull();
+  await page.reload();
+  await page.waitForFunction(() => !!window.eitiDb && window.eitiChatReady === true);
+  expect(await readFact(page, 'name')).toBeNull();
+});
+
+test('failed deletion is visibly unconfirmed and never reports completed deletion', async ({ page }) => {
+  await boot(page);
+  await page.evaluate(() => window.eitiL3AutoExtract('меня зовут Аня'));
+  await expect.poll(async () => (await readFact(page, 'name'))?.value).toBe('Аня');
+  const ok = await page.evaluate(async () => {
+    const db = window.eitiDb;
+    try {
+      window.eitiDb = { transaction() { throw new Error('controlled delete rejection'); } };
+      return await window.eitiL3Delete('name');
+    } finally { window.eitiDb = db; }
+  });
+  expect(ok).toBe(false);
+  expect((await readFact(page, 'name'))?.value).toBe('Аня');
+});
