@@ -1,6 +1,7 @@
 // L3 persistence boundary: positive control and reproducible KNOWN GAPS.
 // This spec documents current behaviour; it does not introduce a persistent outbox.
 // When an owner-approved durability policy is implemented, invert the loss assertions.
+// The deletion-resurrection case has been inverted after combining with PR #57's fix.
 const { test, expect } = require('@playwright/test');
 
 async function boot(page) {
@@ -127,9 +128,9 @@ test('privacy control: skip and tentative statements are not queued during a DB 
   expect(await readFact(page, 'city')).toBeNull();
 });
 
-test('KNOWN GAP: deletion does not cancel a pending write and retry can resurrect it', async ({ page }) => {
+test('deletion cancels a pending write and retry cannot resurrect it (inverted after #57 fix)', async ({ page }) => {
   await boot(page);
-  await page.evaluate(() => {
+  const deleted = await page.evaluate(async () => {
     const realDb = window.eitiDb;
     try {
       window.eitiDb = { transaction() { throw new Error('controlled L3 failure'); } };
@@ -137,10 +138,16 @@ test('KNOWN GAP: deletion does not cancel a pending write and retry can resurrec
     } finally {
       window.eitiDb = realDb;
     }
-    window.eitiL3Delete('name');
+    const ok = await window.eitiL3Delete('name');
     window.eitiL3FlushPending();
+    return ok;
   });
-  await expect.poll(async () => (await readFact(page, 'name'))?.value).toBe('Аня');
-  // This is a negative behavioural test, NOT the desired privacy contract.
-  // After a fix, the expected record is null; remove this KNOWN GAP assertion.
+  expect(deleted, 'IDB deletion must be confirmed by transaction completion').toBe(true);
+  // Give any (incorrect) replayed write time to commit before asserting absence.
+  await page.waitForTimeout(500);
+  expect(await readFact(page, 'name')).toBeNull();
+  // Formerly a KNOWN GAP (deleted fact resurrected on flush). With the
+  // per-key revision/cancellation fix from PR #57 the expected record is null.
+  await reloadReady(page);
+  expect(await readFact(page, 'name')).toBeNull();
 });

@@ -377,7 +377,7 @@ flowchart LR
 
 Инварианты памяти (с учётом #46–#49):
 - «не запоминай» / «забудь это» / «don't remember» → ничего не пишется ни в L3, ни в выученные факты; «я ещё не решил» → не факт (`eitiMemIntent`, #46). «не забудь …» = запомнить.
-- Ошибки записи L3 → предупреждение и временная очередь `_l3Pending` в RAM; **при закрытии/перезагрузке вкладки до успешного flush очередь теряется** (KNOWN GAP; см. `docs/l3_memory_inventory.md` §6). Тост «L3 запомнил» сейчас оптимистический, не свидетельствует о commit. Повреждённый JSON архивируется до замены; исходный байтовый текст не перезаписывается при неудаче резервирования.
+- Ошибки записи L3 → предупреждение и временная очередь `_l3Pending` в RAM; **при закрытии/перезагрузке вкладки до успешного flush очередь теряется** (KNOWN GAP; см. `docs/l3_memory_inventory.md` §6). Тост «L3 запомнил» и `_l3Last` (с PR #57) выставляются только в `oncomplete` транзакции; удаление отменяет ожидающие и текущие записи этого ключа. Повреждённый JSON архивируется до замены; исходный байтовый текст не перезаписывается при неудаче резервирования.
 - Исправление не затирает старое: `correction_history[]` в записи L3 и выученного факта; противоречащий выученный факт помечается `superseded_by` / `epistemic_status:'Deprecated'` и в контекст ИИ не идёт (`eitiLearnGet` отдаёт только активные), формат как в `data/memory_record_v1.schema.json` (#49).
 
 ## 13. Экспорт / импорт (`eitiArchiveExport` / `eitiArchiveImport`)
@@ -451,4 +451,4 @@ flowchart LR
 
 ### L3 reliability after PR #46
 
-`l3` transactional success and `_l3Pending` RAM retry are different states. The former survives tab reload; the latter does not. The volatile queue is not a backup, not synchronized to Drive, and can reapply deleted entries on later flush. See `docs/l3_memory_inventory.md` §6 and negative reproduction `velantrim_core/e2e/l3_pending_durability.spec.js`. Durable staging awaits an explicit privacy/retention policy decision; this audit changes no runtime behavior.
+`l3` transactional success and `_l3Pending` RAM retry are different states. The former survives tab reload; the latter does not. The volatile queue is not a backup, not synchronized to Drive, and no longer reapplies deleted entries on later flush (per-key revision invalidation from PR #57). See `docs/l3_memory_inventory.md` §6 and negative reproduction `velantrim_core/e2e/l3_pending_durability.spec.js`. Durable staging awaits an explicit privacy/retention policy decision; the audit itself changes no runtime behavior; the deletion/acknowledgement fix comes from PR #57.
