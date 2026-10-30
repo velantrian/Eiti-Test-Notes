@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.13.1"; // v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.14.0"; // v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -4163,6 +4163,9 @@
         window.EITI_I18N.addDict('de', {"Закрыть": "Schließen", "Настройки": "Einstellungen", "🤖 Модель чата": "🤖 Chat-Modell", "нужен ключ": "Schlüssel nötig", "🎤 Офлайн-распознавание недоступно — включите офлайн-ввод голосом в Gboard (клавиатура → 🎤)": "🎤 Offline-Erkennung nicht verfügbar – aktiviere die Offline-Spracheingabe in Gboard (Tastatur → 🎤)", "🎤 Загружаю языковой пакет для офлайн-распознавания…": "🎤 Sprachpaket für die Offline-Erkennung wird geladen…", "Голосовой ввод": "Spracheingabe", "Остановить запись": "Aufnahme stoppen", "изменить": "ändern", "🗣️ Голосовой ассистент…": "🗣️ Sprachassistent…", "🎤 Голосовой ввод не поддерживается в этом браузере": "🎤 Spracheingabe wird in diesem Browser nicht unterstützt", "🎤 Нет доступа к микрофону — разрешите его в настройках браузера": "🎤 Kein Mikrofonzugriff – bitte in den Browser-Einstellungen erlauben", "🎤 Речь не распознана — попробуйте ещё раз": "🎤 Keine Sprache erkannt – bitte erneut versuchen", "🎤 Голосовой ввод требует интернет": "🎤 Spracheingabe braucht eine Internetverbindung", "🎤 Микрофон не найден": "🎤 Kein Mikrofon gefunden", "🎤 Этот язык не поддерживается для голосового ввода": "🎤 Diese Sprache wird für die Spracheingabe nicht unterstützt", "🎤 Не удалось начать запись": "🎤 Aufnahme konnte nicht gestartet werden", "Голосовой ассистент": "Sprachassistent", "Добавить на главный экран": "Zum Home-Bildschirm", "Хороший ответ": "Gute Antwort", "Плохой ответ": "Schlechte Antwort", "Озвучить / Пауза / Продолжить": "Vorlesen / Pause / Fortsetzen", "Скопировать": "Kopieren", "Функции чата": "Chat-Funktionen", "Добавить музыку": "Musik hinzufügen", "-10 сек": "-10 s", "+10 сек": "+10 s", "Случайный порядок": "Zufällige Reihenfolge", "Повтор": "Wiederholen", "🌐 Язык / Language": "🌐 Sprache", "Лёгкий reasoning": "Leichtes Reasoning", "Макс. reasoning": "Max. Reasoning", "актуальный Flash": "aktuelles Flash", "флагман · reasoning": "Flaggschiff · Reasoning", "баланс · замена 3.5": "ausgewogen · ersetzt 3.5", "быстро · дёшево": "schnell · günstig", "3.8 Flash: актуальный Flash · быстро и сильно": "3.8 Flash: aktuelles Flash · schnell und stark", "Вкл — думающая · Выкл — быстрый fast для всех Gemini": "An — denkend · Aus — schneller Modus für alle Gemini", "✓ Подтвердить ключ Qwen": "✓ Qwen-Schlüssel bestätigen", "🔌 Проверить статус": "🔌 Status prüfen", "DashScope · ключ выше · 235B": "DashScope · Schlüssel oben · 235B", "Вкл — режим модели по умолчанию · Выкл — reasoning отключается запросом": "An — Standardmodus des Modells · Aus — Reasoning wird per Anfrage abgeschaltet", "Отдельный live-список бесплатных OpenRouter endpoints. Нужен OpenRouter API key; у free endpoints цена токенов $0, но действуют лимиты и доступность OpenRouter.": "Eigene Live-Liste kostenloser OpenRouter-Endpunkte. Erfordert einen OpenRouter-API-Schlüssel; kostenlose Endpunkte kosten $0 pro Token, es gelten aber Limits und Verfügbarkeit von OpenRouter.", "Выбрать бесплатную модель…": "Kostenloses Modell wählen…", "Выкл — кнопка скрыта, запросов нет. По умолчанию выкл: заметки не уходят в LLM без явного согласия.": "Aus — Schaltfläche ausgeblendet, keine Anfragen. Standardmäßig aus: Notizen gehen nie ohne ausdrückliche Zustimmung an ein LLM.", "Подсветка правок ИИ": "KI-Änderungen hervorheben", "После Ask AI показывать вставки и зачёркнутые удаления. Выключается кнопкой «Аб» или при ручном наборе.": "Nach Ask AI Einfügungen und durchgestrichene Löschungen zeigen. Wird mit der Taste «Аб» oder beim manuellen Tippen ausgeschaltet.", "Цвета подсветки": "Hervorhebungsfarben", "AI Docs в файлах": "AI Docs in Dateien", "Внизу открытого файла: 🔍 поиск, ✨ Ask AI, ✎ правка. ИИ видит весь файл и помнит вопросы окна; правки подсвечиваются, ↶↷ отменяют.": "Unten in einer geöffneten Datei: 🔍 Suche, ✨ Ask AI, ✎ Bearbeiten. Die KI sieht die ganze Datei und merkt sich die Fragen des Fensters; Änderungen werden hervorgehoben, ↶↷ macht sie rückgängig.", "🔗 Проактивные рекомендации": "🔗 Proaktive Empfehlungen", "При сохранении файла подсказывать связь с заметками и памятью": "Beim Speichern einer Datei Verbindungen zu Notizen und Gedächtnis vorschlagen", "🌙 Стиль офлайн-ответов": "🌙 Stil der Offline-Antworten", "Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).": "Ohne Netz, ohne Schlüssel oder bei KI-Ausfall antwortet EITI offline: Dialoge, Witze, Sprichwörter, Rätsel, Märchen und Sagen («Gute-Nacht-Geschichte», «weiter», «wer ist Cú Chulainn»).", "[TASK_ADD:статус|название|...]": "[TASK_ADD:Status|Titel|...]", "🎓 Обучение EITI": "🎓 EITI-Lernen", "👍 Что я понял о твоих предпочтениях": "👍 Was ich über deine Vorlieben gelernt habe", "Оценок:": "Bewertungen:", "· доля 👍:": "· 👍-Anteil:", "Любимая модель:": "Lieblingsmodell:", "нужно ≥3 оценок": "mind. 3 Bewertungen nötig", "Длина ответа:": "Antwortlänge:", "пока неясно": "noch unklar", "🎰 Адаптивный поиск памяти": "🎰 Adaptive Gedächtnissuche", "Сам подбирает порог и число фактов по твоим 👍/👎 (Thompson sampling).": "Passt Schwelle und Anzahl der Fakten an deine 👍/👎 an (Thompson Sampling).", "Пресет": "Voreinstellung", "порог/факты": "Schwelle/Fakten", "оценка": "Wertung", "Широко": "Breit", "Фокус": "Fokus", "Строго": "Streng", "↺ Сбросить обучение": "↺ Lernen zurücksetzen", "🧠 MOSC: уточнять намерение": "🧠 MOSC: Absicht klären", "Карточка «Кажется, ты хочешь…» под сообщением. Отправку не блокирует.": "Eine Karte «Du möchtest wohl…» unter der Nachricht. Blockiert das Senden nicht.", "🗂 Память фактов": "🗂 Faktengedächtnis", "Активных:": "Aktiv:", "/ 200 · в архиве:": "/ 200 · archiviert:", "🧹 Сжать память сейчас": "🧹 Gedächtnis jetzt verdichten", "🛡 Изменения от AI (MOSC / FL / PKG)": "🛡 Änderungen durch KI (MOSC / FL / PKG)", "Пока нет изменений.": "Noch keine Änderungen.", "📈 Метрики (только на устройстве)": "📈 Metriken (nur auf dem Gerät)", "Поставь 👍/👎 под ответами — здесь появится статистика.": "Bewerte Antworten mit 👍/👎 — hier erscheint dann die Statistik.", "🎙️ Голос:": "🎙️ Stimme:", "🔊 Голос:": "🔊 Stimme:", "🚫 Grok поиск отключён": "🚫 Grok-Suche deaktiviert", "Провайдер AI Voice": "AI-Voice-Anbieter", "Модель Grok": "Grok-Modell", "Голос Grok": "Grok-Stimme", "Цвет добавленного текста": "Farbe des eingefügten Texts", "Цвет удалённого текста": "Farbe des gelöschten Texts", "Удалить": "Löschen", "Редактировать": "Bearbeiten", "Озвучить": "Vorlesen", "Копировать": "Kopieren"});
         window.EITI_I18N.addDict('en', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice is the default; the others need their own key or proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — key below", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Needs your own proxy: it adds the Api-Key header (Yandex Cloud key) and forwards the Realtime protocol.", "Адрес прокси Qwen": "Qwen proxy URL", "Адрес прокси Яндекс": "Yandex proxy URL", "Активен: 🌀 Mistral AI": "Active: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI Realtime voice", "Голос браузера": "Browser voice", "Ключ Mistral AI": "Mistral AI key", "Ключ OpenAI для голосового ассистента": "OpenAI key for the voice assistant", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Uses the Mistral chat key (below). Phrase → Voxtral → Mistral chat model → speech. Not instant like a live call: the reply comes after a pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Key: platform.openai.com · WebRTC straight from the browser, the key goes only to OpenAI", "Модель Mistral": "Mistral model", "Модель OpenAI Realtime": "OpenAI Realtime model", "Модель Qwen Omni": "Qwen Omni model", "Нет Mistral API ключа": "No Mistral API key", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Needs your own proxy: a browser cannot pass the DashScope key to a WebSocket. The proxy adds the Authorization header and forwards the Realtime protocol.", "Озвучка Mistral": "Mistral speech", "готово": "ready", "ключ отклонён": "key rejected", "нет временного ключа": "no ephemeral key", "нет прокси": "no proxy set", "нужен ключ": "key needed", "нужен прокси": "proxy needed", "прокси недоступен": "proxy unreachable", "слушаю…": "listening…", "соединение закрыто": "connection closed", "соединение прервано": "connection lost", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "set the proxy URL (wss://) in Settings → AI → Voice assistant", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ The proxy URL must start with wss://", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Set a Mistral API key in Settings → 🌀 Mistral AI", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ No Mistral key — Settings → AI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ No OpenAI key — Settings → AI → Voice assistant", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC is not available in this browser", "❌ Запись звука недоступна в этом браузере": "❌ Audio recording is not available in this browser", "🌀 Mistral AI активирован": "🌀 Mistral AI activated"}); // v14.12.0
         window.EITI_I18N.addDict('de', {"Алиса (Яндекс)": "Alice (Yandex)", "Grok Voice — по умолчанию; остальным нужен свой ключ или прокси": "Grok Voice ist Standard; die anderen brauchen eigenen Schlüssel oder Proxy", "Medium 3.5 · Large 4 · Small 4 — ключ ниже": "Medium 3.5 · Large 4 · Small 4 — Schlüssel unten", "Yandex AI Studio Realtime API. Нужен свой прокси: он добавляет заголовок Api-Key (ключ Yandex Cloud) и пересылает протокол Realtime.": "Yandex AI Studio Realtime API. Eigener Proxy nötig: er setzt den Api-Key-Header (Yandex-Cloud-Schlüssel) und leitet das Realtime-Protokoll weiter.", "Адрес прокси Qwen": "Qwen-Proxy-URL", "Адрес прокси Яндекс": "Yandex-Proxy-URL", "Активен: 🌀 Mistral AI": "Aktiv: 🌀 Mistral AI", "Голос OpenAI Realtime": "OpenAI-Realtime-Stimme", "Голос браузера": "Browser-Stimme", "Ключ Mistral AI": "Mistral-AI-Schlüssel", "Ключ OpenAI для голосового ассистента": "OpenAI-Schlüssel für den Sprachassistenten", "Ключ — как у чата Mistral (ниже). Фраза → Voxtral → модель чата Mistral → озвучка. Не мгновенно, как живой разговор: ответ после паузы.": "Nutzt den Mistral-Chat-Schlüssel (unten). Satz → Voxtral → Mistral-Chatmodell → Sprachausgabe. Nicht sofort wie ein Live-Gespräch: Antwort nach einer Pause.", "Ключ: platform.openai.com · WebRTC прямо из браузера, ключ уходит только в OpenAI": "Schlüssel: platform.openai.com · WebRTC direkt im Browser, der Schlüssel geht nur an OpenAI", "Модель Mistral": "Mistral-Modell", "Модель OpenAI Realtime": "OpenAI-Realtime-Modell", "Модель Qwen Omni": "Qwen-Omni-Modell", "Нет Mistral API ключа": "Kein Mistral-API-Schlüssel", "Нужен свой прокси: браузер не может передать ключ DashScope в WebSocket. Прокси добавляет заголовок Authorization и пересылает протокол Realtime.": "Eigener Proxy nötig: Ein Browser kann den DashScope-Schlüssel nicht an einen WebSocket übergeben. Der Proxy setzt den Authorization-Header und leitet das Realtime-Protokoll weiter.", "Озвучка Mistral": "Mistral-Sprachausgabe", "готово": "bereit", "ключ отклонён": "Schlüssel abgelehnt", "нет временного ключа": "kein temporärer Schlüssel", "нет прокси": "kein Proxy", "нужен ключ": "Schlüssel nötig", "нужен прокси": "Proxy nötig", "прокси недоступен": "Proxy nicht erreichbar", "слушаю…": "höre zu…", "соединение закрыто": "Verbindung geschlossen", "соединение прервано": "Verbindung unterbrochen", "укажи адрес прокси (wss://) в Настройки → ИИ → Голосовой ассистент": "Proxy-URL (wss://) in Einstellungen → KI → Sprachassistent eintragen", "⚠️ Адрес прокси должен начинаться с wss://": "⚠️ Die Proxy-URL muss mit wss:// beginnen", "⚠️ Настройте Mistral API ключ в Настройки → 🌀 Mistral AI": "⚠️ Mistral-API-Schlüssel in Einstellungen → 🌀 Mistral AI eintragen", "⚠️ Нет ключа Mistral — Настройки → ИИ → Mistral AI": "⚠️ Kein Mistral-Schlüssel — Einstellungen → KI → Mistral AI", "⚠️ Нет ключа OpenAI — Настройки → ИИ → Голосовой ассистент": "⚠️ Kein OpenAI-Schlüssel — Einstellungen → KI → Sprachassistent", "❌ WebRTC недоступен в этом браузере": "❌ WebRTC ist in diesem Browser nicht verfügbar", "❌ Запись звука недоступна в этом браузере": "❌ Audioaufnahme ist in diesem Browser nicht verfügbar", "🌀 Mistral AI активирован": "🌀 Mistral AI aktiviert"}); // v14.12.0
+        // v14.14.0: 🌐 Википедия для офлайн-ответов
+        window.EITI_I18N.addDict('en', {"🌐 Википедия для офлайн-ответов": "🌐 Wikipedia for offline answers", "Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.": "If there is no offline answer, EITI looks up a short Wikipedia summary (ru, then en): no key, no cookies or tracking, answers are cached on the device. On by default only when no AI key is set."});
+        window.EITI_I18N.addDict('de', {"🌐 Википедия для офлайн-ответов": "🌐 Wikipedia für Offline-Antworten", "Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.": "Gibt es keine Offline-Antwort, sucht EITI eine kurze Wikipedia-Zusammenfassung (ru, dann en): ohne Schlüssel, ohne Cookies und Tracking, Antworten werden auf dem Gerät zwischengespeichert. Standardmäßig nur an, wenn kein KI-Schlüssel gesetzt ist."});
         // v14.13.0: Похожие / Рассуждение
         window.EITI_I18N.addDict('en', {"🔗 Похожие и рассуждение": "🔗 Related and reasoning", "📌 Сохранять ответы в заметку": "📌 Save answers to a note", "Показывать похожие": "Show related", "Подробное рассуждение": "Detailed reasoning", "Режим рассуждения": "Reasoning mode", "Только офлайн": "Offline only", "С ИИ (если включён и есть сеть)": "With AI (if enabled and online)", "Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, факты из источника — отдельно. Заметки уходят ИИ только при включённом Notes AI.": "“Related” and “Reasoning” buttons appear under knowledge-base answers, tales and notes. Offline, only the item's own data is shown. With AI, the explanation comes in a separate block, apart from the facts from source. Notes are sent to the AI only when Notes AI is on."});
         window.EITI_I18N.addDict('de', {"🔗 Похожие и рассуждение": "🔗 Ähnliche und Begründung", "📌 Сохранять ответы в заметку": "📌 Antworten in Notiz speichern", "Показывать похожие": "Ähnliche anzeigen", "Подробное рассуждение": "Ausführliche Begründung", "Режим рассуждения": "Begründungsmodus", "Только офлайн": "Nur offline", "С ИИ (если включён и есть сеть)": "Mit KI (wenn aktiviert und online)", "Кнопки «Похожие» и «Рассуждение» — под ответами базы знаний, сказками и заметками. Офлайн показываются только данные самой записи. С ИИ объяснение идёт отдельным блоком, факты из источника — отдельно. Заметки уходят ИИ только при включённом Notes AI.": "Die Schaltflächen „Ähnliche“ und „Begründung“ erscheinen unter Antworten der Wissensdatenbank, Märchen und Notizen. Offline werden nur die Daten des Eintrags selbst gezeigt. Mit KI steht die Erklärung in einem eigenen Block, getrennt von den Fakten aus der Quelle. Notizen gehen nur bei aktiviertem Notes AI an die KI."});
@@ -4325,6 +4328,7 @@
     <script src="./local/eiti_typo.js" defer></script>
     <script src="./local/eiti_journal.js" defer></script>
     <script src="./local/eiti_related.js" defer></script>
+    <script src="./local/eiti_frames.js" defer></script>
     <script src="./local/eiti_voice.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
@@ -9168,6 +9172,13 @@
                             <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;">Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).</div>
                         </div>
                     </div>
+                    <!-- v14.14.0: 🌐 ВИКИПЕДИЯ ДЛЯ ОФЛАЙН-ОТВЕТОВ (EitiWikiHost) -->
+                    <div class="settings-group" id="eiti-wiki-settings">
+                        <div style="padding:14px;display:flex;flex-direction:column;gap:8px;">
+                            <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-wiki-offline" onchange="eitiWikiSet(this.checked)"><span data-i18n="🌐 Википедия для офлайн-ответов">🌐 Википедия для офлайн-ответов</span></label>
+                            <div style="font-size:11px;opacity:0.45;line-height:1.5;" data-i18n="Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.">Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.</div>
+                        </div>
+                    </div>
                     <!-- v14.13.0: ПОХОЖИЕ И РАССУЖДЕНИЕ (local/eiti_related.js) -->
                     <div class="settings-group" id="eiti-rel-settings">
                         <div class="settings-title" data-i18n="🔗 Похожие и рассуждение">🔗 Похожие и рассуждение</div>
@@ -12492,7 +12503,8 @@
         function eitiStripMarkers(text) {
             return String(text == null ? '' : text)
                 .replace(/\n*⟦EITIFOOT⟧[\s\S]*?⟦\/EITIFOOT⟧/g, '')
-                .replace(/\n*⟦EITIREL:[^⟧]*⟧/g, '');
+                .replace(/\n*⟦EITIREL:[^⟧]*⟧/g, '')
+                .replace(/\n*⟦EITIFB:[^⟧]*⟧/g, '');   // v14.14.0
         }
         window.eitiStripMarkers = eitiStripMarkers;
         // текст отрисованного ответа без кнопок «Похожие/Рассуждение/В заметку» и подписи — для 🔊 и 📋
@@ -18145,6 +18157,8 @@
             t = t.replace(/\n*⟦EITIREL:(kb|tale|note):([\w.-]+)(?:@(ru|en|de))?⟧/g, function(_m, k, id, l){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(window.EitiRelHost ? EitiRelHost.bar(k, id, l || 'ru') : ''); return ph; });
             // v14.13.0: подпись офлайн-ответа — тонкий разделитель + мелкий серый текст (текст экранируется)
             t = t.replace(/\n*⟦EITIFOOT⟧([\s\S]*?)⟦\/EITIFOOT⟧/g, function(_m, ft){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push('<span class="eiti-foot" style="display:block;margin-top:10px;padding-top:6px;border-top:1px solid rgba(127,127,127,0.25);font-size:11.5px;line-height:1.35;opacity:0.65;">' + String(ft).trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') + '</span>'); return ph; });
+            // v14.14.0: кнопки под честным «офлайн не знаю» — [🔍 Поискать в заметках] [🤖 Включить ИИ] (EitiFramesHost)
+            t = t.replace(/\n*⟦EITIFB:([^⟧]*)⟧/g, function(_m, tp){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(window.EitiFramesHost ? EitiFramesHost.bar(tp) : ''); return ph; });
             t = t.replace(/⟦EITINOTE:([\w.:-]+)⟧/g, function(_m, id){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalNoteChip(id)); return ph; });
             t = t.replace(/⟦EITIUFILE:([^⟧]+)⟧/g, function(_m, nm){ var ph = '\uE000' + _aiFileChips.length + '\uE000'; _aiFileChips.push(_eitiLocalFileChip(nm)); return ph; });
             // Escape HTML first
@@ -22357,6 +22371,14 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     return t;
                 });
             };
+            // v14.14.0: весь офлайн-путь вернул null → 🌐 Википедия (если включена) или честный ответ с кнопками вместо голого «настройте ключ»
+            var _lastResort = function() {
+                if (_internal || !window.EitiFramesHost) return Promise.resolve(null);
+                return EitiFramesHost.lastResort(userText).then(function(t) {
+                    if (t && typeof eitiReceiveReply === 'function') { window._eitiOfflineReply = true; try { eitiReceiveReply(t); } finally { window._eitiOfflineReply = false; } }
+                    return t;
+                }, function() { return null; });
+            };
             if (typeof eitiAiUnavailable === 'function' && eitiAiUnavailable()) {
                 var _t0 = await _offline();
                 if (_t0) return _t0;
@@ -22365,11 +22387,11 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             try { if (!_internal && window.EitiDialogHost && !(typeof eitiAiUnavailable === "function" && eitiAiUnavailable())) EitiDialogHost.note(userText); } catch (e) {}
             try {
                 var _r = await _eitiAskDeepSeekCore(userText);
-                if (typeof _r === 'string' && (/^⚠️ Настройте .*(API )?ключ/.test(_r) || /^⚠️ (I have no offline answer for that\. Set up|Darauf habe ich offline keine Antwort\. Richte)/.test(_r))) { var _t1 = await _offline(); if (_t1) return _t1; }
+                if (typeof _r === 'string' && (/^⚠️ Настройте .*(API )?ключ/.test(_r) || /^⚠️ (I have no offline answer for that\. Set up|Darauf habe ich offline keine Antwort\. Richte)/.test(_r))) { var _t1 = await _offline(); if (_t1) return _t1; var _t3 = await _lastResort(); if (_t3) return _t3; }
                 return _r;
             } catch (e) {
                 var _m = String(e && e.message || e);
-                if (_m !== 'sys_prompt_leak') { var _t2 = await _offline(); if (_t2) return _t2; }
+                if (_m !== 'sys_prompt_leak') { var _t2 = await _offline(); if (_t2) return _t2; if (typeof eitiAiUnavailable === 'function' && eitiAiUnavailable()) { var _t4 = await _lastResort(); if (_t4) return _t4; } }
                 throw e;
             }
         }
@@ -32450,7 +32472,7 @@ window.eitiLLMClearAll = async function() {
                     return hits.map(function(h) {
                         var p = PK[h.d + '#' + (h.p || 0)], e = p && p.entries[h.id]; if (!e) return null;
                         var m = idx.domains[h.d] || {};
-                        return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', r: e.r || null, gen: !!m.gen, score: h.score, cov: h.cov, prec: h.prec };
+                        return { id: h.id, domain: h.d, title: m.title || h.d, title_en: m.title_en || h.d, q: e.q, a: e.a, en: e.en || '', r: e.r || null, f: e.f || null, gen: !!m.gen, score: h.score, cov: h.cov, prec: h.prec };
                     }).filter(Boolean);
                 });
             }
@@ -32480,11 +32502,48 @@ window.eitiLLMClearAll = async function() {
                 var en = lang === 'en' && f.en;
                 return '<span style="font-size:11px;opacity:0.5;">🧠 KB · ' + (en ? f.title_en : f.title) + '</span><br>' + (en ? f.en : f.a);
             }
+            // v14.14.0: карточки понятий (kn_* в index.json → lazy) — шарды грузятся только при первом вопросе о понятии
+            // (не на старте и не в precache; SW кладёт их в офлайн-кэш при первой загрузке), затем живут в том же движке.
+            var lazyP = null;
+            function lazy() {
+                if (lazyP) return lazyP;
+                lazyP = init().then(function(e) {
+                    var ls = (idx && idx.lazy) || [], t0 = performance.now();
+                    return Promise.all(ls.map(function(d) { return getJson(idx.domains[d].shard).catch(function() { return null; }); })).then(function(shs) {
+                        var rows = [];
+                        shs.forEach(function(sh) { if (!sh) return; var r = window.EitiKBLib.shardRows(sh); for (var ri = 0; ri < r.length; ri++) { LOC[r[ri].i] = [r[ri].d, r[ri].p]; rows.push(r[ri]); } });
+                        return window.EitiKBLib.addAsync(e, rows, { step: 150, yieldFn: idle });
+                    }).then(function() { stats.lazy = Math.round(performance.now() - t0); stats.entries = e.size; return e; });
+                }).catch(function(err) { lazyP = null; throw err; });
+                return lazyP;
+            }
+            // название карточки: у kn_* — первый триггер; у ручной записи с полями — самый короткий триггер без вопросительных слов
+            function conceptTitle(q, dflt, d) {
+                q = q || []; if (/^kn_/.test(d)) return String(q[0] || dflt);
+                var b = null; q.forEach(function(t) { if (!/(^|\s)(что|кто|как|какой|какая|почему|зачем|сколько|где|когда|формула|это)(\s|$)|[a-z]/i.test(t) && (!b || t.length < b.length)) b = t; });
+                return String(b || q[0] || dflt);
+            }
+            // concept(topic) → карточка понятия {id, title (= понятие), a, f, kn:true, …} | уверенная запись KB (kn:false) | null
+            function concept(topic) {
+                var q = String(topic || '').trim();
+                if (!q || q.length > 80) return Promise.resolve(null);
+                return lazy().then(function(e) {
+                    var h = e.search(q, 6), pick = null, top = h[0];
+                    for (var i = 0; i < h.length; i++) { var x = h[i]; if (/^kn_/.test(x.d) && x.nx > 0 && x.cov >= 0.6 && x.prec >= 0.75 && !x.hom && x.score >= top.score * 0.6) { pick = x; break; } }
+                    if (!pick && e.confident(top)) pick = top;
+                    if (!pick) return null;
+                    return hydrate([pick]).then(function(r) {
+                        var c = r[0]; if (!c) return null;
+                        c.kn = /^kn_/.test(c.domain) || !!c.f; if (c.kn) c.title = conceptTitle(c.q, c.title, c.domain);   // карточка = kn_* или запись с полями (@…)
+                        return c;
+                    });
+                }).catch(function(err) { console.warn('[EITI KB concept]', err && err.message); return null; });
+            }
             function prewarm() {
                 var go = function() { init().catch(function() {}); };
                 if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 10000 }); else setTimeout(go, 3000);
             }
-            return { init: init, answer: answer, facts: facts, entry: entry, format: format, prewarm: prewarm, stats: stats, pack: pack,
+            return { init: init, answer: answer, facts: facts, entry: entry, format: format, prewarm: prewarm, stats: stats, pack: pack, concept: concept, lazy: lazy,
                      ready: function() { return !!eng; }, count: function() { return idx ? idx.count : 0; }, index: function() { return idx; }, engine: function() { return eng; } };
         })();
         window.EitiKBHost = EitiKBHost;
@@ -32793,6 +32852,148 @@ window.eitiLLMClearAll = async function() {
         };
         window.addEventListener('load', function() { try { window.eitiRelSyncSettings(); } catch (e) {} });
 
+        // ── v14.14.0: EITI FRAMES — офлайн-понимание формулировок (local/eiti_frames.js + local/eiti_frames.json) ──
+        // «Расскажи / скажи / поясни / о науке расскажи / а зачем? / это точно?» в любом порядке слов → карточки понятий KB
+        // (EitiKBHost.concept) или канонический вопрос к KB/диалогам. Стоит внутри EITI Local и памяти диалога (DState), снаружи KB.
+        // Модуль или пакет не загрузились — слой просто пропускает запрос дальше (orig).
+        var EitiFramesHost = (function() {
+            var st = null, packP = null, footShown = false, stats = { calls: 0, hits: 0, last: null };
+            var BTN = 'display:inline-flex;align-items:center;gap:4px;padding:3px 10px;margin:2px 4px 2px 0;border-radius:12px;font-size:12px;cursor:pointer;border:1px solid var(--border-color);background:rgba(127,127,127,0.12);color:inherit;';
+            function F() { return window.EitiFrames || null; }
+            function ready() {
+                var f = F(); if (!f) return Promise.resolve(null);
+                if (f.loaded()) return Promise.resolve(f);
+                if (!packP) packP = fetch('./local/eiti_frames.json').then(function(r) { return r.ok ? r.json() : null; })
+                    .then(function(p) { return p && f.load(p) ? f : null; }, function() { return null; })
+                    .then(function(x) { if (!x) packP = null; return x; });
+                return packP;
+            }
+            function state() { if (!st && F()) st = F().create(); return st; }
+            function lookup(topic) {
+                if (!window.EitiKBHost || !EitiKBHost.concept) return Promise.resolve(null);
+                return EitiKBHost.concept(topic).then(function(c) { return c ? { id: c.id, title: c.title, a: c.a, f: c.f, kn: !!c.kn, domain: c.domain } : null; });
+            }
+            function reply(text, opts, orig) {
+                opts = opts || {};
+                var q = String(text || '');
+                if (!q || q.length > 220 || !/[а-яё]/i.test(q)) return orig(text, opts);
+                var lang = opts.lang || (window.eitiOfflineLang ? window.eitiOfflineLang(q) : 'ru');
+                if (lang !== 'ru') return orig(text, opts);   // фреймы — только RU; EN/DE идут прежним путём
+                return ready().then(function(f) {
+                    if (!f) return orig(text, opts);
+                    stats.calls++;
+                    var passed = { v: undefined };
+                    return f.respond(q, state(), { lookup: lookup, pass: function(t) { return orig(t, opts).then(function(r) { passed.v = r; return r; }); } }).then(function(r) {
+                        if (r == null || r === passed.v) return r;
+                        stats.hits++; stats.last = st && st.card ? st.card.id : null;
+                        if (opts.foot && !footShown) { footShown = true; r += window.eitiOfflineStr('kbFoot', 'ru'); }
+                        if (window.EitiRelHost && st && st.card && /^📘 \*\*[^*]+\*\*\n/.test(r)) r += EitiRelHost.marker('kb', st.card.id, 'ru');
+                        return r;
+                    });
+                }).catch(function(e) { console.warn('[EITI frames]', e && e.message); return orig(text, opts); });
+            }
+            // lastResort(text) — весь офлайн-путь вернул null: 🌐 Википедия (если включена) или честный ответ с кнопками
+            function lastResort(text) {
+                var q = String(text || '').trim();
+                if (!q || q.length > 300) return Promise.resolve(null);
+                if ((window.eitiOfflineLang ? window.eitiOfflineLang(q) : 'ru') !== 'ru') return Promise.resolve(null);
+                return ready().then(function(f) {
+                    if (!f) return null;
+                    var p = f.parse(q, null, 0), topic = p && p.kind === 'defer' ? '' : f.topicOf(q);
+                    var w = (topic && window.EitiWikiHost && EitiWikiHost.enabled()) ? EitiWikiHost.lookup(topic) : Promise.resolve(null);
+                    return w.then(function(t) { return t || f.fallbackText(topic); }, function() { return f.fallbackText(topic); });
+                }).catch(function() { return null; });
+            }
+            function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+            // bar(enc) → кнопки под честным «не знаю»: [🔍 Поискать в заметках] [🤖 Включить ИИ]
+            function bar(enc) {
+                var t = ''; try { t = decodeURIComponent(enc || ''); } catch (e) { t = ''; }
+                return '<span class="eiti-fb-bar" data-i18n-skip="1" style="display:block;margin-top:8px;">' +
+                    '<span class="eiti-fb-btn" role="button" tabindex="0" data-w="notes" data-q="' + esc(t) + '" onclick="EitiFramesHost.notes(this)" style="' + BTN + '">🔍 Поискать в заметках</span>' +
+                    '<span class="eiti-fb-btn" role="button" tabindex="0" data-w="ai" onclick="EitiFramesHost.ai()" style="' + BTN + '">🤖 Включить ИИ</span></span>';
+            }
+            function notes(el) {
+                var t = String((el && el.getAttribute('data-q')) || '').trim();
+                if (!t) { if (typeof openView === 'function') openView('notes'); return false; }
+                var r = window.EitiLocalHost ? EitiLocalHost.reply('найди в заметках ' + t, 'ru') : null;
+                if (r && typeof eitiReceiveReply === 'function') { window._eitiOfflineReply = true; try { eitiReceiveReply(r); } finally { window._eitiOfflineReply = false; } return true; }
+                if (typeof showToast === 'function') showToast('🔍 В заметках ничего не нашлось про «' + t + '»');
+                return false;
+            }
+            function ai() {
+                if (typeof eitiChatAIPickerOpen === 'function') { try { eitiChatAIPickerOpen(); return true; } catch (e) {} }
+                if (typeof openView === 'function') openView('settings');
+                return true;
+            }
+            return { reply: reply, lastResort: lastResort, bar: bar, notes: notes, ai: ai, ready: ready, stats: stats, state: function() { return st; } };
+        })();
+        window.EitiFramesHost = EitiFramesHost;
+        (function() {
+            if (!window.EitiOffline || EitiOffline._framesWrapped) return;
+            var orig = EitiOffline.replyText;
+            EitiOffline.replyText = function(text, opts) { return EitiFramesHost.reply(text, opts, orig); };
+            EitiOffline._framesWrapped = true;
+        })();
+
+        // ── v14.14.0: 🌐 ВИКИПЕДИЯ ДЛЯ ОФЛАЙН-ОТВЕТОВ — без ключа, ru → en, кэш в IndexedDB 'eiti_offline' (kv, ключи «wiki:…») ──
+        // Только когда весь офлайн-путь вернул null. Без cookies и referrer, таймаут 5 с на запрос, текст очищается (local/eiti_frames.js).
+        // Подход тот же, что у _tryWikipedia (поиск api.php, origin=*), плюс REST summary для короткой выжимки.
+        var EitiWikiHost = (function() {
+            var KEY = 'eiti_wiki_offline', TTLC = 30 * 864e5, MAXC = 200, dbP = null;
+            function enabled() {
+                var v = null; try { v = localStorage.getItem(KEY); } catch (e) {}
+                if (v === '1') return true; if (v === '0') return false;
+                return typeof eitiAiKeyMissing === 'function' ? eitiAiKeyMissing() : true;   // по умолчанию: вкл, только если ключа ИИ нет
+            }
+            function set(on) { try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {} return enabled(); }
+            function db() {
+                if (!dbP) dbP = new Promise(function(res) {
+                    try { var r = indexedDB.open('eiti_offline', 1); r.onupgradeneeded = function() { r.result.createObjectStore('kv'); }; r.onsuccess = function() { res(r.result); }; r.onerror = function() { res(null); }; } catch (e) { res(null); }
+                });
+                return dbP;
+            }
+            function kvGet(k) { return db().then(function(d) { return d ? new Promise(function(res) { try { var g = d.transaction('kv').objectStore('kv').get(k); g.onsuccess = function() { res(g.result || null); }; g.onerror = function() { res(null); }; } catch (e) { res(null); } }) : null; }); }
+            function kvPut(k, v) { return db().then(function(d) { if (!d) return; try { d.transaction('kv', 'readwrite').objectStore('kv').put(v, k); } catch (e) {} }); }
+            function remember(k, t) {
+                kvPut(k, { t: t, at: Date.now() });
+                kvGet('wiki:_keys').then(function(ks) {
+                    ks = Array.isArray(ks) ? ks.filter(function(x) { return x !== k; }) : []; ks.push(k);
+                    while (ks.length > MAXC) { var old = ks.shift(); db().then(function(d) { try { d.transaction('kv', 'readwrite').objectStore('kv').delete(old); } catch (e) {} }); }
+                    kvPut('wiki:_keys', ks);
+                });
+            }
+            function get(url, ms) {
+                ms = ms || 5000;
+                var ac = typeof AbortController === 'function' ? new AbortController() : null, tm = null;
+                var timeout = new Promise(function(res) { tm = setTimeout(function() { try { if (ac) ac.abort(); } catch (e) {} res(null); }, ms); });
+                var req = fetch(url, { signal: ac ? ac.signal : undefined, credentials: 'omit', referrerPolicy: 'no-referrer', mode: 'cors' })
+                    .then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; });
+                return Promise.race([req, timeout]).then(function(j) { clearTimeout(tm); return j; });
+            }
+            function one(topic, lang) {
+                var f = window.EitiFrames;
+                return get(f.wikiSearchUrl(topic, lang)).then(function(j) { var t = f.wikiPick(j); return t ? get(f.wikiSummaryUrl(t, lang)) : null; })
+                    .then(function(j) { return j ? f.wikiClean(j, lang) : null; });
+            }
+            // lookup(topic) → '🌐 **Википедия · …**…' | null (офлайн — только из кэша)
+            function lookup(topic) {
+                var f = window.EitiFrames; if (!f || !topic) return Promise.resolve(null);
+                var key = 'wiki:' + f.norm(topic).slice(0, 80);
+                return kvGet(key).then(function(hit) {
+                    if (hit && hit.t && Date.now() - (hit.at || 0) < TTLC) return hit.t;
+                    if (navigator.onLine === false) return null;
+                    return one(topic, 'ru').then(function(r) { return r || one(topic, 'en'); }).then(function(r) {
+                        if (!r) return null;
+                        var t = f.wikiFormat(r); remember(key, t); return t;
+                    });
+                }).catch(function() { return null; });
+            }
+            return { enabled: enabled, set: set, lookup: lookup, KEY: KEY };
+        })();
+        window.EitiWikiHost = EitiWikiHost;
+        window.eitiWikiSet = function(on) { return EitiWikiHost.set(!!on); };
+        window.addEventListener('load', function() { try { var c = document.getElementById('eiti-wiki-offline'); if (c) c.checked = EitiWikiHost.enabled(); } catch (e) {} });
+
         // ── v14.2.0: EITI LOCAL — «простой интеллект» по своим данным + калькулятор (local/eiti_local.js) ──
         // Синхронно и без сети: снимок заметок (notesLoad) и пользовательских файлов (getAiTextStore) → готовый ответ или null.
         // Проверяется ПЕРВЫМ во всех офлайн-путях: роутер офлайн-режима и EitiOffline.replyText (раньше KB и офлайн-диалогов).
@@ -33090,6 +33291,10 @@ window.eitiLLMClearAll = async function() {
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)
         function eitiAiUnavailable() {
             if (navigator.onLine === false) return true;
+            return eitiAiKeyMissing();
+        }
+        // v14.14.0: только «нет ключа у выбранного провайдера» (без проверки сети) — для умолчания 🌐 Википедии
+        function eitiAiKeyMissing() {
             try {
                 var p = localStorage.getItem('eiti_ai_provider') || 'deepseek';
                 if (p === 'duckduckgo') return false;
@@ -33102,6 +33307,7 @@ window.eitiLLMClearAll = async function() {
             return false;
         }
         window.eitiAiUnavailable = eitiAiUnavailable;
+        window.eitiAiKeyMissing = eitiAiKeyMissing;
 
         function eitiOfflineReason(query) {
             if (eitiIntentRouter(query)) return;

@@ -25,6 +25,7 @@ REQUIRED_FILES = (
     'kb/index.json',
     'offline/core.json',
     'local/eiti_typo_vocab.json',
+    'local/eiti_frames.json',
 )
 
 # The explicit patterns reflect the currently documented browser runtime.
