@@ -69,8 +69,8 @@
     return out;
   }
 
-  // v14.14.0: омонимы-названия (фильм «Гравитация», книга «Космос», «Весёлая наука») — без слова-подсказки
-  // («фильм», «книга», «песня» …) такие статьи уступают понятиям и не выдаются как уверенный ответ
+  // v14.14.0: омонимы-названия (фильм «Гравитация», книга «Космос», «Весёлая наука») — когда запрос состоит только из названия
+  // и в нём нет слова-подсказки («фильм», «книга», «песня» …), такие статьи уступают понятиям и не выдаются как уверенный ответ
   var HOM = {
     films: ['фильм', 'кино', 'сериал', 'режисс', 'снял', 'экраниз', 'movie', 'film'],
     books: ['книг', 'роман', 'повест', 'написал', 'автор', 'произведен', 'поэм', 'book', 'novel'],
@@ -142,7 +142,7 @@
       var why = /(^|\s)(почему|отчего|зачем|как|каким образом|why|how)(\s|$)/.test(norm(query)) ? 0.6 : 1;
       for (var i = 0; i < q.length; i++) if (!u[q[i]]) { u[q[i]] = 1; uq.push(q[i]); }
       if (!uq.length) return [];
-      var tot = 0, acc = {}, wsum = {}, nqh = norm(query);
+      var tot = 0, acc = {}, wsum = {}, out = {}, nqh = norm(query);
       for (var a = 0; a < uq.length; a++) {
         var t = uq[a], w = idf(t); tot += w;
         var p = inv[t]; if (!p) continue;
@@ -150,6 +150,7 @@
           var d = p[j];
           acc[d] = (acc[d] || 0) + w * (p[j + 1] === 2 ? 1 : 0.6);
           wsum[d] = (wsum[d] || 0) + w;
+          if (HOM[E[d].d] && !out[d] && (trig[d][0] || []).indexOf(t) < 0) out[d] = 1;   // слово запроса вне названия («ночной дозор рембрандт»)
         }
       }
       var res = [];
@@ -163,7 +164,7 @@
         }
         // v14.14.0: карточки понятий (kn_*) уступают рукописным статьям, особенно в длинных вопросах (покрытие < 0.6), и требуют совпадения
         // слова целиком («скороговорку» ≠ «скорость») — их явно выбирает EitiKBHost.concept
-        var cov = wsum[di] / tot, ex = 0, gen = (E[di].w || 1) < 1, hom = !cue(E[di].d, nqh), kn = E[di].d.lastIndexOf('kn_', 0) === 0;
+        var cov = wsum[di] / tot, ex = 0, gen = (E[di].w || 1) < 1, hom = !out[di] && !cue(E[di].d, nqh), kn = E[di].d.lastIndexOf('kn_', 0) === 0;
         if (full[di]) for (var z = 0; z < qw.length; z++) if (full[di].indexOf('|' + qw[z] + '|') >= 0) ex++;
         var nx = ex; if (kn && !ex && full[di]) nx = near(qw, full[di]);   // v14.14.0: «луне» ≈ «луна», но «скороговорку» ≠ «скорость»
         res.push({ i: di, id: E[di].i, d: E[di].d, p: E[di].p || 0, cov: Math.round(cov * 1000) / 1000, prec: Math.round(best * 1000) / 1000, mt: bm, qn: uq.length,

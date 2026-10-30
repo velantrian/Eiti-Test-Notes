@@ -178,3 +178,13 @@ test('KB finds Наполеон / МГУ / Apple in any form (case, abbreviation
   assert.strictEqual(K.lem('наполеона'), K.lem('наполеон'));
   assert.strictEqual(K.translit('napoleon'), 'наполеон');
 });
+
+// v14.14.0: омоним-название уступает понятию только когда запрос — одно название без подсказки;
+// «ночной дозор рембрандт» (слово вне названия) по-прежнему уверенно находит картину
+test('homonym titles: bare title yields to concept, extra words keep the article', () => {
+  const e = K.create(FULL);
+  const h = e.search('ночной дозор рембрандт', 3)[0];
+  assert.ok(h && h.d === 'paintings' && !h.hom && e.confident(h), JSON.stringify(h));
+  const g = e.search('гравитация', 5).find((x) => x.d === 'films');
+  if (g) assert.ok(g.hom && !e.confident(g), JSON.stringify(g));
+});
