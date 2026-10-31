@@ -248,3 +248,51 @@ test.describe('🔄 Обновить базу офлайн-ответов', () =
     await expect(page.locator('#eiti-base-last')).toContainText('ещё не обновлялась');
   });
 });
+
+// v14.14.0 talk: «что ты думаешь об этом» / «обдумай» / «что будет, если» / «другой вариант» / «сравни» / «подведи итог» — без ключа и без сети
+function watchExternal(context) {
+  const ext = [];
+  context.on('request', (r) => { if (!/^http:\/\/127\.0\.0\.1:8099\//.test(r.url()) && !/^(data|blob):/.test(r.url())) ext.push(r.url()); });
+  return ext;
+}
+test('talk: «что ты думаешь об этом» → честно «личного мнения нет» + суть/почему/зачем из базы, «поцелуй меня» — не вопрос', async ({ page, context }) => {
+  await boot(page);
+  const ext = watchExternal(context);
+  await send(page, 'что такое фотосинтез');
+  await expect(last(page)).toContainText('Фотосинтез', { timeout: 20000 });
+  await send(page, 'скажи, что ты думаешь об этом?');
+  await expect(last(page)).toContainText('мнение', { timeout: 15000 });
+  await expect(last(page)).toContainText(/мнения у меня нет|не «думаю»|Мнения, как у человека/);
+  await expect(last(page)).toContainText('Суть');
+  await expect(last(page)).not.toContainText('Настройте');
+  await shot(page, 'opinion');
+  await send(page, 'как считаешь, что будет, если он исчезнет?');
+  await expect(last(page)).toContainText('что будет, если', { timeout: 15000 });
+  const n = await page.locator('#messages .message.incoming').count();
+  await send(page, 'поцелуй меня');
+  await expect(page.locator('#messages .message.incoming')).toHaveCount(n + 1, { timeout: 15000 });
+  await expect(last(page)).not.toContainText('📘');
+  expect(ext).toEqual([]);
+});
+
+test('talk: цепочка мнение → пример → по-другому → сравни → итог, тема держится, без сети', async ({ page, context }) => {
+  await boot(page);
+  const ext = watchExternal(context);
+  await send(page, 'расскажи о гравитации');
+  await expect(last(page)).toContainText('Гравитация', { timeout: 20000 });
+  const chain = [
+    ['а ты как считаешь?', 'мнение'],
+    ['дай пример', 'пример'],
+    ['а как было бы по-другому?', 'другой вариант'],
+    ['а сравни с фотосинтезом', '⚖️'],
+    ['подведи итог', 'итог'],
+  ];
+  for (const [q, want] of chain) {
+    await send(page, q);
+    await expect(last(page)).toContainText(want, { timeout: 15000 });
+    await expect(last(page)).toContainText('Гравитация');
+  }
+  await expect(last(page)).toContainText('Мы уже обсудили');
+  await shot(page, 'chain');
+  expect(ext).toEqual([]);
+});

@@ -6,6 +6,8 @@
 //   • тема + местоимения («поясни это», «а кто это открыл?») → последняя карточка;
 //   • ответы по полям карточек понятий KB (def/short/ex/why/use/how/when/origin/count/who/verify), честное «нет данных»;
 //   • продолжение диалога («да / ещё / а зачем? / короче / хватит») — только после ответа фреймов;
+//   • v14.14.0 talk: мнение / рассуждение / «что будет, если» / другой вариант / за и против / по шагам / итог / эмоции / «повтори» —
+//     грамматика триггеров (pack.slots), ranked-шаблоны ответов (pack.acts) с ротацией без повтора подряд, контекст (тема, прошлая тема, последний ответ);
 //   • defer-список (стихи, сказки, заметки, файлы, погода…) → молчим, отвечают другие движки.
 // Данные — local/eiti_frames.json (правится без кода). Хост (index.html) даёт lookup(тема) и pass(текст).
 (function (root, factory) {
@@ -63,30 +65,116 @@
 
   // ── пакет ──
   var PRIO = { ask_compare: 9, q_verify: 8, q_origin: 8, q_purpose: 7, q_why: 7, q_when: 7, q_count: 7, q_who: 6, q_how: 5, ask_example: 5, ask_advice: 5, ask_define: 4, ask_essence: 3, ask_explain: 2, ask_tell: 1 };
-  function phrases(list) { var o = []; (list || []).forEach(function (x) { var t = toks(Array.isArray(x) ? x.join(' ') : x); if (t.length) o.push(t); }); return o; }
-  function stemmed(list) { return phrases(list).map(function (t) { return t.map(stem); }); }
+  var SEP = { 'и': 1, 'или': 1, 'от': 1, 'между': 1, 'vs': 1, 'versus': 1, 'с': 1, 'со': 1 };
+  var XCAP = 800;
+  // v14.14.0 talk: грамматика триггеров — «(a|b)» варианты, «[x]» или «(x)?» необязательно, «$slot» — список из pack.slots
+  function expand(src, slots) {
+    var s = String(src == null ? '' : src), i = 0;
+    function cross(out, part) {
+      var nx = [];
+      for (var a = 0; a < out.length; a++) for (var b = 0; b < part.length; b++) { if (nx.length >= XCAP) return nx; nx.push(out[a] + part[b]); }
+      return nx;
+    }
+    function seq() {
+      var out = [''];
+      while (i < s.length) {
+        var ch = s.charAt(i), part;
+        if (ch === ')' || ch === ']' || ch === '|') break;
+        if (ch === '(' || ch === '[') {
+          var close = ch === '(' ? ')' : ']'; i++;
+          part = alts(close);
+          var opt = close === ']';
+          if (s.charAt(i) === '?') { opt = true; i++; }
+          if (opt) part = part.concat(['']);
+        } else if (ch === '$') {
+          var m = /^\$([a-z_0-9]+)/i.exec(s.slice(i)); i += m ? m[0].length : 1;
+          part = m && slots && Array.isArray(slots[m[1]]) ? slots[m[1]].map(String) : [''];
+        } else if (ch === ' ') { i++; part = [' ']; }
+        else { var w = /^[^()\[\]|$ ]+/.exec(s.slice(i))[0]; i += w.length; part = [w]; }
+        out = cross(out, part);
+      }
+      return out;
+    }
+    function alts(close) {
+      var res = [];
+      for (;;) {
+        res = res.concat(seq());
+        var c = s.charAt(i);
+        if (c === '|') { i++; continue; }
+        if (c === close) i++;
+        return res;
+      }
+    }
+    var r = seq();
+    while (i < s.length) { if (s.charAt(i) === '|') { i++; r = r.concat(seq()); } else i++; }
+    return r;
+  }
+  function phrases(list, slots) {
+    var o = [];
+    (list || []).forEach(function (x) {
+      (Array.isArray(x) ? [x.join(' ')] : expand(x, slots)).forEach(function (e) { var t = toks(e); if (t.length) o.push(t); });
+    });
+    return o;
+  }
+  function stemmed(list, sx) { return phrases(list).map(function (t) { return t.map(sx || stem); }); }
   function set(list) { var o = {}; (list || []).forEach(function (x) { o[norm(x)] = 1; }); return o; }
   function compile(pack) {
     if (!pack || !Array.isArray(pack.intents)) return null;
+    var slots = pack.slots || {};
     var c = { raw: pack, fillers: phrases(pack.fillers), stop: phrases(pack.stop), self: set(pack.self), pron: set(pack.pron), slips: {}, defer: (pack.defer || []).map(norm).filter(Boolean),
-      mods: [], intents: [], fu: [], chain: pack.chain || ['def', 'ex', 'why', 'use', 'how', 'when', 'origin'] };
+      mods: [], intents: [], idx: {}, byId: {}, fu: [], vocab: {}, vfirst: {}, fams: {}, nvar: 0, chain: pack.chain || ['def', 'ex', 'why', 'use', 'how', 'when', 'origin'] };
     Object.keys(pack.slips || {}).forEach(function (k) { c.slips[norm(k)] = norm(pack.slips[k]); });
-    Object.keys(pack.modifiers || {}).forEach(function (k) { stemmed(pack.modifiers[k]).forEach(function (t) { c.mods.push({ id: k, t: t }); }); });
-    pack.intents.forEach(function (it) { stemmed(it.triggers).forEach(function (t) { c.intents.push({ id: it.id, field: it.field, t: t, prio: PRIO[it.id] || 0 }); }); });
-    var stopRaw = {}; c.fillers.concat(c.stop).forEach(function (t) { if (t.length === 1) stopRaw[t[0]] = 1; });
+    // exact: слова без стемминга («сложнее» ≠ «сложно», «понятнее» ≠ «понятно»)
+    var exact = set(pack.exact), sx = c.sx = function (w) { return exact[w] ? w + '!' : stem(w); };
+    Object.keys(pack.modifiers || {}).forEach(function (k) { stemmed(pack.modifiers[k], sx).forEach(function (t) { c.mods.push({ id: k, t: t }); }); });
+    var stopRaw = {}, fill1 = {}, multiF = c.fillers.filter(function (t) { return t.length > 1; });
+    c.fillers.forEach(function (t) { if (t.length === 1) { stopRaw[t[0]] = 1; fill1[t[0]] = 1; } });
+    c.stop.forEach(function (t) { if (t.length === 1) stopRaw[t[0]] = 1; });
     c.stopRaw = stopRaw;
+    c.pronS = {}; Object.keys(c.pron).forEach(function (k) { c.pronS[sx(k)] = 1; });
+    function voc(w) { c.vocab[w] = 1; if (w.length >= 5) { var f = w.charAt(0); (c.vfirst[f] = c.vfirst[f] || []).push(w); } }
+    c.fillers.concat(c.stop).forEach(function (t) { t.forEach(function (w) { c.vocab[w] = 1; }); });
+    pack.intents.forEach(function (it) {
+      var meta = { id: it.id, field: it.field, fam: it.fam || it.id, ctx: !!it.ctx, prio: it.prio != null ? +it.prio : (PRIO[it.id] || 0), drop: set(it.drop), dropS: {} };
+      Object.keys(meta.drop).forEach(function (k) { meta.dropS[sx(k)] = 1; });
+      c.byId[it.id] = meta; c.fams[meta.fam] = 1;
+      var seen = {};
+      phrases(it.triggers, slots).forEach(function (t) {
+        // слова-паразиты внутри триггера прозрачны (они размечаются раньше); одиночное служебное слово — не триггер
+        var n0 = t.length;
+        t = t.filter(function (w) { return !fill1[w]; });
+        multiF.forEach(function (ph) { var i; while ((i = find(t, [], ph, 0)) >= 0) t.splice(i, ph.length); });
+        // «(ну)? так» → «так»: укороченный до одного служебного слова вариант — не триггер (исходные «как», «почему» остаются)
+        if (!t.length || (t.length === 1 && n0 > 1 && ((stopRaw[t[0]] && t[0].length <= 4) || c.pron[t[0]] || SEP[t[0]]))) return;
+        var st = t.map(sx), key = st.join(' ');
+        if (seen[key]) return; seen[key] = 1;
+        t.forEach(voc);
+        var e = { id: it.id, field: it.field, meta: meta, t: st, raw: t.join(' '), prio: meta.prio, ctx: meta.ctx };
+        c.intents.push(e); (c.idx[st[0]] = c.idx[st[0]] || []).push(e);
+      });
+    });
+    c.nvar = c.intents.length;
     (pack.followups || []).forEach(function (f) {
+      if (f.fam) c.fams[f.fam] = 1;
       phrases(f.triggers).forEach(function (t) {
-        var red = t.filter(function (w) { return !stopRaw[w] && !c.pron[w]; }).map(stem);
-        c.fu.push({ go: f.go, raw: t.join(' '), red: red.join(' ') });
+        var red = t.filter(function (w) { return !stopRaw[w] && !c.pron[w]; }).map(sx);
+        c.fu.push({ go: f.go, fam: f.fam || f.go, raw: t.join(' '), red: red.join(' ') });
       });
     });
     return c;
   }
-  function load(pack) { P = compile(pack); return !!P; }
+  function load(pack) { var c = null; try { c = compile(pack); } catch (e) { c = null; } P = c; return !!P; }
   function loaded() { return !!P; }
-  function create() { return { card: null, told: {}, offer: null, at: 0 }; }
+  function create() { return { card: null, told: {}, offer: null, at: 0, rot: {}, last: null, prev: null, lastGo: null }; }
+  function prep(st) { if (!st.told) st.told = {}; if (!st.rot) st.rot = {}; return st; }
   function fresh(st, now) { return !!(st && st.card && (now || Date.now()) - st.at < TTL); }
+  // статистика пакета (для тестов и отчёта): интенты, семейства речевых актов, развёрнутые варианты триггеров
+  // скомпилированные триггеры (как их видит движок) — для генеративных тестов
+  function triggers() { return P ? P.intents.map(function (e) { return { id: e.id, fam: e.meta.fam, ctx: e.ctx, raw: e.raw }; }) : []; }
+  function stats() {
+    if (!P) return null;
+    return { intents: Object.keys(P.byId).length, followups: (P.raw.followups || []).length, families: Object.keys(P.fams).length, variants: P.nvar, fu: P.fu.length };
+  }
 
   // найти фразу (массив) в массиве слов wl начиная с любой позиции среди неиспользованных; → индекс или -1
   function find(wl, used, ph, from) {
@@ -96,6 +184,21 @@
       if (ok) return i;
     }
     return -1;
+  }
+  // то же, но слова-паразиты внутри фразы пропускаются («как, ну, думаешь») → массив позиций или null
+  function findP(wl, used, ph) {
+    for (var i = 0; i < wl.length; i++) {
+      if (used[i] || wl[i] !== ph[0]) continue;
+      var pos = [i], k = i + 1, j = 1;
+      for (; j < ph.length; j++) {
+        // паразиты и местоимения внутри фразы прозрачны («как ты это считаешь»), если они не часть самой фразы
+        while (k < wl.length && wl[k] !== ph[j] && (used[k] === 'f' || (P && P.pronS[wl[k]] && !used[k]))) k++;
+        if (k >= wl.length || used[k] || wl[k] !== ph[j]) break;
+        pos.push(k); k++;
+      }
+      if (j === ph.length) return pos;
+    }
+    return null;
   }
   function markAll(wl, used, list, tag) {
     var hit = false;
@@ -109,95 +212,237 @@
     }
     return false;
   }
-  var SEP = { 'и': 1, 'или': 1, 'от': 1, 'между': 1, 'vs': 1, 'versus': 1, 'с': 1, 'со': 1 };
-
-  // parse(text, st, now) → null | {kind:'defer'} | {kind:'fu', go} | {kind:'ask', intent, field, mods, topic, topics, pron, slip, fixed, canon}
-  function parse(text, st, now) {
-    if (!P) return null;
-    var s = String(text || '');
-    if (!s || s.length > 220 || !/[а-яё]/i.test(s)) return null;
-    var w = toks(s); if (!w.length || w.length > 24) return null;
-    for (var d = 0; d < w.length; d++) if (isDefer(w[d])) return { kind: 'defer' };
-    // продолжение диалога — только после ответа фреймов
-    if (fresh(st, now)) {
-      var raw = w.join(' '), red = w.filter(function (x) { return !P.stopRaw[x] && !P.pron[x]; }).map(stem).join(' ');
-      for (var f = 0; f < P.fu.length; f++) if (P.fu[f].raw === raw || (red && P.fu[f].red === red)) return { kind: 'fu', go: P.fu[f].go };
+  // опечатка на одну букву (замена/пропуск/лишняя/перестановка), первая буква совпадает
+  function dl1(a, b) {
+    if (a === b) return false;
+    var la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > 1) return false;
+    var i = 0; while (i < la && i < lb && a.charAt(i) === b.charAt(i)) i++;
+    if (i === 0) return false;
+    if (la === lb) {
+      if (a.slice(i + 1) === b.slice(i + 1)) return true;
+      return a.charAt(i) === b.charAt(i + 1) && a.charAt(i + 1) === b.charAt(i) && a.slice(i + 2) === b.slice(i + 2);
     }
-    var slip = null, fixedW = w.slice();
-    for (var k = 0; k < w.length; k++) if (P.slips[w[k]]) { slip = w[k]; fixedW[k] = P.slips[w[k]]; }
-    var used = [], sw = fixedW.map(stem);
+    return la > lb ? a.slice(i + 1) === b.slice(i) : a.slice(i) === b.slice(i + 1);
+  }
+  function fuzzy(wl) {
+    var out = wl.slice(), ch = false;
+    for (var i = 0; i < wl.length; i++) {
+      var w = wl[i];
+      if (w.length < 5 || P.vocab[w]) continue;
+      var L = P.vfirst[w.charAt(0)] || [];
+      for (var j = 0; j < L.length; j++) if (dl1(w, L[j])) { out[i] = L[j]; ch = true; break; }
+    }
+    return ch ? out : null;
+  }
+
+  // core → результат | null (нет интента) | 0 (сработал только «продолжающий» интент без контекста — повторить без них)
+  function core(w, fixedW, st, now, noCtx, slip) {
+    var used = [], sw = fixedW.map(P.sx), fr = fresh(st, now);
     markAll(fixedW, used, P.fillers, 'f');
-    var best = null, mods = {};
-    P.mods.forEach(function (m) { var i = find(sw, used, m.t, 0); if (i >= 0) { mods[m.id] = 1; for (var j = 0; j < m.t.length; j++) used[i + j] = 'm'; } });
-    var hits = [];
-    P.intents.forEach(function (it) { var i = find(sw, used, it.t, 0); if (i >= 0) hits.push({ it: it, i: i, sc: it.t.length * 100 + it.prio }); });
-    hits.sort(function (a, b) { return b.sc - a.sc; });
+    var best = null, bestN = 0, mods = {};
+    P.mods.forEach(function (m) { var pos = findP(sw, used, m.t); if (pos) { mods[m.id] = 1; pos.forEach(function (j) { used[j] = 'm'; }); } });
+    var hits = [], seen = {};
+    for (var a = 0; a < sw.length; a++) {
+      var L = P.idx[sw[a]];
+      if (!L || seen[sw[a]]) continue;
+      seen[sw[a]] = 1;
+      for (var b = 0; b < L.length; b++) {
+        var it = L[b];
+        if (it.ctx && (noCtx || !fr)) continue;
+        if (findP(sw, used, it.t)) hits.push({ it: it, sc: it.t.length * 100 + it.prio });
+      }
+    }
+    hits.sort(function (x, y) { return y.sc - x.sc; });
     hits.forEach(function (h) {
-      var i = find(sw, used, h.it.t, 0); if (i < 0) return;
-      if (!best) best = h.it;
-      for (var j = 0; j < h.it.t.length; j++) used[i + j] = 'i';
+      var pos = findP(sw, used, h.it.t); if (!pos) return;
+      if (!best) { best = h.it.meta; bestN = h.it.t.length; }
+      pos.forEach(function (j) { used[j] = 'i'; });
     });
-    if (!best && mods.short) best = { id: 'ask_essence', field: 'short' };
-    if (!best && (mods.long || mods.simple)) best = { id: 'ask_explain', field: 'def' };
+    // «хм, а в двух словах?» — модификатор сильнее слабого реплики-интента (хм/ну/да)
+    if (best && best.prio <= 2 && (mods.short || mods.simple || mods.long)) best = null;
+    if (!best && mods.short) best = P.byId.ask_essence || { id: 'ask_essence', field: 'short', fam: 'essence', drop: {}, dropS: {} };
+    if (!best && mods.simple) best = P.byId.fu_simple || P.byId.ask_explain || { id: 'ask_explain', field: 'def', fam: 'explain', drop: {}, dropS: {} };
+    if (!best && mods.long) best = P.byId.ask_explain || { id: 'ask_explain', field: 'def', fam: 'explain', drop: {}, dropS: {} };
     if (!best) return null;
     var self = false;
     for (var y = 0; y < fixedW.length; y++) if (P.self[fixedW[y]] && used[y] !== 'i') self = true;
     markAll(fixedW, used, P.stop, 's');
-    var topic = [], topics = [[]], pron = false;
+    var topic = [], topics = [[]], pron = false, drop = best.drop || {}, dropS = best.dropS || {};
     for (var x = 0; x < fixedW.length; x++) {
       var t = fixedW[x];
       if (SEP[t]) { if (topics[topics.length - 1].length) topics.push([]); continue; }
       if (used[x]) continue;
       if (P.pron[t]) { pron = true; continue; }
       if (P.self[t]) { self = true; continue; }
+      if (drop[t] || dropS[P.sx(t)]) continue;
       topic.push(w[x]); topics[topics.length - 1].push(w[x]);
     }
-    topics = topics.filter(function (a) { return a.length; }).map(function (a) { return a.join(' '); });
+    topics = topics.filter(function (q) { return q.length; }).map(function (q) { return q.join(' '); });
     var tp = topic.join(' ');
-    if (slip && !tp && !fresh(st, now)) return null;
+    if (best.ctx && (tp || !fr)) return 0;
+    // оговорка диктовки («поцелуй» → «поясни») — только если есть тема или «это/он» («поцелуй меня» — не вопрос)
+    if (slip && !tp && !pron) return null;
     var field = best.field;
     if (field === 'def' && mods.short) field = 'short';
     var tpl = (P.raw.canon || {})[field];
-    return { kind: 'ask', intent: best.id, field: field, mods: mods, topic: tp, topics: topics, pron: pron, self: self, slip: slip,
+    return { kind: 'ask', n: bestN, intent: best.id, fam: best.fam || best.id, field: field, mods: mods, topic: tp, topics: topics, pron: pron, self: self, slip: slip,
       fixed: slip ? fixedW.join(' ') : null, canon: tp && tpl ? tpl.replace('{t}', tp) : null };
   }
 
+  // parse(text, st, now) → null | {kind:'defer'} | {kind:'fu', go, fam} | {kind:'ask', intent, fam, field, mods, topic, topics, pron, slip, fixed, canon}
+  function parse(text, st, now) {
+    if (!P) return null;
+    var s = String(text || '');
+    if (!s || s.length > 220 || !/[а-яё]/i.test(s)) return null;
+    var w = toks(s); if (!w.length || w.length > 24) return null;
+    for (var d = 0; d < w.length; d++) if (isDefer(w[d])) return { kind: 'defer' };
+    var fr = fresh(st, now);
+    // продолжение диалога — только после ответа фреймов
+    if (fr) {
+      var raw = w.join(' '), rw = w.filter(function (x) { return !P.stopRaw[x] && !P.pron[x]; }), red = rw.map(P.sx).join(' ');
+      // по «очищенной» форме — только если отброшено не больше одного слова («ну да», но не «вот это да»)
+      if (w.length - rw.length > 1) red = '';
+      for (var f = 0; f < P.fu.length; f++) if (P.fu[f].raw === raw || (red && P.fu[f].red === red)) return { kind: 'fu', go: P.fu[f].go, fam: P.fu[f].fam };
+    }
+    var slip = null, fixedW = w.slice();
+    for (var k = 0; k < w.length; k++) if (P.slips[w[k]]) { slip = w[k]; fixedW[k] = P.slips[w[k]]; }
+    var r = core(w, fixedW, st, now, false, slip);
+    if (r === 0) r = core(w, fixedW, st, now, true, slip);
+    if (!r || r.n === 1) {
+      // опечатки в словах-триггерах («обьясни», «щитаешь», «премер») — одна буква; также когда сработало лишь одно слово
+      // («как ты ситаешь» → не «как», а «как ты считаешь»)
+      var fz = fuzzy(fixedW);
+      if (fz) {
+        var r2 = core(w, fz, st, now, false, slip);
+        if (r2 === 0) r2 = core(w, fz, st, now, true, slip);
+        if (r2 && !r2.topic && !r2.pron && !fr) r2 = null;
+        if (r2 && (!r || r2.n > 1)) { r = r2; r.typo = true; }
+      }
+    }
+    return r || null;
+  }
+
   function fill(tpl, o) { return String(tpl || '').replace(/\{(\w+)\}/g, function (_m, k) { return o[k] != null ? o[k] : ''; }); }
-  function pick(list) { return Array.isArray(list) ? list[0] : list; }
+  // ротация вариантов формулировки: по кругу, без повтора подряд (st.rot[key])
+  function rot(list, key, st) {
+    if (!Array.isArray(list)) return list == null ? '' : String(list);
+    if (list.length < 2 || !st) return list[0] || '';
+    if (!st.rot) st.rot = {};
+    var i = st.rot[key] == null ? 0 : (st.rot[key] + 1) % list.length;
+    st.rot[key] = i;
+    return list[i];
+  }
   function has(card, field) { if (!card) return false; if (field === 'def') return !!card.a; return !!(card.f && card.f[field]); }
   function nextField(card, st) {
     for (var i = 0; i < P.chain.length; i++) { var f = P.chain[i]; if (!st.told[f] && has(card, f)) return f; }
     return null;
   }
   function cap(s) { s = String(s || ''); return s.charAt(0).toUpperCase() + s.slice(1); }
+  function val(card, f) { return f === 'def' ? card.a : (card.f && card.f[f]) || ''; }
+  function vars(card, st) {
+    var R = P.raw, f = card.f || {}, fru = R.field_ru || {}, o = {}, k;
+    for (k in f) if (Object.prototype.hasOwnProperty.call(f, k)) o[k] = f[k];
+    o.title = o.Title = cap(card.title); o.title_l = String(card.title || '').toLowerCase();
+    o.def = card.a; o.short = f.short || card.a;
+    var m = /^[\s\S]*?[.!?](\s|$)/.exec(card.a || ''); o.first = m ? m[0].trim() : card.a;
+    var told = Object.keys(st.told || {}).filter(function (x) { return st.told[x] && x !== 'def' && fru[x] && has(card, x); }).map(function (x) { return fru[x]; });
+    o.told_tail = told.length && R.talk && R.talk.told ? fill(R.talk.told, { list: told.join(', ') }) : '';
+    return o;
+  }
+  // карточка сменилась — прошлую помним (для «а в чём разница?»)
+  function setCard(card, st, now) {
+    if (!st.card || st.card.id !== card.id) { if (st.card) st.prev = st.card; st.told = {}; }
+    st.card = card; st.at = now || Date.now();
+  }
+  function tail(card, st, text) {
+    var R = P.raw, nx = nextField(card, st);
+    st.offer = nx;
+    if (nx && R.offers && R.offers[nx]) text += '\n\n' + fill(R.offer_tail, { offer: R.offers[nx] });
+    return text;
+  }
   // answer(card, field, mods, st, now) → {text, field, offer}
   function answer(card, field, mods, st, now) {
-    mods = mods || {}; st = st || create();
-    if (!st.card || st.card.id !== card.id) { st.told = {}; }
-    st.card = card; st.at = now || Date.now();
-    var R = P.raw, fr = R.frames || {}, fru = R.field_ru || {}, f = card.f || {}, title = cap(card.title), text;
+    mods = mods || {}; st = prep(st || create());
+    setCard(card, st, now);
+    var R = P.raw, fr = R.frames || {}, fru = R.field_ru || {}, f = card.f || {}, title = cap(card.title), text, v = vars(card, st);
     if (field === 'def' && mods.simple && f.short) field = 'short';
     if (field === 'def' || (field === 'short' && !f.short)) {
       field = 'def';
       text = '📘 **' + title + '**\n\n' + card.a;
-      if (mods.long && f.ex && !st.told.ex) { text += '\n\n' + fill(pick(fr.ex), { ex: f.ex }); st.told.ex = 1; }
+      if (mods.long && f.ex && !st.told.ex) { text += '\n\n' + fill(rot(fr.ex, 'f:ex', st), v); st.told.ex = 1; }
     } else if (f[field]) {
-      var o = {}; o[field] = f[field];
-      text = '📘 **' + title + '** · ' + (fru[field] || field) + '\n\n' + fill(pick(fr[field]), o);
+      text = '📘 **' + title + '** · ' + (fru[field] || field) + '\n\n' + fill(rot(fr[field], 'f:' + field, st), v);
     } else if (field === 'verify') {
-      text = '📘 **' + title + '** · ' + (fru.verify || '') + '\n\n' + fill(pick(fr.verify), { verify: R.verify_default || '' });
+      v.verify = R.verify_default || '';
+      text = '📘 **' + title + '** · ' + (fru.verify || '') + '\n\n' + fill(rot(fr.verify, 'f:verify', st), v);
     } else {
-      text = fill(pick(fr.missing), { field: fru[field] || field, title: title, def: f.short || card.a });
+      text = fill(rot(fr.missing, 'f:missing', st), { field: fru[field] || field, title: title, def: f.short || card.a });
     }
-    st.told[field] = 1;
-    var nx = nextField(card, st);
-    st.offer = nx;
-    if (nx && R.offers && R.offers[nx]) text += '\n\n' + fill(R.offer_tail, { offer: R.offers[nx] });
-    return { text: text, field: field, offer: nx };
+    st.told[field] = 1; st.lastGo = field;
+    text = tail(card, st, text);
+    st.last = text;
+    return { text: text, field: field, offer: st.offer };
+  }
+  function stepsOf(s) {
+    return String(s || '').split(/[.;!]\s+|\s+(?:→|->)\s+|,\s+(?:затем|потом|после этого|а затем|и затем|а потом|и потом)\s+/)
+      .map(function (x) { return cap(x.trim().replace(/[.;!]+$/, '')); }).filter(function (x) { return x.length > 2; });
+  }
+  // ranked-варианты из pack.acts: первый подходящий (need — поля есть; new — ещё не сказано; list — ≥min полей; steps — ≥2 шага)
+  function renderAct(opts, field, card, st, v) {
+    var R = P.raw, labels = R.labels || {};
+    for (var oi = 0; oi < opts.length; oi++) {
+      var o = opts[oi], key = field + ':' + oi, text, marks = [];
+      if (o.need && !o.need.every(function (x) { return has(card, x); })) continue;
+      if (o.new && !o.new.every(function (x) { return has(card, x) && !st.told[x]; })) continue;
+      if (o.steps) {
+        var parts = stepsOf(val(card, o.steps));
+        if (parts.length < 2) continue;
+        text = fill(rot(o.intro, key + ':i', st), v) + '\n\n' + parts.map(function (x, n) { return (n + 1) + '. ' + x; }).join('\n');
+        marks = [o.steps];
+      } else if (o.list) {
+        var fs = o.list.filter(function (x) { return has(card, x); });
+        if (fs.length < (o.min || 1)) continue;
+        var lb = o.labels || {};
+        text = fill(rot(o.intro, key + ':i', st), v) + '\n\n' + fs.map(function (x, n) {
+          return (o.num ? (n + 1) + '. ' : '• ') + '**' + (lb[x] || labels[x] || x) + ':** ' + val(card, x);
+        }).join('\n') + (o.outro ? '\n\n' + fill(rot(o.outro, key + ':o', st), v) : '');
+        marks = fs;
+      } else {
+        text = fill(rot(o.t, key, st), v);
+        marks = (o.need || []).concat(o.new || []);
+      }
+      marks.forEach(function (x) { st.told[x] = 1; });
+      return text;
+    }
+    return null;
+  }
+  // talk(card, act, st, now) → текст: мнение, «что будет, если», другой вариант, за и против, по шагам, итог, эмоции, «повтори»…
+  function talk(card, field, st, now) {
+    st = prep(st); now = now || Date.now();
+    var R = P.raw, T = R.talk || {}, acts = R.acts || {}, fru = R.field_ru || {}, text;
+    if (field === 'repeat') { st.at = now; return st.last ? fill(rot(T.repeat, 't:repeat', st), { last: st.last }) : rot(T.repeat_none, 't:rn', st); }
+    if (field === 'bye') { var b = rot(T.bye, 't:bye', st); st.card = null; st.offer = null; return b; }
+    setCard(card, st, now);
+    var v = vars(card, st);
+    if (acts[field]) {
+      text = renderAct(acts[field], field, card, st, v);
+      if (text == null) text = fill(rot(R.frames && R.frames.missing, 'f:missing', st), { field: fru[field] || field, title: v.title, def: v.short });
+      text = '📘 **' + v.title + '** · ' + (fru[field] || field) + '\n\n' + text;
+    } else {
+      text = fill(rot(T[field] || T.agree, 't:' + field, st), v);
+      if (field === 'emo_neg') st.told.short = 1;
+    }
+    st.lastGo = field;
+    text = tail(card, st, text);
+    if (!st.offer && !acts[field] && T.nothing_more) text += ' ' + rot(T.nothing_more, 't:nm', st);
+    st.last = text;
+    return text;
   }
   // followUp(go, st, now) → текст или null
   function followUp(go, st, now) {
     if (!fresh(st, now)) return null;
+    prep(st);
     var card = st.card;
     if (go === 'stop') { st.card = null; st.offer = null; return P.raw.stopped || '👌'; }
     if (go === 'offer') go = st.offer || 'next';
@@ -209,16 +454,28 @@
     if (go === 'short' && !(card.f && card.f.short)) go = 'def';
     return answer(card, go, {}, st, now).text;
   }
-  function compare(a, b) {
+  function compare(a, b, st, now) {
     var sa = (a.f && a.f.short) || a.a, sb = (b.f && b.f.short) || b.a;
-    return '⚖️ **' + cap(a.title) + '** и **' + cap(b.title) + '**\n\n• **' + cap(a.title) + '** — ' + sa + '\n\n• **' + cap(b.title) + '** — ' + sb;
+    // «• **Гравитация** — Гравитация — это…» → без повтора названия
+    function line(c, x) { var T = cap(c.title); return '• ' + (norm(x).indexOf(norm(c.title)) === 0 ? x.replace(new RegExp('^' + T.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), '**' + T + '**') : '**' + T + '** — ' + x); }
+    var text = '⚖️ **' + cap(a.title) + '** и **' + cap(b.title) + '**\n\n' + line(a, sa) + '\n\n' + line(b, sb);
+    if (st) {
+      // контекст остаётся: «подведи итог» / «а пример?» — про первую тему, «прошлая» — вторая
+      prep(st);
+      if (!st.card || st.card.id !== a.id) st.told = {};
+      st.card = a; st.prev = b; st.at = now || Date.now(); st.lastGo = 'cmp'; st.offer = null;
+      text += rot((P.raw.talk || {}).cmp_intro, 't:cmp', st) || '';
+      st.last = text;
+    }
+    return text;
   }
+  function isTalk(field) { var R = P.raw; return !!((R.acts && R.acts[field]) || (R.talk && R.talk[field] && field !== 'told')); }
 
   // respond(text, st, deps) → Promise<string|null>
   // deps: { lookup(topic) → Promise<card|null>, pass(text) → Promise<string|null>, now? }
   // card: { id, title, a, f|null, kn:boolean }
   function respond(text, st, deps) {
-    st = st || create();
+    st = prep(st || create());
     var now = deps.now || Date.now();
     function pass(q) {
       return Promise.resolve(deps.pass(q)).then(function (r) { if (r != null) { st.card = null; st.offer = null; } return r; });
@@ -237,24 +494,41 @@
     }
     if (p.kind === 'fu') return Promise.resolve(followUp(p.go, st, now));
     var field = p.field;
-    if (field === 'how_to') return pass(text);
     var cur = fresh(st, now) ? st.card : null;
+    if (field === 'next' || field === 'stop') return Promise.resolve(followUp(field, st, now));
+    if (field === 'another' && st.lastGo === 'alt') field = 'alt';
+    if (field === 'how_to') {
+      // «посоветуй / что делать» — про текущую карточку понятия; иначе — другим движкам (как раньше)
+      if (!p.topic && !cur) return pass(text);
+      field = 'advice';
+    }
+    var tk = isTalk(field);
     if (!p.topic) {
-      if (cur && (p.pron || !p.self)) {
+      if (cur && (p.pron || !p.self || tk)) {
+        if (field === 'cmp') return Promise.resolve(st.prev && st.prev.id !== cur.id ? compare(cur, st.prev, st, now) : fill(rot((P.raw.talk || {}).cmp_ask, 't:ca', st), vars(cur, st)));
+        if (tk) return Promise.resolve(talk(cur, field, st, now));
         // «расскажи ещё о нём» — без нового поля → следующее по цепочке
-        if ((field === 'def' && st.told.def) || field === 'cmp') return Promise.resolve(followUp('next', st, now));
+        if (field === 'def' && st.told.def) return Promise.resolve(followUp('next', st, now));
         return Promise.resolve(answer(cur, field, p.mods, st, now).text);
       }
       return pass(text);
     }
     if (field === 'cmp') {
+      if (p.topics.length === 1 && cur) {
+        // «а сравни с гравитацией» — текущая тема + новая
+        return Promise.resolve(deps.lookup(p.topics[0])).then(function (c) {
+          if (c && c.id !== cur.id) return compare(cur, c, st, now);
+          return pass(text);
+        });
+      }
       if (p.topics.length !== 2) return pass(text);
       return Promise.all([deps.lookup(p.topics[0]), deps.lookup(p.topics[1])]).then(function (cs) {
-        if (cs[0] && cs[1] && cs[0].id !== cs[1].id) { st.card = null; return compare(cs[0], cs[1]); }
+        if (cs[0] && cs[1] && cs[0].id !== cs[1].id) return compare(cs[0], cs[1], st, now);
         return pass(text);
       });
     }
     return Promise.resolve(deps.lookup(p.topic)).then(function (card) {
+      if (tk) return card && card.kn ? talk(card, field, st, now) : pass(text);
       if (card && !card.kn && (field === 'def' || field === 'short')) {
         // обычная запись KB (не карточка понятия) — пусть отвечает KB в своём формате (🧠 KB · …, «Похожие»); карточка — запасной вариант
         return pass(text).then(function (r) { return r != null || !p.canon ? r : pass(p.canon); })
@@ -323,7 +597,7 @@
     return '🌐 **из Википедии · ' + r.title + '**' + (r.lang === 'en' ? ' (англ.)' : '') + '\n\n' + r.text + '\n\nИсточник: ' + d;
   }
 
-  return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond,
+  return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond, talk: talk, expand: expand, stats: stats, triggers: triggers,
     topicOf: topicOf, fallbackText: fallbackText, marker: marker, stem: stem, norm: norm, TTL: TTL,
     wikiSearchUrl: wikiSearchUrl, wikiSummaryUrl: wikiSummaryUrl, wikiPick: wikiPick, wikiClean: wikiClean, wikiFormat: wikiFormat };
 });
