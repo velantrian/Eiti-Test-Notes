@@ -100,7 +100,8 @@ test('small icons: таб-бар и шапки ниже, таб ≥36px, без 
   expect(Math.abs(m.messages.top - m.header.bottom)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.input.top - m.messages.bottom)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.input.bottom - m.tabbar.top)).toBeLessThanOrEqual(1);
-  expect(m.messages.h).toBeGreaterThan(661 + 90); // +104 px под переписку при 412x915
+  // +104 px под переписку при 412x915; с v14.15.4 карточка ввода в 2 ряда (поле + ряд кнопок) выше на ~30 px
+  expect(m.messages.h).toBeGreaterThan(661 + 90 - 32);
   // заметки: компактная шапка, строка тегов встык с таб-баром
   expect(m.notesHeader.h).toBeLessThan(149);
   expect(Math.abs(m.notesList.top - m.notesHeader.bottom)).toBeLessThanOrEqual(1);

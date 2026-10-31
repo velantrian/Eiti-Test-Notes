@@ -39,7 +39,9 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.15.2"; // v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.15.4"; // v14.15.4: карточка ввода как в ChatGPT (поле на всю ширину, ниже ряд [+] … ↶ ↷ ♻ 🎤 ➤), undo/redo ввода, переключатель «♻ в поле» в меню «+», ответ ассистента показывается с начала; v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        // v14.15.4: «♻ в поле» (меню «+») — класс ставится до первой отрисовки
+        try { if (localStorage.getItem('eiti_inline_clear') === '1') document.documentElement.classList.add('eiti-inline-clear-on'); } catch (e) {}
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -2137,6 +2139,9 @@
                 'Сгенерировать изображение': 'Bild generieren',
                 'Заглушить микрофон': 'Mikrofon stummschalten',
                 'Очистить ввод': 'Eingabe löschen',
+                'Отменить ввод': 'Rückgängig',
+                'Повторить ввод': 'Wiederholen',
+                'Кнопка очистки в поле': 'Löschtaste im Eingabefeld',
                 'Нет активных функций.': 'Keine aktiven Funktionen.',
                 'Включите в Настройки → Панель чата.': 'In Einstellungen → Chat-Leiste aktivieren.',
                 'вкл': 'ein',
@@ -3869,6 +3874,9 @@
                 'Сгенерировать изображение': 'Generate image',
                 'Заглушить микрофон': 'Mute microphone',
                 'Очистить ввод': 'Clear input',
+                'Отменить ввод': 'Undo',
+                'Повторить ввод': 'Redo',
+                'Кнопка очистки в поле': 'Clear button in the field',
                 'Нет активных функций.': 'No active functions.',
                 'Включите в Настройки → Панель чата.': 'Enable in Settings → Chat Panel.',
                 'вкл': 'on',
@@ -7103,6 +7111,48 @@
         @keyframes eitiMicPulse{ 0%{ box-shadow:0 0 0 0 rgba(255,215,0,.55); } 70%{ box-shadow:0 0 0 10px rgba(255,215,0,0); } 100%{ box-shadow:0 0 0 0 rgba(255,215,0,0); } }
         @media (prefers-reduced-motion: reduce){ .eiti-composer-mic.eiti-recording{ animation:none; } }
         .eiti-composer-mic.eiti-mic-unsupported{ opacity:.35; }
+        /* v14.15.4: карточка ввода как в ChatGPT — поле на всю ширину сверху, ниже компактный ряд
+           [+] … [↶][↷][♻][🎤][➤] внутри той же карточки. Цвета карточки берутся из темы поля (.chat-input)
+           через скрытый образец #eiti-composer-probe → --eiti-cc-* (eitiComposerSyncTheme). */
+        .chat-input-panel{ gap:0 !important; padding-left:8px !important; padding-right:8px !important; }
+        .chat-input-panel .eiti-composer-card{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; box-sizing:border-box;
+            background:var(--eiti-cc-bg, var(--panel-bg)); background-image:var(--eiti-cc-bgi, none); color:var(--eiti-cc-fg, var(--text-color));
+            border:1px solid var(--eiti-cc-bd, rgba(255,215,0,.28)); border-radius:22px; padding:2px 4px 3px; transition:border-color .15s; }
+        .chat-input-panel .eiti-composer-card:focus-within{ border-color:var(--accent-color, #ffd700); }
+        .chat-input-panel .eiti-composer-card .chat-center-col{ width:100%; flex:0 0 auto !important; }
+        .chat-input-panel .eiti-composer-card #chat-attach-indicator{ margin:4px 4px 0; }
+        .chat-input-panel .eiti-composer-card #input.chat-input{ width:100%; flex:0 0 auto; min-height:40px !important; height:40px; padding:10px 10px !important;
+            border:none !important; border-radius:0 !important; background:transparent !important; background-image:none !important; box-shadow:none !important; outline:none; color:inherit; }
+        .chat-input-panel .eiti-composer-card #input.chat-input.eiti-multiline{ border-radius:0 !important; }
+        .chat-input-panel .eiti-composer-card #input.chat-input:focus, .chat-input-panel .eiti-composer-card #input.chat-input:focus-visible{ outline:none !important; box-shadow:none !important; border:none !important; }
+        [dir="rtl"] .chat-input-panel .eiti-composer-card #input.chat-input{ padding:10px 10px !important; }
+        .chat-input-panel .eiti-composer-row{ display:flex; flex-direction:row; align-items:center; gap:0; min-height:40px; }
+        .chat-input-panel .eiti-composer-row .chat-left-col, .chat-input-panel .eiti-composer-row .chat-right-col{ flex-direction:row !important; align-items:center !important; align-self:center !important; min-height:40px !important; gap:2px; }
+        .chat-input-panel .eiti-composer-row #chat-classic-btns{ flex-direction:row !important; flex-wrap:wrap; gap:3px !important; }
+        .chat-input-panel .eiti-composer-row #chat-classic-btns > div{ flex-direction:row; }
+        .chat-input-panel .eiti-composer-spacer{ flex:1 1 auto; min-width:4px; }
+        .chat-input-panel .eiti-composer-row .chat-plus-btn{ width:40px !important; height:40px !important; min-width:40px !important; min-height:40px !important; border-radius:50% !important;
+            border:none !important; background:transparent !important; box-shadow:none !important; font-size:26px !important; font-weight:300; opacity:.85; color:inherit; position:relative; }
+        .chat-input-panel .eiti-composer-row .chat-plus-btn::before{ content:''; position:absolute; inset:4px; border-radius:50%; border:1px solid var(--eiti-cc-bd, rgba(255,215,0,.28)); pointer-events:none; }
+        .chat-input-panel .eiti-composer-row .chat-plus-btn.open{ opacity:1; background:rgba(255,200,0,.12) !important; }
+        .chat-input-panel .eiti-composer-row .eiti-composer-tool, .chat-input-panel .eiti-composer-row #clearInputBtn{ width:36px !important; height:40px !important; min-width:36px; padding:0 !important; margin:0;
+            border:none !important; border-radius:10px !important; background:transparent !important; box-shadow:none !important; color:inherit; opacity:.75;
+            display:inline-flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px !important; line-height:1; flex-shrink:0; }
+        .chat-input-panel .eiti-composer-row #clearInputBtn{ display:none !important; }
+        html.eiti-inline-clear-on .chat-input-panel .eiti-composer-row #clearInputBtn{ display:inline-flex !important; }
+        .chat-plus-item .eiti-inline-clear-switch{ margin-left:auto; flex-shrink:0; width:52px; height:40px; padding:0 4px; border:none; background:transparent; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; }
+        .chat-plus-item .eiti-inline-clear-switch .eics-track{ position:relative; width:40px; height:22px; border-radius:11px; background:rgba(127,127,127,.45); transition:background .15s; }
+        .chat-plus-item .eiti-inline-clear-switch .eics-knob{ position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.35); transition:left .15s; }
+        .chat-plus-item .eiti-inline-clear-switch[aria-checked="true"] .eics-track{ background:var(--accent-color, #ffd700); }
+        .chat-plus-item .eiti-inline-clear-switch[aria-checked="true"] .eics-knob{ left:20px; }
+        [dir="rtl"] .chat-plus-item .eiti-inline-clear-switch{ margin-left:0; margin-right:auto; }
+        .chat-input-panel .eiti-composer-row .eiti-composer-tool:disabled{ opacity:.25; cursor:default; }
+        .chat-input-panel .eiti-composer-row .eiti-composer-tool:not(:disabled):active, .chat-input-panel .eiti-composer-row #clearInputBtn:active{ background:rgba(127,127,127,.18) !important; }
+        .chat-input-panel .eiti-composer-row .eiti-composer-mic{ position:relative; right:auto; left:auto; bottom:auto; width:40px; height:40px; flex-shrink:0; }
+                [dir="rtl"] .chat-input-panel .eiti-composer-row .eiti-composer-mic{ left:auto; right:auto; }
+        .chat-input-panel .eiti-composer-row .chat-send-btn{ width:40px !important; height:40px !important; min-width:40px !important; min-height:40px !important; margin-left:2px; }
+        .chat-input-panel .eiti-composer-row .chat-attach-btn{ width:36px; height:40px; }
+        @media (max-width:359px){ .chat-input-panel .eiti-composer-row .eiti-composer-tool, .chat-input-panel .eiti-composer-row #clearInputBtn{ width:32px !important; min-width:32px; } }
 
         /* v14.11.0: компактный выбор модели чата — bottom sheet */
         #eiti-ai-sheet{position:fixed;inset:0;z-index:100000}
@@ -8409,16 +8459,10 @@
                 <div class="chat-container">
                     <div class="chat-messages" id="messages"></div>
                     <div class="chat-input-panel" style="position:relative;">
-                        <!-- LEFT: + popup button -->
-                        <div class="chat-left-col">
-                            <button class="chat-plus-btn" id="chat-plus-btn"
-                                title="Функции чата"
-                                onclick="eitiChatPlusToggle()">+</button>
-                            <div id="chat-classic-btns" style="display:none;flex-direction:column;align-items:center;gap:3px;"></div>
-                        </div>
-                        <!-- CENTRE: input + attach indicator -->
-                        <div class="chat-center-col" style="position:relative;flex:1;display:flex;flex-direction:column;min-width:0;">
-                            <div id="chat-attach-indicator">
+                        <!-- v14.15.4: карточка ввода как в ChatGPT — поле на всю ширину сверху, ниже ряд [+] … [↶][↷][♻][🎤][➤] -->
+                        <div class="eiti-composer-card" id="eiti-composer-card">
+                            <div class="chat-center-col" style="position:relative;display:flex;flex-direction:column;min-width:0;">
+                                <div id="chat-attach-indicator">
                                 <div id="chat-attach-files-list"></div>
                                 <div style="display:flex;gap:4px;flex-shrink:0;align-items:center;">
                                     <span id="chat-attach-server-status" style="font-size:14px;flex-shrink:0;display:none;" title="Статус серверного парсинга"></span>
@@ -8426,19 +8470,32 @@
                                     <button onclick="eitiChatDetachFile()" title="Убрать все файлы" style="background:none;border:none;color:rgba(255,215,0,0.5);cursor:pointer;font-size:13px;padding:0;flex-shrink:0;">✕</button>
                                 </div>
                             </div>
-                            <textarea class="chat-input" placeholder="Сообщение…" title="Enter — отправить, Shift+Enter — новая строка" aria-label="Сообщение" id="input" rows="1"></textarea>
-                            <button type="button" id="eiti-composer-mic" class="eiti-composer-mic" title="Голосовой ввод" aria-label="Голосовой ввод" aria-pressed="false" onclick="eitiDictationToggle()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+                                <textarea class="chat-input" placeholder="Сообщение…" title="Enter — отправить, Shift+Enter — новая строка" aria-label="Сообщение" id="input" rows="1"></textarea>
+                            </div>
+                            <div class="eiti-composer-row" id="eiti-composer-row">
+                                <div class="chat-left-col">
+                            <button class="chat-plus-btn" id="chat-plus-btn"
+                                title="Функции чата"
+                                onclick="eitiChatPlusToggle()">+</button>
+                            <div id="chat-classic-btns" style="display:none;flex-direction:column;align-items:center;gap:3px;"></div>
                         </div>
-                        <!-- RIGHT: attach proxy (classic mode) + send -->
-                        <div class="chat-right-col" style="justify-content:space-between;min-height:36px;">
+                                <div class="eiti-composer-spacer"></div>
+                                <button type="button" id="eiti-composer-undo" class="eiti-composer-tool eiti-composer-undo" title="Отменить ввод" aria-label="Отменить ввод" disabled onclick="eitiComposerUndo()"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H12"/></svg></button>
+                                <button type="button" id="eiti-composer-redo" class="eiti-composer-tool eiti-composer-redo" title="Повторить ввод" aria-label="Повторить ввод" disabled onclick="eitiComposerRedo()"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H12"/></svg></button>
+                                <button type="button" class="chat-action-mini" id="clearInputBtn" title="Очистить / двойной тап — копировать" aria-label="Очистить ввод">♻</button>
+                                <button type="button" id="eiti-composer-mic" class="eiti-composer-mic" title="Голосовой ввод" aria-label="Голосовой ввод" aria-pressed="false" onclick="eitiDictationToggle()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+                                <div class="chat-right-col">
                             <button id="chat-attach-proxy" class="chat-attach-btn" style="display:none;" title="Прикрепить файл" onclick="document.getElementById('chat-file-input').click()">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
                             </button>
                             <button class="chat-send-btn" id="send"><span data-icon="send">➤</span></button>
                         </div>
+                            </div>
+                        </div>
                         <!-- Hidden: preserve IDs for JS -->
                         <div style="display:none;">
                             <button id="clearChatBtn"></button>
+                            <div class="chat-input" id="eiti-composer-probe" aria-hidden="true"></div>
                             <label class="chat-attach-btn" id="chat-attach-btn" title="Прикрепить файл (PDF, DOCX, TXT, MD, JSON, CSV)">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
                                 <input type="file" id="chat-file-input" accept=".txt,.md,.markdown,.pdf,.docx,.json,.jsonl,.csv,.xml,.html" style="display:none;" multiple onchange="eitiChatAttachFile(this)">
@@ -8458,7 +8515,6 @@
                             <button class="chat-ai-toggle" id="chat-img-btn"
                                 title="🖼️ Сгенерировать изображение (OpenAI / Gemini)"
                                 onclick="eitiImgChatGenerate()">🖼️</button>
-                            <button class="chat-action-mini" id="clearInputBtn" title="Очистить / двойной тап — копировать" style="width:28px;height:22px;font-size:13px;">♻</button>
                         </div>
                         <!-- Plus popup menu -->
                         <div id="chat-plus-popup" class="chat-plus-popup"></div>
@@ -38310,6 +38366,162 @@ window.eitiLLMClearAll = async function() {
             requestAnimationFrame(apply); // пересчёт после реальной раскладки/смены ширины
         }
         window._eitiAutoGrow = _eitiAutoGrow;
+        // ── v14.15.4: карточка ввода — тема, «♻ в поле», undo/redo ввода, якорь прокрутки ответа ──
+        (function () {
+            // «♻ в поле»: переключатель в меню «+» рядом с «Очистить ввод»; по умолчанию выкл.
+            window.eitiInlineClearGet = function () { try { return localStorage.getItem('eiti_inline_clear') === '1'; } catch (e) { return false; } };
+            window.eitiInlineClearSet = function (on) {
+                on = !!on;
+                try { localStorage.setItem('eiti_inline_clear', on ? '1' : '0'); } catch (e) {}
+                document.documentElement.classList.toggle('eiti-inline-clear-on', on);
+                var sw = document.getElementById('eiti-inline-clear-switch');
+                if (sw) sw.setAttribute('aria-checked', on ? 'true' : 'false');
+            };
+            window.eitiInlineClearToggle = function () { window.eitiInlineClearSet(!window.eitiInlineClearGet()); };
+
+            function init() {
+                var el = document.getElementById('input');
+                var card = document.getElementById('eiti-composer-card');
+                // Цвета карточки = цвета поля в текущей теме (берём со скрытого образца .chat-input)
+                function syncTheme() {
+                    var pr = document.getElementById('eiti-composer-probe');
+                    if (!pr || !card || !window.getComputedStyle) return;
+                    var cs = getComputedStyle(pr);
+                    card.style.setProperty('--eiti-cc-bg', cs.backgroundColor);
+                    card.style.setProperty('--eiti-cc-bgi', cs.backgroundImage || 'none');
+                    card.style.setProperty('--eiti-cc-fg', cs.color);
+                    var bd = cs.borderTopColor, bw = parseFloat(cs.borderTopWidth) || 0;
+                    if (bw > 0 && bd && bd !== 'rgba(0, 0, 0, 0)') card.style.setProperty('--eiti-cc-bd', bd); else card.style.removeProperty('--eiti-cc-bd');
+                }
+                window.eitiComposerSyncTheme = syncTheme;
+                syncTheme();
+                try { new MutationObserver(function () { syncTheme(); }).observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme', 'data-design'] }); } catch (e) {}
+                try { new MutationObserver(function () { syncTheme(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] }); } catch (e) {}
+
+                // ── Undo/redo: свой стек (надёжнее execCommand на мобильных) ──
+                if (el && !el._eitiHist) {
+                    var D = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+                    var H = { st: [{ v: el.value || '', s: 0, e: 0 }], i: 0, t: 0, kind: '', applying: false, sendTs: 0 };
+                    el._eitiHist = H;
+                    var MAX = 100, GAP = 900;
+                    function getV() { return D.get.call(el); }
+                    function upd() {
+                        var u = document.getElementById('eiti-composer-undo'), r = document.getElementById('eiti-composer-redo');
+                        if (u) u.disabled = H.i <= 0;
+                        if (r) r.disabled = H.i >= H.st.length - 1;
+                    }
+                    function record(kind) {
+                        if (H.applying) return;
+                        var v = getV();
+                        if (v === H.st[H.i].v) return;
+                        // после отправки поле очищено → начинаем историю заново
+                        if (v === '' && H.sendTs && Date.now() - H.sendTs < 2500) { H.st = [{ v: '', s: 0, e: 0 }]; H.i = 0; H.kind = ''; H.sendTs = 0; upd(); return; }
+                        var now = Date.now(), snap = { v: v, s: el.selectionStart || v.length, e: el.selectionEnd || v.length };
+                        var prev = H.st[H.i].v;
+                        var boundary = kind === 'type' && /\s$/.test(v) && !/\s$/.test(prev); // новое слово — новый шаг
+                        var merge = H.i > 0 && kind === H.kind && (kind === 'type' || kind === 'del' || kind === 'prog') && now - H.t < GAP && !boundary;
+                        H.st.length = H.i + 1;
+                        if (merge) H.st[H.i] = snap; else { H.st.push(snap); H.i++; }
+                        if (H.st.length > MAX) { H.st.splice(0, H.st.length - MAX); H.i = H.st.length - 1; }
+                        H.t = now; H.kind = kind; upd();
+                    }
+                    // программные изменения (диктовка, очистка, вставка-чип, отправка) тоже попадают в историю
+                    try {
+                        Object.defineProperty(el, 'value', { configurable: true, get: function () { return D.get.call(this); },
+                            set: function (v) { D.set.call(this, v); if (!H.applying) record('prog'); } });
+                    } catch (e) {}
+                    el.addEventListener('input', function (ev) {
+                        if (H.applying) return;
+                        var it = ev.inputType || '';
+                        record(/^insertText$|^insertCompositionText$/.test(it) ? 'type' : (/^delete(Content|Word)/.test(it) ? 'del' : (it ? 'other' : 'prog')));
+                    });
+                    document.addEventListener('click', function (ev) { if (ev.target && ev.target.closest && ev.target.closest('#send')) H.sendTs = Date.now(); }, true);
+                    el.addEventListener('keydown', function (ev) {
+                        var mod = ev.ctrlKey || ev.metaKey;
+                        if (mod && !ev.altKey && (ev.key === 'z' || ev.key === 'Z' || ev.key === 'y' || ev.key === 'Y')) {
+                            ev.preventDefault();
+                            if (ev.key === 'y' || ev.key === 'Y' || ev.shiftKey) window.eitiComposerRedo(); else window.eitiComposerUndo();
+                        }
+                    }, true);
+                    function apply(snap) {
+                        H.applying = true;
+                        try {
+                            D.set.call(el, snap.v);
+                            try { el.setSelectionRange(Math.min(snap.s, snap.v.length), Math.min(snap.e, snap.v.length)); } catch (e) {}
+                            el.dispatchEvent(new Event('input', { bubbles: true }));
+                        } finally { H.applying = false; }
+                        H.kind = ''; H.t = 0;
+                        if (window._eitiAutoGrow) window._eitiAutoGrow(el);
+                        upd();
+                    }
+                    window.eitiComposerUndo = function () { if (H.i > 0) { H.i--; apply(H.st[H.i]); } };
+                    window.eitiComposerRedo = function () { if (H.i < H.st.length - 1) { H.i++; apply(H.st[H.i]); } };
+                    window.eitiComposerHistReset = function () { H.st = [{ v: getV(), s: 0, e: 0 }]; H.i = 0; H.kind = ''; H.sendTs = 0; upd(); };
+                    window.eitiComposerHistory = function () { return { size: H.st.length, index: H.i, values: H.st.map(function (x) { return x.v; }) }; };
+                    // кнопки не забирают фокус → клавиатура не прыгает
+                    ['eiti-composer-undo', 'eiti-composer-redo'].forEach(function (id) {
+                        var b = document.getElementById(id);
+                        if (b) b.addEventListener('mousedown', function (ev) { ev.preventDefault(); });
+                    });
+                    upd();
+                }
+
+                // ── Якорь прокрутки: новый ответ ассистента показывается С НАЧАЛА ──
+                var ms = document.getElementById('messages');
+                var SD = Object.getOwnPropertyDescriptor(Element.prototype, 'scrollTop');
+                if (ms && SD && SD.set && !ms._eitiAnchor) {
+                    var A = { node: null, armed: false, owned: false, userTs: 0 };
+                    ms._eitiAnchor = A;
+                    function anchorTop() {
+                        var r = A.node.getBoundingClientRect(), m = ms.getBoundingClientRect();
+                        return Math.max(0, Math.round(r.top - m.top + SD.get.call(ms) - 8));
+                    }
+                    Object.defineProperty(ms, 'scrollTop', { configurable: true,
+                        get: function () { return SD.get.call(this); },
+                        set: function (v) {
+                            v = Number(v) || 0;
+                            if (A.node && A.node.isConnected) {
+                                if (A.owned) return; // пользователь пролистал вверх — не перехватываем прокрутку
+                                var t = anchorTop();
+                                if (v > t) v = t;
+                            }
+                            SD.set.call(this, v);
+                        } });
+                    function isMsg(n) { return n && n.nodeType === 1 && n.classList && n.classList.contains('message'); }
+                    new MutationObserver(function (muts) {
+                        var added = [];
+                        muts.forEach(function (m) { for (var k = 0; k < m.addedNodes.length; k++) if (isMsg(m.addedNodes[k])) added.push(m.addedNodes[k]); });
+                        if (!added.length) return;
+                        if (added.length > 3) { A.node = null; A.armed = false; A.owned = false; return; } // отрисовка истории — как раньше (низ)
+                        added.forEach(function (n) {
+                            if (n.classList.contains('outgoing') && el && el._eitiHist && (el.value || '') === '' && window.eitiComposerHistReset) window.eitiComposerHistReset(); // отправлено → история ввода с нуля
+                            if (n.classList.contains('outgoing')) { A.node = null; A.owned = false; A.armed = true; SD.set.call(ms, ms.scrollHeight); }
+                            else if (n.classList.contains('incoming') && (A.armed || (A.node && !A.node.isConnected))) {
+                                A.armed = false; A.node = n;
+                                if (!A.owned) SD.set.call(ms, Math.min(anchorTop(), ms.scrollHeight));
+                                // разметка выше ещё может дорисоваться (кнопки, дата) — подтягиваем начало ответа обратно в кадр
+                                [120, 450, 1000].forEach(function (d) { setTimeout(function () {
+                                    if (A.node !== n || A.owned || !n.isConnected) return;
+                                    var top = n.getBoundingClientRect().top - ms.getBoundingClientRect().top;
+                                    if (top < 0 || top > ms.clientHeight * 0.5) SD.set.call(ms, Math.min(anchorTop(), ms.scrollHeight));
+                                }, d); });
+                            }
+                        });
+                    }).observe(ms, { childList: true });
+                    function userGesture() { A.userTs = Date.now(); }
+                    ['wheel', 'touchmove', 'pointerdown'].forEach(function (t) { ms.addEventListener(t, userGesture, { passive: true }); });
+                    ms.addEventListener('keydown', userGesture);
+                    ms.addEventListener('scroll', function () {
+                        if (!A.node || Date.now() - A.userTs > 700) return;
+                        var atBottom = ms.scrollHeight - SD.get.call(ms) - ms.clientHeight < 24;
+                        if (atBottom) { A.node = null; A.owned = false; } // долистал до низа — дальше как раньше
+                        else A.owned = true;
+                    }, { passive: true });
+                    window.eitiScrollAnchorState = function () { return { anchored: !!(A.node && A.node.isConnected), owned: A.owned, armed: A.armed }; };
+                }
+            }
+            if (document.getElementById('input')) init(); else document.addEventListener('DOMContentLoaded', init);
+        })();
         // ── v14.10.0: голосовой ввод (Web Speech API) в поле сообщения; не отправляет сам ──
         (function () {
             var rec = null, active = false, base = '', fin = '';
@@ -53498,6 +53710,8 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                 (item.id === 'grok' && window.EitiVoice ? '<span class="cpi-voice-prov" style="font-size:11px;opacity:0.6;margin-right:6px;">' + EitiVoice.label() + '</span>' : '') + // v14.9.0
                 (item.id === 'grok' ? '<button type="button" class="cpi-voice-change" onclick="event.stopPropagation();eitiOpenVoiceSettings()" style="background:none;border:none;color:var(--accent-color,#ffd700);font-size:11px;text-decoration:underline;cursor:pointer;padding:8px 6px;min-height:32px;">' + _t('изменить') + '</button>' : '') + // v14.10.0
                 (item.stateBtn ? '<span class="cpi-state">' + (isActive ? _t('вкл') : _t('выкл')) + '</span>' : '') +
+                (item.id === 'clearInput' ? (function () { var _ic = window.eitiInlineClearGet ? eitiInlineClearGet() : false; var _lb = _t('Кнопка очистки в поле'); // v14.15.4
+                    return '<button type="button" role="switch" id="eiti-inline-clear-switch" class="eiti-inline-clear-switch" aria-checked="' + _ic + '" aria-label="' + _lb + '" title="' + _lb + '" onclick="event.stopPropagation();eitiInlineClearToggle()"><span class="eics-track"><span class="eics-knob"></span></span></button>'; })() : '') +
                 '</div>';
         });
         if (!html) html = '<div style="padding:12px 16px;opacity:0.5;font-size:13px;">' + _t('Нет активных функций.') + '<br>' + _t('Включите в Настройки → Панель чата.') + '</div>';
