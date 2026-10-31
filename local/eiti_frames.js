@@ -749,10 +749,12 @@
           .then(function (r) { return r != null ? r : answer(card, field, p.mods, st, now).text; });
       }
       if (card && card.kn) {
-        if (cur && cur.id === card.id && field === 'def' && st.told.def && !p.mods.long) return followUp('next', st, now);
+        var rep = cur && cur.id === card.id && field === 'def' && st.told.def && !p.mods.long;
+        if (rep && !(p.also && p.also.length)) return followUp('next', st, now);
         // составной вопрос: «что такое X и почему…» — ответы подряд, одно предложение продолжить в конце
+        // (определение уже было в этой теме → только остальные части: «Что такое наука. А зачем она?»)
         if (p.also && p.also.length) {
-          var parts = [answer(card, field, p.mods, st, now, true).text];
+          var parts = rep ? [] : [answer(card, field, p.mods, st, now, true).text];
           p.also.forEach(function (a) { if (a.field !== field) parts.push(answer(card, a.field, {}, st, now, true).text); });
           var out = tail(card, st, parts.join('\n\n'));
           st.last = out; return out;

@@ -94,6 +94,11 @@ test('compound: социальный зачин и два вопроса под�
   assert.deepStrictEqual(two.also.map((a) => a.field), ['use']);
   const r = await F.respond('Что такое наука. А зачем она?', F.create(), deps);
   assert.match(r, /Наука — /); assert.match(r, /Зачем/);
+  // тема уже открыта и определение было → только «зачем», не «дальше»
+  const st = F.create();
+  await F.respond('что такое наука', st, deps);
+  const r2 = await F.respond('Что такое наука. А зачем она?', st, deps);
+  assert.match(r2, /Зачем/); assert.doesNotMatch(r2, /Наука — /);
   // разные темы — не склеиваются
   assert.ok(!(P('Что такое луна. А зачем наука?').compound));
 });
