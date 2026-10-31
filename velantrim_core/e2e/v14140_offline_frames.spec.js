@@ -15,7 +15,7 @@ async function shot(page, name) {
   await page.waitForTimeout(900); // анимация появления сообщения
   await page.screenshot({ path: SHOT + 'offline-' + name + '.png' });
 }
-test.use({ locale: 'ru-RU' });
+test.use({ locale: 'ru-RU', timezoneId: 'Europe/Berlin' }); // v14.15.3: номера DE — только в Германии
 
 async function boot(page) {
   await page.setViewportSize({ width: 412, height: 915 });

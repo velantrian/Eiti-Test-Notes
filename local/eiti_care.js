@@ -1,4 +1,4 @@
-// VELANTRIM EITI v14.15.0 — EITI Care: офлайн-настроение, поддержка и кризисный детектор (RU + кризис EN).
+// VELANTRIM EITI v14.15.0 (+v14.15.3 регион/длинные/цитаты) — EITI Care: офлайн-настроение, поддержка и кризисный детектор (RU + кризис EN).
 // Чистая логика без DOM, без сети и без localStorage (UMD: window.EitiCare / module.exports). Без lookbehind в regex.
 // Стоит ПЕРВЫМ (снаружи) в цепочке EitiOffline.replyText: до опечаток, фреймов, KB и диалогов — не зависит от ctx, нечёткого
 // сопоставления и pass(). Порядок детекторов: crisis_acute (112 первой строкой) → crisis → crisis_info (мягко, «если речь о тебе») →
@@ -18,13 +18,56 @@
     // «Доверие» (Doweria) — русско-/украиноязычный телефон доверия TelefonSeelsorge (Берлин), круглосуточно; источник: telefonseelsorge.de/telefon/
     doweria: '030 440 308 454'
   };
-  var LINES_RU = '• 📞 **112** — экстренная помощь, если есть опасность для жизни\n' +
-    '• 📞 Телефон доверия TelefonSeelsorge: **' + HOTLINES.seelsorge.join('** · **') + '** — бесплатно, круглосуточно, анонимно\n' +
-    '• 📞 На русском — телефон доверия «Доверие» (Doweria): **' + HOTLINES.doweria + '** — круглосуточно\n' +
-    '• 💬 Напиши или позвони близкому человеку и попроси побыть рядом';
-  var LINES_EN = '• 📞 **112** — emergency, if your life is in danger\n' +
-    '• 📞 TelefonSeelsorge (crisis line): **' + HOTLINES.seelsorge.join('** · **') + '** — free, 24/7, anonymous\n' +
-    '• 💬 Text or call someone you trust and ask them to stay with you';
+  // ── регион (v14.15.3): немецкие номера — только для DE; иначе 112 (ЕС) / местный номер + международный каталог ──
+  // Источник номеров DE: telefonseelsorge.de/telefon/ (проверено 01.11.2026). findahelpline.com — международный каталог линий помощи.
+  var DE_TZ = /^Europe\/(?:Berlin|Busingen)$/;
+  var EU = /^(?:AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|GR|HU|IE|IT|LV|LT|LU|MT|NL|PL|PT|RO|SK|SI|ES|SE|CH|NO|IS|LI)$/;
+  // regionOf(opts) → 'DE' | 'EU' | 'OTHER'. Приоритет: явная страна → часовой пояс (где человек физически) → регион локали.
+  function regionOf(opts) {
+    opts = opts || {};
+    var c = String(opts.country || '').toUpperCase(), tz = opts.timeZone, loc = opts.locale;
+    if (!c && tz == null) { try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { tz = ''; } }
+    if (!c && tz && DE_TZ.test(tz)) c = 'DE';
+    if (!c && loc == null) { try { loc = (typeof navigator !== 'undefined' && navigator.language) || ''; } catch (e) { loc = ''; } }
+    if (!c) { var m = /[-_]([a-z]{2})\b/i.exec(String(loc || '')); if (m) c = m[1].toUpperCase(); }
+    if (c === 'DE') return 'DE';
+    if (EU.test(c) || (!c && tz && /^Europe\//.test(tz) && !/^Europe\/(?:Moscow|Minsk|Kyiv|Kiev|Istanbul|London|Samara|Volgograd|Kirov|Ulyanovsk|Astrakhan|Saratov|Kaliningrad)$/.test(tz))) return 'EU';
+    return 'OTHER';
+  }
+  var LINES = {
+    DE: {
+      ru: '• 📞 **112** — экстренная помощь, если есть опасность для жизни\n' +
+        '• 📞 Телефон доверия TelefonSeelsorge (Германия): **' + HOTLINES.seelsorge.join('** · **') + '** — бесплатно, круглосуточно, анонимно\n' +
+        '• 📞 На русском (и украинском) — телефон доверия «Доверие» (Doweria), Берлин: **' + HOTLINES.doweria + '**\n' +
+        '• 💬 Напиши или позвони близкому человеку и попроси побыть рядом',
+      en: '• 📞 **112** — emergency, if your life is in danger\n' +
+        '• 📞 TelefonSeelsorge (Germany, crisis line): **' + HOTLINES.seelsorge.join('** · **') + '** — free, 24/7, anonymous\n' +
+        '• 💬 Text or call someone you trust and ask them to stay with you',
+      line: 'телефон доверия **' + HOTLINES.seelsorge.join('** · **') + '**',
+      live: 'телефон доверия **' + HOTLINES.seelsorge[0] + '** (бесплатно, круглосуточно), на русском (Берлин, «Доверие») — **' + HOTLINES.doweria + '**'
+    },
+    EU: {
+      ru: '• 📞 **112** — экстренная помощь в любой стране ЕС, если есть опасность для жизни\n' +
+        '• 📞 Телефон доверия своей страны можно найти на **findahelpline.com**\n' +
+        '• 💬 Напиши или позвони близкому человеку и попроси побыть рядом',
+      en: '• 📞 **112** — emergency number anywhere in the EU, if your life is in danger\n' +
+        '• 📞 Find a crisis line in your country at **findahelpline.com**\n' +
+        '• 💬 Text or call someone you trust and ask them to stay with you',
+      line: 'телефон доверия своей страны (**findahelpline.com**)',
+      live: 'телефон доверия своей страны — его можно найти на **findahelpline.com**'
+    },
+    OTHER: {
+      ru: '• 📞 **Местный номер экстренной помощи** (в ЕС и многих странах — **112**), если есть опасность для жизни\n' +
+        '• 📞 Телефон доверия своей страны можно найти на **findahelpline.com**\n' +
+        '• 💬 Напиши или позвони близкому человеку и попроси побыть рядом',
+      en: '• 📞 **Your local emergency number** (112 in the EU and many countries), if your life is in danger\n' +
+        '• 📞 Find a crisis line in your country at **findahelpline.com**\n' +
+        '• 💬 Text or call someone you trust and ask them to stay with you',
+      line: 'телефон доверия своей страны (**findahelpline.com**)',
+      live: 'телефон доверия своей страны — его можно найти на **findahelpline.com**'
+    }
+  };
+  var LINES_RU = '@@LINES_RU@@', LINES_EN = '@@LINES_EN@@';
   var OFFLINE_RU = 'Я офлайн-программа, не человек, и не могу сама позвать помощь.';
 
   function norm(s) {
@@ -85,6 +128,9 @@
   var ATTRIBUTED_CRISIS = rx([
     '(?:герой|героиня|персонаж) (?:говорит|сказал|сказала|произносит|пишет) (?:я )?(?:не хочу жить|хочу умереть)'
   ]);
+  // явное цитирование / чужие слова: «он сказал», «пишут», «цитата»… — признак справки, если личного сигнала вне кавычек нет
+  var QUOTE_INFO = rx(['цитат\\S*', 'сказал\\S*', 'говорит', 'говорят', 'пишет', 'пишут', 'написал\\S*', 'фраз\\S*', 'слова', 'строк\\S*', 'перевод\\S*', 'переведи', 'quote', 'said', 'says']);
+  function unquote(raw) { return String(raw).replace(/«[^«»]*»|"[^"]*"|“[^“”]*”|„[^„“”]*[“”]/g, ' '); }
   var NEG_SELF = rx(['не хочу (?:умирать|умереть)', 'не собираюсь (?:умирать|ничего с собой)', 'никогда не (?:покончу|убью себя)']);
 
   // ── якорные интенты (только короткие реплики; фразы — после слов-паразитов) ──
@@ -117,7 +163,7 @@
   ];
   I.forEach(function (it) { it.re = new RegExp('^ (?:' + it.p.join('|') + ') $'); if (it.any) it.reAny = rx(it.p); });
 
-  var T = {
+  var TPL = {
     crisis_acute: ['🚨 **Позвони 112 прямо сейчас.** Если рядом есть кто-то — позови его, не оставайся один(одна).\n\n' + OFFLINE_RU + ' Твоя жизнь важна.\n' + LINES_RU,
       '🚨 **Пожалуйста, звони 112 сейчас** — это бесплатно и круглосуточно. Отойди от опасного места или предмета, если можешь.\n\n' + OFFLINE_RU + '\n' + LINES_RU],
     crisis: ['🫂 Мне очень жаль, что тебе так тяжело. Ты не один(одна), и это можно пережить вместе с людьми, которые умеют помочь. ' + OFFLINE_RU + ' Пожалуйста, обратись к живому человеку прямо сейчас:\n' + LINES_RU + '\n\nТы сейчас в безопасности?',
@@ -128,8 +174,8 @@
     crisis_acute_en: ['🚨 **Call 112 right now.** If someone is nearby, ask them to stay with you.\n\nI\'m an offline program and can\'t call for help myself.\n' + LINES_EN],
     unsafe: ['🚨 **Пожалуйста, позвони 112 прямо сейчас** или попроси кого-то рядом позвонить. Не оставайся один(одна).\n' + LINES_RU,
       '🚨 Мне важно, чтобы ты был(а) в безопасности. **Звони 112** — там помогут прямо сейчас.\n' + LINES_RU],
-    safe: ['💛 Хорошо, что ты в безопасности. Если станет хуже — звони **112** или в телефон доверия: **' + HOTLINES.seelsorge.join('** · **') + '**. Хочешь рассказать, что случилось? Я выслушаю.',
-      '💛 Рада, что ты сейчас в безопасности. Телефон доверия: **' + HOTLINES.seelsorge.join('** · **') + '** — можно звонить в любое время. Я рядом, если хочешь выговориться.'],
+    safe: ['💛 Хорошо, что ты в безопасности. Если станет хуже — звони **112** или в @@LINE@@. Хочешь рассказать, что случилось? Я выслушаю.',
+      '💛 Рада, что ты сейчас в безопасности. Можно позвонить в @@LINE@@ — в любое время. Я рядом, если хочешь выговориться.'],
     cant_cope: ['🫂 Звучит очень тяжело. Так бывает, когда навалилось слишком много, и это не слабость. Скажи честно: ты сейчас в безопасности? Есть мысли навредить себе?',
       '🫂 Мне жаль, что тебе так плохо. Ты не обязан(а) справляться один(одна). Ты сейчас в безопасности? Бывают мысли причинить себе вред?'],
     cope_no: ['💛 Хорошо, что ты в безопасности. Я выслушаю — расскажи, что происходит. И если можешь, позови близкого человека побыть рядом.',
@@ -161,7 +207,7 @@
     good_share: ['🎉 Как здорово! Расскажи, что тебя так порадовало?', '😊 Ура! Это заслуженно. Что случилось хорошего?', '🎉 Класс! Делись — порадуюсь вместе с тобой.'],
     thanks_warm: ['💛 Мне очень приятно, спасибо! Возвращайся, если снова станет тяжело — я рядом.', '💛 Спасибо тебе за доверие. Береги себя и заходи в любое время.'],
     encourage: ['💪 Ты справишься. Неудачи — это не про тебя целиком, это про один момент. Что сейчас не получается?', '💪 Я в тебя верю. Каждый маленький шаг считается. Расскажешь, что случилось?'],
-    want_live: ['💛 Слышу тебя — и хорошо, что жить хочется. Похоже, что-то напугало или тревожит. Расскажешь, что случилось? Если плохо физически — **112**; если тяжело на душе — телефон доверия **' + HOTLINES.seelsorge[0] + '** (бесплатно, круглосуточно), на русском — **' + HOTLINES.doweria + '**.'],
+    want_live: ['💛 Слышу тебя — и хорошо, что жить хочется. Похоже, что-то напугало или тревожит. Расскажешь, что случилось? Если плохо физически — **112**; если тяжело на душе — @@LIVE@@.'],
     sad_lost: ['🫂 Мне жаль, что тебе грустно. Не обязательно сразу знать, что делать. Расскажешь, что случилось? Можем разобраться по шагам — или я просто выслушаю.',
       '🫂 Понимаю, когда грустно, трудно понять, с чего начать. Я рядом. Что произошло? Подумаем вместе — или просто выговорись.'],
     laugh: ['😄 Ха, рада, что смешно! Что тебя так рассмешило?', '😂 Смех — это здорово! Поделишься, что там такое?'],
@@ -172,6 +218,21 @@
     warm: ['🫂 Я не всё понимаю офлайн, но я рядом. Расскажешь подробнее?', '🫂 Я офлайн и понимаю не всё, но слушаю тебя. Расскажи ещё?']
   };
 
+  // тексты по региону: подстановка блоков номеров в шаблоны T (T по умолчанию — DE, для обратной совместимости)
+  var TR = {};
+  function textsFor(region) {
+    region = LINES[region] ? region : 'DE';
+    if (TR[region]) return TR[region];
+    var L = LINES[region], out = {};
+    Object.keys(TPL).forEach(function (k) {
+      out[k] = TPL[k].map(function (t) {
+        t = t.split(LINES_RU).join(L.ru).split(LINES_EN).join(L.en).split('@@LINE@@').join(L.line).split('@@LIVE@@').join(L.live);
+        return region === 'DE' ? t : t.replace(/\*\*(?:Звони|звони|Позвони|позвони) 112\*\*/g, function (m) { return m.replace('112', '112 (или местный номер экстренной помощи)'); });
+      });
+    });
+    return (TR[region] = out);
+  }
+
   var YES = /^ (?:да|ага|угу|есть|бывают|бывает|да есть|да бывают|да думаю|думаю да|наверное да|yes|yeah) $/;
   var SAFE = /^ (?:да|ага|угу|да в безопасности|я в безопасности|в безопасности|все нормально|все норм|я дома|да я в безопасности|yes|i m safe) $/;
   var UNSAFE = /^ (?:нет|не|не знаю|никого нет|рядом никого нет|мне страшно|нет не в безопасности|я не в безопасности|не в безопасности|нет никого|no|not safe) $/;
@@ -181,27 +242,32 @@
     'паник\\S*', 'депресс\\S*', 'хренов\\S*', 'паршив\\S*', 'херов\\S*', 'хуев\\S*', 'одиночеств\\S*', 'отчаян\\S*', 'боюсь', 'переживаю', 'нервнича\\S*', 'расстро\\S*', 'обидел\\S*', 'рыда\\S*', 'хандр\\S*', 'настроени\\S*', 'радост\\S*', 'счастлив\\S*', 'люблю', 'скучаю']);
   var ME = rx(['я', 'мне', 'меня', 'мной', 'у меня', 'со мной']);
 
-  function create() { return { after: null, at: 0, noAdvice: 0, rot: {} }; }
+  // create(opts) — opts: { country:'DE', locale:'ru-DE', timeZone:'Europe/Berlin' } (всё необязательно; иначе — из среды)
+  function create(opts) { return { after: null, at: 0, noAdvice: 0, rot: {}, region: regionOf(opts) }; }
   function pick(st, k) {
-    var a = T[k] || T.warm; st = st || create(); var i = ((st.rot[k] == null ? -1 : st.rot[k]) + 1) % a.length; st.rot[k] = i; return a[i];
+    st = st || create(); var TT = textsFor(st.region), a = TT[k] || TT.warm; var i = ((st.rot[k] == null ? -1 : st.rot[k]) + 1) % a.length; st.rot[k] = i; return a[i];
   }
   function strip(n) { var s = n, prev; do { prev = s; s = s.replace(FILL, ' ').replace(/\s+/g, ' '); if (s === ' ') s = prev; } while (s !== prev); return s.length < 2 ? n : s; }
   function words(n) { return n.trim() ? n.trim().split(' ').length : 0; }
   // detect(text, st) → { id, kind:'crisis'|'care', text } | null (null — дальше по цепочке)
-  function crisisOf(n) {
+  function crisisOf(n, q) {
     if (ACUTE.test(n) && !ACUTE_NOT.test(n)) return /[a-z]/.test(n) && !/[а-я]/.test(n) ? 'crisis_acute_en' : 'crisis_acute';
     if (NEG_SELF.test(n) && !CRISIS.test(n.replace(NEG_SELF, ' '))) return null;
     if (CRISIS.test(n)) {
       if (/[a-z]/.test(n) && !/[а-я]/.test(n)) return 'crisis_en';
-      return INFO.test(n) && !PERSONAL_CRISIS.test(n.replace(ATTRIBUTED_CRISIS, ' ')) ? 'crisis_info' : 'crisis';
+      // Личное сообщение об опасности всегда важнее медийных/справочных слов. Цитата/реплика персонажа может быть справкой,
+      // но только если ВНЕ цитаты нет личного сигнала (q — текст без «…»/"…").
+      var outside = (q == null ? n : norm(q)).replace(ATTRIBUTED_CRISIS, ' ');
+      if (PERSONAL_CRISIS.test(outside)) return 'crisis';
+      if (INFO.test(n) || (q != null && QUOTE_INFO.test(norm(q)))) return 'crisis_info';
+      return 'crisis';
     }
     return null;
   }
   function detect(text, st, now) {
     st = st || create(); now = now || Date.now();
-    var raw = String(text == null ? '' : text); if (!raw.trim() || raw.length > 600) return null;
-    var n = norm(raw);
-    var c = crisisOf(n);
+    var raw = String(text == null ? '' : text); if (!raw.trim()) return null;
+    var c = crisisLong(raw), n = norm(raw);
     if (c) { st.after = c === 'crisis_info' ? null : 'crisis'; st.at = now; return { id: c, kind: 'crisis', text: pick(st, c) }; }
     var s = strip(n), fresh = st.after && now - st.at < TTL;
     if (fresh && st.after === 'crisis') {
@@ -225,10 +291,23 @@
     }
     return null;
   }
-  function isCrisis(text) { return !!crisisOf(norm(text)); }
+  // crisisLong(raw) — кризис в тексте любой длины. ≤600 символов — целиком; длиннее — перекрывающиеся окна по 600 (шаг 450)
+  // плюс ключевой скан всего текста: явный сигнал не теряется. Выбираем самый тяжёлый результат.
+  var RANK = { crisis_acute: 4, crisis_acute_en: 4, crisis: 3, crisis_en: 3, crisis_info: 1 };
+  function crisisOne(raw) { var q = unquote(raw); return crisisOf(norm(raw), q === raw ? null : q); }
+  function crisisLong(raw) {
+    if (raw.length <= 600) return crisisOne(raw);
+    var best = null, consider = function (c) { if (c && (!best || RANK[c] > RANK[best])) best = c; };
+    for (var i = 0; i < raw.length; i += 450) { consider(crisisOne(raw.slice(i, i + 600))); if (best && RANK[best] === 4) return best; }
+    var n = norm(raw);
+    if (!best && (CRISIS.test(n) || ACUTE.test(n))) consider(crisisOf(n));
+    if (best === 'crisis_info' && PERSONAL_CRISIS.test(norm(unquote(raw)))) best = 'crisis';
+    return best;
+  }
+  function isCrisis(text) { return !!crisisLong(String(text == null ? '' : text)); }
   // isEmotional(text) — для последнего шанса (lastResort): эмоциональная лексема или «я/мне + плохо/тяжело…» → тёплый ответ вместо «нет в базе»
-  function isEmotional(text) { var n = norm(text); return !!crisisOf(n) || EMO.test(n); }
+  function isEmotional(text) { var n = norm(text); return !!crisisLong(String(text == null ? '' : text)) || EMO.test(n); }
   function warm(st) { return pick(st, 'warm'); }
   function intents() { return I.map(function (x) { return x.id; }).concat(['crisis', 'crisis_acute', 'crisis_info', 'crisis_safe', 'crisis_unsafe', 'cope_no', 'panic_body', 'listen']); }
-  return { create: create, detect: detect, isCrisis: isCrisis, isEmotional: isEmotional, warm: warm, intents: intents, norm: norm, HOTLINES: HOTLINES, texts: T };
+  return { create: create, detect: detect, isCrisis: isCrisis, isEmotional: isEmotional, warm: warm, intents: intents, norm: norm, HOTLINES: HOTLINES, texts: textsFor('DE'), textsFor: textsFor, regionOf: regionOf };
 });
