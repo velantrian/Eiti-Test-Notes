@@ -26,6 +26,7 @@ REQUIRED_FILES = (
     'offline/core.json',
     'local/eiti_typo_vocab.json',
     'local/eiti_frames.json',
+    'local/eiti_tell.json',
     'offline_manifest.json',
 )
 

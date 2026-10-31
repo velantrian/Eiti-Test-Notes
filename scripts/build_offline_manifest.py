@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'offline_manifest.json'
 # только данные (JSON); код приезжает с обновлением приложения
-FILES = ('local/eiti_frames.json', 'local/eiti_typo_vocab.json', 'kb/index.json', 'offline/core.json')
+FILES = ('local/eiti_frames.json', 'local/eiti_tell.json', 'local/eiti_typo_vocab.json', 'kb/index.json', 'offline/core.json')
 PATTERNS = ('kb/idx/*.json', 'kb/packs/*.json', 'offline/packs/*.json')
 
 

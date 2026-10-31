@@ -1,11 +1,11 @@
-// VELANTRIM EITI — Service Worker v14.15.2
+// VELANTRIM EITI — Service Worker v14.15.3
 // Fixes: LAZY_FILES await race, cross-origin CDN cache, updatefound wiring, SWR for data/*.json
-// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.15.2
+// Sync: CACHE + SW_UPDATED now match EITI_VERSION 14.15.3
 
-var CACHE = 'eiti-v14.15.2'; // v14.15.2: «📱 Экран телефона»; v14.15.1: «Меньше иконки (small icons)»; v14.15.0: офлайн-интенты (новые слоты, составные реплики, Doweria); v14.14.0: EITI Frames + карточки понятий + Википедия без ключа; v14.13.1: EitiVoice P1-1; v14.13.0: «Похожие / Рассуждение» (local/eiti_related.js); v14.12.0: голосовые ассистенты OpenAI/Qwen/Алиса/Mistral, Mistral AI в чате; v14.11.0: голосовой набор 🎤, ассистент в «+»; v14.10.0: калькулятор EN/DE, поиск KB, перевод UI; v14.9.0: дневник journal + выбор голоса; v14.8.0: опечатки; v14.7.0: Drive-автосинхронизация; v14.5.0: память диалога + размер чата; v14.4.0: офлайн-ответы RU/EN/DE; v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
+var CACHE = 'eiti-v14.15.3'; // v14.15.3: EITI Tell («расскажи что-нибудь»); v14.15.2: «📱 Экран телефона»; v14.15.1: «Меньше иконки (small icons)»; v14.15.0: офлайн-интенты (новые слоты, составные реплики, Doweria); v14.14.0: EITI Frames + карточки понятий + Википедия без ключа; v14.13.1: EitiVoice P1-1; v14.13.0: «Похожие / Рассуждение» (local/eiti_related.js); v14.12.0: голосовые ассистенты OpenAI/Qwen/Алиса/Mistral, Mistral AI в чате; v14.11.0: голосовой набор 🎤, ассистент в «+»; v14.10.0: калькулятор EN/DE, поиск KB, перевод UI; v14.9.0: дневник journal + выбор голоса; v14.8.0: опечатки; v14.7.0: Drive-автосинхронизация; v14.5.0: память диалога + размер чата; v14.4.0: офлайн-ответы RU/EN/DE; v14.3.0: KB ~29k статей; v14.2.0: EITI Local (калькулятор, вопросы о своих данных); v14.1.0: библиотека знаний KB (+ v14.0.0 офлайн-диалоги, сказки)
 // v14.0.0: офлайн-движок и пакеты (offline/**) — отдельный кеш без лимита 24 записей (≈30 файлов),
 // cache-first + фоновое обновление; не попадает в swTrimCache.
-var OFFLINE_CACHE = 'eiti-offline-v14.15.2';
+var OFFLINE_CACHE = 'eiti-offline-v14.15.3';
 var CACHE_MAX_ENTRIES = 24;
 var BASE = self.location.pathname.replace(/sw\.js$/, '');
 
@@ -25,6 +25,8 @@ var CORE = [
     BASE + 'local/eiti_frames.js', // v14.14.0: EITI Frames — офлайн-понимание формулировок («расскажи / поясни / а зачем?»)
     BASE + 'local/eiti_care.js', // v14.14.0 intents+: EITI Care — кризис (112 + телефон доверия) и поддержка, первым в офлайн-цепочке
     BASE + 'local/eiti_frames.json', // v14.14.0: пакет фреймов (правится без кода; грузится лениво при первом офлайн-запросе)
+    BASE + 'local/eiti_tell.js', // v14.15.3: EITI Tell — «расскажи что-нибудь / удиви меня / как ты думаешь» без темы
+    BASE + 'local/eiti_tell.json', // v14.15.3: пулы Tell (мудрость / факт / история / размышление; правятся без кода)
     BASE + 'offline_manifest.json', // v14.14.0: хеши пакетов базы на момент установки — сверка для «🔄 Обновить базу офлайн-ответов»
     BASE + 'icon-192.png',
     BASE + 'icon-192-maskable.png',
@@ -81,7 +83,7 @@ self.addEventListener('activate', function(e) {
                     }).then(function() {
                     return self.clients.matchAll().then(function(clients) {
                         clients.forEach(function(c) {
-                            c.postMessage({ type: 'SW_UPDATED', version: '14.15.2' });
+                            c.postMessage({ type: 'SW_UPDATED', version: '14.15.3' });
                         });
                     });
                     });
