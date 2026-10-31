@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.15.2-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.15.3-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -65,6 +65,10 @@ python3 -m http.server 8080
 📐 Полная архитектура (для переноса в нативное приложение): **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
 ---
+
+## 🆕 Что нового в v14.15.3
+
+- 💬 **«Расскажи что-нибудь» офлайн (EITI Tell)**: «расскажи что-то», «расскажи там», «скажи что-нибудь», «удиви меня», «поведай», «поделись чем-нибудь», «что расскажешь», «чем поделишься», «скажи мудрость», «интересный факт», «расскажи случай из жизни», «а ты что думаешь», «скажи, как ты думаешь», «твоё мнение», «развлеки меня», «давай что-нибудь интересное» — с опечатками и в любом порядке слов. Ответ — случайная категория без повторов подряд: 💭 мудрость, 💡 проверенный факт, 📖 история (притча / из истории / наблюдение), 🤔 размышление. «ещё» — следующий. Пулы в `local/eiti_tell.json` (RU ≈ 150, EN/DE ≈ 45), обновляются кнопкой «🔄 Обновить базу». Фраза с темой («расскажи про луну») по-прежнему идёт в базу знаний, эмоции — в EITI Care.
 
 ## 🆕 Что нового в v14.15.2
 
