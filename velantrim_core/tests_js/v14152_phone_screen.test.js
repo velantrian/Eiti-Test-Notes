@@ -95,3 +95,84 @@ test('i18n EN/DE для раздела без кириллицы', () => {
     assert.ok(d['Похоже, у вас {x} — применить?'].includes('{x}'));
   }
 });
+
+// Ревью #62 [P2]: ключи из прототипа Object не должны считаться пресетами
+const PROTO_KEYS = ['__proto__', 'constructor', 'toString', 'hasOwnProperty', 'valueOf', 'isPrototypeOf'];
+
+test('ранний скрипт: __proto__ / constructor / toString / hasOwnProperty в localStorage → «Авто»', () => {
+  for (const k of PROTO_KEYS) {
+    const r = runHead(k);
+    assert.equal(r.cls.has('eiti-phone'), false, k);
+    assert.deepEqual(r.props, {}, k);
+    assert.deepEqual(r.attrs, {}, k);
+    assert.equal(r.win.eitiPhoneScreenApply(k), 'auto', k);
+  }
+  assert.match(HEAD, /Object\.prototype\.hasOwnProperty\.call\(P,id\)/);
+});
+
+function psEnv(stored, extra) {
+  const { win } = runHead(undefined);
+  const store = { eiti_phone_screen: stored };
+  return Object.assign({
+    window: win,
+    localStorage: { getItem: (k) => (store[k] === undefined ? null : store[k]), setItem: (k, v) => { store[k] = String(v); }, removeItem: (k) => { delete store[k]; } },
+    store,
+  }, extra || {});
+}
+
+test('eitiPhoneScreenGet: ключи прототипа → «Авто», настоящие пресеты — как есть', () => {
+  for (const k of PROTO_KEYS) {
+    const f = loadFunctions(['_eitiPsHas', 'eitiPhoneScreenGet'], psEnv(k));
+    assert.equal(f.eitiPhoneScreenGet(), 'auto', k);
+    assert.equal(f._eitiPsHas(k), false, k);
+  }
+  const f = loadFunctions(['_eitiPsHas', 'eitiPhoneScreenGet'], psEnv('pixel'));
+  assert.equal(f.eitiPhoneScreenGet(), 'pixel');
+  assert.doesNotMatch(SRC, /EITI_PHONE_PRESETS\[v\]|\(window\.EITI_PHONE_PRESETS \|\| \{\}\)\[id\]|!EITI_PHONE_PRESETS\[id\]/);
+});
+
+// Ревью #62 [P3]: поздний ответ getHighEntropyValues не показывает подсказку после ручного выбора
+function hintEnv(stored) {
+  let resolve; const p = new Promise((r) => { resolve = r; });
+  const el = {}; const get = (id) => (el[id] = el[id] || { hidden: true, textContent: '', onclick: null });
+  const env = psEnv(stored, {
+    document: { getElementById: get },
+    navigator: { userAgent: 'Mozilla/5.0 (Linux; Android 10; K)', userAgentData: { getHighEntropyValues: () => p } },
+    screen: { width: 412, height: 915 },
+    _eitiPsHintGen: 0,
+    _eitiPsL: (x) => x,
+    EITI_PS_LABELS: { pixel: ['Google Pixel', ''] },
+  });
+  const f = loadFunctions(['_eitiPsHas', 'eitiPhoneScreenGet', 'eitiPhoneScreenGuess', '_eitiPsRenderHint'], env);
+  return { f, env, box: () => get('eiti-ps-hint'), resolve };
+}
+
+test('подсказка: ответ модели после ручного выбора пресета не показывается', async () => {
+  // 1) ручной выбор без перерисовки: пресет перечитывается в момент ответа
+  let h = hintEnv(undefined);
+  h.f._eitiPsRenderHint('auto');
+  assert.equal(h.box().hidden, true);
+  h.env.store.eiti_phone_screen = 'galaxy-s';
+  h.resolve({ model: 'Pixel 8' });
+  await new Promise((r) => setImmediate(r));
+  assert.equal(h.box().hidden, true);
+  // 2) ручной выбор с перерисовкой: старое поколение игнорируется
+  h = hintEnv(undefined);
+  h.f._eitiPsRenderHint('auto');
+  h.env.store.eiti_phone_screen = 'none';
+  h.f._eitiPsHintGen++; // eitiSetPhoneScreen
+  h.resolve({ model: 'Pixel 8' });
+  await new Promise((r) => setImmediate(r));
+  assert.equal(h.box().hidden, true);
+  // 3) контроль: в «Авто» без вмешательства подсказка появляется
+  h = hintEnv(undefined);
+  h.f._eitiPsRenderHint('auto');
+  h.resolve({ model: 'Pixel 8' });
+  await new Promise((r) => setImmediate(r));
+  assert.equal(h.box().hidden, false);
+  assert.match(h.env.document.getElementById('eiti-ps-hint-text').textContent, /Google Pixel/);
+});
+
+test('small icons × пресет: safe-area small icons берётся из отступов пресета', () => {
+  assert.match(SRC, /html\.eiti-phone \{[^}]*--eiti-si-safe-top: var\(--eiti-top-inset\);[^}]*--eiti-si-safe-bottom: var\(--eiti-bottom-inset\);/);
+});

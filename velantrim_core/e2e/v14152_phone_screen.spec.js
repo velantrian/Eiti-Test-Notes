@@ -201,3 +201,109 @@ test('модалки и полноэкранные режимы получают
   await page.evaluate(() => window.eitiPhoneScreenApply('auto'));
   expect(await probe()).toEqual(base);
 });
+
+// ── Ревью #62 ────────────────────────────────────────────────────────────────
+// [P2] ключи прототипа в localStorage → «Авто» (радио, превью, без класса)
+for (const k of ['__proto__', 'constructor', 'toString', 'hasOwnProperty']) {
+  test(`localStorage eiti_phone_screen=${k} → «Авто»`, async ({ page }) => {
+    await boot(page, { preset: k });
+    expect(await page.evaluate(() => [document.documentElement.classList.contains('eiti-phone'), document.documentElement.getAttribute('data-eiti-phone'), document.documentElement.style.getPropertyValue('--eiti-pt'), window.eitiPhoneScreenGet()])).toEqual([false, null, '', 'auto']);
+    const m = await layout(page);
+    expect(Math.round(m.header.h)).toBe(88); expect(Math.round(m.tab.h)).toBe(110);
+    await page.evaluate(() => openPhoneScreenMode());
+    await expect(page.locator('#eiti-ps-list input[value=auto]')).toBeChecked();
+    await expect(page.locator('#eiti-ps-phone')).toHaveAttribute('data-cut', 'auto');
+    await expect(page.locator('#eiti-ps-cap')).not.toContainText('px');
+    // ручная попытка выставить такой «пресет» тоже даёт «Авто»
+    await page.evaluate((id) => window.eitiSetPhoneScreen(id), k);
+    expect(await page.evaluate(() => [localStorage.getItem('eiti_phone_screen'), document.documentElement.classList.contains('eiti-phone')])).toEqual([null, false]);
+  });
+}
+
+// [P3] поздний ответ getHighEntropyValues после ручного выбора не показывает подсказку
+test.describe('Android с урезанным UA', () => {
+  test.use({ userAgent: 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36', viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true });
+  test('подсказка: ответ модели пришёл после ручного выбора → не показывается; без выбора → показывается', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.__uad = [];
+      Object.defineProperty(navigator, 'userAgentData', { configurable: true, get: () => ({ getHighEntropyValues: () => new Promise((r) => window.__uad.push(r)) }) });
+    });
+    await boot(page, { view: null });
+    await page.evaluate(() => openPhoneScreenMode());
+    await expect(page.locator('#eiti-ps-hint')).toBeHidden(); // по урезанному UA угадать нельзя
+    await page.locator('#eiti-ps-list input[value=galaxy-s]').check();
+    await page.evaluate(() => window.__uad.forEach((r) => r({ model: 'Pixel 8' })));
+    await page.waitForTimeout(50);
+    await expect(page.locator('#eiti-ps-hint')).toBeHidden();
+    await expect(page.locator('#eiti-ps-list input[value=galaxy-s]')).toBeChecked();
+    expect(await page.evaluate(() => localStorage.getItem('eiti_phone_screen'))).toBe('galaxy-s');
+    // ручной выбор «Авто» и запоздалый ответ ПРЕДЫДУЩЕЙ отрисовки — тоже игнорируется
+    await page.evaluate(() => { window.__uad = []; });
+    await page.locator('#eiti-ps-list input[value=auto]').check();
+    const pending = await page.evaluate(() => window.__uad.length);
+    expect(pending).toBeGreaterThan(0);
+    await page.evaluate(() => { window.__stale = window.__uad.slice(); });
+    await page.evaluate(() => openPhoneScreenMode()); // новая отрисовка (новое поколение)
+    await page.evaluate(() => window.__stale.forEach((r) => r({ model: 'Pixel 8' }))); // старые ответы — молча
+    await page.waitForTimeout(50);
+    await expect(page.locator('#eiti-ps-hint')).toBeHidden();
+    // контроль: ответ текущего поколения в «Авто» показывает подсказку
+    await page.evaluate(() => window.__uad.filter((r) => !window.__stale.includes(r)).forEach((r) => r({ model: 'Pixel 8' })));
+    await expect(page.locator('#eiti-ps-hint')).toBeVisible();
+    await expect(page.locator('#eiti-ps-hint-text')).toContainText('Pixel');
+    await shot(page, 'hint-race-auto');
+  });
+});
+
+// Auto × small icons × iOS и пресет × small icons: кнопки шапки ниже выреза, высоты совпадают
+const btnGeo = async (page) => {
+  await page.evaluate(() => { document.getElementById('btn-pwa-install').style.display = 'flex'; });
+  return { h: await geo(page, '.app-header'), b: await geo(page, '#btn-pwa-install') };
+};
+for (const view of [{ width: 360, height: 780 }, { width: 390, height: 844 }, { width: 430, height: 932 }]) {
+  test(`Auto × small icons × iOS (inset 59) и пресет island × small icons: ${view.width}x${view.height}`, async ({ page }) => {
+    await boot(page, { storage: { eiti_small_icons: '1' }, view });
+    await page.evaluate(() => { const d = document.documentElement; d.classList.add('is-ios'); d.style.setProperty('--eiti-si-safe-top', '59px'); d.style.setProperty('--eiti-si-safe-bottom', '34px'); });
+    let g = await btnGeo(page);
+    expect(Math.round(g.h.h)).toBe(44 + 59);
+    expect(g.b.top).toBeGreaterThanOrEqual(59); expect(g.b.bottom).toBeLessThanOrEqual(g.h.bottom);
+    expect(Math.round((await geo(page, '.tab-bar')).h)).toBe(50 + 34);
+    expectFlush(await layout(page), view.height);
+    await shot(page, `auto-small-ios-${view.width}`);
+    // пресет поверх: переменные small icons берутся из пресета, inline-подмена снята
+    await page.evaluate(() => { const d = document.documentElement; d.style.removeProperty('--eiti-si-safe-top'); d.style.removeProperty('--eiti-si-safe-bottom'); localStorage.setItem('eiti_phone_screen', 'iphone-island'); window.eitiPhoneScreenApply('iphone-island'); });
+    for (const ios of [true, false]) {
+      await page.evaluate((on) => document.documentElement.classList.toggle('is-ios', on), ios);
+      g = await btnGeo(page);
+      expect(Math.round(g.h.h), 'ios=' + ios).toBe(44 + 59);
+      expect(g.b.top, 'ios=' + ios).toBeGreaterThanOrEqual(59);
+      expect(Math.abs((g.b.top + g.b.bottom) / 2 - (59 + 22)), 'ios=' + ios).toBeLessThanOrEqual(1);
+      expect(Math.round((await geo(page, '.tab-bar')).h)).toBe(50 + 34);
+      expectFlush(await layout(page), view.height);
+    }
+    await shot(page, `island-small-${view.width}`);
+  });
+}
+
+test('пресет + small icons: полноэкранные заметки, редактор и модалка ниже выреза', async ({ page }) => {
+  await boot(page, { preset: 'iphone-notch', storage: { eiti_small_icons: '1' } });
+  await page.evaluate(() => openView('notes'));
+  await page.evaluate(() => document.body.classList.add('notes-fullscreen'));
+  const v = await geo(page, '#view-notes');
+  expect(Math.round(v.top)).toBe(47);
+  // шапка заметок в полноэкранном режиме скрыта; всё видимое содержимое начинается ниже выреза
+  const minTop = await page.evaluate(() => Math.min(...[...document.querySelectorAll('#view-notes *')].map((e) => e.getBoundingClientRect()).filter((r) => r.width && r.height).map((r) => r.top)));
+  expect(minTop).toBeGreaterThanOrEqual(47 - 0.5);
+  await shot(page, 'notes-fullscreen-small-notch');
+  await page.evaluate(() => document.body.classList.remove('notes-fullscreen'));
+  const pad = await page.evaluate(() => {
+    const m = document.createElement('div'); m.className = 'modal'; m.style.display = 'block'; document.body.appendChild(m);
+    const cs = getComputedStyle(m), r = [parseFloat(cs.paddingTop), parseFloat(cs.paddingBottom)]; m.remove(); return r;
+  });
+  expect(pad).toEqual([20 + 47, 20 + 34]);
+  const ed = await page.evaluate(() => {
+    const o = document.querySelector('.note-editor-overlay'); if (!o) return null;
+    o.classList.add('active', 'editor-fullscreen'); const r = o.getBoundingClientRect().top; o.classList.remove('active', 'editor-fullscreen'); return r;
+  });
+  if (ed !== null) expect(Math.round(ed)).toBe(47);
+});

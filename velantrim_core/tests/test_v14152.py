@@ -52,3 +52,21 @@ def test_settings_entry_and_subview():
     assert '<div id="view-phone-screen" class="content-view"' in HTML
     assert "function openPhoneScreenMode()" in HTML and "_eitiOpenSubview('phone-screen'" in HTML
     assert HTML.count("'view-phone-screen'") >= 3
+
+
+def test_review_preset_lookup_own_keys_only():
+    # Ревью #62 [P2]: '__proto__' / 'constructor' / 'toString' из localStorage не считаются пресетом
+    head = HTML[: HTML.index("</head>")]
+    assert "v=(id!=null&&Object.prototype.hasOwnProperty.call(P,id))?P[id]:null" in head
+    assert "Object.prototype.hasOwnProperty.call(window.EITI_PHONE_PRESETS, id)" in HTML
+    assert "EITI_PHONE_PRESETS[v]" not in HTML and "!EITI_PHONE_PRESETS[id]" not in HTML
+
+
+def test_review_hint_race_and_small_icons_mapping():
+    # Ревью #62 [P3]: поколение подсказки + перечитывание пресета перед показом
+    assert "var _eitiPsHintGen = 0;" in HTML
+    assert "if (gen !== _eitiPsHintGen) return;" in HTML
+    assert "cur = eitiPhoneScreenGet();" in HTML
+    # small icons × пресет: одна и та же safe-area
+    assert "--eiti-si-safe-top: var(--eiti-top-inset);" in HTML
+    assert "--eiti-si-safe-bottom: var(--eiti-bottom-inset);" in HTML

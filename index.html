@@ -4342,7 +4342,7 @@
   try{if(localStorage.getItem('eiti_small_icons')==='1')document.documentElement.classList.add('eiti-small-icons');}catch(e){}
   // v14.15.2: «📱 Экран телефона» — пресет выреза до первой отрисовки. [сверху, снизу, сбоку (альбомная), снизу (альбомная), вырез]
   window.EITI_PHONE_PRESETS={'iphone-notch':[47,34,47,21,'notch'],'iphone-island':[59,34,59,21,'island'],'iphone-se':[20,0,0,0,'none'],'galaxy-s':[32,16,32,16,'punch'],'galaxy-fold':[28,16,28,16,'punch'],'xiaomi':[34,16,34,16,'drop'],'pixel':[36,20,36,20,'punch'],'none':[0,0,0,0,'none']};
-  window.eitiPhoneScreenApply=function(id){var d=document.documentElement,P=window.EITI_PHONE_PRESETS,v=P[id],k=['--eiti-pt','--eiti-pb','--eiti-ps','--eiti-pbl'];
+  window.eitiPhoneScreenApply=function(id){var d=document.documentElement,P=window.EITI_PHONE_PRESETS,v=(id!=null&&Object.prototype.hasOwnProperty.call(P,id))?P[id]:null,k=['--eiti-pt','--eiti-pb','--eiti-ps','--eiti-pbl'];
     if(!v){d.classList.remove('eiti-phone');d.removeAttribute('data-eiti-phone');k.forEach(function(n){d.style.removeProperty(n);});return 'auto';}
     d.classList.add('eiti-phone');d.setAttribute('data-eiti-phone',id);k.forEach(function(n,i){d.style.setProperty(n,v[i]+'px');});return id;};
   try{window.eitiPhoneScreenApply(localStorage.getItem('eiti_phone_screen'));}catch(e){}
@@ -8314,6 +8314,10 @@
             --eiti-top-inset: max(var(--eiti-env-top), var(--eiti-pt, 0px));
             --eiti-bottom-inset: max(var(--eiti-env-bottom), var(--eiti-pb, 0px));
             --eiti-side-inset: max(var(--eiti-env-left), var(--eiti-env-right));
+            /* small icons (v14.15.1) берёт safe-area из этих переменных — с пресетом они совпадают с нашими отступами,
+               поэтому правила small icons × iOS и пресета дают одну и ту же высоту шапки/таб-бара и позицию кнопок */
+            --eiti-si-safe-top: var(--eiti-top-inset);
+            --eiti-si-safe-bottom: var(--eiti-bottom-inset);
         }
         @media (orientation: landscape) {
             /* Альбомная: вырез уходит вбок, сверху — только то, что отдаёт система */
@@ -8372,6 +8376,8 @@
         .eiti-ps-hint[hidden] { display:none; }
         .eiti-ps-hint button { border:0; border-radius:10px; padding:7px 12px; background:var(--accent-color); color:var(--bg-color); font-weight:700; cursor:pointer; flex-shrink:0; }
         .eiti-ps-note { font-size:11px; opacity:0.5; line-height:1.35; padding:0 14px 14px; }
+        /* Кнопки шапки — по центру безопасной части. Для small icons × iOS то же делает правило v14.15.1 (через --eiti-si-safe-top),
+           здесь — для остальных случаев (пресет без iOS, обычная высота шапки) и боковой отступ в альбомной. Не дубль: значения совпадают. */
         html.eiti-phone .app-header .header-actions{top:calc(50% + var(--eiti-top-inset) / 2) !important;right:calc(14px + var(--eiti-side-inset)) !important;}
 </style>
 </head>
@@ -15214,9 +15220,13 @@
             'none': ['Без выреза (прямоугольный экран)', 'без отступов']
         };
         function _eitiPsL(x) { try { return window.EITI_I18N && EITI_I18N.tr ? EITI_I18N.tr(x) : x; } catch (e) { return x; } }
+        // Только собственные ключи пресетов: '__proto__', 'constructor', 'toString' и т.п. из localStorage → Авто
+        function _eitiPsHas(id) {
+            return id != null && !!window.EITI_PHONE_PRESETS && Object.prototype.hasOwnProperty.call(window.EITI_PHONE_PRESETS, id);
+        }
         function eitiPhoneScreenGet() {
             var v = null; try { v = localStorage.getItem('eiti_phone_screen'); } catch (e) {}
-            return (v && window.EITI_PHONE_PRESETS && EITI_PHONE_PRESETS[v]) ? v : 'auto';
+            return (v && _eitiPsHas(v)) ? v : 'auto';
         }
         // Подсказка по userAgent / размеру экрана — ТОЛЬКО предложение, сама ничего не меняет.
         function eitiPhoneScreenGuess(ua, w, h, model) {
@@ -15239,7 +15249,7 @@
         function _eitiPsRenderPreview(id) {
             var ph = document.getElementById('eiti-ps-phone'), cap = document.getElementById('eiti-ps-cap');
             if (!ph) return;
-            var v = (window.EITI_PHONE_PRESETS || {})[id], sc = 0.25;
+            var v = _eitiPsHas(id) ? window.EITI_PHONE_PRESETS[id] : null, sc = 0.25;
             ph.setAttribute('data-cut', v ? v[4] : 'auto');
             ph.querySelector('.ps-top').style.height = (v ? Math.round(v[0] * sc) : 0) + 'px';
             ph.querySelector('.ps-bot').style.height = (v ? Math.round(v[1] * sc) : 0) + 'px';
@@ -15262,11 +15272,16 @@
             _eitiPsRenderPreview(cur);
             _eitiPsRenderHint(cur);
         }
+        var _eitiPsHintGen = 0; // поколение подсказки: ответ getHighEntropyValues от прошлой отрисовки игнорируется
         function _eitiPsRenderHint(cur) {
             var box = document.getElementById('eiti-ps-hint');
+            var gen = ++_eitiPsHintGen;
             if (!box) return;
             var show = function (g) {
-                if (!g || g === cur || cur !== 'auto') { box.hidden = true; return; }
+                // асинхронный ответ мог прийти после ручного выбора — перечитываем фактический пресет
+                if (gen !== _eitiPsHintGen) return;
+                cur = eitiPhoneScreenGet();
+                if (!g || g === cur || cur !== 'auto' || !_eitiPsHas(g)) { box.hidden = true; return; }
                 document.getElementById('eiti-ps-hint-text').textContent = _eitiPsL('Похоже, у вас {x} — применить?').replace('{x}', _eitiPsL(EITI_PS_LABELS[g][0]));
                 document.getElementById('eiti-ps-hint-btn').onclick = function () { eitiSetPhoneScreen(g); };
                 box.hidden = false;
@@ -15280,7 +15295,8 @@
             } catch (e) {}
         }
         function eitiSetPhoneScreen(id) {
-            if (!window.EITI_PHONE_PRESETS || !EITI_PHONE_PRESETS[id]) id = 'auto';
+            if (!_eitiPsHas(id)) id = 'auto';
+            _eitiPsHintGen++;
             try { if (id === 'auto') localStorage.removeItem('eiti_phone_screen'); else localStorage.setItem('eiti_phone_screen', id); } catch (e) {}
             if (typeof window.eitiPhoneScreenApply === 'function') window.eitiPhoneScreenApply(id);
             eitiRenderPhoneScreen();
