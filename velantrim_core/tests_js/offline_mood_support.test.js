@@ -64,6 +64,60 @@ test('crisis: media/info context → soft reply with numbers; hyperbole and "н�
     assert.equal(CARE.detect(q, CARE.create()), null, q);
 });
 
+
+test('crisis: explicit personal danger outranks incidental media/info words and keeps follow-up', () => {
+  const personal = [
+    'Я не хочу жить, но вчера смотрел фильм',
+    'Посоветуй фильм, я хочу умереть',
+    'Я думаю о самоубийстве после книги',
+    'Песня про самоубийство, а мне хочется умереть',
+    'Хочу причинить себе вред',
+    'Мне хочется причинить себе вред, как в фильме',
+    'Я хочу уснуть и не проснуться после фильма',
+    'Я боюсь причинить себе вред после фильма',
+    'I want to die. Я читал книгу',
+    'В книге герой говорит не хочу жить, а я тоже не хочу жить',
+    'Мне незачем жить в этом городе после фильма',
+    'Я не хочу умирать, но хочу умереть после фильма',
+    'Everyone is better off without me, фильм'
+  ];
+  for (const q of personal) {
+    const st = CARE.create(), r = CARE.detect(q, st);
+    assert.equal(r && r.id, 'crisis', q);
+    assert.match(r.text, /в безопасности\?/i, q);
+    for (const number of NUMS) assert.ok(r.text.includes(number), q + ' lacks ' + number);
+    assert.equal(CARE.detect('нет', st).id, 'crisis_unsafe', q + ': follow-up must remain active');
+  }
+  const acute = CARE.detect('У меня в руках нож, смотрел фильм', CARE.create());
+  assert.equal(acute.id, 'crisis_acute');
+  assert.match(acute.text.split('\n')[0], /112/);
+  assert.equal(CARE.detect('I want to die', CARE.create()).id, 'crisis_en');
+});
+
+test('crisis: neutral media queries and attributed character quotes stay informational', () => {
+  const neutral = [
+    'Фильм про суицид',
+    'Книга о самоубийстве',
+    'Что такое суицид?',
+    'Статистика суицидов в фильме',
+    'Я читаю книгу о самоубийстве',
+    'Я пишу статью про самоубийство',
+    'Мне нужна книга про самоубийство',
+    'В книге герой говорит не хочу жить',
+    'В фильме герой говорит: «я хочу умереть»',
+    'Я не хочу умирать, книга про суицид'
+  ];
+  for (const q of neutral) {
+    const st = CARE.create(), r = CARE.detect(q, st);
+    assert.equal(r && r.id, 'crisis_info', q);
+    assert.match(r.text, /Если речь о тебе/, q);
+    assert.equal(CARE.detect('нет', st), null, q + ': informational reply must not open crisis follow-up');
+  }
+  for (const q of ['Я не хочу умирать', 'В фильме герой хочет умереть', 'Убить время за фильмом']) {
+    assert.equal(CARE.detect(q, CARE.create()), null, q);
+  }
+});
+
 test('crisis follow-ups: safe / unsafe; cant_cope → safety question → да → crisis, нет → listening', () => {
   let st = CARE.create();
   assert.equal(CARE.detect('не хочу жить', st).id, 'crisis');
