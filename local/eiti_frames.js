@@ -8,7 +8,10 @@
 //   • продолжение диалога («да / ещё / а зачем? / короче / хватит») — только после ответа фреймов;
 //   • v14.14.0 talk: мнение / рассуждение / «что будет, если» / другой вариант / за и против / по шагам / итог / эмоции / «повтори» —
 //     грамматика триггеров (pack.slots), ranked-шаблоны ответов (pack.acts) с ротацией без повтора подряд, контекст (тема, прошлая тема, последний ответ);
-//   • defer-список (стихи, сказки, заметки, файлы, погода…) → молчим, отвечают другие движки.
+//   • defer-список (стихи, сказки, заметки, файлы, погода…) → молчим, отвечают другие движки; только точные формы (не «стихия», не «погодите»).
+//   • v14.14.0 intents+: где / можно ли / стоит ли / есть ли / правда ли / разве / tag («…, да?») / «X или Y» / «перечисли» / «как называется» /
+//     постпозиция («квазар это что») / эллипсис («а собака?») / обращения («алиса, …») / сленг («чё», «скока») / индефиниты («кто-то») /
+//     составные («что такое X и почему») / творительный падеж («с китом» → «кит»); личные эмоции → мимо фреймов (EitiCare/диалоги).
 // Данные — local/eiti_frames.json (правится без кода). Хост (index.html) даёт lookup(тема) и pass(текст).
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -22,7 +25,22 @@
     return String(s == null ? '' : s).toLowerCase().replace(/ё/g, 'е')
       .replace(/[^a-zа-я0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
   }
-  function toks(s) { var n = norm(s); return n ? n.split(' ') : []; }
+  // v14.14.0 intents+: «кто-то / что-нибудь / кое-что» → одно слово (не вопрос); сленг («чё», «скока») → норма (pack.canon_words)
+  var INDEF = { 'кто': 1, 'что': 1, 'где': 1, 'когда': 1, 'как': 1, 'какой': 1, 'какая': 1, 'какое': 1, 'какие': 1, 'куда': 1, 'почему': 1, 'зачем': 1, 'сколько': 1, 'чей': 1, 'чего': 1, 'кого': 1, 'кому': 1, 'чем': 1, 'откуда': 1 };
+  var INDEF_T = { 'то': 1, 'нибудь': 1, 'либо': 1 };
+  var CW = {};
+  function toks(s) {
+    var n = norm(s); if (!n) return [];
+    var a = n.split(' '), o = [];
+    for (var i = 0; i < a.length; i++) {
+      var x = a[i], nx = a[i + 1];
+      if (CW[x]) { if (CW[x].length === 1 && INDEF[CW[x][0]] && nx && INDEF_T[nx]) { o.push(CW[x][0] + nx); i++; continue; } o.push.apply(o, CW[x]); continue; }
+      if (nx && INDEF[x] && INDEF_T[nx]) { o.push(x + nx); i++; continue; }
+      if (x === 'кое' && nx && INDEF[nx]) { o.push('кое' + nx); i++; continue; }
+      o.push(x);
+    }
+    return o;
+  }
 
   // ── стеммер (упрощённый Snowball-RU; группы «после а/я» проверяются вручную, без lookbehind) ──
   var VOW = /[аеиоуыэюя]/;
@@ -121,9 +139,19 @@
   function compile(pack) {
     if (!pack || !Array.isArray(pack.intents)) return null;
     var slots = pack.slots || {};
-    var c = { raw: pack, fillers: phrases(pack.fillers), stop: phrases(pack.stop), self: set(pack.self), pron: set(pack.pron), slips: {}, defer: (pack.defer || []).map(norm).filter(Boolean),
+    CW = {};
+    Object.keys(pack.canon_words || {}).forEach(function (k) { var v = norm(pack.canon_words[k]); if (norm(k) && v) CW[norm(k)] = v.split(' '); });
+    // defer — только точные формы (грамматика разворачивается): «стих/стихи», но не «стихия»; «погода», но не «погодите»
+    var defer = {};
+    (pack.defer || []).forEach(function (x) { expand(x, slots).forEach(function (e) { var n = norm(e); if (n) defer[n] = 1; }); });
+    var c = { raw: pack, fillers: phrases(pack.fillers), stop: phrases(pack.stop), self: set(pack.self), pron: set(pack.pron), slips: {}, defer: defer,
+      wake: phrases(pack.wake), wakeSoft: phrases(pack.wake_soft), tags: phrases(pack.tags), interj: set(pack.interj), nofz: set(pack.nofuzzy_fams), post: phrases(pack.postdef),
+      ell: set(pack.ellipsis_lead), ellStop: set(pack.ellipsis_stop), whole: {}, keep: phrases(pack.filler_keep), deferNot: phrases(pack.defer_not), emo: null,
       mods: [], intents: [], idx: {}, byId: {}, fu: [], vocab: {}, vfirst: {}, fams: {}, nvar: 0, chain: pack.chain || ['def', 'ex', 'why', 'use', 'how', 'when', 'origin'] };
     Object.keys(pack.slips || {}).forEach(function (k) { c.slips[norm(k)] = norm(pack.slips[k]); });
+    Object.keys(pack.whole || {}).forEach(function (id) { phrases(pack.whole[id], slots).forEach(function (t) { c.whole[t.join(' ')] = id; }); });
+    var eg = pack.emotion_guard;
+    if (eg) c.emo = { crisis: phrases(eg.crisis).map(function (t) { return ' ' + t.join(' ') + ' '; }), strong: set(eg.strong), weak: set(eg.weak), weakPh: phrases(eg.weak).filter(function (t) { return t.length > 1; }).map(function (t) { return ' ' + t.join(' ') + ' '; }), me: set(eg.me), notq: set(eg.notq) };
     // exact: слова без стемминга («сложнее» ≠ «сложно», «понятнее» ≠ «понятно»)
     var exact = set(pack.exact), sx = c.sx = function (w) { return exact[w] ? w + '!' : stem(w); };
     Object.keys(pack.modifiers || {}).forEach(function (k) { stemmed(pack.modifiers[k], sx).forEach(function (t) { c.mods.push({ id: k, t: t }); }); });
@@ -142,7 +170,8 @@
       phrases(it.triggers, slots).forEach(function (t) {
         // слова-паразиты внутри триггера прозрачны (они размечаются раньше); одиночное служебное слово — не триггер
         var n0 = t.length;
-        t = t.filter(function (w) { return !fill1[w]; });
+        var kp = {}; c.keep.forEach(function (ph) { var i = find(t, [], ph, 0); if (i >= 0) for (var j = 0; j < ph.length; j++) kp[i + j] = 1; });
+        t = t.filter(function (w, i) { return kp[i] || !fill1[w]; });
         multiF.forEach(function (ph) { var i; while ((i = find(t, [], ph, 0)) >= 0) t.splice(i, ph.length); });
         // «(ну)? так» → «так»: укороченный до одного служебного слова вариант — не триггер (исходные «как», «почему» остаются)
         if (!t.length || (t.length === 1 && n0 > 1 && ((stopRaw[t[0]] && t[0].length <= 4) || c.pron[t[0]] || SEP[t[0]]))) return;
@@ -165,7 +194,7 @@
   }
   function load(pack) { var c = null; try { c = compile(pack); } catch (e) { c = null; } P = c; return !!P; }
   function loaded() { return !!P; }
-  function create() { return { card: null, told: {}, offer: null, at: 0, rot: {}, last: null, prev: null, lastGo: null }; }
+  function create() { return { card: null, told: {}, offer: null, at: 0, rot: {}, last: null, prev: null, lastGo: null, lastIntent: null, lastFam: null }; }
   function prep(st) { if (!st.told) st.told = {}; if (!st.rot) st.rot = {}; return st; }
   function fresh(st, now) { return !!(st && st.card && (now || Date.now()) - st.at < TTL); }
   // статистика пакета (для тестов и отчёта): интенты, семейства речевых актов, развёрнутые варианты триггеров
@@ -205,12 +234,38 @@
     list.forEach(function (ph) { var i; while ((i = find(wl, used, ph, 0)) >= 0) { for (var j = 0; j < ph.length; j++) used[i + j] = tag || 1; hit = true; } });
     return hit;
   }
-  function isDefer(w) {
-    for (var i = 0; i < P.defer.length; i++) {
-      var d = P.defer[i];
-      if (w === d || (w.indexOf(d) === 0 && (d.length >= 4 || w.length <= d.length + 2))) return true;
-    }
+  function isDefer(w) { return !!P.defer[w]; }
+  // v14.14.0 intents+: личная эмоция («мне грустно», «я устала») → не тема для фреймов (EitiCare / диалоги / тёплый ответ)
+  function emoGuard(w) {
+    var E = P && P.emo; if (!E || !w.length) return false;
+    var s = ' ' + w.join(' ') + ' ', i, me = false, strong = false, weak = false, notq = false;
+    for (i = 0; i < E.crisis.length; i++) if (s.indexOf(E.crisis[i]) >= 0) return true;
+    for (i = 0; i < w.length; i++) { if (E.me[w[i]]) me = true; if (E.strong[w[i]]) strong = true; if (E.weak[w[i]]) weak = true; if (E.notq[w[i]]) notq = true; }
+    if (strong && !notq && (me || w.length <= 3)) return true;
+    if (weak && me && !notq && w.length <= 4) return true;
+    if (me && !notq && w.length <= 6) for (i = 0; i < E.weakPh.length; i++) if (s.indexOf(E.weakPh[i]) >= 0) return true;
     return false;
+  }
+  function startsWith(w, ph) { if (ph.length > w.length) return false; for (var i = 0; i < ph.length; i++) if (w[i] !== ph[i]) return false; return true; }
+  function endsWith(w, ph) { var o = w.length - ph.length; if (o < 0) return false; for (var i = 0; i < ph.length; i++) if (w[o + i] !== ph[i]) return false; return true; }
+  // обращения («алиса, …», «эити»): имена — в начале и в конце; «бот / робот / ассистент» — только в начале и только как обращение
+  function stripWake(w, raw) {
+    var out = w.slice(), ch = true, n = 0, head = norm(String(raw || '').split(/[,!:?]/)[0]);
+    while (ch && n++ < 4) {
+      ch = false;
+      var lead = 0; while (lead < out.length && P.stopRaw[out[lead]] && P.fillers.some(function (f) { return f.length === 1 && f[0] === out[lead]; }) && lead < 2) lead++;
+      for (var i = 0; i < P.wake.length; i++) {
+        var ph = P.wake[i], rest = out.slice(lead);
+        if (out.length - ph.length >= 1 && startsWith(rest, ph)) { out = out.slice(0, lead).concat(rest.slice(ph.length)); ch = true; break; }
+        if (out.length - ph.length >= 2 && endsWith(out, ph)) { out = out.slice(0, out.length - ph.length); ch = true; break; }
+      }
+      if (ch) continue;
+      for (var j = 0; j < P.wakeSoft.length; j++) {
+        var q = P.wakeSoft[j];
+        if (out.length - q.length >= 2 && startsWith(out, q) && (head === q.join(' ') || head === 'эй ' + q.join(' '))) { out = out.slice(q.length); ch = true; head = ''; break; }
+      }
+    }
+    return out;
   }
   // опечатка на одну букву (замена/пропуск/лишняя/перестановка), первая буква совпадает
   function dl1(a, b) {
@@ -240,7 +295,9 @@
   function core(w, fixedW, st, now, noCtx, slip) {
     var used = [], sw = fixedW.map(P.sx), fr = fresh(st, now);
     markAll(fixedW, used, P.fillers, 'f');
-    var best = null, bestN = 0, mods = {};
+    // «что значит X»: «значит» здесь не паразит
+    P.keep.forEach(function (ph) { var i = find(fixedW, [], ph, 0); if (i >= 0) for (var j = 0; j < ph.length; j++) if (used[i + j] === 'f') used[i + j] = undefined; });
+    var best = null, bestN = 0, mods = {}, also = [], alsoF = {};
     P.mods.forEach(function (m) { var pos = findP(sw, used, m.t); if (pos) { mods[m.id] = 1; pos.forEach(function (j) { used[j] = 'm'; }); } });
     var hits = [], seen = {};
     for (var a = 0; a < sw.length; a++) {
@@ -256,9 +313,12 @@
     hits.sort(function (x, y) { return y.sc - x.sc; });
     hits.forEach(function (h) {
       var pos = findP(sw, used, h.it.t); if (!pos) return;
-      if (!best) { best = h.it.meta; bestN = h.it.t.length; }
+      if (!best) { best = h.it.meta; bestN = h.it.t.length; alsoF[best.field] = 1; }
+      else if (ALSO[h.it.field] && !h.it.ctx && !alsoF[h.it.field] && also.length < 2) { alsoF[h.it.field] = 1; also.push({ intent: h.it.id, fam: h.it.meta.fam, field: h.it.field, at: pos[0] }); }
       pos.forEach(function (j) { used[j] = 'i'; });
     });
+    // «как, короче?» — одиночное «как» при модификаторе — это модификатор
+    if (best && best.id === 'q_how' && bestN === 1 && (mods.short || mods.simple || mods.long)) { best = null; also = []; }
     // «хм, а в двух словах?» — модификатор сильнее слабого реплики-интента (хм/ну/да)
     if (best && best.prio <= 2 && (mods.short || mods.simple || mods.long)) best = null;
     if (!best && mods.short) best = P.byId.ask_essence || { id: 'ask_essence', field: 'short', fam: 'essence', drop: {}, dropS: {} };
@@ -275,29 +335,83 @@
       if (used[x]) continue;
       if (P.pron[t]) { pron = true; continue; }
       if (P.self[t]) { self = true; continue; }
+      if (P.interj[t]) continue;
       if (drop[t] || dropS[P.sx(t)]) continue;
       topic.push(w[x]); topics[topics.length - 1].push(w[x]);
     }
     topics = topics.filter(function (q) { return q.length; }).map(function (q) { return q.join(' '); });
     var tp = topic.join(' ');
+    // составной вопрос («что такое квазар и почему он светится») — тема из первой части
+    if (also.length && topics.length > 1) tp = topics[0];
     if (best.ctx && (tp || !fr)) return 0;
     // оговорка диктовки («поцелуй» → «поясни») — только если есть тема или «это/он» («поцелуй меня» — не вопрос)
     if (slip && !tp && !pron) return null;
     var field = best.field;
     if (field === 'def' && mods.short) field = 'short';
     var tpl = (P.raw.canon || {})[field];
+    also.sort(function (a, b) { return a.at - b.at; });
     return { kind: 'ask', n: bestN, intent: best.id, fam: best.fam || best.id, field: field, mods: mods, topic: tp, topics: topics, pron: pron, self: self, slip: slip,
-      fixed: slip ? fixedW.join(' ') : null, canon: tp && tpl ? tpl.replace('{t}', tp) : null };
+      fixed: slip ? fixedW.join(' ') : null, canon: tp && tpl ? tpl.replace('{t}', tp) : null, also: also };
+  }
+  var ALSO = { why: 1, use: 1, when: 1, how: 1, who: 1, origin: 1, count: 1, ex: 1, where: 1, verify: 1 };
+  function run(w, fixedW, st, now, slip) { var r = core(w, fixedW, st, now, false, slip); if (r === 0) r = core(w, fixedW, st, now, true, slip); return r; }
+  // слова темы без служебных/паразитов/местоимений
+  function content(w) {
+    var used = [];
+    markAll(w, used, P.fillers, 'f'); markAll(w, used, P.stop, 's');
+    return w.filter(function (x, i) { return !used[i] && !P.self[x] && !P.pron[x] && !P.interj[x] && !SEP[x]; });
+  }
+  function mk(intent, fam, field, topic, topics, extra) {
+    var m = P.byId[intent], tpl = (P.raw.canon || {})[field];
+    var r = { kind: 'ask', n: 2, intent: intent, fam: (m && m.fam) || fam, field: (m && m.field) || field, mods: {}, topic: topic, topics: topics || (topic ? [topic] : []), pron: false, self: false, slip: null, fixed: null,
+      canon: topic && tpl ? tpl.replace('{t}', topic) : null, also: [] };
+    for (var k in extra || {}) r[k] = extra[k];
+    return r;
+  }
+  // формы без явного триггера: tag-вопрос, «X или Y», постпозиция «X это (что)», эллипсис «а собака?»
+  function shapes(w, st, now, r) {
+    var fr = fresh(st, now), i;
+    // «X или Y» — выбор/сравнение
+    var oi = w.indexOf('или');
+    if (oi > 0 && oi < w.length - 1 && w[w.length - 1] !== 'нет' && (!r || /^(ask_define|ask_tell|q_verify|ask_advice|ask_essence)$/.test(r.intent))) {
+      var L = content(w.slice(0, oi)), R = content(w.slice(oi + 1));
+      if (r && r.topics && r.topics.length === 2) { L = r.topics[0].split(' '); R = r.topics[1].split(' '); }
+      if (L.length && R.length && L.length <= 4 && R.length <= 4) return mk('ask_choose', 'choice', 'cmp', L.join(' ') + ' ' + R.join(' '), [L.join(' '), R.join(' ')], { choice: true });
+    }
+    if (r) return r;
+    // постпозиция: «квазар это», «марс это что», «песнь о нибелунгах что такое» (последнее ловит обычный триггер)
+    for (i = 0; i < P.post.length; i++) {
+      if (endsWith(w, P.post[i]) && w.length > P.post[i].length) {
+        var c = content(w.slice(0, w.length - P.post[i].length));
+        if (c.length && c.length <= 5) return mk('ask_define', 'define', 'def', c.join(' '), null, { post: true });
+      }
+    }
+    // эллипсис: «а собака?» после ответа фреймов → тот же вопрос про новую тему
+    if (fr && st.lastGo && w.length >= 2 && w.length <= 5 && P.ell[w[0]] && !P.ellStop[w[1]]) {
+      var e = content(w.slice(1));
+      if (e.length && e.length === w.length - 1 - w.slice(1).filter(function (x) { return P.stopRaw[x]; }).length) {
+        var go = st.lastGo, fld = (go === 'def' || go === 'short' || ALSO[go]) ? go : 'def';
+        return mk(st.lastIntent && P.byId[st.lastIntent] && P.byId[st.lastIntent].field === fld ? st.lastIntent : 'ask_define', st.lastFam || 'define', fld, e.join(' '), null, { ellipsis: true, field: fld });
+      }
+    }
+    return null;
   }
 
   // parse(text, st, now) → null | {kind:'defer'} | {kind:'fu', go, fam} | {kind:'ask', intent, fam, field, mods, topic, topics, pron, slip, fixed, canon}
   function parse(text, st, now) {
     if (!P) return null;
     var s = String(text || '');
-    if (!s || s.length > 220 || !/[а-яё]/i.test(s)) return null;
-    var w = toks(s); if (!w.length || w.length > 24) return null;
-    for (var d = 0; d < w.length; d++) if (isDefer(w[d])) return { kind: 'defer' };
+    if (!s || s.length > LIM_C || !/[а-яё]/i.test(s)) return null;
+    var w = toks(s); if (!w.length || w.length > LIM_W) return null;
+    // defer — только если это не вопрос о понятии («песнь о нибелунгах что такое», «что такое стих»)
+    var dq = P.deferNot.some(function (ph) { return find(w, [], ph, 0) >= 0; });
+    if (!dq) for (var d = 0; d < w.length; d++) if (isDefer(w[d])) return { kind: 'defer' };
+    if (emoGuard(w)) return { kind: 'pass', intent: 'mood', fam: 'mood' };
+    w = stripWake(w, s);
     var fr = fresh(st, now);
+    // целые реплики («как дела», «а ты», «что ты умеешь») — отвечают диалоги, не карточки
+    var wf = w.filter(function (x) { return !(P.stopRaw[x] && P.fillers.some(function (f) { return f.length === 1 && f[0] === x; })) || x === 'а'; }).join(' '), wid = P.whole[wf] || P.whole[w.join(' ')];
+    if (wid) return { kind: 'pass', intent: wid, fam: (P.byId[wid] && P.byId[wid].fam) || 'social' };
     // продолжение диалога — только после ответа фреймов
     if (fr) {
       var raw = w.join(' '), rw = w.filter(function (x) { return !P.stopRaw[x] && !P.pron[x]; }), red = rw.map(P.sx).join(' ');
@@ -307,8 +421,17 @@
     }
     var slip = null, fixedW = w.slice();
     for (var k = 0; k < w.length; k++) if (P.slips[w[k]]) { slip = w[k]; fixedW[k] = P.slips[w[k]]; }
-    var r = core(w, fixedW, st, now, false, slip);
-    if (r === 0) r = core(w, fixedW, st, now, true, slip);
+    // tag-вопрос: «марс красный, да?» / «…, не так ли?» — хвост снимается
+    for (var g = 0; g < P.tags.length; g++) {
+      var tg = P.tags[g];
+      if (w.length - tg.length >= 2 && endsWith(w, tg)) {
+        var tw = w.slice(0, w.length - tg.length), tf = fixedW.slice(0, w.length - tg.length), tr = run(tw, tf, st, now, slip);
+        if (tr) { tr.tag = true; return tr; }
+        var tc = content(tw);
+        if (tc.length) return mk('q_tag', 'doubt', 'verify', tc.slice(0, 1).join(' '), null, { tag: true, claim: tc.join(' ') });
+      }
+    }
+    var r = run(w, fixedW, st, now, slip);
     if (!r || r.n === 1) {
       // опечатки в словах-триггерах («обьясни», «щитаешь», «премер») — одна буква; также когда сработало лишь одно слово
       // («как ты ситаешь» → не «как», а «как ты считаешь»)
@@ -317,11 +440,15 @@
         var r2 = core(w, fz, st, now, false, slip);
         if (r2 === 0) r2 = core(w, fz, st, now, true, slip);
         if (r2 && !r2.topic && !r2.pron && !fr) r2 = null;
+        // эмоции/реплики — без «исправления опечаток» («кайф» ≠ «кафе», «бывай» ≠ «бывает»)
+        if (r2 && P.nofz[r2.fam]) r2 = null;
         if (r2 && (!r || r2.n > 1)) { r = r2; r.typo = true; }
       }
     }
-    return r || null;
+    if (r && r.field === 'pass') return { kind: 'pass', intent: r.intent, fam: r.fam, topic: r.topic };
+    return shapes(w, st, now, r) || null;
   }
+  var LIM_C = 400, LIM_W = 40;
 
   function fill(tpl, o) { return String(tpl || '').replace(/\{(\w+)\}/g, function (_m, k) { return o[k] != null ? o[k] : ''; }); }
   // ротация вариантов формулировки: по кругу, без повтора подряд (st.rot[key])
@@ -362,7 +489,7 @@
     return text;
   }
   // answer(card, field, mods, st, now) → {text, field, offer}
-  function answer(card, field, mods, st, now) {
+  function answer(card, field, mods, st, now, noTail) {
     mods = mods || {}; st = prep(st || create());
     setCard(card, st, now);
     var R = P.raw, fr = R.frames || {}, fru = R.field_ru || {}, f = card.f || {}, title = cap(card.title), text, v = vars(card, st);
@@ -380,7 +507,7 @@
       text = fill(rot(fr.missing, 'f:missing', st), { field: fru[field] || field, title: title, def: f.short || card.a });
     }
     st.told[field] = 1; st.lastGo = field;
-    text = tail(card, st, text);
+    if (!noTail) text = tail(card, st, text);
     st.last = text;
     return { text: text, field: field, offer: st.offer };
   }
@@ -482,7 +609,7 @@
     }
     var p = null;
     try { p = parse(text, st, now); } catch (e) { p = null; }
-    if (p && p.kind === 'defer') return pass(text);
+    if (p && (p.kind === 'defer' || p.kind === 'pass')) return pass(text);
     if (!p) {
       // v14.14.0: голое понятие («наука», «фотосинтез») — сначала обычный путь, затем карточка понятия (только kn)
       var bare = toks(text);
@@ -493,13 +620,25 @@
       });
     }
     if (p.kind === 'fu') return Promise.resolve(followUp(p.go, st, now));
+    st.lastIntent = p.intent; st.lastFam = p.fam;
     var field = p.field;
+    // тема в косвенном падеже («с китом», «водой») — пробуем начальную форму (только карточки понятий)
+    function look(t) {
+      return Promise.resolve(deps.lookup(t)).then(function (c) {
+        if (c) return c;
+        var vs = caseVariants(t), k = 0;
+        function nx() { if (k >= vs.length) return null; return Promise.resolve(deps.lookup(vs[k++])).then(function (c2) { return c2 && c2.kn ? c2 : nx(); }); }
+        return nx();
+      });
+    }
     var cur = fresh(st, now) ? st.card : null;
     if (field === 'next' || field === 'stop') return Promise.resolve(followUp(field, st, now));
     if (field === 'another' && st.lastGo === 'alt') field = 'alt';
     if (field === 'how_to') {
       // «посоветуй / что делать» — про текущую карточку понятия; иначе — другим движкам (как раньше)
       if (!p.topic && !cur) return pass(text);
+      // «а что ты советуешь» без темы и без «это/об этом» — личный совет, не карточка
+      if (!p.topic && !p.pron) return pass(text);
       field = 'advice';
     }
     var tk = isTalk(field);
@@ -516,18 +655,21 @@
     if (field === 'cmp') {
       if (p.topics.length === 1 && cur) {
         // «а сравни с гравитацией» — текущая тема + новая
-        return Promise.resolve(deps.lookup(p.topics[0])).then(function (c) {
+        return look(p.topics[0]).then(function (c) {
           if (c && c.id !== cur.id) return compare(cur, c, st, now);
           return pass(text);
         });
       }
       if (p.topics.length !== 2) return pass(text);
-      return Promise.all([deps.lookup(p.topics[0]), deps.lookup(p.topics[1])]).then(function (cs) {
+      return Promise.all([look(p.topics[0]), look(p.topics[1])]).then(function (cs) {
+        // «чай или кофе» — только если обе темы — точно найденные карточки понятий («правда или действие» — игра, не сравнение)
+        if (p.choice && !(cs[0] && cs[1] && cs[0].kn && cs[1].kn && near(cs[0], p.topics[0]) && near(cs[1], p.topics[1]))) return pass(text);
         if (cs[0] && cs[1] && cs[0].id !== cs[1].id) return compare(cs[0], cs[1], st, now);
         return pass(text);
       });
     }
-    return Promise.resolve(deps.lookup(p.topic)).then(function (card) {
+    return look(p.topic).then(function (card) {
+      if (p.ellipsis) return card && card.kn ? answer(card, field, p.mods, st, now).text : pass(text);
       if (tk) return card && card.kn ? talk(card, field, st, now) : pass(text);
       if (card && !card.kn && (field === 'def' || field === 'short')) {
         // обычная запись KB (не карточка понятия) — пусть отвечает KB в своём формате (🧠 KB · …, «Похожие»); карточка — запасной вариант
@@ -536,6 +678,13 @@
       }
       if (card && card.kn) {
         if (cur && cur.id === card.id && field === 'def' && st.told.def && !p.mods.long) return followUp('next', st, now);
+        // составной вопрос: «что такое X и почему…» — ответы подряд, одно предложение продолжить в конце
+        if (p.also && p.also.length) {
+          var parts = [answer(card, field, p.mods, st, now, true).text];
+          p.also.forEach(function (a) { if (a.field !== field) parts.push(answer(card, a.field, {}, st, now, true).text); });
+          var out = tail(card, st, parts.join('\n\n'));
+          st.last = out; return out;
+        }
         return answer(card, field, p.mods, st, now).text;
       }
       return pass(text).then(function (r) {
@@ -545,6 +694,22 @@
     });
   }
 
+  // «китом» → «кит», «водой» → «вода», «солью» → «соль»: до 4 кандидатов начальной формы (последнее слово)
+  var CASES = [['ями', 'я'], ['ами', ''], ['ами', 'а'], ['ьей', 'ья'], ['ой', 'а'], ['ей', 'я'], ['ей', 'ь'], ['ом', ''], ['ем', 'ь'], ['ем', 'е'], ['ью', 'ь'], ['ою', 'а'], ['ах', 'а'], ['ах', ''], ['ям', 'я'], ['ов', ''], ['е', 'а'], ['е', ''], ['у', 'а'], ['у', ''], ['ю', 'я'], ['ю', 'ь']];
+  function caseVariants(t) {
+    var w = norm(t).split(' '), last = w[w.length - 1] || '', out = [];
+    if (last.length < 4) return out;
+    for (var i = 0; i < CASES.length && out.length < 4; i++) {
+      var e = CASES[i][0];
+      if (ends(last, e) && last.length - e.length >= 2) {
+        var v = w.slice(0, -1).concat([last.slice(0, last.length - e.length) + CASES[i][1]]).join(' ');
+        if (out.indexOf(v) < 0 && v !== norm(t)) out.push(v);
+      }
+    }
+    return out;
+  }
+  function near(card, t) { var a = stem(norm(card.title).split(' ')[0] || ''), b = stem(norm(t).split(' ')[0] || ''); return !!a && !!b && a.slice(0, 4) === b.slice(0, 4); }
+  function emoText(text) { if (!P) return false; try { return emoGuard(toks(text)); } catch (e) { return false; } }
   // тема для запасных путей (журнал «нет в базе», карточки из Википедии, кнопки) — из фрейма, иначе вся фраза без паразитов
   function topicOf(text) {
     var p = null; try { p = parse(text, null, 0); } catch (e) {}
@@ -598,6 +763,6 @@
   }
 
   return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond, talk: talk, expand: expand, stats: stats, triggers: triggers,
-    topicOf: topicOf, fallbackText: fallbackText, marker: marker, stem: stem, norm: norm, TTL: TTL,
+    topicOf: topicOf, fallbackText: fallbackText, marker: marker, stem: stem, norm: norm, TTL: TTL, emoGuard: emoText, caseVariants: caseVariants,
     wikiSearchUrl: wikiSearchUrl, wikiSummaryUrl: wikiSummaryUrl, wikiPick: wikiPick, wikiClean: wikiClean, wikiFormat: wikiFormat };
 });
