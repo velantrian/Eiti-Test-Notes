@@ -7,7 +7,7 @@
 
 1. [Общая схема](#1-общая-схема)
 2. [Структура файлов](#2-структура-файлов)
-3. [Хранилище: IndexedDB `eiti_v4` v17](#3-хранилище-indexeddb-eiti_v4-v17)
+3. [Хранилище: IndexedDB `eiti_v4` v18](#3-хранилище-indexeddb-eiti_v4-v17)
 4. [Модель дневника](#4-модель-дневника-journal--contexts)
 5. [Синхронизация с Google Drive](#5-синхронизация-с-google-drive)
 6. [Офлайн-конвейер ответа](#6-офлайн-конвейер-ответа)
@@ -33,7 +33,7 @@ EITI — полностью клиентское PWA. Нет backend, нет с�
 ```mermaid
 flowchart LR
     U([👤 Пользователь]) --> UI["index.html<br/>UI + runtime"]
-    UI <--> IDB[("IndexedDB<br/>eiti_v4 v17")]
+    UI <--> IDB[("IndexedDB<br/>eiti_v4 v18")]
     UI <--> LS[("localStorage<br/>настройки, ключи")]
     UI <--> SQL["SQLite WASM<br/>производный поисковый индекс"]
     UI --> OFF["Офлайн-слои<br/>local/ · kb/ · offline/"]
@@ -80,9 +80,9 @@ flowchart LR
 └── .github/workflows/      # test.yml (CI), pages.yml (деплой)
 ```
 
-## 3. Хранилище: IndexedDB `eiti_v4` v17
+## 3. Хранилище: IndexedDB `eiti_v4` v18
 
-База открывается как `indexedDB.open('eiti_v4', 17)`. При обновлении версии из другой вкладки приложение закрывает соединение и просит перезапуск.
+База открывается как `indexedDB.open('eiti_v4', 18)`. При обновлении версии из другой вкладки приложение закрывает соединение и просит перезапуск.
 
 | Store | Ключ | Что хранит |
 |---|---|---|
@@ -106,7 +106,7 @@ flowchart LR
 | **`journal`** | `id` | **Дневник: одна запись на пункт** (индексы `chatId`, `contextId`, `kind`, `updatedAt`) |
 | **`contexts`** | `id` | **Темы дневника** |
 
-`localStorage` хранит тему, флаги UI, язык интерфейса, API-ключи и совместимые ключи профиля. SQLite WASM — только производный индекс: его можно перестроить из IDB в любой момент. Полная таблица stores (с индексами), ключей localStorage и слоёв памяти — в [§12](#12-полная-карта-хранения-данных); после #48 добавляется store `memkv` (БД v18).
+`localStorage` хранит тему, флаги UI, язык интерфейса, API-ключи и совместимые ключи профиля. SQLite WASM — только производный индекс: его можно перестроить из IDB в любой момент. Полная таблица stores (с индексами), ключей localStorage и слоёв памяти — в [§12](#12-полная-карта-хранения-данных); после интеграции #46 добавлен store `memkv` (БД v18).
 
 ## 4. Модель дневника (`journal` + `contexts`)
 
@@ -311,7 +311,7 @@ flowchart LR
 
 | Слой | Технология | Источник истины? | Что хранит |
 |---|---|---|---|
-| Основные данные | IndexedDB `eiti_v4` (v17; **v18 после #48**) | **да** | чаты, сообщения, заметки, файлы, KB, L2, L3, дневник, граф, бэкапы |
+| Основные данные | IndexedDB `eiti_v4` (v18) | **да** | чаты, сообщения, заметки, файлы, KB, L2, L3, дневник, граф, бэкапы |
 | Офлайн-кэш движков | IndexedDB `eiti_offline` v1, store `kv` | нет (кэш) | разобранные офлайн-пакеты / состояние офлайн-диалогов (`kv(mode,key,val)` в `EitiOffline`) |
 | Поисковый индекс | SQLite WASM (`sql-wasm.js/.wasm`, sql.js) | нет (производный) | FTS5 (`chat_history_fts`, `kb_idx`, `audit_log`); сериализуется `_persistSQL()` в IDB `files` под именем `__sql_db__` |
 | Настройки и флаги | localStorage | да, для настроек | тема, язык, провайдеры, модели, флаги UI, ключи API, короткий профиль |
@@ -327,7 +327,7 @@ flowchart LR
 | `notes` | `id` | `updated` | `{id,title,body,folder,updated,…}` | `notesSave` |
 | `note_history` | `id` (autoInc) | `note_id`, `ts` | версии заметок | редактор заметок |
 | `l2` | `chatId` | — | дайджест сессии `{chatId,title,digest,…}` | L2-дайджесты |
-| `l3` | `id` (= категория: `name`, `city`, `goal`…) | — | `{id,label,value,source,ts}`; **после #49:** + `correction_history[]` | `_l3Save` |
+| `l3` | `id` (= категория: `name`, `city`, `goal`…) | — | `{id,label,value,source,ts}`; + `correction_history[]` (v14.15.0) | `_l3Save` |
 | `kb` | `id` | — | факт KB с `epistemic_state`, `confidence`, `memory_layer` | `eitiKBSaveAsync` |
 | `kb_vectors` | `id` | — | эмбеддинги | RAG |
 | `memory` | `id` | `created`, `tag` | `{id,text,tag,created,source:'user'|'ai'}` (`[MEM_ADD]`) | долгосрочная память |
@@ -337,10 +337,10 @@ flowchart LR
 | `tasks` | `id` (autoInc) | `status`,`priority`,`due_date` | задачи `[TASK_ADD:…]` | задачи |
 | `reminders` | `id` | `ts` | напоминания | напоминания |
 | `tts_cache` | `id` | `chatId`, `ts` | кэш озвучки | TTS |
-| `backups` | `id` | — | `latest` (локальная копия); **после #48:** `mem_ls_migration_v1` | бэкапы, миграция |
+| `backups` | `id` | — | `latest` (локальная копия); `mem_ls_migration_v1` (после PR #46) | бэкапы, миграция |
 | `journal` | `id` | `chatId`,`contextId`,`kind`,`updatedAt` | пункт дневника (`del:1` — надгробие) | `local/eiti_journal.js` |
 | `contexts` | `id` | — | темы дневника | дневник |
-| **`memkv`** *(после #48)* | `k` | — | `{k:'learned'|'archive', v:[…], updatedAt}` — выученные факты и архив | `eitiLearnSave` |
+| **`memkv`** (v14.15.0) | `k` | — | `{k:'learned'|'archive', v:[…], updatedAt}` — выученные факты и архив | `eitiLearnSave` |
 
 Правила: версию БД поднимать только вместе с новым store; при `onversionchange` соединение закрывается и пользователь просит перезапуск; `onblocked` → тост + повтор через 2 с.
 
@@ -354,10 +354,10 @@ flowchart LR
 | Провайдеры/модели | `eiti_ai_provider`, `eiti_api_provider`, `eiti_*_model`, `eiti_search_provider`, `eiti_voice_provider`, `eiti_tts_*`, `eiti_grok_voice*`, `eiti_gemini_live_*` | байты | да |
 | UI и вид | `theme`, `eiti_locale`, `velantrim_messenger_ui_v1`, `eiti_hidden_tabs`, `eiti_icon_*`, `eiti_chat_bg_preset`, `eiti_player_*`, `*_cols`, `eiti_header_hidden` | байты | да |
 | Поведение | `eiti_offline_mode`, `eiti_only_ai`, `eiti_cog_mode`, `eiti_rag_*`, `eiti_retrieval_cfg`, `eiti_strict_memory_mode`, `eiti_mosc_*`, `eiti_notes_ai_*`, `eiti_files_*`, `eiti_related_show`, `eiti_reasoning_*`, `eiti_save_to_note`, `eiti_save_target` | байты | да |
-| Онбординг/флаги | `eiti_onboarded`, `eiti_toured_v7`, `eiti_first_run_done_v1*`, `eiti_pwa_installed`, `eiti_storage_persistent*`, `eiti_keys_migrated_v1`, `eiti_daily_idb_migrated_v1`, `eiti_has_backup`, **`eiti_mem_migrated_v1`** *(после #48)* | байты | да |
+| Онбординг/флаги | `eiti_onboarded`, `eiti_toured_v7`, `eiti_first_run_done_v1*`, `eiti_pwa_installed`, `eiti_storage_persistent*`, `eiti_keys_migrated_v1`, `eiti_daily_idb_migrated_v1`, `eiti_has_backup`, **`eiti_mem_migrated_v1`** | байты | да |
 | Профиль (короткий) | `eiti_user_profile_v1`, `eiti_ai_instructions`, `eiti_system_desc_v1`, `eiti_user_intents_v1` | ≤ ~10 КБ | да |
 | Выученные факты | `eiti_learned_v1` (≤ 200), `eiti_learned_archive_v1` (≤ 500) | до ~100 КБ и ~230 КБ ⚠ | да (как настройки, до #48) |
-| После #48 | эти два ключа переезжают в IDB `memkv` и удаляются из LS при следующем успешном запуске | 0 | через `SYNC_STORES.memkv` |
+| После #48 | после успешной миграции эти два ключа переезжают в IDB `memkv` и удаляются из LS при следующем успешном запуске | 0 | через `SYNC_STORES.memkv` |
 | Наследие / мигрируется | `eiti_kb_v1`/`eiti_kb` → IDB `kb`; `eiti_vb_patterns` → IDB; `eiti_rne_data_v1` → `journal` (копия `_bak`); `velantrim_notes_v1` (NOTES_KEY) — старые заметки | разное | — |
 | Крупное исключение | `eiti_chat_bg_image` (data-URL фона), `eiti_qwen_clone_audio` | до сотен КБ ⚠ | `filterSettings` отбрасывает значения > 256 КБ |
 | Повреждённые данные *(после #47)* | `<key>.corrupt.<ts>` — исходная строка испорченного JSON | как исходник | да (проверьте при переносе) |
@@ -371,13 +371,13 @@ flowchart LR
 | **L1** | IDB `messages` (+ FTS `chat_history_fts`, суммаризации `eiti_l1_sum_<chatId>`) | история чатов | авто-поиск по архиву — только если включён (по умолчанию выкл.), явные запросы ищут всегда |
 | **L2** | IDB `l2` | дайджесты прошлых сессий | да |
 | **L3 профиль** | IDB `l3` (категория → значение) | автоизвлечение `eitiL3AutoExtract` (`_l3Patterns`: имя, возраст, город, работа…) | блок «ЛИЧНЫЙ ПРОФИЛЬ (L3)» (`eitiL3BuildContext`) |
-| **Выученные факты** | `eiti_learned_v1` → IDB `memkv` *(после #48)* | `eitiLearnFact` (из `[EITI_LEARN:…]`), salience, near-dup merge, cap 200 + архив 500, консолидация LLM с отменой | «ВЫУЧЕННЫЕ ФАКТЫ» (`eitiMemRank`: recency × salience × relevance) |
+| **Выученные факты** | IDB `memkv` (после миграции `eiti_learned_v1`) | `eitiLearnFact` (из `[EITI_LEARN:…]`), salience, near-dup merge, cap 200 + архив 500, консолидация LLM с отменой | «ВЫУЧЕННЫЕ ФАКТЫ» (`eitiMemRank`: recency × salience × relevance) |
 | **KB (личная база знаний)** | IDB `kb` | факты с `epistemic_state` (Observed…Validated), `confidence`, `memory_layer` L1→L3 | через retrieval; в Strict Memory — только прошедшее Truth Gate |
 | **Strict Memory / Truth Gate** | флаг `eiti_strict_memory_mode` | `eitiTruthGate`: состояние ∈ {Supported, Validated} + средняя уверенность ≥ `EITI_CONF_FLOOR` (0.35); `eitiPromoteToL3` | при включении ИИ отвечает только по разрешённым фактам |
 
 Инварианты памяти (с учётом #46–#49):
 - «не запоминай» / «забудь это» / «don't remember» → ничего не пишется ни в L3, ни в выученные факты; «я ещё не решил» → не факт (`eitiMemIntent`, #46). «не забудь …» = запомнить.
-- Ни одна запись не теряется молча: ошибки → тост; повреждённый JSON → `.corrupt.<ts>`; архив пишется до обрезки; L3 до открытия БД — в очередь (#47).
+- Ошибки записи L3 → предупреждение и временная очередь `_l3Pending` в RAM; **при закрытии/перезагрузке вкладки до успешного flush очередь теряется** (KNOWN GAP; см. `docs/l3_memory_inventory.md` §6). Тост «L3 запомнил» и `_l3Last` (с PR #57) выставляются только в `oncomplete` транзакции; удаление отменяет ожидающие и текущие записи этого ключа. Повреждённый JSON архивируется до замены; исходный байтовый текст не перезаписывается при неудаче резервирования.
 - Исправление не затирает старое: `correction_history[]` в записи L3 и выученного факта; противоречащий выученный факт помечается `superseded_by` / `epistemic_status:'Deprecated'` и в контекст ИИ не идёт (`eitiLearnGet` отдаёт только активные), формат как в `data/memory_record_v1.schema.json` (#49).
 
 ## 13. Экспорт / импорт (`eitiArchiveExport` / `eitiArchiveImport`)
@@ -388,7 +388,7 @@ flowchart LR
 |---|---|---|
 | `exported` | ISO-время | — |
 | `profile` | JSON-строка | LS `eiti_user_profile_v1` |
-| `learned` | JSON-строка (массив) | LS `eiti_learned_v1` → **после #48** IDB `memkv` (формат тот же; после #49 включает superseded и `correction_history`) |
+| `learned` | JSON-строка (массив) | LS `eiti_learned_v1` → **после #46** IDB `memkv` (формат тот же; после #49 включает superseded и `correction_history`) |
 | `l2digests`, `notes`, `aiFiles`, `mosc` | JSON-строки | кэши IDB |
 | `kb` | JSON-строка | наследие LS `eiti_kb_v3` (обычно `[]`) |
 | `idbL3`, `idbKB` | массивы | IDB `l3`, `kb` |
@@ -401,7 +401,7 @@ flowchart LR
 
 - Движок: `local/eiti_drive_sync.js` (`EitiDriveSync`: `buildLocal`, `merge`, `filterSettings`, `isSecretKey`), транспорт — блок Drive в `index.html` (`_collect`, `_apply`, `_write`).
 - Время записи: `itemTime` = max(`updatedAt`, `updated`, `modified`, `lastModified`, `ts`, `created`, `createdAt`, `date`). LWW по каждому элементу.
-- Синхронизируются: `SYNC_STORES` = `notes, chats, messages, files, kb, l2, journal, contexts` (+ **`memkv`** после #48) и все ключи localStorage, кроме секретов и значений > 256 КБ.
+- Синхронизируются: `SYNC_STORES` = `notes, chats, messages, files, kb, l2, journal, contexts` включая `memkv` и все ключи localStorage, кроме секретов и значений > 256 КБ.
 - **Не синхронизируются:** IDB `l3`, `memory`, `note_history`, `tasks`, `reminders`, `reasoning`, `pkg*`, `lemma`, `tts_cache`, `backups`, `kb_vectors`, `eiti_offline`; ключи API/токены; Cache Storage.
 - Удаления: надгробия (`del`), удаляются через 90 дней (`TOMBSTONE_TTL`). Изменения ставятся в очередь через перехват `IDBObjectStore.put/delete` (debounce 8 с).
 - Конфликты двух устройств сейчас решаются только LWW (отдельный пункт плана, вне этих PR).
@@ -448,3 +448,7 @@ flowchart LR
 4. Миграции идемпотентны, с резервной копией, старые данные удаляются только после успешного запуска на новом формате.
 5. Офлайн-ответы работают без сети и без ключа.
 6. На Pages/в магазин не попадает непроверенный корпус `folklore/` (см. §17).
+
+### L3 reliability after PR #46
+
+`l3` transactional success and `_l3Pending` RAM retry are different states. The former survives tab reload; the latter does not. The volatile queue is not a backup, not synchronized to Drive, and no longer reapplies deleted entries on later flush (per-key revision invalidation from PR #57). See `docs/l3_memory_inventory.md` §6 and negative reproduction `velantrim_core/e2e/l3_pending_durability.spec.js`. Durable staging awaits an explicit privacy/retention policy decision; the audit itself changes no runtime behavior; the deletion/acknowledgement fix comes from PR #57.

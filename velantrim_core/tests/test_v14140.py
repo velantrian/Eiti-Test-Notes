@@ -11,7 +11,11 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 KB = ROOT / "kb"
 
 
-def test_version_sync():
+def test_version_sync_moved():
+    """Version checks moved to test_v14150.py."""
+
+
+def _old_version_sync():
     assert 'var EITI_VERSION = "14.14.0"' in HTML
     assert "var CACHE = 'eiti-v14.14.0'" in SW
     assert "var OFFLINE_CACHE = 'eiti-offline-v14.14.0'" in SW
