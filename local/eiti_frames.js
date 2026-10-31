@@ -1,4 +1,4 @@
-// VELANTRIM EITI v14.14.0 — EITI Frames: офлайн-понимание формулировок (RU).
+// VELANTRIM EITI v14.15.0 — EITI Frames: офлайн-понимание формулировок (RU).
 // Чистая логика без DOM, без сети и без localStorage (UMD: window.EitiFrames / module.exports).
 //   • нормализация, выкидывание слов-паразитов, оговорки диктовки («поцелуй» → «поясни», только если дальше тема);
 //   • маленький стеммер в духе Snowball-RU (без lookbehind — работает и в старом Safari);
@@ -12,6 +12,8 @@
 //   • v14.14.0 intents+: где / можно ли / стоит ли / есть ли / правда ли / разве / tag («…, да?») / «X или Y» / «перечисли» / «как называется» /
 //     постпозиция («квазар это что») / эллипсис («а собака?») / обращения («алиса, …») / сленг («чё», «скока») / индефиниты («кто-то») /
 //     составные («что такое X и почему») / творительный падеж («с китом» → «кит»); личные эмоции → мимо фреймов (EitiCare/диалоги).
+//   • v14.15.0 intents-next: чей / с кем·для кого / насколько / до каких пор / «который из» / небось·авось·ведь; «дальше-то», «скажи-ка» (частицы через дефис),
+//     «неее» (повторы букв), «двадцать один» → 21; контекстные реплики без контекста («повтори», «в смысле») → pass, а не null.
 // Данные — local/eiti_frames.json (правится без кода). Хост (index.html) даёт lookup(тема) и pass(текст).
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
@@ -29,9 +31,39 @@
   var INDEF = { 'кто': 1, 'что': 1, 'где': 1, 'когда': 1, 'как': 1, 'какой': 1, 'какая': 1, 'какое': 1, 'какие': 1, 'куда': 1, 'почему': 1, 'зачем': 1, 'сколько': 1, 'чей': 1, 'чего': 1, 'кого': 1, 'кому': 1, 'чем': 1, 'откуда': 1 };
   var INDEF_T = { 'то': 1, 'нибудь': 1, 'либо': 1 };
   var CW = {};
+  // v14.15.0: «дальше-то», «скажи-ка», «всё-таки» → без частицы (кроме «кто-то/что-то…»: это индефиниты)
+  function unhyph(s) {
+    return String(s == null ? '' : s).replace(/([A-Za-zА-Яа-яЁё]+)-(то|ка|таки)(?![A-Za-zА-Яа-яЁё])/gi, function (m, b) { return INDEF[norm(b)] ? m : b; });
+  }
+  // «неее» → «нее» (если это слово сленга) или «не»; «хммм» → «хм»: три и больше одинаковых букв подряд
+  function squeeze(x) {
+    if (!/([а-яa-z])\1\1/.test(x)) return x;
+    var two = x.replace(/([а-яa-z])\1\1+/g, '$1$1');
+    return CW[two] ? two : x.replace(/([а-яa-z])\1\1+/g, '$1');
+  }
+  // «двадцать один» → «21», «сто двадцать пять» → «125»: только составные числительные (≥2 слов), одиночные слова не трогаем
+  var NUM = { 'ноль': 0, 'один': 1, 'одна': 1, 'одно': 1, 'два': 2, 'две': 2, 'три': 3, 'четыре': 4, 'пять': 5, 'шесть': 6, 'семь': 7, 'восемь': 8, 'девять': 9, 'десять': 10,
+    'одиннадцать': 11, 'двенадцать': 12, 'тринадцать': 13, 'четырнадцать': 14, 'пятнадцать': 15, 'шестнадцать': 16, 'семнадцать': 17, 'восемнадцать': 18, 'девятнадцать': 19,
+    'двадцать': 20, 'тридцать': 30, 'сорок': 40, 'пятьдесят': 50, 'шестьдесят': 60, 'семьдесят': 70, 'восемьдесят': 80, 'девяносто': 90,
+    'сто': 100, 'двести': 200, 'триста': 300, 'четыреста': 400, 'пятьсот': 500, 'шестьсот': 600, 'семьсот': 700, 'восемьсот': 800, 'девятьсот': 900 };
+  function numbers(a) {
+    var o = [], i = 0;
+    while (i < a.length) {
+      var j = i, val = 0, last = 1e9, ok = true;
+      while (j < a.length && NUM[a[j]] != null) {
+        var v = NUM[a[j]], rank = v >= 100 ? 100 : v >= 20 ? 10 : 1;
+        // порядок разрядов: сотни → десятки → единицы, каждый разряд один раз («два три» — не число)
+        if (rank >= last || (rank === 1 && last === 1)) break;
+        if (rank === 1 && v >= 10 && last < 100) break;
+        val += v; last = rank === 1 && v >= 10 ? 1 : rank; j++;
+      }
+      if (j - i >= 2 && ok) { o.push(String(val)); i = j; } else { o.push(a[i]); i++; }
+    }
+    return o;
+  }
   function toks(s) {
-    var n = norm(s); if (!n) return [];
-    var a = n.split(' '), o = [];
+    var n = norm(unhyph(s)); if (!n) return [];
+    var a = numbers(n.split(' ').map(squeeze)), o = [];
     for (var i = 0; i < a.length; i++) {
       var x = a[i], nx = a[i + 1];
       if (CW[x]) { if (CW[x].length === 1 && INDEF[CW[x][0]] && nx && INDEF_T[nx]) { o.push(CW[x][0] + nx); i++; continue; } o.push.apply(o, CW[x]); continue; }
@@ -155,6 +187,11 @@
     // exact: слова без стемминга («сложнее» ≠ «сложно», «понятнее» ≠ «понятно»)
     var exact = set(pack.exact), sx = c.sx = function (w) { return exact[w] ? w + '!' : stem(w); };
     Object.keys(pack.modifiers || {}).forEach(function (k) { stemmed(pack.modifiers[k], sx).forEach(function (t) { c.mods.push({ id: k, t: t }); }); });
+    // «максимально подробно» раньше «подробно» — иначе «максимально» уходит в тему
+    c.mods.sort(function (a, b) { return b.t.length - a.t.length; });
+    // социальный зачин: «ок, …», «спасибо! …» (после зачина — знак препинания)
+    var ls = (pack.lead_social || []).map(function (x) { return norm(x).replace(/ /g, '\\s+'); }).filter(Boolean);
+    c.leadRe = ls.length ? new RegExp('^\\s*(?:' + ls.join('|') + ')\\s*[,.!?…:;—–-]+\\s*([\\s\\S]+)$', 'i') : null;
     var stopRaw = {}, fill1 = {}, multiF = c.fillers.filter(function (t) { return t.length > 1; });
     c.fillers.forEach(function (t) { if (t.length === 1) { stopRaw[t[0]] = 1; fill1[t[0]] = 1; } });
     c.stop.forEach(function (t) { if (t.length === 1) stopRaw[t[0]] = 1; });
@@ -292,7 +329,7 @@
   }
 
   // core → результат | null (нет интента) | 0 (сработал только «продолжающий» интент без контекста — повторить без них)
-  function core(w, fixedW, st, now, noCtx, slip) {
+  function core(w, fixedW, st, now, noCtx, slip, any) {
     var used = [], sw = fixedW.map(P.sx), fr = fresh(st, now);
     markAll(fixedW, used, P.fillers, 'f');
     // «что значит X»: «значит» здесь не паразит
@@ -306,7 +343,7 @@
       seen[sw[a]] = 1;
       for (var b = 0; b < L.length; b++) {
         var it = L[b];
-        if (it.ctx && (noCtx || !fr)) continue;
+        if (it.ctx && !any && (noCtx || !fr)) continue;
         if (findP(sw, used, it.t)) hits.push({ it: it, sc: it.t.length * 100 + it.prio });
       }
     }
@@ -343,7 +380,7 @@
     var tp = topic.join(' ');
     // составной вопрос («что такое квазар и почему он светится») — тема из первой части
     if (also.length && topics.length > 1) tp = topics[0];
-    if (best.ctx && (tp || !fr)) return 0;
+    if (best.ctx && !any && (tp || !fr)) return 0;
     // оговорка диктовки («поцелуй» → «поясни») — только если есть тема или «это/он» («поцелуй меня» — не вопрос)
     if (slip && !tp && !pron) return null;
     var field = best.field;
@@ -397,11 +434,34 @@
     return null;
   }
 
+  // составные реплики (v14.15.0):
+  //  «ок, расскажи о космосе» / «спасибо! а что такое луна?» — зачин снимается;
+  //  «что такое наука. а зачем она?» — второй вопрос о той же теме идёт в also (ответы подряд)
+  function compound(s, st, now) {
+    var m = P.leadRe && P.leadRe.exec(s.replace(/ё/gi, 'е'));
+    if (m && /[а-яё]/i.test(m[1])) { var pl = parse(m[1], st, now); if (pl && pl.kind === 'ask') return pl; }
+    var parts = s.split(/[.!?…]+\s+/).filter(function (x) { return /[а-яё]/i.test(x); });
+    if (parts.length < 2 || parts.length > 3) return null;
+    var pa = parse(parts[0], st, now);
+    if (!pa || pa.kind !== 'ask' || !pa.topic || (pa.also || []).length >= 2) return null;
+    var also = (pa.also || []).slice(), got = {}; got[pa.field] = 1; also.forEach(function (a) { got[a.field] = 1; });
+    for (var i = 1; i < parts.length; i++) {
+      var pb = parse(parts[i], st, now);
+      if (!pb || pb.kind !== 'ask' || !ALSO[pb.field] || got[pb.field]) return null;
+      if (pb.topic && pb.topic !== pa.topic) return null;
+      if (!pb.topic && !pb.pron) return null;
+      got[pb.field] = 1; also.push({ intent: pb.intent, fam: pb.fam, field: pb.field, at: 1000 + i });
+    }
+    var r = {}; for (var k in pa) r[k] = pa[k];
+    r.also = also; r.compound = parts.length;
+    return r;
+  }
   // parse(text, st, now) → null | {kind:'defer'} | {kind:'fu', go, fam} | {kind:'ask', intent, fam, field, mods, topic, topics, pron, slip, fixed, canon}
   function parse(text, st, now) {
     if (!P) return null;
     var s = String(text || '');
     if (!s || s.length > LIM_C || !/[а-яё]/i.test(s)) return null;
+    var cp = compound(s, st, now); if (cp) return cp;
     var w = toks(s); if (!w.length || w.length > LIM_W) return null;
     // defer — только если это не вопрос о понятии («песнь о нибелунгах что такое», «что такое стих»)
     var dq = P.deferNot.some(function (ph) { return find(w, [], ph, 0) >= 0; });
@@ -446,9 +506,20 @@
       }
     }
     if (r && r.field === 'pass') return { kind: 'pass', intent: r.intent, fam: r.fam, topic: r.topic };
-    return shapes(w, st, now, r) || null;
+    return shapes(w, st, now, r) || ctxOnly(w, fixedW, st, now, slip);
   }
   var LIM_C = 400, LIM_W = 40;
+  // v14.15.0: реплика продолжения без свежего ответа фреймов («повтори последний пункт», «в смысле, речь о сроке?», «я про другое», «а цена?»)
+  // — не null, а pass с интентом: отвечают диалоги/KB, как и раньше (respond ведёт себя как при null), но разбор виден в аудите и в тестах
+  function ctxOnly(w, fixedW, st, now, slip) {
+    var r = core(w, fixedW, st, now, false, slip, true);
+    if (r && r.field !== 'pass' && P.byId[r.intent] && P.byId[r.intent].ctx) return { kind: 'pass', intent: r.intent, fam: r.fam, topic: r.topic, ctxOnly: true };
+    if (!fresh(st, now) && w.length >= 2 && w.length <= 3 && P.ell[w[0]] && !P.ellStop[w[1]]) {
+      var e = content(w.slice(1));
+      if (e.length === w.length - 1) return { kind: 'pass', intent: 'fu_ellipsis', fam: 'ellipsis', topic: e.join(' '), ctxOnly: true };
+    }
+    return null;
+  }
 
   function fill(tpl, o) { return String(tpl || '').replace(/\{(\w+)\}/g, function (_m, k) { return o[k] != null ? o[k] : ''; }); }
   // ротация вариантов формулировки: по кругу, без повтора подряд (st.rot[key])
@@ -609,6 +680,7 @@
     }
     var p = null;
     try { p = parse(text, st, now); } catch (e) { p = null; }
+    if (p && p.ctxOnly) p = null;
     if (p && (p.kind === 'defer' || p.kind === 'pass')) return pass(text);
     if (!p) {
       // v14.14.0: голое понятие («наука», «фотосинтез») — сначала обычный путь, затем карточка понятия (только kn)
@@ -694,12 +766,13 @@
     });
   }
 
-  // «китом» → «кит», «водой» → «вода», «солью» → «соль»: до 4 кандидатов начальной формы (последнее слово)
-  var CASES = [['ями', 'я'], ['ами', ''], ['ами', 'а'], ['ьей', 'ья'], ['ой', 'а'], ['ей', 'я'], ['ей', 'ь'], ['ом', ''], ['ем', 'ь'], ['ем', 'е'], ['ью', 'ь'], ['ою', 'а'], ['ах', 'а'], ['ах', ''], ['ям', 'я'], ['ов', ''], ['е', 'а'], ['е', ''], ['у', 'а'], ['у', ''], ['ю', 'я'], ['ю', 'ь']];
+  // «китом» → «кит», «водой» → «вода», «солью» → «соль», «о гравитации» → «гравитация»: до 6 кандидатов начальной формы (последнее слово)
+  var CASES = [['ями', 'я'], ['ами', ''], ['ами', 'а'], ['ьей', 'ья'], ['ой', 'а'], ['ей', 'я'], ['ей', 'ь'], ['ом', ''], ['ем', 'ь'], ['ем', 'е'], ['ью', 'ь'], ['ою', 'а'], ['ах', 'а'], ['ах', ''], ['ям', 'я'], ['ов', ''], ['е', 'а'], ['е', ''], ['у', 'а'], ['у', ''], ['ю', 'я'], ['ю', 'ь'],
+    ['ии', 'ия'], ['ией', 'ия'], ['ию', 'ия'], ['ем', 'й'], ['ы', 'а'], ['и', 'а'], ['и', 'ь'], ['и', 'я'], ['а', ''], ['я', 'ь'], ['я', 'й'], ['ой', 'ый'], ['ой', 'ий'], ['ого', 'ый'], ['ому', 'ый'], ['ым', 'ый']];
   function caseVariants(t) {
     var w = norm(t).split(' '), last = w[w.length - 1] || '', out = [];
     if (last.length < 4) return out;
-    for (var i = 0; i < CASES.length && out.length < 4; i++) {
+    for (var i = 0; i < CASES.length && out.length < 6; i++) {
       var e = CASES[i][0];
       if (ends(last, e) && last.length - e.length >= 2) {
         var v = w.slice(0, -1).concat([last.slice(0, last.length - e.length) + CASES[i][1]]).join(' ');
@@ -763,6 +836,6 @@
   }
 
   return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond, talk: talk, expand: expand, stats: stats, triggers: triggers,
-    topicOf: topicOf, fallbackText: fallbackText, marker: marker, stem: stem, norm: norm, TTL: TTL, emoGuard: emoText, caseVariants: caseVariants,
+    topicOf: topicOf, fallbackText: fallbackText, marker: marker, stem: stem, norm: norm, TTL: TTL, emoGuard: emoText, caseVariants: caseVariants, toks: toks,
     wikiSearchUrl: wikiSearchUrl, wikiSummaryUrl: wikiSummaryUrl, wikiPick: wikiPick, wikiClean: wikiClean, wikiFormat: wikiFormat };
 });
