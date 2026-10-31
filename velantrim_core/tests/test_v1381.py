@@ -18,7 +18,8 @@ def test_ios_inputs_16px_scoped():
 
 
 def test_viewer_safe_area_and_no_bare_100vh():
-    assert "background:#f8f8f8;z-index:2500;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top" in HTML
+    # v14.15.2: env() обёрнут в var(--eiti-top-inset, env(...)) — без пресета значение то же самое
+    assert "background:#f8f8f8;z-index:2500;display:flex;flex-direction:column;padding:calc(14px + var(--eiti-top-inset, env(safe-area-inset-top" in HTML
     assert "max-height: 100dvh" in HTML
 
 
