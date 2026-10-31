@@ -59,9 +59,36 @@ test('crisis: media/info context → soft reply with numbers; hyperbole and "н�
     const r = CARE.detect(q, CARE.create());
     assert.equal(r.id, 'crisis_info', q); assert.match(r.text, /Если речь о тебе/); assert.ok(r.text.includes('116 123'));
   }
-  for (const q of ['я не хочу умирать', 'умираю со смеху', 'я до смерти устал', 'умру от скуки', 'убить время', 'убей меня это смешно', 'выпил таблетку от головы',
+  for (const q of ['я до смерти устал', 'убей меня это смешно', 'выпил таблетку от головы',
     'выпил таблетки от головы', 'крыша протекает', 'нож для хлеба', 'что такое фотосинтез', 'как работает сердце', 'расскажи про бешенство', 'что такое депрессия'])
     assert.equal(CARE.detect(q, CARE.create()), null, q);
+  // v14.15.0: гиперболы и «не хочу умирать» — не кризис, но уже не «мимо»: тёплый ответ без 112 первой строкой
+  for (const [q, id] of [['я не хочу умирать', 'want_live'], ['не хочу умирать', 'want_live'], ['умираю со смеху', 'laugh'], ['я умираю со смеху', 'laugh'],
+    ['умру от скуки', 'bored'], ['убить время', 'bored'], ['как убить время', 'bored'], ['чем убить время', 'bored']]) {
+    const r = CARE.detect(q, CARE.create());
+    assert.ok(r && r.id === id && r.kind === 'care', q + ' → ' + (r && r.id));
+    assert.doesNotMatch(r.text.split('\n')[0], /^🚨/, q);
+  }
+});
+
+test('v14.15.0: мягкий «не хочу умирать», влюблённость, «грустно и не знаю что делать», герой книги, Doweria', () => {
+  const live = CARE.detect('я не хочу умирать', CARE.create());
+  assert.match(live.text, /112/); assert.ok(live.text.includes('0800 111 0 111')); assert.ok(live.text.includes(CARE.HOTLINES.doweria));
+  assert.doesNotMatch(live.text, /прямо сейчас|Позвони 112/);
+  // «не хочу умирать, но жить не хочу» — всё равно кризис
+  assert.equal(CARE.detect('не хочу умирать но жить не хочу', CARE.create()).id, 'crisis');
+  for (const q of ['я влюбился', 'я влюбилась', 'кажется я влюбилась']) assert.equal(CARE.detect(q, CARE.create()).id, 'in_love', q);
+  for (const q of ['мне грустно и я не знаю что делать', 'грустно и не знаю что делать', 'мне плохо и я не знаю что мне делать'])
+    assert.equal(CARE.detect(q, CARE.create()).id, 'sad_lost', q);
+  const st = CARE.create(); CARE.detect('не надо советов', st);
+  assert.equal(CARE.detect('мне грустно и я не знаю что делать', st).id, 'listen');
+  for (const q of ['в книге герой покончил с собой почему', 'почему герой фильма покончил с собой']) {
+    const r = CARE.detect(q, CARE.create());
+    assert.equal(r.id, 'crisis_info', q); assert.match(r.text, /Если речь о тебе/);
+    for (const n of NUMS.concat([CARE.HOTLINES.doweria])) assert.ok(r.text.includes(n), q + ' ' + n);
+  }
+  assert.equal(CARE.HOTLINES.doweria, '030 440 308 454');
+  for (const k of ['crisis', 'crisis_acute', 'crisis_info', 'unsafe', 'helpline']) for (const t of CARE.texts[k]) assert.ok(t.includes(CARE.HOTLINES.doweria), k);
 });
 
 test('crisis follow-ups: safe / unsafe; cant_cope → safety question → да → crisis, нет → listening', () => {
