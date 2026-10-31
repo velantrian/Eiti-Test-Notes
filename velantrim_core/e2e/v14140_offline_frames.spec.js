@@ -296,3 +296,33 @@ test('talk: цепочка мнение → пример → по-другому
   await shot(page, 'chain');
   expect(ext).toEqual([]);
 });
+
+test('intents+: «где» по карточке, эмоции при открытой теме → тёплый ответ Care, не фреймы; без сети', async ({ page, context }) => {
+  await boot(page);
+  const ext = watchExternal(context);
+  await send(page, 'где происходит фотосинтез');
+  await expect(last(page)).toContainText('«где» про «Фотосинтез»', { timeout: 20000 });
+  await shot(page, 'where');
+  await send(page, 'я в бешенстве');
+  await expect(last(page)).toContainText('😤', { timeout: 15000 });
+  await expect(last(page)).not.toContainText('Фотосинтез');
+  await send(page, 'мне нужна поддержка');
+  await expect(last(page)).toContainText('🫂', { timeout: 15000 });
+  await expect(last(page)).not.toContainText(NOT_IN_BASE);
+  await shot(page, 'mood');
+  expect(ext).toEqual([]);
+});
+
+test('care: кризисная фраза при открытой теме → 112 и TelefonSeelsorge, затем «нет» → 112 первым', async ({ page, context }) => {
+  await boot(page);
+  const ext = watchExternal(context);
+  await send(page, 'расскажи о гравитации');
+  await expect(last(page)).toContainText('Гравитация', { timeout: 20000 });
+  await send(page, 'не хочу жить');
+  for (const n of ['112', '0800 111 0 111', '0800 111 0 222', '116 123']) await expect(last(page)).toContainText(n, { timeout: 15000 });
+  await expect(last(page)).not.toContainText('Гравитация');
+  await shot(page, 'support');
+  await send(page, 'нет');
+  await expect(last(page)).toContainText('112', { timeout: 15000 });
+  expect(ext).toEqual([]);
+});
