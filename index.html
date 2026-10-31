@@ -4329,6 +4329,7 @@
     <script src="./local/eiti_journal.js" defer></script>
     <script src="./local/eiti_related.js" defer></script>
     <script src="./local/eiti_frames.js" defer></script>
+    <script src="./local/eiti_care.js" defer></script>
     <script src="./local/eiti_voice.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
@@ -32887,7 +32888,7 @@ window.eitiLLMClearAll = async function() {
             function reply(text, opts, orig) {
                 opts = opts || {};
                 var q = String(text || '');
-                if (!q || q.length > 220 || !/[а-яё]/i.test(q)) return orig(text, opts);
+                if (!q || q.length > 400 || !/[а-яё]/i.test(q)) return orig(text, opts);   // intents+: лимит 220 → 400 (длинные составные вопросы)
                 var lang = opts.lang || (window.eitiOfflineLang ? window.eitiOfflineLang(q) : 'ru');
                 if (lang !== 'ru') return orig(text, opts);   // фреймы — только RU; EN/DE идут прежним путём
                 return ready().then(function(f) {
@@ -32907,7 +32908,9 @@ window.eitiLLMClearAll = async function() {
             // или короткое честное «Не знаю, этого нет в базе» + тема в журнал «темы без ответа». Сети здесь нет.
             function lastResort(text) {
                 var q = String(text || '').trim();
-                if (!q || q.length > 300) return Promise.resolve(null);
+                if (!q || q.length > 400) return Promise.resolve(null);
+                // intents+: эмоции/кризис → тёплый ответ (или кризисный) вместо «нет в базе» (local/eiti_care.js)
+                if (window.EitiCare) { try { var cr = EitiCare.detect(q, window.EitiCareHost ? EitiCareHost.state() : null); if (cr) return Promise.resolve(cr.text); if (EitiCare.isEmotional(q)) return Promise.resolve(EitiCare.warm(window.EitiCareHost ? EitiCareHost.state() : null)); } catch (e) {} }
                 if ((window.eitiOfflineLang ? window.eitiOfflineLang(q) : 'ru') !== 'ru') return Promise.resolve(null);
                 return ready().then(function(f) {
                     if (!f) return null;
@@ -33477,6 +33480,25 @@ window.eitiLLMClearAll = async function() {
                 }, function() { return orig(text, opts); });
             };
             EitiOffline._typoWrapped = true;
+        })();
+        // ── v14.14.0 intents+: EITI CARE (local/eiti_care.js) — кризис и поддержка ПЕРВЫМИ (самая внешняя обёртка) ──
+        // До опечаток, фреймов, KB и диалогов; не зависит от ctx, нечёткого сопоставления и pass(). Кризис → 112 + телефон доверия.
+        // Не узнал фразу — пропускает дальше без изменений. Модуль не загрузился — слой прозрачен.
+        window.EitiCareHost = (function() {
+            var st = null;
+            function state() { if (!st && window.EitiCare) st = EitiCare.create(); return st; }
+            function reply(text) { if (!window.EitiCare) return null; try { var r = EitiCare.detect(text, state()); return r ? r.text : null; } catch (e) { return null; } }
+            return { state: state, reply: reply };
+        })();
+        (function() {
+            if (!window.EitiOffline || EitiOffline._careWrapped) return;
+            var orig = EitiOffline.replyText;
+            EitiOffline.replyText = function(text, opts) {
+                var q = String(text || '');
+                var r = q.trim() ? EitiCareHost.reply(q) : null;
+                return r ? Promise.resolve(r) : orig(text, opts);
+            };
+            EitiOffline._careWrapped = true;
         })();
 
         // ИИ недоступен? (нет сети / нет ключа для выбранного провайдера)

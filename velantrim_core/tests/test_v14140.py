@@ -25,6 +25,10 @@ def test_version_sync():
 
 def test_frames_module_loaded_cached_published():
     assert '<script src="./local/eiti_frames.js" defer></script>' in HTML
+    assert '<script src="./local/eiti_care.js" defer></script>' in HTML
+    assert "BASE + 'local/eiti_care.js'" in SW
+    # кризисный слой — самая внешняя обёртка EitiOffline.replyText (объявлен после опечаток)
+    assert HTML.index("EitiOffline._careWrapped = true") > HTML.index("EitiOffline._typoWrapped = true")
     assert "BASE + 'local/eiti_frames.js'" in SW and "BASE + 'local/eiti_frames.json'" in SW
     pages = (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
     assert "'local/eiti_frames.json'" in pages
