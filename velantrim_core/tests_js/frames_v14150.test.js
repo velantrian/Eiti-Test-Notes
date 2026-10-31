@@ -84,6 +84,11 @@ test('modifiers: максимально подробно / tldr / как для 
   assert.match(await F.respond('объясни фотосинтез как для чайника', F.create(), deps), /Проще/);
 });
 
+test('стемминг: «небось / поди / никак» не цепляют «небо / под…» (Appendix D «интересно почему небо голубое»)', () => {
+  assert.strictEqual(P('интересно почему небо голубое').intent, 'q_why');
+  assert.strictEqual(P('небось уже поздно').intent, 'q_guess');
+});
+
 test('compound: социальный зачин и два вопроса подряд', async () => {
   assert.strictEqual(P('ок. расскажи о космосе').topic, 'космосе');
   assert.strictEqual(P('Спасибо! А что такое фотосинтез?').topic, 'фотосинтез');
