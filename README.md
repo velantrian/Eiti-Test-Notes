@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.15.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.15.1-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -65,6 +65,10 @@ python3 -m http.server 8080
 📐 Полная архитектура (для переноса в нативное приложение): **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
 ---
+
+## 🆕 Что нового в v14.15.1
+
+- 🔍 **«Меньше иконки (small icons)»** — галочка в **Настройки → 📌 Настройка табов** (рядом с видимостью табов и шапки). Нижний таб-бар 110 → 50 px, верхняя шапка 88 → 44 px, компактные шапки заметок, редактора (↶ ↷ 📋 ⋯), подэкранов настроек и просмотрщика файлов — на экране помещается больше текста. По умолчанию выкл (вид как раньше); зона нажатия таба ≥ 36 px, у компактных кнопок шапок — невидимая зона ≥ 44 px (графика не растёт); safe-area iPhone учитывается, кнопки шапки центрируются ниже выреза/Dynamic Island; применяется сразу и при запуске до первой отрисовки (ключ `eiti_small_icons`). EN «Small icons», DE «Kleine Symbole».
 
 ## 🆕 Что нового в v14.15.0
 

@@ -13,16 +13,8 @@ CARE = (ROOT / "local" / "eiti_care.js").read_text(encoding="utf-8")
 FR = (ROOT / "local" / "eiti_frames.js").read_text(encoding="utf-8")
 
 
-def test_version_sync():
-    assert 'var EITI_VERSION = "14.15.0"' in HTML
-    assert "var CACHE = 'eiti-v14.15.0'" in SW
-    assert "var OFFLINE_CACHE = 'eiti-offline-v14.15.0'" in SW
-    assert "version: '14.15.0'" in SW
-    assert "// VELANTRIM EITI — Service Worker v14.15.0" in SW
-    assert "v14.15.0" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "version-14.15.0" in readme and "Что нового в v14.15.0" in readme
-    assert "v14.15.0" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+def test_version_sync_moved():
+    """Version checks moved to test_v14151.py (v14.15.1)."""
 
 
 def test_frames_pack_new_intents_and_small():
