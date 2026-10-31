@@ -8211,6 +8211,9 @@
             --eiti-si-tab-label: 9px;
             --eiti-si-header-h: 44px;     /* было 88 */
             --eiti-si-btn: 32px;
+            /* safe-area через переменные: одно место для env() (тесты подменяют их на <html>) */
+            --eiti-si-safe-top: env(safe-area-inset-top, 0px);
+            --eiti-si-safe-bottom: env(safe-area-inset-bottom, 0px);
         }
         html.eiti-small-icons .tab-bar,
         html.eiti-small-icons body.many-tabs .tab-bar {
@@ -8220,8 +8223,8 @@
         }
         html.eiti-small-icons.is-ios .tab-bar,
         html.eiti-small-icons.is-ios body.many-tabs .tab-bar {
-            height: calc(var(--eiti-si-tabbar-h) + env(safe-area-inset-bottom, 0px)) !important;
-            padding-bottom: calc(2px + env(safe-area-inset-bottom, 0px)) !important;
+            height: calc(var(--eiti-si-tabbar-h) + var(--eiti-si-safe-bottom)) !important;
+            padding-bottom: calc(2px + var(--eiti-si-safe-bottom)) !important;
         }
         html.eiti-small-icons .tab-item {
             gap: 1px !important;
@@ -8244,8 +8247,12 @@
             height: var(--eiti-si-header-h) !important;
         }
         html.eiti-small-icons.is-ios .app-header {
-            height: calc(var(--eiti-si-header-h) + env(safe-area-inset-top, 0px)) !important;
+            height: calc(var(--eiti-si-header-h) + var(--eiti-si-safe-top)) !important;
+            padding-top: var(--eiti-si-safe-top) !important; /* на устройстве = env(), как в html.is-ios; заголовок — под вырезом */
         }
+        /* кнопки шапки центрируются в БЕЗОПАСНОЙ части (44px под вырезом), а не во всей шапке 44px+inset —
+           иначе при inset 47/59px верх кнопки уходит в вырез */
+        html.eiti-small-icons.is-ios .app-header .header-actions { top: calc(50% + var(--eiti-si-safe-top) / 2) !important; }
         html.eiti-small-icons .app-header h1 { font-size: 18px !important; margin-top: 0 !important; letter-spacing: 1px !important; }
         html.eiti-small-icons .header-btn { width: var(--eiti-si-btn) !important; height: var(--eiti-si-btn) !important; font-size: 15px !important; }
         /* Подэкраны настроек */
@@ -8272,6 +8279,23 @@
         html.eiti-small-icons #fv-header { margin-bottom: 6px !important; row-gap: 4px !important; }
         /* История: шапка со списком колонок */
         html.eiti-small-icons #view-history .notes-col-btn { width: 28px !important; height: 28px !important; }
+        /* Зоны нажатия ≥44px при компактной графике: невидимый ::after вокруг кнопки (как в v13.8.1),
+           сами кнопки и панели визуально не растут */
+        html.eiti-small-icons .header-btn, html.eiti-small-icons .subview-back,
+        html.eiti-small-icons #notesBackBtn, html.eiti-small-icons .notes-new-btn,
+        html.eiti-small-icons #notesCopyAllBtn, html.eiti-small-icons #notesDeleteModeBtn,
+        html.eiti-small-icons .notes-col-btn { position: relative; }
+        html.eiti-small-icons .header-btn::after, html.eiti-small-icons .subview-back::after,
+        html.eiti-small-icons #notesBackBtn::after, html.eiti-small-icons .notes-new-btn::after,
+        html.eiti-small-icons #notesCopyAllBtn::after, html.eiti-small-icons #notesDeleteModeBtn::after,
+        html.eiti-small-icons .notes-col-btn::after {
+            content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px);
+            transform: translate(-50%, -50%); background: transparent; }
+        /* кнопки, стоящие плотным рядом (колонки 28px с рамкой 1px и gap 5–6px, копировать/удалить 30px без рамки с gap 6px):
+           по высоте 44px, по ширине — только до середины зазора, чтобы зона не залезала на видимую соседнюю кнопку
+           (100% у ::after = padding-box, поэтому у колонок +2px на рамку) */
+        html.eiti-small-icons .notes-col-btn::after { width: calc(100% + 2px + 5px); }
+        html.eiti-small-icons #notesCopyAllBtn::after, html.eiti-small-icons #notesDeleteModeBtn::after { width: calc(100% + 6px); }
         /* Чекбокс в «Настройке табов» */
         .eiti-si-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:var(--bg-color); border-radius:12px; cursor:pointer; }
         .eiti-si-row input { width:22px; height:22px; flex-shrink:0; accent-color: var(--accent-color); cursor:pointer; margin:0; }

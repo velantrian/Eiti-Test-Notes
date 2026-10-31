@@ -65,8 +65,11 @@ test('ранний скрипт в <head> ставит класс до перв�
 
 test('CSS: компактные размеры только под html.eiti-small-icons; таб ≥36px; safe-area iOS', () => {
   assert.match(SRC, /html\.eiti-small-icons \{[^}]*--eiti-si-tabbar-h: 50px;[^}]*--eiti-si-tab-item-h: 38px;[^}]*--eiti-si-header-h: 44px;/);
-  assert.match(SRC, /html\.eiti-small-icons\.is-ios \.tab-bar[^{]*\{[^}]*env\(safe-area-inset-bottom/);
-  assert.match(SRC, /html\.eiti-small-icons\.is-ios \.app-header \{[^}]*env\(safe-area-inset-top/);
+  // safe-area через переменные (по умолчанию = env(), ревью #61 P1)
+  assert.match(SRC, /--eiti-si-safe-top: env\(safe-area-inset-top, 0px\);/);
+  assert.match(SRC, /--eiti-si-safe-bottom: env\(safe-area-inset-bottom, 0px\);/);
+  assert.match(SRC, /html\.eiti-small-icons\.is-ios \.tab-bar[^{]*\{[^}]*var\(--eiti-si-safe-bottom\)/);
+  assert.match(SRC, /html\.eiti-small-icons\.is-ios \.app-header \{[^}]*var\(--eiti-si-safe-top\)/);
   // дефолтные размеры не тронуты
   assert.match(SRC, /\.tab-bar \{\n\s*height: 110px;/);
   assert.match(SRC, /\.app-header \{\n\s*height: 88px;/);
@@ -86,4 +89,15 @@ test('галочка в «Настройке табов» + переводы EN/
     assert.ok(d['Меньше иконки (small icons)'] && d['📌 Настройка табов'], 'ключи ' + lang);
     for (const v of Object.values(d)) assert.doesNotMatch(v, /[А-Яа-яЁё]/);
   }
+});
+
+test('ревью #61: safe-area у кнопок шапки (iOS) и невидимые зоны нажатия ≥44px', () => {
+  assert.match(SRC, /html\.eiti-small-icons\.is-ios \.app-header \.header-actions \{ top: calc\(50% \+ var\(--eiti-si-safe-top\) \/ 2\) !important; \}/);
+  const k = SRC.indexOf('/* Зоны нажатия ≥44px при компактной графике');
+  assert.ok(k > 0);
+  const block = SRC.slice(k, SRC.indexOf('/* Чекбокс в «Настройке табов» */', k));
+  assert.match(block, /width: max\(100%, 44px\); height: max\(100%, 44px\);/);
+  assert.match(block, /background: transparent;/);
+  // размеры самих кнопок не меняются в блоке зон
+  assert.doesNotMatch(block.replace(/::after \{[^}]*\}/g, ''), /(?:^|[;{\s])(?:width|height)\s*:/m);
 });

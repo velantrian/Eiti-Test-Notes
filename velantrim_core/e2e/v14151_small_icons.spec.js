@@ -160,3 +160,70 @@ for (const [loc, label] of [['en', 'Small icons'], ['de', 'Kleine Symbole']]) {
     if (loc === 'en') await shot(page, 'settings-small-en-light');
   });
 }
+
+// Ревью #61 [P1]: на iOS кнопки шапки центрируются в безопасной части (под вырезом), а не во всей шапке 44px+inset.
+// env() в Chromium = 0 → подменяем --eiti-si-safe-top/bottom на <html> (единственное место, где small icons читает env()).
+for (const inset of [47, 59]) {
+  test(`iOS + small icons, safe-area ${inset}px: кнопки шапки не заходят в вырез`, async ({ page }) => {
+    await boot(page, { small: true });
+    await page.evaluate((i) => {
+      const d = document.documentElement; d.classList.add('is-ios');
+      d.style.setProperty('--eiti-si-safe-top', i + 'px'); d.style.setProperty('--eiti-si-safe-bottom', '34px');
+      document.getElementById('btn-pwa-install').style.display = 'flex';
+    }, inset);
+    const header = await box(page, '.app-header');
+    const btn = await box(page, '#btn-pwa-install');
+    const actions = await box(page, '.app-header .header-actions');
+    expect(Math.round(header.h)).toBe(44 + inset);
+    expect(Math.round(btn.h)).toBe(32); // графика компактная
+    expect(actions.top).toBeGreaterThanOrEqual(inset);
+    expect(btn.top).toBeGreaterThanOrEqual(inset);
+    expect(btn.bottom).toBeLessThanOrEqual(header.bottom);
+    expect(Math.abs((btn.top + btn.bottom) / 2 - (inset + 22))).toBeLessThanOrEqual(1); // по центру безопасной части
+    expect((await box(page, '.app-header h1')).top).toBeGreaterThanOrEqual(inset); // заголовок тоже под вырезом
+    expect(Math.round((await box(page, '.tab-bar')).h)).toBe(50 + 34);
+    await shot(page, 'ios-inset-' + inset);
+  });
+}
+
+// Ревью #61 [P2]: компактная графика, но зона нажатия ≥44px по высоте (и по ширине у одиночных кнопок).
+test('small icons: зоны нажатия ≥44px, кнопки и панели визуально не выросли', async ({ page }) => {
+  await boot(page, { small: true });
+  const hits = (sel) => page.evaluate((s) => {
+    const el = document.querySelector(s); const r = el.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const at = (x, y) => { const e = document.elementFromPoint(x, y); return !!e && (e === el || el.contains(e)); };
+    return { w: r.width, h: r.height, up: at(cx, cy - 21), down: at(cx, cy + 21), left: at(cx - 21, cy), right: at(cx + 21, cy) };
+  }, sel);
+  await page.evaluate(() => { document.getElementById('btn-pwa-install').style.display = 'flex'; });
+  let h = await hits('#btn-pwa-install');
+  expect([Math.round(h.w), Math.round(h.h)]).toEqual([32, 32]);
+  expect(h).toMatchObject({ up: true, down: true, left: true, right: true });
+  expect(Math.round((await box(page, '.app-header')).h)).toBe(44);
+
+  await page.evaluate(() => openView('notes'));
+  await expect(page.locator('.notes-header')).toBeVisible();
+  for (const sel of ['#notesBackBtn', '.notes-new-btn']) {
+    h = await hits(sel);
+    expect(Math.round(h.h)).toBe(32);
+    // снизу на 5px ниже идёт ряд колонок — там приоритет у соседней кнопки (зона не перекрывает чужие контролы)
+    expect(h, sel).toMatchObject({ up: true, left: true, right: true });
+  }
+  // плотный ряд колонок: по высоте 44, по ширине — до середины зазора, соседняя кнопка остаётся своей
+  const col = await page.evaluate(() => {
+    const btns = [...document.querySelectorAll('#view-notes .notes-col-btn')].filter((b) => b.offsetParent);
+    const a = btns[0], b = btns[1], ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+    const cy = ra.top + ra.height / 2, own = (el, x, y) => { const e = document.elementFromPoint(x, y); return e === el || el.contains(e); };
+    return { h: ra.height, up: own(a, ra.left + ra.width / 2, cy - 21), down: own(a, ra.left + ra.width / 2, cy + 21),
+      neighbourEdge: own(b, rb.left + 1, cy), gapMidLeft: own(a, (ra.right + rb.left) / 2 - 1.5, cy), gapMidRight: own(b, (ra.right + rb.left) / 2 + 1.5, cy), zoneH: getComputedStyle(a, '::after').height };
+  });
+  expect(Math.round(col.h)).toBe(28);
+  expect(col).toMatchObject({ up: true, down: true, neighbourEdge: true, gapMidLeft: true, gapMidRight: true });
+  expect(col.zoneH).toBe('44px');
+
+  await page.evaluate(() => openView('settings'));
+  await page.evaluate(() => openTabsMode());
+  h = await hits('#view-tabs-mode .subview-back');
+  expect(Math.round(h.h)).toBe(32);
+  expect(h).toMatchObject({ up: true, down: true, left: true, right: true });
+});
