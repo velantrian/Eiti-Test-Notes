@@ -180,7 +180,8 @@ test('Base update host: only by button, manifest+hashes, miss log, local wiki ca
   assert.match(h, /offline_manifest\.json\?u='/);
   assert.match(h, /crypto\.subtle\.digest\('SHA-256'/);
   assert.match(h, /got !== h \|\| !json\(b\)/);
-  assert.match(h, /navigator\.onLine === false\) \{ msg\('📴 Нет интернета/);
+  assert.match(h, /navigator\.onLine === false\) \{ msg\(L\('📴 Нет интернета/);
+  assert.match(HTML, /addDict\('en', \{"🔄 База офлайн-ответов": "🔄 Offline answer base"/);   // EN/DE без кириллицы
   assert.match(h, /'miss:list'/);
   assert.match(h, /'wcard:' \+ k/);
   assert.match(h, /localStorage\.getItem\(WIKI\)[^\n]*return v !== '0'/);      // «из Википедии» по умолчанию ВКЛ
