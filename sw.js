@@ -24,6 +24,7 @@ var CORE = [
     BASE + 'local/eiti_typo_vocab.json', // v14.8.0: словарь опечаток (грузится лениво при первом офлайн-запросе)
     BASE + 'local/eiti_frames.js', // v14.14.0: EITI Frames — офлайн-понимание формулировок («расскажи / поясни / а зачем?»)
     BASE + 'local/eiti_frames.json', // v14.14.0: пакет фреймов (правится без кода; грузится лениво при первом офлайн-запросе)
+    BASE + 'offline_manifest.json', // v14.14.0: хеши пакетов базы на момент установки — сверка для «🔄 Обновить базу офлайн-ответов»
     BASE + 'icon-192.png',
     BASE + 'icon-192-maskable.png',
     BASE + 'icon-512.png',

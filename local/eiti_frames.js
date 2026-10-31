@@ -317,7 +317,10 @@
   }
   function wikiFormat(r) {
     // v14.14.0: локальная карточка, сохранённая кнопкой «🔄 Обновить базу офлайн-ответов» — дальше отвечает без сети
-    return '🌐 **из Википедии · ' + r.title + '**' + (r.lang === 'en' ? ' (англ.)' : '') + '\n\n' + r.text + '\n\nИсточник: ' + r.url;
+    var u = String(r.url || ''), d = u;
+    try { d = decodeURI(u); } catch (e) { d = u; }
+    if (/[\s<>"'`]/.test(d)) d = u;   // читаемая ссылка (кириллица), но без пробелов/кавычек
+    return '🌐 **из Википедии · ' + r.title + '**' + (r.lang === 'en' ? ' (англ.)' : '') + '\n\n' + r.text + '\n\nИсточник: ' + d;
   }
 
   return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond,

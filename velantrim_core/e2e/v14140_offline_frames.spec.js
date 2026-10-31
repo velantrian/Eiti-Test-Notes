@@ -1,8 +1,12 @@
 // @ts-check
-// v14.14.0: EITI Frames — «Расскажи о науке» / «о науке расскажи» без ключа, уточнения, честный ответ с кнопками,
-// 🌐 Википедия (мок: успех, тайм-аут, офлайн), переключатель в настройках. Скриншоты 412×915 → /workspace/offline-*.png (если есть).
+// v14.14.0: EITI Frames — «Расскажи о науке» / «о науке расскажи» без ключа, уточнения; ответы СТРОГО из локальной базы:
+// «Не знаю, этого нет в базе» (журнал тем), «🔄 Обновить базу офлайн-ответов» в Настройках (мок манифеста и Википедии:
+// успех, офлайн, тайм-аут), карточка «🌐 из Википедии» потом отвечает без сети. Скриншоты 412×915 → /workspace/offline-*.png.
 const { test, expect } = require('@playwright/test');
 const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+const ROOT = path.join(__dirname, '..', '..');
 
 const SHOT = fs.existsSync('/workspace') ? '/workspace/' : null;
 async function shot(page, name) {
@@ -13,22 +17,18 @@ async function shot(page, name) {
 }
 test.use({ locale: 'ru-RU' });
 
-async function boot(page, wiki) {
+async function boot(page) {
   await page.setViewportSize({ width: 412, height: 915 });
-  await page.addInitScript((w) => {
+  await page.addInitScript(() => {
     localStorage.setItem('eiti_onboarded', 'true');
     localStorage.setItem('eiti_toured_v7', '1');
     localStorage.setItem('eiti_install_hint_seen', '1');
     localStorage.setItem('eiti_ai_provider', 'deepseek');
     localStorage.removeItem('deepseek_api_key');
     localStorage.removeItem('eiti_apikey_deepseek');
-    if (!sessionStorage.getItem('eiti_t_w')) { // только при первом заходе — перезагрузка проверяет сохранение
-      if (w == null) localStorage.removeItem('eiti_wiki_offline'); else localStorage.setItem('eiti_wiki_offline', w);
-      sessionStorage.setItem('eiti_t_w', '1');
-    }
-  }, wiki);
+  });
   await page.goto('/index.html');
-  await page.waitForFunction(() => window.eitiChatReady === true && typeof window.EitiFramesHost === 'object');
+  await page.waitForFunction(() => window.eitiChatReady === true && typeof window.EitiFramesHost === 'object' && typeof window.EitiBaseHost === 'object');
   await expect(page.locator('#splash')).toBeHidden();
   await page.addStyleTag({ content: '#eiti-pin-modal{display:none!important}' });
   await page.evaluate(() => { document.querySelectorAll('#eiti-onboarding,#eiti-pin-modal,.toast').forEach((e) => e.remove()); localStorage.setItem('eiti_offline_mode', '0'); });
@@ -39,17 +39,43 @@ async function send(page, text) {
 }
 const last = (page) => page.locator('#messages .message.incoming').last();
 
-function mockWiki(page, mode) {
-  return page.route(/https:\/\/(ru|en)\.wikipedia\.org\/.*/, async (route) => {
+const JSONH = { 'access-control-allow-origin': '*' };
+// Википедия (мок): REST summary по прямому названию → тестовая статья (с HTML, который должен вычиститься)
+function mockWiki(target) {
+  return target.route(/https:\/\/(ru|en)\.wikipedia\.org\/.*/, async (route) => {
     const u = route.request().url();
-    if (mode === 'timeout') return; // никогда не отвечаем → тайм-аут хоста
-    if (/list=search/.test(u)) return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ query: { search: [{ title: 'Квазибульба' }] } }) });
-    return route.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify({ type: 'standard', title: 'Квазибульба', extract: 'Квазибульба — вымышленное растение <b>для теста</b>, придуманное специально для проверки офлайн-ответов.', content_urls: { desktop: { page: 'https://ru.wikipedia.org/wiki/Квазибульба' } } }) });
+    if (/list=search/.test(u)) return route.fulfill({ status: 200, contentType: 'application/json', headers: JSONH, body: JSON.stringify({ query: { search: [] } }) });
+    const title = decodeURIComponent(u.split('/page/summary/')[1] || '').replace(/_/g, ' ');
+    return route.fulfill({ status: 200, contentType: 'application/json', headers: JSONH, body: JSON.stringify({ type: 'standard', title, extract: title + ' — вымышленное понятие <b>для теста</b>, придуманное специально для проверки офлайн-ответов EITI.', content_urls: { desktop: { page: 'https://ru.wikipedia.org/wiki/' + encodeURIComponent(title) } } }) });
   });
 }
+// манифест (мок): изменился один пакет — offline/core.json (тот же JSON + перевод строки → другой хеш)
+function mockManifest(target, mode) {
+  const man = JSON.parse(fs.readFileSync(path.join(ROOT, 'offline_manifest.json'), 'utf-8'));
+  const body = fs.readFileSync(path.join(ROOT, 'offline', 'core.json'), 'utf-8') + '\n';
+  const h = crypto.createHash('sha256').update(body).digest('hex').slice(0, 16);
+  man.files['offline/core.json'] = { h, s: Buffer.byteLength(body) };
+  const hits = [];
+  return Promise.all([
+    target.route(/\/offline_manifest\.json\?u=/, async (route) => {
+      hits.push(route.request().url());
+      if (mode === 'timeout') return; // не отвечаем → тайм-аут хоста
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(man) });
+    }),
+    target.route(new RegExp('/offline/core\\.json\\?u=' + h + '$'), (route) => { hits.push(route.request().url()); return route.fulfill({ status: 200, contentType: 'application/json', body }); }),
+  ]).then(() => hits);
+}
+async function openBaseSettings(page) {
+  await page.evaluate(() => { if (typeof openView === 'function') openView('settings'); });
+  const g = page.locator('#eiti-base-settings');
+  await g.scrollIntoViewIfNeeded();
+  await expect(page.locator('#eiti-base-update')).toBeVisible();
+  return g;
+}
+const NOT_IN_BASE = 'Не знаю, этого нет в базе';
 
 test('«Расскажи о науке» без ключа → карточка понятия, уточнения держат тему', async ({ page }) => {
-  await boot(page, '0');
+  await boot(page);
   await send(page, 'Расскажи о науке');
   await expect(last(page)).toContainText('Наука', { timeout: 20000 });
   await expect(last(page)).not.toContainText('Настройте');
@@ -66,7 +92,7 @@ test('«Расскажи о науке» без ключа → карточка 
 });
 
 test('«о науке расскажи» и «Поцелуй о науке» (оговорка диктовки)', async ({ page }) => {
-  await boot(page, '0');
+  await boot(page);
   await send(page, 'о науке расскажи');
   await expect(last(page)).toContainText('Наука', { timeout: 20000 });
   await shot(page, 'reverse');
@@ -76,60 +102,149 @@ test('«о науке расскажи» и «Поцелуй о науке» (о
   await expect(last(page)).toContainText('Фотосинтез', { timeout: 15000 });
 });
 
-test('ничего не нашлось → честный ответ с кнопками, без «Настройте ключ»', async ({ page }) => {
-  await boot(page, '0');
+test('ничего не нашлось → коротко «Не знаю, этого нет в базе» + подсказка, кнопки, без «Настройте ключ»', async ({ page }) => {
+  await boot(page);
   await send(page, 'расскажи про квазибульбу');
   await expect(last(page).locator('.eiti-fb-btn')).toHaveCount(2, { timeout: 20000 });
+  await expect(last(page)).toContainText(NOT_IN_BASE + ': «квазибульб');
+  await expect(last(page)).toContainText('🔄 Обновить базу офлайн-ответов');
   await expect(last(page)).toContainText('🔍 Поискать в заметках');
   await expect(last(page)).toContainText('🤖 Включить ИИ');
   await expect(last(page)).not.toContainText('Настройте');
   await expect(last(page)).not.toContainText('EITIFB');
-  await shot(page, 'fallback');
+  await expect(last(page)).not.toContainText('Википеди');
+  await shot(page, 'notinbase');
 });
 
-test('🌐 Википедия (мок): успех → подпись и ссылка, текст очищен', async ({ page }) => {
-  await mockWiki(page, 'ok');
-  await boot(page, '1');
-  await send(page, 'расскажи про квазибульбу');
-  await expect(last(page)).toContainText('Википедия', { timeout: 20000 });
-  await expect(last(page)).toContainText('вымышленное растение');
-  await expect(last(page).locator('b')).not.toContainText('для теста');
-  await shot(page, 'wikipedia');
-  // кэш IndexedDB: второй раз без сети
-  await page.unroute(/wikipedia\.org/);
-  await page.route(/wikipedia\.org/, (r) => r.abort());
-  const t = await page.evaluate(() => EitiWikiHost.lookup('квазибульбу'));
-  expect(t).toContain('Википедия');
-});
-
-test('🌐 Википедия: тайм-аут и офлайн → кнопки, без зависания', async ({ page, context }) => {
-  await mockWiki(page, 'timeout');
-  await boot(page, '1');
-  await send(page, 'расскажи про зюзюбрика');
-  await expect(last(page).locator('.eiti-fb-btn')).toHaveCount(2, { timeout: 30000 });
-  await context.setOffline(true);
-  const r = await page.evaluate(() => EitiWikiHost.lookup('несуществующее понятие'));
-  expect(r).toBeNull();
-  await context.setOffline(false);
-});
-
-test('настройка «🌐 Википедия для офлайн-ответов»: по умолчанию вкл без ключа, сохраняется', async ({ page }) => {
+test('5 формулировок вне базы (вкл. «Расскажи, как сделать шоколад») → «нет в базе», журнал тем, ни одного внешнего запроса', async ({ page, context }) => {
   await boot(page);
-  expect(await page.evaluate(() => EitiWikiHost.enabled())).toBe(true);
-  await page.evaluate(() => { if (typeof openView === 'function') openView('settings'); });
-  const cb = page.locator('#eiti-wiki-offline');
-  await cb.scrollIntoViewIfNeeded();
-  await expect(cb).toBeChecked();
-  await page.locator('#eiti-wiki-settings').scrollIntoViewIfNeeded();
-  await shot(page, 'settings');
-  await cb.uncheck();
-  expect(await page.evaluate(() => localStorage.getItem('eiti_wiki_offline'))).toBe('0');
-  await page.reload();
-  await page.waitForFunction(() => window.eitiChatReady === true);
-  expect(await page.evaluate(() => EitiWikiHost.enabled())).toBe(false);
-  await page.evaluate(() => { if (typeof openView === 'function') openView('settings'); });
-  await expect(page.locator('#eiti-wiki-offline')).not.toBeChecked();
-  // с ключом ИИ по умолчанию выключено
-  await page.evaluate(() => { localStorage.removeItem('eiti_wiki_offline'); localStorage.setItem('deepseek_api_key', 'sk-test'); });
-  expect(await page.evaluate(() => EitiWikiHost.enabled())).toBe(false);
+  const ext = []; // только во время ответов в чате
+  context.on('request', (r) => { if (!/^http:\/\/127\.0\.0\.1:8099\//.test(r.url()) && !/^(data|blob):/.test(r.url())) ext.push(r.url()); });
+  const asks = [
+    ['Расскажи, как сделать шоколад', 'Шоколад'],
+    ['объясни, что такое квазибульба', 'квазибульба'],
+    ['как это — зюзюбрик?', 'зюзюбрик'],
+    ['зачем нужен флюкс-конденсатор?', 'флюкс конденсатор'],
+    ['по сути, кто такой вася пупкин', 'вася пупкин'],
+  ];
+  for (const [q, topic] of asks) {
+    const n = await page.locator('#messages .message.incoming').count();
+    await send(page, q);
+    await expect(page.locator('#messages .message.incoming')).toHaveCount(n + 1, { timeout: 20000 });
+    await expect(last(page)).toContainText(NOT_IN_BASE, { timeout: 20000 });
+    await expect(last(page)).toContainText(topic);
+    await expect(last(page)).not.toContainText('Настройте');
+  }
+  // темы без ответа — в локальном журнале (карточка «Шоколад» есть, нет только раздела → в журнал не идёт)
+  await expect.poll(() => page.evaluate(() => EitiBaseHost.misses().then((l) => l.map((x) => x.t).sort())), { timeout: 5000 })
+    .toEqual(['вася пупкин', 'зюзюбрик', 'квазибульба', 'флюкс конденсатор']);
+  const ext2 = ext.filter((u) => !/cdnjs\.cloudflare\.com\/ajax\/libs\/dompurify\//.test(u) && !/fonts\.(googleapis|gstatic)\.com/.test(u));
+  expect(ext2.filter((u) => /wikipedia|wikimedia/.test(u))).toEqual([]);
+  expect(ext2).toEqual([]);
+});
+
+test.describe('🔄 Обновить базу офлайн-ответов', () => {
+  test.use({ serviceWorkers: 'block' }); // запросы страницы видны page.route (SW проверяется unit/pytest)
+
+  test('журнал «Темы без ответа» в Настройках: видно и очищается', async ({ page }) => {
+    await boot(page);
+    await send(page, 'объясни, что такое квазибульба');
+    await expect(last(page)).toContainText(NOT_IN_BASE, { timeout: 20000 });
+    await send(page, 'как это — зюзюбрик?');
+    await expect(last(page)).toContainText('зюзюбрик', { timeout: 20000 });
+    await expect.poll(() => page.evaluate(() => EitiBaseHost.misses().then((l) => l.length))).toBe(2);
+    await openBaseSettings(page);
+    await page.evaluate(() => EitiBaseHost.render());
+    await expect(page.locator('#eiti-base-miss-n')).toHaveText('2');
+    await page.locator('#eiti-base-miss summary').click();
+    await expect(page.locator('#eiti-base-miss-list')).toContainText('квазибульба');
+    await expect(page.locator('#eiti-base-miss-list')).toContainText('зюзюбрик');
+    await page.locator('#eiti-base-miss-clear').click();
+    await expect(page.locator('#eiti-base-miss-n')).toHaveText('0');
+    expect(await page.evaluate(() => EitiBaseHost.misses().then((l) => l.length))).toBe(0);
+  });
+
+  test('успех (мок манифеста и Википедии) → пакет обновлён, темы стали карточками, потом отвечают без сети', async ({ page, context }) => {
+    const hits = await mockManifest(page, 'ok');
+    await mockWiki(page);
+    await boot(page);
+    for (const q of ['объясни, что такое квазибульба', 'по сути, кто такой вася пупкин']) {
+      await send(page, q);
+      await expect(last(page)).toContainText(NOT_IN_BASE, { timeout: 20000 });
+    }
+    await expect.poll(() => page.evaluate(() => EitiBaseHost.misses().then((l) => l.length))).toBe(2);
+    await openBaseSettings(page);
+    await expect(page.locator('#eiti-base-wiki')).toBeChecked(); // по умолчанию ВКЛ
+    await expect(page.locator('#eiti-base-last')).toContainText('ещё не обновлялась');
+    const res = await page.evaluate(() => eitiBaseUpdate());
+    expect(res.ok).toBe(true);
+    expect(res.files).toBe(1);
+    expect(res.changed).toEqual(['offline/core.json']);
+    expect(res.wiki).toBe(2);
+    expect(hits.length).toBe(2); // манифест + ровно один изменившийся файл
+    await expect(page.locator('#eiti-base-status')).toContainText('✅ База обновлена');
+    await expect(page.locator('#eiti-base-status')).toContainText('пакетов обновлено: 1');
+    await expect(page.locator('#eiti-base-status')).toContainText('новых тем из Википедии: 2');
+    await expect(page.locator('#eiti-base-last')).not.toContainText('ещё не обновлялась');
+    await expect(page.locator('#eiti-base-miss-n')).toHaveText('0');
+    // файл лёг в кэш приложения под обычным адресом, «?u=» не осталось
+    const cached = await page.evaluate(async () => {
+      const ks = []; for (const n of await caches.keys()) for (const r of await (await caches.open(n)).keys()) ks.push(r.url);
+      return ks.filter((u) => /offline\/core\.json/.test(u));
+    });
+    expect(cached.some((u) => /\/offline\/core\.json$/.test(u))).toBe(true);
+    expect(cached.some((u) => /\?u=/.test(u))).toBe(false);
+    await page.locator('#eiti-base-settings').scrollIntoViewIfNeeded();
+    await shot(page, 'update-settings');
+    // второй раз — «уже актуальна», без скачивания файлов
+    const res2 = await page.evaluate(() => eitiBaseUpdate());
+    expect(res2.files).toBe(0);
+    await expect(page.locator('#eiti-base-status')).toContainText('✅ База уже актуальна');
+    // теперь без сети: карточка «🌐 из Википедии» из IndexedDB
+    await page.unroute(/wikipedia\.org/);
+    const ext = [];
+    context.on('request', (r) => { if (/wikipedia/.test(r.url())) ext.push(r.url()); });
+    await context.setOffline(true);
+    await page.evaluate(() => { if (typeof openView === 'function') openView('chat'); });
+    await send(page, 'объясни, что такое квазибульба');
+    await expect(last(page)).toContainText('🌐 из Википедии · Квазибульба', { timeout: 20000 });
+    await expect(last(page)).toContainText('вымышленное понятие');
+    await expect(last(page)).toContainText('Источник');
+    await expect(last(page).locator('b')).not.toContainText('для теста');
+    await expect(last(page)).not.toContainText(NOT_IN_BASE);
+    await shot(page, 'after-update');
+    // тема, которой нет и в карточках, — без сети тоже честное «нет в базе» (а не «AI недоступен»)
+    await send(page, 'как это — зюзюбрик?');
+    await expect(last(page)).toContainText(NOT_IN_BASE, { timeout: 20000 });
+    await expect(last(page)).not.toContainText('AI service недоступен');
+    expect(ext).toEqual([]);
+    await context.setOffline(false);
+  });
+
+  test('без сети → понятное сообщение и ни одного запроса', async ({ page, context }) => {
+    const hits = await mockManifest(page, 'ok');
+    await boot(page);
+    await openBaseSettings(page);
+    await context.setOffline(true);
+    const res = await page.evaluate(() => eitiBaseUpdate());
+    expect(res.offline).toBe(true);
+    await expect(page.locator('#eiti-base-status')).toContainText('📴 Нет интернета');
+    expect(hits).toEqual([]);
+    await expect(page.locator('#eiti-base-last')).toContainText('ещё не обновлялась');
+    await context.setOffline(false);
+  });
+
+  test('тайм-аут сервера → «⏱ не ответил вовремя», кнопка снова доступна', async ({ page }) => {
+    await mockManifest(page, 'timeout');
+    await boot(page);
+    await openBaseSettings(page);
+    const t0 = Date.now();
+    const res = await page.evaluate(() => eitiBaseUpdate());
+    expect(Date.now() - t0).toBeLessThan(20000);
+    expect(res.ok).toBe(false);
+    expect(res.error).toBe('timeout');
+    await expect(page.locator('#eiti-base-status')).toContainText('⏱ Сервер не ответил вовремя');
+    await expect(page.locator('#eiti-base-update')).toBeEnabled();
+    await expect(page.locator('#eiti-base-last')).toContainText('ещё не обновлялась');
+  });
 });

@@ -9172,11 +9172,20 @@
                             <div style="font-size:11px;opacity:0.45;line-height:1.5;text-align:center;">Без сети, без ключа или при сбое ИИ EITI отвечает офлайн: диалоги, шутки, пословицы, загадки, сказки и предания («сказку на ночь», «дальше», «кто такой Кухулин»).</div>
                         </div>
                     </div>
-                    <!-- v14.14.0: 🌐 ВИКИПЕДИЯ ДЛЯ ОФЛАЙН-ОТВЕТОВ (EitiWikiHost) -->
-                    <div class="settings-group" id="eiti-wiki-settings">
-                        <div style="padding:14px;display:flex;flex-direction:column;gap:8px;">
-                            <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-wiki-offline" onchange="eitiWikiSet(this.checked)"><span data-i18n="🌐 Википедия для офлайн-ответов">🌐 Википедия для офлайн-ответов</span></label>
-                            <div style="font-size:11px;opacity:0.45;line-height:1.5;" data-i18n="Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.">Если офлайн-ответа нет, EITI ищет краткую статью Википедии (ru, затем en): без ключа, без cookies и трекинга, ответы кэшируются на устройстве. По умолчанию включено, только если ключа ИИ нет.</div>
+                    <!-- v14.14.0: 🔄 БАЗА ОФЛАЙН-ОТВЕТОВ (EitiBaseHost) — обновление только по кнопке, без фоновой сети -->
+                    <div class="settings-group" id="eiti-base-settings">
+                        <div class="settings-title" data-i18n="🔄 База офлайн-ответов">🔄 База офлайн-ответов</div>
+                        <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
+                            <button type="button" id="eiti-base-update" onclick="eitiBaseUpdate()" style="padding:12px;border-radius:12px;border:1px solid var(--border-color);background:var(--secondary-color);color:var(--text-color);font-size:15px;font-weight:600;cursor:pointer;" data-i18n="🔄 Обновить базу офлайн-ответов">🔄 Обновить базу офлайн-ответов</button>
+                            <div id="eiti-base-last" style="font-size:12px;opacity:0.7;text-align:center;">Последнее обновление: ещё не обновлялась</div>
+                            <div id="eiti-base-status" style="font-size:12px;opacity:0.8;text-align:center;min-height:0;" aria-live="polite"></div>
+                            <label style="display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;"><input type="checkbox" id="eiti-base-wiki" checked onchange="eitiBaseWikiSet(this.checked)"><span data-i18n="Добавлять темы, на которые не было ответа, из Википедии">Добавлять темы, на которые не было ответа, из Википедии</span></label>
+                            <details id="eiti-base-miss" style="font-size:13px;">
+                                <summary style="cursor:pointer;padding:4px 0;font-weight:600;"><span data-i18n="Темы без ответа">Темы без ответа</span> (<span id="eiti-base-miss-n">0</span>)</summary>
+                                <div id="eiti-base-miss-list" style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;"></div>
+                                <button type="button" id="eiti-base-miss-clear" onclick="eitiBaseMissClear()" style="padding:8px 12px;border-radius:10px;border:1px solid var(--border-color);background:transparent;color:var(--text-color);font-size:13px;cursor:pointer;" data-i18n="🗑 Очистить список">🗑 Очистить список</button>
+                            </details>
+                            <div style="font-size:11px;opacity:0.45;line-height:1.5;" data-i18n="Офлайн EITI отвечает только из своей базы (карточки, пакеты, твои заметки). Сеть используется только по этой кнопке: скачиваются изменившиеся пакеты базы с сайта приложения и, если отмечено, краткие статьи Википедии по темам без ответа — они сохраняются на устройстве как карточки «🌐 из Википедии». Список тем хранится только здесь и никуда не отправляется сам.">Офлайн EITI отвечает только из своей базы (карточки, пакеты, твои заметки). Сеть используется только по этой кнопке: скачиваются изменившиеся пакеты базы с сайта приложения и, если отмечено, краткие статьи Википедии по темам без ответа — они сохраняются на устройстве как карточки «🌐 из Википедии». Список тем хранится только здесь и никуда не отправляется сам.</div>
                         </div>
                     </div>
                     <!-- v14.13.0: ПОХОЖИЕ И РАССУЖДЕНИЕ (local/eiti_related.js) -->
@@ -22371,7 +22380,7 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
                     return t;
                 });
             };
-            // v14.14.0: весь офлайн-путь вернул null → 🌐 Википедия (если включена) или честный ответ с кнопками вместо голого «настройте ключ»
+            // v14.14.0: весь офлайн-путь вернул null → локальная карточка «🌐 из Википедии» или «Не знаю, этого нет в базе» с кнопками (без сети)
             var _lastResort = function() {
                 if (_internal || !window.EitiFramesHost) return Promise.resolve(null);
                 return EitiFramesHost.lastResort(userText).then(function(t) {
@@ -29934,7 +29943,7 @@ window.eitiLLMClearAll = async function() {
 
                 // Only AI — пропускаем Intent Router и MOSC, идём прямо в DeepSeek
                 if (localStorage.getItem('eiti_only_ai') === '1') {
-                    if (!navigator.onLine) {
+                    if (!navigator.onLine && !window.EitiOffline) {   // v14.14.0: без сети отвечает офлайн-база (eitiAskDeepSeek → офлайн-путь → «нет в базе»)
                         _intentReply('🚫 AI service недоступен 🤷‍♂️ (нет сети)', 'Система');
                         return;
                     }
@@ -32543,7 +32552,9 @@ window.eitiLLMClearAll = async function() {
                 var go = function() { init().catch(function() {}); };
                 if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 10000 }); else setTimeout(go, 3000);
             }
-            return { init: init, answer: answer, facts: facts, entry: entry, format: format, prewarm: prewarm, stats: stats, pack: pack, concept: concept, lazy: lazy,
+            // v14.14.0: reset() — после «🔄 Обновить базу офлайн-ответов» следующий вопрос пересобирает индекс из обновлённых пакетов
+            function reset() { eng = null; idx = null; initP = null; lazyP = null; PK = {}; PKP = {}; LOC = {}; }
+            return { init: init, answer: answer, facts: facts, entry: entry, format: format, prewarm: prewarm, stats: stats, pack: pack, concept: concept, lazy: lazy, reset: reset,
                      ready: function() { return !!eng; }, count: function() { return idx ? idx.count : 0; }, index: function() { return idx; }, engine: function() { return eng; } };
         })();
         window.EitiKBHost = EitiKBHost;
@@ -32892,17 +32903,27 @@ window.eitiLLMClearAll = async function() {
                     });
                 }).catch(function(e) { console.warn('[EITI frames]', e && e.message); return orig(text, opts); });
             }
-            // lastResort(text) — весь офлайн-путь вернул null: 🌐 Википедия (если включена) или честный ответ с кнопками
+            // lastResort(text) — весь офлайн-путь вернул null: локальная карточка «🌐 из Википедии» (сохранена кнопкой «🔄 Обновить базу»)
+            // или короткое честное «Не знаю, этого нет в базе» + тема в журнал «темы без ответа». Сети здесь нет.
             function lastResort(text) {
                 var q = String(text || '').trim();
                 if (!q || q.length > 300) return Promise.resolve(null);
                 if ((window.eitiOfflineLang ? window.eitiOfflineLang(q) : 'ru') !== 'ru') return Promise.resolve(null);
                 return ready().then(function(f) {
                     if (!f) return null;
-                    var p = f.parse(q, null, 0), topic = p && p.kind === 'defer' ? '' : f.topicOf(q);
-                    var w = (topic && window.EitiWikiHost && EitiWikiHost.enabled()) ? EitiWikiHost.lookup(topic) : Promise.resolve(null);
-                    return w.then(function(t) { return t || f.fallbackText(topic); }, function() { return f.fallbackText(topic); });
+                    var p = f.parse(q, null, 0), topic = p && p.kind === 'defer' ? '' : f.topicOf(q), B = window.EitiBaseHost;
+                    var c = (topic && B) ? B.card(topic) : Promise.resolve(null);
+                    return c.then(function(t) {
+                        if (t) return t;
+                        if (topic && B) B.logMiss(topic);
+                        return f.fallbackText(topic);
+                    }, function() { return f.fallbackText(topic); });
                 }).catch(function() { return null; });
+            }
+            // reload() — пакет фреймов обновлён кнопкой «🔄 Обновить базу»: перечитать его из кэша (состояние диалога сохраняется)
+            function reload() {
+                var f = F(); if (!f) return Promise.resolve(false);
+                return fetch('./local/eiti_frames.json').then(function(r) { return r.ok ? r.json() : null; }).then(function(p) { return !!(p && f.load(p)); }, function() { return false; });
             }
             function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
             // bar(enc) → кнопки под честным «не знаю»: [🔍 Поискать в заметках] [🤖 Включить ИИ]
@@ -32925,7 +32946,7 @@ window.eitiLLMClearAll = async function() {
                 if (typeof openView === 'function') openView('settings');
                 return true;
             }
-            return { reply: reply, lastResort: lastResort, bar: bar, notes: notes, ai: ai, ready: ready, stats: stats, state: function() { return st; } };
+            return { reply: reply, lastResort: lastResort, reload: reload, bar: bar, notes: notes, ai: ai, ready: ready, stats: stats, state: function() { return st; } };
         })();
         window.EitiFramesHost = EitiFramesHost;
         (function() {
@@ -32935,64 +32956,233 @@ window.eitiLLMClearAll = async function() {
             EitiOffline._framesWrapped = true;
         })();
 
-        // ── v14.14.0: 🌐 ВИКИПЕДИЯ ДЛЯ ОФЛАЙН-ОТВЕТОВ — без ключа, ru → en, кэш в IndexedDB 'eiti_offline' (kv, ключи «wiki:…») ──
-        // Только когда весь офлайн-путь вернул null. Без cookies и referrer, таймаут 5 с на запрос, текст очищается (local/eiti_frames.js).
-        // Подход тот же, что у _tryWikipedia (поиск api.php, origin=*), плюс REST summary для короткой выжимки.
-        var EitiWikiHost = (function() {
-            var KEY = 'eiti_wiki_offline', TTLC = 30 * 864e5, MAXC = 200, dbP = null;
-            function enabled() {
-                var v = null; try { v = localStorage.getItem(KEY); } catch (e) {}
-                if (v === '1') return true; if (v === '0') return false;
-                return typeof eitiAiKeyMissing === 'function' ? eitiAiKeyMissing() : true;   // по умолчанию: вкл, только если ключа ИИ нет
-            }
-            function set(on) { try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {} return enabled(); }
+        // ── v14.14.0: 🔄 БАЗА ОФЛАЙН-ОТВЕТОВ (EitiBaseHost) ──
+        // Офлайн EITI отвечает строго из своей базы (карточки KB, офлайн-пакеты, заметки). Сеть — ТОЛЬКО по кнопке
+        // «🔄 Обновить базу офлайн-ответов» в Настройках, никаких фоновых запросов и отправки данных:
+        //  (a) offline_manifest.json того же сайта → скачиваются только файлы с изменившимся хешем (sha-256 сверяется),
+        //      кладутся в кэш приложения (Cache API, там же, где их держит SW) — дальше работают без сети;
+        //  (b) если отмечено «Добавлять темы… из Википедии» — краткие статьи ru-Википедии (REST summary) по темам из журнала
+        //      «нет в базе» сохраняются в IndexedDB как локальные карточки «🌐 из Википедии».
+        // Журнал тем без ответа — IndexedDB 'eiti_offline' (kv), виден в Настройках, очищается кнопкой, сам никуда не уходит.
+        var EitiBaseHost = (function() {
+            var WIKI = 'eiti_base_wiki', LAST = 'eiti_base_updated', MAXM = 100, MAXC = 300, PER = 15, MS = 8000;
+            var SAFE = /^(local|kb|offline)\/[a-z0-9_\/.-]+\.json$/i, dbP = null, busy = false;
             function db() {
-                if (!dbP) dbP = new Promise(function(res) {
-                    try { var r = indexedDB.open('eiti_offline', 1); r.onupgradeneeded = function() { r.result.createObjectStore('kv'); }; r.onsuccess = function() { res(r.result); }; r.onerror = function() { res(null); }; } catch (e) { res(null); }
-                });
+                if (dbP) return dbP;
+                dbP = new Promise(function(res, rej) {
+                    if (!window.indexedDB) return rej(new Error('no idb'));
+                    var r = indexedDB.open('eiti_offline', 1);
+                    r.onupgradeneeded = function() { r.result.createObjectStore('kv'); };
+                    r.onsuccess = function() { res(r.result); };
+                    r.onerror = function() { rej(r.error); };
+                }).catch(function(e) { dbP = null; throw e; });
                 return dbP;
             }
-            function kvGet(k) { return db().then(function(d) { return d ? new Promise(function(res) { try { var g = d.transaction('kv').objectStore('kv').get(k); g.onsuccess = function() { res(g.result || null); }; g.onerror = function() { res(null); }; } catch (e) { res(null); } }) : null; }); }
-            function kvPut(k, v) { return db().then(function(d) { if (!d) return; try { d.transaction('kv', 'readwrite').objectStore('kv').put(v, k); } catch (e) {} }); }
-            function remember(k, t) {
-                kvPut(k, { t: t, at: Date.now() });
-                kvGet('wiki:_keys').then(function(ks) {
-                    ks = Array.isArray(ks) ? ks.filter(function(x) { return x !== k; }) : []; ks.push(k);
-                    while (ks.length > MAXC) { var old = ks.shift(); db().then(function(d) { try { d.transaction('kv', 'readwrite').objectStore('kv').delete(old); } catch (e) {} }); }
-                    kvPut('wiki:_keys', ks);
+            function kv(mode, fn) {
+                return db().then(function(d) { return new Promise(function(res, rej) {
+                    var tx = d.transaction('kv', mode), st = tx.objectStore('kv'), q = fn(st), out;
+                    if (q) q.onsuccess = function() { out = q.result; };
+                    tx.oncomplete = function() { res(out); };
+                    tx.onerror = tx.onabort = function() { rej(tx.error); };
+                }); });
+            }
+            function kvGet(k) { return kv('readonly', function(st) { return st.get(k); }).catch(function() { return null; }); }
+            function kvPut(k, v) { return kv('readwrite', function(st) { st.put(v, k); }); }
+            function kvDel(k) { return kv('readwrite', function(st) { st.delete(k); }).catch(function() {}); }
+            function nk(t) { var f = window.EitiFrames; return String(f ? f.norm(t) : String(t || '').toLowerCase()).trim().slice(0, 80); }
+            function wikiOn() { var v = null; try { v = localStorage.getItem(WIKI); } catch (e) {} return v !== '0'; }
+            function wikiSet(on) { try { localStorage.setItem(WIKI, on ? '1' : '0'); } catch (e) {} return wikiOn(); }
+            function lastAt() { var v = 0; try { v = +localStorage.getItem(LAST) || 0; } catch (e) {} return v; }
+            // ── журнал «нет в базе» ──
+            function misses() { return kvGet('miss:list').then(function(l) { return Array.isArray(l) ? l.filter(function(x) { return x && x.k; }) : []; }); }
+            function logMiss(topic) {
+                var k = nk(topic); if (k.length < 2) return Promise.resolve(false);
+                return misses().then(function(l) {
+                    var hit = null;
+                    l = l.filter(function(x) { if (x.k === k) { hit = x; return false; } return true; });
+                    hit = hit || { k: k, t: String(topic).replace(/\s+/g, ' ').trim().slice(0, 80), n: 0 };
+                    hit.n = (hit.n || 0) + 1; hit.at = Date.now(); l.push(hit);
+                    while (l.length > MAXM) l.shift();
+                    return kvPut('miss:list', l).then(function() { render(); return true; });
+                }).catch(function() { return false; });
+            }
+            function dropMiss(k) { return misses().then(function(l) { return kvPut('miss:list', l.filter(function(x) { return x.k !== k; })); }).catch(function() {}); }
+            function clearMisses() { return kvPut('miss:list', []).then(function() { render(); return true; }, function() { return false; }); }
+            // ── локальные карточки «🌐 из Википедии» ──
+            function card(topic) {
+                var k = nk(topic); if (!k) return Promise.resolve(null);
+                return kvGet('wcard:' + k).then(function(c) { return c && c.title && c.text && window.EitiFrames ? window.EitiFrames.wikiFormat(c) : null; });
+            }
+            function saveCard(k, topic, r) {
+                var c = { title: String(r.title).slice(0, 200), text: String(r.text).slice(0, 1200), url: String(r.url), lang: 'ru', topic: topic, at: Date.now() };
+                return kvPut('wcard:' + k, c).then(function() { return kvGet('wcard:_keys'); }).then(function(ks) {
+                    ks = (Array.isArray(ks) ? ks : []).filter(function(x) { return x !== k; }); ks.push(k);
+                    var drop = ks.length > MAXC ? ks.splice(0, ks.length - MAXC) : [];
+                    return Promise.all(drop.map(function(x) { return kvDel('wcard:' + x); })).then(function() { return kvPut('wcard:_keys', ks); });
                 });
             }
-            function get(url, ms) {
-                ms = ms || 5000;
-                var ac = typeof AbortController === 'function' ? new AbortController() : null, tm = null;
-                var timeout = new Promise(function(res) { tm = setTimeout(function() { try { if (ac) ac.abort(); } catch (e) {} res(null); }, ms); });
-                var req = fetch(url, { signal: ac ? ac.signal : undefined, credentials: 'omit', referrerPolicy: 'no-referrer', mode: 'cors' })
-                    .then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; });
-                return Promise.race([req, timeout]).then(function(j) { clearTimeout(tm); return j; });
+            // ── сеть: только из update(); таймаут на запрос+тело, без cookies и referrer ──
+            function get(url, same) {
+                var ac = window.AbortController ? new AbortController() : null, tm;
+                var to = new Promise(function(_, rej) { tm = setTimeout(function() { try { if (ac) ac.abort(); } catch (e) {} rej(new Error('timeout')); }, MS); });
+                var req = fetch(url, { signal: ac ? ac.signal : undefined, cache: 'no-store', credentials: same ? 'same-origin' : 'omit', referrerPolicy: 'no-referrer', mode: same ? 'same-origin' : 'cors' })
+                    .then(function(r) { if (!r.ok) { var e = new Error('HTTP ' + r.status); e.status = r.status; throw e; } return r.arrayBuffer(); });
+                return Promise.race([req, to]).then(function(b) { clearTimeout(tm); return b; }, function(e) { clearTimeout(tm); throw e; });
             }
-            function one(topic, lang) {
-                var f = window.EitiFrames;
-                return get(f.wikiSearchUrl(topic, lang)).then(function(j) { var t = f.wikiPick(j); return t ? get(f.wikiSummaryUrl(t, lang)) : null; })
-                    .then(function(j) { return j ? f.wikiClean(j, lang) : null; });
+            function json(buf) { try { var o = JSON.parse(new TextDecoder('utf-8').decode(buf)); return o && typeof o === 'object' ? o : null; } catch (e) { return null; } }
+            function sha16(buf) {
+                return crypto.subtle.digest('SHA-256', buf).then(function(d) {
+                    return Array.prototype.map.call(new Uint8Array(d), function(b) { return ('0' + b.toString(16)).slice(-2); }).join('').slice(0, 16);
+                });
             }
-            // lookup(topic) → '🌐 **Википедия · …**…' | null (офлайн — только из кэша)
-            function lookup(topic) {
-                var f = window.EitiFrames; if (!f || !topic) return Promise.resolve(null);
-                var key = 'wiki:' + f.norm(topic).slice(0, 80);
-                return kvGet(key).then(function(hit) {
-                    if (hit && hit.t && Date.now() - (hit.at || 0) < TTLC) return hit.t;
-                    if (navigator.onLine === false) return null;
-                    return one(topic, 'ru').then(function(r) { return r || one(topic, 'en'); }).then(function(r) {
-                        if (!r) return null;
-                        var t = f.wikiFormat(r); remember(key, t); return t;
+            function abs(rel) { return new URL('./' + rel, location.href).href; }
+            function eitiCaches() { return window.caches ? caches.keys().then(function(ns) { return ns.filter(function(n) { return /^eiti-/.test(n); }); }).catch(function() { return []; }) : Promise.resolve([]); }
+            // файл кладётся под обычным адресом во все кэши приложения, где он уже есть (иначе — в кэш текущей версии)
+            function store(rel, buf) {
+                if (!window.caches) return Promise.resolve(false);
+                var url = abs(rel), V = window.EITI_VERSION || '';
+                var resp = function() { return new Response(buf.slice(0), { status: 200, headers: { 'Content-Type': 'application/json; charset=utf-8' } }); };
+                return eitiCaches().then(function(ns) {
+                    return Promise.all(ns.map(function(n) { return caches.open(n).then(function(c) { return c.match(url).then(function(m) { return m ? c.put(url, resp()).then(function() { return 1; }) : 0; }); }); }));
+                }).then(function(hits) {
+                    if (hits.some(Boolean)) return true;
+                    return caches.open(/^(kb|offline)\//.test(rel) ? 'eiti-offline-v' + V : 'eiti-v' + V).then(function(c) { return c.put(url, resp()); }).then(function() { return true; });
+                }).catch(function() { return false; });
+            }
+            // SW мог сохранить ответ на «?u=…» — убрать этот лишний ключ
+            function unpollute(rel, u) {
+                var url = abs(rel) + '?u=' + u;
+                return eitiCaches().then(function(ns) { return Promise.all(ns.map(function(n) { return caches.open(n).then(function(c) { return c.delete(url); }); })); }).catch(function() {});
+            }
+            // база для сравнения: что уже скачано кнопкой (для этой версии приложения) → иначе манифест из установки
+            function baseline(remote) {
+                var V = window.EITI_VERSION || '';
+                return kvGet('base:files').then(function(b) {
+                    if (b && b.app === V && b.files) return b.files;
+                    var fromCache = window.caches ? caches.match(abs('offline_manifest.json')).catch(function() { return null; }) : Promise.resolve(null);
+                    return fromCache.then(function(r) { return r || fetch('./offline_manifest.json'); })
+                        .then(function(r) { return r && r.ok ? r.json() : null; })
+                        .then(function(m) { return m && m.files ? m.files : remote; }, function() { return remote; });
+                });
+            }
+            function packs(res) {
+                var tag = Date.now().toString(36);
+                status('🔄 Проверяю обновления базы…');
+                return get('./offline_manifest.json?u=' + tag, true).then(function(buf) {
+                    unpollute('offline_manifest.json', tag);
+                    var m = json(buf);
+                    if (!m || m.format !== 'eiti-offline-manifest' || !m.files || typeof m.files !== 'object') throw new Error('manifest');
+                    return baseline(m.files).then(function(old) {
+                        var todo = Object.keys(m.files).filter(function(rel) {
+                            var x = m.files[rel];
+                            return SAFE.test(rel) && rel.indexOf('..') < 0 && x && /^[0-9a-f]{16}$/.test(x.h) && (!old[rel] || old[rel].h !== x.h);
+                        }).slice(0, 400);
+                        var i = 0, upd = {};
+                        function next() {
+                            if (i >= todo.length) return Promise.resolve();
+                            var rel = todo[i++], h = m.files[rel].h;
+                            status('📦 Обновляю пакеты базы… ' + i + ' / ' + todo.length);
+                            return get('./' + rel + '?u=' + h, true).then(function(b) {
+                                return sha16(b).then(function(got) {
+                                    if (got !== h || !json(b)) throw new Error('hash');
+                                    return store(rel, b);
+                                }).then(function(ok) { unpollute(rel, h); if (!ok) throw new Error('cache'); upd[rel] = m.files[rel]; res.files++; res.changed.push(rel); });
+                            }).catch(function(e) { res.failed++; if (e && e.message === 'timeout') res.timeouts++; }).then(next);
+                        }
+                        return next().then(function() {
+                            var nb = {}; Object.keys(old).forEach(function(k) { nb[k] = old[k]; }); Object.keys(upd).forEach(function(k) { nb[k] = upd[k]; });
+                            return kvPut('base:files', { app: window.EITI_VERSION || '', files: nb, at: Date.now() }).catch(function() {});
+                        });
                     });
-                }).catch(function() { return null; });
+                }).then(function() {
+                    var ch = res.changed;
+                    if (ch.indexOf('local/eiti_frames.json') >= 0 && window.EitiFramesHost && EitiFramesHost.reload) EitiFramesHost.reload();
+                    if (ch.some(function(r) { return /^kb\//.test(r); }) && window.EitiKBHost && EitiKBHost.reset) EitiKBHost.reset();
+                });
             }
-            return { enabled: enabled, set: set, lookup: lookup, KEY: KEY };
+            function wiki(res) {
+                var F = window.EitiFrames;
+                if (!F || !F.wikiSummaryUrl) return Promise.resolve();
+                return misses().then(function(l) {
+                    var todo = l.slice(-PER).reverse(), i = 0;
+                    function summary(title) { return get(F.wikiSummaryUrl(title, 'ru')).then(function(b) { return F.wikiClean(json(b), 'ru'); }); }
+                    function next() {
+                        if (i >= todo.length) return Promise.resolve();
+                        if (res.timeouts >= 2) { res.skipped += todo.length - i; return Promise.resolve(); }   // сеть «висит» — не мучаем
+                        var it = todo[i++], t = it.t;
+                        status('🌐 Википедия: ' + i + ' / ' + todo.length + ' — «' + t + '»');
+                        var direct = t.charAt(0).toUpperCase() + t.slice(1);
+                        return summary(direct).catch(function(e) { if (e && e.message === 'timeout') throw e; return null; }).then(function(r) {
+                            if (r) return r;
+                            return get(F.wikiSearchUrl(t, 'ru')).then(function(b) { var p = F.wikiPick(json(b)); return p ? summary(p) : null; });
+                        }).then(function(r) {
+                            if (!r) { res.wikiMiss++; return; }
+                            return saveCard(it.k, t, r).then(function() { res.wiki++; return dropMiss(it.k); });
+                        }, function(e) { res.wikiFail++; if (e && e.message === 'timeout') res.timeouts++; }).then(next);
+                    }
+                    return next();
+                });
+            }
+            function msg(text, ms) { status(text); try { if (typeof showToast === 'function') showToast(text, ms || 4000); } catch (e) {} }
+            function status(text) { var el = document.getElementById('eiti-base-status'); if (el) el.textContent = text || ''; }
+            function update() {
+                if (busy) return Promise.resolve({ ok: false, busy: true });
+                if (navigator.onLine === false) { msg('📴 Нет интернета — обновить базу можно, когда появится сеть.'); return Promise.resolve({ ok: false, offline: true }); }
+                busy = true;
+                var btn = document.getElementById('eiti-base-update'); if (btn) btn.disabled = true;
+                var res = { ok: true, files: 0, failed: 0, timeouts: 0, changed: [], wiki: 0, wikiMiss: 0, wikiFail: 0, skipped: 0, manifest: true };
+                return packs(res).catch(function(e) {
+                    res.manifest = false;
+                    if (e && (e.message === 'timeout' || e instanceof TypeError)) { res.timeouts += e.message === 'timeout' ? 1 : 0; throw e; }   // сети нет — дальше не идём
+                }).then(function() { return wikiOn() ? wiki(res) : null; }).then(function() {
+                    if (!res.manifest && !res.wiki && !res.wikiMiss) throw new Error('manifest');
+                    try { localStorage.setItem(LAST, String(Date.now())); } catch (e) {}
+                    var p = [];
+                    p.push(res.files ? '📦 пакетов обновлено: ' + res.files : (res.manifest ? '📦 пакеты актуальны' : '⚠️ список пакетов недоступен'));
+                    if (res.wiki) p.push('🌐 новых тем из Википедии: ' + res.wiki);
+                    if (res.wikiMiss) p.push('не нашлось в Википедии: ' + res.wikiMiss);
+                    if (res.failed || res.wikiFail) p.push('⚠️ не удалось: ' + (res.failed + res.wikiFail));
+                    var fresh = !res.files && !res.wiki && !res.failed && !res.wikiFail && !res.wikiMiss;
+                    msg(fresh ? '✅ База уже актуальна' : '✅ База обновлена: ' + p.join(', '), 5000);
+                    return res;
+                }).catch(function(e) {
+                    res.ok = false;
+                    res.error = e && e.message === 'timeout' ? 'timeout' : (e instanceof TypeError ? 'network' : 'manifest');
+                    msg(res.error === 'timeout' ? '⏱ Сервер не ответил вовремя — попробуй обновить базу позже.'
+                        : res.error === 'network' ? '📴 Нет связи с сервером — попробуй, когда появится сеть.'
+                        : '⚠️ Не удалось получить список обновлений базы — попробуй позже.', 5000);
+                    return res;
+                }).then(function(r) { busy = false; if (btn) btn.disabled = false; render(); return r; });
+            }
+            function render() {
+                return misses().then(function(l) {
+                    var last = document.getElementById('eiti-base-last'), t = lastAt();
+                    if (last) last.textContent = 'Последнее обновление: ' + (t ? new Date(t).toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'ещё не обновлялась');
+                    var cb = document.getElementById('eiti-base-wiki'); if (cb) cb.checked = wikiOn();
+                    var n = document.getElementById('eiti-base-miss-n'); if (n) n.textContent = String(l.length);
+                    var box = document.getElementById('eiti-base-miss-list');
+                    if (box) {
+                        box.textContent = '';
+                        if (!l.length) { var e0 = document.createElement('span'); e0.style.opacity = '0.6'; e0.textContent = 'Пока пусто — сюда попадают вопросы, на которые офлайн не нашлось ответа.'; box.appendChild(e0); }
+                        l.slice().reverse().forEach(function(x) {
+                            var s = document.createElement('span');
+                            s.style.cssText = 'padding:4px 10px;border-radius:12px;background:var(--secondary-color);font-size:12px;';
+                            s.textContent = x.t + (x.n > 1 ? ' ×' + x.n : '');
+                            box.appendChild(s);
+                        });
+                    }
+                    var cl = document.getElementById('eiti-base-miss-clear'); if (cl) cl.disabled = !l.length;
+                    return l;
+                }).catch(function() { return []; });
+            }
+            return { update: update, card: card, logMiss: logMiss, misses: misses, clearMisses: clearMisses, render: render, wikiOn: wikiOn, wikiSet: wikiSet,
+                     lastAt: lastAt, busy: function() { return busy; } };
         })();
-        window.EitiWikiHost = EitiWikiHost;
-        window.eitiWikiSet = function(on) { return EitiWikiHost.set(!!on); };
-        window.addEventListener('load', function() { try { var c = document.getElementById('eiti-wiki-offline'); if (c) c.checked = EitiWikiHost.enabled(); } catch (e) {} });
+        window.EitiBaseHost = EitiBaseHost;
+        function eitiBaseUpdate() { return EitiBaseHost.update(); }
+        function eitiBaseWikiSet(on) { EitiBaseHost.wikiSet(!!on); }
+        function eitiBaseMissClear() { return EitiBaseHost.clearMisses().then(function(ok) { if (ok && typeof showToast === 'function') showToast('🗑 Список тем без ответа очищен', 2500); return ok; }); }
+        window.addEventListener('load', function() { try { EitiBaseHost.render(); } catch (e) {} });
 
         // ── v14.2.0: EITI LOCAL — «простой интеллект» по своим данным + калькулятор (local/eiti_local.js) ──
         // Синхронно и без сети: снимок заметок (notesLoad) и пользовательских файлов (getAiTextStore) → готовый ответ или null.
@@ -33293,7 +33483,7 @@ window.eitiLLMClearAll = async function() {
             if (navigator.onLine === false) return true;
             return eitiAiKeyMissing();
         }
-        // v14.14.0: только «нет ключа у выбранного провайдера» (без проверки сети) — для умолчания 🌐 Википедии
+        // v14.14.0: только «нет ключа у выбранного провайдера» (без проверки сети)
         function eitiAiKeyMissing() {
             try {
                 var p = localStorage.getItem('eiti_ai_provider') || 'deepseek';

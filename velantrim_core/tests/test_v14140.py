@@ -1,4 +1,4 @@
-"""v14.14.0: EITI Frames (офлайн-понимание формулировок) + карточки понятий kn_* + Википедия без ключа."""
+"""v14.14.0: EITI Frames (офлайн-понимание формулировок) + карточки понятий kn_* + «нет в базе» и «🔄 Обновить базу офлайн-ответов»."""
 import gzip
 import json
 import subprocess
@@ -57,3 +57,28 @@ def test_kn_sources_not_hand_edited_json():
     srcs = {p.stem for p in (KB / "src").glob("kn_*.txt")}
     idx = json.loads((KB / "index.json").read_text(encoding="utf-8"))
     assert {d for d in idx["domains"] if d.startswith("kn_")} == srcs
+
+
+def test_offline_manifest_in_sync_cached_published():
+    """offline_manifest.json генерируется (kb/build_kb.py → scripts/build_offline_manifest.py), не правится руками."""
+    r = subprocess.run([sys.executable, str(ROOT / "scripts" / "build_offline_manifest.py"), "--check"], cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    m = json.loads((ROOT / "offline_manifest.json").read_text(encoding="utf-8"))
+    assert m["format"] == "eiti-offline-manifest" and m["v"] == 1
+    files = m["files"]
+    for rel in ("local/eiti_frames.json", "kb/index.json", "offline/core.json"):
+        assert rel in files and len(files[rel]["h"]) == 16
+    assert all(k.endswith(".json") and k.split("/")[0] in ("local", "kb", "offline") for k in files)
+    assert "BASE + 'offline_manifest.json'" in SW
+    assert "'offline_manifest.json'" in (ROOT / "scripts" / "build_pages.py").read_text(encoding="utf-8")
+    assert "build_offline_manifest.py" in (KB / "build_kb.py").read_text(encoding="utf-8")
+
+
+def test_answers_local_only_update_by_button():
+    assert "EitiWikiHost" not in HTML and "eiti-wiki-offline" not in HTML and "eiti_wiki_offline" not in HTML
+    assert 'id="eiti-base-update" onclick="eitiBaseUpdate()"' in HTML
+    assert "Добавлять темы, на которые не было ответа, из Википедии" in HTML
+    lr = HTML[HTML.index("function lastResort(text)"):HTML.index("function reload()")]
+    assert "fetch" not in lr and "wikipedia" not in lr.lower()
+    fr = json.loads((ROOT / "local" / "eiti_frames.json").read_text(encoding="utf-8"))
+    assert "Не знаю, этого нет в базе" in json.dumps(fr, ensure_ascii=False)

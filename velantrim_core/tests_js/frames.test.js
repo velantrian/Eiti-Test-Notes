@@ -132,6 +132,10 @@ test('fallback text + marker (buttons) when nothing answers', () => {
   assert.match(t, /квазибульб/);
   assert.match(t, /⟦EITIFB:[^⟧]*⟧$/);
   assert.match(F.fallbackText(''), /⟦EITIFB:⟧$/);
+  // v14.14.0: коротко и честно + подсказка про обновление базы в Настройках
+  assert.match(F.fallbackText('шоколад'), /^🤷 Не знаю, этого нет в базе: «шоколад»\.\n[^\n]*Настройк[^\n]*🔄 Обновить базу офлайн-ответов/);
+  assert.match(F.fallbackText(''), /^🤷 Не знаю, этого нет в базе\./);
+  assert.ok(F.fallbackText('шоколад').length < 260, 'fallback stays short');
   assert.equal(F.topicOf('расскажи сказку'), '');
   // хост рисует кнопки по маркеру, маркер не попадает в заметки/копирование
   assert.match(HTML, /⟦EITIFB:\(\[\^⟧\]\*\)⟧\/g, function\(_m, tp\)\{[^\n]*EitiFramesHost\.bar\(tp\)/);
@@ -163,20 +167,37 @@ test('Wikipedia helpers: URLs, pick, sanitize, format', () => {
   assert.equal(F.wikiClean({ title: 'a', extract: 'short' }, 'ru'), null);
   const long = F.wikiClean({ title: 'T', extract: ('Предложение номер один про науку. ').repeat(60) }, 'en');
   assert.ok(long.text.length <= 701);
-  assert.match(F.wikiFormat(long), /^🌐 \*\*Википедия · T\*\* \(англ\.\)/);
+  assert.match(F.wikiFormat(long), /^🌐 \*\*из Википедии · T\*\* \(англ\.\)/);
+  assert.match(F.wikiFormat({ title: 'Шоколад', text: 'Шоколад — кондитерское изделие.', url: 'https://ru.wikipedia.org/wiki/x', lang: 'ru' }), /^🌐 \*\*из Википедии · Шоколад\*\*\n\n/);
 });
 
-test('Wikipedia host: opt-in toggle, default on only without AI key, timeout, no tracking, IDB cache', () => {
-  const i = HTML.indexOf('var EitiWikiHost = (function()'), h = HTML.slice(i, i + 4000);
-  assert.match(h, /KEY = 'eiti_wiki_offline'/);
-  assert.match(h, /if \(v === '1'\) return true; if \(v === '0'\) return false;/);
-  assert.match(h, /eitiAiKeyMissing\(\)/);
-  assert.match(h, /credentials: 'omit', referrerPolicy: 'no-referrer'/);
-  assert.match(h, /ms = ms \|\| 5000/);
+test('Base update host: only by button, manifest+hashes, miss log, local wiki cards, no network in answers', () => {
+  const i = HTML.indexOf('var EitiBaseHost = (function()'), h = HTML.slice(i, HTML.indexOf('window.EitiBaseHost = EitiBaseHost;'));
+  assert.ok(i > 0 && h.length > 2000);
   assert.match(h, /indexedDB\.open\('eiti_offline', 1\)/);
-  assert.match(h, /navigator\.onLine === false\) return null/);
-  assert.match(h, /one\(topic, 'ru'\)\.then\(function\(r\) \{ return r \|\| one\(topic, 'en'\); \}\)/);
-  assert.match(HTML, /id="eiti-wiki-offline" onchange="eitiWikiSet\(this\.checked\)"/);
+  assert.match(h, /credentials: same \? 'same-origin' : 'omit', referrerPolicy: 'no-referrer'/);
+  assert.match(h, /MS = 8000/);
+  assert.match(h, /offline_manifest\.json\?u='/);
+  assert.match(h, /crypto\.subtle\.digest\('SHA-256'/);
+  assert.match(h, /got !== h \|\| !json\(b\)/);
+  assert.match(h, /navigator\.onLine === false\) \{ msg\('📴 Нет интернета/);
+  assert.match(h, /'miss:list'/);
+  assert.match(h, /'wcard:' \+ k/);
+  assert.match(h, /localStorage\.getItem\(WIKI\)[^\n]*return v !== '0'/);      // «из Википедии» по умолчанию ВКЛ
+  assert.doesNotMatch(h, /setInterval|sendBeacon|navigator\.sendBeacon|XMLHttpRequest/);
+  assert.doesNotMatch(h, /innerHTML/);                                       // список тем — только textContent
+  // ответы: lastResort без сети — карточка из IndexedDB или «нет в базе» + журнал
+  const lr = HTML.slice(HTML.indexOf('function lastResort(text)'), HTML.indexOf('function reload()'));
+  assert.match(lr, /B\.card\(topic\)/);
+  assert.match(lr, /B\.logMiss\(topic\)/);
+  assert.doesNotMatch(lr, /fetch|wikipedia|update\(/i);
+  assert.doesNotMatch(HTML, /EitiWikiHost|eiti_wiki_offline|eiti-wiki-offline|eitiWikiSet/);
+  // UI в Настройках
+  assert.match(HTML, /id="eiti-base-update" onclick="eitiBaseUpdate\(\)"[^>]*>🔄 Обновить базу офлайн-ответов</);
+  assert.match(HTML, /id="eiti-base-wiki" checked onchange="eitiBaseWikiSet\(this\.checked\)"><span[^>]*>Добавлять темы, на которые не было ответа, из Википедии</);
+  assert.match(HTML, /id="eiti-base-last"/);
+  assert.match(HTML, /id="eiti-base-miss-clear" onclick="eitiBaseMissClear\(\)"/);
+  assert.match(HTML, /function reset\(\) \{ eng = null; idx = null; initP = null; lazyP = null;/);
 });
 
 test('respond survives a broken pack or failing lookup', async () => {

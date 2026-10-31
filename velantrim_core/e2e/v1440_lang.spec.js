@@ -45,9 +45,9 @@ test.describe('v14.4.0 offline language', () => {
     expect(await ask(page, 'привет')).toMatch(CYR);
     expect(await ask(page, 'how many notes do i have')).toMatch(/You have \d+ notes?/);
     expect(await ask(page, 'hello')).not.toMatch(CYR);
-    // v14.14.0: RU без ключа — честный офлайн-ответ с кнопками [🔍 Поискать в заметках] [🤖 Включить ИИ] вместо «Настройте ключ»
+    // v14.14.0: RU без ключа — коротко «Не знаю, этого нет в базе» + кнопки [🔍 Поискать в заметках] [🤖 Включить ИИ] вместо «Настройте ключ»
     const fb = await ask(page, 'фываолдж');
-    expect(fb).toContain('Офлайн у меня нет ответа');
+    expect(fb).toContain('Не знаю, этого нет в базе');
     expect(fb).toContain('🤖 Включить ИИ');
   });
 
