@@ -271,7 +271,7 @@
     });
   }
 
-  // тема для запасных путей (Википедия, кнопки) — из фрейма, иначе вся фраза без паразитов
+  // тема для запасных путей (журнал «нет в базе», карточки из Википедии, кнопки) — из фрейма, иначе вся фраза без паразитов
   function topicOf(text) {
     var p = null; try { p = parse(text, null, 0); } catch (e) {}
     if (p && p.kind === 'ask' && p.topic) return p.topic;
@@ -283,12 +283,14 @@
   }
   function fallbackText(topic) {
     var R = (P && P.raw) || {}, t = String(topic || '').trim().slice(0, 80);
-    var s = t ? fill(R.fallback || '🤔 Офлайн у меня нет ответа про «{topic}».', { topic: t }) : (R.fallback_notopic || '🤔 Офлайн я не нашла, что ответить.');
+    var s = t ? fill(R.fallback || '🤷 Не знаю, этого нет в базе: «{topic}».', { topic: t }) : (R.fallback_notopic || '🤷 Не знаю, этого нет в базе.');
+    // v14.14.0: коротко и честно + подсказка, где пополнить базу (Настройки → «🔄 Обновить базу офлайн-ответов»)
+    if (R.fallback_hint) s += '\n' + R.fallback_hint;
     return s + '\n\n' + marker(t);
   }
   function marker(topic) { return '⟦EITIFB:' + encodeURIComponent(String(topic || '').slice(0, 80)) + '⟧'; }
 
-  // ── Википедия (без ключа): только URL-ы и очистка ответа; сеть — у хоста ──
+  // ── Википедия (без ключа): только URL-ы и очистка ответа; сеть — у хоста и только по кнопке «🔄 Обновить базу» ──
   function wikiSearchUrl(q, lang) {
     return 'https://' + (lang === 'en' ? 'en' : 'ru') + '.wikipedia.org/w/api.php?action=query&list=search&srlimit=1&format=json&origin=*&srsearch=' + encodeURIComponent(String(q || '').slice(0, 120));
   }
@@ -314,7 +316,8 @@
     return { title: title, text: ex, url: url, lang: lang === 'en' ? 'en' : 'ru' };
   }
   function wikiFormat(r) {
-    return '🌐 **Википедия · ' + r.title + '**' + (r.lang === 'en' ? ' (англ.)' : '') + '\n\n' + r.text + '\n\nИсточник: ' + r.url;
+    // v14.14.0: локальная карточка, сохранённая кнопкой «🔄 Обновить базу офлайн-ответов» — дальше отвечает без сети
+    return '🌐 **из Википедии · ' + r.title + '**' + (r.lang === 'en' ? ' (англ.)' : '') + '\n\n' + r.text + '\n\nИсточник: ' + r.url;
   }
 
   return { load: load, loaded: loaded, create: create, parse: parse, answer: answer, followUp: followUp, respond: respond,

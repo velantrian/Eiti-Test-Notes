@@ -165,4 +165,7 @@ if __name__ == '__main__':
     print('manifest', len(man), 'gz', gz(man), '| shards raw', sb, 'gz', sg)
     for d in idx['order'] + idx.get('lazy', []):
         m = idx['domains'][d]; print('  %-12s %5d shard_gz %6d packs %d max_pack_gz %6d' % (d, m['count'], m['shard_gz'], len(m['packs']), m['pack_gz_max']))
+    # v14.14.0: хеши пакетов для «🔄 Обновить базу офлайн-ответов» (offline_manifest.json)
+    import subprocess
+    subprocess.run([sys.executable, os.path.join(HERE, '..', 'scripts', 'build_offline_manifest.py')], check=False)
     sys.exit(1 if errors and '--strict' in sys.argv else 0)
