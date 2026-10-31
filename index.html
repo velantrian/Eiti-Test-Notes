@@ -8240,6 +8240,7 @@
         }
         html.eiti-small-icons.is-ios .app-header {
             height: calc(var(--eiti-si-header-h) + var(--eiti-si-safe-top)) !important;
+            padding-top: var(--eiti-si-safe-top) !important; /* на устройстве = env(), как в html.is-ios; заголовок — под вырезом */
         }
         /* кнопки шапки центрируются в БЕЗОПАСНОЙ части (44px под вырезом), а не во всей шапке 44px+inset —
            иначе при inset 47/59px верх кнопки уходит в вырез */

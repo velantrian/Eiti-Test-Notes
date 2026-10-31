@@ -42,6 +42,7 @@ def test_review_ios_safe_area_header_actions():
     assert ("html.eiti-small-icons.is-ios .app-header .header-actions "
             "{ top: calc(50% + var(--eiti-si-safe-top) / 2) !important; }") in HTML
     assert "height: calc(var(--eiti-si-header-h) + var(--eiti-si-safe-top))" in HTML
+    assert "padding-top: var(--eiti-si-safe-top) !important;" in HTML
 
 
 def test_review_hit_areas_44px():

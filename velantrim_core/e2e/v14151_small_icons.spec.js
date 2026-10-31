@@ -180,6 +180,7 @@ for (const inset of [47, 59]) {
     expect(btn.top).toBeGreaterThanOrEqual(inset);
     expect(btn.bottom).toBeLessThanOrEqual(header.bottom);
     expect(Math.abs((btn.top + btn.bottom) / 2 - (inset + 22))).toBeLessThanOrEqual(1); // по центру безопасной части
+    expect((await box(page, '.app-header h1')).top).toBeGreaterThanOrEqual(inset); // заголовок тоже под вырезом
     expect(Math.round((await box(page, '.tab-bar')).h)).toBe(50 + 34);
     await shot(page, 'ios-inset-' + inset);
   });
