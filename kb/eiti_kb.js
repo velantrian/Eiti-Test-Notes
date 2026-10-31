@@ -12,6 +12,9 @@
    'чем чём про о об в во на и или а но для по от до из у с со же бы ты вы мне меня мой моя скажи расскажи объясни ' +
    'подскажи знаешь есть был была было были быть значит называется можно нужно надо ли то не ни уже еще ещё очень ' +
    'делать сделать делаешь просто вообще пожалуйста плиз так вот там тут его ее её их им нам вам себя свой своя к ко за при над под без через ' +
+   // v14.14.0: глаголы-просьбы и «рамки» вопроса — не тема («поясни науку», «растолкуй по сути»): раньше снижали покрытие ниже 0.6
+   'поясни поясните растолкуй растолкуйте разложи разложите разъясни разъясните объясните расскажите скажите опиши опишите поведай ' +
+   'объяснить рассказать пояснить сути вкратце ' +
    'the a an of what how why who when where which is are was were be in on at to and or for does do did can could ' +
    'tell me about please explain i you it its this that with from by as').split(' ').forEach(function (w) { STOP[w] = 1; });
 
@@ -66,6 +69,33 @@
     return out;
   }
 
+  // v14.14.0: омонимы-названия (фильм «Гравитация», книга «Космос», «Весёлая наука») — когда запрос состоит только из названия
+  // и в нём нет слова-подсказки («фильм», «книга», «песня» …), такие статьи уступают понятиям и не выдаются как уверенный ответ
+  var HOM = {
+    films: ['фильм', 'кино', 'сериал', 'режисс', 'снял', 'экраниз', 'movie', 'film'],
+    books: ['книг', 'роман', 'повест', 'написал', 'автор', 'произведен', 'поэм', 'book', 'novel'],
+    games: ['игр', 'game'],
+    music: ['песн', 'альбом', 'сингл', 'исполн', 'спел', 'композиц', 'song', 'album', 'track'],
+    paintings: ['картин', 'полотн', 'художн', 'написал', 'painting'],
+    stage: ['спектакл', 'опер', 'балет', 'пьес', 'мюзикл', 'театр', 'постанов', 'play']
+  };
+  function cue(d, nq) {
+    var c = HOM[d]; if (!c) return true;
+    var ws = nq.split(' ');
+    for (var i = 0; i < ws.length; i++) for (var j = 0; j < c.length; j++) if (ws[i].indexOf(c[j]) === 0) return true;
+    return false;
+  }
+
+  // v14.14.0: почти точное совпадение слова для карточек понятий: общий префикс ≥ 3 и не короче длинного слова минус 2
+  function near(qw, fl) {
+    var fw = fl.split('|'), n = 0;
+    for (var i = 0; i < qw.length; i++) for (var j = 0; j < fw.length; j++) {
+      var a = qw[i], b = fw[j], k = 0; if (!b) continue;
+      while (k < a.length && k < b.length && a[k] === b[k]) k++;
+      if (k >= 3 && k >= Math.max(a.length, b.length) - 2) { n++; break; }
+    }
+    return n;
+  }
   function create(index, opts) {
     var E = ((index && index.entries) || []).slice(), N = E.length;
     var inv = {}, df = {}, trig = [], full = [];
@@ -112,7 +142,7 @@
       var why = /(^|\s)(почему|отчего|зачем|как|каким образом|why|how)(\s|$)/.test(norm(query)) ? 0.6 : 1;
       for (var i = 0; i < q.length; i++) if (!u[q[i]]) { u[q[i]] = 1; uq.push(q[i]); }
       if (!uq.length) return [];
-      var tot = 0, acc = {}, wsum = {};
+      var tot = 0, acc = {}, wsum = {}, out = {}, nqh = norm(query);
       for (var a = 0; a < uq.length; a++) {
         var t = uq[a], w = idf(t); tot += w;
         var p = inv[t]; if (!p) continue;
@@ -120,6 +150,7 @@
           var d = p[j];
           acc[d] = (acc[d] || 0) + w * (p[j + 1] === 2 ? 1 : 0.6);
           wsum[d] = (wsum[d] || 0) + w;
+          if (HOM[E[d].d] && !out[d] && (trig[d][0] || []).indexOf(t) < 0) out[d] = 1;   // слово запроса вне названия («ночной дозор рембрандт»)
         }
       }
       var res = [];
@@ -131,10 +162,13 @@
           var m = 0; for (var y = 0; y < tk.length; y++) if (u[tk[y]]) m++;
           var pr = m / tk.length; if (pr > best || (pr === best && m > bm)) { best = pr; bm = m; }
         }
-        var cov = wsum[di] / tot, ex = 0, gen = (E[di].w || 1) < 1;
+        // v14.14.0: карточки понятий (kn_*) уступают рукописным статьям, особенно в длинных вопросах (покрытие < 0.6), и требуют совпадения
+        // слова целиком («скороговорку» ≠ «скорость») — их явно выбирает EitiKBHost.concept
+        var cov = wsum[di] / tot, ex = 0, gen = (E[di].w || 1) < 1, hom = !out[di] && !cue(E[di].d, nqh), kn = E[di].d.lastIndexOf('kn_', 0) === 0;
         if (full[di]) for (var z = 0; z < qw.length; z++) if (full[di].indexOf('|' + qw[z] + '|') >= 0) ex++;
+        var nx = ex; if (kn && !ex && full[di]) nx = near(qw, full[di]);   // v14.14.0: «луне» ≈ «луна», но «скороговорку» ≠ «скорость»
         res.push({ i: di, id: E[di].i, d: E[di].d, p: E[di].p || 0, cov: Math.round(cov * 1000) / 1000, prec: Math.round(best * 1000) / 1000, mt: bm, qn: uq.length,
-                   score: acc[di] * (0.55 + 0.45 * best) * (E[di].w || 1) * (1 + 0.3 * (qw.length ? ex / qw.length : 0)) * (gen && !ex ? 0.55 : 1) * (gen ? why : 1), ex: ex, g: gen ? 1 : 0 });
+                   score: acc[di] * (0.55 + 0.45 * best) * (E[di].w || 1) * (1 + 0.3 * (qw.length ? ex / qw.length : 0)) * (gen && !ex ? 0.55 : 1) * (gen ? why : 1) * (hom ? 0.5 : 1) * (kn ? (cov < 0.6 ? 0.6 : 0.9) * (nx ? 1 : 0.55) : 1), ex: ex, g: gen ? 1 : 0, hom: hom ? 1 : 0, kn: kn ? 1 : 0, nx: nx });
       }
       res.sort(function (p1, p2) { return p2.score - p1.score; });
       return res.slice(0, k || 5);
@@ -142,6 +176,8 @@
     // confident(hit) — достаточно ли уверен ответ для прямой выдачи офлайн
     function confident(h) {
       if (!h || h.cov < 0.6 || h.prec < 0.5) return false;
+      if (h.kn) return false;                       // v14.14.0: карточки понятий отвечают только через EitiKBHost.concept (рамки фраз), не перехватывают обычный поиск
+      if (h.hom) return false;                      // v14.14.0: название без подсказки («гравитация» ≠ фильм «Гравитация»)
       if (h.g && !h.ex) return false;               // справочные (сгенерированные) статьи — только при точном совпадении слова
       if (h.g && h.prec < 0.75) return false;       // v14.3.0: и почти весь триггер назван («доброе утро» ≠ «Доброе утро, Вьетнам»)
       if (h.qn === 1) return h.prec === 1;          // одно слово — только точный короткий триггер
@@ -192,5 +228,5 @@
       })();
     });
   }
-  return { lem: lem, translit: translit, alias: ALIAS, create: create, createAsync: createAsync, shardRows: shardRows, addAsync: addAsync, tokens: tokens, norm: norm, version: 2 };
+  return { lem: lem, translit: translit, alias: ALIAS, create: create, createAsync: createAsync, shardRows: shardRows, addAsync: addAsync, tokens: tokens, norm: norm, cue: cue, version: 2 };
 });
