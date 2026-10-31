@@ -1,0 +1,83 @@
+{
+  "schema": "eiti.dialogue-review-candidates.v1",
+  "note": "Все реплики синтетические. expect.intent — целевая смысловая метка, а не утверждение, что текущий движок уже выдаёт этот ID. Классифицировать нужно последнюю реплику пользователя с сохранённым контекстом; этот набор не входит в пустоконтекстный CSV baseline.",
+  "cases": [
+    {
+      "id": "followup_reason_cause",
+      "purpose": "Уточнить причину события после общего ответа.",
+      "turns": [
+        { "role": "user", "text": "Из-за чего задержался запуск?" },
+        { "role": "assistant", "text": "Пока проверяю журнал событий." },
+        { "role": "user", "text": "Мне важна именно причина задержки." }
+      ],
+      "expect": { "intent": "ask_reason_cause", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "reason_basis_not_cause",
+      "purpose": "Различить основание вывода и причину события.",
+      "turns": [
+        { "role": "user", "text": "На каких данных держится этот вывод?" },
+        { "role": "assistant", "text": "Я сравнил два последних отчёта." },
+        { "role": "user", "text": "То есть основание — результаты сравнения?" }
+      ],
+      "expect": { "intent": "ask_reason_basis", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "followup_degree_in_percent",
+      "purpose": "Уточнить количественную меру после качественного ответа.",
+      "turns": [
+        { "role": "user", "text": "Насколько близок результат к цели?" },
+        { "role": "assistant", "text": "Отклонение пока небольшое." },
+        { "role": "user", "text": "А в процентах это насколько?" }
+      ],
+      "expect": { "intent": "ask_degree_naskolko", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "choose_from_contextual_set",
+      "purpose": "Продолжить выбор между явно перечисленными вариантами.",
+      "turns": [
+        { "role": "user", "text": "Какой вариант взять: зелёный, синий или серый?" },
+        { "role": "assistant", "text": "Все три сейчас доступны." },
+        { "role": "user", "text": "Тогда помоги выбрать один." }
+      ],
+      "expect": { "intent": "ask_choice_contextual_set", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "nested_indirect_question",
+      "purpose": "Вытащить вложенный вопрос о лице, принявшем решение.",
+      "turns": [
+        { "role": "user", "text": "Мне сказали, что решение уже приняли." },
+        { "role": "assistant", "text": "Понял." },
+        { "role": "user", "text": "А можешь выяснить, известно ли, кто его подписал?" }
+      ],
+      "expect": { "intent": "indirect_question_nested", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "polite_request_for_location",
+      "purpose": "Распознать вежливый запрос, где искать информацию.",
+      "turns": [
+        { "role": "user", "text": "Я не нахожу описание нового поля." },
+        { "role": "assistant", "text": "Оно должно быть в справочнике." },
+        { "role": "user", "text": "Не подскажете, в каком именно разделе его искать?" }
+      ],
+      "expect": { "intent": "polite_request_information", "topic": "" },
+      "src": "own"
+    },
+    {
+      "id": "polite_request_for_action",
+      "purpose": "Распознать вежливую просьбу выполнить конкретное действие.",
+      "turns": [
+        { "role": "user", "text": "Нужно закончить сводку сегодня." },
+        { "role": "assistant", "text": "Могу помочь с оформлением." },
+        { "role": "user", "text": "Тогда, пожалуйста, проверь формулы перед отправкой." }
+      ],
+      "expect": { "intent": "polite_request_action", "topic": "" },
+      "src": "own"
+    }
+  ]
+}

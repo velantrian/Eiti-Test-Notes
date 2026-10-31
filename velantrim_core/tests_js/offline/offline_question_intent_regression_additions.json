@@ -1,0 +1,1042 @@
+[
+  {
+    "phrase": "С чего ты взял, что отчёт уже готов?",
+    "expect": {
+      "intent": "ask_reason_basis",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "С чего вы решили, что доступ открыт?",
+    "expect": {
+      "intent": "ask_reason_basis",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "На каком основании ты считаешь это доказанным?",
+    "expect": {
+      "intent": "ask_reason_basis",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Откуда такой вывод про срок?",
+    "expect": {
+      "intent": "ask_reason_basis",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Почему ты считаешь этот файл целым?",
+    "expect": {
+      "intent": "ask_reason_basis",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Каков итог проверки?",
+    "expect": {
+      "intent": "ask_property_kakov",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Какова цель этого режима?",
+    "expect": {
+      "intent": "ask_property_kakov",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Каковы слабые места плана?",
+    "expect": {
+      "intent": "ask_property_kakov",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Каков результат сравнения?",
+    "expect": {
+      "intent": "ask_property_kakov",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Какова роль этого параметра?",
+    "expect": {
+      "intent": "ask_property_kakov",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чья это папка?",
+    "expect": {
+      "intent": "ask_owner_whose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чей это вариант настройки?",
+    "expect": {
+      "intent": "ask_owner_whose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "С кем лучше обсудить перенос?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "К кому обратиться за доступом?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "От кого пришла последняя правка?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Для кого предназначен отчёт?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Который из двух отчётов выбрать?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "На каком из вариантов остановиться?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Какая из этих схем проще?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "В который из разделов добавить ссылку?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Первый или запасной вариант нужен?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Насколько точен этот вывод?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "В какой степени риск уже снизился?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Насколько сильно изменился результат?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "До какой степени это обратимо?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Насколько большой запас нужен?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Доколе ждать ответа?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "До каких пор будет идти проверка?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Как долго ещё ждать синхронизации?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Когда уже появится результат?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ещё долго это будет выполняться?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что это за формат и где его открыть?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что за ошибка появилась в журнале?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Это что за режим у приложения?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что за поле нужно заполнить?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что это за ключ в конфигурации?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Интересно, кто изменил схему?",
+    "expect": {
+      "intent": "indirect_question_meta",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Любопытно, куда ушёл запрос?",
+    "expect": {
+      "intent": "indirect_question_meta",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Не знаю, откуда взять ключ.",
+    "expect": {
+      "intent": "indirect_question_unresolved",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Не пойму, при чём здесь расписание.",
+    "expect": {
+      "intent": "repair_relevance_pri_chem",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Подскажи, кому это отправить?",
+    "expect": {
+      "intent": "indirect_question",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Не мог бы ты прислать короткую сводку?",
+    "expect": {
+      "intent": "polite_request_action",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Подскажете, где скачать схему?",
+    "expect": {
+      "intent": "polite_request_information",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Можно попросить повторить этот шаг?",
+    "expect": {
+      "intent": "polite_request_action",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Не согласишься проверить ссылку?",
+    "expect": {
+      "intent": "polite_request_action",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Покажи-ка, где это включается.",
+    "expect": {
+      "intent": "softened_request_ka",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Скажи-ка, какой файл нужен?",
+    "expect": {
+      "intent": "softened_request_ka",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ведь срок уже истёк, правда?",
+    "expect": {
+      "intent": "confirmation_shared_ground_ved",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ведь мы уже проверяли этот адрес?",
+    "expect": {
+      "intent": "confirmation_shared_ground_ved",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Куда же переносить папку?",
+    "expect": {
+      "intent": "question_emphasis_zhe",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Зачем же менять рабочую схему?",
+    "expect": {
+      "intent": "question_emphasis_zhe",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Небось, хэш уже проверен?",
+    "expect": {
+      "intent": "epistemic_guess_high_nebos",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Небось, резервная копия сохранилась?",
+    "expect": {
+      "intent": "epistemic_guess_high_nebos",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Авось синхронизация завершится?",
+    "expect": {
+      "intent": "hope_or_risk_avos",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Авось завтра всё наладится.",
+    "expect": {
+      "intent": "hope_or_risk_avos",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Никак сервер снова недоступен?",
+    "expect": {
+      "intent": "surprised_positive_guess_nikak",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что ли отчёт уже отправили?",
+    "expect": {
+      "intent": "tentative_guess_chto_li",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А? Повтори последний пункт.",
+    "expect": {
+      "intent": "repair_repeat",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Повтори последнюю цифру, пожалуйста.",
+    "expect": {
+      "intent": "repair_repeat",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "В смысле, речь о сроке?",
+    "expect": {
+      "intent": "repair_check_understanding",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "То есть нужен второй файл?",
+    "expect": {
+      "intent": "repair_check_understanding",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ты о чём: о цене или качестве?",
+    "expect": {
+      "intent": "repair_disambiguation",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Правильно понял, что доступ закрыт?",
+    "expect": {
+      "intent": "repair_check_understanding",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А дальше-то что делать с результатом?",
+    "expect": {
+      "intent": "fu_next_action",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ну и что дальше с этим отчётом?",
+    "expect": {
+      "intent": "fu_next_action",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А цена?",
+    "expect": {
+      "intent": "short_elliptic_followup",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "И пример есть?",
+    "expect": {
+      "intent": "followup_example",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Спс, а пример есть?",
+    "expect": {
+      "intent": "followup_example",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Пж, объясни попроще.",
+    "expect": {
+      "intent": "followup_simplify",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чё делать по шагам, если не понимаю дроби?",
+    "expect": {
+      "intent": "how_to_steps",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Слушай, а щас это где включать?",
+    "expect": {
+      "intent": "where_question_with_slang_and_politeness",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Скока осталось попыток?",
+    "expect": {
+      "intent": "followup_price_or_quantity",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Неее, я про другое.",
+    "expect": {
+      "intent": "chat_correction_or_disagreement",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А кто автор-то?",
+    "expect": {
+      "intent": "followup_who_what_where",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Короче, дай второй вариант.",
+    "expect": {
+      "intent": "alternative_or_variant_request",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "ghbdtn, а где описание?",
+    "expect": {
+      "intent": "keyboard_layout_recovery",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "plz скажи, можно ли так?",
+    "expect": {
+      "intent": "latin_translit_detection",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "🙂 это согласие или просто вежливо?",
+    "expect": {
+      "intent": "emoji_interpretation_question",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Это точно???",
+    "expect": {
+      "intent": "verification_with_repeated_punctuation",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Как это работает — шифрование?",
+    "expect": {
+      "intent": "how_mechanism",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А что вообще значит инфляция, если по-простому?",
+    "expect": {
+      "intent": "definition_simple_conversational",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Зачем этот кварк нужен физикам?",
+    "expect": {
+      "intent": "why_purpose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Когда обычно появляется северное сияние?",
+    "expect": {
+      "intent": "when_typical",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Сколько граней у икосаэдра?",
+    "expect": {
+      "intent": "how_many_numeric",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Кто придумал периодическую таблицу?",
+    "expect": {
+      "intent": "who_associated",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Где на карте находится Байкал?",
+    "expect": {
+      "intent": "where_location",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Это точно не миф про витамины?",
+    "expect": {
+      "intent": "is_it_true_verification",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А есть другой способ посчитать вероятность?",
+    "expect": {
+      "intent": "alternative_method",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Сравни инфляцию и дефляцию без сложных слов.",
+    "expect": {
+      "intent": "compare_pair",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Можешь привести пример метафоры из обычной речи?",
+    "expect": {
+      "intent": "example_everyday",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А это про ОГЭ или про ЕГЭ?",
+    "expect": {
+      "intent": "choose_or_disambiguate",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Скажи совсем коротко: почему давление растёт?",
+    "expect": {
+      "intent": "short_answer_request",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Сколько это в итоге выйдет, примерно?",
+    "expect": {
+      "intent": "how_many_approx",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А из-за чего это вообще случилось?",
+    "expect": {
+      "intent": "why_cause_extended",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "И куда мне теперь с этим идти?",
+    "expect": {
+      "intent": "where_to",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Откуда это вообще взялось?",
+    "expect": {
+      "intent": "source_origin",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Можно по-другому, без этого шага?",
+    "expect": {
+      "intent": "alternative_constraint",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А если наоборот сделать, что выйдет?",
+    "expect": {
+      "intent": "counterfactual_reverse",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ты серьёзно сейчас, или это шутка?",
+    "expect": {
+      "intent": "confirmation_seriousness",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А по-простому это как понять?",
+    "expect": {
+      "intent": "rephrase_plain",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чё выбрать: первый способ или запасной?",
+    "expect": {
+      "intent": "choice_slang",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Так это обязательно делать, да?",
+    "expect": {
+      "intent": "requirement_confirm_tag",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Повтори последнюю фразу, я услышал только начало.",
+    "expect": {
+      "intent": "asr_repeat_or_recover",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что именно ты услышал: платить или платье?",
+    "expect": {
+      "intent": "asr_correction",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Это одно слово или два отдельных слова?",
+    "expect": {
+      "intent": "asr_word_boundary",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Сколько будет двадцать один процент от восьмидесяти?",
+    "expect": {
+      "intent": "asr_number_normalize",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Кто такой Рабиндранат Тагор?",
+    "expect": {
+      "intent": "asr_proper_name_clarify",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А если говорили одновременно, кто что сказал?",
+    "expect": {
+      "intent": "asr_speaker_clarify",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Расставь смысловые паузы в вопросе про поездку.",
+    "expect": {
+      "intent": "asr_punctuation_or_clause",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Проверь, не потерялось ли начало записи.",
+    "expect": {
+      "intent": "asr_unknown_confidence",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А теперь объясни то же человеческим языком.",
+    "expect": {
+      "intent": "rephrase_plain",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "И если сделать наоборот, что изменится?",
+    "expect": {
+      "intent": "counterfactual_reverse",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "С кем это лучше обсудить до публикации?",
+    "expect": {
+      "intent": "WITH_WHOM",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чья это очередь — твоя или их?",
+    "expect": {
+      "intent": "WHOSE",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Какая из этих двух схем реально проще?",
+    "expect": {
+      "intent": "WHICH_COMPARISON",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Ну и что дальше-то?",
+    "expect": {
+      "intent": "FOLLOWUP_NEXT_SLANG",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "А теперь можно короче?",
+    "expect": {
+      "intent": "REPHRASE_PLAIN",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Это голосовой ввод без знаков, смысл не потерялся?",
+    "expect": {
+      "intent": "QUESTION_PUNCTUATIONLESS",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чей это черновик в общей папке?",
+    "expect": {
+      "intent": "ask_owner_whose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чья подпись стоит внизу страницы?",
+    "expect": {
+      "intent": "ask_owner_whose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Чьё это решение по срокам?",
+    "expect": {
+      "intent": "ask_owner_whose",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "С кем сверить финальную версию?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "От кого ждать подтверждение?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "К кому направить этот запрос?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Для кого собрали такую памятку?",
+    "expect": {
+      "intent": "ask_role_case",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Насколько заметно просел показатель?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "В какой мере вывод подтверждён?",
+    "expect": {
+      "intent": "ask_degree_naskolko",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "До каких пор действует это ограничение?",
+    "expect": {
+      "intent": "ask_time_limit_dokole",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что за значок появился рядом с файлом?",
+    "expect": {
+      "intent": "ask_identification_chto_za",
+      "topic": ""
+    },
+    "src": "own"
+  },
+  {
+    "phrase": "Что выбрать из трёх: утро, день или вечер?",
+    "expect": {
+      "intent": "ask_choice_contextual_set",
+      "topic": ""
+    },
+    "src": "own"
+  }
+]

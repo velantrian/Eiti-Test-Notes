@@ -29,7 +29,7 @@ test('schema: manifest + every shard + every pack part', () => {
   assert.strictEqual(idx.v, 2);
   assert.ok(idx.count >= 10000, 'at least 10 000 entries, got ' + idx.count);
   assert.strictEqual(FULL.entries.length, idx.count);
-  assert.deepStrictEqual(idx.order.slice().sort(), Object.keys(idx.domains).sort());
+  assert.deepStrictEqual(idx.order.concat(idx.lazy || []).sort(), Object.keys(idx.domains).sort());   // v14.14.0: kn_* — в lazy
   const doms = Object.keys(idx.domains);
   assert.ok(doms.length >= 30);
   let total = 0;
@@ -110,15 +110,17 @@ test('v3 compact shard rows expand to full triggers and implied pack part', () =
 
 test('size and speed budgets (sharded index)', async () => {
   const man = zlib.gzipSync(fs.readFileSync(path.join(KB, 'index.json')), { level: 9 }).length;
-  let shards = 0, maxShard = 0, maxPack = 0;
+  let shards = 0, lazyShards = 0, maxShard = 0, maxPack = 0;
   for (const d of Object.keys(idx.domains)) {
     const g = zlib.gzipSync(fs.readFileSync(path.join(KB, idx.domains[d].shard)), { level: 9 }).length;
-    shards += g; maxShard = Math.max(maxShard, g);
+    if (idx.domains[d].lazy) lazyShards += g; else shards += g;   // v14.14.0: карточки понятий грузятся по требованию
+    maxShard = Math.max(maxShard, g);
     for (const f of idx.domains[d].packs) maxPack = Math.max(maxPack, zlib.gzipSync(fs.readFileSync(path.join(KB, f)), { level: 9 }).length);
   }
   assert.ok(man < 8 * 1024, 'manifest gzip ' + man);
   assert.ok(maxShard < 200 * 1024, 'largest shard gzip ' + maxShard);
-  assert.ok(shards < 700 * 1024, 'all shards gzip ' + shards);   // v14.3.0: ~28.5k entries, compact v3 shards
+  assert.ok(shards < 700 * 1024, 'all start-up shards gzip ' + shards);   // v14.3.0: ~28.5k entries, compact v3 shards
+  assert.ok(lazyShards < 400 * 1024, 'lazy concept shards gzip ' + lazyShards);   // v14.14.0: kn_* — только при первом вопросе о понятии
   assert.ok(maxPack < 40 * 1024, 'largest pack part gzip ' + maxPack);
   let t0 = process.hrtime.bigint();
   const e = K.create(FULL);
@@ -136,7 +138,7 @@ test('size and speed budgets (sharded index)', async () => {
   }
   const viaAsync = K.create({ domains: idx.domains, entries: [] });
   await K.addAsync(viaAsync, FULL.entries.slice(0, 500), { step: 120, yieldFn: (fn) => setImmediate(fn) });
-  console.log('kb sizes+timing', JSON.stringify({ entries: idx.count, manifestGz: man, shardsGz: shards, maxShardGz: maxShard, maxPackGz: maxPack, buildMs: build, searchMs: search, maxSliceMs: maxSlice }));
+  console.log('kb sizes+timing', JSON.stringify({ entries: idx.count, manifestGz: man, shardsGz: shards, lazyShardsGz: lazyShards, maxShardGz: maxShard, maxPackGz: maxPack, buildMs: build, searchMs: search, maxSliceMs: maxSlice }));
   assert.strictEqual(inc.search('скорость света', 1)[0].id, e.search('скорость света', 1)[0].id);
   assert.strictEqual(viaAsync.size, 500);
   assert.ok(build < 3000, 'build ' + build);
@@ -175,4 +177,14 @@ test('KB finds Наполеон / МГУ / Apple in any form (case, abbreviation
   }
   assert.strictEqual(K.lem('наполеона'), K.lem('наполеон'));
   assert.strictEqual(K.translit('napoleon'), 'наполеон');
+});
+
+// v14.14.0: омоним-название уступает понятию только когда запрос — одно название без подсказки;
+// «ночной дозор рембрандт» (слово вне названия) по-прежнему уверенно находит картину
+test('homonym titles: bare title yields to concept, extra words keep the article', () => {
+  const e = K.create(FULL);
+  const h = e.search('ночной дозор рембрандт', 3)[0];
+  assert.ok(h && h.d === 'paintings' && !h.hom && e.confident(h), JSON.stringify(h));
+  const g = e.search('гравитация', 5).find((x) => x.d === 'films');
+  if (g) assert.ok(g.hom && !e.confident(g), JSON.stringify(g));
 });
