@@ -66,6 +66,51 @@ test('kbCard: only data from the entry, localized labels, source', () => {
   assert.match(R.kbCard(Object.assign({}, e, { gen: false }), 'en'), /EITI knowledge library/);
 });
 
+test('kbDetailCard: reasoning has an essence layer and a deeper source-only layer', () => {
+  const e = { id: 'kbl_airports_lcy', title: 'Аэропорты', title_en: 'Airports', gen: true, q: ['Лондон-Сити'],
+    a: 'Лондон-Сити — небольшой аэропорт в Лондоне. Код IATA: LCY. Обслуживает: Лондон. Страна: Великобритания.',
+    en: 'London City is a small airport in London. IATA code: LCY. Serves: London. Country: United Kingdom.' };
+  const related = [
+    { id: 'kbl_airports_lhr', q: ['Хитроу'], a: 'Хитроу — крупнейший аэропорт Лондона. Код IATA: LHR. Обслуживает: Лондон. Страна: Великобритания.' },
+    { id: 'kbl_airports_dxb', q: ['Дубай'], a: 'Дубай — аэропорт в ОАЭ. Код IATA: DXB. Обслуживает: Дубай. Страна: ОАЭ.' },
+  ];
+  const card = R.kbDetailCard(e, related, 'ru');
+  const essenceAt = card.indexOf('**Суть**');
+  const detailAt = card.indexOf('**Подробнее**');
+  assert.ok(essenceAt >= 0 && detailAt > essenceAt, 'essence must appear before the deeper details');
+  assert.match(card, /Исходное описание: Лондон-Сити — небольшой аэропорт в Лондоне/);
+  assert.match(card, /Ключевые данные, прямо приведённые в записи: Код IATA: LCY; Обслуживает: Лондон; Страна: Великобритания/);
+  assert.match(card, /\*\*Факты исходной записи\*\*/);
+  assert.match(card, /Ниже — дополнительные сведения, прямо сохранённые в карточке/);
+  assert.match(card, /\*\*Карточки с совпадающими полями\*\*/);
+  assert.match(card, /Хитроу/);
+  assert.match(card, /Обслуживает: Лондон; Страна: Великобритания/);
+  assert.doesNotMatch(card, /Дубай/);
+  assert.match(card, /не подтверждение прямой или причинной связи/);
+  for (const [lang, first, second] of [['ru', 'Суть', 'Подробнее'], ['en', 'Essence', 'More detail'], ['de', 'Kernaussage', 'Weitere Einzelheiten']]) {
+    const localized = R.kbDetailCard(e, related, lang);
+    assert.ok(localized.indexOf('**' + first + '**') < localized.indexOf('**' + second + '**'), lang + ' headings/order');
+  }
+  const authored = R.kbDetailCard(Object.assign({}, e, { f: { detail: 'Луна проходит последовательность фаз из-за изменения освещённой части.', short: 'Видимая освещённая часть Луны меняется.', ex: 'Полнолуние наступает при полностью видимом диске.', why: 'Фазы помогают описывать лунный цикл.' } }), [], 'ru');
+  assert.ok(authored.indexOf('**Суть**') < authored.indexOf('**Подробнее**'));
+  assert.match(authored, /Луна проходит последовательность фаз/);
+  assert.match(authored, /\*\*Поля карточки\*\*/);
+  assert.match(authored, /\*\*Кратко:\*\* Видимая освещённая часть Луны меняется/);
+  assert.match(authored, /\*\*Пример:\*\* Полнолуние наступает/);
+  const embedded = R.kbDetailCard(Object.assign({}, e, { r: ['k2'], rd: [{ q: ['Гатвик'], a: 'Гатвик — аэропорт Лондона. Обслуживает: Лондон. Страна: Великобритания.' }] }), [], 'ru');
+  assert.match(embedded, /Гатвик/);
+  const oldPack = R.kbDetailCard(Object.assign({}, e, { r: ['k2'] }), [], 'ru');
+  assert.match(oldPack, /в установленном офлайн-пакете нет их снимков/);
+  const sparse = R.kbDetailCard({ title: 'Тест', q: ['Краткая запись'], a: 'Краткая запись — пример без дополнительных полей.' }, [], 'ru');
+  assert.match(sparse, /дополнительные факты не придумываются/);
+  assert.match(sparse, /дополнительная информация ограничена/);
+});
+
+test('isDetailAsk: recognizes short Russian, English and German follow-ups only', () => {
+  for (const q of ['объясни подробнее', 'подробней', 'а можно поподробнее', 'Explain in more detail', 'tell me more', 'Bitte ausführlicher', 'mehr details']) assert.strictEqual(R.isDetailAsk(q), true, q);
+  for (const q of ['подробнее про Берлин', 'more details about Berlin', 'почему это важно?', 'continue']) assert.strictEqual(R.isDetailAsk(q), false, q);
+});
+
 test('taleCard and noteCard', () => {
   const x = { t: 'Колобок', cu: 'русская', ty: 'сказка', tg: ['животные'], s: 'Колобок убежал.', m: 'Не хвастай.', p: ['Испекли.', 'Съела лиса.'], src: 'Афанасьев', en: { t: 'The Bun', s: 'The bun ran away.' } };
   const ru = R.taleCard(x, 'ru');
@@ -89,6 +134,7 @@ test('taleCard and noteCard', () => {
 test('AI: grounded prompt, facts from source kept apart from AI text', () => {
   const p = R.aiPrompt('### X\n- **Год:** 1900', 'ru');
   assert.match(p.system, /Не добавляй новых дат/);
+  assert.match(p.system, /не утверждай прямую или причинную связь/);
   assert.match(p.user, /^ДАННЫЕ ИЗ ИСТОЧНИКА:\n### X/);
   assert.match(R.aiPrompt('c', 'de').system, /Deutsch/);
   const out = R.combine('CARD', 'AI TEXT', 'en');
@@ -136,7 +182,8 @@ test('save to note: default on, sticky target, clean entry, append, deleted targ
   assert.strictEqual(R.targetNote([{ id: 'a' }], 'gone'), null);
   assert.strictEqual(R.fmt('toNoteIn', 'ru', 'История'), 'В «История»');
   assert.strictEqual(R.fmt('savedTo', 'en', 'X'), '📌 Added to “X”');
-  for (const k of ['toNote', 'toNoteIn', 'change', 'pickNote', 'newNote', 'savedTo', 'cancel']) for (const l of ['ru', 'en', 'de']) assert.ok(R.S(k, l) && (l === 'ru' || R.S(k, l) !== R.S(k, 'ru')), k + l);
+  for (const k of ['toNote', 'toNoteIn', 'change', 'pickNote', 'newNote', 'savedTo', 'cancel', 'detailNoContext']) for (const l of ['ru', 'en', 'de']) assert.ok(R.S(k, l) && (l === 'ru' || R.S(k, l) !== R.S(k, 'ru')), k + l);
+  assert.match(R.S('detailNoContext', 'ru'), /Сначала задай вопрос/);
   assert.strictEqual(R.S('toNote', 'de'), 'In Notiz');
 });
 

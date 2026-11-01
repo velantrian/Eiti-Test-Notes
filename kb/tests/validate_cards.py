@@ -2,7 +2,7 @@
 """v14.14.0: validate concept cards kb/src/kn_*.txt (EITI Frames, part B).
 
 Checks: header, line schema (triggers || definition || @fields), known non-empty fields, Russian text
-(Cyrillic share), lengths, no markers/markup that the renderer treats specially, duplicate triggers
+(Cyrillic share), lengths (detail up to 1200 chars; other fields up to 360), no renderer markers/markup, duplicate triggers
 (within cards and against every hand-written file — the strict build would fail), duplicate definitions,
 first trigger = the concept name (not a question).  Exit 1 on any error.   python3 kb/tests/validate_cards.py
 """
@@ -29,6 +29,10 @@ def ru_field(k, s):
     return c >= 5 and c >= 2 * l
 
 
+def field_max(k):
+    return 1200 if k == 'detail' else 360
+
+
 def main():
     errs, cards, trig, defs, enriched = [], 0, {}, {}, 0
     files = sorted(os.listdir(SRC))
@@ -45,7 +49,7 @@ def main():
                 f, ferr = parse_fields(seg); at = '%s:%d' % (fn, ln)
                 errs.extend(at + ' ' + e for e in ferr)
                 for k, v in f.items():
-                    if not (8 <= len(v) <= 360) or not ru_field(k, v) or BAD.search(v): errs.append(at + ' bad field %s' % k)
+                    if not (8 <= len(v) <= field_max(k)) or not ru_field(k, v) or BAD.search(v): errs.append(at + ' bad field %s' % k)
                 enriched += 1
     per = {}
     for fn in files:
@@ -80,7 +84,7 @@ def main():
             if len(f) < 2: errs.append(at + ' needs at least 2 aspect fields')
             for k, v in f.items():
                 if not v.strip(): errs.append(at + ' empty field %s' % k)
-                elif not (8 <= len(v) <= 360): errs.append(at + ' field %s length %d' % (k, len(v)))
+                elif not (8 <= len(v) <= field_max(k)): errs.append(at + ' field %s length %d (max %d)' % (k, len(v), field_max(k)))
                 elif not ru_field(k, v): errs.append(at + ' field %s is not Russian text' % k)
                 if BAD.search(v): errs.append(at + ' forbidden markup in field %s' % k)
             n += 1

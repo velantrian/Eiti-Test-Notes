@@ -133,7 +133,7 @@ test('size and speed budgets (sharded index)', async () => {
     maxShard = Math.max(maxShard, g);
     for (const f of idx.domains[d].packs) maxPack = Math.max(maxPack, zlib.gzipSync(fs.readFileSync(path.join(KB, f)), { level: 9 }).length);
   }
-  assert.ok(man < 8 * 1024, 'manifest gzip ' + man);
+  assert.ok(man < 10 * 1024, 'manifest gzip (≤10 KiB for the 150k lazy domain map) ' + man);
   assert.ok(maxShard < 200 * 1024, 'largest shard gzip ' + maxShard);
   assert.ok(shards < 700 * 1024, 'all start-up shards gzip ' + shards);   // v14.3.0: ~28.5k entries, compact v3 shards
   assert.ok(lazyShards < 3 * 1024 * 1024, 'lazy KB shards gzip ' + lazyShards);   // kn_* + longtail — только при соответствующем fallback

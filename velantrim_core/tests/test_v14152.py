@@ -9,7 +9,7 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_version_sync():
-    """Version checks moved to test_v14160.py (v14.16.0)."""
+    """Version checks moved to test_v14162.py (v14.16.2)."""
     assert "v14.15.2" in HTML
 
 

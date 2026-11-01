@@ -61,6 +61,23 @@ test('43 phrasings: concept questions in any word order and with many verbs', as
   for (const [q, f] of Object.entries(fields)) assert.ok((await ask(q)).split('\n')[0].indexOf(f) >= 0, q);
 });
 
+test('Moon phases have a substantial detail field, separate from examples', async () => {
+  const card = C.concept('фазы луны');
+  assert.ok(card && card.f && card.f.detail, 'exact Moon-phases query resolves to a concept card');
+  assert.ok(card.f.detail.length > 800, 'detail is substantially longer than a short answer');
+  const st = F.create();
+  const first = await ask('что такое фазы луны', st);
+  assert.match(first, /📘 \*\*Фазы луны\*\*/);
+  assert.match(first, /узнать подробнее/);
+  const more = await ask('объясни подробнее', st);
+  assert.match(more, /Фазы луны\*\* · подробное объяснение/);
+  assert.match(more, /Восемь фаз/);
+  assert.ok(more.length > first.length + 800);
+  const example = await ask('пример', st);
+  assert.match(example, /Фазы луны\*\* · пример/);
+  assert.match(example, /через неделю/);
+});
+
 test('3 multi-turn dialogues: follow-ups keep the topic', async () => {
   let st = F.create();
   assert.match(await ask('Расскажи о науке', st), /^📘 \*\*Наука\*\*/);
