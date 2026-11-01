@@ -29,23 +29,47 @@ async function send(page, text) {
 }
 const last = (page) => page.locator('#messages .message.incoming').last();
 
-test('Moon phases → «объясни подробнее» renders the full grounded card without network', async ({ page, context }) => {
+test('the «Рассуждение» button opens essence and deeper details offline', async ({ page, context }) => {
   await boot(page);
   await send(page, 'что такое фазы луны');
   await expect(last(page)).toContainText('Фазы Луны', { timeout: 20000 });
   const requests = [];
   page.on('request', (r) => requests.push(r.url()));
   await context.setOffline(true);
-  await send(page, 'объясни подробнее');
-  await expect(last(page)).toContainText('Подробное объяснение', { timeout: 15000 });
-  await expect(last(page)).toContainText('Поля карточки');
-  await expect(last(page)).toContainText(/Карточки с совпадающими полями|Похожие карточки для сравнения/);
-  await expect(last(page)).not.toContainText('нет их снимков');
-  await expect(last(page)).toContainText('29,5 суток');
-  await expect(last(page)).toContainText('science.nasa.gov/moon/moon-phases');
-  await expect(last(page)).toContainText(/aa\.usno\.navy\.mil\/faq\/moon\\?_phases/);
-  const detail = await last(page).innerText();
+  const message = last(page);
+  await message.locator('.eiti-rel-btn[data-w="why"]').click();
+  const reasoning = message.locator('.eiti-rel-panel');
+  await expect(reasoning).toContainText('Суть', { timeout: 15000 });
+  await expect(reasoning).toContainText('Подробнее');
+  await expect(reasoning).toContainText('Поля карточки');
+  await expect(reasoning).toContainText(/Карточки с совпадающими полями|Похожие карточки для сравнения/);
+  await expect(reasoning).not.toContainText('нет их снимков');
+  await expect(reasoning).toContainText('29,5 суток');
+  await expect(reasoning).toContainText('science.nasa.gov/moon/moon-phases');
+  await expect(reasoning).toContainText(/aa\.usno\.navy\.mil\/faq\/moon\\?_phases/);
+  const detail = await reasoning.innerText();
+  expect(detail.indexOf('Суть')).toBeLessThan(detail.indexOf('Подробнее'));
   expect(detail.length).toBeGreaterThan(1200);
+  expect(requests).toEqual([]);
+  await context.setOffline(false);
+});
+
+test('the same two-layer reasoning works for a generated non-Moon KB record', async ({ page, context }) => {
+  await boot(page);
+  await send(page, 'почему небо голубое');
+  await expect(last(page)).toContainText('KB', { timeout: 15000 });
+  await expect(last(page)).toContainText('рэлеев');
+  const requests = [];
+  page.on('request', (r) => requests.push(r.url()));
+  await context.setOffline(true);
+  const message = last(page);
+  await message.locator('.eiti-rel-btn[data-w="why"]').click();
+  const reasoning = message.locator('.eiti-rel-panel');
+  await expect(reasoning).toContainText('Суть', { timeout: 15000 });
+  await expect(reasoning).toContainText('Подробнее');
+  await expect(reasoning).toContainText('рэлеев');
+  const detail = await reasoning.innerText();
+  expect(detail.indexOf('Суть')).toBeLessThan(detail.indexOf('Подробнее'));
   expect(requests).toEqual([]);
   await context.setOffline(false);
 });

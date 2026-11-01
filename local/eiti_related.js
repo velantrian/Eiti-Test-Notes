@@ -2,7 +2,7 @@
 // Чистая логика без DOM и без сети (UMD: window.EitiRelated / module.exports):
 //   • настройки (localStorage): показывать похожие, подробное рассуждение, режим рассуждения offline|ai;
 //   • похожие заметки — TF-IDF (косинус) по заметкам пользователя, только на устройстве;
-//   • detail KB card uses authored fields and pack-embedded source snapshots; no extra facts are generated;
+//   • KB «Рассуждение» always has «Суть» → «Подробнее», using only source fields and embedded snapshots;
 //   • карточки сказок и заметок строятся только из данных самой записи, ничего не выдумывается;
 //   • промпт для ИИ с опорой на факты из источника и сборка ответа: «Факты из источника» (источник ≠ доказательство истины) отдельно от «Текст ИИ».
 // Похожие для KB и сказок вычисляются при сборке (kb/related.py → «r» в пакетах; offline/build_tale_related.py → «rel»).
@@ -67,9 +67,14 @@
     speakBtn:  { ru: '🔊 Кнопка «Произнести»', en: '🔊 “Speak” button', de: '🔊 Schaltfläche „Vorlesen“' },
     on:        { ru: 'ВКЛ', en: 'ON', de: 'AN' },
     off:       { ru: 'ВЫКЛ', en: 'OFF', de: 'AUS' },
-    detail:    { ru: 'Подробное объяснение', en: 'Detailed explanation', de: 'Ausführlichere Erklärung' },
-    detailIntro: { ru: 'Краткое описание задаёт тему записи; поля ниже фиксируют атрибуты, которые есть в источнике. Они помогают уточнить и сравнить карточку, но не заменяют полную статью.', en: 'The short description identifies the subject; the fields below record attributes present in the source. They help clarify and compare the entry, but are not a full article.', de: 'Die Kurzbeschreibung benennt das Thema; die Felder halten Merkmale aus der Quelle fest. Sie helfen beim Einordnen und Vergleichen, ersetzen aber keinen vollständigen Artikel.' },
+    essence:   { ru: 'Суть', en: 'Essence', de: 'Kernaussage' },
+    essenceSourceLead: { ru: 'Исходное описание:', en: 'Source description:', de: 'Quellbeschreibung:' },
+    essenceFactsIntro: { ru: 'Ключевые данные, прямо приведённые в записи:', en: 'Key details stated directly in the record:', de: 'Wichtige Angaben, die direkt im Eintrag stehen:' },
+    essenceNoFacts: { ru: 'В доступных данных нет отдельных структурированных фактов. Поэтому суть ограничена описанием источника: без догадок и добавленных сведений.', en: 'No separate structured facts are available. The core is therefore limited to the source description, without guesses or added claims.', de: 'Es sind keine separaten strukturierten Fakten vorhanden. Die Kernaussage bleibt daher auf die Quellenbeschreibung beschränkt, ohne Vermutungen oder Ergänzungen.' },
+    detail:    { ru: 'Подробнее', en: 'More detail', de: 'Weitere Einzelheiten' },
+    detailIntro: { ru: 'Ниже — дополнительные сведения, прямо сохранённые в карточке. Они раскрывают исходные данные, но не являются внешней проверкой.', en: 'Below are additional details stored directly in the record. They expand the source data but are not an external verification.', de: 'Unten stehen weitere Angaben, die direkt im Eintrag gespeichert sind. Sie führen die Quelldaten aus, sind aber keine externe Überprüfung.' },
     detailNoFacts: { ru: 'В записи нет отдельных структурированных полей. Офлайн-база содержит только краткое описание, поэтому дополнительные факты не придумываются.', en: 'This record has no separate structured fields. The offline library contains only the short source description, so no extra facts are invented.', de: 'Dieser Eintrag enthält keine separaten strukturierten Felder. Die Offline-Bibliothek hat nur die Kurzbeschreibung aus der Quelle; weitere Fakten werden nicht ergänzt.' },
+    detailFacts: { ru: 'Факты исходной записи', en: 'Facts from the source record', de: 'Fakten aus dem Quelleintrag' },
     detailShared: { ru: 'Карточки с совпадающими полями', en: 'Entries with matching fields', de: 'Einträge mit übereinstimmenden Feldern' },
     detailSimilar: { ru: 'Похожие карточки для сравнения', en: 'Similar entries for comparison', de: 'Ähnliche Einträge zum Vergleich' },
     detailSimilarity: { ru: 'Похожие записи выбраны по общим словам и данным в этом разделе. Это контекст для сравнения, а не подтверждение прямой или причинной связи.', en: 'Similar entries are selected by shared wording and data in this section. They provide comparison context, not proof of a direct or causal relationship.', de: 'Ähnliche Einträge werden anhand gemeinsamer Wörter und Daten in diesem Bereich ausgewählt. Sie dienen zum Vergleich und belegen keine direkte oder kausale Beziehung.' },
@@ -165,16 +170,32 @@
     });
     return out;
   }
-  // kbDetailCard(entry, related, lang) expands a record only from its own fields and linked KB entries.
+  // kbDetailCard(entry, related, lang) renders two grounded layers: essence, then fuller source details/context.
   function kbDetailCard(e, related, lang) {
+    e = e || {};
     lang = L(lang);
     var useEn = lang !== 'ru' && e.en, text = useEn ? e.en : e.a, p = parseFacts(text);
-    var base = kbCard(e, lang).split('\n'), source = base.pop(), section = base.pop();
-    var lines = base.concat(['', '**' + S('detail', lang) + '**']);
+    var base = kbCard(e, lang).split('\n'), source = base.pop(), section = base.pop(), header = base[0];
     var authored = e.f && typeof e.f.detail === 'string' ? e.f.detail.trim() : '';
     var fields = e.f && typeof e.f === 'object' ? Object.keys(e.f).filter(function(k) { return k !== 'detail' && typeof e.f[k] === 'string' && e.f[k].trim(); }) : [];
+    var title = (e.q && e.q[0]) || (p.lead.split(' — ')[0]) || e.title || e.title_en || '';
+    var short = e.f && typeof e.f.short === 'string' ? e.f.short.trim() : '';
+    var lines = [header || ('### 🧠 ' + esc(title)), '', '**' + S('essence', lang) + '**'];
+    if (short) lines.push(esc(short));
+    if (p.lead && (!short || p.lead.toLowerCase().replace(/\s+/g, ' ').trim() !== short.toLowerCase().replace(/\s+/g, ' ').trim())) {
+      lines.push(S('essenceSourceLead', lang) + ' ' + esc(p.lead));
+    } else if (!short && !p.lead && title) lines.push(esc(title));
+    var keyFacts = p.facts.slice(0, 3).map(function(f) { return f[0] + ': ' + f[1]; });
+    if (!keyFacts.length) fields.filter(function(k) { return k !== 'short'; }).slice(0, 3).forEach(function(k) { keyFacts.push(detailFieldLabel(k, lang) + ': ' + e.f[k]); });
+    if (keyFacts.length) lines.push('', S('essenceFactsIntro', lang) + ' ' + esc(keyFacts.join('; ')) + '.');
+    else lines.push('', S('essenceNoFacts', lang));
+    lines.push('', '**' + S('detail', lang) + '**');
     if (authored) lines.push(esc(authored));
     else lines.push(S(p.facts.length || fields.length ? 'detailIntro' : 'detailNoFacts', lang));
+    if (p.facts.length) {
+      lines.push('', '**' + S('detailFacts', lang) + '**');
+      p.facts.forEach(function(f) { lines.push('- **' + esc(f[0]) + ':** ' + esc(f[1])); });
+    }
     if (fields.length) {
       lines.push('', '**' + S('detailFields', lang) + '**');
       fields.forEach(function(k) { lines.push('- **' + esc(detailFieldLabel(k, lang)) + ':** ' + esc(e.f[k])); });

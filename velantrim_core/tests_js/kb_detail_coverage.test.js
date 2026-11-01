@@ -29,7 +29,9 @@ test('kbDetailCard renders grounded, self-contained detail for every packed reco
       const relatedCount = Math.min(3, (entry.r || []).length);
       assert.strictEqual((entry.rd || []).length, relatedCount, `${domain}/${hash} lacks embedded related snapshots`);
       const detail = R.kbDetailCard(entry, entry.rd || [], 'ru');
-      assert.ok(detail.includes('Подробное объяснение'), `${domain}/${hash} has no detail section`);
+      const essenceAt = detail.indexOf('**Суть**');
+      const moreAt = detail.indexOf('**Подробнее**');
+      assert.ok(essenceAt >= 0 && moreAt > essenceAt, `${domain}/${hash} lacks the ordered essence/detail sections`);
       assert.ok(detail.includes('Источник:'), `${domain}/${hash} has no source attribution`);
       assert.ok(detail.length > entry.a.length, `${domain}/${hash} was not expanded`);
       if (relatedCount) assert.ok(/Карточки с совпадающими полями|Похожие карточки для сравнения/.test(detail), `${domain}/${hash} omits its embedded comparison context`);
@@ -47,6 +49,7 @@ test('Moon phases detail includes the authored explanation, fields and verified 
   assert.ok(moon, 'Moon phases concept card exists');
   assert.ok(moon.f && moon.f.detail, 'Moon phases has an authored detail field');
   const detail = R.kbDetailCard(moon, moon.rd || [], 'ru');
+  assert.ok(detail.indexOf('**Суть**') < detail.indexOf('**Подробнее**'));
   assert.ok(detail.includes('Луна не меняет форму'), 'authored explanation is shown');
   assert.ok(detail.includes('science.nasa.gov/moon/moon-phases/'), 'NASA source is shown');
   assert.ok(detail.includes('aa.usno.navy.mil/faq/moon\\_phases'), 'USNO source is shown in escaped Markdown');
