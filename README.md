@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.15.2-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.16.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -65,6 +65,12 @@ python3 -m http.server 8080
 📐 Полная архитектура (для переноса в нативное приложение): **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
 ---
+
+## 🆕 Что нового в v14.16.0
+
+- 🔐 **Шлюз AI-действий** (`local/eiti_action_gate.js`): команды ИИ проходят «предложение → проверка → подтверждение → выполнение». Удаления, правки памяти и базы, смена инструкций — только после подтверждения. `[MEM_DEL]` без совпадения больше не стирает всю память.
+- 🚨 **EITI Care** (`local/eiti_care.js`): личная опасность важнее слов «фильм/там», длинные сообщения проверяются целиком, номера помощи по региону.
+- ♻️ Новый кеш Service Worker — обновлённые модули доходят до пользователей.
 
 ## 🆕 Что нового в v14.15.2
 

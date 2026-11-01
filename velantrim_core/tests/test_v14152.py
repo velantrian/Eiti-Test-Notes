@@ -9,17 +9,8 @@ SW = (ROOT / "sw.js").read_text(encoding="utf-8")
 
 
 def test_version_sync():
-    assert 'var EITI_VERSION = "14.15.2"' in HTML
-    assert "var CACHE = 'eiti-v14.15.2'" in SW
-    assert "var OFFLINE_CACHE = 'eiti-offline-v14.15.2'" in SW
-    assert "version: '14.15.2'" in SW
-    assert "// VELANTRIM EITI — Service Worker v14.15.2" in SW
-    assert "EITI_VERSION 14.15.2" in SW
-    assert "v14.15.2" in json.loads((ROOT / "manifest.json").read_text(encoding="utf-8"))["description"]
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "version-14.15.2" in readme
-    assert readme.index("Что нового в v14.15.2") < readme.index("Что нового в v14.15.1") < readme.index("Что нового в v14.15.0")
-    assert "v14.15.2" in (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+    """Version checks moved to test_v14160.py (v14.16.0)."""
+    assert "v14.15.2" in HTML
 
 
 def test_meta_tags_for_cutout():
