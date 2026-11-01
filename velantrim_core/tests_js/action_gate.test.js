@@ -130,3 +130,8 @@ test('MEM_DEL regression: bare [MEM_DEL] deletes nothing; matching tag deletes o
   h2.sb.eitiMemParseAICommands('[MEM_DEL:work|]'); await Promise.all(h2.sb.window._eitiMemOps);
   assert.deepStrictEqual(h2.deleted, [1, 3]);
 });
+
+test('tags inside quotes or code are examples, not commands', () => {
+  const acts = G.parse('> [KB_DEL:a]\nпример `[MEM_DEL:work|]`\n```\n[SET_INSTR:x]\n```\n[NOTE_DELETE:b]');
+  assert.deepStrictEqual(acts.map((a) => a.type + ':' + G.decide(a, {}).decision), ['KB_DEL:reject', 'MEM_DEL:reject', 'SET_INSTR:reject', 'NOTE_DELETE:confirm']);
+});

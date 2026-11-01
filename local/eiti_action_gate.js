@@ -83,6 +83,10 @@
             var body = m[2] == null ? null : m[2];
             out.push({ type: type, body: body, args: body == null ? [] : body.split('|').map(function (s) { return s.trim(); }), raw: m[0], index: m.index });
         }
+        // теги внутри цитаты (> …) или кода (`…`, ```…```) — это пример, а не команда
+        var spans = [], rq = /```[\s\S]*?```|`[^`\n]*`|^>.*$/gm;
+        while ((m = rq.exec(reply)) !== null) spans.push([m.index, m.index + m[0].length]);
+        out.forEach(function (a) { a.quoted = spans.some(function (sp) { return a.index >= sp[0] && a.index < sp[1]; }); });
         return out.sort(function (a, b) { return a.index - b.index; });
     }
 
@@ -141,6 +145,7 @@
     function decide(a, ctx) {
         var r = riskOf(a);
         if (r === 'read' || r === 'low') return { decision: 'pass' };
+        if (a.quoted) return { decision: 'reject', reason: 'quoted' };
         var v = validate(a);
         if (!v.ok) return { decision: 'reject', reason: v.reason };
         if (r === 'bulk') return { decision: 'confirm', reason: 'bulk' };
