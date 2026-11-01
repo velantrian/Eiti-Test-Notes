@@ -449,6 +449,30 @@ flowchart LR
 5. Офлайн-ответы работают без сети и без ключа.
 6. На Pages/в магазин не попадает непроверенный корпус `folklore/` (см. §17).
 
+## 19. Шлюз AI-действий (`local/eiti_action_gate.js`, P0)
+
+Модель может вставлять в ответ управляющие теги. Раньше многие из них сразу меняли данные. Теперь вывод модели сам по себе **не является разрешением**: каждый тег проходит один путь
+
+`propose → validate → authorize → commit → acknowledge`
+
+- **propose** — `EitiActionGate.filter(reply)` синхронно вырезает гейтируемые теги из ответа до любых обработчиков. Вызывается в трёх точках: в начале `eitiProcessCommands`, в `patchDeepSeekCommands` и самым внешним слоем `eitiGuardAIReply`. Повтор того же тега за 15 с (стрим + финал) игнорируется.
+- **validate** — пустые, слишком короткие и wildcard-селекторы отклоняются (`[MEM_DEL]`, `[MEM_DEL:|]`, `[KB_DEL:*]`, `[SET_INSTR:REPLACE:]`). Затем селектор сверяется с данными (`resolve`): 0 совпадений → `no_match`, действие не исполняется и карточка не показывается. **Промах никогда не превращается в массовое удаление.**
+- **authorize** — по классу риска (таблица ниже). Для `confirm` — карточка `.eiti-action-card` в чате (RU/EN/DE, `data-i18n`, кнопки «Подтвердить / Отклонить»), если последнее сообщение пользователя не просило явно ровно это действие (глагол + объект + селектор встречается в тексте).
+- **commit** — одобренный тег передаётся в существующий обработчик (`eitiProcessCommands(raw)`) при поднятом `bypass`, поэтому логика записи не дублируется.
+- **acknowledge** — статус «✅ Выполнено» ставится только после завершения commit (для памяти — после промисов `memDeleteEntry`/`memSaveEntry`, собранных в `window._eitiMemOps`). Ошибка → «❌ Не удалось выполнить», лог `failed`.
+
+| Класс | Теги | Политика |
+|---|---|---|
+| read | `NOTE_SUMMARY`, `NOTE_SEARCH`, `KB_LIST`, `MOSC_SHOW`, `EITI_READ` | как раньше (только показ) |
+| read* | `JS_EXEC` | свой confirm + sandbox iframe (не менялось) |
+| low | `MEM_ADD`, `NOTE_APPEND`, `TASK_ADD`, `TASK_MOVE`, `TASK_UPDATE`, `REMIND`, `EITI_LEARN`, `PKG`, `PKG_E`, `MOSC_ADD`, `MOSC_SET`, `FL_SET`, `SET_THEME`, `SET_DESIGN`, `SET_WALLPAPER`, `<EITI_FILE>`, `<EITI_APPEND>` | прежняя политика: аддитивно/обратимо; v13.9 guard (`eitiGuardReplyTags`: лимиты на ответ, игнор тегов из цитат и вставок, журнал + undo) |
+| confirm | `MEM_UPDATE`, `MEM_DEL`, `KB_ADD`, `KB_ADD_JSON`, `KB_EDIT`, `KB_DEL`, `SET_INSTR`, `SET_PROFILE`, `NOTE_WRITE`, `NOTE_RETITLE`, `NOTE_DELETE`, `FILE_DELETE`, `FILE_RENAME`, `FILE_EDIT`, `FACT_RETRACT`, `MOSC_DEL`, `MOSC_DEL_EDGE`, `MOSC_INTENT`, `NEW_INTENT`, `VB_ADD`, `TASK_DEL` | карточка; авто-commit только при явной просьбе в последнем сообщении пользователя |
+| bulk | `KB_CLEAR`, `MOSC_CLEAR`, `MEM_DEL:all\|`, `SET_INSTR:CLEAR`, `SET_INSTR:REPLACE:…` | карточка **всегда**, даже если пользователь просил |
+
+Исправленный дефект: `[MEM_DEL:tag|]` с тегом без совпадений раньше выбирал **все** записи памяти, а `[MEM_DEL]` без параметров удалял всё. Теперь обработчик удаляет только совпадения (защита в глубину, даже в обход шлюза), а шлюз отклоняет такие теги раньше. `[KB_DEL:x]` в `patchDeepSeekCommands` ищет по id **или** точному триггеру и ничего не сохраняет при промахе.
+
+Журнал (`rejected` / `denied` / `committed` / `failed`, ≤200 записей) — в IndexedDB `memkv`, ключ `eiti_action_gate_log`; в localStorage шлюз ничего не пишет. Доступ: `EitiActionGate.log()`, `EitiActionGate.pending()`. Ядро (`parse`, `validate`, `decide`, `createGate`) без DOM и тестируется в Node: `velantrim_core/tests_js/action_gate.test.js`; e2e: `velantrim_core/e2e/action_gate.spec.js`.
+
 ### L3 reliability after PR #46
 
 `l3` transactional success and `_l3Pending` RAM retry are different states. The former survives tab reload; the latter does not. The volatile queue is not a backup, not synchronized to Drive, and no longer reapplies deleted entries on later flush (per-key revision invalidation from PR #57). See `docs/l3_memory_inventory.md` §6 and negative reproduction `velantrim_core/e2e/l3_pending_durability.spec.js`. Durable staging awaits an explicit privacy/retention policy decision; the audit itself changes no runtime behavior; the deletion/acknowledgement fix comes from PR #57.

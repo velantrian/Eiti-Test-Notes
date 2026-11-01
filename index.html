@@ -4335,6 +4335,7 @@
     <script src="./local/eiti_frames.js" defer></script>
     <script src="./local/eiti_care.js" defer></script>
     <script src="./local/eiti_voice.js" defer></script>
+    <script src="./local/eiti_action_gate.js" defer></script>
     <script>if(typeof pdfjsLib!=='undefined'){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';}</script>
 <script>
 (function(){
@@ -31818,7 +31819,9 @@ window.eitiLLMClearAll = async function() {
         function eitiProcessCommands(reply) {
             if (!reply) return;
             // v13.9.0: guard AI self-edits (clamp, per-reply limits, ignore quoted/pasted/file tags, log + undo)
-            if (typeof window.eitiGuardAIReply === 'function') reply = window.eitiGuardAIReply(reply);
+            // P0 action gate: удаления/правки/инструкции/KB — только через propose→validate→authorize→commit→ack (local/eiti_action_gate.js)
+            if (typeof window.eitiGuardAIReply === 'function') reply = window.eitiGuardAIReply(reply); // v13.9 guard + action gate
+            else if (window.EitiActionGate) reply = window.EitiActionGate.filter(reply);
             var _jsExecMatches = [];
             reply.replace(/\[JS_EXEC:\s*([\s\S]*?)\]/g, function(_, code) {
                 _jsExecMatches.push(code.trim());
@@ -35966,16 +35969,17 @@ window.eitiLLMClearAll = async function() {
                         .replace(/^[-•·]\s*/gm, '')
                         .replace(/\n{3,}/g, '\n\n')
                         .trim();
-                    memLoadAsync().then(function(allEntries) {
+                    var _updOp = memLoadAsync().then(function(allEntries) {
                         var toDelete = (allEntries || []).filter(function(e){ return e.tag === uTag; });
                         var delPromises = toDelete.map(function(e){ return memDeleteEntry(e.id); });
-                        Promise.all(delPromises).then(function(){
-                            memSaveEntry({ text: uTxt, tag: uTag, source: 'ai' }).then(function(){
+                        return Promise.all(delPromises).then(function(){
+                            return memSaveEntry({ text: uTxt, tag: uTag, source: 'ai' }).then(function(){
                                 if (typeof eitiMemRefreshUI === 'function') eitiMemRefreshUI();
                                 showToast('\u270f\ufe0f EITI Memory: обновлено (' + uTag + ')');
                             });
                         });
                     });
+                    if (Array.isArray(window._eitiMemOps)) window._eitiMemOps.push(_updOp); // action gate: ack только после commit
                 }
             }
             // Handle MEM_DEL — delete entries by tag or partial text match
@@ -35985,13 +35989,13 @@ window.eitiLLMClearAll = async function() {
                 (function(delTag, delTxt) {
                     delTag = delTag ? delTag.trim() : null;
                     delTxt = delTxt ? delTxt.trim() : '';
-                    memLoadAsync().then(function(allEntries) {
+                    var _delOp = memLoadAsync().then(function(allEntries) {
                         var entries = allEntries || [];
                         var toDelete = [];
 
                         if (!delTag && !delTxt) {
-                            // [MEM_DEL] без параметров — удаляем всё
-                            toDelete = entries.slice();
+                            // P0 action gate: [MEM_DEL] без селектора больше НЕ удаляет всё (пустой селектор = ничего)
+                            toDelete = [];
                         } else if (delTag && !delTxt) {
                             // [MEM_DEL:tag|] пустой текст — удаляем все с этим тегом ИЛИ всё если тег 'all'/'все'/'всё'
                             if (/^(all|все|всё|any|\*)$/i.test(delTag)) {
@@ -36000,8 +36004,7 @@ window.eitiLLMClearAll = async function() {
                                 toDelete = entries.filter(function(e) {
                                     return e.tag && e.tag.toLowerCase() === delTag.toLowerCase();
                                 });
-                                // Если ничего не нашли по тегу — удаляем всё (пользователь сказал "удали всё")
-                                if (toDelete.length === 0) toDelete = entries.slice();
+                                // P0 action gate: промах по тегу НИКОГДА не превращается в «удалить всё»
                             }
                         } else {
                             // Стандартный поиск по тегу И/ИЛИ тексту
@@ -36015,14 +36018,15 @@ window.eitiLLMClearAll = async function() {
 
                         if (toDelete.length === 0) {
                             showToast('⚠️ EITI Memory: запись не найдена');
-                            return;
+                            return 0;
                         }
                         var dp = toDelete.map(function(e){ return memDeleteEntry(e.id); });
-                        Promise.all(dp).then(function(){
+                        return Promise.all(dp).then(function(){
                             if (typeof eitiMemRefreshUI === 'function') eitiMemRefreshUI();
                             showToast('\uD83D\uDDD1 EITI Memory: удалено ' + toDelete.length + ' запис' + (toDelete.length===1?'ь':'и'));
                         });
                     });
+                    if (Array.isArray(window._eitiMemOps)) window._eitiMemOps.push(_delOp); // action gate: ack только после commit
                 })(m[1], m[2]);
                 deleted++;
             }
@@ -46267,6 +46271,7 @@ window.eitiApplyDesignTheme = function(theme, design) {
 
             window.eitiProcessCommands = function (text) {
                 if (!text) { if (typeof _origPC === 'function') _origPC(text); return; }
+                if (window.EitiActionGate) text = window.EitiActionGate.filter(text); // P0 action gate
 
                 var changed = false;
 
@@ -46299,7 +46304,10 @@ window.eitiApplyDesignTheme = function(theme, design) {
                 });
 
                 text = text.replace(/\[KB_DEL:([^\]]+)\]/g, function (_, id) {
-                    var kb = eitiKBLoad().filter(function (f) { return f.id !== id.trim(); });
+                    // P0 action gate: селектор — id ИЛИ точный триггер; промах ничего не сохраняет
+                    var _sel = id.trim().toLowerCase(), _all = eitiKBLoad();
+                    var kb = _all.filter(function (f) { return String(f.id).toLowerCase() !== _sel && !(f.triggers || []).some(function (t) { return String(t).trim().toLowerCase() === _sel; }); });
+                    if (!_sel || kb.length === _all.length) { typeof showToast === 'function' && showToast('⚠️ KB: факт «' + id.trim() + '» не найден'); return ''; }
                     eitiKBSave(kb);
                     typeof showToast === 'function' && showToast('🗑 KB: удалено');
                     changed = true;
@@ -55611,7 +55619,13 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                 if (snap.moscAll) cur.moscCount = Object.keys(g).length;
                 return cur;
             }
+            // P0 action gate: v13.9 guard сначала отсеивает теги из цитат/вставок (и пишет свой журнал),
+            // затем шлюз действий забирает удаления/правки на подтверждение.
             window.eitiGuardAIReply = function (reply) {
+                var out = _eitiGuardCore(reply);
+                return (window.EitiActionGate && typeof out === 'string') ? window.EitiActionGate.filter(out) : out;
+            };
+            function _eitiGuardCore(reply) {
                 if (!reply || typeof reply !== 'string') return reply;
                 if (!/\[(MOSC_|FL_SET|PKG)/.test(reply)) return reply;
                 var memo = window._eitiGuardMemo;
@@ -55636,7 +55650,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                 if (g.rejected.length && typeof showToast === 'function') showToast('🛡 Отклонено AI-изменений: ' + g.rejected.length, 2000);
                 window._eitiGuardMemo = { inp: reply, out: g.text, ts: Date.now() };
                 return g.text;
-            };
+            }
             window.eitiSelfEditUndo = function (id) {
                 var log = eitiV139Get(K.selfLog, []);
                 var e = log.filter(function (x) { return x.id === id; })[0];
