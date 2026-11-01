@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.16.2"; // v14.16.2: подробные офлайн-объяснения KB; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.16.2"; // v14.16.2: двухуровневое офлайн-рассуждение для всех 150 000 записей; v14.16.1: офлайн-КБ до 150 000 записей, ленивый точный longtail fallback; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -32894,7 +32894,7 @@ window.eitiLLMClearAll = async function() {
         var EitiKBHost = (function() {
             // v14.2.0: шардированная библиотека. index.json — маленький манифест; kb/idx/<раздел>.json — поисковые шарды
             // (грузятся по очереди и индексируются порциями в простое); kb/packs/… — полные ответы, по требованию.
-            var BASE = 'kb/', eng = null, idx = null, initP = null, PK = {}, PKP = {}, LOC = {}, stats = { init: 0, shards: 0, entries: 0, packs: {}, last: null };
+            var BASE = 'kb/', eng = null, tailEng = null, idx = null, initP = null, PK = {}, PKP = {}, LOC = {}, stats = { init: 0, shards: 0, entries: 0, packs: {}, last: null };
             function getJson(f) { return fetch(BASE + f).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + f); return r.json(); }); }
             function loadScript() {
                 if (window.EitiKBLib) return Promise.resolve();
@@ -32947,8 +32947,13 @@ window.eitiLLMClearAll = async function() {
             function answer(q) {
                 return init().then(function(e) {
                     var h = e.search(q, 3); stats.last = h[0] || null;
-                    if (!e.confident(h[0])) return null;
-                    return hydrate([h[0]]).then(function(r) { return r[0] || null; });
+                    if (e.confident(h[0])) return hydrate([h[0]]).then(function(r) { return r[0] || null; });
+                    return longtail().then(function(le) {
+                        var lh = le.search(q, 3), pick = null;
+                        for (var i = 0; i < lh.length; i++) if (/^longtail_/.test(lh[i].d) && le.confident(lh[i])) { pick = lh[i]; break; }
+                        stats.last = pick || h[0] || null;
+                        return pick ? hydrate([pick]).then(function(r) { return r[0] || null; }) : null;
+                    });
                 }).catch(function(err) { console.warn('[EITI KB]', err && err.message); return null; });
             }
             // facts(q, n) → релевантные записи для контекста ИИ (покрытие запроса ≥ 0.45)
@@ -32982,7 +32987,7 @@ window.eitiLLMClearAll = async function() {
             function lazy() {
                 if (lazyP) return lazyP;
                 lazyP = init().then(function(e) {
-                    var ls = (idx && idx.lazy) || [], t0 = performance.now();
+                    var ls = ((idx && idx.lazy) || []).filter(function(d) { return /^kn_/.test(d); }), t0 = performance.now();
                     return Promise.all(ls.map(function(d) { return getJson(idx.domains[d].shard).catch(function() { return null; }); })).then(function(shs) {
                         var rows = [];
                         shs.forEach(function(sh) { if (!sh) return; var r = window.EitiKBLib.shardRows(sh); for (var ri = 0; ri < r.length; ri++) { LOC[r[ri].i] = [r[ri].d, r[ri].p]; rows.push(r[ri]); } });
@@ -32990,6 +32995,23 @@ window.eitiLLMClearAll = async function() {
                     }).then(function() { stats.lazy = Math.round(performance.now() - t0); stats.entries = e.size; return e; });
                 }).catch(function(err) { lazyP = null; throw err; });
                 return lazyP;
+            }
+            // Большой энциклопедический хвост (longtail_*) не загружается на старте или при обычных карточках понятий;
+            // он подключается только как точный fallback, когда основной KB не нашёл уверенный ответ.
+            var tailP = null;
+            function longtail() {
+                if (tailP) return tailP;
+                tailP = init().then(function() {
+                    var ls = ((idx && idx.lazy) || []).filter(function(d) { return /^longtail_/.test(d); }), t0 = performance.now();
+                    var te = window.EitiKBLib.create({ domains: idx.domains, entries: [] });
+                    if (!ls.length) { tailEng = te; return te; }
+                    return Promise.all(ls.map(function(d) { return getJson(idx.domains[d].shard).catch(function() { return null; }); })).then(function(shs) {
+                        var rows = [];
+                        shs.forEach(function(sh) { if (!sh) return; var r = window.EitiKBLib.shardRows(sh); for (var ri = 0; ri < r.length; ri++) { LOC[r[ri].i] = [r[ri].d, r[ri].p]; rows.push(r[ri]); } });
+                        return window.EitiKBLib.addAsync(te, rows, { step: 150, yieldFn: idle });
+                    }).then(function() { tailEng = te; stats.longtail = Math.round(performance.now() - t0); stats.longtailEntries = te.size; return te; });
+                }).catch(function(err) { tailP = null; tailEng = null; throw err; });
+                return tailP;
             }
             // название карточки: у kn_* — первый триггер; у ручной записи с полями — самый короткий триггер без вопросительных слов
             function conceptTitle(q, dflt, d) {
@@ -33005,7 +33027,12 @@ window.eitiLLMClearAll = async function() {
                     var h = e.search(q, 6), pick = null, top = h[0];
                     for (var i = 0; i < h.length; i++) { var x = h[i]; if (/^kn_/.test(x.d) && x.nx > 0 && x.cov >= 0.6 && x.prec >= 0.75 && !x.hom && x.score >= top.score * 0.6) { pick = x; break; } }
                     if (!pick && e.confident(top)) pick = top;
-                    if (!pick) return null;
+                    if (!pick) return longtail().then(function(le) {
+                        var lh = le.search('что такое ' + q, 6), found = null;
+                        for (var j = 0; j < lh.length; j++) if (/^longtail_/.test(lh[j].d) && le.confident(lh[j])) { found = lh[j]; break; }
+                        if (!found) return null;
+                        return hydrate([found]).then(function(r) { var c = r[0]; if (!c) return null; c.kn = false; c.title = conceptTitle(c.q, c.title, c.domain); return c; });
+                    });
                     return hydrate([pick]).then(function(r) {
                         var c = r[0]; if (!c) return null;
                         c.kn = /^kn_/.test(c.domain) || !!c.f; if (c.kn) c.title = conceptTitle(c.q, c.title, c.domain);   // карточка = kn_* или запись с полями (@…)
@@ -33018,8 +33045,8 @@ window.eitiLLMClearAll = async function() {
                 if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 10000 }); else setTimeout(go, 3000);
             }
             // v14.14.0: reset() — после «🔄 Обновить базу офлайн-ответов» следующий вопрос пересобирает индекс из обновлённых пакетов
-            function reset() { eng = null; idx = null; initP = null; lazyP = null; PK = {}; PKP = {}; LOC = {}; }
-            return { init: init, answer: answer, facts: facts, entry: entry, detail: detail, format: format, prewarm: prewarm, stats: stats, pack: pack, concept: concept, lazy: lazy, reset: reset,
+            function reset() { eng = null; tailEng = null; idx = null; initP = null; lazyP = null; tailP = null; PK = {}; PKP = {}; LOC = {}; }
+            return { init: init, answer: answer, facts: facts, entry: entry, detail: detail, format: format, prewarm: prewarm, stats: stats, pack: pack, concept: concept, lazy: lazy, longtail: longtail, reset: reset,
                      ready: function() { return !!eng; }, count: function() { return idx ? idx.count : 0; }, index: function() { return idx; }, engine: function() { return eng; } };
         })();
         window.EitiKBHost = EitiKBHost;
@@ -33964,6 +33991,7 @@ window.eitiLLMClearAll = async function() {
             };
             EitiOffline._careWrapped = true;
         })();
+
         // v14.16.2: detail follow-ups are grounded in the most recent KB card in this chat.
         (function() {
             if (!window.EitiOffline || EitiOffline._detailWrapped) return;

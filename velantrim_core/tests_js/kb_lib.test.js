@@ -12,6 +12,8 @@ const K = require(path.join(KB, 'eiti_kb.js'));
 const ALL = require(path.join(KB, 'tests', 'load_all.js'))();
 const idx = ALL.manifest;          // v2 manifest (domains, order, shard/pack file names)
 const FULL = ALL.index;            // flat {domains, entries} — what the host builds from all shards
+const CORE = { domains: FULL.domains, entries: FULL.entries.filter((e) => !/^longtail_/.test(e.d)) };
+const TAIL = { domains: FULL.domains, entries: FULL.entries.filter((e) => /^longtail_/.test(e.d)) };
 const HTML = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
 
 function packEntries(d) {
@@ -27,7 +29,7 @@ function packEntries(d) {
 test('schema: manifest + every shard + every pack part', () => {
   assert.strictEqual(idx.format, 'eiti-kb-lib');
   assert.strictEqual(idx.v, 2);
-  assert.ok(idx.count >= 10000, 'at least 10 000 entries, got ' + idx.count);
+  assert.strictEqual(idx.count, 150000, 'exact KB record target');
   assert.strictEqual(FULL.entries.length, idx.count);
   assert.deepStrictEqual(idx.order.concat(idx.lazy || []).sort(), Object.keys(idx.domains).sort());   // v14.14.0: kn_* — в lazy
   const doms = Object.keys(idx.domains);
@@ -89,8 +91,22 @@ test('held-out questions on encyclopedic sections (people, cities, countries, �
   assert.ok(r.confPrecision >= 0.93, 'confident precision ' + r.confPrecision);
 });
 
+test('longtail is split into lazy shards and only answers explicit topic lookups', () => {
+  const tails = Object.keys(idx.domains).filter((d) => /^longtail_\d{2}$/.test(d));
+  assert.strictEqual(tails.length, 24);
+  assert.strictEqual(tails.reduce((n, d) => n + idx.domains[d].count, 0), 118459);
+  assert.ok(tails.every((d) => idx.domains[d].lazy && !idx.order.includes(d) && idx.domains[d].count <= 5000));
+  const e = K.create(TAIL);
+  const row = FULL.entries.find((x) => /^longtail_\d{2}$/.test(x.d));
+  const topic = row.t.split('|')[0].replace(/^что такое /, '');
+  assert.ok(e.search('что такое ' + topic, 5).some((h) => h.id === row.i));
+  assert.ok(!e.search(topic, 5).some((h) => h.d.indexOf('longtail_') === 0));
+  assert.ok(!e.search('доброе утро', 5).some((h) => h.d.indexOf('longtail_') === 0));
+  assert.ok(!e.search('сколько стран входит в оон', 5).some((h) => h.d.indexOf('longtail_') === 0));
+});
+
 test('chit-chat and tale requests are not hijacked by KB', () => {
-  const e = K.create(FULL);
+  const e = K.create(CORE);
   for (const q of ['привет, как дела?', 'как дела', 'дальше', 'расскажи сказку на ночь', 'мне грустно', 'спасибо', 'помоги',
     'скороговорку', 'какая погода', 'расскажи анекдот', 'кто такой Кухулин', 'что ты умеешь', 'мне скучно', 'что делать',
     'привет', 'пока', 'доброе утро', 'спокойной ночи', 'давай поговорим', 'ок', 'да', 'нет', 'хорошо', 'понятно', 'я устал',
@@ -117,13 +133,13 @@ test('size and speed budgets (sharded index)', async () => {
     maxShard = Math.max(maxShard, g);
     for (const f of idx.domains[d].packs) maxPack = Math.max(maxPack, zlib.gzipSync(fs.readFileSync(path.join(KB, f)), { level: 9 }).length);
   }
-  assert.ok(man < 8 * 1024, 'manifest gzip ' + man);
+  assert.ok(man < 10 * 1024, 'manifest gzip (≤10 KiB for the 150k lazy domain map) ' + man);
   assert.ok(maxShard < 200 * 1024, 'largest shard gzip ' + maxShard);
   assert.ok(shards < 700 * 1024, 'all start-up shards gzip ' + shards);   // v14.3.0: ~28.5k entries, compact v3 shards
-  assert.ok(lazyShards < 400 * 1024, 'lazy concept shards gzip ' + lazyShards);   // v14.14.0: kn_* — только при первом вопросе о понятии
+  assert.ok(lazyShards < 3 * 1024 * 1024, 'lazy KB shards gzip ' + lazyShards);   // kn_* + longtail — только при соответствующем fallback
   assert.ok(maxPack < 40 * 1024, 'largest pack part gzip ' + maxPack);
   let t0 = process.hrtime.bigint();
-  const e = K.create(FULL);
+  const e = K.create(CORE);
   const build = Number(process.hrtime.bigint() - t0) / 1e6;
   t0 = process.hrtime.bigint();
   for (let i = 0; i < 100; i++) e.search('почему небо голубое днём', 5);
@@ -153,6 +169,9 @@ test('host wiring in index.html', () => {
   assert.ok(HTML.includes("var EitiKBHost = (function()"));
   assert.ok(HTML.includes('window.EitiKBLib.shardRows(sh)'));
   assert.ok(HTML.includes('window.EitiKBLib.addAsync(e, rows, { step: 150, yieldFn: idle })'));
+  assert.ok(HTML.includes('function longtail()'));
+  assert.ok(HTML.includes('window.EitiKBLib.create({ domains: idx.domains, entries: [] })'));
+  assert.ok(HTML.includes("le.search('что такое ' + q, 6)"));
   assert.ok(HTML.includes('EitiOffline._kbWrapped = true'));
   assert.ok(HTML.includes('EitiKBHost.facts(String(userText || \'\'), 4)'));
   assert.ok(HTML.includes('БИБЛИОТЕКА ЗНАНИЙ EITI'));
@@ -163,7 +182,7 @@ test('host wiring in index.html', () => {
 
 // v14.10.0: misses reported by the user — case forms, abbreviations, brands, transliteration
 test('KB finds Наполеон / МГУ / Apple in any form (case, abbreviation, Russian spelling, translit)', () => {
-  const e = K.create(FULL);
+  const e = K.create(CORE);
   const cases = [
     ['Наполеон', /наполеон бонапарт/], ['кто такой Наполеон', /наполеон бонапарт/], ['расскажи про Наполеона', /наполеон бонапарт/],
     ['napoleon', /наполеон бонапарт/], ['МГУ', /Московский государственный университет/], ['что такое МГУ', /Московский государственный университет/],
@@ -182,7 +201,7 @@ test('KB finds Наполеон / МГУ / Apple in any form (case, abbreviation
 // v14.14.0: омоним-название уступает понятию только когда запрос — одно название без подсказки;
 // «ночной дозор рембрандт» (слово вне названия) по-прежнему уверенно находит картину
 test('homonym titles: bare title yields to concept, extra words keep the article', () => {
-  const e = K.create(FULL);
+  const e = K.create(CORE);
   const h = e.search('ночной дозор рембрандт', 3)[0];
   assert.ok(h && h.d === 'paintings' && !h.hom && e.confident(h), JSON.stringify(h));
   const g = e.search('гравитация', 5).find((x) => x.d === 'films');

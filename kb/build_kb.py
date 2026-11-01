@@ -3,7 +3,7 @@
 
 Line format:  trigger1; trigger2 || RU answer [|| EN answer] [|| @key: text | key: text ...]
 First line:   # Title RU | Title EN
-v14.14.0: an optional segment starting with '@' holds aspect fields of a concept card (kn_*.txt):
+v14.16.2: an optional segment starting with "@" holds grounded detail fields on curated KB entries, including kn_* concept cards:
   short detail ex why use how when origin count who verify  → stored in the pack as "f": {key: text}.
 v14.16.2: "rd" embeds up to three same-domain related source records in each pack entry so offline detail
   answers never need to fetch a neighbour pack; these links are comparison context, not claims of causation.
@@ -150,7 +150,7 @@ def build():
         else:
             sb = dump(os.path.join(HERE, sf), {'v': 2, 'd': dom, 'e': shard})
         domains[dom] = {'title': title[0].strip(), 'title_en': (title[1].strip() if len(title) > 1 else dom), 'gen': gen,
-                        **({'lazy': 1} if dom.startswith('kn_') else {}),
+                        **({'lazy': 1} if dom.startswith('kn_') or dom.startswith('longtail_') else {}),
                         'count': len(recs), 'shard': sf, 'shard_gz': gz(sb), 'shard_bytes': len(sb),
                         'packs': pfiles, 'pack_gz_max': max(pgz), 'pack_bytes': pbytes}
         total += len(recs)

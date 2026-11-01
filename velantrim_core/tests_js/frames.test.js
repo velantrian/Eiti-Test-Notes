@@ -215,7 +215,7 @@ test('Base update host: only by button, manifest+hashes, miss log, local wiki ca
   assert.match(HTML, /id="eiti-base-wiki" checked onchange="eitiBaseWikiSet\(this\.checked\)"><span[^>]*>Добавлять темы, на которые не было ответа, из Википедии</);
   assert.match(HTML, /id="eiti-base-last"/);
   assert.match(HTML, /id="eiti-base-miss-clear" onclick="eitiBaseMissClear\(\)"/);
-  assert.match(HTML, /function reset\(\) \{ eng = null; idx = null; initP = null; lazyP = null;/);
+  assert.match(HTML, /function reset\(\) \{ eng = null; tailEng = null; idx = null; initP = null; lazyP = null; tailP = null;/);
 });
 
 test('respond survives a broken pack or failing lookup', async () => {

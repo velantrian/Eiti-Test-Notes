@@ -156,6 +156,12 @@
       var res = [];
       for (var key in acc) {
         var di = +key, best = 0, bm = 0, tt = trig[di];
+        // Long-tail records are a large low-priority fallback: expose them only
+        // for the explicit "что такое [topic]" form, never for a bare phrase.
+        if (/^longtail_\d+$/.test(E[di].d || '')) {
+          var lt = norm(String(E[di].t || '').split('|')[0]).replace(/^что такое /, '');
+          if (!lt || nqh !== 'что такое ' + lt) continue;
+        }
         // точность триггера: какая доля слов лучшего триггера есть в запросе
         for (var x = 0; x < tt.length; x++) {
           var tk = tt[x]; if (!tk.length) continue;

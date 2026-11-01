@@ -1,4 +1,4 @@
-// v14.16.2: full offline detail card and chat-bound follow-up context.
+// v14.16.2: universal offline reasoning for core, concept and lazy Wikidata longtail records.
 const { test, expect } = require('@playwright/test');
 
 test.use({ locale: 'ru-RU', timezoneId: 'Europe/Berlin' });
@@ -29,7 +29,7 @@ async function send(page, text) {
 }
 const last = (page) => page.locator('#messages .message.incoming').last();
 
-test('the «Рассуждение» button opens essence and deeper details offline', async ({ page, context }) => {
+ test('the «Рассуждение» button opens essence and detailed Moon phases offline', async ({ page, context }) => {
   await boot(page);
   await send(page, 'что такое фазы луны');
   await expect(last(page)).toContainText('Фазы Луны', { timeout: 20000 });
@@ -46,6 +46,7 @@ test('the «Рассуждение» button opens essence and deeper details off
   await expect(reasoning).not.toContainText('нет их снимков');
   await expect(reasoning).toContainText('29,5 суток');
   await expect(reasoning).toContainText('science.nasa.gov/moon/moon-phases');
+  await expect(reasoning).toContainText('science.nasa.gov/moon/eclipses');
   await expect(reasoning).toContainText(/aa\.usno\.navy\.mil\/faq\/moon\\?_phases/);
   const detail = await reasoning.innerText();
   expect(detail.indexOf('Суть')).toBeLessThan(detail.indexOf('Подробнее'));
@@ -54,7 +55,7 @@ test('the «Рассуждение» button opens essence and deeper details off
   await context.setOffline(false);
 });
 
-test('the same two-layer reasoning works for a generated non-Moon KB record', async ({ page, context }) => {
+test('the two-layer reasoning works on a generated non-Moon KB record', async ({ page, context }) => {
   await boot(page);
   await send(page, 'почему небо голубое');
   await expect(last(page)).toContainText('KB', { timeout: 15000 });
@@ -70,6 +71,34 @@ test('the same two-layer reasoning works for a generated non-Moon KB record', as
   await expect(reasoning).toContainText('рэлеев');
   const detail = await reasoning.innerText();
   expect(detail.indexOf('Суть')).toBeLessThan(detail.indexOf('Подробнее'));
+  expect(requests).toEqual([]);
+  await context.setOffline(false);
+});
+
+test('lazy Wikidata longtail remains lazy and its reasoning opens with no network', async ({ page, context }) => {
+  test.setTimeout(90000);
+  await boot(page);
+  const requests = [];
+  page.on('request', (r) => requests.push(r.url()));
+
+  await send(page, 'почему небо голубое');
+  await expect(last(page)).toContainText('рэлеев', { timeout: 20000 });
+  const tailPattern = /\/kb\/(?:idx\/longtail_|packs\/kb_longtail_)/;
+  expect(requests.some((url) => tailPattern.test(url))).toBe(false);
+
+  await send(page, 'что такое Tha Last Meal');
+  await expect(last(page)).toContainText('Tha Last Meal', { timeout: 60000 });
+  expect(requests.some((url) => tailPattern.test(url))).toBe(true);
+  requests.length = 0;
+
+  await context.setOffline(true);
+  const message = last(page);
+  await message.locator('.eiti-rel-btn[data-w="why"]').click();
+  const reasoning = message.locator('.eiti-rel-panel');
+  await expect(reasoning).toContainText('Суть', { timeout: 20000 });
+  await expect(reasoning).toContainText('Подробнее');
+  await expect(reasoning).toContainText('Wikidata (CC0)');
+  await expect(reasoning).toContainText('дополнительные факты не придумываются');
   expect(requests).toEqual([]);
   await context.setOffline(false);
 });
