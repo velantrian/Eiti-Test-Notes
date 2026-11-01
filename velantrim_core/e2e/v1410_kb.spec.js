@@ -23,7 +23,7 @@ async function send(page, text) {
   await page.locator('#send').click();
 }
 
-test('главный поток не блокируется надолго при индексации 11k статей', async ({ page }) => {
+test('главный поток не блокируется надолго при индексации 31k core-записей', async ({ page }) => {
   await boot(page);
   const r = await page.evaluate(async () => {
     let worst = 0, last = performance.now(), stop = false;
@@ -51,9 +51,32 @@ test('KB не грузится на старте, init быстрый, груз�
   expect(packs.length).toBe(1);
   expect(packs[0]).toMatch(/kb_physics\.json/);
   expect(req.filter((u) => /kb\/idx\//.test(u)).length).toBe(r.stats.shards);
-  expect(r.stats.entries).toBeGreaterThanOrEqual(10000);
+  expect(r.stats.entries).toBeGreaterThanOrEqual(30000);
   expect(r.init).toBeLessThan(15000);
   console.log('kb timing', JSON.stringify({ init: Math.round(r.init), answer: Math.round(r.ans), stats: r.stats }));
+});
+
+test('150k longtail loads only for an explicit definition and leaves core answers unchanged', async ({ page }) => {
+  const req = [];
+  page.on('request', (r) => { if (/\/kb\//.test(r.url())) req.push(r.url()); });
+  await boot(page);
+  const before = await page.evaluate(async () => {
+    await EitiKBHost.init();
+    const a = await EitiKBHost.answer('почему небо голубое');
+    return a && a.id;
+  });
+  expect(req.filter((u) => /kb\/idx\/longtail_\d+\.json/.test(u))).toHaveLength(0);
+  const msgs = page.locator('#messages .message.incoming');
+  await send(page, 'что такое Википедия');
+  await expect(msgs.last()).toContainText('многоязычная интернет-энциклопедия', { timeout: 20000 });
+  const r = await page.evaluate(async () => {
+    const a = await EitiKBHost.answer('почему небо голубое');
+    return { coreId: a && a.id, longtailEntries: EitiKBHost.stats.longtailEntries };
+  });
+  expect(req.filter((u) => /kb\/idx\/longtail_\d+\.json/.test(u))).toHaveLength(24);
+  expect(req.filter((u) => /kb\/packs\/kb_longtail_/.test(u))).toHaveLength(1);
+  expect(r.longtailEntries).toBe(118459);
+  expect(r.coreId).toBe(before);
 });
 
 test('чат без ключа: ответ из библиотеки знаний, сказки и диалоги не перехвачены', async ({ page }) => {

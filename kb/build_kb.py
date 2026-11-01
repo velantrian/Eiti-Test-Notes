@@ -136,7 +136,7 @@ def build():
         else:
             sb = dump(os.path.join(HERE, sf), {'v': 2, 'd': dom, 'e': shard})
         domains[dom] = {'title': title[0].strip(), 'title_en': (title[1].strip() if len(title) > 1 else dom), 'gen': gen,
-                        **({'lazy': 1} if dom.startswith('kn_') else {}),
+                        **({'lazy': 1} if dom.startswith('kn_') or dom.startswith('longtail_') else {}),
                         'count': len(recs), 'shard': sf, 'shard_gz': gz(sb), 'shard_bytes': len(sb),
                         'packs': pfiles, 'pack_gz_max': max(pgz), 'pack_bytes': pbytes}
         total += len(recs)

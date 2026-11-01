@@ -1,9 +1,11 @@
 // node kb/tests/eval_kb.js — retrieval accuracy on held-out paraphrases
 var fs = require('fs'), path = require('path');
-var K = require('../eiti_kb.js'), idx = require('./load_all.js')().index;
+var K = require('../eiti_kb.js'), all = require('./load_all.js')(), idx = all.index;
+// v14.15.0: the 150k longtail is a separate exact-query fallback engine and must not affect core ranking.
+var core = { domains: idx.domains, entries: all.entries.filter(function (e) { return !/^longtail_/.test(e.d); }) };
 function run(file) {
-  var eng = K.create(idx), byTrig = {};
-  idx.entries.forEach(function (e) { e.t.split('|').forEach(function (t) { byTrig[K.norm(t)] = e.i; }); });
+  var eng = K.create(core), byTrig = {};
+  core.entries.forEach(function (e) { e.t.split('|').forEach(function (t) { byTrig[K.norm(t)] = e.i; }); });
   var lines = fs.readFileSync(path.join(__dirname, file || 'heldout.txt'), 'utf8').split('\n').filter(Boolean);
   var top1 = 0, top3 = 0, conf = 0, confWrong = 0, miss = [];
   lines.forEach(function (l) {
