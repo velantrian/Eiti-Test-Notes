@@ -4,7 +4,9 @@
 Line format:  trigger1; trigger2 || RU answer [|| EN answer] [|| @key: text | key: text ...]
 First line:   # Title RU | Title EN
 v14.14.0: an optional segment starting with '@' holds aspect fields of a concept card (kn_*.txt):
-  short ex why use how when origin count who verify  → stored in the pack as "f": {key: text}.
+  short detail ex why use how when origin count who verify  → stored in the pack as "f": {key: text}.
+v14.16.2: "rd" embeds up to three same-domain related source records in each pack entry so offline detail
+  answers never need to fetch a neighbour pack; these links are comparison context, not claims of causation.
 Files whose second line starts with '# @generated' (w_*.txt, from kb/gen/gen_kb.py) may repeat a trigger
 already used by a hand-written entry: the hand-written one wins and the repeat is dropped silently.
 In hand-written files any duplicate is a warning (--strict → exit 1).
@@ -22,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'src')
 PART = 400
 PART_MIN, PACK_GZ_SOFT = 100, 38000
-FIELDS = ('short', 'ex', 'why', 'use', 'how', 'when', 'origin', 'count', 'who', 'verify')
+FIELDS = ('short', 'detail', 'ex', 'why', 'use', 'how', 'when', 'origin', 'count', 'who', 'verify')
 
 def parse_fields(seg):
     """'@ex: … | why: …' → ({'ex': '…', 'why': '…'}, [errors])"""
@@ -111,8 +113,20 @@ def build():
             recs.append((eid, h[:n], rec))
         if not recs: continue
         rel = related_of(recs)   # «Похожие»: same-section neighbours, stored in packs only (not in the search shards)
+        rec_by_hash = {hh: r for _, hh, r in recs}
         for _, hh, r in recs:
-            if hh in rel: r['r'] = rel[hh]
+            if hh in rel:
+                r['r'] = rel[hh]
+                # Embed a few compact source records in this pack so detail cards work offline even
+                # when a related entry's own pack has never been cached on the device.
+                snapshots = []
+                for rh in rel[hh][:3]:
+                    other = rec_by_hash.get(rh)
+                    if not other: continue
+                    snap = {'q': other['q'][:1], 'a': other['a']}
+                    if other.get('en'): snap['en'] = other['en']
+                    snapshots.append(snap)
+                if snapshots: r['rd'] = snapshots
         part = PART
         while True:   # adaptive part size: packs carry «r» (related) and must stay under the 40 KB gzip cap
             nparts = (len(recs) + part - 1) // part

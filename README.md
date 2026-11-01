@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.16.0-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.16.2-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -65,6 +65,12 @@ python3 -m http.server 8080
 📐 Полная архитектура (для переноса в нативное приложение): **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
 ---
+
+## 🆕 Что нового в v14.16.2
+
+- **Подробные офлайн-объяснения KB:** на просьбу «объясни подробнее» приложение расширяет ответ по данным самой записи и до трёх встроенных снимков похожих записей из того же раздела. Похожие сведения помечаются как контекст, а не как причинное доказательство; для ответа сеть не нужна.
+- **Фазы Луны:** концепт-карточка получила более полное объяснение синодического месяца, освещённой половины и затмений; факты сверены с [NASA](https://science.nasa.gov/moon/moon-phases/) и [USNO](https://aa.usno.navy.mil/faq/moon_phases).
+- Покрытие проверено для всех 31 542 записей; детали строятся на запрос, без вручную придуманных фактов для каждой карточки.
 
 ## 🆕 Что нового в v14.16.0
 

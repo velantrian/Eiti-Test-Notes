@@ -568,7 +568,8 @@
     if (field === 'def' || (field === 'short' && !f.short)) {
       field = 'def';
       text = '📘 **' + title + '**\n\n' + card.a;
-      if (mods.long && f.ex && !st.told.ex) { text += '\n\n' + fill(rot(fr.ex, 'f:ex', st), v); st.told.ex = 1; }
+      if (mods.long && f.detail && !st.told.detail) { text += '\n\n' + fill(rot(fr.detail, 'f:detail', st), v); st.told.detail = 1; }
+      else if (mods.long && f.ex && !st.told.ex) { text += '\n\n' + fill(rot(fr.ex, 'f:ex', st), v); st.told.ex = 1; }
     } else if (f[field]) {
       text = '📘 **' + title + '** · ' + (fru[field] || field) + '\n\n' + fill(rot(fr[field], 'f:' + field, st), v);
     } else if (field === 'verify') {
@@ -649,6 +650,7 @@
       if (!nx) { var t = fill(P.raw.done, { title: cap(card.title) }); st.card = null; st.offer = null; return t; }
       go = nx;
     }
+    if (go === 'detail' && !(card.f && card.f.detail)) go = nextField(card, st) || 'def';
     if (go === 'short' && !(card.f && card.f.short)) go = 'def';
     return answer(card, go, {}, st, now).text;
   }
