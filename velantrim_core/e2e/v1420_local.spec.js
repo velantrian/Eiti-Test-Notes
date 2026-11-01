@@ -32,6 +32,17 @@ async function send(page, text) {
   await page.locator('#send').click();
 }
 
+test('без ключа: первая обычная реплика получает ответ без загрузки longtail', async ({ page }) => {
+  const tailReq = [];
+  page.on('request', (r) => { if (/\/kb\/idx\/longtail_\d+\.json/.test(r.url())) tailReq.push(r.url()); });
+  await boot(page, false);
+  const msgs = page.locator('#messages .message.incoming');
+  await send(page, 'привет, как дела?');
+  await expect(msgs).toHaveCount(1, { timeout: 15000 });
+  await expect(msgs.last()).not.toBeEmpty();
+  expect(tailReq).toHaveLength(0);
+});
+
 test('без ключа: калькулятор словами и цифрами, деление на ноль, обычная фраза не перехвачена', async ({ page }) => {
   const kbReq = [];
   page.on('request', (r) => { if (/\/kb\/|\/offline\//.test(r.url())) kbReq.push(r.url()); });
@@ -47,9 +58,12 @@ test('без ключа: калькулятор словами и цифрами
   await expect(msgs.last()).toContainText('на ноль делить нельзя', { timeout: 15000 });
   // калькулятор отвечает локально, не трогая библиотеку KB и офлайн-диалоги
   expect(kbReq.length).toBe(0);
+  const repliesBefore = await msgs.count();
   await send(page, 'привет, как дела?');
+  await expect(msgs).toHaveCount(repliesBefore + 1, { timeout: 15000 });
   await expect(msgs.last()).not.toContainText('🧮', { timeout: 15000 });
   await expect(msgs.last()).not.toContainText('🗂');
+  expect(kbReq.filter((u) => /\/kb\/idx\/longtail_\d+\.json/.test(u))).toHaveLength(0);
 });
 
 test('без ключа: вопросы о своих заметках и ссылка «открыть» открывает заметку', async ({ page }) => {

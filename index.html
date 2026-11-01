@@ -32948,6 +32948,8 @@ window.eitiLLMClearAll = async function() {
                 return init().then(function(e) {
                     var h = e.search(q, 3); stats.last = h[0] || null;
                     if (e.confident(h[0])) return hydrate([h[0]]).then(function(r) { return r[0] || null; });
+                    // longtail_* contains only exact «что такое …» triggers; do not load all 118k rows for ordinary chat.
+                    if (!/^что такое \S/.test(window.EitiKBLib.norm(q))) return null;
                     return longtail().then(function(le) {
                         var lh = le.search(q, 3), pick = null;
                         for (var i = 0; i < lh.length; i++) if (/^longtail_/.test(lh[i].d) && le.confident(lh[i])) { pick = lh[i]; break; }
@@ -33020,13 +33022,14 @@ window.eitiLLMClearAll = async function() {
                 return String(b || q[0] || dflt);
             }
             // concept(topic) → карточка понятия {id, title (= понятие), a, f, kn:true, …} | уверенная запись KB (kn:false) | null
-            function concept(topic) {
+            function concept(topic, allowLongtail) {
                 var q = String(topic || '').trim();
                 if (!q || q.length > 80) return Promise.resolve(null);
                 return lazy().then(function(e) {
                     var h = e.search(q, 6), pick = null, top = h[0];
                     for (var i = 0; i < h.length; i++) { var x = h[i]; if (/^kn_/.test(x.d) && x.nx > 0 && x.cov >= 0.6 && x.prec >= 0.75 && !x.hom && x.score >= top.score * 0.6) { pick = x; break; } }
                     if (!pick && e.confident(top)) pick = top;
+                    if (!pick && !allowLongtail) return null;
                     if (!pick) return longtail().then(function(le) {
                         var lh = le.search('что такое ' + q, 6), found = null;
                         for (var j = 0; j < lh.length; j++) if (/^longtail_/.test(lh[j].d) && le.confident(lh[j])) { found = lh[j]; break; }
@@ -33372,9 +33375,15 @@ window.eitiLLMClearAll = async function() {
                 return packP;
             }
             function state() { if (!st && F()) st = F().create(); return st; }
-            function lookup(topic) {
+            function lookup(topic, sourceText) {
                 if (!window.EitiKBHost || !EitiKBHost.concept) return Promise.resolve(null);
-                return EitiKBHost.concept(topic).then(function(c) { return c ? { id: c.id, title: c.title, a: c.a, f: c.f, kn: !!c.kn, domain: c.domain } : null; });
+                var source = String(sourceText || '');
+                var norm = window.EitiKBLib && window.EitiKBLib.norm ? window.EitiKBLib.norm(source) : source.toLowerCase().trim();
+                // Social turns can be misparsed as a topic after another offline turn; pass them through without loading KB shards.
+                if (/^(?:привет|здравствуй|здравствуйте|как дела|как ты|спасибо|пока|до свидания|доброе утро|добрый день|добрый вечер)(?:\s|$)/.test(norm)) return Promise.resolve(null);
+                // Only explicit knowledge/topic questions may trigger the 118k longtail fallback.
+                var allowLongtail = /(?:^|\s)(?:что такое|кто такой|кто такая|кто такие|расскажи|скажи|объясни|поясни|растолкуй|разложи по полочкам|зачем|когда|почему|откуда|для чего|с кем связан(?:а|о|ы)?|как работает|как устроен(?:а|о|ы)?|каким образом|сколько|это точно|сравни|что значит|где находится|где расположен(?:а|о)?)(?:\s|$)/.test(norm);
+                return EitiKBHost.concept(topic, allowLongtail).then(function(c) { return c ? { id: c.id, title: c.title, a: c.a, f: c.f, kn: !!c.kn, domain: c.domain } : null; });
             }
             function reply(text, opts, orig) {
                 opts = opts || {};
@@ -33386,7 +33395,7 @@ window.eitiLLMClearAll = async function() {
                     if (!f) return orig(text, opts);
                     stats.calls++;
                     var passed = { v: undefined };
-                    return f.respond(q, state(), { lookup: lookup, pass: function(t) { return orig(t, opts).then(function(r) { passed.v = r; return r; }); } }).then(function(r) {
+                    return f.respond(q, state(), { lookup: function(topic) { return lookup(topic, q); }, pass: function(t) { return orig(t, opts).then(function(r) { passed.v = r; return r; }); } }).then(function(r) {
                         if (r == null || r === passed.v) return r;
                         stats.hits++; stats.last = st && st.card ? st.card.id : null;
                         if (opts.foot && !footShown) { footShown = true; r += window.eitiOfflineStr('kbFoot', 'ru'); }
