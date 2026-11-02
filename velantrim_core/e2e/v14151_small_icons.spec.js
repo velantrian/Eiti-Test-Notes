@@ -100,7 +100,7 @@ test('small icons: таб-бар и шапки ниже, таб ≥36px, без 
   expect(Math.abs(m.messages.top - m.header.bottom)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.input.top - m.messages.bottom)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.input.bottom - m.tabbar.top)).toBeLessThanOrEqual(1);
-  expect(m.messages.h).toBeGreaterThan(661 + 90); // +104 px под переписку при 412x915
+  expect(m.messages.h).toBeGreaterThan(661 + 40); // toolbar under text eats ~1 row vs side-by-side composer // +104 px под переписку при 412x915
   // заметки: компактная шапка, строка тегов встык с таб-баром
   expect(m.notesHeader.h).toBeLessThan(149);
   expect(Math.abs(m.notesList.top - m.notesHeader.bottom)).toBeLessThanOrEqual(1);
