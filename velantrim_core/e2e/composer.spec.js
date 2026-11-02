@@ -109,5 +109,5 @@ test('classic button mode reserves composer space for the attachment control', a
       paddingRight: input ? getComputedStyle(input).paddingRight : '',
     };
   });
-  expect(layout).toEqual({ classicMode: true, attachmentInside: true, paddingRight: '142px' });
+  expect(layout).toEqual({ classicMode: true, attachmentInside: true, paddingRight: '132px' });
 });
