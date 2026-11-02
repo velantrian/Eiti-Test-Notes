@@ -89,7 +89,7 @@ test('plus, microphone and send controls are inside the full-width composer shel
     microphoneInside: true,
     sendInside: true,
     panelSideColumns: 0,
-    inputPaddingLeft: '8px',
+    inputPaddingLeft: '6px',
   });
   expect(['8px']).toContain(layout.inputPaddingRight);
 });
