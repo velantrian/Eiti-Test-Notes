@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.16.9"; // v14.16.9: ♻️ очистить поле — переключатель в «+» и иконка у стрелок; v14.16.7: офлайн «печатает» — 3 кружка другого дизайна; v14.16.6: ↩️↪️ отмена/повтор ввода в композере + настройка скрыть; v14.16.5: ChatGPT layout — текст сверху на всю ширину, кнопки снизу; v14.16.4: композер на всю ширину экрана (как ChatGPT, ~4px поля); v14.16.3: одна пилюля как ChatGPT (+/текст/mic/send внутри); v14.16.2: композер как ChatGPT (flex, текст на всю ширину, перенос anywhere); v14.16.1: офлайн-КБ до 150 000 записей, ленивый точный longtail fallback; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.16.10"; // v14.16.10: iOS-style toggle для ♻️ очистки; v14.16.9: ♻️ очистить поле — переключатель в «+» и иконка у стрелок; v14.16.7: офлайн «печатает» — 3 кружка другого дизайна; v14.16.6: ↩️↪️ отмена/повтор ввода в композере + настройка скрыть; v14.16.5: ChatGPT layout — текст сверху на всю ширину, кнопки снизу; v14.16.4: композер на всю ширину экрана (как ChatGPT, ~4px поля); v14.16.3: одна пилюля как ChatGPT (+/текст/mic/send внутри); v14.16.2: композер как ChatGPT (flex, текст на всю ширину, перенос anywhere); v14.16.1: офлайн-КБ до 150 000 записей, ленивый точный longtail fallback; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -7194,6 +7194,32 @@
         }
         .cpi-pin-toggle.on{ background:var(--accent-color,#ffd700); color:#1a1206; }
 
+        /* iOS Settings-style switch */
+        .eiti-ios-switch{
+            position:relative; flex-shrink:0; width:51px; height:31px; padding:0; border:none;
+            border-radius:31px; background:#39393d; cursor:pointer; vertical-align:middle;
+            -webkit-appearance:none; appearance:none; transition:background .2s ease;
+        }
+        .eiti-ios-switch::after{
+            content:""; position:absolute; top:2px; left:2px; width:27px; height:27px;
+            border-radius:50%; background:#fff;
+            box-shadow:0 1px 3px rgba(0,0,0,.35), 0 1px 1px rgba(0,0,0,.15);
+            transition:transform .22s cubic-bezier(.4,.0,.2,1);
+        }
+        .eiti-ios-switch[aria-pressed="true"],
+        .eiti-ios-switch.on{
+            background:#34c759;
+        }
+        .eiti-ios-switch[aria-pressed="true"]::after,
+        .eiti-ios-switch.on::after{
+            transform:translateX(20px);
+        }
+        .eiti-ios-switch:focus-visible{ outline:2px solid var(--accent-color,#ffd700); outline-offset:2px; }
+        .cpi-pin-toggle.eiti-ios-switch{
+            min-width:51px; margin-left:auto; font-size:0; color:transparent; line-height:0;
+        }
+
+
         .eiti-composer-undo{
             width:40px; height:40px; min-width:40px; border:none; border-radius:50%;
             background:transparent; color:rgba(255,215,0,.75); display:inline-flex;
@@ -8815,9 +8841,8 @@
                                     <div style="font-size:13px;font-weight:600;" data-i18n="♻️ Очистить поле ввода">♻️ Очистить поле ввода</div>
                                     <div style="font-size:11px;opacity:.55;line-height:1.4;margin-top:2px;" data-i18n="Иконка ♻️ рядом со стрелками в поле чата.">Иконка ♻️ рядом со стрелками в поле чата.</div>
                                 </div>
-                                <button type="button" id="eiti-composer-clear-toggle" onclick="eitiComposerClearSetVisible(!(localStorage.getItem('eiti_composer_clear')==='1'))" aria-pressed="false"
-                                    style="flex-shrink:0;min-width:52px;height:30px;border-radius:16px;border:none;background:rgba(255,255,255,.12);color:var(--text-color);font-weight:700;cursor:pointer;"
-                                    data-i18n="выкл">выкл</button>
+                                <button type="button" class="eiti-ios-switch" id="eiti-composer-clear-toggle" role="switch"
+                                    onclick="eitiComposerClearSetVisible(!(localStorage.getItem('eiti_composer_clear')==='1'))" aria-pressed="false" aria-label="Очистить поле ввода"></button>
                             </div>
 </div>
                     </div>
@@ -53864,13 +53889,14 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
             var tog = document.getElementById('eiti-composer-clear-toggle');
             if (tog) {
                 tog.setAttribute('aria-pressed', on ? 'true' : 'false');
-                tog.textContent = on ? (typeof T === 'function' ? T('вкл') : 'вкл') : (typeof T === 'function' ? T('выкл') : 'выкл');
-                tog.style.background = on ? 'var(--accent-color,#ffd700)' : 'rgba(255,255,255,.12)';
-                tog.style.color = on ? '#1a1206' : 'var(--text-color)';
+                tog.classList.toggle('on', on);
+                tog.textContent = '';
+                tog.style.background = '';
+                tog.style.color = '';
             }
             document.querySelectorAll('.cpi-clear-pin').forEach(function (el) {
                 el.classList.toggle('on', on);
-                el.textContent = on ? (typeof T === 'function' ? T('вкл') : 'вкл') : (typeof T === 'function' ? T('выкл') : 'выкл');
+                el.textContent = '';
                 el.setAttribute('aria-pressed', on ? 'true' : 'false');
             });
         }
@@ -53987,7 +54013,7 @@ console.log('%c📷 Vision chip fix loaded', 'color:#4CAF50;font-weight:bold;');
                 (item.id === 'grok' && window.EitiVoice ? '<span class="cpi-voice-prov" style="font-size:11px;opacity:0.6;margin-right:6px;">' + EitiVoice.label() + '</span>' : '') + // v14.9.0
                 (item.id === 'grok' ? '<button type="button" class="cpi-voice-change" onclick="event.stopPropagation();eitiOpenVoiceSettings()" style="background:none;border:none;color:var(--accent-color,#ffd700);font-size:11px;text-decoration:underline;cursor:pointer;padding:8px 6px;min-height:32px;">' + _t('изменить') + '</button>' : '') + // v14.10.0
                 (item.stateBtn ? '<span class="cpi-state">' + (isActive ? _t('вкл') : _t('выкл')) + '</span>' : '') +
-                (item.id === 'clearInput' ? '<button type="button" class="cpi-pin-toggle cpi-clear-pin' + (localStorage.getItem('eiti_composer_clear')==='1' ? ' on' : '') + '" aria-pressed="' + (localStorage.getItem('eiti_composer_clear')==='1' ? 'true' : 'false') + '" onclick="event.stopPropagation();eitiComposerClearSetVisible(!(localStorage.getItem(\'eiti_composer_clear\')===\'1\'))">' + (localStorage.getItem('eiti_composer_clear')==='1' ? _t('вкл') : _t('выкл')) + '</button>' : '') +
+                (item.id === 'clearInput' ? '<button type="button" class="eiti-ios-switch cpi-pin-toggle cpi-clear-pin' + (localStorage.getItem('eiti_composer_clear')==='1' ? ' on' : '') + '" role="switch" aria-pressed="' + (localStorage.getItem('eiti_composer_clear')==='1' ? 'true' : 'false') + '" aria-label="' + _t('Очистить поле ввода чата') + '" onclick="event.stopPropagation();eitiComposerClearSetVisible(!(localStorage.getItem(\'eiti_composer_clear\')===\'1\'))"></button>' : '') +
                 '</div>';
         });
         if (!html) html = '<div style="padding:12px 16px;opacity:0.5;font-size:13px;">' + _t('Нет активных функций.') + '<br>' + _t('Включите в Настройки → Панель чата.') + '</div>';
