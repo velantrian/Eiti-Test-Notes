@@ -72,12 +72,12 @@ async function measureAll(page, mode) {
   return m;
 }
 
-test('по умолчанию: по умолчанию компактные табы (88 / 72), галочка снята', async ({ page }) => {
+test('по умолчанию: компактные табы (96) + шапка 88, small-icons галочка снята', async ({ page }) => {
   await boot(page);
   expect(await page.evaluate(() => document.documentElement.classList.contains('eiti-small-icons'))).toBe(false);
   const m = await measureAll(page, 'default');
-  expect(Math.round(m.tabbar.h)).toBe(88);
-  expect(Math.round(m.header.h)).toBe(88);
+  expect(Math.round(m.tabbar.h)).toBe(96); // compact tabs (default)
+  expect(Math.round(m.header.h)).toBe(88); // шапка не трогаем
   expect(Math.round(m.tabbar.bottom)).toBe(VIEW.height);
   expect(Math.abs(m.input.bottom - m.tabbar.top)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.tags.bottom - m.editorTab.top)).toBeLessThanOrEqual(2);
@@ -127,7 +127,7 @@ test('галочка: мгновенно, без перезагрузки; со�
   await page.evaluate(() => openTabsMode());
   await expect(cb).toBeChecked();
   await cb.uncheck();
-  await expect.poll(() => box(page, '.tab-bar').then((b) => Math.round(b.h))).toBe(88);
+  await expect.poll(() => box(page, '.tab-bar').then((b) => Math.round(b.h))).toBe(96); // compact on
   expect(await page.evaluate(() => localStorage.getItem('eiti_small_icons'))).toBe(null);
   await page.evaluate(() => openView('chat'));
   expect(Math.round((await box(page, '.app-header')).h)).toBe(88);
