@@ -19,6 +19,7 @@ async function boot(page, { preset = null, storage = {}, view = VIEW } = {}) {
     if (sessionStorage.getItem('__eiti_ps_booted')) return;
     sessionStorage.setItem('__eiti_ps_booted', '1');
     localStorage.setItem('eiti_onboarded', 'true'); localStorage.setItem('eiti_toured_v7', '1'); localStorage.setItem('eiti_install_hint_seen', '1');
+    localStorage.setItem('eiti_compact_chrome', '0'); // phone-screen specs measure classic 110px bar
     if (p) localStorage.setItem('eiti_phone_screen', p);
     for (const [k, v] of Object.entries(values)) localStorage.setItem(k, v);
   }, [preset, storage]);

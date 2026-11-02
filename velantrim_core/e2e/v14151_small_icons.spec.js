@@ -1,6 +1,6 @@
 // @ts-check
 // v14.15.1: «Меньше иконки (small icons)» — компактные нижний таб-бар и верхние панели.
-// По умолчанию вид как раньше (таб-бар 110 px, шапка 88 px); галочка в «Настройке табов» сжимает их,
+// По умолчанию вид как раньше (по умолчанию компактные табы 88/72; выкл → 110/88; small icons → 50/44); галочка в «Настройке табов» сжимает их,
 // контент забирает место без наложений; применяется сразу и после перезагрузки (до первой отрисовки).
 const { test, expect } = require('@playwright/test');
 const path = require('path');
@@ -72,12 +72,12 @@ async function measureAll(page, mode) {
   return m;
 }
 
-test('по умолчанию: вид как раньше (110 / 88 px), галочка снята', async ({ page }) => {
+test('по умолчанию: компактные табы (96) + шапка 88, small-icons галочка снята', async ({ page }) => {
   await boot(page);
   expect(await page.evaluate(() => document.documentElement.classList.contains('eiti-small-icons'))).toBe(false);
   const m = await measureAll(page, 'default');
-  expect(Math.round(m.tabbar.h)).toBe(110);
-  expect(Math.round(m.header.h)).toBe(88);
+  expect(Math.round(m.tabbar.h)).toBe(96); // compact tabs (default)
+  expect(Math.round(m.header.h)).toBe(88); // шапка не трогаем
   expect(Math.round(m.tabbar.bottom)).toBe(VIEW.height);
   expect(Math.abs(m.input.bottom - m.tabbar.top)).toBeLessThanOrEqual(1);
   expect(Math.abs(m.tags.bottom - m.editorTab.top)).toBeLessThanOrEqual(2);
@@ -111,7 +111,7 @@ test('small icons: таб-бар и шапки ниже, таб ≥36px, без 
   test.info().annotations.push({ type: 'heights', description: JSON.stringify(m) });
 });
 
-test('галочка: мгновенно, без перезагрузки; сохраняется после reload; снятие возвращает 110 px', async ({ page }) => {
+test('галочка: мгновенно, без перезагрузки; сохраняется после reload; снятие возвращает 88 px', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => openTabsMode());
   const cb = page.locator('#eiti-small-icons-toggle');
@@ -127,7 +127,7 @@ test('галочка: мгновенно, без перезагрузки; со�
   await page.evaluate(() => openTabsMode());
   await expect(cb).toBeChecked();
   await cb.uncheck();
-  await expect.poll(() => box(page, '.tab-bar').then((b) => Math.round(b.h))).toBe(110);
+  await expect.poll(() => box(page, '.tab-bar').then((b) => Math.round(b.h))).toBe(96); // compact on
   expect(await page.evaluate(() => localStorage.getItem('eiti_small_icons'))).toBe(null);
   await page.evaluate(() => openView('chat'));
   expect(Math.round((await box(page, '.app-header')).h)).toBe(88);
@@ -153,7 +153,7 @@ for (const [loc, label] of [['en', 'Small icons'], ['de', 'Kleine Symbole']]) {
     expect(Math.round((await box(page, '.tab-bar')).h)).toBe(50);
     expect(Math.round((await box(page, '.app-header')).h)).toBe(44);
     await page.evaluate(() => openTabsMode());
-    const row = page.locator('label.eiti-si-row');
+    const row = page.locator('label.eiti-si-row').filter({ has: page.locator('#eiti-small-icons-toggle') });
     await expect(row).toContainText(label);
     expect(await row.innerText()).not.toMatch(CYR);
     expect(await page.locator('#view-tabs-mode .subview-title').innerText()).not.toMatch(CYR);
