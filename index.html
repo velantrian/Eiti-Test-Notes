@@ -22960,19 +22960,24 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             if (old) old.remove();
         };
         window.eitiWithOfflineTyping = function (workPromise, minMs) {
-            minMs = (minMs == null) ? 420 : minMs;
-            try { window.eitiShowOfflineTyping(); } catch (e) {}
+            // Показываем кружки только если ответ не мгновенный (калькулятор/local < ~180мс).
+            minMs = (minMs == null) ? 380 : minMs;
+            var shown = false;
+            var showTimer = setTimeout(function () {
+                shown = true;
+                try { window.eitiShowOfflineTyping(); } catch (e) {}
+            }, 180);
             var started = Date.now();
             return Promise.resolve().then(function () { return workPromise; }).then(function (t) {
+                clearTimeout(showTimer);
+                var hide = function () { if (shown) { try { window.eitiHideOfflineTyping(); } catch (e) {} } return t; };
+                if (!shown) return hide();
                 var left = minMs - (Date.now() - started);
-                var finish = function () {
-                    try { window.eitiHideOfflineTyping(); } catch (e) {}
-                    return t;
-                };
-                if (left > 0) return new Promise(function (r) { setTimeout(function () { r(finish()); }, left); });
-                return finish();
+                if (left > 0) return new Promise(function (r) { setTimeout(function () { r(hide()); }, left); });
+                return hide();
             }, function (err) {
-                try { window.eitiHideOfflineTyping(); } catch (e) {}
+                clearTimeout(showTimer);
+                if (shown) { try { window.eitiHideOfflineTyping(); } catch (e) {} }
                 throw err;
             });
         };
