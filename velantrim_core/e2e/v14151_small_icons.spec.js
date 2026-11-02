@@ -153,7 +153,7 @@ for (const [loc, label] of [['en', 'Small icons'], ['de', 'Kleine Symbole']]) {
     expect(Math.round((await box(page, '.tab-bar')).h)).toBe(50);
     expect(Math.round((await box(page, '.app-header')).h)).toBe(44);
     await page.evaluate(() => openTabsMode());
-    const row = page.locator('label.eiti-si-row');
+    const row = page.locator('label.eiti-si-row').filter({ has: page.locator('#eiti-small-icons-toggle') });
     await expect(row).toContainText(label);
     expect(await row.innerText()).not.toMatch(CYR);
     expect(await page.locator('#view-tabs-mode .subview-title').innerText()).not.toMatch(CYR);
