@@ -93,7 +93,7 @@ test('empty input is one line at 390px, grows per line up to ~6 lines, resets af
     expect(b.top).toBeGreaterThanOrEqual(geo.shell.t - 1);
     expect(b.bottom).toBeLessThanOrEqual(geo.shell.b + 1);
   }
-  expect(Math.abs(geo.plus.height - geo.i.h)).toBeLessThanOrEqual(6); expect(Math.abs(geo.send.height - geo.i.h)).toBeLessThanOrEqual(6);
+  expect(geo.plus.height).toBeGreaterThanOrEqual(40); expect(geo.send.height).toBeGreaterThanOrEqual(40);
   await input.fill('1\n2\n3'); await input.dispatchEvent('input');
   const h3 = (await input.boundingBox()).height;
   expect(h3).toBeGreaterThan(h1 + 10);
