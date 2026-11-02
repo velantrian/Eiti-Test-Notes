@@ -2,7 +2,7 @@
 
 **Scope:** `velantrian/Eiti-Test-Notes`, PR #79, tested source HEAD `072356088027e4b218f5fb95f29f24b7a0a00b07`, merge `fb4c20c0839fbd0ffaccc46f0fda0ef1d7dc7d90` (v14.16.10 runtime, although PR title says v14.16.9).
 
-**Status: PATCH PREPARED, NOT APPLIED TO `index.html`.** GitHub connector cannot upload the 4.7 MB monolithic HTML file (transport failure). This draft branch intentionally contains only test coverage and a small patch file. **Do not merge while the regression tests fail.** No production/main edits were made by this audit.
+**Status: PATCH APPLIED in isolated Draft PR #80.** The ~4.7 MB `index.html` could not be uploaded directly via the GitHub connector, so a branch-scoped one-shot GitHub Actions workflow applied the already validated patch and committed the runtime fix as `517285afaa89ed17cd93a39487e89165f6085704`. The temporary workflow was subsequently removed. `main` and production remain unchanged. **Do not merge before independent review and all final-SHA CI checks pass.**
 
 ## Findings
 
@@ -18,17 +18,14 @@
 - `velantrim_core/e2e/composer_clear_regression.spec.js`: settings/popup switch and persistence, no deletion on toggling, hide-undo independence, immediate clear/undo/redo, plus-menu parity, and fast/delayed/rejected offline typing.
 - `docs/pr79_composer_regression_fix.patch`: **validated round-trip** unified diff for a surgical update to `index.html`. No reformatting or version bump.
 
-## Applying the patch (only in this draft branch, never directly in main)
+## Applied runtime fix and reproducibility
 
-```sh
-git checkout audit/pr79-composer-regression-20261102
-git apply --check docs/pr79_composer_regression_fix.patch
-git apply docs/pr79_composer_regression_fix.patch
-git add index.html
-git commit -m "fix: preserve composer drafts on clear and decouple clear toggle"
-```
+- Initial merged runtime blob: `f777ba225bebf3cd835c6bc8a19c4ed4014650c8`.
+- Patched runtime blob: `50ffc182b12c20dff168c29337b5d80ec23ca4ae`.
+- Isolated one-shot apply workflow: GitHub Actions run `41460327371` — **success**.
+- The fix changes only `index.html` (19 insertions / 11 deletions) and does not bump the version. The patch file is retained solely for auditing/reproduction against the original baseline, and must **not** be applied again to the already patched branch.
 
-Run checks for the **new exact HEAD SHA** after the patch is applied:
+Run and verify checks against the **latest exact PR HEAD SHA**:
 
 ```sh
 python3 -m pytest velantrim_core/tests/test_v14167.py velantrim_core/tests/test_v14168.py
