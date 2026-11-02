@@ -39,7 +39,7 @@
          * [P2] Blob URL auto-revoke 5 min
          * [P2] SW cache → eiti-v13.4.0
          */
-        var EITI_VERSION = "14.16.6"; // v14.16.6: ↩️↪️ отмена/повтор ввода в композере + настройка скрыть; v14.16.5: ChatGPT layout — текст сверху на всю ширину, кнопки снизу; v14.16.4: композер на всю ширину экрана (как ChatGPT, ~4px поля); v14.16.3: одна пилюля как ChatGPT (+/текст/mic/send внутри); v14.16.2: композер как ChatGPT (flex, текст на всю ширину, перенос anywhere); v14.16.1: офлайн-КБ до 150 000 записей, ленивый точный longtail fallback; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
+        var EITI_VERSION = "14.16.7"; // v14.16.7: офлайн «печатает» — 3 кружка другого дизайна; v14.16.6: ↩️↪️ отмена/повтор ввода в композере + настройка скрыть; v14.16.5: ChatGPT layout — текст сверху на всю ширину, кнопки снизу; v14.16.4: композер на всю ширину экрана (как ChatGPT, ~4px поля); v14.16.3: одна пилюля как ChatGPT (+/текст/mic/send внутри); v14.16.2: композер как ChatGPT (flex, текст на всю ширину, перенос anywhere); v14.16.1: офлайн-КБ до 150 000 записей, ленивый точный longtail fallback; v14.16.0: шлюз AI-действий (удаления/правки только после подтверждения, MEM_DEL больше не стирает всю память) + EITI Care (личная опасность важнее слов «фильм/там», номера помощи по региону); v14.15.2: «📱 Экран телефона» — пресеты выреза (iPhone чёлка/Dynamic Island/SE, Galaxy, Xiaomi, Pixel; по умолчанию «Авто» = как раньше); v14.15.1: «Меньше иконки (small icons)» — компактные табы и верхние панели (Настройки → 📌 Настройка табов); v14.15.0: офлайн-интенты — чей / с кем / насколько / до каких пор / который из, составные реплики, числа словами, Doweria; v14.14.0: EITI Frames — офлайн-понимание формулировок, карточки понятий kn_*, Википедия без ключа; v14.13.1: EitiVoice P1-1 — запасной провайдер, ограниченное переподключение, текстовый режим; v14.13.0: «Похожие / Рассуждение» под ответами KB, сказками и заметками; v14.12.0: голосовые ассистенты OpenAI Realtime / Qwen Omni / Алиса (Яндекс) / Mistral Voxtral + Mistral AI в чате; v14.11.0: голосовой набор 🎤 (Web Speech, онлайн→на устройстве), ассистент в «+»; v14.10.0: офлайн-калькулятор EN/DE, поиск KB (алиасы/леммы/транслит), компактные действия сообщений, однострочный ввод, полный перевод UI EN/DE, стабильный e2e v1440; // v14.9.0: дневник — запись на пункт (IDB journal/contexts v17, привязка к чатам/темам, синхронизация с Drive) + выбор голоса Grok Voice / Gemini Live; // v14.8.0: терпимость к опечаткам (ё/е, ш/щ, соседние клавиши, раскладка ghbdtn→привет, пропущенные пробелы; RU/EN/DE) до всех офлайн-слоёв; // v14.7.0: Google Drive — вход один раз и автосинхронизация; // v14.5.0: память диалога (там/тогда/он…, стек тем, уточнения) + Настройки → размер чата; // v14.4.0: офлайн-ответы на языке приложения/сообщения (RU/EN/DE); // v14.3.0: библиотека знаний ~29 тыс. статей (27 новых разделов, компактные шарды v3); v14.2.0: EITI Local (local/): калькулятор + ответы по своим данным; + v14.1.0 библиотека знаний KB, v14.0.0 офлайн-диалоги и сказки
         function eitiModelCatalog() {
             return {
                 deepseek: {
@@ -6986,6 +6986,26 @@
         }
         .eiti-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
         .eiti-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Offline typing indicator — 3 soft gold dots (distinct from AI silver 3D dots) */
+        @keyframes eitiOfflineDotPulse {
+            0%, 80%, 100% { transform: scale(0.72); opacity: 0.35; }
+            40% { transform: scale(1.08); opacity: 1; }
+        }
+        .eiti-typing-dots.eiti-typing-offline {
+            gap: 7px; padding: 6px 4px 4px;
+        }
+        .eiti-typing-dots.eiti-typing-offline span {
+            width: 9px; height: 9px; border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #ffe566 0%, #ffd700 45%, #c9a000 100%);
+            box-shadow: 0 0 0 0 rgba(255,215,0,0.0), 0 0 8px rgba(255,215,0,0.25);
+            animation: eitiOfflineDotPulse 1.05s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .eiti-typing-dots.eiti-typing-offline span:nth-child(2) { animation-delay: 0.18s; }
+        .eiti-typing-dots.eiti-typing-offline span:nth-child(3) { animation-delay: 0.36s; }
+        .message.eiti-offline-typing-msg .message-sender { opacity: 0.85; }
+
 
         /* v13.5+: «думающий» блок — статус-строки + поток рассуждений (как ChatGPT/Claude) */
         .eiti-think-box {
@@ -22904,12 +22924,53 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             return base;
         }
 
+
+        // Offline typing bubble (gold dots) — shown while local offline answer is prepared.
+        window.eitiShowOfflineTyping = function () {
+            var messagesEl = document.getElementById('messages');
+            if (!messagesEl) return null;
+            var old = document.getElementById('eiti-offline-typing');
+            if (old) old.remove();
+            var div = document.createElement('div');
+            div.className = 'message incoming eiti-offline-typing-msg';
+            div.id = 'eiti-offline-typing';
+            var time = new Date().toLocaleTimeString('ru', { hour: '2-digit', minute: '2-digit' });
+            var _t = typeof window.T === 'function' ? window.T : function (x) { return x; };
+            div.innerHTML =
+                '<div class="message-row"><div class="message-body">' +
+                '<div class="message-sender">🌙 EITI Offline</div>' +
+                '<div style="min-height:24px;"><div class="eiti-typing-dots eiti-typing-offline" aria-label="' + _t('печатает') + '"><span></span><span></span><span></span></div></div>' +
+                '<div class="message-time">' + time + '</div>' +
+                '</div></div>';
+            messagesEl.appendChild(div);
+            if (!window._eitiScrollPaused) messagesEl.scrollTop = messagesEl.scrollHeight;
+            return div;
+        };
+        window.eitiHideOfflineTyping = function () {
+            var old = document.getElementById('eiti-offline-typing');
+            if (old) old.remove();
+        };
+        window.eitiWithOfflineTyping = function (workPromise, minMs) {
+            minMs = (minMs == null) ? 520 : minMs;
+            try { window.eitiShowOfflineTyping(); } catch (e) {}
+            var wait = new Promise(function (r) { setTimeout(r, minMs); });
+            return Promise.all([Promise.resolve().then(function () { return workPromise; }), wait]).then(function (pair) {
+                try { window.eitiHideOfflineTyping(); } catch (e) {}
+                return pair[0];
+            }, function (err) {
+                try { window.eitiHideOfflineTyping(); } catch (e) {}
+                throw err;
+            });
+        };
+
         // v14.0.0: обёртка — нет сети/ключа или ИИ упал → офлайн-диалоги (offline/), иначе как раньше.
         async function eitiAskDeepSeek(userText) {
             var _internal = /^(Добавь в базу KB|Обогати базу KB)/.test(String(userText || ''));
             var _offline = function() {
                 if (_internal || !window.EitiOffline) return Promise.resolve(null);
-                return EitiOffline.replyText(userText, { foot: true }).then(function(t) {
+                var work = EitiOffline.replyText(userText, { foot: true });
+                var run = (typeof window.eitiWithOfflineTyping === 'function') ? window.eitiWithOfflineTyping(work, 480 + Math.floor(Math.random() * 320)) : work;
+                return run.then(function(t) {
                     // показываем как «🌙 EITI Offline»; в IDB сохраняет вызывающий код (как для обычного ответа ИИ)
                     if (t && typeof eitiReceiveReply === 'function') { window._eitiOfflineReply = true; try { eitiReceiveReply(t); } finally { window._eitiOfflineReply = false; } }
                     return t;
@@ -22918,10 +22979,12 @@ registerProcessor('grok-pcm-processor', GrokPCMProcessor);`;
             // v14.14.0: весь офлайн-путь вернул null → локальная карточка «🌐 из Википедии» или «Не знаю, этого нет в базе» с кнопками (без сети)
             var _lastResort = function() {
                 if (_internal || !window.EitiFramesHost) return Promise.resolve(null);
-                return EitiFramesHost.lastResort(userText).then(function(t) {
+                var work = EitiFramesHost.lastResort(userText);
+                var run = (typeof window.eitiWithOfflineTyping === 'function') ? window.eitiWithOfflineTyping(work, 420) : work;
+                return run.then(function(t) {
                     if (t && typeof eitiReceiveReply === 'function') { window._eitiOfflineReply = true; try { eitiReceiveReply(t); } finally { window._eitiOfflineReply = false; } }
                     return t;
-                }, function() { return null; });
+                }, function() { try { window.eitiHideOfflineTyping(); } catch (e) {} return null; });
             };
             if (typeof eitiAiUnavailable === 'function' && eitiAiUnavailable()) {
                 var _t0 = await _offline();
