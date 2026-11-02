@@ -52,7 +52,9 @@ test.describe('v14.5.0 storage settings', () => {
 
     await page.evaluate(() => caches.open('eiti-offline-test').then((c) => c.put('/offline/x.json', new Response('{"a":1}'))));
     await page.locator('#eiti-clear-cache-btn').click();
-    await expect.poll(() => page.evaluate(() => caches.keys().then((k) => k.filter((x) => /^eiti-offline/.test(x)).length))).toBe(0);
+    // Clear removes every eiti-offline* name; the live SW may immediately recreate
+    // OFFLINE_CACHE (eiti-offline-v…), so assert the seeded test cache is gone.
+    await expect.poll(() => page.evaluate(() => caches.keys().then((k) => k.includes('eiti-offline-test')))).toBe(false);
 
     expect(await page.evaluate(() => !!EitiDialogHost.state().slots.place)).toBe(true);
     await page.locator('#eiti-reset-dialog-btn').click();
