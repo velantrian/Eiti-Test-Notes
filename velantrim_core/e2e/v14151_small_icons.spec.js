@@ -1,6 +1,6 @@
 // @ts-check
 // v14.15.1: «Меньше иконки (small icons)» — компактные нижний таб-бар и верхние панели.
-// По умолчанию вид как раньше (таб-бар 88 px, шапка 72 px); галочка в «Настройке табов» сжимает их,
+// По умолчанию вид как раньше (по умолчанию компактные табы 88/72; выкл → 110/88; small icons → 50/44); галочка в «Настройке табов» сжимает их,
 // контент забирает место без наложений; применяется сразу и после перезагрузки (до первой отрисовки).
 const { test, expect } = require('@playwright/test');
 const path = require('path');
@@ -72,7 +72,7 @@ async function measureAll(page, mode) {
   return m;
 }
 
-test('по умолчанию: вид по умолчанию (88 / 72 px), галочка снята', async ({ page }) => {
+test('по умолчанию: по умолчанию компактные табы (88 / 72), галочка снята', async ({ page }) => {
   await boot(page);
   expect(await page.evaluate(() => document.documentElement.classList.contains('eiti-small-icons'))).toBe(false);
   const m = await measureAll(page, 'default');
