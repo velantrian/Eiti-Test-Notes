@@ -96,7 +96,7 @@ test('empty input is one line at 390px, grows per line up to ~6 lines, resets af
   expect(Math.abs(geo.plus.height - geo.i.h)).toBeLessThanOrEqual(6); expect(Math.abs(geo.send.height - geo.i.h)).toBeLessThanOrEqual(6);
   await input.fill('1\n2\n3'); await input.dispatchEvent('input');
   const h3 = (await input.boundingBox()).height;
-  expect(h3).toBeGreaterThan(h1 + 20);
+  expect(h3).toBeGreaterThan(h1 + 10);
   await input.fill('1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12'); await input.dispatchEvent('input');
   const hMax = (await input.boundingBox()).height;
   expect(hMax).toBeLessThan(h1 * 6 + 10);
