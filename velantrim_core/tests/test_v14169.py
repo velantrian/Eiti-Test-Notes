@@ -5,8 +5,8 @@ ROOT=Path(__file__).resolve().parents[2]
 HTML=(ROOT/"index.html").read_text(encoding="utf-8")
 SW=(ROOT/"sw.js").read_text(encoding="utf-8")
 def test_version_sync():
-    assert 'var EITI_VERSION = "14.16.14"' in HTML
-    assert "var CACHE = 'eiti-v14.16.14'" in SW
+    assert 'var EITI_VERSION = "14.16.15"' in HTML
+    assert "var CACHE = 'eiti-v14.16.15'" in SW
 def test_compact_bottom_only():
     assert "eiti-compact-chrome" in HTML
     assert 'id="eiti-compact-chrome-toggle"' in HTML

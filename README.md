@@ -7,7 +7,7 @@
 **Персональный AI-ассистент с многослойной памятью**  
 _Клиентское PWA без backend и build step. Основной интерфейс — один HTML-файл._
 
-[![Version](https://img.shields.io/badge/version-14.16.14-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
+[![Version](https://img.shields.io/badge/version-14.16.15-gold?style=flat-square)](https://github.com/velantrian/Eiti-Test-Notes/commits/main)
 [![No Build Step](https://img.shields.io/badge/build-none-brightgreen?style=flat-square)](#)
 [![PWA](https://img.shields.io/badge/PWA-ready-blue?style=flat-square)](#)
 [![Offline Core](https://img.shields.io/badge/offline-core-orange?style=flat-square)](#)
@@ -66,7 +66,12 @@ python3 -m http.server 8080
 
 ---
 
-## 🆕 Что нового в v14.16.14
+## 🆕 Что нового в v14.16.15
+
+- ⏪⏩ Плеер: иконки перемотки ±10 сек перерисованы точно, как replay/forward в iOS/Material — открытая дуга, стрелка вверху, цифра по центру, толщина линий как у shuffle/repeat.
+- 🔧 Левая кнопка «−10 сек» теперь отматывает назад, правая «+10 сек» — вперёд (раньше было наоборот).
+
+## 🆕 Что было в v14.16.14
 
 - CI/i18n fix for compact tabs toggle.
 
