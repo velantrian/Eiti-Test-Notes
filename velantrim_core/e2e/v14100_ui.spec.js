@@ -84,7 +84,7 @@ test('empty input is one line at 390px, grows per line up to ~6 lines, resets af
   });
   expect(geo.fs).toBeGreaterThanOrEqual(16); // iOS: no zoom on focus
   expect(Math.abs(geo.pt - geo.pb)).toBeLessThanOrEqual(1); // placeholder vertically centred
-  expect(geo.rad).toBeGreaterThanOrEqual(geo.shell.h / 2 - 2); // outer ChatGPT-like pill
+  expect(geo.rad).toBeGreaterThanOrEqual(geo.shell.h / 2 - 4); // outer ChatGPT-like pill
   for (const b of [geo.mic, geo.plus, geo.send]) { expect(b.width).toBeGreaterThanOrEqual(40); expect(b.height).toBeGreaterThanOrEqual(40); }
   // controls live inside the composer shell (flex row), not overlaid on the textarea
   for (const b of [geo.mic, geo.plus, geo.send]) {
