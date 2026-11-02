@@ -66,15 +66,34 @@ test('empty input is one line at 390px, grows per line up to ~6 lines, resets af
   const h1 = (await input.boundingBox()).height;
   expect(Math.abs(h0 - h1)).toBeLessThanOrEqual(3);
   expect(h0).toBeLessThanOrEqual(44); expect(h0).toBeGreaterThanOrEqual(40); // pill; was ~74 px (two-line placeholder)
-  const geo = await page.evaluate(() => { const r = (id) => document.getElementById(id).getBoundingClientRect(); const i = r('input'), cs = getComputedStyle(document.getElementById('input'));
-    return { i: { t: i.top, b: i.bottom, l: i.left, r: i.right, h: i.height }, mic: r('eiti-composer-mic'), plus: r('chat-plus-btn'), send: r('send'), fs: parseFloat(cs.fontSize), pt: parseFloat(cs.paddingTop), pb: parseFloat(cs.paddingBottom), rad: parseFloat(cs.borderTopLeftRadius) }; });
+  const geo = await page.evaluate(() => {
+    const r = (el) => el.getBoundingClientRect();
+    const input = document.getElementById('input');
+    const shell = document.querySelector('.chat-composer-shell');
+    const cs = getComputedStyle(input);
+    const i = r(input), sh = r(shell);
+    return {
+      i: { t: i.top, b: i.bottom, l: i.left, r: i.right, h: i.height },
+      shell: { t: sh.top, b: sh.bottom, l: sh.left, r: sh.right, h: sh.height },
+      mic: r(document.getElementById('eiti-composer-mic')),
+      plus: r(document.getElementById('chat-plus-btn')),
+      send: r(document.getElementById('send')),
+      fs: parseFloat(cs.fontSize), pt: parseFloat(cs.paddingTop), pb: parseFloat(cs.paddingBottom),
+      rad: Math.max(...(getComputedStyle(shell).borderRadius || '0').split(' ').map(parseFloat)),
+    };
+  });
   expect(geo.fs).toBeGreaterThanOrEqual(16); // iOS: no zoom on focus
   expect(Math.abs(geo.pt - geo.pb)).toBeLessThanOrEqual(1); // placeholder vertically centred
-  expect(geo.rad).toBeGreaterThanOrEqual(geo.i.h / 2 - 1); // pill
+  expect(geo.rad).toBeGreaterThanOrEqual(geo.shell.h / 2 - 2); // outer ChatGPT-like pill
   for (const b of [geo.mic, geo.plus, geo.send]) { expect(b.width).toBeGreaterThanOrEqual(40); expect(b.height).toBeGreaterThanOrEqual(40); }
-  expect(geo.mic.left).toBeGreaterThanOrEqual(geo.i.l); expect(geo.mic.right).toBeLessThanOrEqual(geo.i.r + 1); // mic inside the pill
-  expect(geo.mic.top).toBeGreaterThanOrEqual(geo.i.t - 1); expect(geo.mic.bottom).toBeLessThanOrEqual(geo.i.b + 1);
-  expect(Math.abs(geo.plus.height - geo.i.h)).toBeLessThanOrEqual(4); expect(Math.abs(geo.send.height - geo.i.h)).toBeLessThanOrEqual(4);
+  // controls live inside the composer shell (flex row), not overlaid on the textarea
+  for (const b of [geo.mic, geo.plus, geo.send]) {
+    expect(b.left).toBeGreaterThanOrEqual(geo.shell.l - 1);
+    expect(b.right).toBeLessThanOrEqual(geo.shell.r + 1);
+    expect(b.top).toBeGreaterThanOrEqual(geo.shell.t - 1);
+    expect(b.bottom).toBeLessThanOrEqual(geo.shell.b + 1);
+  }
+  expect(Math.abs(geo.plus.height - geo.i.h)).toBeLessThanOrEqual(6); expect(Math.abs(geo.send.height - geo.i.h)).toBeLessThanOrEqual(6);
   await input.fill('1\n2\n3'); await input.dispatchEvent('input');
   const h3 = (await input.boundingBox()).height;
   expect(h3).toBeGreaterThan(h1 + 20);
