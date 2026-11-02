@@ -1,9 +1,9 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-// Composer behaviour (v13.5+): while there is text the panel enters "compose"
-// mode (.composing) — CSS then makes the textarea span the full width on top and
-// drops the +/send buttons to a bottom row, and the textarea autogrows upward.
+// Composer behaviour: while there is text the panel enters "compose" mode
+// (.composing), the textarea autogrows upward, and action controls stay inside
+// the full-width composer shell.
 //
 // NOTE: the headless harness renders the chat container collapsed (0px height —
 // the app shell starts display:none and is not laid out at real size here), so
@@ -61,4 +61,53 @@ test('autogrow handler sets an explicit inline height on input', async ({ page }
   await setInput(page, 'one line');
   const styleH = await page.evaluate(() => document.getElementById('input').style.height);
   expect(styleH).toMatch(/px$/);
+});
+
+test('plus, microphone and send controls are inside the full-width composer shell', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await gotoApp(page);
+  const layout = await page.evaluate(() => {
+    const panel = document.querySelector('.chat-input-panel');
+    const center = document.querySelector('.chat-center-col');
+    const shell = document.querySelector('.chat-composer-shell');
+    const input = document.getElementById('input');
+    return {
+      shellInCenter: !!shell && shell.parentElement === center,
+      inputInside: !!shell && shell.contains(input),
+      plusInside: !!shell && shell.contains(document.getElementById('chat-plus-btn')),
+      microphoneInside: !!shell && shell.contains(document.getElementById('eiti-composer-mic')),
+      sendInside: !!shell && shell.contains(document.getElementById('send')),
+      panelSideColumns: panel ? Array.from(panel.children).filter((el) => el.classList.contains('chat-left-col') || el.classList.contains('chat-right-col')).length : -1,
+      inputPaddingLeft: input ? getComputedStyle(input).paddingLeft : '',
+      inputPaddingRight: input ? getComputedStyle(input).paddingRight : '',
+    };
+  });
+  expect(layout).toMatchObject({
+    shellInCenter: true,
+    inputInside: true,
+    plusInside: true,
+    microphoneInside: true,
+    sendInside: true,
+    panelSideColumns: 0,
+    inputPaddingLeft: '56px',
+  });
+  expect(['94px', '142px']).toContain(layout.inputPaddingRight);
+});
+
+test('classic button mode reserves composer space for the attachment control', async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('eiti_chat_panel_mode', 'buttons');
+  });
+  await gotoApp(page);
+  const layout = await page.evaluate(() => {
+    const shell = document.querySelector('.chat-composer-shell');
+    const input = document.getElementById('input');
+    const attach = document.getElementById('chat-attach-proxy');
+    return {
+      classicMode: !!shell && shell.classList.contains('classic-controls'),
+      attachmentInside: !!shell && shell.contains(attach),
+      paddingRight: input ? getComputedStyle(input).paddingRight : '',
+    };
+  });
+  expect(layout).toEqual({ classicMode: true, attachmentInside: true, paddingRight: '142px' });
 });
